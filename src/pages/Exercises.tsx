@@ -37,11 +37,7 @@ export function Exercises() {
         {FILTER_OPTIONS.map((f) => (
           <button
             key={f.key}
-            className="card tap-target text-xs px-3 py-2 whitespace-nowrap"
-            style={{
-              borderColor: filter === f.key ? 'var(--color-pitch-green-light)' : undefined,
-              background: filter === f.key ? 'var(--color-surface-light)' : undefined,
-            }}
+            className="btn-choice tap-target text-xs px-3 py-2 whitespace-nowrap"
             onClick={() => setFilter(f.key)}
             aria-pressed={filter === f.key}
           >
@@ -58,27 +54,27 @@ export function Exercises() {
             <div key={ex.id} className="card">
               <div className="flex justify-between items-start">
                 <div className="flex-1">
-                  <p className="text-sm font-medium" style={{ color: 'var(--color-text-primary)' }}>
+                  <p className="text-sm font-semibold" style={{ color: 'var(--color-text)' }}>
                     {t(ex.nameKey)}
                   </p>
                   <p className="text-xs mt-1 leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
                     {t(ex.descriptionKey)}
                   </p>
                   <div className="flex gap-2 mt-2">
-                    <span className="text-xs px-2 py-0.5 rounded-full" style={{ background: 'var(--color-surface-light)', color: 'var(--color-text-muted)' }}>
+                    <span className="text-xs px-2 py-0.5 rounded-full font-data" style={{ background: 'rgba(255,255,255,0.06)', color: 'var(--color-text-muted)' }}>
                       {ex.durationMinutes} min
                     </span>
-                    <span className="text-xs px-2 py-0.5 rounded-full" style={{ background: 'var(--color-surface-light)', color: 'var(--color-text-muted)' }}>
+                    <span className="text-xs px-2 py-0.5 rounded-full" style={{ background: 'rgba(255,255,255,0.06)', color: 'var(--color-gold-400)' }}>
                       {'⭐'.repeat(ex.difficulty)}
                     </span>
                   </div>
                 </div>
                 <button
-                  className="tap-target rounded-lg px-3 py-2 text-xs font-bold ml-3"
+                  className="tap-target rounded-xl px-3 py-2 text-xs font-bold ml-3"
                   style={{
-                    background: isDone ? 'var(--color-pitch-green)' : 'var(--color-surface-light)',
-                    color: isDone ? '#fff' : 'var(--color-pitch-green-light)',
-                    border: isDone ? 'none' : '1px solid var(--color-pitch-green)',
+                    background: isDone ? 'linear-gradient(135deg, var(--color-green-600), var(--color-green-500))' : 'transparent',
+                    color: isDone ? '#fff' : 'var(--color-green-400)',
+                    border: isDone ? 'none' : '1px solid rgba(34,197,94,0.3)',
                   }}
                   onClick={() => !isDone && markDone(ex.id)}
                   disabled={isDone}

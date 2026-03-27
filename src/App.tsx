@@ -18,8 +18,10 @@ function AppContent() {
       {/* XP bar header */}
       <header
         style={{
-          background: 'var(--color-pitch-dark)',
-          borderBottom: '1px solid var(--color-pitch-line)',
+          background: 'rgba(12, 17, 23, 0.85)',
+          backdropFilter: 'blur(20px)',
+          WebkitBackdropFilter: 'blur(20px)',
+          borderBottom: '1px solid rgba(255, 255, 255, 0.06)',
         }}
       >
         <XpBar />

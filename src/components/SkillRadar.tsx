@@ -39,8 +39,8 @@ export function SkillRadar() {
   })
 
   return (
-    <div className="card">
-      <p className="text-sm font-medium mb-3" style={{ color: 'var(--color-text-secondary)' }}>
+    <div className="card animate-fade-up animate-stagger-2">
+      <p className="section-label mb-3">
         {t('dashboard.skills')}
       </p>
       <svg viewBox="0 0 300 300" className="w-full max-w-[280px] mx-auto">
@@ -52,7 +52,7 @@ export function SkillRadar() {
               key={level}
               points={pts.map((p) => p.join(',')).join(' ')}
               fill="none"
-              stroke="var(--color-pitch-line)"
+              stroke="rgba(255,255,255,0.06)"
               strokeWidth="0.5"
             />
           )
@@ -68,24 +68,32 @@ export function SkillRadar() {
               y1={cy}
               x2={pts[i][0]}
               y2={pts[i][1]}
-              stroke="var(--color-pitch-line)"
+              stroke="rgba(255,255,255,0.06)"
               strokeWidth="0.5"
             />
           )
         })}
 
-        {/* Data polygon */}
+        {/* Data polygon — gradient fill */}
+        <defs>
+          <linearGradient id="radarFill" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor="#22c55e" stopOpacity="0.3" />
+            <stop offset="100%" stopColor="#f59e0b" stopOpacity="0.15" />
+          </linearGradient>
+        </defs>
         <polygon
           points={dataPoints.map((p) => p.join(',')).join(' ')}
-          fill="var(--color-pitch-green)"
-          fillOpacity="0.3"
-          stroke="var(--color-pitch-green-light)"
+          fill="url(#radarFill)"
+          stroke="var(--color-green-400)"
           strokeWidth="2"
         />
 
-        {/* Data points */}
+        {/* Data points — glowing */}
         {dataPoints.map((p, i) => (
-          <circle key={i} cx={p[0]} cy={p[1]} r="4" fill="var(--color-pitch-green-light)" />
+          <g key={i}>
+            <circle cx={p[0]} cy={p[1]} r="6" fill="var(--color-green-400)" fillOpacity="0.2" />
+            <circle cx={p[0]} cy={p[1]} r="3" fill="var(--color-green-400)" />
+          </g>
         ))}
 
         {/* Labels */}
@@ -103,6 +111,7 @@ export function SkillRadar() {
               dominantBaseline="middle"
               fill="var(--color-text-secondary)"
               fontSize="9"
+              fontWeight="500"
             >
               {t(LABEL_KEYS[cat])}
             </text>

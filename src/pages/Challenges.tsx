@@ -15,7 +15,7 @@ export function Challenges() {
 
       {/* Daily */}
       <div>
-        <p className="text-sm font-medium mb-2" style={{ color: 'var(--color-text-secondary)' }}>
+        <p className="section-label mb-2">
           {t('challenges.daily')}
         </p>
         <div className="flex flex-col gap-2">
@@ -23,11 +23,11 @@ export function Challenges() {
             <div key={ch.id} className="card flex items-center justify-between">
               <span className="text-sm">{ch.text}</span>
               <button
-                className="tap-target rounded-lg px-3 py-2 text-xs font-bold"
+                className="tap-target rounded-xl px-3 py-2 text-xs font-bold"
                 style={{
-                  background: 'var(--color-surface-light)',
-                  color: 'var(--color-pitch-green-light)',
-                  border: '1px solid var(--color-pitch-green)',
+                  background: 'transparent',
+                  color: 'var(--color-gold-400)',
+                  border: '1px solid rgba(245,158,11,0.3)',
                 }}
                 aria-label={`Complete challenge: ${ch.text}`}
               >
@@ -40,35 +40,35 @@ export function Challenges() {
 
       {/* Special tracks */}
       <div>
-        <p className="text-sm font-medium mb-2" style={{ color: 'var(--color-text-secondary)' }}>
+        <p className="section-label mb-2">
           {t('challenges.special')}
         </p>
         <div className="flex flex-col gap-2">
-          <div className="card">
+          <div className="card-glow">
             <p className="text-sm font-bold">{t('challenges.weakFoot')}</p>
             <p className="text-xs mt-1" style={{ color: 'var(--color-text-muted)' }}>
               30-дневная программа левой ноги
             </p>
-            <div className="xp-bar-track mt-2">
-              <div className="xp-bar-fill" style={{ width: '0%' }} />
+            <div className="progress-track mt-2">
+              <div className="progress-fill" style={{ width: '0%', background: 'var(--color-green-400)' }} />
             </div>
           </div>
-          <div className="card">
+          <div className="card-glow">
             <p className="text-sm font-bold">{t('challenges.mentalChamp')}</p>
             <p className="text-xs mt-1" style={{ color: 'var(--color-text-muted)' }}>
               Визуализация и позитивный диалог
             </p>
-            <div className="xp-bar-track mt-2">
-              <div className="xp-bar-fill" style={{ width: '0%' }} />
+            <div className="progress-track mt-2">
+              <div className="progress-fill" style={{ width: '0%', background: 'var(--color-cyan)' }} />
             </div>
           </div>
-          <div className="card">
+          <div className="card-glow">
             <p className="text-sm font-bold">{t('challenges.deepPractice')}</p>
             <p className="text-xs mt-1" style={{ color: 'var(--color-text-muted)' }}>
               7 дней глубокой практики
             </p>
-            <div className="xp-bar-track mt-2">
-              <div className="xp-bar-fill" style={{ width: '0%' }} />
+            <div className="progress-track mt-2">
+              <div className="progress-fill" style={{ width: '0%', background: 'var(--color-gold-400)' }} />
             </div>
           </div>
         </div>

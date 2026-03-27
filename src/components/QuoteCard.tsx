@@ -9,14 +9,14 @@ export function QuoteCard() {
   const lang = i18n.language as Language
 
   return (
-    <div className="card">
-      <p className="text-xs uppercase tracking-wider mb-2" style={{ color: 'var(--color-text-muted)' }}>
+    <div className="card-glow animate-fade-up">
+      <p className="section-label mb-2">
         {t('dashboard.quote')}
       </p>
-      <p className="text-base italic leading-relaxed" style={{ color: 'var(--color-text-primary)' }}>
+      <p className="text-base italic leading-relaxed" style={{ color: 'var(--color-text)' }}>
         &ldquo;{quote.text[lang] ?? quote.text.en}&rdquo;
       </p>
-      <p className="text-sm mt-2" style={{ color: 'var(--color-pitch-green-light)' }}>
+      <p className="text-sm mt-2 font-semibold" style={{ color: 'var(--color-green-400)' }}>
         — {quote.player}
       </p>
     </div>

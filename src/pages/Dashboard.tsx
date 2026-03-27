@@ -13,51 +13,52 @@ export function Dashboard() {
 
   return (
     <div className="flex flex-col gap-4 p-4 pb-24">
+      {/* Quote of the day */}
       <QuoteCard />
 
-      {/* Season stats */}
-      <div className="grid grid-cols-3 gap-3">
-        <div className="card text-center">
-          <p className="text-2xl font-bold" style={{ color: 'var(--color-pitch-green-light)' }}>
+      {/* Season stats — vibrant pills */}
+      <div className="grid grid-cols-3 gap-3 animate-fade-up animate-stagger-1">
+        <div className="card text-center py-4">
+          <p className="text-2xl font-black font-data" style={{ color: 'var(--color-green-400)' }}>
             {matches.length}
           </p>
-          <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
+          <p className="text-xs font-medium mt-1" style={{ color: 'var(--color-text-muted)' }}>
             {t('dashboard.matches')}
           </p>
         </div>
-        <div className="card text-center">
-          <p className="text-2xl font-bold" style={{ color: 'var(--color-gold)' }}>
+        <div className="card text-center py-4">
+          <p className="text-2xl font-black font-data" style={{ color: 'var(--color-gold-400)' }}>
             {seasonGoals}
           </p>
-          <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
+          <p className="text-xs font-medium mt-1" style={{ color: 'var(--color-text-muted)' }}>
             {t('dashboard.goals')}
           </p>
         </div>
-        <div className="card text-center">
-          <p className="text-2xl font-bold" style={{ color: 'var(--color-diamond)' }}>
+        <div className="card text-center py-4">
+          <p className="text-2xl font-black font-data" style={{ color: 'var(--color-cyan)' }}>
             {seasonAssists}
           </p>
-          <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
+          <p className="text-xs font-medium mt-1" style={{ color: 'var(--color-text-muted)' }}>
             {t('dashboard.assists')}
           </p>
         </div>
       </div>
 
-      {/* Total XP */}
-      <div className="card">
+      {/* Total XP highlight */}
+      <div className="card-gold animate-fade-up animate-stagger-2">
         <div className="flex justify-between items-center">
-          <span className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>
+          <span className="text-sm font-semibold" style={{ color: 'var(--color-text-secondary)' }}>
             Total XP
           </span>
-          <span className="text-lg font-bold" style={{ color: 'var(--color-pitch-green-light)' }}>
+          <span className="text-xl font-black font-data" style={{ color: 'var(--color-gold-400)' }}>
             {xp.totalXp.toLocaleString()}
           </span>
         </div>
-        <div className="flex justify-between items-center mt-1">
-          <span className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>
+        <div className="flex justify-between items-center mt-2">
+          <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
             {t('dashboard.season')}
           </span>
-          <span className="text-sm" style={{ color: 'var(--color-text-muted)' }}>
+          <span className="stat-pill stat-pill-green">
             {trainings.length} {t('log.training').toLowerCase()}
           </span>
         </div>
@@ -68,21 +69,22 @@ export function Dashboard() {
 
       {/* Recent matches */}
       {matches.length > 0 && (
-        <div className="card">
-          <p className="text-sm font-medium mb-3" style={{ color: 'var(--color-text-secondary)' }}>
+        <div className="card animate-fade-up animate-stagger-3">
+          <p className="section-label mb-3">
             {t('dashboard.matches')}
           </p>
           <div className="flex flex-col gap-2">
             {matches.slice(-5).reverse().map((m) => {
               const result = getMatchResult(m)
               const resultColor =
-                result === 'win' ? 'var(--color-pitch-green-light)'
+                result === 'win' ? 'var(--color-green-400)'
                 : result === 'loss' ? 'var(--color-danger)'
                 : 'var(--color-warn)'
               return (
-                <div key={m.id} className="flex justify-between items-center text-sm">
-                  <span style={{ color: 'var(--color-text-primary)' }}>{m.opponent}</span>
-                  <span style={{ color: resultColor, fontWeight: 600 }}>
+                <div key={m.id} className="flex justify-between items-center py-2 text-sm"
+                  style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
+                  <span style={{ color: 'var(--color-text)' }}>{m.opponent}</span>
+                  <span className="font-data font-bold" style={{ color: resultColor }}>
                     {m.scoreUs} : {m.scoreThem}
                   </span>
                 </div>

@@ -67,9 +67,9 @@ export function MatchLog() {
 
   if (saved) {
     return (
-      <div className="flex flex-col items-center justify-center gap-4 p-8 pb-24">
-        <span className="text-5xl">⚽</span>
-        <p className="text-lg font-bold" style={{ color: 'var(--color-pitch-green-light)' }}>
+      <div className="flex flex-col items-center justify-center gap-4 p-8 pb-24 animate-fade-up">
+        <span className="text-5xl animate-float">⚽</span>
+        <p className="text-lg font-bold" style={{ color: 'var(--color-green-400)' }}>
           {t('match.saved', { xp: XP_AWARDS.logMatch })}
         </p>
       </div>
@@ -82,15 +82,13 @@ export function MatchLog() {
 
       {/* Opponent & Competition */}
       <input
-        className="card w-full text-sm"
-        style={{ background: 'var(--color-surface)', color: 'var(--color-text-primary)' }}
+        className="w-full text-sm"
         placeholder={t('match.opponent')}
         value={opponent}
         onChange={(e) => setOpponent(e.target.value)}
       />
       <input
-        className="card w-full text-sm"
-        style={{ background: 'var(--color-surface)', color: 'var(--color-text-primary)' }}
+        className="w-full text-sm"
         placeholder={t('match.competition')}
         value={competition}
         onChange={(e) => setCompetition(e.target.value)}
@@ -98,7 +96,7 @@ export function MatchLog() {
 
       {/* Score */}
       <div className="card">
-        <p className="text-sm mb-2" style={{ color: 'var(--color-text-secondary)' }}>{t('match.score')}</p>
+        <p className="section-label mb-2">{t('match.score')}</p>
         <div className="flex items-center justify-center gap-4">
           <div className="flex flex-col items-center gap-1">
             <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>RFS</span>
@@ -122,16 +120,12 @@ export function MatchLog() {
 
       {/* Position */}
       <div>
-        <p className="text-sm mb-2" style={{ color: 'var(--color-text-secondary)' }}>{t('match.position')}</p>
+        <p className="section-label mb-2">{t('match.position')}</p>
         <div className="flex flex-wrap gap-2">
           {POSITIONS.map((p) => (
             <button
               key={p.key}
-              className="card tap-target text-xs px-3 py-2"
-              style={{
-                borderColor: position === p.key ? 'var(--color-pitch-green-light)' : undefined,
-                background: position === p.key ? 'var(--color-surface-light)' : undefined,
-              }}
+              className="btn-choice tap-target text-xs px-3 py-2"
               onClick={() => setPosition(p.key)}
               aria-pressed={position === p.key}
             >
@@ -143,7 +137,7 @@ export function MatchLog() {
 
       {/* Stats — Tap counters */}
       <div className="card">
-        <p className="text-sm mb-3" style={{ color: 'var(--color-text-secondary)' }}>{t('match.stats')}</p>
+        <p className="section-label mb-3">{t('match.stats')}</p>
         {([
           { label: t('match.goals'), icon: '⚽', value: goals, set: setGoals },
           { label: t('match.assists'), icon: '🅰️', value: assists, set: setAssists },
@@ -164,7 +158,7 @@ export function MatchLog() {
 
       {/* Self rating */}
       <div className="card">
-        <p className="text-sm mb-2" style={{ color: 'var(--color-text-secondary)' }}>{t('match.rating')}</p>
+        <p className="section-label mb-2">{t('match.rating')}</p>
         <div className="flex items-center gap-2">
           <input
             type="range"
@@ -175,7 +169,7 @@ export function MatchLog() {
             className="flex-1"
             aria-label={t('match.rating')}
           />
-          <span className="text-xl font-bold w-8 text-center" style={{ color: selfRating >= 7 ? 'var(--color-pitch-green-light)' : selfRating >= 4 ? 'var(--color-warn)' : 'var(--color-danger)' }}>
+          <span className="text-2xl font-black font-data w-8 text-center" style={{ color: selfRating >= 7 ? 'var(--color-green-400)' : selfRating >= 4 ? 'var(--color-warn)' : 'var(--color-danger)' }}>
             {selfRating}
           </span>
         </div>
@@ -183,15 +177,13 @@ export function MatchLog() {
 
       {/* Reflections */}
       <input
-        className="card w-full text-sm"
-        style={{ background: 'var(--color-surface)', color: 'var(--color-text-primary)' }}
+        className="w-full text-sm"
         placeholder={t('match.bestMoment')}
         value={bestMoment}
         onChange={(e) => setBestMoment(e.target.value)}
       />
       <input
-        className="card w-full text-sm"
-        style={{ background: 'var(--color-surface)', color: 'var(--color-text-primary)' }}
+        className="w-full text-sm"
         placeholder={t('match.toImprove')}
         value={toImprove}
         onChange={(e) => setToImprove(e.target.value)}
@@ -199,7 +191,7 @@ export function MatchLog() {
 
       {/* Mood */}
       <div>
-        <p className="text-sm mb-2" style={{ color: 'var(--color-text-secondary)' }}>{t('training.mood')}</p>
+        <p className="section-label mb-2">{t('training.mood')}</p>
         <div className="flex gap-2 justify-center">
           {ENERGY_EMOJIS.map((emoji, i) => (
             <button
@@ -217,8 +209,7 @@ export function MatchLog() {
 
       {/* Save */}
       <button
-        className="tap-target w-full rounded-xl py-3 text-base font-bold"
-        style={{ background: 'var(--color-pitch-green)', color: '#fff' }}
+        className="btn-primary tap-target w-full"
         onClick={handleSave}
         disabled={!opponent}
         aria-label={t('match.save')}

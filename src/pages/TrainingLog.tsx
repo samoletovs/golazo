@@ -60,9 +60,9 @@ export function TrainingLog() {
 
   if (saved) {
     return (
-      <div className="flex flex-col items-center justify-center gap-4 p-8 pb-24">
-        <span className="text-5xl">✅</span>
-        <p className="text-lg font-bold" style={{ color: 'var(--color-pitch-green-light)' }}>
+      <div className="flex flex-col items-center justify-center gap-4 p-8 pb-24 animate-fade-up">
+        <span className="text-5xl animate-float">✅</span>
+        <p className="text-lg font-bold" style={{ color: 'var(--color-green-400)' }}>
           {t('training.saved', { xp: XP_AWARDS.logTraining })}
         </p>
       </div>
@@ -75,18 +75,14 @@ export function TrainingLog() {
 
       {/* Type selector */}
       <div>
-        <p className="text-sm mb-2" style={{ color: 'var(--color-text-secondary)' }}>
+        <p className="section-label mb-2">
           {t('log.training')}
         </p>
         <div className="grid grid-cols-4 gap-2">
           {TYPES.map((tp) => (
             <button
               key={tp.key}
-              className="card tap-target text-center text-sm"
-              style={{
-                borderColor: type === tp.key ? 'var(--color-pitch-green-light)' : undefined,
-                background: type === tp.key ? 'var(--color-surface-light)' : undefined,
-              }}
+              className="btn-choice tap-target text-center text-sm"
               onClick={() => setType(tp.key)}
               aria-pressed={type === tp.key}
             >
@@ -98,18 +94,14 @@ export function TrainingLog() {
 
       {/* Duration */}
       <div>
-        <p className="text-sm mb-2" style={{ color: 'var(--color-text-secondary)' }}>
+        <p className="section-label mb-2">
           {t('training.duration')}
         </p>
         <div className="flex gap-2">
           {DURATIONS.map((d) => (
             <button
               key={d}
-              className="card tap-target flex-1 text-center text-sm"
-              style={{
-                borderColor: duration === d ? 'var(--color-pitch-green-light)' : undefined,
-                background: duration === d ? 'var(--color-surface-light)' : undefined,
-              }}
+              className="btn-choice tap-target flex-1 text-center text-sm"
               onClick={() => setDuration(d)}
               aria-pressed={duration === d}
             >
@@ -121,18 +113,14 @@ export function TrainingLog() {
 
       {/* Focus areas */}
       <div>
-        <p className="text-sm mb-2" style={{ color: 'var(--color-text-secondary)' }}>
+        <p className="section-label mb-2">
           {t('training.focus')}
         </p>
         <div className="flex flex-wrap gap-2">
           {FOCUS.map((f) => (
             <button
               key={f.key}
-              className="card tap-target text-sm px-4"
-              style={{
-                borderColor: focus.includes(f.key) ? 'var(--color-pitch-green-light)' : undefined,
-                background: focus.includes(f.key) ? 'var(--color-surface-light)' : undefined,
-              }}
+              className="btn-choice tap-target text-sm px-4"
               onClick={() => toggleFocus(f.key)}
               aria-pressed={focus.includes(f.key)}
             >
@@ -144,7 +132,7 @@ export function TrainingLog() {
 
       {/* Energy */}
       <div>
-        <p className="text-sm mb-2" style={{ color: 'var(--color-text-secondary)' }}>
+        <p className="section-label mb-2">
           {t('training.energy')}
         </p>
         <div className="flex gap-2 justify-center">
@@ -164,7 +152,7 @@ export function TrainingLog() {
 
       {/* Mood */}
       <div>
-        <p className="text-sm mb-2" style={{ color: 'var(--color-text-secondary)' }}>
+        <p className="section-label mb-2">
           {t('training.mood')}
         </p>
         <div className="flex gap-2 justify-center">
@@ -185,13 +173,8 @@ export function TrainingLog() {
       {/* Notes */}
       <div>
         <textarea
-          className="w-full rounded-lg p-3 text-sm"
-          style={{
-            background: 'var(--color-surface)',
-            border: '1px solid var(--color-pitch-line)',
-            color: 'var(--color-text-primary)',
-            resize: 'none',
-          }}
+          className="w-full rounded-xl p-3 text-sm"
+          style={{ resize: 'none' }}
           rows={3}
           placeholder={t('training.notes')}
           value={notes}
@@ -201,8 +184,7 @@ export function TrainingLog() {
 
       {/* Save button */}
       <button
-        className="tap-target w-full rounded-xl py-3 text-base font-bold"
-        style={{ background: 'var(--color-pitch-green)', color: '#fff' }}
+        className="btn-primary tap-target w-full"
         onClick={handleSave}
         aria-label={t('training.save')}
       >
