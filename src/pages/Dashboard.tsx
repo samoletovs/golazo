@@ -78,7 +78,7 @@ export function Dashboard() {
             {wins}
           </p>
           <p className="text-xs font-semibold mt-1" style={{ color: 'var(--color-text-muted)' }}>
-            🏆
+            {t('dashboard.wins')}
           </p>
         </div>
       </div>

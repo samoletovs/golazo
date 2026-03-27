@@ -17,14 +17,14 @@ function AppContent() {
   return (
     <div className="flex flex-col min-h-dvh">
       {/* Desktop: centered app shell */}
-      <div className="app-shell flex flex-col min-h-dvh relative">
+      <div className="app-shell flex flex-col min-h-dvh">
         {/* XP bar header */}
         <header className="app-header">
           <XpBar />
         </header>
 
         {/* Page content */}
-        <main className="flex-1 overflow-y-auto">
+        <main className="flex-1 overflow-y-auto pb-20">
           {page === 'dashboard' && <Dashboard />}
           {page === 'log' && <LogPage />}
           {page === 'exercises' && <Exercises />}
@@ -36,11 +36,10 @@ function AppContent() {
         <footer className="nl-footer">
           <p>An experiment by <a href="https://naurolabs.com" target="_blank" rel="noopener noreferrer">nauro<span>Labs</span></a></p>
         </footer>
-
-        {/* Bottom navigation — inside shell for proper centering */}
-        <BottomNav active={page} onNavigate={(p) => setPage(p as Page)} />
       </div>
 
+      {/* Bottom navigation — fixed, full width, content centered */}
+      <BottomNav active={page} onNavigate={(p) => setPage(p as Page)} />
       <FeedbackButton />
     </div>
   )
