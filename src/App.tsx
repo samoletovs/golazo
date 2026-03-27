@@ -15,26 +15,29 @@ function AppContent() {
 
   return (
     <div className="flex flex-col min-h-dvh">
-      {/* XP bar header */}
-      <header
-        style={{
-          background: 'rgba(12, 17, 23, 0.85)',
-          backdropFilter: 'blur(20px)',
-          WebkitBackdropFilter: 'blur(20px)',
-          borderBottom: '1px solid rgba(255, 255, 255, 0.06)',
-        }}
-      >
-        <XpBar />
-      </header>
+      {/* Desktop: centered app shell */}
+      <div className="app-shell flex flex-col min-h-dvh">
+        {/* XP bar header */}
+        <header
+          style={{
+            background: 'rgba(8, 11, 18, 0.9)',
+            backdropFilter: 'blur(24px)',
+            WebkitBackdropFilter: 'blur(24px)',
+            borderBottom: '1px solid rgba(255, 255, 255, 0.06)',
+          }}
+        >
+          <XpBar />
+        </header>
 
-      {/* Page content */}
-      <main className="flex-1 overflow-y-auto">
-        {page === 'dashboard' && <Dashboard />}
-        {page === 'log' && <LogPage />}
-        {page === 'exercises' && <Exercises />}
-        {page === 'challenges' && <Challenges />}
-        {page === 'profile' && <Profile />}
-      </main>
+        {/* Page content */}
+        <main className="flex-1 overflow-y-auto">
+          {page === 'dashboard' && <Dashboard />}
+          {page === 'log' && <LogPage />}
+          {page === 'exercises' && <Exercises />}
+          {page === 'challenges' && <Challenges />}
+          {page === 'profile' && <Profile />}
+        </main>
+      </div>
 
       {/* Bottom navigation */}
       <BottomNav active={page} onNavigate={(p) => setPage(p as Page)} />
