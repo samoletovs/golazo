@@ -62,8 +62,8 @@ export function Exercises() {
           const isDone = doneIds.has(ex.id)
           return (
             <div key={ex.id} className={`card ${CAT_CLASS[ex.category] ?? ''}`}>
-              <div className="flex justify-between items-start">
-                <div className="flex-1">
+              <div className="flex justify-between items-start gap-2">
+                <div className="flex-1 min-w-0">
                   <p className="text-sm font-bold" style={{ color: 'var(--color-text)' }}>
                     {t(ex.nameKey)}
                   </p>
@@ -80,7 +80,7 @@ export function Exercises() {
                   </div>
                 </div>
                 <button
-                  className="tap-target rounded-xl px-4 py-2 text-xs font-bold ml-3"
+                  className="tap-target rounded-xl px-3 py-1.5 text-xs font-bold ml-2 shrink-0 whitespace-nowrap"
                   style={{
                     background: isDone ? '#16a34a' : '#dcfce7',
                     color: isDone ? '#fff' : '#15803d',

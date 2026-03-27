@@ -113,6 +113,12 @@
   "challenges.bounceBack": "🔄 Отскок",
   "challenges.complete": "Завершено!",
   "challenges.progress": "{{done}} / {{total}}",
+  "challenges.daily1": "50 жонглирований каждой ногой",
+  "challenges.daily2": "20 длинных передач",
+  "challenges.daily3": "5 минут пас в стенку",
+  "challenges.weakFootDesc": "30-дневная программа левой ноги",
+  "challenges.mentalChampDesc": "Визуализация и позитивный диалог",
+  "challenges.deepPracticeDesc": "7 дней глубокой практики",
 
   "skills.technical": "Техника ⚽",
   "skills.physical": "Физика 🏃",

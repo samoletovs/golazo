@@ -2,8 +2,10 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { TrainingLog } from './TrainingLog'
 import { MatchLog } from './MatchLog'
+import { DiaryPage } from './DiaryPage'
+import { TournamentPage } from './TournamentPage'
 
-type LogType = 'select' | 'training' | 'match'
+type LogType = 'select' | 'training' | 'match' | 'diary' | 'tournament'
 
 export function LogPage() {
   const { t } = useTranslation()
@@ -11,6 +13,8 @@ export function LogPage() {
 
   if (logType === 'training') return <TrainingLog onBack={() => setLogType('select')} />
   if (logType === 'match') return <MatchLog onBack={() => setLogType('select')} />
+  if (logType === 'diary') return <DiaryPage onBack={() => setLogType('select')} />
+  if (logType === 'tournament') return <TournamentPage onBack={() => setLogType('select')} />
 
   return (
     <div className="flex flex-col gap-4 p-4 pb-32">
@@ -46,30 +50,28 @@ export function LogPage() {
 
       <button
         className="card tap-target flex items-center gap-4 text-left"
-        disabled
-        style={{ opacity: 0.35, cursor: 'not-allowed' }}
+        onClick={() => setLogType('diary')}
         aria-label={t('log.diary')}
       >
         <span className="text-3xl">📝</span>
         <div>
           <p className="text-base font-bold">{t('log.diary')}</p>
           <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
-            +15 XP • Coming soon
+            +15 XP
           </p>
         </div>
       </button>
 
       <button
         className="card tap-target flex items-center gap-4 text-left"
-        disabled
-        style={{ opacity: 0.35, cursor: 'not-allowed' }}
+        onClick={() => setLogType('tournament')}
         aria-label={t('log.tournament')}
       >
         <span className="text-3xl">🏆</span>
         <div>
           <p className="text-base font-bold">{t('log.tournament')}</p>
           <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
-            +50 XP • Coming soon
+            +50 XP
           </p>
         </div>
       </button>
