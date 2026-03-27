@@ -25,9 +25,9 @@ export function Challenges() {
               <button
                 className="tap-target rounded-xl px-3 py-2 text-xs font-bold"
                 style={{
-                  background: '#fffbeb',
-                  color: 'var(--color-gold-500)',
-                  border: '2px solid rgba(245,158,11,0.2)',
+                  background: '#fef3c7',
+                  color: '#b45309',
+                  border: 'none',
                 }}
                 aria-label={`Complete challenge: ${ch.text}`}
               >

@@ -82,7 +82,7 @@ export function Profile() {
         </div>
 
         {/* Season stats */}
-        <div className="flex gap-4 mt-4 pt-3" style={{ borderTop: '1px solid #e2e8f0' }}>
+        <div className="flex gap-4 mt-4 pt-3" style={{ borderTop: '1px solid #e5e7eb' }}>
           <div className="text-center flex-1">
             <p className="text-lg font-black font-data">{matches.length}</p>
             <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{t('dashboard.matches')}</p>

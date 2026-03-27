@@ -115,13 +115,13 @@ export function Dashboard() {
             {matches.slice(-5).reverse().map((m) => {
               const result = getMatchResult(m)
               const resultColor =
-                result === 'win' ? 'var(--color-green-500)'
-                : result === 'loss' ? 'var(--color-danger)'
-                : 'var(--color-warn)'
+                result === 'win' ? '#15803d'
+                : result === 'loss' ? '#dc2626'
+                : '#d97706'
               const resultBg =
-                result === 'win' ? '#ecfdf5'
-                : result === 'loss' ? '#fef2f2'
-                : '#fffbeb'
+                result === 'win' ? '#dcfce7'
+                : result === 'loss' ? '#fee2e2'
+                : '#fef3c7'
               return (
                 <div key={m.id} className="flex justify-between items-center py-2.5 px-3 rounded-xl text-sm"
                   style={{ background: resultBg }}>

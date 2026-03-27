@@ -17,16 +17,9 @@ function AppContent() {
   return (
     <div className="flex flex-col min-h-dvh">
       {/* Desktop: centered app shell */}
-      <div className="app-shell flex flex-col min-h-dvh">
+      <div className="app-shell flex flex-col min-h-dvh relative">
         {/* XP bar header */}
-        <header
-          style={{
-            background: 'rgba(255, 255, 255, 0.88)',
-            backdropFilter: 'blur(20px)',
-            WebkitBackdropFilter: 'blur(20px)',
-            borderBottom: '1px solid #e2e8f0',
-          }}
-        >
+        <header className="app-header">
           <XpBar />
         </header>
 
@@ -43,10 +36,11 @@ function AppContent() {
         <footer className="nl-footer">
           <p>An experiment by <a href="https://naurolabs.com" target="_blank" rel="noopener noreferrer">nauro<span>Labs</span></a></p>
         </footer>
+
+        {/* Bottom navigation — inside shell for proper centering */}
+        <BottomNav active={page} onNavigate={(p) => setPage(p as Page)} />
       </div>
 
-      {/* Bottom navigation */}
-      <BottomNav active={page} onNavigate={(p) => setPage(p as Page)} />
       <FeedbackButton />
     </div>
   )

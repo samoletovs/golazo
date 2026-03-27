@@ -17,9 +17,9 @@
   --color-game-text-muted: #64748b;
 
   /* ── Pitch Light ── */
-  --color-bg: #f0f7f0;
-  --color-bg-warm: #f8faf8;
-  --color-bg-field: #e8f5e8;
+  --color-bg: #f5f5f5;
+  --color-bg-warm: #fafafa;
+  --color-bg-field: #f0f7f0;
 
   /* ── Pitch Green (primary action) ── */
   --color-green-500: #16a34a;
@@ -54,8 +54,8 @@
 
   /* ── Card Surface ── */
   --color-glass: #ffffff;
-  --color-glass-border: #e2e8f0;
-  --color-glass-hover: #f8fafc;
+  --color-glass-border: rgba(0, 0, 0, 0.06);
+  --color-glass-hover: #fafafa;
   --color-glass-active: rgba(22, 163, 74, 0.06);
 
   /* ── Text ── */
@@ -104,9 +104,6 @@ body {
   margin: 0;
   min-height: 100dvh;
   background: var(--color-bg);
-  background-image:
-    radial-gradient(ellipse 100% 60% at 50% -10%, rgba(22, 163, 74, 0.06) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 40% at 100% 100%, rgba(14, 165, 233, 0.04) 0%, transparent 50%);
   color: var(--color-text);
 }
 
@@ -125,19 +122,19 @@ body {
 
 /* ── Gradient text (game signature) ──────────────────────── */
 .text-gradient-green {
-  background: linear-gradient(135deg, #16a34a, #0ea5e9);
+  background: linear-gradient(135deg, #15803d, #0e7490);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 .text-gradient-gold {
-  background: linear-gradient(135deg, #f59e0b, #ef4444);
+  background: linear-gradient(135deg, #d97706, #dc2626);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 .text-gradient-fire {
-  background: linear-gradient(135deg, #ef4444, #f59e0b);
+  background: linear-gradient(135deg, #dc2626, #d97706);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -147,6 +144,17 @@ body {
 .tap-target {
   min-width: 44px;
   min-height: 44px;
+}
+
+/* ── App header ───────────────────────────────────────────── */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: rgba(245, 245, 245, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 /* ── Desktop container ───────────────────────────────────── */
@@ -164,62 +172,47 @@ body {
   .app-shell {
     max-width: 560px;
   }
-  .bottom-nav {
-    max-width: 560px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 20px 20px 0 0;
-    border-left: 1px solid var(--color-glass-border);
-    border-right: 1px solid var(--color-glass-border);
-  }
 }
 
 /* ── Card (primary container) ────────────────────────────── */
 .card {
-  background: var(--color-glass);
-  border: 1px solid var(--color-glass-border);
-  border-radius: 20px;
+  background: #ffffff;
+  border-radius: 16px;
   padding: 16px;
   transition: all 0.2s ease;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.02);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 .card:hover {
-  background: var(--color-glass-hover);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06), 0 4px 16px rgba(0, 0, 0, 0.06);
 }
 
 /* ── Glow Card (special/highlighted) ─────────────────────── */
 .card-glow {
-  background: linear-gradient(135deg, rgba(22, 163, 74, 0.04) 0%, rgba(14, 165, 233, 0.02) 100%);
-  border: 2px solid rgba(22, 163, 74, 0.15);
-  border-radius: 20px;
+  background: #ffffff;
+  border: 2px solid rgba(22, 163, 74, 0.2);
+  border-radius: 16px;
   padding: 20px;
-  box-shadow:
-    0 2px 8px rgba(22, 163, 74, 0.06),
-    0 8px 24px rgba(22, 163, 74, 0.03);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 /* ── Gold Card (reward/profile card) ─────────────────────── */
 .card-gold {
-  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 50%, #ecfdf5 100%);
-  border: 2px solid rgba(245, 158, 11, 0.2);
-  border-radius: 20px;
+  background: #ffffff;
+  border: 2px solid rgba(245, 158, 11, 0.25);
+  border-radius: 16px;
   padding: 20px;
-  box-shadow:
-    0 4px 16px rgba(245, 158, 11, 0.08),
-    0 8px 32px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 /* ── Hero Stat Card (big numbers) ────────────────────────── */
 .stat-card {
-  background: var(--color-glass);
-  border: 1px solid var(--color-glass-border);
-  border-radius: 20px;
+  background: #ffffff;
+  border-radius: 16px;
   padding: 16px 12px;
   text-align: center;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 .stat-card::before {
   content: '';
@@ -230,9 +223,9 @@ body {
   height: 3px;
   border-radius: 20px 20px 0 0;
 }
-.stat-card-green::before { background: linear-gradient(90deg, #16a34a, #22c55e); }
-.stat-card-gold::before { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
-.stat-card-cyan::before { background: linear-gradient(90deg, #0ea5e9, #38bdf8); }
+.stat-card-green::before { background: #16a34a; }
+.stat-card-gold::before { background: #d97706; }
+.stat-card-cyan::before { background: #0284c7; }
 
 /* ── Stat Pill ───────────────────────────────────────────── */
 .stat-pill {
@@ -247,24 +240,24 @@ body {
   letter-spacing: 0.02em;
 }
 .stat-pill-green {
-  background: #ecfdf5;
-  color: var(--color-green-500);
-  border: 1px solid rgba(22, 163, 74, 0.2);
+  background: #dcfce7;
+  color: #15803d;
+  border: none;
 }
 .stat-pill-gold {
-  background: #fffbeb;
-  color: var(--color-gold-500);
-  border: 1px solid rgba(245, 158, 11, 0.2);
+  background: #fef3c7;
+  color: #b45309;
+  border: none;
 }
 .stat-pill-cyan {
-  background: #ecfeff;
-  color: var(--color-cyan);
-  border: 1px solid rgba(14, 165, 233, 0.2);
+  background: #e0f2fe;
+  color: #0369a1;
+  border: none;
 }
 
 /* ── XP Bar ──────────────────────────────────────────────── */
 .xp-bar-track {
-  background: #e2e8f0;
+  background: #e5e7eb;
   border-radius: 999px;
   height: 8px;
   overflow: hidden;
@@ -280,7 +273,7 @@ body {
 
 /* ── Progress Bar (generic) ──────────────────────────────── */
 .progress-track {
-  background: #e2e8f0;
+  background: #e5e7eb;
   border-radius: 6px;
   height: 6px;
   overflow: hidden;
@@ -346,29 +339,26 @@ body {
 
 /* ── Choice Button (selectable option) ───────────────────── */
 .btn-choice {
-  background: var(--color-glass);
-  border: 2px solid var(--color-glass-border);
-  border-radius: 14px;
-  padding: 12px 16px;
+  background: #ffffff;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 10px 14px;
   color: var(--color-text);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.15s ease;
   text-align: left;
   font-weight: 500;
 }
 .btn-choice:hover {
-  background: var(--color-glass-hover);
-  border-color: #cbd5e1;
-  transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border-color: #d1d5db;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
 }
 .btn-choice[data-selected="true"],
 .btn-choice[aria-pressed="true"] {
-  background: #ecfdf5;
-  border-color: var(--color-green-500);
-  color: var(--color-green-600);
+  background: #dcfce7;
+  border-color: #16a34a;
+  color: #15803d;
   font-weight: 700;
-  box-shadow: 0 2px 8px rgba(22, 163, 74, 0.1);
 }
 .btn-choice:active {
   transform: scale(0.97);
@@ -376,19 +366,14 @@ body {
 
 /* ── Bottom nav ──────────────────────────────────────────── */
 .bottom-nav {
-  position: fixed;
+  position: sticky;
   bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-top: 1px solid #e2e8f0;
+  background: #ffffff;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
   display: flex;
   justify-content: space-around;
-  padding: 4px 0 env(safe-area-inset-bottom, 4px);
+  padding: 6px 0 env(safe-area-inset-bottom, 6px);
   z-index: 50;
-  box-shadow: 0 -2px 16px rgba(0, 0, 0, 0.04);
 }
 
 .bottom-nav-item {
@@ -396,26 +381,26 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 2px;
-  font-size: 0.65rem;
+  font-size: 0.625rem;
   font-weight: 600;
-  letter-spacing: 0.04em;
-  color: var(--color-text-muted);
+  letter-spacing: 0.02em;
+  color: #9ca3af;
   cursor: pointer;
-  padding: 6px 12px;
-  min-width: 44px;
+  padding: 6px 10px;
+  min-width: 52px;
   min-height: 44px;
   justify-content: center;
-  border-radius: 14px;
-  transition: all 0.2s ease;
+  border-radius: 12px;
+  transition: all 0.15s ease;
   position: relative;
+  background: none;
+  border: none;
 }
 .bottom-nav-item:hover {
-  color: var(--color-text-secondary);
-  background: rgba(22, 163, 74, 0.04);
+  color: #6b7280;
 }
 .bottom-nav-item[data-active="true"] {
   color: var(--color-green-500);
-  background: #ecfdf5;
 }
 .bottom-nav-item[data-active="true"]::after {
   content: '';
@@ -423,10 +408,10 @@ body {
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 24px;
+  width: 20px;
   height: 3px;
-  background: linear-gradient(90deg, #16a34a, #0ea5e9);
-  border-radius: 0 0 3px 3px;
+  background: var(--color-green-500);
+  border-radius: 0 0 4px 4px;
 }
 
 /* ── Section label ───────────────────────────────────────── */
@@ -497,17 +482,17 @@ body {
 /* ── Input ───────────────────────────────────────────────── */
 input[type="text"], input[type="number"], textarea {
   background: #ffffff;
-  border: 2px solid #e2e8f0;
-  border-radius: 14px;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
   padding: 14px 16px;
   color: var(--color-text);
   font-size: 0.875rem;
-  transition: all 0.2s ease;
+  transition: all 0.15s ease;
   outline: none;
 }
 input:focus, textarea:focus {
   border-color: var(--color-green-500);
-  box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.08);
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
   background: #ffffff;
 }
 input::placeholder, textarea::placeholder {

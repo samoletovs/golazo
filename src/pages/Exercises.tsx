@@ -71,10 +71,10 @@ export function Exercises() {
                     {t(ex.descriptionKey)}
                   </p>
                   <div className="flex gap-2 mt-2">
-                    <span className="text-xs px-2 py-0.5 rounded-full font-data" style={{ background: '#f1f5f9', color: 'var(--color-text-secondary)' }}>
+                    <span className="text-xs px-2 py-0.5 rounded-full font-data" style={{ background: '#f3f4f6', color: '#6b7280' }}>
                       {ex.durationMinutes} min
                     </span>
-                    <span className="text-xs px-2 py-0.5 rounded-full" style={{ background: '#fffbeb', color: 'var(--color-gold-500)' }}>
+                    <span className="text-xs px-2 py-0.5 rounded-full" style={{ background: '#fef3c7', color: '#b45309' }}>
                       {'⭐'.repeat(ex.difficulty)}
                     </span>
                   </div>
@@ -82,9 +82,9 @@ export function Exercises() {
                 <button
                   className="tap-target rounded-xl px-4 py-2 text-xs font-bold ml-3"
                   style={{
-                    background: isDone ? 'linear-gradient(135deg, var(--color-green-600), var(--color-green-500))' : '#ecfdf5',
-                    color: isDone ? '#fff' : 'var(--color-green-500)',
-                    border: isDone ? 'none' : '2px solid rgba(22, 163, 74, 0.2)',
+                    background: isDone ? '#16a34a' : '#dcfce7',
+                    color: isDone ? '#fff' : '#15803d',
+                    border: 'none',
                   }}
                   onClick={() => !isDone && markDone(ex.id)}
                   disabled={isDone}
