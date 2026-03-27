@@ -62,7 +62,7 @@ export function TrainingLog({ onBack }: { onBack?: () => void }) {
     return (
       <div className="flex flex-col items-center justify-center gap-4 p-8 pb-32 animate-fade-up">
         <span className="text-5xl animate-float">✅</span>
-        <p className="text-lg font-bold" style={{ color: 'var(--color-green-400)' }}>
+        <p className="text-lg font-bold" style={{ color: 'var(--color-green-500)' }}>
           {t('training.saved', { xp: XP_AWARDS.logTraining })}
         </p>
       </div>

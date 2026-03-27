@@ -21,10 +21,10 @@ function AppContent() {
         {/* XP bar header */}
         <header
           style={{
-            background: 'rgba(8, 11, 18, 0.9)',
-            backdropFilter: 'blur(24px)',
-            WebkitBackdropFilter: 'blur(24px)',
-            borderBottom: '1px solid rgba(255, 255, 255, 0.06)',
+            background: 'rgba(255, 255, 255, 0.88)',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
+            borderBottom: '1px solid #e2e8f0',
           }}
         >
           <XpBar />

@@ -14,7 +14,7 @@ export function LogPage() {
 
   return (
     <div className="flex flex-col gap-4 p-4 pb-32">
-      <h2 className="text-lg font-bold">{t('log.selectType')}</h2>
+      <h2 className="text-xl font-extrabold">{t('log.selectType')}</h2>
 
       <button
         className="card tap-target flex items-center gap-4 text-left"

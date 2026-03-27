@@ -16,7 +16,7 @@ export function QuoteCard() {
       <p className="text-base italic leading-relaxed" style={{ color: 'var(--color-text)' }}>
         &ldquo;{quote.text[lang] ?? quote.text.en}&rdquo;
       </p>
-      <p className="text-sm mt-2 font-semibold" style={{ color: 'var(--color-green-400)' }}>
+      <p className="text-sm mt-2 font-semibold" style={{ color: 'var(--color-green-500)' }}>
         — {quote.player}
       </p>
     </div>

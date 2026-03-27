@@ -19,15 +19,15 @@ export function Dashboard() {
       {/* ── Hero: Big level + XP showcase ── */}
       <div className="card-gold animate-fade-up relative overflow-hidden text-center py-8 px-6">
         {/* Decorative football emoji */}
-        <div className="absolute top-3 right-4 text-4xl opacity-10 animate-float">⚽</div>
-        <div className="absolute bottom-3 left-4 text-3xl opacity-10 animate-float" style={{ animationDelay: '1.5s' }}>🏆</div>
+        <div className="absolute top-3 right-4 text-4xl opacity-15 animate-float">⚽</div>
+        <div className="absolute bottom-3 left-4 text-3xl opacity-15 animate-float" style={{ animationDelay: '1.5s' }}>🏆</div>
 
         {/* Level + Rank */}
         <p className="section-label mb-1">{t(rank.key)}</p>
         <p className="text-6xl font-black font-data text-gradient-gold animate-number-pop">
           {xp.level}
         </p>
-        <p className="text-xs mt-2" style={{ color: 'var(--color-text-muted)' }}>
+        <p className="text-xs mt-2" style={{ color: 'var(--color-text-secondary)' }}>
           {t('dashboard.level', { level: xp.level })}
         </p>
 
@@ -115,13 +115,13 @@ export function Dashboard() {
             {matches.slice(-5).reverse().map((m) => {
               const result = getMatchResult(m)
               const resultColor =
-                result === 'win' ? 'var(--color-green-400)'
+                result === 'win' ? 'var(--color-green-500)'
                 : result === 'loss' ? 'var(--color-danger)'
                 : 'var(--color-warn)'
               const resultBg =
-                result === 'win' ? 'rgba(34,197,94,0.08)'
-                : result === 'loss' ? 'rgba(239,68,68,0.08)'
-                : 'rgba(245,158,11,0.08)'
+                result === 'win' ? '#ecfdf5'
+                : result === 'loss' ? '#fef2f2'
+                : '#fffbeb'
               return (
                 <div key={m.id} className="flex justify-between items-center py-2.5 px-3 rounded-xl text-sm"
                   style={{ background: resultBg }}>

@@ -36,11 +36,11 @@ export function Profile() {
     : rank.color === 'silver' ? 'linear-gradient(135deg, #94a3b8, #cbd5e1)'
     : rank.color === 'gold' ? 'linear-gradient(135deg, #f59e0b, #fbbf24)'
     : rank.color === 'diamond' ? 'linear-gradient(135deg, #3b82f6, #60a5fa)'
-    : 'linear-gradient(135deg, #c4b5fd, #e2e8f0)'
+    : 'linear-gradient(135deg, #8b5cf6, #c4b5fd)'
 
   return (
     <div className="flex flex-col gap-4 p-4 pb-32">
-      <h2 className="text-lg font-bold">{t('profile.title')}</h2>
+      <h2 className="text-xl font-extrabold">{t('profile.title')}</h2>
 
       {/* FIFA-style player card */}
       <div
@@ -82,13 +82,13 @@ export function Profile() {
         </div>
 
         {/* Season stats */}
-        <div className="flex gap-4 mt-4 pt-3" style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+        <div className="flex gap-4 mt-4 pt-3" style={{ borderTop: '1px solid #e2e8f0' }}>
           <div className="text-center flex-1">
             <p className="text-lg font-black font-data">{matches.length}</p>
             <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{t('dashboard.matches')}</p>
           </div>
           <div className="text-center flex-1">
-            <p className="text-lg font-black font-data" style={{ color: 'var(--color-gold-400)' }}>{seasonGoals}</p>
+            <p className="text-lg font-black font-data" style={{ color: 'var(--color-gold-500)' }}>{seasonGoals}</p>
             <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{t('dashboard.goals')}</p>
           </div>
           <div className="text-center flex-1">

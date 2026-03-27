@@ -5,14 +5,23 @@ import { useApp } from '../contexts/AppContext'
 import { awardXp, XP_AWARDS } from '../engine/xp'
 import type { SkillCategory } from '../engine/types'
 
-const FILTER_OPTIONS: { key: SkillCategory | 'all'; labelKey: string }[] = [
-  { key: 'all', labelKey: 'exercises.all' },
-  { key: 'technical', labelKey: 'skills.technical' },
-  { key: 'physical', labelKey: 'skills.physical' },
-  { key: 'tactical', labelKey: 'skills.tactical' },
-  { key: 'mental', labelKey: 'skills.mental' },
-  { key: 'knowledge', labelKey: 'skills.knowledge' },
+const FILTER_OPTIONS: { key: SkillCategory | 'all'; labelKey: string; emoji: string }[] = [
+  { key: 'all', labelKey: 'exercises.all', emoji: '🎯' },
+  { key: 'technical', labelKey: 'skills.technical', emoji: '⚽' },
+  { key: 'physical', labelKey: 'skills.physical', emoji: '💪' },
+  { key: 'tactical', labelKey: 'skills.tactical', emoji: '🧠' },
+  { key: 'mental', labelKey: 'skills.mental', emoji: '🧘' },
+  { key: 'knowledge', labelKey: 'skills.knowledge', emoji: '📚' },
 ]
+
+const CAT_CLASS: Record<string, string> = {
+  technical: 'cat-technical',
+  physical: 'cat-physical',
+  tactical: 'cat-tactical',
+  mental: 'cat-mental',
+  knowledge: 'cat-knowledge',
+  matchPlay: 'cat-matchPlay',
+}
 
 export function Exercises() {
   const { t } = useTranslation()
@@ -30,17 +39,18 @@ export function Exercises() {
 
   return (
     <div className="flex flex-col gap-4 p-4 pb-32">
-      <h2 className="text-lg font-bold">{t('exercises.title')}</h2>
+      <h2 className="text-xl font-extrabold">{t('exercises.title')}</h2>
 
       {/* Filter chips */}
       <div className="flex gap-2 overflow-x-auto pb-1" style={{ scrollbarWidth: 'none' }}>
         {FILTER_OPTIONS.map((f) => (
           <button
             key={f.key}
-            className="btn-choice tap-target text-xs px-3 py-2 whitespace-nowrap"
+            className="btn-choice tap-target text-xs px-3 py-2 whitespace-nowrap flex items-center gap-1.5"
             onClick={() => setFilter(f.key)}
             aria-pressed={filter === f.key}
           >
+            <span>{f.emoji}</span>
             {t(f.labelKey)}
           </button>
         ))}
@@ -51,30 +61,30 @@ export function Exercises() {
         {filtered.map((ex) => {
           const isDone = doneIds.has(ex.id)
           return (
-            <div key={ex.id} className="card">
+            <div key={ex.id} className={`card ${CAT_CLASS[ex.category] ?? ''}`}>
               <div className="flex justify-between items-start">
                 <div className="flex-1">
-                  <p className="text-sm font-semibold" style={{ color: 'var(--color-text)' }}>
+                  <p className="text-sm font-bold" style={{ color: 'var(--color-text)' }}>
                     {t(ex.nameKey)}
                   </p>
                   <p className="text-xs mt-1 leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
                     {t(ex.descriptionKey)}
                   </p>
                   <div className="flex gap-2 mt-2">
-                    <span className="text-xs px-2 py-0.5 rounded-full font-data" style={{ background: 'rgba(255,255,255,0.06)', color: 'var(--color-text-muted)' }}>
+                    <span className="text-xs px-2 py-0.5 rounded-full font-data" style={{ background: '#f1f5f9', color: 'var(--color-text-secondary)' }}>
                       {ex.durationMinutes} min
                     </span>
-                    <span className="text-xs px-2 py-0.5 rounded-full" style={{ background: 'rgba(255,255,255,0.06)', color: 'var(--color-gold-400)' }}>
+                    <span className="text-xs px-2 py-0.5 rounded-full" style={{ background: '#fffbeb', color: 'var(--color-gold-500)' }}>
                       {'⭐'.repeat(ex.difficulty)}
                     </span>
                   </div>
                 </div>
                 <button
-                  className="tap-target rounded-xl px-3 py-2 text-xs font-bold ml-3"
+                  className="tap-target rounded-xl px-4 py-2 text-xs font-bold ml-3"
                   style={{
-                    background: isDone ? 'linear-gradient(135deg, var(--color-green-600), var(--color-green-500))' : 'transparent',
-                    color: isDone ? '#fff' : 'var(--color-green-400)',
-                    border: isDone ? 'none' : '1px solid rgba(34,197,94,0.3)',
+                    background: isDone ? 'linear-gradient(135deg, var(--color-green-600), var(--color-green-500))' : '#ecfdf5',
+                    color: isDone ? '#fff' : 'var(--color-green-500)',
+                    border: isDone ? 'none' : '2px solid rgba(22, 163, 74, 0.2)',
                   }}
                   onClick={() => !isDone && markDone(ex.id)}
                   disabled={isDone}

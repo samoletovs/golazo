@@ -4,7 +4,7 @@
   "description": "Персональный помощник юного футболиста",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#080b12",
-  "theme_color": "#22c55e",
+  "background_color": "#f0f7f0",
+  "theme_color": "#16a34a",
   "icons": []
 }

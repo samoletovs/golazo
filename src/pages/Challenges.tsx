@@ -11,7 +11,7 @@ export function Challenges() {
 
   return (
     <div className="flex flex-col gap-4 p-4 pb-32">
-      <h2 className="text-lg font-bold">{t('challenges.title')}</h2>
+      <h2 className="text-xl font-extrabold">{t('challenges.title')}</h2>
 
       {/* Daily */}
       <div>
@@ -25,9 +25,9 @@ export function Challenges() {
               <button
                 className="tap-target rounded-xl px-3 py-2 text-xs font-bold"
                 style={{
-                  background: 'transparent',
-                  color: 'var(--color-gold-400)',
-                  border: '1px solid rgba(245,158,11,0.3)',
+                  background: '#fffbeb',
+                  color: 'var(--color-gold-500)',
+                  border: '2px solid rgba(245,158,11,0.2)',
                 }}
                 aria-label={`Complete challenge: ${ch.text}`}
               >
