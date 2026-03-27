@@ -15,7 +15,7 @@ var tags = {
 
 resource staticWebApp 'Microsoft.Web/staticSites@2023-12-01' = {
   name: '${projectName}-swa'
-  location: location
+  location: 'westeurope' // SWA not available in northeurope
   tags: tags
   sku: {
     name: 'Free'
