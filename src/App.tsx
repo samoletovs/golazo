@@ -38,6 +38,11 @@ function AppContent() {
           {page === 'challenges' && <Challenges />}
           {page === 'profile' && <Profile />}
         </main>
+
+        {/* NauroLabs footer */}
+        <footer className="nl-footer">
+          <p>An experiment by <a href="https://naurolabs.com" target="_blank" rel="noopener noreferrer">nauro<span>Labs</span></a></p>
+        </footer>
       </div>
 
       {/* Bottom navigation */}
