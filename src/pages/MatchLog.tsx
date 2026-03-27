@@ -1,0 +1,230 @@
+import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useApp } from '../contexts/AppContext'
+import { awardXp, XP_AWARDS } from '../engine/xp'
+import type { Position, EnergyLevel, MatchEntry } from '../engine/types'
+
+const POSITIONS: { key: Position; label: string }[] = [
+  { key: 'CM', label: 'CM' }, { key: 'LW', label: 'LW' }, { key: 'RW', label: 'RW' },
+  { key: 'LM', label: 'LM' }, { key: 'RM', label: 'RM' }, { key: 'CAM', label: 'CAM' },
+  { key: 'CDM', label: 'CDM' }, { key: 'LB', label: 'LB' }, { key: 'RB', label: 'RB' },
+  { key: 'ST', label: 'ST' }, { key: 'CB', label: 'CB' }, { key: 'GK', label: 'GK' },
+]
+
+const ENERGY_EMOJIS = ['😴', '😐', '🙂', '😄', '🔥']
+
+export function MatchLog() {
+  const { t } = useTranslation()
+  const { xp, setXp, addMatch } = useApp()
+  const [saved, setSaved] = useState(false)
+
+  const today = new Date().toISOString().split('T')[0]
+  const [opponent, setOpponent] = useState('')
+  const [competition, setCompetition] = useState('')
+  const [scoreUs, setScoreUs] = useState(0)
+  const [scoreThem, setScoreThem] = useState(0)
+  const [position, setPosition] = useState<Position>('CM')
+  const [minutes] = useState(70)
+  const [goals, setGoals] = useState(0)
+  const [assists, setAssists] = useState(0)
+  const [shots, setShots] = useState(0)
+  const [keyPasses, setKeyPasses] = useState(0)
+  const [tackles, setTackles] = useState(0)
+  const [selfRating, setSelfRating] = useState(7)
+  const [bestMoment, setBestMoment] = useState('')
+  const [toImprove, setToImprove] = useState('')
+  const [mood, setMood] = useState<EnergyLevel>(3)
+
+  function handleSave() {
+    const entry: MatchEntry = {
+      id: crypto.randomUUID(),
+      playerId: 'default',
+      date: today,
+      opponent,
+      competition,
+      scoreUs,
+      scoreThem,
+      position,
+      minutesPlayed: minutes,
+      goals, assists, shots, keyPasses, tackles,
+      selfRating,
+      bestMoment,
+      toImprove,
+      mood,
+      createdAt: new Date().toISOString(),
+    }
+    addMatch(entry)
+
+    // Growth XP: bad match + wrote improvement = bonus
+    let totalXp = XP_AWARDS.logMatch
+    if (selfRating <= 4 && toImprove.length > 0) {
+      totalXp += XP_AWARDS.growthXp
+    }
+    setXp(awardXp(xp, totalXp, today))
+    setSaved(true)
+    setTimeout(() => setSaved(false), 3000)
+  }
+
+  if (saved) {
+    return (
+      <div className="flex flex-col items-center justify-center gap-4 p-8 pb-24">
+        <span className="text-5xl">⚽</span>
+        <p className="text-lg font-bold" style={{ color: 'var(--color-pitch-green-light)' }}>
+          {t('match.saved', { xp: XP_AWARDS.logMatch })}
+        </p>
+      </div>
+    )
+  }
+
+  return (
+    <div className="flex flex-col gap-4 p-4 pb-24">
+      <h2 className="text-lg font-bold">{t('match.title')}</h2>
+
+      {/* Opponent & Competition */}
+      <input
+        className="card w-full text-sm"
+        style={{ background: 'var(--color-surface)', color: 'var(--color-text-primary)' }}
+        placeholder={t('match.opponent')}
+        value={opponent}
+        onChange={(e) => setOpponent(e.target.value)}
+      />
+      <input
+        className="card w-full text-sm"
+        style={{ background: 'var(--color-surface)', color: 'var(--color-text-primary)' }}
+        placeholder={t('match.competition')}
+        value={competition}
+        onChange={(e) => setCompetition(e.target.value)}
+      />
+
+      {/* Score */}
+      <div className="card">
+        <p className="text-sm mb-2" style={{ color: 'var(--color-text-secondary)' }}>{t('match.score')}</p>
+        <div className="flex items-center justify-center gap-4">
+          <div className="flex flex-col items-center gap-1">
+            <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>RFS</span>
+            <div className="flex items-center gap-2">
+              <button className="tap-target card px-3 py-1" onClick={() => setScoreUs(Math.max(0, scoreUs - 1))} aria-label="Decrease our score">−</button>
+              <span className="text-2xl font-bold w-8 text-center">{scoreUs}</span>
+              <button className="tap-target card px-3 py-1" onClick={() => setScoreUs(scoreUs + 1)} aria-label="Increase our score">+</button>
+            </div>
+          </div>
+          <span className="text-2xl font-bold" style={{ color: 'var(--color-text-muted)' }}>:</span>
+          <div className="flex flex-col items-center gap-1">
+            <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{opponent || '?'}</span>
+            <div className="flex items-center gap-2">
+              <button className="tap-target card px-3 py-1" onClick={() => setScoreThem(Math.max(0, scoreThem - 1))} aria-label="Decrease opponent score">−</button>
+              <span className="text-2xl font-bold w-8 text-center">{scoreThem}</span>
+              <button className="tap-target card px-3 py-1" onClick={() => setScoreThem(scoreThem + 1)} aria-label="Increase opponent score">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Position */}
+      <div>
+        <p className="text-sm mb-2" style={{ color: 'var(--color-text-secondary)' }}>{t('match.position')}</p>
+        <div className="flex flex-wrap gap-2">
+          {POSITIONS.map((p) => (
+            <button
+              key={p.key}
+              className="card tap-target text-xs px-3 py-2"
+              style={{
+                borderColor: position === p.key ? 'var(--color-pitch-green-light)' : undefined,
+                background: position === p.key ? 'var(--color-surface-light)' : undefined,
+              }}
+              onClick={() => setPosition(p.key)}
+              aria-pressed={position === p.key}
+            >
+              {p.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Stats — Tap counters */}
+      <div className="card">
+        <p className="text-sm mb-3" style={{ color: 'var(--color-text-secondary)' }}>{t('match.stats')}</p>
+        {([
+          { label: t('match.goals'), icon: '⚽', value: goals, set: setGoals },
+          { label: t('match.assists'), icon: '🅰️', value: assists, set: setAssists },
+          { label: t('match.shots'), icon: '👟', value: shots, set: setShots },
+          { label: t('match.keyPasses'), icon: '🎯', value: keyPasses, set: setKeyPasses },
+          { label: t('match.tackles'), icon: '🛡️', value: tackles, set: setTackles },
+        ] as const).map((stat) => (
+          <div key={stat.label} className="flex items-center justify-between py-2">
+            <span className="text-sm">{stat.icon} {stat.label}</span>
+            <div className="flex items-center gap-2">
+              <button className="tap-target card px-3 py-1 text-sm" onClick={() => stat.set(Math.max(0, stat.value - 1))} aria-label={`Decrease ${stat.label}`}>−</button>
+              <span className="text-lg font-bold w-6 text-center">{stat.value}</span>
+              <button className="tap-target card px-3 py-1 text-sm" onClick={() => stat.set(stat.value + 1)} aria-label={`Increase ${stat.label}`}>+</button>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Self rating */}
+      <div className="card">
+        <p className="text-sm mb-2" style={{ color: 'var(--color-text-secondary)' }}>{t('match.rating')}</p>
+        <div className="flex items-center gap-2">
+          <input
+            type="range"
+            min={1}
+            max={10}
+            value={selfRating}
+            onChange={(e) => setSelfRating(Number(e.target.value))}
+            className="flex-1"
+            aria-label={t('match.rating')}
+          />
+          <span className="text-xl font-bold w-8 text-center" style={{ color: selfRating >= 7 ? 'var(--color-pitch-green-light)' : selfRating >= 4 ? 'var(--color-warn)' : 'var(--color-danger)' }}>
+            {selfRating}
+          </span>
+        </div>
+      </div>
+
+      {/* Reflections */}
+      <input
+        className="card w-full text-sm"
+        style={{ background: 'var(--color-surface)', color: 'var(--color-text-primary)' }}
+        placeholder={t('match.bestMoment')}
+        value={bestMoment}
+        onChange={(e) => setBestMoment(e.target.value)}
+      />
+      <input
+        className="card w-full text-sm"
+        style={{ background: 'var(--color-surface)', color: 'var(--color-text-primary)' }}
+        placeholder={t('match.toImprove')}
+        value={toImprove}
+        onChange={(e) => setToImprove(e.target.value)}
+      />
+
+      {/* Mood */}
+      <div>
+        <p className="text-sm mb-2" style={{ color: 'var(--color-text-secondary)' }}>{t('training.mood')}</p>
+        <div className="flex gap-2 justify-center">
+          {ENERGY_EMOJIS.map((emoji, i) => (
+            <button
+              key={i}
+              className="emoji-btn"
+              data-selected={mood === (i + 1)}
+              onClick={() => setMood((i + 1) as EnergyLevel)}
+              aria-label={`Mood ${i + 1}`}
+            >
+              {emoji}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Save */}
+      <button
+        className="tap-target w-full rounded-xl py-3 text-base font-bold"
+        style={{ background: 'var(--color-pitch-green)', color: '#fff' }}
+        onClick={handleSave}
+        disabled={!opponent}
+        aria-label={t('match.save')}
+      >
+        {t('match.save')} (+{XP_AWARDS.logMatch} XP)
+      </button>
+    </div>
+  )
+}

@@ -1,0 +1,118 @@
+/* ── Golazo Design Tokens ─────────────────────────────────── */
+@import "tailwindcss";
+
+@theme {
+  --color-pitch-black: #0a0f0a;
+  --color-pitch-dark: #111a11;
+  --color-pitch-green: #1a7a3a;
+  --color-pitch-green-light: #22c55e;
+  --color-pitch-line: #2a3a2a;
+  --color-gold: #fbbf24;
+  --color-gold-dim: #92742a;
+  --color-silver: #94a3b8;
+  --color-bronze: #cd7f32;
+  --color-diamond: #60a5fa;
+  --color-platinum: #e2e8f0;
+  --color-xp-bar: #22c55e;
+  --color-xp-bg: #1a2e1a;
+  --color-danger: #ef4444;
+  --color-warn: #f59e0b;
+  --color-surface: #141e14;
+  --color-surface-light: #1e2e1e;
+  --color-text-primary: #f1f5f1;
+  --color-text-secondary: #94a894;
+  --color-text-muted: #5a6a5a;
+  --font-family-display: "Inter", system-ui, sans-serif;
+}
+
+/* ── Base ───────────────────────────────────────────────── */
+html {
+  font-family: var(--font-family-display);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  background: var(--color-pitch-black);
+  color: var(--color-text-primary);
+}
+
+#root {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Utility ────────────────────────────────────────────── */
+.tap-target {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-pitch-line);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.xp-bar-track {
+  background: var(--color-xp-bg);
+  border-radius: 999px;
+  height: 8px;
+  overflow: hidden;
+}
+
+.xp-bar-fill {
+  background: var(--color-xp-bar);
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.6s ease-out;
+}
+
+/* ── Emoji ratings ──────────────────────────────────────── */
+.emoji-btn {
+  font-size: 1.5rem;
+  cursor: pointer;
+  opacity: 0.4;
+  transition: all 0.15s ease;
+  padding: 4px;
+}
+.emoji-btn:hover,
+.emoji-btn[data-selected="true"] {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+/* ── Bottom nav ─────────────────────────────────────────── */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--color-pitch-dark);
+  border-top: 1px solid var(--color-pitch-line);
+  display: flex;
+  justify-content: space-around;
+  padding: 8px 0 env(safe-area-inset-bottom, 8px);
+  z-index: 50;
+}
+
+.bottom-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  font-size: 0.65rem;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  padding: 4px 12px;
+  min-width: 44px;
+  min-height: 44px;
+  justify-content: center;
+}
+.bottom-nav-item[data-active="true"] {
+  color: var(--color-pitch-green-light);
+}
