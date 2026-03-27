@@ -15,7 +15,7 @@ export function Dashboard() {
   const wins = matches.filter((m) => getMatchResult(m) === 'win').length
 
   return (
-    <div className="flex flex-col gap-5 p-4 pb-28">
+    <div className="flex flex-col gap-5 p-4 pb-32">
       {/* ── Hero: Big level + XP showcase ── */}
       <div className="card-gold animate-fade-up relative overflow-hidden text-center py-8 px-6">
         {/* Decorative football emoji */}

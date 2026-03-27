@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { AppProvider } from './contexts/AppContext'
 import { XpBar } from './components/XpBar'
 import { BottomNav } from './components/BottomNav'
+import FeedbackButton from './components/FeedbackButton'
 import { Dashboard } from './pages/Dashboard'
 import { LogPage } from './pages/LogPage'
 import { Exercises } from './pages/Exercises'
@@ -41,6 +42,7 @@ function AppContent() {
 
       {/* Bottom navigation */}
       <BottomNav active={page} onNavigate={(p) => setPage(p as Page)} />
+      <FeedbackButton />
     </div>
   )
 }

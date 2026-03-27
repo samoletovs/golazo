@@ -9,11 +9,11 @@ export function LogPage() {
   const { t } = useTranslation()
   const [logType, setLogType] = useState<LogType>('select')
 
-  if (logType === 'training') return <TrainingLog />
-  if (logType === 'match') return <MatchLog />
+  if (logType === 'training') return <TrainingLog onBack={() => setLogType('select')} />
+  if (logType === 'match') return <MatchLog onBack={() => setLogType('select')} />
 
   return (
-    <div className="flex flex-col gap-4 p-4 pb-24">
+    <div className="flex flex-col gap-4 p-4 pb-32">
       <h2 className="text-lg font-bold">{t('log.selectType')}</h2>
 
       <button
@@ -45,8 +45,9 @@ export function LogPage() {
       </button>
 
       <button
-        className="card tap-target flex items-center gap-4 text-left opacity-50"
+        className="card tap-target flex items-center gap-4 text-left"
         disabled
+        style={{ opacity: 0.35, cursor: 'not-allowed' }}
         aria-label={t('log.diary')}
       >
         <span className="text-3xl">📝</span>
@@ -59,8 +60,9 @@ export function LogPage() {
       </button>
 
       <button
-        className="card tap-target flex items-center gap-4 text-left opacity-50"
+        className="card tap-target flex items-center gap-4 text-left"
         disabled
+        style={{ opacity: 0.35, cursor: 'not-allowed' }}
         aria-label={t('log.tournament')}
       >
         <span className="text-3xl">🏆</span>

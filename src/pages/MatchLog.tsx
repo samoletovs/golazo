@@ -13,7 +13,7 @@ const POSITIONS: { key: Position; label: string }[] = [
 
 const ENERGY_EMOJIS = ['😴', '😐', '🙂', '😄', '🔥']
 
-export function MatchLog() {
+export function MatchLog({ onBack }: { onBack?: () => void }) {
   const { t } = useTranslation()
   const { xp, setXp, addMatch } = useApp()
   const [saved, setSaved] = useState(false)
@@ -67,7 +67,7 @@ export function MatchLog() {
 
   if (saved) {
     return (
-      <div className="flex flex-col items-center justify-center gap-4 p-8 pb-24 animate-fade-up">
+      <div className="flex flex-col items-center justify-center gap-4 p-8 pb-32 animate-fade-up">
         <span className="text-5xl animate-float">⚽</span>
         <p className="text-lg font-bold" style={{ color: 'var(--color-green-400)' }}>
           {t('match.saved', { xp: XP_AWARDS.logMatch })}
@@ -77,8 +77,13 @@ export function MatchLog() {
   }
 
   return (
-    <div className="flex flex-col gap-4 p-4 pb-24">
-      <h2 className="text-lg font-bold">{t('match.title')}</h2>
+    <div className="flex flex-col gap-4 p-4 pb-32">
+      <div className="flex items-center gap-3">
+        {onBack && (
+          <button onClick={onBack} className="tap-target text-xl" aria-label={t('common.back')}>←</button>
+        )}
+        <h2 className="text-lg font-bold">{t('match.title')}</h2>
+      </div>
 
       {/* Opponent & Competition */}
       <input

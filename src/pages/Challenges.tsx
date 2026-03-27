@@ -10,7 +10,7 @@ export function Challenges() {
   ]
 
   return (
-    <div className="flex flex-col gap-4 p-4 pb-24">
+    <div className="flex flex-col gap-4 p-4 pb-32">
       <h2 className="text-lg font-bold">{t('challenges.title')}</h2>
 
       {/* Daily */}
