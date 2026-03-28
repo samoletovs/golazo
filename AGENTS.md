@@ -2,7 +2,7 @@
 
 ## Project
 
-Golazo is a mobile-first gamified football development app for youth players. React 19 + TypeScript + Vite + Tailwind CSS 4. Dark theme with football pitch green accents.
+Golazo is a mobile-first gamified football development platform for players of all ages. React 19 + TypeScript + Vite + Tailwind CSS 4. Light theme with refined pitch green accents. Azure Functions API + Cosmos DB backend with offline-first data sync.
 
 ## Build & verify
 
@@ -28,6 +28,47 @@ src/
 │   ├── quotes.ts              # 16 player quotes in 4 languages
 │   └── exercises.ts           # 25 curated drills with methodology tags
 ├── contexts/                  # React Context
+│   ├── AppContext.tsx          # Global state + localStorage + API sync
+│   └── AuthContext.tsx         # Google OAuth via SWA
+├── components/                # Reusable UI components
+│   ├── BottomNav.tsx           # Mobile bottom navigation (5 tabs)
+│   ├── XpBar.tsx               # XP/level/streak header bar
+│   ├── QuoteCard.tsx           # Daily quote display
+│   ├── SkillRadar.tsx          # SVG spider chart
+│   ├── CoachCard.tsx           # AI Coach recommendation card
+│   ├── VideoPlayer.tsx         # YouTube embed for exercises
+│   └── FeedbackButton.tsx      # i18n feedback form
+├── pages/                     # Page-level components
+│   ├── Dashboard.tsx           # Home — stats, quote, AI coach, radar
+│   ├── LogPage.tsx             # Log selector (training/match/diary/tournament)
+│   ├── TrainingLog.tsx         # Training entry form
+│   ├── MatchLog.tsx            # Match entry form with tap counters
+│   ├── ProgressPage.tsx        # Charts: XP, matches, training, skills, physical
+│   ├── Exercises.tsx           # Exercise library with video embed
+│   ├── Challenges.tsx          # Daily/weekly/special challenges
+│   ├── Profile.tsx             # FIFA-style card + language selector
+│   ├── LeaderboardPage.tsx     # Friend leaderboard with invite codes
+│   ├── SchedulePage.tsx        # Calendar of upcoming events
+│   ├── LoginPage.tsx           # Google OAuth entry
+│   └── OnboardingPage.tsx      # 6-step profile setup
+└── i18n/                      # Internationalization
+    ├── index.ts                # i18next config
+    ├── ru.json                 # Russian (primary)
+    ├── lv.json                 # Latvian
+    ├── en.json                 # English
+    └── es.json                 # Spanish
+api/
+├── host.json                  # Azure Functions config
+├── package.json               # API dependencies
+└── src/
+    ├── cosmos.js               # Cosmos DB client + auth helpers
+    └── functions/
+        ├── sync.js             # GET/PUT full state sync
+        ├── profile.js          # GET/PUT user profile
+        ├── invite.js           # POST create/accept invite codes
+        ├── leaderboard.js      # GET friend leaderboard
+        └── coach.js            # POST AI coaching (Azure OpenAI)
+```
 │   └── AppContext.tsx          # Global state + localStorage persistence
 ├── components/                # Reusable UI components
 │   ├── BottomNav.tsx           # Mobile bottom navigation
