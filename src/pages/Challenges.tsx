@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
-import { awardXp } from '../engine/xp'
+import { awardXp, XP_AWARDS } from '../engine/xp'
+import type { SpecialChallengeProgress } from '../engine/types'
 
 const DAILY_CHALLENGES = [
   { id: 'daily1', textKey: 'challenges.daily1', xp: 25 },
@@ -9,9 +10,15 @@ const DAILY_CHALLENGES = [
   { id: 'daily3', textKey: 'challenges.daily3', xp: 25 },
 ]
 
+const SPECIAL_TRACKS = [
+  { id: 'weakFoot', titleKey: 'challenges.weakFoot', descKey: 'challenges.weakFootDesc', days: 30, color: 'var(--color-green-400)' },
+  { id: 'mentalChamp', titleKey: 'challenges.mentalChamp', descKey: 'challenges.mentalChampDesc', days: 21, color: 'var(--color-cyan)' },
+  { id: 'deepPractice', titleKey: 'challenges.deepPractice', descKey: 'challenges.deepPracticeDesc', days: 7, color: 'var(--color-gold-400)' },
+]
+
 export function Challenges() {
   const { t } = useTranslation()
-  const { xp, setXp } = useApp()
+  const { xp, setXp, specialChallenges, setSpecialChallenges } = useApp()
   const [doneIds, setDoneIds] = useState<Set<string>>(new Set())
 
   function completeChallenge(id: string, xpReward: number) {
@@ -19,6 +26,39 @@ export function Challenges() {
     setDoneIds((prev) => new Set(prev).add(id))
     const today = new Date().toISOString().split('T')[0]
     setXp(awardXp(xp, xpReward, today))
+  }
+
+  function getSpecialProgress(id: string): SpecialChallengeProgress | undefined {
+    return specialChallenges.find((sc) => sc.id === id)
+  }
+
+  function startOrLogSpecial(trackId: string, daysTarget: number) {
+    const today = new Date().toISOString().split('T')[0]
+    const existing = getSpecialProgress(trackId)
+
+    if (existing) {
+      // Already logged today?
+      if (existing.lastLogDate === today) return
+      // Log another day
+      const updated = specialChallenges.map((sc) =>
+        sc.id === trackId
+          ? { ...sc, daysCompleted: sc.daysCompleted + 1, lastLogDate: today }
+          : sc,
+      )
+      setSpecialChallenges(updated)
+      setXp(awardXp(xp, XP_AWARDS.dailyChallenge, today))
+    } else {
+      // Start new challenge
+      const newChallenge: SpecialChallengeProgress = {
+        id: trackId,
+        daysCompleted: 1,
+        daysTarget,
+        lastLogDate: today,
+        startedAt: today,
+      }
+      setSpecialChallenges([...specialChallenges, newChallenge])
+      setXp(awardXp(xp, XP_AWARDS.dailyChallenge, today))
+    }
   }
 
   return (
@@ -61,33 +101,53 @@ export function Challenges() {
           {t('challenges.special')}
         </p>
         <div className="flex flex-col gap-2">
-          <div className="card-glow">
-            <p className="text-sm font-bold">{t('challenges.weakFoot')}</p>
-            <p className="text-xs mt-1" style={{ color: 'var(--color-text-muted)' }}>
-              {t('challenges.weakFootDesc')}
-            </p>
-            <div className="progress-track mt-2">
-              <div className="progress-fill" style={{ width: '0%', background: 'var(--color-green-400)' }} />
-            </div>
-          </div>
-          <div className="card-glow">
-            <p className="text-sm font-bold">{t('challenges.mentalChamp')}</p>
-            <p className="text-xs mt-1" style={{ color: 'var(--color-text-muted)' }}>
-              {t('challenges.mentalChampDesc')}
-            </p>
-            <div className="progress-track mt-2">
-              <div className="progress-fill" style={{ width: '0%', background: 'var(--color-cyan)' }} />
-            </div>
-          </div>
-          <div className="card-glow">
-            <p className="text-sm font-bold">{t('challenges.deepPractice')}</p>
-            <p className="text-xs mt-1" style={{ color: 'var(--color-text-muted)' }}>
-              {t('challenges.deepPracticeDesc')}
-            </p>
-            <div className="progress-track mt-2">
-              <div className="progress-fill" style={{ width: '0%', background: 'var(--color-gold-400)' }} />
-            </div>
-          </div>
+          {SPECIAL_TRACKS.map((track) => {
+            const progress = getSpecialProgress(track.id)
+            const pct = progress ? Math.min((progress.daysCompleted / track.days) * 100, 100) : 0
+            const today = new Date().toISOString().split('T')[0]
+            const loggedToday = progress?.lastLogDate === today
+            const isComplete = progress ? progress.daysCompleted >= track.days : false
+
+            return (
+              <button
+                key={track.id}
+                className="card-glow text-left w-full special-challenge-card"
+                onClick={() => !isComplete && startOrLogSpecial(track.id, track.days)}
+                disabled={loggedToday || isComplete}
+                aria-label={`${t(track.titleKey)} - ${progress ? `${progress.daysCompleted}/${track.days}` : t('challenges.start')}`}
+              >
+                <div className="flex items-center justify-between">
+                  <p className="text-sm font-bold">
+                    {t(track.titleKey)}
+                  </p>
+                  {progress && (
+                    <span className="text-xs font-data font-bold" style={{ color: isComplete ? 'var(--color-green-500)' : 'var(--color-text-muted)' }}>
+                      {isComplete ? '✓' : `${progress.daysCompleted}/${track.days}`}
+                    </span>
+                  )}
+                  {!progress && (
+                    <span className="text-xs font-bold px-2 py-0.5 rounded-full" style={{ background: '#dcfce7', color: '#15803d' }}>
+                      {t('challenges.start')}
+                    </span>
+                  )}
+                </div>
+                <p className="text-xs mt-1" style={{ color: 'var(--color-text-muted)' }}>
+                  {t(track.descKey)}
+                </p>
+                <div className="progress-track mt-2">
+                  <div
+                    className="progress-fill"
+                    style={{ width: `${pct}%`, background: track.color }}
+                  />
+                </div>
+                {loggedToday && !isComplete && (
+                  <p className="text-[0.65rem] mt-1 font-bold" style={{ color: 'var(--color-green-500)' }}>
+                    ✓ {t('challenges.loggedToday')}
+                  </p>
+                )}
+              </button>
+            )
+          })}
         </div>
       </div>
     </div>

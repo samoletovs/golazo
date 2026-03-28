@@ -24,12 +24,10 @@ function NavIcon({ name, active }: { name: string; active: boolean }) {
           <path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z" />
         </svg>
       )
-    case 'exercises':
+    case 'progress':
       return (
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round">
-          <circle cx="12" cy="12" r="10" />
-          <path d="M12 8v4l2 2" />
-          <circle cx="12" cy="12" r="3" fill={active ? color : 'none'} />
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
         </svg>
       )
     case 'challenges':
@@ -58,7 +56,7 @@ function NavIcon({ name, active }: { name: string; active: boolean }) {
 const NAV_ITEMS = [
   { key: 'dashboard', labelKey: 'nav.dashboard' },
   { key: 'log', labelKey: 'nav.log' },
-  { key: 'exercises', labelKey: 'nav.exercises' },
+  { key: 'progress', labelKey: 'nav.progress' },
   { key: 'challenges', labelKey: 'nav.challenges' },
   { key: 'profile', labelKey: 'nav.profile' },
 ]

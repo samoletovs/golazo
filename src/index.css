@@ -21,17 +21,17 @@
   --color-bg-warm: #fafafa;
   --color-bg-field: #f0f7f0;
 
-  /* ── Pitch Green (primary action) ── */
-  --color-green-500: #16a34a;
-  --color-green-400: #22c55e;
-  --color-green-600: #15803d;
-  --color-green-glow: rgba(22, 163, 74, 0.2);
+  /* ── Pitch Green (primary action — slightly muted for sophistication) ── */
+  --color-green-500: #15803d;
+  --color-green-400: #16a34a;
+  --color-green-600: #166534;
+  --color-green-glow: rgba(21, 128, 61, 0.15);
 
-  /* ── Gold (XP, rewards, highlights) ── */
-  --color-gold-500: #f59e0b;
+  /* ── Gold (XP, rewards — slightly deeper) ── */
+  --color-gold-500: #d97706;
   --color-gold-400: #f59e0b;
   --color-gold-300: #fbbf24;
-  --color-gold-glow: rgba(245, 158, 11, 0.2);
+  --color-gold-glow: rgba(217, 119, 6, 0.15);
 
   /* ── Rank Colors ── */
   --color-bronze: #cd7f32;
@@ -76,11 +76,11 @@
   --space-6: 24px;
   --space-8: 32px;
 
-  /* ── Radius (playful — chunky, approachable) ── */
-  --radius-sm: 12px;
-  --radius-md: 16px;
-  --radius-lg: 24px;
-  --radius-xl: 32px;
+  /* ── Radius (refined — sporty, less chunky) ── */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
   --radius-full: 9999px;
 
   /* ── Motion ── */
@@ -177,42 +177,42 @@ body {
 /* ── Card (primary container) ────────────────────────────── */
 .card {
   background: #ffffff;
-  border-radius: 16px;
+  border-radius: var(--radius-md);
   padding: 16px;
   transition: all 0.2s ease;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 6px rgba(0, 0, 0, 0.03);
 }
 .card:hover {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06), 0 4px 16px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06), 0 2px 12px rgba(0, 0, 0, 0.04);
 }
 
 /* ── Glow Card (special/highlighted) ─────────────────────── */
 .card-glow {
   background: #ffffff;
-  border: 2px solid rgba(22, 163, 74, 0.2);
-  border-radius: 16px;
-  padding: 20px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(21, 128, 61, 0.15);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 6px rgba(0, 0, 0, 0.03);
 }
 
 /* ── Gold Card (reward/profile card) ─────────────────────── */
 .card-gold {
   background: #ffffff;
-  border: 2px solid rgba(245, 158, 11, 0.25);
-  border-radius: 16px;
-  padding: 20px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(217, 119, 6, 0.2);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 6px rgba(0, 0, 0, 0.03);
 }
 
 /* ── Hero Stat Card (big numbers) ────────────────────────── */
 .stat-card {
   background: #ffffff;
-  border-radius: 16px;
-  padding: 16px 12px;
+  border-radius: var(--radius-md);
+  padding: 12px 10px;
   text-align: center;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 6px rgba(0, 0, 0, 0.03);
 }
 .stat-card::before {
   content: '';
@@ -286,12 +286,12 @@ body {
 
 /* ── Emoji ratings ──────────────────────────────────────── */
 .emoji-btn {
-  font-size: 2rem;
+  font-size: 1.75rem;
   cursor: pointer;
   opacity: 0.3;
   transition: all 0.2s ease;
   padding: 6px;
-  border-radius: 14px;
+  border-radius: var(--radius-sm);
 }
 .emoji-btn:hover {
   opacity: 0.65;
@@ -311,8 +311,8 @@ body {
   color: #fff;
   font-weight: 800;
   border: none;
-  border-radius: 16px;
-  padding: 16px 28px;
+  border-radius: var(--radius-md);
+  padding: 14px 24px;
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -340,8 +340,8 @@ body {
 /* ── Choice Button (selectable option) ───────────────────── */
 .btn-choice {
   background: #ffffff;
-  border: 2px solid #e5e7eb;
-  border-radius: 12px;
+  border: 1.5px solid #e5e7eb;
+  border-radius: var(--radius-sm);
   padding: 10px 14px;
   color: var(--color-text);
   cursor: pointer;
@@ -611,4 +611,167 @@ h1, h2, h3, h4 {
     transition-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
   }
+}
+
+/* ── Filter Chip Scroll ──────────────────────────────────── */
+.filter-scroll {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: 2px 0 4px;
+  scrollbar-width: none;
+}
+.filter-scroll::-webkit-scrollbar { display: none; }
+
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+  scroll-snap-align: start;
+  background: #ffffff;
+  border: 1.5px solid #e5e7eb;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  min-height: 34px;
+  flex-shrink: 0;
+}
+.filter-chip:hover {
+  border-color: #d1d5db;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+.filter-chip[aria-pressed="true"] {
+  background: #dcfce7;
+  border-color: #16a34a;
+  color: #15803d;
+  font-weight: 700;
+}
+.filter-chip:active {
+  transform: scale(0.95);
+}
+
+/* ── Login Card ──────────────────────────────────────────── */
+.login-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #ffffff;
+  border: 2px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  width: 100%;
+  text-align: left;
+}
+.login-card:hover {
+  border-color: var(--color-green-400);
+  box-shadow: 0 2px 12px rgba(22, 163, 74, 0.1);
+  transform: translateY(-1px);
+}
+.login-card:active {
+  transform: scale(0.98);
+}
+
+/* ── Assessment Button ───────────────────────────────────── */
+.assess-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 8px 4px;
+  border-radius: 12px;
+  border: 1.5px solid #e5e7eb;
+  background: #ffffff;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.assess-btn:hover {
+  border-color: #d1d5db;
+}
+.assess-btn[data-selected="true"] {
+  background: #dcfce7;
+  border-color: #16a34a;
+  color: #15803d;
+}
+.assess-btn:active {
+  transform: scale(0.95);
+}
+
+/* ── Calendar Day ────────────────────────────────────────── */
+.cal-day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  padding: 2px;
+}
+.cal-day:hover {
+  background: rgba(22, 163, 74, 0.06);
+}
+.cal-day[data-today="true"] {
+  background: rgba(22, 163, 74, 0.08);
+  font-weight: 800;
+}
+.cal-day[data-today="true"] span {
+  color: var(--color-green-500);
+}
+.cal-day[data-selected="true"] {
+  background: var(--color-green-500);
+  color: #fff;
+}
+.cal-day[data-selected="true"] span {
+  color: #fff;
+}
+.cal-day[data-selected="true"] .w-1\.5 {
+  background: #fff !important;
+}
+
+/* ── Special Challenge Card ──────────────────────────────── */
+.special-challenge-card {
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border: none;
+  font-family: inherit;
+}
+.special-challenge-card:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(22, 163, 74, 0.15);
+}
+.special-challenge-card:active:not(:disabled) {
+  transform: scale(0.98);
+}
+.special-challenge-card:disabled {
+  cursor: default;
+}
+
+/* ── Date/Time inputs ────────────────────────────────────── */
+input[type="date"], input[type="time"] {
+  background: #ffffff;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 14px 16px;
+  color: var(--color-text);
+  font-size: 0.875rem;
+  transition: all 0.15s ease;
+  outline: none;
+  font-family: var(--font-body);
+}
+input[type="date"]:focus, input[type="time"]:focus {
+  border-color: var(--color-green-500);
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
 }

@@ -22,7 +22,7 @@ export type DominantFoot = (typeof DOMINANT_FOOT)[keyof typeof DOMINANT_FOOT]
 
 export type Language = 'ru' | 'lv' | 'en' | 'es'
 
-export type AccountRole = 'player' | 'parent'
+export type AccountRole = 'player' | 'mentor'
 
 export interface PlayerProfile {
   id: string
@@ -248,7 +248,7 @@ export interface Exercise {
   videoUrl?: string
 }
 
-/* ── Schedule (parent-created) ────────────────────────────── */
+/* ── Schedule (player or mentor-created) ──────────────────── */
 
 export const SCHEDULE_TYPE = {
   training: 'training',
@@ -275,7 +275,7 @@ export interface ScheduleEvent {
     days: number[] // 0=Sun, 1=Mon, etc.
     until: string
   }
-  createdBy: string // parent account id
+  createdBy: string // account id (player or mentor)
   createdAt: string
 }
 
@@ -301,6 +301,55 @@ export interface Quote {
     en: string
     es: string
   }
+}
+
+/* ── Physical Profile (measured during onboarding & over time) */
+
+export interface PhysicalMeasurement {
+  heightCm: number
+  weightKg: number
+  sprintTime100m?: number // seconds
+  juggleRecord?: number // best consecutive count
+  agilityCourseTime?: number // seconds
+  measuredAt: string // ISO date
+}
+
+export interface PhysicalProfile {
+  measurements: PhysicalMeasurement[]
+  latestIndex: number // index into measurements[]
+}
+
+/* ── Onboarding ───────────────────────────────────────────── */
+
+export interface OnboardingData {
+  role: AccountRole
+  name: string
+  birthDate: string
+  yearsPlaying: number
+  team: string
+  positions: Position[]
+  dominantFoot: DominantFoot
+  physical: PhysicalMeasurement
+  selfAssessment: Partial<Record<SkillCategory, number>> // 1-5 self-rating
+}
+
+/* ── Special Challenge Tracking ───────────────────────────── */
+
+export interface SpecialChallengeProgress {
+  id: string
+  daysCompleted: number
+  daysTarget: number
+  lastLogDate: string
+  startedAt: string
+}
+
+/* ── SWA Auth ─────────────────────────────────────────────── */
+
+export interface SwaClientPrincipal {
+  identityProvider: string
+  userId: string
+  userDetails: string
+  userRoles: string[]
 }
 
 /* ── Achievements ─────────────────────────────────────────── */

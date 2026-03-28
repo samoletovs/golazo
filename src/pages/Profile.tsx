@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
+import { useAuth } from '../contexts/AuthContext'
 import { getRank } from '../engine/xp'
 import { fifaCardRatings, overallRating } from '../engine/skills'
 import type { Language } from '../engine/types'
@@ -18,7 +19,8 @@ const FIFA_LABELS: Record<string, string> = {
 
 export function Profile() {
   const { t, i18n } = useTranslation()
-  const { xp, skillTree, matches, trainings, profile } = useApp()
+  const { xp, skillTree, matches, trainings, profile, physicalProfile, resetState } = useApp()
+  const { user, logout } = useAuth()
   const rank = getRank(xp.level)
   const ratings = fifaCardRatings(skillTree)
   const overall = overallRating(skillTree)
@@ -118,6 +120,76 @@ export function Profile() {
               {lang.label}
             </button>
           ))}
+        </div>
+      </div>
+
+      {/* Physical stats */}
+      {physicalProfile && physicalProfile.measurements.length > 0 && (
+        <div className="card">
+          <p className="section-label mb-3">{t('profile.physical')}</p>
+          {(() => {
+            const m = physicalProfile.measurements[physicalProfile.latestIndex]
+            return (
+              <div className="grid grid-cols-2 gap-3">
+                {m.heightCm > 0 && (
+                  <div className="text-center">
+                    <p className="text-lg font-black font-data">{m.heightCm}</p>
+                    <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>cm</p>
+                  </div>
+                )}
+                {m.weightKg > 0 && (
+                  <div className="text-center">
+                    <p className="text-lg font-black font-data">{m.weightKg}</p>
+                    <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>kg</p>
+                  </div>
+                )}
+                {m.sprintTime100m && (
+                  <div className="text-center">
+                    <p className="text-lg font-black font-data">{m.sprintTime100m}s</p>
+                    <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>100m</p>
+                  </div>
+                )}
+                {m.juggleRecord && (
+                  <div className="text-center">
+                    <p className="text-lg font-black font-data">{m.juggleRecord}</p>
+                    <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{t('profile.juggles')}</p>
+                  </div>
+                )}
+              </div>
+            )
+          })()}
+        </div>
+      )}
+
+      {/* Account section */}
+      <div className="card">
+        <p className="section-label mb-3">{t('profile.account')}</p>
+        {user && (
+          <p className="text-xs mb-3" style={{ color: 'var(--color-text-muted)' }}>
+            {user.userDetails}
+          </p>
+        )}
+        <div className="flex flex-col gap-2">
+          {user && (
+            <button
+              className="btn-choice tap-target text-sm text-center"
+              onClick={logout}
+            >
+              {t('profile.logout')}
+            </button>
+          )}
+          <button
+            className="tap-target text-xs text-center py-2"
+            style={{ color: 'var(--color-danger)' }}
+            onClick={() => {
+              if (window.confirm(t('profile.resetConfirm'))) {
+                resetState()
+                window.location.reload()
+              }
+            }}
+          >
+            {t('profile.reset')}
+          </button>
         </div>
       </div>
     </div>

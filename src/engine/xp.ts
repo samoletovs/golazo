@@ -65,10 +65,10 @@ export const XP_AWARDS = {
 
 export const RANKS = [
   { minLevel: 1, maxLevel: 10, key: 'rank.rookie', color: 'bronze' },
-  { minLevel: 11, maxLevel: 20, key: 'rank.player', color: 'silver' },
-  { minLevel: 21, maxLevel: 30, key: 'rank.talent', color: 'gold' },
-  { minLevel: 31, maxLevel: 40, key: 'rank.star', color: 'diamond' },
-  { minLevel: 41, maxLevel: 50, key: 'rank.pro', color: 'platinum' },
+  { minLevel: 11, maxLevel: 20, key: 'rank.amateur', color: 'silver' },
+  { minLevel: 21, maxLevel: 30, key: 'rank.semiPro', color: 'gold' },
+  { minLevel: 31, maxLevel: 40, key: 'rank.pro', color: 'diamond' },
+  { minLevel: 41, maxLevel: 50, key: 'rank.elite', color: 'platinum' },
 ] as const
 
 export function getRank(level: number) {

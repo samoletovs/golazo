@@ -102,13 +102,13 @@ describe('getRank', () => {
     expect(getRank(10).key).toBe('rank.rookie')
   })
 
-  it('returns player for level 11-20', () => {
-    expect(getRank(11).key).toBe('rank.player')
-    expect(getRank(20).key).toBe('rank.player')
+  it('returns amateur for level 11-20', () => {
+    expect(getRank(11).key).toBe('rank.amateur')
+    expect(getRank(20).key).toBe('rank.amateur')
   })
 
-  it('returns pro for level 41-50', () => {
-    expect(getRank(50).key).toBe('rank.pro')
+  it('returns elite for level 41-50', () => {
+    expect(getRank(50).key).toBe('rank.elite')
   })
 })
 

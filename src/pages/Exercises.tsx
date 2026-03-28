@@ -42,16 +42,16 @@ export function Exercises() {
       <h2 className="text-xl font-extrabold">{t('exercises.title')}</h2>
 
       {/* Filter chips */}
-      <div className="flex gap-2 overflow-x-auto pb-1" style={{ scrollbarWidth: 'none' }}>
+      <div className="filter-scroll">
         {FILTER_OPTIONS.map((f) => (
           <button
             key={f.key}
-            className="btn-choice tap-target text-xs px-3 py-2 whitespace-nowrap flex items-center gap-1.5"
+            className="filter-chip"
             onClick={() => setFilter(f.key)}
             aria-pressed={filter === f.key}
           >
             <span>{f.emoji}</span>
-            {t(f.labelKey)}
+            <span>{t(f.labelKey)}</span>
           </button>
         ))}
       </div>

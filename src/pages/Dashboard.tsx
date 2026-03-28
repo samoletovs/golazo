@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
 import { QuoteCard } from '../components/QuoteCard'
 import { SkillRadar } from '../components/SkillRadar'
+import { CoachCard } from '../components/CoachCard'
 import { getMatchResult } from '../engine/types'
 import { getRank } from '../engine/xp'
 
@@ -101,6 +102,9 @@ export function Dashboard() {
 
       {/* ── Quote of the day ── */}
       <QuoteCard />
+
+      {/* ── AI Coach ── */}
+      <CoachCard />
 
       {/* ── Skill radar ── */}
       <SkillRadar />
