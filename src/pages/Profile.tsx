@@ -1,8 +1,12 @@
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
 import { useAuth } from '../contexts/AuthContext'
 import { getRank } from '../engine/xp'
 import { fifaCardRatings, overallRating } from '../engine/skills'
+import { renderFifaCard } from '../engine/fifaCard'
+import { PhotoUpload } from '../components/PhotoUpload'
+import { AchievementsList } from '../components/AchievementsList'
 import type { Language } from '../engine/types'
 
 const LANG_OPTIONS: { key: Language; label: string }[] = [
@@ -24,6 +28,7 @@ export function Profile() {
   const rank = getRank(xp.level)
   const ratings = fifaCardRatings(skillTree)
   const overall = overallRating(skillTree)
+  const [exporting, setExporting] = useState(false)
 
   const seasonGoals = matches.reduce((s, m) => s + m.goals, 0)
   const seasonAssists = matches.reduce((s, m) => s + m.assists, 0)
@@ -31,6 +36,38 @@ export function Profile() {
   function changeLanguage(lang: Language) {
     i18n.changeLanguage(lang)
     localStorage.setItem('golazo-lang', lang)
+  }
+
+  async function exportCard() {
+    if (!profile) return
+    setExporting(true)
+    try {
+      const blob = await renderFifaCard(profile, xp, skillTree, {
+        matches: matches.length,
+        goals: seasonGoals,
+        assists: seasonAssists,
+      })
+      const url = URL.createObjectURL(blob)
+
+      // Try native share if available (mobile)
+      if (navigator.share && navigator.canShare?.({ files: [new File([blob], 'golazo-card.png', { type: 'image/png' })] })) {
+        await navigator.share({
+          files: [new File([blob], 'golazo-card.png', { type: 'image/png' })],
+          title: 'My Golazo Card',
+        })
+      } else {
+        // Fallback: download
+        const a = document.createElement('a')
+        a.href = url
+        a.download = `golazo-${profile.name.toLowerCase().replace(/\s+/g, '-')}.png`
+        a.click()
+      }
+      URL.revokeObjectURL(url)
+    } catch {
+      // User cancelled share dialog — ignore
+    } finally {
+      setExporting(false)
+    }
   }
 
   const rankGradient =
@@ -43,6 +80,9 @@ export function Profile() {
   return (
     <div className="flex flex-col gap-4 p-4 pb-32">
       <h2 className="text-xl font-extrabold">{t('profile.title')}</h2>
+
+      {/* Photo upload */}
+      <PhotoUpload />
 
       {/* FIFA-style player card */}
       <div
@@ -58,6 +98,13 @@ export function Profile() {
               {t(rank.key)}
             </span>
           </div>
+
+          {/* Player photo */}
+          {profile?.photoUrl && (
+            <div className="w-12 h-12 rounded-full overflow-hidden flex-shrink-0" style={{ border: '2px solid rgba(255,255,255,0.3)' }}>
+              <img src={profile.photoUrl} alt={profile.name} className="w-full h-full object-cover" />
+            </div>
+          )}
 
           {/* Player info */}
           <div className="flex-1">
@@ -102,6 +149,21 @@ export function Profile() {
             <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{t('log.training')}</p>
           </div>
         </div>
+      </div>
+
+      {/* Export FIFA card */}
+      <button
+        className="btn-primary w-full text-sm"
+        onClick={exportCard}
+        disabled={exporting || !profile}
+        aria-label={t('profile.export')}
+      >
+        {exporting ? t('common.loading') : t('profile.export')}
+      </button>
+
+      {/* Achievements */}
+      <div className="card animate-fade-up">
+        <AchievementsList />
       </div>
 
       {/* Language selector */}
