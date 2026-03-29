@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
 import type { PhysicalMeasurement, AgeTier } from '../engine/types'
 import { getAgeTier } from '../engine/types'
-import { getFieldsForTier, PHYSICAL_GROUPS, type PhysicalFieldKey } from '../engine/physical'
+import { getTrackedFieldConfigs, PHYSICAL_GROUPS, type PhysicalFieldKey } from '../engine/physical'
 
 interface Props {
   onClose: () => void
@@ -14,7 +14,7 @@ export function PhysicalUpdateFlow({ onClose }: Props) {
   const { profile, physicalProfile, setPhysicalProfile } = useApp()
 
   const tier: AgeTier = profile?.birthDate ? getAgeTier(profile.birthDate) : 'u12'
-  const fields = getFieldsForTier(tier)
+  const fields = getTrackedFieldConfigs(physicalProfile, tier)
   const groups = [...new Set(fields.map((f) => f.group))]
 
   // Pre-fill with latest measurement values
@@ -24,7 +24,7 @@ export function PhysicalUpdateFlow({ onClose }: Props) {
     if (latest) {
       for (const field of fields) {
         const val = latest[field.key]
-        if (val != null && val !== 0) {
+        if (val !== null && val !== undefined && val !== 0) {
           init[field.key] = String(val)
         }
       }
@@ -58,6 +58,7 @@ export function PhysicalUpdateFlow({ onClose }: Props) {
     setPhysicalProfile({
       measurements: [...existing, measurement],
       latestIndex: existing.length,
+      trackedFields: physicalProfile?.trackedFields,
     })
     onClose()
   }
@@ -67,7 +68,7 @@ export function PhysicalUpdateFlow({ onClose }: Props) {
     if (!latest) return null
     const prev = latest[key]
     const curr = parseFloat(currentVal)
-    if (prev == null || isNaN(curr) || curr === 0) return null
+    if (prev === null || prev === undefined || isNaN(curr) || curr === 0) return null
     const diff = curr - (prev as number)
     if (Math.abs(diff) < 0.01) return null
     const isPositive = diff > 0

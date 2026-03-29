@@ -7,7 +7,7 @@ import { TeamPicker } from '../components/TeamPicker'
 import { AddTeamDialog } from '../components/AddTeamDialog'
 import type { AccountRole, Position, DominantFoot, SkillCategory, Language, PhysicalMeasurement, SkillTree, SharedTeam, PlayerTeam, AgeTier } from '../engine/types'
 import { getAgeTier } from '../engine/types'
-import { getFieldsForTier, PHYSICAL_GROUPS, type PhysicalFieldKey } from '../engine/physical'
+import { getDefaultTrackedFields, PHYSICAL_FIELDS, PHYSICAL_GROUPS, type PhysicalFieldKey } from '../engine/physical'
 
 type Step = 'role' | 'basics' | 'football' | 'physical' | 'assessment' | 'done'
 
@@ -65,6 +65,7 @@ interface OnboardingForm {
   dominantFoot: DominantFoot
   yearsPlaying: number
   physicalFields: Partial<Record<PhysicalFieldKey, string>>
+  trackedFields: PhysicalFieldKey[]
   assessment: Partial<Record<SkillCategory, number>>
 }
 
@@ -118,6 +119,7 @@ export function OnboardingPage() {
     dominantFoot: 'right',
     yearsPlaying: 0,
     physicalFields: {},
+    trackedFields: [],
     assessment: {},
   })
 
@@ -205,7 +207,7 @@ export function OnboardingPage() {
       juggleRecord: pf.juggleRecord ? parseInt(pf.juggleRecord, 10) : undefined,
       measuredAt: now,
     }
-    setPhysicalProfile({ measurements: [physical], latestIndex: 0 })
+    setPhysicalProfile({ measurements: [physical], latestIndex: 0, trackedFields: form.trackedFields })
 
     // Prefill skill tree from assessment
     const isGK = form.positions.includes('GK') && form.positions.length === 1
@@ -487,8 +489,27 @@ export function OnboardingPage() {
 
           {step === 'physical' && (() => {
             const tier: AgeTier = form.birthDate ? getAgeTier(form.birthDate) : 'u12'
-            const fields = getFieldsForTier(tier)
-            const groups = [...new Set(fields.map((f) => f.group))]
+            // Initialize tracked fields from age defaults on first render of this step
+            const tracked = form.trackedFields.length > 0 ? form.trackedFields : getDefaultTrackedFields(tier)
+            if (form.trackedFields.length === 0 && tracked.length > 0) {
+              // Side-effect on first render — set defaults
+              setTimeout(() => setForm((f) => ({ ...f, trackedFields: tracked })), 0)
+            }
+            const allGroups = [...new Set(PHYSICAL_FIELDS.map((f) => f.group))]
+            const activeFields = PHYSICAL_FIELDS.filter((f) => tracked.includes(f.key))
+            const activeGroups: string[] = [...new Set(activeFields.map((f) => f.group))]
+
+            function toggleField(key: PhysicalFieldKey) {
+              setForm((f) => {
+                const current = f.trackedFields.length > 0 ? f.trackedFields : tracked
+                const field = PHYSICAL_FIELDS.find((pf) => pf.key === key)
+                if (field?.required) return f // can't untrack height/weight
+                const next = current.includes(key)
+                  ? current.filter((k) => k !== key)
+                  : [...current, key]
+                return { ...f, trackedFields: next }
+              })
+            }
 
             return (
             <div className="flex flex-col gap-4 animate-fade-up">
@@ -497,8 +518,50 @@ export function OnboardingPage() {
                 {t('onboarding.physicalHint')}
               </p>
 
-              {groups.map((group) => {
-                const groupFields = fields.filter((f) => f.group === group)
+              {/* Field picker — choose what to track */}
+              <div className="card" style={{ background: 'var(--color-glass, #f8fafc)', padding: '12px' }}>
+                <p className="text-[10px] font-bold uppercase tracking-wider mb-2" style={{ color: 'var(--color-text-muted)' }}>
+                  {t('physical.chooseFields')}
+                </p>
+                {allGroups.map((group) => {
+                  const groupFields = PHYSICAL_FIELDS.filter((f) => f.group === group)
+                  const groupInfo = PHYSICAL_GROUPS[group]
+                  return (
+                    <div key={group} className="mb-2">
+                      <p className="text-[9px] font-bold uppercase mb-1" style={{ color: 'var(--color-text-muted)' }}>
+                        {groupInfo.emoji} {t(groupInfo.labelKey)}
+                      </p>
+                      <div className="flex flex-wrap gap-1.5">
+                        {groupFields.map((field) => {
+                          const isOn = tracked.includes(field.key)
+                          const isRequired = field.required
+                          return (
+                            <button
+                              key={field.key}
+                              type="button"
+                              className="text-[11px] px-2.5 py-1 rounded-full font-bold transition-colors"
+                              style={{
+                                background: isOn ? 'var(--color-primary-light, #dcfce7)' : 'var(--color-glass-active, #e2e8f0)',
+                                color: isOn ? 'var(--color-primary-dark, #166534)' : 'var(--color-text-muted)',
+                                opacity: isRequired ? 0.7 : 1,
+                              }}
+                              onClick={() => toggleField(field.key)}
+                              disabled={isRequired}
+                              aria-pressed={isOn}
+                            >
+                              {t(field.labelKey)}{isRequired ? ' ✓' : ''}
+                            </button>
+                          )
+                        })}
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
+
+              {/* Input fields for tracked measurements */}
+              {activeGroups.map((group) => {
+                const groupFields = activeFields.filter((f) => f.group === group)
                 const groupInfo = PHYSICAL_GROUPS[group]
                 const isBody = group === 'body'
                 return (

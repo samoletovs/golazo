@@ -9,6 +9,10 @@ import { PhotoUpload } from '../components/PhotoUpload'
 import { AchievementsList } from '../components/AchievementsList'
 import { TeamsManager } from '../components/TeamsManager'
 import type { Language } from '../engine/types'
+import { getAgeTier } from '../engine/types'
+import { getTrackedFieldConfigs, PHYSICAL_GROUPS } from '../engine/physical'
+import { PhysicalUpdateFlow } from '../components/PhysicalUpdateFlow'
+import { TrackedFieldsEditor } from '../components/TrackedFieldsEditor'
 
 const LANG_OPTIONS: { key: Language; label: string }[] = [
   { key: 'ru', label: '🇷🇺 Русский' },
@@ -33,6 +37,8 @@ export function Profile() {
   const overall = overallRating(skillTree)
   const [exporting, setExporting] = useState(false)
   const [showTeams, setShowTeams] = useState(false)
+  const [showPhysicalUpdate, setShowPhysicalUpdate] = useState(false)
+  const [showFieldsEditor, setShowFieldsEditor] = useState(false)
 
   const seasonGoals = matches.reduce((s, m) => s + m.goals, 0)
   const seasonAssists = matches.reduce((s, m) => s + m.assists, 0)
@@ -212,72 +218,70 @@ export function Profile() {
       </div>
 
       {/* Physical stats */}
-      {physicalProfile && physicalProfile.measurements.length > 0 && (
-        <div className="card">
-          <p className="section-label mb-3">{t('profile.physical')}</p>
-          {(() => {
-            const m = physicalProfile.measurements[physicalProfile.latestIndex]
-            return (
-              <div className="grid grid-cols-3 gap-3">
-                {m.heightCm > 0 && (
-                  <div className="text-center">
-                    <p className="text-lg font-black font-data">{m.heightCm}</p>
-                    <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>cm</p>
-                  </div>
-                )}
-                {m.weightKg > 0 && (
-                  <div className="text-center">
-                    <p className="text-lg font-black font-data">{m.weightKg}</p>
-                    <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>kg</p>
-                  </div>
-                )}
-                {m.sprintTime100m && (
-                  <div className="text-center">
-                    <p className="text-lg font-black font-data">{m.sprintTime100m}s</p>
-                    <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>100m</p>
-                  </div>
-                )}
-                {m.standingJumpCm && (
-                  <div className="text-center">
-                    <p className="text-lg font-black font-data">{m.standingJumpCm}</p>
-                    <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{t('profile.jump')}</p>
-                  </div>
-                )}
-                {m.beepTestLevel && (
-                  <div className="text-center">
-                    <p className="text-lg font-black font-data">{m.beepTestLevel}</p>
-                    <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{t('profile.beepTest')}</p>
-                  </div>
-                )}
-                {m.agilityCourseTime && (
-                  <div className="text-center">
-                    <p className="text-lg font-black font-data">{m.agilityCourseTime}s</p>
-                    <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{t('profile.agility')}</p>
-                  </div>
-                )}
-                {m.plankTimeSec && (
-                  <div className="text-center">
-                    <p className="text-lg font-black font-data">{m.plankTimeSec}s</p>
-                    <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{t('profile.plank')}</p>
-                  </div>
-                )}
-                {m.restingHeartRate && (
-                  <div className="text-center">
-                    <p className="text-lg font-black font-data">{m.restingHeartRate}</p>
-                    <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{t('profile.heartRate')}</p>
-                  </div>
-                )}
-                {m.juggleRecord && (
-                  <div className="text-center">
-                    <p className="text-lg font-black font-data">{m.juggleRecord}</p>
-                    <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{t('profile.juggles')}</p>
-                  </div>
-                )}
-              </div>
-            )
-          })()}
-        </div>
+      {showPhysicalUpdate && (
+        <PhysicalUpdateFlow onClose={() => setShowPhysicalUpdate(false)} />
       )}
+      {showFieldsEditor && (
+        <TrackedFieldsEditor onClose={() => setShowFieldsEditor(false)} />
+      )}
+      {physicalProfile && physicalProfile.measurements.length > 0 && (() => {
+        const m = physicalProfile.measurements[physicalProfile.latestIndex]
+        const tier = profile?.birthDate ? getAgeTier(profile.birthDate) : 'u12'
+        const fields = getTrackedFieldConfigs(physicalProfile, tier)
+        const groups: string[] = [...new Set(fields.map((f: { group: string }) => f.group))]
+
+        return (
+          <div className="card">
+            <div className="flex items-center justify-between mb-3">
+              <p className="section-label">{t('profile.physical')}</p>
+              <div className="flex items-center gap-2">
+                <button
+                  className="text-xs tap-target"
+                  style={{ color: 'var(--color-text-muted)' }}
+                  onClick={() => setShowFieldsEditor(true)}
+                  aria-label={t('physical.customize')}
+                >
+                  ⚙️
+                </button>
+                <button
+                  className="text-xs font-bold tap-target"
+                  style={{ color: 'var(--color-primary-dark)' }}
+                  onClick={() => setShowPhysicalUpdate(true)}
+                >
+                  {t('physical.update')}
+                </button>
+              </div>
+            </div>
+            {groups.map((group) => {
+              const groupFields = fields.filter((f: { group: string }) => f.group === group)
+              const groupInfo = PHYSICAL_GROUPS[group]
+              const visibleFields = groupFields.filter((f: { key: string }) => {
+                const val = (m as unknown as Record<string, unknown>)[f.key]
+                return val !== null && val !== undefined && val !== 0
+              })
+              if (visibleFields.length === 0) return null
+              return (
+                <div key={group} className="mb-3">
+                  <p className="text-[10px] font-bold uppercase tracking-wider mb-1.5" style={{ color: 'var(--color-text-muted)' }}>
+                    {groupInfo.emoji} {t(groupInfo.labelKey)}
+                  </p>
+                  <div className="grid grid-cols-3 gap-3">
+                    {visibleFields.map((f: { key: string; unit: string }) => (
+                      <div key={f.key} className="text-center">
+                        <p className="text-lg font-black font-data">{String((m as unknown as Record<string, unknown>)[f.key] ?? '')}{f.unit === 'sec' || f.unit === '%' ? f.unit.charAt(0) : ''}</p>
+                        <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{f.unit}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )
+            })}
+            <p className="text-[10px] text-right" style={{ color: 'var(--color-text-muted)' }}>
+              {t('physical.lastUpdated', { date: new Date(m.measuredAt).toLocaleDateString() })}
+            </p>
+          </div>
+        )
+      })()}
 
       {/* Account section */}
       <div className="card">

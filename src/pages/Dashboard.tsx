@@ -150,6 +150,41 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
   return (
     <div className="flex flex-col gap-5 p-4 pb-32">
       <ConfettiBurst trigger={isStreakMilestone} />
+      {/* ── Physical Update Flow ── */}
+      {showPhysicalUpdate && (
+        <PhysicalUpdateFlow onClose={() => setShowPhysicalUpdate(false)} />
+      )}
+
+      {/* ── Physical update reminder ── */}
+      {physicalUpdateDue && (
+        <div className="card animate-fade-up flex items-center gap-3" style={{ background: 'var(--color-primary-light, #dcfce7)', border: '1px solid var(--color-primary, #22c55e)' }}>
+          <span className="text-2xl">📏</span>
+          <div className="flex-1">
+            <p className="text-sm font-bold">{t('physical.reminderTitle')}</p>
+            <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
+              {daysSinceMeasurement === Infinity
+                ? t('physical.reminderNever')
+                : t('physical.reminderDays', { days: daysSinceMeasurement })}
+            </p>
+          </div>
+          <div className="flex flex-col gap-1">
+            <button
+              className="btn-primary text-xs px-3 py-1.5"
+              onClick={() => setShowPhysicalUpdate(true)}
+            >
+              {t('physical.update')}
+            </button>
+            <button
+              className="text-[10px] tap-target"
+              style={{ color: 'var(--color-text-muted)' }}
+              onClick={() => setPhysicalDismissed(true)}
+            >
+              {t('physical.later')}
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* ── Welcome greeting ── */}
       <div className="animate-fade-up">
         <p className="text-lg font-bold" style={{ fontFamily: 'var(--font-display)' }}>

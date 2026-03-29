@@ -386,6 +386,14 @@ export interface RecurringTraining {
   createdAt: string
 }
 
+export const MATCH_TYPE = {
+  friendly: 'friendly',
+  league: 'league',
+  cup: 'cup',
+  tournament: 'tournament',
+} as const
+export type MatchType = (typeof MATCH_TYPE)[keyof typeof MATCH_TYPE]
+
 export interface ScheduleEvent {
   id: string
   familyId: string
@@ -398,6 +406,7 @@ export interface ScheduleEvent {
   location?: string
   opponent?: string
   competition?: string
+  matchType?: MatchType
   tournamentId?: string
   recurring?: {
     frequency: 'weekly'
@@ -461,6 +470,7 @@ export interface PhysicalMeasurement {
 export interface PhysicalProfile {
   measurements: PhysicalMeasurement[]
   latestIndex: number // index into measurements[]
+  trackedFields?: string[] // player-chosen field keys (age tier sets defaults)
 }
 
 /** Calculate age tier from birth date */

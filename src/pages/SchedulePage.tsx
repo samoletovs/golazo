@@ -2,12 +2,20 @@ import { useState, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
 import { TournamentImport } from '../components/TournamentImport'
-import type { ScheduleType, ScheduleEvent, RecurringTraining, TrainingType } from '../engine/types'
+import { TeamPicker } from '../components/TeamPicker'
+import type { ScheduleType, ScheduleEvent, RecurringTraining, TrainingType, MatchType } from '../engine/types'
 
 const EVENT_TYPES: { key: ScheduleType; emoji: string; labelKey: string; color: string }[] = [
   { key: 'training', emoji: '⚽', labelKey: 'mentor.schedule.training', color: 'var(--color-primary-dark)' },
   { key: 'match', emoji: '🏟️', labelKey: 'mentor.schedule.match', color: 'var(--color-cat-physical)' },
   { key: 'tournament', emoji: '🏆', labelKey: 'mentor.schedule.tournament', color: 'var(--color-gold-500)' },
+]
+
+const MATCH_TYPES: { key: MatchType; emoji: string; labelKey: string }[] = [
+  { key: 'friendly', emoji: '🤝', labelKey: 'schedule.matchFriendly' },
+  { key: 'league', emoji: '🏅', labelKey: 'schedule.matchLeague' },
+  { key: 'cup', emoji: '🏆', labelKey: 'schedule.matchCup' },
+  { key: 'tournament', emoji: '⚡', labelKey: 'schedule.matchTournament' },
 ]
 
 const TRAINING_TYPES: { key: TrainingType; emoji: string; labelKey: string }[] = [
@@ -93,6 +101,8 @@ export function SchedulePage() {
   const [formEndTime, setFormEndTime] = useState('19:30')
   const [formLocation, setFormLocation] = useState('')
   const [formOpponent, setFormOpponent] = useState('')
+  const [formMatchType, setFormMatchType] = useState<MatchType>('friendly')
+  const [formCompetition, setFormCompetition] = useState('')
   const [showImport, setShowImport] = useState(false)
   const [showWeeklySetup, setShowWeeklySetup] = useState(false)
   const [rtName, setRtName] = useState('')
@@ -169,21 +179,26 @@ export function SchedulePage() {
     setFormTitle('')
     setFormLocation('')
     setFormOpponent('')
+    setFormMatchType('friendly')
+    setFormCompetition('')
   }
 
   function saveEvent() {
     if (!selectedDate) return
+    const isMatch = formType === 'match'
     const ev: ScheduleEvent = {
       id: crypto.randomUUID(),
       familyId: profile?.familyId ?? 'local',
       playerId: profile?.id ?? 'local',
       type: formType,
-      title: formTitle || t(`mentor.schedule.${formType}`),
+      title: formTitle || (isMatch ? `${t(`schedule.matchType.${formMatchType}`)} vs ${formOpponent || '?'}` : t(`mentor.schedule.${formType}`)),
       date: selectedDate,
       startTime: formTime,
       endTime: formEndTime || undefined,
       location: formLocation || undefined,
-      opponent: formType === 'match' ? formOpponent || undefined : undefined,
+      opponent: isMatch ? formOpponent || undefined : undefined,
+      competition: isMatch ? formCompetition || undefined : undefined,
+      matchType: isMatch ? formMatchType : undefined,
       createdBy: profile?.id ?? 'local',
       createdAt: new Date().toISOString(),
     }
@@ -362,14 +377,21 @@ export function SchedulePage() {
               <div key={ev.id} className="card flex items-center gap-3">
                 <span className="text-xl">{evType?.emoji ?? '📅'}</span>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-bold">{ev.title}</p>
+                  <div className="flex items-center gap-1.5">
+                    <p className="text-sm font-bold truncate">{ev.title}</p>
+                    {ev.matchType && (
+                      <span className="text-[0.55rem] px-1.5 py-0.5 rounded-full shrink-0" style={{ background: 'var(--color-glass-active)', color: 'var(--color-text-secondary)' }}>
+                        {MATCH_TYPES.find((m) => m.key === ev.matchType)?.emoji} {t(`schedule.matchType.${ev.matchType}`, ev.matchType)}
+                      </span>
+                    )}
+                  </div>
                   <p className="text-xs font-data" style={{ color: 'var(--color-text-muted)' }}>
                     {ev.startTime}{ev.endTime ? ` – ${ev.endTime}` : ''}
                     {ev.location ? ` • ${ev.location}` : ''}
                   </p>
                   {ev.opponent && (
                     <p className="text-xs" style={{ color: 'var(--color-text-secondary)' }}>
-                      vs {ev.opponent}
+                      vs {ev.opponent}{ev.competition ? ` · ${ev.competition}` : ''}
                     </p>
                   )}
                 </div>
@@ -446,13 +468,45 @@ export function SchedulePage() {
               />
 
               {formType === 'match' && (
-                <input
-                  type="text"
-                  value={formOpponent}
-                  onChange={(e) => setFormOpponent(e.target.value)}
-                  placeholder={t('schedule.opponent')}
-                  className="w-full"
-                />
+                <>
+                  {/* Match type */}
+                  <div>
+                    <label className="text-xs font-bold mb-1 block" style={{ color: 'var(--color-text-secondary)' }}>{t('schedule.matchTypeLabel')}</label>
+                    <div className="flex gap-1">
+                      {MATCH_TYPES.map((mt) => (
+                        <button
+                          key={mt.key}
+                          className="btn-choice tap-target flex-1 text-center text-[0.65rem] py-1.5"
+                          aria-pressed={formMatchType === mt.key}
+                          onClick={() => setFormMatchType(mt.key)}
+                        >
+                          {mt.emoji} {t(mt.labelKey)}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Opponent (with TeamPicker) */}
+                  <div>
+                    <label className="text-xs font-bold mb-1 block" style={{ color: 'var(--color-text-secondary)' }}>{t('schedule.opponent')}</label>
+                    <TeamPicker
+                      value={formOpponent}
+                      onChange={(name) => setFormOpponent(name)}
+                      country={profile?.country}
+                      placeholder={t('schedule.opponent')}
+                      className="w-full"
+                    />
+                  </div>
+
+                  {/* Competition name */}
+                  <input
+                    type="text"
+                    value={formCompetition}
+                    onChange={(e) => setFormCompetition(e.target.value)}
+                    placeholder={t('match.competition')}
+                    className="w-full"
+                  />
+                </>
               )}
             </div>
 

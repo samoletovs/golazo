@@ -1,4 +1,4 @@
-import type { AgeTier, PhysicalMeasurement } from './types'
+import type { AgeTier, PhysicalMeasurement, PhysicalProfile } from './types'
 
 export type PhysicalFieldKey = keyof Omit<PhysicalMeasurement, 'measuredAt'>
 
@@ -136,4 +136,18 @@ export function daysSinceLastMeasurement(measuredAt: string | undefined): number
   const last = new Date(measuredAt)
   const now = new Date()
   return Math.floor((now.getTime() - last.getTime()) / (1000 * 60 * 60 * 24))
+}
+
+/** Get default tracked field keys for an age tier */
+export function getDefaultTrackedFields(tier: AgeTier): PhysicalFieldKey[] {
+  return PHYSICAL_FIELDS.filter((f) => f.tiers.includes(tier)).map((f) => f.key)
+}
+
+/** Get field configs for the player's tracked fields (respects player choice, falls back to age tier) */
+export function getTrackedFieldConfigs(physicalProfile: PhysicalProfile | null, tier: AgeTier): PhysicalFieldConfig[] {
+  const tracked = physicalProfile?.trackedFields
+  if (tracked && tracked.length > 0) {
+    return PHYSICAL_FIELDS.filter((f) => tracked.includes(f.key))
+  }
+  return getFieldsForTier(tier)
 }
