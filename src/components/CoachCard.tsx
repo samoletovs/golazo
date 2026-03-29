@@ -82,6 +82,16 @@ export function CoachCard() {
             </div>
           )}
         </div>
+      ) : loading ? (
+        <div className="flex flex-col gap-3">
+          <div className="skeleton" style={{ width: '100%', height: 14 }} />
+          <div className="skeleton" style={{ width: '85%', height: 14 }} />
+          <div className="skeleton" style={{ width: '60%', height: 14 }} />
+          <div className="flex gap-2 mt-1">
+            <div className="skeleton" style={{ width: 64, height: 24, borderRadius: 999 }} />
+            <div className="skeleton" style={{ width: 80, height: 24, borderRadius: 999 }} />
+          </div>
+        </div>
       ) : (
         <div className="flex flex-col gap-2">
           <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>

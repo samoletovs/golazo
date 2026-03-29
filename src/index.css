@@ -217,6 +217,16 @@ body {
   box-shadow: var(--shadow-card), 0 0 0 1px rgba(251, 191, 36, 0.08);
 }
 
+/* ── Hero Card (dashboard level showcase — gradient bg) ──── */
+.card-hero {
+  background: linear-gradient(135deg, #15803d 0%, #16a34a 40%, #0ea5e9 100%);
+  border-radius: var(--radius-lg);
+  padding: 18px;
+  box-shadow:
+    0 4px 16px rgba(22, 163, 74, 0.25),
+    0 8px 32px rgba(14, 165, 233, 0.15);
+}
+
 /* ── Hero Stat Card (big numbers) ────────────────────────── */
 .stat-card {
   background: #ffffff;
