@@ -298,5 +298,22 @@
   "ach.level10": "Nivel 10",
   "ach.level10Desc": "Alcanza el nivel 10",
   "ach.level25": "Nivel 25",
-  "ach.level25Desc": "Alcanza el nivel 25"
+  "ach.level25Desc": "Alcanza el nivel 25",
+
+  "import.title": "Importar torneo",
+  "import.url": "URL de la página del torneo",
+  "import.urlHint": "Pega el enlace a la página de partidos (turniir.ee, sportdata.org, etc.)",
+  "import.teamName": "Nombre de tu equipo",
+  "import.teamNameHint": "ej. RĪGAS FS, FK VALOR",
+  "import.duration": "Duración del partido",
+  "import.fetch": "Buscar partidos",
+  "import.loading": "Cargando...",
+  "import.fetchError": "No se pudo cargar la página. Verifica el enlace.",
+  "import.noGamesForTeam": "No se encontraron partidos para \"{{team}}\"",
+  "import.teamsFound": "Equipos en esta página",
+  "import.foundGames": "{{count}} partidos para tu equipo ({{total}} en total)",
+  "import.addToSchedule": "Agregar al calendario",
+  "import.success": "¡Torneo importado!",
+  "import.addedGames": "{{count}} partidos agregados de {{tournament}}",
+  "import.button": "Importar torneo"
 }

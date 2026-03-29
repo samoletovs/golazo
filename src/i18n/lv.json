@@ -298,5 +298,22 @@
   "ach.level10": "Līmenis 10",
   "ach.level10Desc": "Sasniedz 10. līmeni",
   "ach.level25": "Līmenis 25",
-  "ach.level25Desc": "Sasniedz 25. līmeni"
+  "ach.level25Desc": "Sasniedz 25. līmeni",
+
+  "import.title": "Importēt turnīru",
+  "import.url": "Turnīra lapas URL",
+  "import.urlHint": "Ielīmē saiti uz spēļu grafiku (turniir.ee, sportdata.org u.c.)",
+  "import.teamName": "Tavas komandas nosaukums",
+  "import.teamNameHint": "piem. RĪGAS FS, FK VALOR",
+  "import.duration": "Spēles ilgums",
+  "import.fetch": "Atrast spēles",
+  "import.loading": "Ielādē...",
+  "import.fetchError": "Neizdevās ielādēt lapu. Pārbaudi saiti.",
+  "import.noGamesForTeam": "Nav atrasta neviena spēle komandai \"{{team}}\"",
+  "import.teamsFound": "Komandas šajā lapā",
+  "import.foundGames": "{{count}} spēles tavai komandai ({{total}} kopā)",
+  "import.addToSchedule": "Pievienot kalendāram",
+  "import.success": "Turnīrs importēts!",
+  "import.addedGames": "{{count}} spēles pievienotas no {{tournament}}",
+  "import.button": "Importēt turnīru"
 }

@@ -362,5 +362,22 @@
   "ach.level10": "Уровень 10",
   "ach.level10Desc": "Достигни уровня 10",
   "ach.level25": "Уровень 25",
-  "ach.level25Desc": "Достигни уровня 25"
+  "ach.level25Desc": "Достигни уровня 25",
+
+  "import.title": "Импорт турнира",
+  "import.url": "Ссылка на расписание",
+  "import.urlHint": "Вставь ссылку на страницу с расписанием (turniir.ee, sportdata.org и др.)",
+  "import.teamName": "Название команды",
+  "import.teamNameHint": "напр. RĪGAS FS, FK VALOR",
+  "import.duration": "Длительность игры",
+  "import.fetch": "Найти игры",
+  "import.loading": "Загрузка...",
+  "import.fetchError": "Не удалось загрузить страницу. Проверь ссылку.",
+  "import.noGamesForTeam": "Игры для \"{{team}}\" не найдены",
+  "import.teamsFound": "Команды на странице",
+  "import.foundGames": "{{count}} игр для твоей команды ({{total}} всего)",
+  "import.addToSchedule": "Добавить в расписание",
+  "import.success": "Турнир импортирован!",
+  "import.addedGames": "{{count}} игр добавлено из {{tournament}}",
+  "import.button": "Импорт турнира"
 }

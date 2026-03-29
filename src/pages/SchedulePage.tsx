@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
+import { TournamentImport } from '../components/TournamentImport'
 import type { ScheduleType, ScheduleEvent } from '../engine/types'
 
 const EVENT_TYPES: { key: ScheduleType; emoji: string; labelKey: string; color: string }[] = [
@@ -44,6 +45,7 @@ export function SchedulePage() {
   const [formLocation, setFormLocation] = useState('')
   const [formOpponent, setFormOpponent] = useState('')
   const [formRecurring, setFormRecurring] = useState(false)
+  const [showImport, setShowImport] = useState(false)
 
   const days = getMonthDays(viewYear, viewMonth)
   const todayStr = dateKey(today.getFullYear(), today.getMonth(), today.getDate())
@@ -109,7 +111,17 @@ export function SchedulePage() {
 
   return (
     <div className="flex flex-col gap-4 p-4 pb-32">
-      <h2 className="text-xl font-extrabold">{t('mentor.schedule.title')}</h2>
+      <div className="flex items-center justify-between">
+        <h2 className="text-xl font-extrabold">{t('mentor.schedule.title')}</h2>
+        <button
+          className="text-xs font-bold px-3 py-1.5 rounded-lg"
+          style={{ background: 'var(--color-gold-glow)', color: 'var(--color-gold-500)' }}
+          onClick={() => setShowImport(true)}
+          aria-label={t('import.button')}
+        >
+          🏆 {t('import.button')}
+        </button>
+      </div>
 
       {/* Month navigation */}
       <div className="flex items-center justify-between">

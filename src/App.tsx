@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, lazy, Suspense } from 'react'
 import { AppProvider, useApp } from './contexts/AppContext'
 import { AuthProvider, useAuth } from './contexts/AuthContext'
 import { XpBar } from './components/XpBar'
@@ -6,14 +6,16 @@ import { BottomNav } from './components/BottomNav'
 import FeedbackButton from './components/FeedbackButton'
 import { Dashboard } from './pages/Dashboard'
 import { LogPage } from './pages/LogPage'
-import { Exercises } from './pages/Exercises'
-import { Challenges } from './pages/Challenges'
-import { Profile } from './pages/Profile'
-import { SchedulePage } from './pages/SchedulePage'
-import { ProgressPage } from './pages/ProgressPage'
-import { LeaderboardPage } from './pages/LeaderboardPage'
 import { LoginPage } from './pages/LoginPage'
 import { OnboardingPage } from './pages/OnboardingPage'
+
+// Lazy-load heavier pages to reduce initial bundle
+const Exercises = lazy(() => import('./pages/Exercises').then(m => ({ default: m.Exercises })))
+const Challenges = lazy(() => import('./pages/Challenges').then(m => ({ default: m.Challenges })))
+const Profile = lazy(() => import('./pages/Profile').then(m => ({ default: m.Profile })))
+const SchedulePage = lazy(() => import('./pages/SchedulePage').then(m => ({ default: m.SchedulePage })))
+const ProgressPage = lazy(() => import('./pages/ProgressPage').then(m => ({ default: m.ProgressPage })))
+const LeaderboardPage = lazy(() => import('./pages/LeaderboardPage').then(m => ({ default: m.LeaderboardPage })))
 
 type Page = 'dashboard' | 'log' | 'exercises' | 'challenges' | 'profile' | 'schedule' | 'progress' | 'leaderboard'
 
@@ -63,12 +65,14 @@ function AppContent() {
         <main className="flex-1 overflow-y-auto pb-20">
           {page === 'dashboard' && <Dashboard />}
           {page === 'log' && <LogPage />}
-          {page === 'exercises' && <Exercises />}
-          {page === 'challenges' && <Challenges />}
-          {page === 'profile' && <Profile />}
-          {page === 'schedule' && <SchedulePage />}
-          {page === 'progress' && <ProgressPage />}
-          {page === 'leaderboard' && <LeaderboardPage />}
+          <Suspense fallback={<div className="flex items-center justify-center p-8"><span className="text-3xl">⚽</span></div>}>
+            {page === 'exercises' && <Exercises />}
+            {page === 'challenges' && <Challenges />}
+            {page === 'profile' && <Profile />}
+            {page === 'schedule' && <SchedulePage />}
+            {page === 'progress' && <ProgressPage />}
+            {page === 'leaderboard' && <LeaderboardPage />}
+          </Suspense>
         </main>
 
         <footer className="nl-footer">
