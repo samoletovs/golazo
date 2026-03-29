@@ -13,6 +13,11 @@
       "statusCode": 404
     },
     {
+      "route": "/api/teams",
+      "methods": ["GET"],
+      "allowedRoles": ["anonymous", "authenticated"]
+    },
+    {
       "route": "/api/*",
       "allowedRoles": ["authenticated"]
     }
