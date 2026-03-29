@@ -8,7 +8,7 @@ import { getMatchResult } from '../engine/types'
 import { getRank } from '../engine/xp'
 import { exercises } from '../data/exercises'
 
-export function Dashboard() {
+export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void }) {
   const { t } = useTranslation()
   const { matches, trainings, xp, profile } = useApp()
   const rank = getRank(xp.level)
@@ -205,6 +205,15 @@ export function Dashboard() {
           <span className="text-xs px-2 py-0.5 rounded-full" style={{ background: '#fef3c7', color: '#b45309' }}>
             {'⭐'.repeat(drillOfDay.difficulty)}
           </span>
+          {onNavigate && (
+            <button
+              className="ml-auto text-xs font-bold px-3 py-1 rounded-full"
+              style={{ background: 'var(--color-green-glow)', color: 'var(--color-green-500)' }}
+              onClick={() => onNavigate('exercises')}
+            >
+              {t('exercises.all')} →
+            </button>
+          )}
         </div>
       </div>
 
@@ -266,6 +275,26 @@ export function Dashboard() {
               )
             })}
           </div>
+        </div>
+      )}
+
+      {/* ── Quick actions ── */}
+      {onNavigate && (
+        <div className="flex gap-2 animate-fade-up">
+          <button
+            className="card flex-1 tap-target flex items-center gap-2 justify-center py-3"
+            onClick={() => onNavigate('schedule')}
+          >
+            <span>📅</span>
+            <span className="text-xs font-bold">{t('nav.schedule')}</span>
+          </button>
+          <button
+            className="card flex-1 tap-target flex items-center gap-2 justify-center py-3"
+            onClick={() => onNavigate('challenges')}
+          >
+            <span>🏆</span>
+            <span className="text-xs font-bold">{t('nav.challenges')}</span>
+          </button>
         </div>
       )}
     </div>

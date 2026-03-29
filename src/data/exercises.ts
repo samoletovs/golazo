@@ -1,7 +1,7 @@
 import type { Exercise } from '../engine/types'
 
-/** Curated exercise library — initial 30 drills, expandable */
-export const exercises: Exercise[] = [
+/** Curated exercise library — hand-picked drills */
+const curatedExercises: Exercise[] = [
   // ── Technical: Coerver-style ball mastery ──
   {
     id: 'tech-01', nameKey: 'ex.tech.juggling', descriptionKey: 'ex.tech.juggling.desc',
@@ -139,3 +139,6 @@ export const exercises: Exercise[] = [
     equipment: ['none'], positions: [], methodology: 'uefa',
   },
 ]
+
+/** All exercises — curated (+ generated in future), enriched with video data */
+export const exercises: Exercise[] = curatedExercises

@@ -74,7 +74,7 @@ function AppContent() {
 
         <main className="flex-1 overflow-y-auto pb-20">
           <div key={pageKey} className="page-enter">
-            {page === 'dashboard' && <Dashboard />}
+            {page === 'dashboard' && <Dashboard onNavigate={handleNavigate} />}
             {page === 'log' && <LogPage />}
             <Suspense fallback={<div className="flex items-center justify-center p-8"><span className="text-3xl">⚽</span></div>}>
               {page === 'exercises' && <Exercises />}

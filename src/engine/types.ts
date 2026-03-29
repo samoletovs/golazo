@@ -288,6 +288,16 @@ export interface Exercise {
   positions: Position[] // empty = all positions
   methodology: Methodology
   videoUrl?: string
+  thumbnailUrl?: string
+  source?: 'curated' | 'generated'
+}
+
+export interface CompletedExercise {
+  exerciseId: string
+  date: string // ISO date
+  durationActual?: number // minutes
+  rating?: 1 | 2 | 3 | 4 | 5
+  completedAt: string // ISO timestamp
 }
 
 /* ── Schedule (player or mentor-created) ──────────────────── */
