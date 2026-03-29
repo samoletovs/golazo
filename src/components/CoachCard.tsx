@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
-import { useAuth } from '../contexts/AuthContext'
 
 interface CoachAdvice {
   recommendation: string
@@ -13,7 +12,6 @@ interface CoachAdvice {
 export function CoachCard() {
   const { t } = useTranslation()
   const { skillTree, matches, trainings, physicalProfile } = useApp()
-  const { user } = useAuth()
   const [advice, setAdvice] = useState<CoachAdvice | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
@@ -100,7 +98,7 @@ export function CoachCard() {
           <button
             className="btn-primary text-sm py-2 px-4"
             onClick={fetchAdvice}
-            disabled={loading || !user}
+            disabled={loading}
             aria-label={t('coach.getAdvice')}
           >
             {loading ? t('common.loading') : t('coach.getAdvice')}

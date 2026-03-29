@@ -41,6 +41,13 @@ function NavIcon({ name, active }: { name: string; active: boolean }) {
           <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22" />
         </svg>
       )
+    case 'exercises':
+      return (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="10" />
+          <path d="M12 6v6l4 2" />
+        </svg>
+      )
     case 'profile':
       return (
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round">
@@ -56,8 +63,8 @@ function NavIcon({ name, active }: { name: string; active: boolean }) {
 const NAV_ITEMS = [
   { key: 'dashboard', labelKey: 'nav.dashboard' },
   { key: 'log', labelKey: 'nav.log' },
+  { key: 'exercises', labelKey: 'nav.exercises' },
   { key: 'progress', labelKey: 'nav.progress' },
-  { key: 'challenges', labelKey: 'nav.challenges' },
   { key: 'profile', labelKey: 'nav.profile' },
 ]
 

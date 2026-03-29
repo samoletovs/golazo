@@ -19,11 +19,21 @@ const SPECIAL_TRACKS = [
 export function Challenges() {
   const { t } = useTranslation()
   const { xp, setXp, specialChallenges, setSpecialChallenges } = useApp()
-  const [doneIds, setDoneIds] = useState<Set<string>>(new Set())
+
+  // Persist completed challenges per day in localStorage
+  const todayKey = new Date().toISOString().split('T')[0]
+  const [doneIds, setDoneIds] = useState<Set<string>>(() => {
+    try {
+      const stored = localStorage.getItem(`golazo-challenges-${todayKey}`)
+      return stored ? new Set(JSON.parse(stored)) : new Set()
+    } catch { return new Set() }
+  })
 
   function completeChallenge(id: string, xpReward: number) {
     if (doneIds.has(id)) return
-    setDoneIds((prev) => new Set(prev).add(id))
+    const updated = new Set(doneIds).add(id)
+    setDoneIds(updated)
+    localStorage.setItem(`golazo-challenges-${todayKey}`, JSON.stringify([...updated]))
     const today = new Date().toISOString().split('T')[0]
     setXp(awardXp(xp, xpReward, today))
   }

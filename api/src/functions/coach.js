@@ -28,7 +28,7 @@ app.http('coach', {
     const openaiKey = process.env.AZURE_OPENAI_KEY;
     const deployment = process.env.AZURE_OPENAI_DEPLOYMENT || 'gpt-4o-mini';
 
-    if (!openaiEndpoint) {
+    if (!openaiEndpoint || !openaiKey) {
       return jsonResponse({
         recommendation: 'AI Coach is not yet configured. Keep training and logging your sessions — the AI Coach will be available soon!',
         drills: [],
