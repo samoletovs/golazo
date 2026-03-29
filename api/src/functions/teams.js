@@ -38,39 +38,55 @@ async function handleSearch(req) {
   }
 
   if (q) {
-    // Search in name, abbreviation, aliases (case-insensitive via CONTAINS)
+    // Search in name and abbreviation (case-insensitive via CONTAINS)
     conditions.push(
-      '(CONTAINS(UPPER(c.name), @q) OR CONTAINS(UPPER(c.abbreviation), @q) OR ARRAY_CONTAINS(c.aliases, @qOrig, true))'
+      '(CONTAINS(UPPER(c.name), @q) OR CONTAINS(UPPER(c.abbreviation ?? ""), @q))'
     );
     params.push({ name: '@q', value: q.toUpperCase() });
-    params.push({ name: '@qOrig', value: q });
   }
 
   if (conditions.length) {
     query += ' WHERE ' + conditions.join(' AND ');
   }
-  query += ' ORDER BY c.name OFFSET 0 LIMIT @limit';
-  params.push({ name: '@limit', value: limit });
+  query += ' ORDER BY c.name';
 
   try {
-    const { resources } = await container.items.query({ query, parameters: params }).fetchAll();
-    return jsonResponse({ teams: resources, count: resources.length });
+    const { resources } = await container.items.query({
+      query,
+      parameters: params,
+    }).fetchAll();
+    // Client-side: also match aliases + limit
+    let results = resources;
+    if (q) {
+      const normQ = q.toUpperCase();
+      results = resources.filter((t) =>
+        t.name?.toUpperCase().includes(normQ) ||
+        t.abbreviation?.toUpperCase().includes(normQ) ||
+        t.aliases?.some((a) => a.toUpperCase().includes(normQ))
+      );
+    }
+    return jsonResponse({ teams: results.slice(0, limit), count: Math.min(results.length, limit) });
   } catch (err) {
-    // If alias array search fails, fall back to simpler query
     console.error('Teams search failed:', err.message);
 
-    // Fallback: just name + abbreviation search
-    const fallbackQuery = country
-      ? 'SELECT * FROM c WHERE c.country = @country AND (CONTAINS(UPPER(c.name), @q) OR CONTAINS(UPPER(c.abbreviation), @q)) ORDER BY c.name OFFSET 0 LIMIT @limit'
-      : 'SELECT * FROM c WHERE CONTAINS(UPPER(c.name), @q) OR CONTAINS(UPPER(c.abbreviation), @q) ORDER BY c.name OFFSET 0 LIMIT @limit';
-    const fallbackParams = [];
-    if (country) fallbackParams.push({ name: '@country', value: country });
-    if (q) fallbackParams.push({ name: '@q', value: q.toUpperCase() });
-    fallbackParams.push({ name: '@limit', value: limit });
-
+    // Fallback: fetch all teams in country (simple query)
     try {
-      const { resources } = await container.items.query({ query: fallbackQuery, parameters: fallbackParams }).fetchAll();
-      return jsonResponse({ teams: resources, count: resources.length });
+      const simpleQuery = country
+        ? 'SELECT * FROM c WHERE c.country = @country ORDER BY c.name'
+        : 'SELECT * FROM c ORDER BY c.name';
+      const simpleParams = country ? [{ name: '@country', value: country }] : [];
+      const { resources } = await container.items.query({ query: simpleQuery, parameters: simpleParams }).fetchAll();
+      
+      let results = resources;
+      if (q) {
+        const normQ = q.toUpperCase();
+        results = resources.filter((t) =>
+          t.name?.toUpperCase().includes(normQ) ||
+          t.abbreviation?.toUpperCase().includes(normQ) ||
+          t.aliases?.some((a) => a.toUpperCase().includes(normQ))
+        );
+      }
+      return jsonResponse({ teams: results.slice(0, limit), count: Math.min(results.length, limit) });
     } catch (err2) {
       return jsonResponse({ error: 'Search failed' }, 500);
     }
