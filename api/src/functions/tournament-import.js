@@ -15,9 +15,7 @@ app.http('tournament-import', {
   authLevel: 'anonymous',
   route: 'tournament-import',
   handler: async (req) => {
-    const user = getUser(req);
-    if (!user) return jsonResponse({ error: 'Unauthorized' }, 401);
-
+    // Allow anonymous — tournament parsing is stateless and read-only
     let body;
     try {
       body = await req.json();

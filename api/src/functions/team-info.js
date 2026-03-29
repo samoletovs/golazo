@@ -15,9 +15,7 @@ app.http('team-info', {
   authLevel: 'anonymous',
   route: 'team-info',
   handler: async (req) => {
-    const user = getUser(req);
-    if (!user) return jsonResponse({ error: 'Unauthorized' }, 401);
-
+    // Allow anonymous — team info fetching is read-only
     let body;
     try {
       body = await req.json();
