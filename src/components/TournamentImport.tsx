@@ -14,12 +14,21 @@ interface ParsedGame {
   finished: boolean
 }
 
+interface RegistryMatch {
+  id: string
+  name: string
+  country: string
+  logoUrl?: string
+  verified: boolean
+}
+
 interface ImportResult {
   tournament: string
   totalGames: number
   matchedGames: number
   games: ParsedGame[]
   allTeams: string[]
+  registryMatches?: Record<string, RegistryMatch | null>
 }
 
 const DEFAULT_DURATION_MIN = 30
@@ -307,31 +316,68 @@ export function TournamentImport({ onClose }: { onClose: () => void }) {
               </p>
             </div>
 
-            <div className="flex flex-col gap-1.5" style={{ maxHeight: '40dvh', overflowY: 'auto' }}>
-              {result.games.map((game, i) => (
-                <div
-                  key={i}
-                  className="flex items-center gap-2 p-2 rounded-lg text-xs"
-                  style={{ background: game.finished ? 'var(--color-glass-hover)' : 'var(--color-glass-active)' }}
-                >
-                  <span className="font-data text-[0.65rem] shrink-0" style={{ color: 'var(--color-text-muted)', width: '70px' }}>
-                    {game.date} {game.time}
-                  </span>
-                  <span className="flex-1 font-bold truncate">
-                    {game.home} <span style={{ color: 'var(--color-text-muted)' }}>vs</span> {game.away}
-                  </span>
-                  {game.finished && (
-                    <span className="font-data text-[0.65rem] shrink-0" style={{ color: 'var(--color-text-muted)' }}>
-                      {game.score}
-                    </span>
+            {/* Registry match summary */}
+            {result.registryMatches && (() => {
+              const matched = Object.entries(result.registryMatches).filter(([, v]) => v !== null)
+              const unmatched = Object.entries(result.registryMatches).filter(([, v]) => v === null)
+              return (matched.length > 0 || unmatched.length > 0) ? (
+                <div className="card p-3">
+                  <p className="text-xs font-bold mb-2" style={{ color: 'var(--color-text-secondary)' }}>
+                    {t('import.registryStatus')}
+                  </p>
+                  {matched.length > 0 && (
+                    <div className="flex flex-wrap gap-1 mb-2">
+                      {matched.map(([name, team]) => (
+                        <span key={name} className="inline-flex items-center gap-1 text-[0.6rem] px-2 py-0.5 rounded-full"
+                          style={{ background: 'var(--color-glass-active)', color: 'var(--color-green-600)' }}>
+                          {team?.logoUrl && <img src={team.logoUrl} alt="" className="w-3 h-3 rounded object-contain" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }} />}
+                          ✓ {team?.name ?? name}
+                        </span>
+                      ))}
+                    </div>
                   )}
-                  {game.venue && (
-                    <span className="text-[0.6rem] shrink-0" style={{ color: 'var(--color-text-muted)' }}>
-                      📍 {game.venue}
-                    </span>
+                  {unmatched.length > 0 && (
+                    <div className="flex flex-wrap gap-1">
+                      {unmatched.map(([name]) => (
+                        <span key={name} className="text-[0.6rem] px-2 py-0.5 rounded-full"
+                          style={{ background: '#fef9c3', color: '#92400e' }}>
+                          ? {name}
+                        </span>
+                      ))}
+                    </div>
                   )}
                 </div>
-              ))}
+              ) : null
+            })()}
+
+            <div className="flex flex-col gap-1.5" style={{ maxHeight: '35dvh', overflowY: 'auto' }}>
+              {result.games.map((game, i) => {
+                const homeMatch = result.registryMatches?.[game.home]
+                const awayMatch = result.registryMatches?.[game.away]
+                return (
+                  <div
+                    key={i}
+                    className="flex items-center gap-2 p-2 rounded-lg text-xs"
+                    style={{ background: game.finished ? 'var(--color-glass-hover)' : 'var(--color-glass-active)' }}
+                  >
+                    <span className="font-data text-[0.65rem] shrink-0" style={{ color: 'var(--color-text-muted)', width: '70px' }}>
+                      {game.date} {game.time}
+                    </span>
+                    <span className="flex-1 font-bold truncate">
+                      {homeMatch?.logoUrl && <img src={homeMatch.logoUrl} alt="" className="inline-block w-4 h-4 rounded mr-1 align-text-bottom object-contain" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }} />}
+                      {game.home}
+                      <span style={{ color: 'var(--color-text-muted)' }}> vs </span>
+                      {awayMatch?.logoUrl && <img src={awayMatch.logoUrl} alt="" className="inline-block w-4 h-4 rounded mr-1 align-text-bottom object-contain" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }} />}
+                      {game.away}
+                    </span>
+                    {game.venue && (
+                      <span className="text-[0.6rem] shrink-0" style={{ color: 'var(--color-text-muted)' }}>
+                        📍 {game.venue}
+                      </span>
+                    )}
+                  </div>
+                )
+              })}
             </div>
 
             <div className="flex gap-2 mt-2">

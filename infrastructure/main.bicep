@@ -112,6 +112,35 @@ resource cosmosContainer 'Microsoft.DocumentDB/databaseAccounts/sqlDatabases/con
   }
 }
 
+// ── Shared Teams Registry container ──
+resource teamsContainer 'Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers@2024-05-15' = {
+  parent: cosmosDatabase
+  name: 'teams'
+  properties: {
+    resource: {
+      id: 'teams'
+      partitionKey: {
+        paths: ['/country']
+        kind: 'Hash'
+      }
+      indexingPolicy: {
+        indexingMode: 'consistent'
+        automatic: true
+        includedPaths: [
+          { path: '/country/?' }
+          { path: '/name/?' }
+          { path: '/verified/?' }
+        ]
+        excludedPaths: [
+          { path: '/aliases/*' }
+          { path: '/socialMedia/*' }
+          { path: '/*' }
+        ]
+      }
+    }
+  }
+}
+
 // ── SWA app settings (link Cosmos) ──
 resource swaAppSettings 'Microsoft.Web/staticSites/config@2023-12-01' = {
   parent: staticWebApp

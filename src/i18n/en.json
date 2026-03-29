@@ -366,6 +366,7 @@
   "import.teamsFound": "Teams on this page",
   "import.foundGames": "{{count}} games for your team ({{total}} total)",
   "import.addToSchedule": "Add to Schedule",
+  "import.registryStatus": "Team recognition",
   "import.success": "Tournament Imported!",
   "import.addedGames": "{{count}} games added from {{tournament}}",
   "import.button": "Import Tournament",
@@ -384,6 +385,10 @@
   "teams.mergeTo": "Into...",
   "teams.mergeBtn": "Merge",
   "teams.fromMatches": "From your matches",
+  "teams.verified": "Verified",
+  "teams.founded": "Founded",
+  "teams.ageGroups": "Age groups",
+  "teams.knownAs": "Also known as",
 
   "onboarding.jerseyNumber": "Jersey number",
 

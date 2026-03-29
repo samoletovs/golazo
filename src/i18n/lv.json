@@ -316,6 +316,7 @@
   "import.teamsFound": "Komandas šajā lapā",
   "import.foundGames": "{{count}} spēles tavai komandai ({{total}} kopā)",
   "import.addToSchedule": "Pievienot kalendāram",
+  "import.registryStatus": "Komandu atpazīšana",
   "import.success": "Turnīrs importēts!",
   "import.addedGames": "{{count}} spēles pievienotas no {{tournament}}",
   "import.button": "Importēt turnīru",
@@ -334,6 +335,10 @@
   "teams.mergeTo": "Uz...",
   "teams.mergeBtn": "Apvienot",
   "teams.fromMatches": "No tavām spēlēm",
+  "teams.verified": "Verificēts",
+  "teams.founded": "Dibināts",
+  "teams.ageGroups": "Vecuma grupas",
+  "teams.knownAs": "Pazīstami arī kā",
 
   "onboarding.jerseyNumber": "Krekla numurs",
 

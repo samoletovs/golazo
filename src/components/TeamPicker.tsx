@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
+import { TeamProfile } from './TeamProfile'
 import type { SharedTeam } from '../engine/types'
 
 interface TeamPickerProps {
@@ -20,6 +21,7 @@ export function TeamPicker({ value, onChange, country, placeholder, className }:
   const [results, setResults] = useState<SharedTeam[]>([])
   const [open, setOpen] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [viewTeam, setViewTeam] = useState<SharedTeam | null>(null)
   const debounceRef = useRef<number | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -95,36 +97,50 @@ export function TeamPicker({ value, onChange, country, placeholder, className }:
           style={{ background: 'var(--color-glass)', border: '1px solid var(--color-glass-border)', maxHeight: '240px', overflowY: 'auto' }}
         >
           {results.map((team) => (
-            <button
+            <div
               key={team.id}
-              className="w-full flex items-center gap-2 px-3 py-2 text-left hover:bg-gray-50 transition-colors"
-              onClick={() => selectTeam(team)}
+              className="flex items-center gap-2 px-3 py-2 hover:bg-gray-50 transition-colors"
             >
-              {team.logoUrl ? (
-                <img
-                  src={team.logoUrl}
-                  alt=""
-                  className="w-6 h-6 rounded object-contain shrink-0"
-                  onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
-                />
-              ) : (
-                <span className="w-6 h-6 rounded flex items-center justify-center text-xs shrink-0" style={{ background: 'var(--color-glass-active)' }}>
-                  ⚽
-                </span>
-              )}
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-bold truncate">{team.name}</p>
-                <p className="text-[0.6rem]" style={{ color: 'var(--color-text-muted)' }}>
-                  {[team.city, team.league, team.country].filter(Boolean).join(' · ')}
-                </p>
-              </div>
-              {team.verified && (
-                <span className="text-[0.6rem] shrink-0" title="Verified">✓</span>
-              )}
-            </button>
+              <button
+                className="flex items-center gap-2 flex-1 min-w-0 text-left"
+                onClick={() => selectTeam(team)}
+              >
+                {team.logoUrl ? (
+                  <img
+                    src={team.logoUrl}
+                    alt=""
+                    className="w-6 h-6 rounded object-contain shrink-0"
+                    onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
+                  />
+                ) : (
+                  <span className="w-6 h-6 rounded flex items-center justify-center text-xs shrink-0" style={{ background: 'var(--color-glass-active)' }}>
+                    ⚽
+                  </span>
+                )}
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-bold truncate">{team.name}</p>
+                  <p className="text-[0.6rem]" style={{ color: 'var(--color-text-muted)' }}>
+                    {[team.city, team.league, team.country].filter(Boolean).join(' · ')}
+                  </p>
+                </div>
+                {team.verified && (
+                  <span className="text-[0.6rem] shrink-0" title="Verified">✓</span>
+                )}
+              </button>
+              <button
+                className="text-xs px-1.5 py-1 shrink-0 rounded"
+                style={{ color: 'var(--color-text-muted)' }}
+                onClick={(e) => { e.stopPropagation(); setViewTeam(team); setOpen(false) }}
+                aria-label="View team info"
+              >
+                ℹ️
+              </button>
+            </div>
           ))}
         </div>
       )}
+
+      {viewTeam && <TeamProfile team={viewTeam} onClose={() => setViewTeam(null)} />}
     </div>
   )
 }
