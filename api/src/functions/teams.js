@@ -27,70 +27,44 @@ async function handleSearch(req) {
   const q = (url.searchParams.get('q') || '').trim();
   const limit = Math.min(parseInt(url.searchParams.get('limit') || '50', 10), 100);
 
-  // Build query
-  let query = 'SELECT * FROM c';
-  const params = [];
-  const conditions = [];
-
-  if (country && /^[A-Z]{2}$/.test(country)) {
-    conditions.push('c.country = @country');
-    params.push({ name: '@country', value: country });
-  }
-
-  if (q) {
-    // Search in name and abbreviation (case-insensitive via CONTAINS)
-    conditions.push(
-      '(CONTAINS(UPPER(c.name), @q) OR CONTAINS(UPPER(c.abbreviation ?? ""), @q))'
-    );
-    params.push({ name: '@q', value: q.toUpperCase() });
-  }
-
-  if (conditions.length) {
-    query += ' WHERE ' + conditions.join(' AND ');
-  }
-  query += ' ORDER BY c.name';
-
   try {
-    const { resources } = await container.items.query({
-      query,
-      parameters: params,
-    }).fetchAll();
-    // Client-side: also match aliases + limit
+    // Fetch teams from Cosmos (small dataset, ~100 teams — safe to fetch all per country)
+    const query = country && /^[A-Z]{2}$/.test(country)
+      ? 'SELECT * FROM c WHERE c.country = @country ORDER BY c.name'
+      : 'SELECT * FROM c ORDER BY c.name';
+    const params = country && /^[A-Z]{2}$/.test(country)
+      ? [{ name: '@country', value: country }]
+      : [];
+
+    const { resources } = await container.items.query({ query, parameters: params }).fetchAll();
+
+    // Client-side search with accent-stripping for proper Baltic name matching
     let results = resources;
     if (q) {
-      const normQ = q.toUpperCase();
+      const normQ = normalize(q);
       results = resources.filter((t) =>
-        t.name?.toUpperCase().includes(normQ) ||
-        t.abbreviation?.toUpperCase().includes(normQ) ||
-        t.aliases?.some((a) => a.toUpperCase().includes(normQ))
+        normalize(t.name || '').includes(normQ) ||
+        normalize(t.abbreviation || '').includes(normQ) ||
+        normalize(t.city || '').includes(normQ) ||
+        (t.aliases || []).some((a) => normalize(a).includes(normQ))
       );
     }
+
     return jsonResponse({ teams: results.slice(0, limit), count: Math.min(results.length, limit) });
   } catch (err) {
     console.error('Teams search failed:', err.message);
-
-    // Fallback: fetch all teams in country (simple query)
-    try {
-      const simpleQuery = country
-        ? 'SELECT * FROM c WHERE c.country = @country ORDER BY c.name'
-        : 'SELECT * FROM c ORDER BY c.name';
-      const simpleParams = country ? [{ name: '@country', value: country }] : [];
-      const { resources } = await container.items.query({ query: simpleQuery, parameters: simpleParams }).fetchAll();
-      
-      let results = resources;
-      if (q) {
-        const normQ = q.toUpperCase();
-        results = resources.filter((t) =>
-          t.name?.toUpperCase().includes(normQ) ||
-          t.abbreviation?.toUpperCase().includes(normQ) ||
-          t.aliases?.some((a) => a.toUpperCase().includes(normQ))
-        );
-      }
-      return jsonResponse({ teams: results.slice(0, limit), count: Math.min(results.length, limit) });
-    } catch (err2) {
-      return jsonResponse({ error: 'Search failed' }, 500);
-    }
+    return jsonResponse({ error: 'Search failed' }, 500);
   }
+}
+
+/** Strip accents and uppercase for Baltic-friendly search */
+function normalize(s) {
+  return s.toLowerCase()
+    .replace(/[āàâä]/g, 'a').replace(/[čć]/g, 'c').replace(/[ēėèêë]/g, 'e')
+    .replace(/[ģ]/g, 'g').replace(/[īìîï]/g, 'i').replace(/[ķ]/g, 'k')
+    .replace(/[ļ]/g, 'l').replace(/[ņ]/g, 'n').replace(/[ōõöò]/g, 'o')
+    .replace(/[šś]/g, 's').replace(/[ūùûü]/g, 'u').replace(/[žź]/g, 'z');
+}
 }
 
 /* ── POST /api/teams ────────────────────────────────────── */
