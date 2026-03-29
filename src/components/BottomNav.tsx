@@ -18,10 +18,12 @@ function NavIcon({ name, active }: { name: string; active: boolean }) {
         </svg>
       )
     case 'log':
+    case 'portal':
       return (
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round">
-          <path d="M12 20h9" />
-          <path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z" />
+          <rect x="2" y="3" width="20" height="18" rx="2" />
+          <path d="M2 9h20" />
+          <path d="M9 21V9" />
         </svg>
       )
     case 'progress':
@@ -62,7 +64,7 @@ function NavIcon({ name, active }: { name: string; active: boolean }) {
 
 const NAV_ITEMS = [
   { key: 'dashboard', labelKey: 'nav.dashboard' },
-  { key: 'log', labelKey: 'nav.log' },
+  { key: 'portal', labelKey: 'nav.portal' },
   { key: 'exercises', labelKey: 'nav.exercises' },
   { key: 'progress', labelKey: 'nav.progress' },
   { key: 'profile', labelKey: 'nav.profile' },

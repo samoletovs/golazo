@@ -2,6 +2,7 @@
   "app.name": "Golazo ⚽",
   "nav.dashboard": "Sākums",
   "nav.log": "Ierakstīt",
+  "nav.portal": "Mans futbols",
   "nav.exercises": "Vingrojumi",
   "nav.challenges": "Izaicinājumi",
   "nav.profile": "Profils",
@@ -472,5 +473,13 @@
   "ex.know.offside": "Aizmuguriska noteikums",
   "ex.know.offside.desc": "Zīmē 3 situācijas: aizmuguriskā, nav aizmuguriskā, uz robežas. Izskaidro katru.",
   "ex.know.nutrition": "Futbola uzturs",
-  "ex.know.nutrition.desc": "Uzraksti ko ēst 3h pirms, spēles laikā un pēc spēles. Ūdens, ogļhidrāti, olbaltumvielas."
+  "ex.know.nutrition.desc": "Uzraksti ko ēst 3h pirms, spēles laikā un pēc spēles. Ūdens, ogļhidrāti, olbaltumvielas.",
+
+  "portal.title": "Mans futbols",
+  "portal.active": "Aktīvs",
+  "portal.tournaments": "Mani turnīri",
+  "portal.recentResults": "Pēdējie rezultāti",
+  "portal.upcoming": "Gaidāmie",
+  "portal.emptyTitle": "Vēl nav futbola aktivitātes",
+  "portal.emptyText": "Pievieno turnīru vai ieraksti savu pirmo maču"
 }

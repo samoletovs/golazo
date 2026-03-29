@@ -2,6 +2,7 @@
   "app.name": "Golazo ⚽",
   "nav.dashboard": "Avaleht",
   "nav.log": "Logi",
+  "nav.portal": "Minu jalgpall",
   "nav.exercises": "Harjutused",
   "nav.challenges": "Väljakutsed",
   "nav.profile": "Profiil",
@@ -479,5 +480,13 @@
   "empty.challenges.text": "Täida esimene väljakutse, et teenida XP.",
   "toast.saved": "Salvestatud!",
   "toast.xpEarned": "+{{xp}} XP teenitud!",
-  "toast.error": "Midagi läks valesti"
+  "toast.error": "Midagi läks valesti",
+
+  "portal.title": "Minu jalgpall",
+  "portal.active": "Aktiivne",
+  "portal.tournaments": "Minu turniirid",
+  "portal.recentResults": "Viimased tulemused",
+  "portal.upcoming": "Eelseisvad",
+  "portal.emptyTitle": "Jalgpalliaktiivsust pole veel",
+  "portal.emptyText": "Lisa turniir või logi oma esimene mäng"
 }

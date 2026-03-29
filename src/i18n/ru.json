@@ -2,6 +2,7 @@
   "app.name": "Golazo ⚽",
   "nav.dashboard": "Главная",
   "nav.log": "Записать",
+  "nav.portal": "Мой футбол",
   "nav.exercises": "Упражнения",
   "nav.challenges": "Вызовы",
   "nav.profile": "Профиль",
@@ -487,5 +488,13 @@
   "empty.challenges.text": "Выполни первое задание и заработай XP.",
   "toast.saved": "Сохранено!",
   "toast.xpEarned": "+{{xp}} XP получено!",
-  "toast.error": "Что-то пошло не так"
+  "toast.error": "Что-то пошло не так",
+
+  "portal.title": "Мой футбол",
+  "portal.active": "Активный",
+  "portal.tournaments": "Мои турниры",
+  "portal.recentResults": "Последние результаты",
+  "portal.upcoming": "Предстоящие",
+  "portal.emptyTitle": "Нет футбольной активности",
+  "portal.emptyText": "Добавьте турнир или запишите первый матч"
 }

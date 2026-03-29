@@ -2,6 +2,7 @@
   "app.name": "Golazo ⚽",
   "nav.dashboard": "Home",
   "nav.log": "Log",
+  "nav.portal": "My Football",
   "nav.exercises": "Exercises",
   "nav.challenges": "Challenges",
   "nav.profile": "Profile",
@@ -473,5 +474,13 @@
   "empty.challenges.text": "Complete your first challenge to earn XP.",
   "toast.saved": "Saved!",
   "toast.xpEarned": "+{{xp}} XP earned!",
-  "toast.error": "Something went wrong"
+  "toast.error": "Something went wrong",
+
+  "portal.title": "My Football",
+  "portal.active": "Active",
+  "portal.tournaments": "My Tournaments",
+  "portal.recentResults": "Recent Results",
+  "portal.upcoming": "Upcoming",
+  "portal.emptyTitle": "No football activity yet",
+  "portal.emptyText": "Add a tournament or log your first match to get started"
 }

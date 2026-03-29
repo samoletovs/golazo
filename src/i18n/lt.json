@@ -2,6 +2,7 @@
   "app.name": "Golazo ⚽",
   "nav.dashboard": "Pradžia",
   "nav.log": "Įrašyti",
+  "nav.portal": "Mano futbolas",
   "nav.exercises": "Pratimai",
   "nav.challenges": "Iššūkiai",
   "nav.profile": "Profilis",
@@ -488,5 +489,13 @@
   "empty.challenges.text": "Atlik pirmąjį iššūkį kad gautum XP.",
   "toast.saved": "Išsaugota!",
   "toast.xpEarned": "+{{xp}} XP gauta!",
-  "toast.error": "Kažkas nepavyko"
+  "toast.error": "Kažkas nepavyko",
+
+  "portal.title": "Mano futbolas",
+  "portal.active": "Aktyvus",
+  "portal.tournaments": "Mano turnyrai",
+  "portal.recentResults": "Paskutiniai rezultatai",
+  "portal.upcoming": "Artėjantys",
+  "portal.emptyTitle": "Dar nėra futbolo veiklos",
+  "portal.emptyText": "Pridėkite turnyrą arba užregistruokite pirmąsias rungtynes"
 }

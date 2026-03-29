@@ -2,6 +2,7 @@
   "app.name": "Golazo ⚽",
   "nav.dashboard": "Inicio",
   "nav.log": "Registrar",
+  "nav.portal": "Mi F\u00fatbol",
   "nav.exercises": "Ejercicios",
   "nav.challenges": "Desafíos",
   "nav.profile": "Perfil",
@@ -474,5 +475,13 @@
   "ex.know.offside": "Regla del fuera de juego",
   "ex.know.offside.desc": "Dibuja 3 situaciones: fuera de juego, no fuera de juego, límite. Explica cada una.",
   "ex.know.nutrition": "Nutrición futbolística",
-  "ex.know.nutrition.desc": "Escribe qué comer 3h antes, durante y después de un partido. Agua, carbohidratos, proteína."
+  "ex.know.nutrition.desc": "Escribe qué comer 3h antes, durante y después de un partido. Agua, carbohidratos, proteína.",
+
+  "portal.title": "Mi Fútbol",
+  "portal.active": "Activo",
+  "portal.tournaments": "Mis Torneos",
+  "portal.recentResults": "Resultados Recientes",
+  "portal.upcoming": "Próximos",
+  "portal.emptyTitle": "Sin actividad futbolística aún",
+  "portal.emptyText": "Añade un torneo o registra tu primer partido"
 }
