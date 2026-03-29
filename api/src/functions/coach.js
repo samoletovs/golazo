@@ -16,10 +16,11 @@ app.http('coach', {
   route: 'coach',
   handler: async (req) => {
     const user = getUser(req);
-    if (!user) return jsonResponse({ error: 'Unauthorized' }, 401);
+    // Allow unauthenticated users — they get the fallback response
+    const userId = user?.userId || 'anonymous';
 
     // Rate limit check
-    const lastRequest = rateLimitMap.get(user.userId);
+    const lastRequest = rateLimitMap.get(userId);
     if (lastRequest && Date.now() - lastRequest < RATE_LIMIT_MS) {
       return jsonResponse({ error: 'Rate limited — one coaching session per day' }, 429);
     }
@@ -72,7 +73,7 @@ app.http('coach', {
       const data = await response.json();
       const result = JSON.parse(data.choices[0].message.content);
 
-      rateLimitMap.set(user.userId, Date.now());
+      rateLimitMap.set(userId, Date.now());
       return jsonResponse(result);
     } catch (error) {
       return jsonResponse({
