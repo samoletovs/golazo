@@ -106,4 +106,4 @@ function jsonResponse(body, status = 200) {
   };
 }
 
-module.exports = { getContainer, getTeamsContainer, getTournamentsContainer, getUser, jsonResponse };
+module.exports = { getClient, getContainer, getTeamsContainer, getTournamentsContainer, getUser, jsonResponse };

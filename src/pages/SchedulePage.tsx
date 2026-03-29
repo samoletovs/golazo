@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
 import { TournamentImport } from '../components/TournamentImport'
@@ -144,8 +144,63 @@ export function SchedulePage() {
     return events
   }, [recurringTrainings, viewYear, viewMonth, profile, t])
 
-  // Combine real schedule + recurring
-  const allEvents = useMemo(() => [...schedule, ...recurringEvents], [schedule, recurringEvents])
+  // Combine real schedule + recurring + shared team games
+  const [sharedGames, setSharedGames] = useState<ScheduleEvent[]>([])
+
+  // Fetch shared games for the player's teams
+  useEffect(() => {
+    const teams = profile?.teams?.filter((t) => t.active) ?? []
+    if (teams.length === 0) return
+
+    const from = dateKey(viewYear, viewMonth, 1)
+    const lastDay = new Date(viewYear, viewMonth + 1, 0).getDate()
+    const to = dateKey(viewYear, viewMonth, lastDay)
+
+    let cancelled = false
+
+    async function fetchShared() {
+      const allGames: ScheduleEvent[] = []
+      for (const team of teams) {
+        try {
+          const res = await fetch(`/api/shared-games?team=${encodeURIComponent(team.name)}&from=${from}&to=${to}`)
+          if (!res.ok) continue
+          const data = await res.json()
+          for (const g of data.games ?? []) {
+            // Skip if already in local schedule (by checking opponent + date + time)
+            const isDupe = schedule.some((s) =>
+              s.date === g.date && s.opponent === g.opponent && s.startTime === g.startTime
+            )
+            if (isDupe) continue
+            allGames.push({
+              id: `shared-${g.id}`,
+              familyId: profile?.familyId ?? 'local',
+              playerId: profile?.id ?? 'local',
+              type: 'match',
+              title: g.title || `vs ${g.opponent}`,
+              date: g.date,
+              startTime: g.startTime,
+              endTime: g.endTime,
+              location: g.location,
+              opponent: g.opponent,
+              competition: g.competition,
+              matchType: g.matchType,
+              createdBy: 'shared',
+              createdAt: g.createdAt,
+            })
+          }
+        } catch { /* API unavailable — skip silently */ }
+      }
+      if (!cancelled) setSharedGames(allGames)
+    }
+
+    fetchShared()
+    return () => { cancelled = true }
+  }, [profile?.teams, viewYear, viewMonth, schedule])
+
+  const allEvents = useMemo(
+    () => [...schedule, ...recurringEvents, ...sharedGames],
+    [schedule, recurringEvents, sharedGames],
+  )
 
   // Events grouped by date
   const eventsByDate = new Map<string, ScheduleEvent[]>()
@@ -204,6 +259,28 @@ export function SchedulePage() {
     }
     addScheduleEvent(ev)
     setShowForm(false)
+
+    // Auto-share match events for team visibility
+    if (isMatch && formOpponent) {
+      const teamName = profile?.team || profile?.teams?.find((t) => t.isPrimary)?.name
+      if (teamName) {
+        fetch('/api/shared-games', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            teamName,
+            opponent: formOpponent,
+            date: selectedDate,
+            startTime: formTime,
+            endTime: formEndTime,
+            location: formLocation,
+            matchType: formMatchType,
+            competition: formCompetition,
+            title: ev.title,
+          }),
+        }).catch(() => { /* best-effort sharing */ })
+      }
+    }
   }
 
   function addRecurringTraining() {
@@ -408,6 +485,11 @@ export function SchedulePage() {
                 {ev.id.startsWith('rt-') && (
                   <span className="text-[0.55rem] px-1.5 py-0.5 rounded-full" style={{ background: 'var(--color-glass-active)', color: 'var(--color-text-muted)' }}>
                     🔁
+                  </span>
+                )}
+                {ev.id.startsWith('shared-') && (
+                  <span className="text-[0.55rem] px-1.5 py-0.5 rounded-full" style={{ background: 'var(--color-primary-bg, #dcfce7)', color: 'var(--color-primary-dark, #166534)' }}>
+                    👥 {t('schedule.teamShared', { defaultValue: 'Team' })}
                   </span>
                 )}
               </div>

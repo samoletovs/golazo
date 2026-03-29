@@ -1,34 +1,42 @@
 import { useState, useEffect, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
-import { generateLocalAdvice, type CoachAdvice } from '../engine/coach'
+import { generateLocalAdvice, type CoachAdvice, type CoachInsight } from '../engine/coach'
+
+function InsightRow({ insight }: { insight: CoachInsight }) {
+  return (
+    <div className="flex gap-2 items-start py-1.5">
+      <span className="text-sm shrink-0">{insight.icon}</span>
+      <p className="text-xs leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
+        {insight.text}
+      </p>
+    </div>
+  )
+}
 
 export function CoachCard() {
   const { t } = useTranslation()
-  const { skillTree, matches, trainings, physicalProfile } = useApp()
+  const { skillTree, matches, trainings, diary, tournaments, physicalProfile } = useApp()
   const [aiAdvice, setAiAdvice] = useState<CoachAdvice | null>(null)
   const [loading, setLoading] = useState(false)
-  const [aiAvailable, setAiAvailable] = useState<boolean | null>(null) // null = unknown
+  const [aiAvailable, setAiAvailable] = useState<boolean | null>(null)
+  const [expanded, setExpanded] = useState(false)
 
-  // Generate local advice immediately from skill data
   const localAdvice = useMemo(
-    () => generateLocalAdvice(skillTree, matches, trainings, t),
-    [skillTree, matches, trainings, t],
+    () => generateLocalAdvice(skillTree, matches, trainings, t, diary, tournaments),
+    [skillTree, matches, trainings, t, diary, tournaments],
   )
 
-  // Check for cached AI advice
   useEffect(() => {
     const cached = localStorage.getItem('golazo-coach')
     if (cached) {
       try {
         const parsed = JSON.parse(cached)
-        // Reject stale cache or old "not configured" fallback
         if (Date.now() - parsed.ts < 24 * 60 * 60 * 1000 && parsed.data?.focusArea !== 'general') {
           setAiAdvice(parsed.data)
           setAiAvailable(true)
           return
         }
-        // Clear invalid cache
         localStorage.removeItem('golazo-coach')
       } catch { localStorage.removeItem('golazo-coach') }
     }
@@ -44,12 +52,12 @@ export function CoachCard() {
           skillTree,
           recentMatches: matches.slice(-10),
           recentTrainings: trainings.slice(-10),
+          recentDiary: diary.slice(-10).map((d) => ({ date: d.date, mood: d.mood })),
           physicalProfile,
         }),
       })
       if (!res.ok) throw new Error('Failed')
       const data = await res.json() as CoachAdvice
-      // Check if API returned the "not configured" fallback
       if ((data.focusArea as string) === 'general') {
         setAiAvailable(false)
         return
@@ -65,10 +73,13 @@ export function CoachCard() {
   }
 
   const advice = aiAdvice ?? localAdvice
+  const visibleInsights = expanded ? advice.insights : advice.insights.slice(0, 2)
+  const hasMore = advice.insights.length > 2
 
   return (
     <div className="card-glow animate-fade-up">
-      <div className="flex items-center gap-2 mb-3">
+      {/* Header */}
+      <div className="flex items-center gap-2 mb-2">
         <span className="text-xl">🧠</span>
         <h2 className="text-sm font-bold">{t('coach.title')}</h2>
         {aiAdvice && (
@@ -79,14 +90,44 @@ export function CoachCard() {
       </div>
 
       <div className="flex flex-col gap-2">
+        {/* Greeting */}
+        <p className="text-xs font-medium" style={{ color: 'var(--color-text-primary)' }}>
+          {advice.greeting}
+        </p>
+
+        {/* Main recommendation */}
         <p className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>
           {advice.recommendation}
         </p>
+
+        {/* Weekly goal */}
         {advice.weeklyGoal && (
           <div className="stat-pill stat-pill-green text-xs">
-            {t('coach.weeklyGoal')}: {advice.weeklyGoal}
+            🎯 {advice.weeklyGoal}
           </div>
         )}
+
+        {/* Insights */}
+        {visibleInsights.length > 0 && (
+          <div className="flex flex-col mt-1" style={{ borderTop: '1px solid var(--color-pitch-line, #e5e7eb)', paddingTop: '8px' }}>
+            {visibleInsights.map((insight, i) => (
+              <InsightRow key={i} insight={insight} />
+            ))}
+          </div>
+        )}
+
+        {/* Expand/collapse */}
+        {hasMore && (
+          <button
+            className="text-xs self-start"
+            style={{ color: 'var(--color-primary-dark)' }}
+            onClick={() => setExpanded(!expanded)}
+          >
+            {expanded ? t('coach.showLess') : t('coach.showMore', { count: advice.insights.length - 2 })}
+          </button>
+        )}
+
+        {/* Drills */}
         {advice.drills.length > 0 && (
           <div className="flex flex-wrap gap-1 mt-1">
             {advice.drills.map((drill, i) => (
@@ -94,7 +135,8 @@ export function CoachCard() {
             ))}
           </div>
         )}
-        {/* Show AI upgrade button if AI not tried yet or available */}
+
+        {/* AI upgrade button */}
         {!aiAdvice && aiAvailable !== false && (
           <button
             className="text-xs mt-1 self-start"

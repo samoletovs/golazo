@@ -33,6 +33,21 @@
       "allowedRoles": ["anonymous", "authenticated"]
     },
     {
+      "route": "/api/shared-games",
+      "methods": ["GET", "POST"],
+      "allowedRoles": ["anonymous", "authenticated"]
+    },
+    {
+      "route": "/api/shared-tournaments",
+      "methods": ["GET", "POST"],
+      "allowedRoles": ["anonymous", "authenticated"]
+    },
+    {
+      "route": "/api/shared-tournaments/*",
+      "methods": ["GET", "POST"],
+      "allowedRoles": ["anonymous", "authenticated"]
+    },
+    {
       "route": "/api/*",
       "allowedRoles": ["authenticated"]
     }
