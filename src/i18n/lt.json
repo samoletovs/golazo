@@ -474,6 +474,13 @@
   "teams.verified": "Patvirtinta",
   "teams.founded": "Įkurta",
   "teams.ageGroups": "Amžiaus grupės",
+  "teams.addNewTitle": "Pridėti naują komandą",
+  "teams.clubName": "Klubo pavadinimas",
+  "teams.addBtn": "Pridėti",
+  "teams.duplicateFound": "Ši komanda jau yra registre:",
+  "teams.useThis": "Naudoti šią",
+  "teams.addAnyway": "Pridėti vis tiek",
+  "teams.duplicateError": "Komanda tokiu pavadinimu jau egzistuoja",
   "teams.knownAs": "Taip pat žinoma kaip",
 
   "onboarding.jerseyNumber": "Marškinėlių numeris",

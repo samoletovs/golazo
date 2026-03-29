@@ -460,6 +460,13 @@
   "teams.founded": "Founded",
   "teams.ageGroups": "Age groups",
   "teams.knownAs": "Also known as",
+  "teams.addNewTitle": "Add new team",
+  "teams.clubName": "Club name",
+  "teams.addBtn": "Add",
+  "teams.duplicateFound": "This team already exists in the registry:",
+  "teams.useThis": "Use this team",
+  "teams.addAnyway": "Add anyway",
+  "teams.duplicateError": "A team with this name already exists",
 
   "onboarding.jerseyNumber": "Jersey number",
   "onboarding.country": "Country",

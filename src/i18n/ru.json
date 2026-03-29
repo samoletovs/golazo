@@ -474,6 +474,13 @@
   "teams.founded": "Основан",
   "teams.ageGroups": "Возрастные группы",
   "teams.knownAs": "Известны как",
+  "teams.addNewTitle": "Добавить команду",
+  "teams.clubName": "Название клуба",
+  "teams.addBtn": "Добавить",
+  "teams.duplicateFound": "Эта команда уже есть в реестре:",
+  "teams.useThis": "Использовать эту",
+  "teams.addAnyway": "Добавить всё равно",
+  "teams.duplicateError": "Команда с таким названием уже существует",
 
   "onboarding.jerseyNumber": "Номер футболки",
   "onboarding.country": "Страна",

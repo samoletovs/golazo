@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { createPortal } from 'react-dom'
 import { useTranslation } from 'react-i18next'
-import { TeamProfile } from './TeamProfile'
 import type { SharedTeam } from '../engine/types'
 
 interface TeamPickerProps {
@@ -36,6 +35,9 @@ function matchedAlias(team: SharedTeam, q: string): string | undefined {
  * Autocomplete team picker — searches the shared team registry.
  * Dropdown renders via portal to avoid clipping in scrollable containers.
  * Falls back to free text input if API is unavailable.
+ *
+ * Flow: type → see suggestions → tap row to select.
+ * If nothing selected and input has text, an inline "+ Add" button appears.
  */
 export function TeamPicker({ value, onChange, country, placeholder, className, showAddNew, onAddNew }: TeamPickerProps) {
   const { t } = useTranslation()
@@ -43,13 +45,14 @@ export function TeamPicker({ value, onChange, country, placeholder, className, s
   const [results, setResults] = useState<SharedTeam[]>([])
   const [open, setOpen] = useState(false)
   const [loading, setLoading] = useState(false)
-  const [viewTeam, setViewTeam] = useState<SharedTeam | null>(null)
+  const [selected, setSelected] = useState(false) // true when a registry team was picked
   const debounceRef = useRef<number | null>(null)
   const inputRef = useRef<HTMLInputElement>(null)
+  const dropdownRef = useRef<HTMLDivElement>(null)
   const [dropdownPos, setDropdownPos] = useState<{ top: number; left: number; width: number; openUp: boolean }>({ top: 0, left: 0, width: 0, openUp: false })
 
   // Sync external value
-  useEffect(() => { setQuery(value) }, [value])
+  useEffect(() => { setQuery(value); if (!value) setSelected(false) }, [value])
 
   // Calculate dropdown position relative to viewport
   const updatePosition = useCallback(() => {
@@ -69,9 +72,10 @@ export function TeamPicker({ value, onChange, country, placeholder, className, s
   useEffect(() => {
     if (!open) return
     function handleClose(e: MouseEvent) {
-      if (inputRef.current && !inputRef.current.contains(e.target as Node)) {
-        setOpen(false)
-      }
+      const target = e.target as Node
+      if (inputRef.current?.contains(target)) return
+      if (dropdownRef.current?.contains(target)) return
+      setOpen(false)
     }
     function handleScroll() { updatePosition() }
     document.addEventListener('mousedown', handleClose)
@@ -84,6 +88,7 @@ export function TeamPicker({ value, onChange, country, placeholder, className, s
 
   function handleInput(text: string) {
     setQuery(text)
+    setSelected(false)
     onChange(text, undefined)
 
     if (debounceRef.current) clearTimeout(debounceRef.current)
@@ -111,15 +116,18 @@ export function TeamPicker({ value, onChange, country, placeholder, className, s
 
   function selectTeam(team: SharedTeam) {
     setQuery(team.name)
+    setSelected(true)
     onChange(team.name, team)
     setOpen(false)
   }
 
+  // Show inline add button when: text typed, not loading, no selection made, dropdown is closed (or no exact match)
   const hasExactMatch = results.some((t) => normalize(t.name) === normalize(query))
-  const showAddOption = showAddNew && query.length >= 2 && !hasExactMatch
+  const showInlineAdd = showAddNew && query.length >= 2 && !selected && !loading && !hasExactMatch
 
-  const dropdown = open && (results.length > 0 || showAddOption) ? createPortal(
+  const dropdown = open && results.length > 0 ? createPortal(
     <div
+      ref={dropdownRef}
       className="fixed z-[9999] rounded-xl overflow-hidden shadow-lg"
       style={{
         top: dropdownPos.openUp ? undefined : `${dropdownPos.top}px`,
@@ -136,9 +144,10 @@ export function TeamPicker({ value, onChange, country, placeholder, className, s
       {results.map((team) => {
         const alias = matchedAlias(team, query)
         return (
-          <div
+          <button
             key={team.id}
-            className="flex items-center gap-2 px-3 py-2 hover:bg-gray-50 transition-colors"
+            className="flex items-center gap-2 px-3 py-2.5 w-full text-left hover:bg-gray-50 transition-colors"
+            onClick={() => selectTeam(team)}
           >
             {team.logoUrl ? (
               <img
@@ -164,30 +173,14 @@ export function TeamPicker({ value, onChange, country, placeholder, className, s
             {team.verified && (
               <span className="text-[0.6rem] shrink-0" title="Verified">✓</span>
             )}
-            <button
-              className="text-xs px-2 py-1 shrink-0 rounded-lg font-bold"
-              style={{ background: 'var(--color-primary-bg, #dcfce7)', color: 'var(--color-primary-dark, #166534)' }}
-              onClick={() => selectTeam(team)}
-              aria-label={`Add ${team.name}`}
-            >
-              + Add
-            </button>
-            <button
-              className="text-xs px-1.5 py-1 shrink-0 rounded"
-              style={{ color: 'var(--color-text-muted)' }}
-              onClick={(e) => { e.stopPropagation(); setViewTeam(team); setOpen(false) }}
-              aria-label="View team info"
-            >
-              ℹ️
-            </button>
-          </div>
+          </button>
         )
       })}
-      {showAddOption && (
+      {showAddNew && query.length >= 2 && !hasExactMatch && (
         <button
-          className="flex items-center gap-2 px-3 py-2 w-full text-left hover:bg-gray-50 transition-colors"
+          className="flex items-center gap-2 px-3 py-2.5 w-full text-left hover:bg-gray-50 transition-colors"
           style={{ borderTop: results.length > 0 ? '1px solid var(--color-glass-border, #e2e8f0)' : undefined }}
-          onClick={() => { onAddNew?.(query); setOpen(false) }}
+          onClick={() => { onAddNew?.(query); setOpen(false); setQuery(''); setSelected(false) }}
         >
           <span className="w-6 h-6 rounded flex items-center justify-center text-xs shrink-0" style={{ background: 'var(--color-primary-light, #dcfce7)', color: 'var(--color-primary-dark, #166534)' }}>
             +
@@ -211,10 +204,11 @@ export function TeamPicker({ value, onChange, country, placeholder, className, s
           onChange={(e) => handleInput(e.target.value)}
           onFocus={() => {
             updatePosition()
-            if (results.length > 0 || (showAddNew && query.length >= 2)) setOpen(true)
+            if (results.length > 0) setOpen(true)
           }}
           placeholder={placeholder ?? t('teams.search')}
           className={className ?? 'w-full'}
+          style={showInlineAdd ? { paddingRight: '4.5rem' } : undefined}
           autoComplete="off"
         />
         {loading && (
@@ -222,9 +216,18 @@ export function TeamPicker({ value, onChange, country, placeholder, className, s
             ...
           </span>
         )}
+        {showInlineAdd && !open && (
+          <button
+            className="absolute right-1.5 top-1/2 -translate-y-1/2 text-xs font-bold px-2.5 py-1 rounded-lg"
+            style={{ background: 'var(--color-primary-dark, #166534)', color: '#fff' }}
+            onClick={() => { onAddNew?.(query); setQuery(''); setSelected(false) }}
+            aria-label={t('teams.addCustom', { name: query })}
+          >
+            + {t('teams.addBtn')}
+          </button>
+        )}
       </div>
       {dropdown}
-      {viewTeam && <TeamProfile team={viewTeam} onClose={() => setViewTeam(null)} />}
     </>
   )
 }

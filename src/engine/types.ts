@@ -436,15 +436,24 @@ export interface Quote {
 
 /* ── Physical Profile (measured during onboarding & over time) */
 
+export type AgeTier = 'u8' | 'u12' | 'u16' | 'u19plus'
+
 export interface PhysicalMeasurement {
   heightCm: number
   weightKg: number
-  sprintTime100m?: number // seconds
+  shoeSize?: number // EU shoe size
+  sprintTime30m?: number // seconds (U8/U12)
+  sprintTime100m?: number // seconds (U12+)
   standingJumpCm?: number // standing long jump distance in cm
+  verticalJumpCm?: number // vertical jump height in cm (U16+)
   beepTestLevel?: number // Yo-Yo / beep test level (e.g. 8.5)
   agilityCourseTime?: number // seconds (T-test or Illinois)
   plankTimeSec?: number // plank hold duration in seconds
+  sitAndReachCm?: number // sit & reach flexibility in cm (U12+)
+  pushUps1min?: number // push-ups in 1 minute (U16+)
   restingHeartRate?: number // resting heart rate in bpm
+  bodyFatPct?: number // body fat percentage (U19+ only)
+  armSpanCm?: number // arm span in cm (U16+)
   juggleRecord?: number // best consecutive count
   measuredAt: string // ISO date
 }
@@ -452,6 +461,33 @@ export interface PhysicalMeasurement {
 export interface PhysicalProfile {
   measurements: PhysicalMeasurement[]
   latestIndex: number // index into measurements[]
+}
+
+/** Calculate age tier from birth date */
+export function getAgeTier(birthDate: string): AgeTier {
+  const birth = new Date(birthDate)
+  const now = new Date()
+  let age = now.getFullYear() - birth.getFullYear()
+  const monthDiff = now.getMonth() - birth.getMonth()
+  if (monthDiff < 0 || (monthDiff === 0 && now.getDate() < birth.getDate())) {
+    age--
+  }
+  if (age < 8) return 'u8'
+  if (age < 12) return 'u12'
+  if (age < 16) return 'u16'
+  return 'u19plus'
+}
+
+/** Get age in years from birth date */
+export function getAge(birthDate: string): number {
+  const birth = new Date(birthDate)
+  const now = new Date()
+  let age = now.getFullYear() - birth.getFullYear()
+  const monthDiff = now.getMonth() - birth.getMonth()
+  if (monthDiff < 0 || (monthDiff === 0 && now.getDate() < birth.getDate())) {
+    age--
+  }
+  return age
 }
 
 /* ── Onboarding ───────────────────────────────────────────── */

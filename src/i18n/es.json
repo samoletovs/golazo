@@ -409,6 +409,13 @@
   "teams.verified": "Verificado",
   "teams.founded": "Fundado",
   "teams.ageGroups": "Grupos de edad",
+  "teams.addNewTitle": "Añadir nuevo equipo",
+  "teams.clubName": "Nombre del club",
+  "teams.addBtn": "Añadir",
+  "teams.duplicateFound": "Este equipo ya existe en el registro:",
+  "teams.useThis": "Usar este",
+  "teams.addAnyway": "Añadir de todos modos",
+  "teams.duplicateError": "Ya existe un equipo con este nombre",
   "teams.knownAs": "También conocido como",
 
   "onboarding.jerseyNumber": "Número de camiseta",

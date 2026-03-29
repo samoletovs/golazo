@@ -14,10 +14,12 @@ import { MatchLog } from './MatchLog'
 import { TrainingLog } from './TrainingLog'
 import { DiaryPage } from './DiaryPage'
 import type { ScheduleEvent } from '../engine/types'
+import { isPhysicalUpdateDue, daysSinceLastMeasurement } from '../engine/physical'
+import { PhysicalUpdateFlow } from '../components/PhysicalUpdateFlow'
 
 export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void }) {
   const { t } = useTranslation()
-  const { matches, trainings, xp, profile, schedule, tournaments } = useApp()
+  const { matches, trainings, xp, profile, schedule, tournaments, physicalProfile } = useApp()
   const rank = getRank(xp.level)
 
   const seasonGoals = matches.reduce((s, m) => s + m.goals, 0)
@@ -106,6 +108,13 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
   const [expandedEventId, setExpandedEventId] = useState<string | null>(null)
   const [addingType, setAddingType] = useState<'training' | 'match' | 'diary' | null>(null)
   const [loggedEventIds, setLoggedEventIds] = useState<Set<string>>(new Set())
+
+  // Physical update reminder
+  const [showPhysicalUpdate, setShowPhysicalUpdate] = useState(false)
+  const [physicalDismissed, setPhysicalDismissed] = useState(false)
+  const lastMeasuredAt = physicalProfile?.measurements[physicalProfile.latestIndex]?.measuredAt
+  const physicalUpdateDue = isPhysicalUpdateDue(lastMeasuredAt) && !physicalDismissed
+  const daysSinceMeasurement = daysSinceLastMeasurement(lastMeasuredAt)
 
   // Tournament discovery — find shared tournaments for player's teams
   const [discoveredTournaments, setDiscoveredTournaments] = useState<Array<{

@@ -4,7 +4,10 @@ import { useApp } from '../contexts/AppContext'
 import { useAuth } from '../contexts/AuthContext'
 import { createInitialSkillTree, updateSkillRating } from '../engine/skills'
 import { TeamPicker } from '../components/TeamPicker'
-import type { AccountRole, Position, DominantFoot, SkillCategory, Language, PhysicalMeasurement, SkillTree, SharedTeam, PlayerTeam } from '../engine/types'
+import { AddTeamDialog } from '../components/AddTeamDialog'
+import type { AccountRole, Position, DominantFoot, SkillCategory, Language, PhysicalMeasurement, SkillTree, SharedTeam, PlayerTeam, AgeTier } from '../engine/types'
+import { getAgeTier } from '../engine/types'
+import { getFieldsForTier, PHYSICAL_GROUPS, type PhysicalFieldKey } from '../engine/physical'
 
 type Step = 'role' | 'basics' | 'football' | 'physical' | 'assessment' | 'done'
 
@@ -61,15 +64,7 @@ interface OnboardingForm {
   positions: Position[]
   dominantFoot: DominantFoot
   yearsPlaying: number
-  heightCm: string
-  weightKg: string
-  sprintTime100m: string
-  standingJumpCm: string
-  beepTestLevel: string
-  agilityCourseTime: string
-  plankTimeSec: string
-  restingHeartRate: string
-  juggleRecord: string
+  physicalFields: Partial<Record<PhysicalFieldKey, string>>
   assessment: Partial<Record<SkillCategory, number>>
 }
 
@@ -110,6 +105,7 @@ export function OnboardingPage() {
   const { user } = useAuth()
 
   const [step, setStep] = useState<Step>('role')
+  const [addTeamName, setAddTeamName] = useState<string | null>(null) // name to show in AddTeamDialog
   const [form, setForm] = useState<OnboardingForm>({
     role: 'player',
     name: '',
@@ -121,15 +117,7 @@ export function OnboardingPage() {
     positions: [],
     dominantFoot: 'right',
     yearsPlaying: 0,
-    heightCm: '',
-    weightKg: '',
-    sprintTime100m: '',
-    standingJumpCm: '',
-    beepTestLevel: '',
-    agilityCourseTime: '',
-    plankTimeSec: '',
-    restingHeartRate: '',
-    juggleRecord: '',
+    physicalFields: {},
     assessment: {},
   })
 
@@ -196,17 +184,25 @@ export function OnboardingPage() {
       createdAt: now,
     })
 
-    // Create physical profile
+    // Create physical profile from dynamic fields
+    const pf = form.physicalFields
     const physical: PhysicalMeasurement = {
-      heightCm: parseFloat(form.heightCm) || 0,
-      weightKg: parseFloat(form.weightKg) || 0,
-      sprintTime100m: form.sprintTime100m ? parseFloat(form.sprintTime100m) : undefined,
-      standingJumpCm: form.standingJumpCm ? parseFloat(form.standingJumpCm) : undefined,
-      beepTestLevel: form.beepTestLevel ? parseFloat(form.beepTestLevel) : undefined,
-      agilityCourseTime: form.agilityCourseTime ? parseFloat(form.agilityCourseTime) : undefined,
-      plankTimeSec: form.plankTimeSec ? parseFloat(form.plankTimeSec) : undefined,
-      restingHeartRate: form.restingHeartRate ? parseInt(form.restingHeartRate, 10) : undefined,
-      juggleRecord: form.juggleRecord ? parseInt(form.juggleRecord, 10) : undefined,
+      heightCm: parseFloat(pf.heightCm ?? '') || 0,
+      weightKg: parseFloat(pf.weightKg ?? '') || 0,
+      shoeSize: pf.shoeSize ? parseFloat(pf.shoeSize) : undefined,
+      sprintTime30m: pf.sprintTime30m ? parseFloat(pf.sprintTime30m) : undefined,
+      sprintTime100m: pf.sprintTime100m ? parseFloat(pf.sprintTime100m) : undefined,
+      standingJumpCm: pf.standingJumpCm ? parseFloat(pf.standingJumpCm) : undefined,
+      verticalJumpCm: pf.verticalJumpCm ? parseFloat(pf.verticalJumpCm) : undefined,
+      beepTestLevel: pf.beepTestLevel ? parseFloat(pf.beepTestLevel) : undefined,
+      agilityCourseTime: pf.agilityCourseTime ? parseFloat(pf.agilityCourseTime) : undefined,
+      plankTimeSec: pf.plankTimeSec ? parseFloat(pf.plankTimeSec) : undefined,
+      sitAndReachCm: pf.sitAndReachCm ? parseFloat(pf.sitAndReachCm) : undefined,
+      pushUps1min: pf.pushUps1min ? parseInt(pf.pushUps1min, 10) : undefined,
+      restingHeartRate: pf.restingHeartRate ? parseInt(pf.restingHeartRate, 10) : undefined,
+      bodyFatPct: pf.bodyFatPct ? parseFloat(pf.bodyFatPct) : undefined,
+      armSpanCm: pf.armSpanCm ? parseFloat(pf.armSpanCm) : undefined,
+      juggleRecord: pf.juggleRecord ? parseInt(pf.juggleRecord, 10) : undefined,
       measuredAt: now,
     }
     setPhysicalProfile({ measurements: [physical], latestIndex: 0 })
@@ -399,12 +395,7 @@ export function OnboardingPage() {
                   placeholder={form.teams.length === 0 ? t('onboarding.teamPlaceholder') : t('onboarding.addAnotherTeam')}
                   className="w-full"
                   showAddNew
-                  onAddNew={(name) => {
-                    const already = form.teams.some((t) => t.name.toLowerCase() === name.toLowerCase())
-                    if (!already) {
-                      setForm((f) => ({ ...f, teams: [...f.teams, { name }] }))
-                    }
-                  }}
+                  onAddNew={(name) => setAddTeamName(name)}
                 />
 
                 <label className="text-xs font-bold mt-2" style={{ color: 'var(--color-text-secondary)' }}>
@@ -494,178 +485,57 @@ export function OnboardingPage() {
             </div>
           )}
 
-          {step === 'physical' && (
+          {step === 'physical' && (() => {
+            const tier: AgeTier = form.birthDate ? getAgeTier(form.birthDate) : 'u12'
+            const fields = getFieldsForTier(tier)
+            const groups = [...new Set(fields.map((f) => f.group))]
+
+            return (
             <div className="flex flex-col gap-4 animate-fade-up">
               <h2 className="text-xl font-extrabold">{t('onboarding.physical')}</h2>
               <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
                 {t('onboarding.physicalHint')}
               </p>
 
-              {/* Body measurements (required) */}
-              <div className="grid grid-cols-2 gap-3">
-                <div className="flex flex-col gap-1">
-                  <label className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>
-                    {t('onboarding.height')}
-                  </label>
-                  <div className="relative">
-                    <input
-                      type="number"
-                      value={form.heightCm}
-                      onChange={(e) => setForm((f) => ({ ...f, heightCm: e.target.value }))}
-                      placeholder="150"
-                      className="w-full pr-10"
-                    />
-                    <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs" style={{ color: 'var(--color-text-muted)' }}>cm</span>
+              {groups.map((group) => {
+                const groupFields = fields.filter((f) => f.group === group)
+                const groupInfo = PHYSICAL_GROUPS[group]
+                const isBody = group === 'body'
+                return (
+                  <div key={group}>
+                    {!isBody && (
+                      <p className="text-[10px] font-bold uppercase tracking-wider mt-2 mb-2" style={{ color: 'var(--color-text-muted)' }}>
+                        {groupInfo.emoji} {t(groupInfo.labelKey)} <span className="normal-case font-normal">({t('onboarding.optional')})</span>
+                      </p>
+                    )}
+                    <div className="grid grid-cols-2 gap-3">
+                      {groupFields.map((field) => (
+                        <div key={field.key} className="flex flex-col gap-1">
+                          <label className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>
+                            {t(field.labelKey)}
+                          </label>
+                          <div className="relative">
+                            <input
+                              type="number"
+                              step={field.step ?? '1'}
+                              min={field.min}
+                              max={field.max}
+                              value={form.physicalFields[field.key] ?? ''}
+                              onChange={(e) => setForm((f) => ({
+                                ...f,
+                                physicalFields: { ...f.physicalFields, [field.key]: e.target.value },
+                              }))}
+                              placeholder={field.placeholder}
+                              className="w-full pr-10"
+                            />
+                            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs" style={{ color: 'var(--color-text-muted)' }}>{field.unit}</span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                </div>
-
-                <div className="flex flex-col gap-1">
-                  <label className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>
-                    {t('onboarding.weight')}
-                  </label>
-                  <div className="relative">
-                    <input
-                      type="number"
-                      value={form.weightKg}
-                      onChange={(e) => setForm((f) => ({ ...f, weightKg: e.target.value }))}
-                      placeholder="45"
-                      className="w-full pr-10"
-                    />
-                    <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs" style={{ color: 'var(--color-text-muted)' }}>kg</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Speed & Power (optional) */}
-              <p className="text-[10px] font-bold uppercase tracking-wider mt-2" style={{ color: 'var(--color-text-muted)' }}>
-                {t('onboarding.speedPower')} <span className="normal-case font-normal">({t('onboarding.optional')})</span>
-              </p>
-              <div className="grid grid-cols-2 gap-3">
-                <div className="flex flex-col gap-1">
-                  <label className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>
-                    {t('onboarding.sprint')}
-                  </label>
-                  <div className="relative">
-                    <input
-                      type="number"
-                      step="0.1"
-                      value={form.sprintTime100m}
-                      onChange={(e) => setForm((f) => ({ ...f, sprintTime100m: e.target.value }))}
-                      placeholder="14.5"
-                      className="w-full pr-10"
-                    />
-                    <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs" style={{ color: 'var(--color-text-muted)' }}>sec</span>
-                  </div>
-                </div>
-
-                <div className="flex flex-col gap-1">
-                  <label className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>
-                    {t('onboarding.standingJump')}
-                  </label>
-                  <div className="relative">
-                    <input
-                      type="number"
-                      value={form.standingJumpCm}
-                      onChange={(e) => setForm((f) => ({ ...f, standingJumpCm: e.target.value }))}
-                      placeholder="180"
-                      className="w-full pr-10"
-                    />
-                    <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs" style={{ color: 'var(--color-text-muted)' }}>cm</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Endurance & Agility (optional) */}
-              <p className="text-[10px] font-bold uppercase tracking-wider mt-2" style={{ color: 'var(--color-text-muted)' }}>
-                {t('onboarding.enduranceAgility')} <span className="normal-case font-normal">({t('onboarding.optional')})</span>
-              </p>
-              <div className="grid grid-cols-2 gap-3">
-                <div className="flex flex-col gap-1">
-                  <label className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>
-                    {t('onboarding.beepTest')}
-                  </label>
-                  <div className="relative">
-                    <input
-                      type="number"
-                      step="0.1"
-                      value={form.beepTestLevel}
-                      onChange={(e) => setForm((f) => ({ ...f, beepTestLevel: e.target.value }))}
-                      placeholder="8.5"
-                      className="w-full pr-10"
-                    />
-                    <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs" style={{ color: 'var(--color-text-muted)' }}>lvl</span>
-                  </div>
-                </div>
-
-                <div className="flex flex-col gap-1">
-                  <label className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>
-                    {t('onboarding.agility')}
-                  </label>
-                  <div className="relative">
-                    <input
-                      type="number"
-                      step="0.1"
-                      value={form.agilityCourseTime}
-                      onChange={(e) => setForm((f) => ({ ...f, agilityCourseTime: e.target.value }))}
-                      placeholder="12.0"
-                      className="w-full pr-10"
-                    />
-                    <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs" style={{ color: 'var(--color-text-muted)' }}>sec</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Core & Fitness (optional) */}
-              <p className="text-[10px] font-bold uppercase tracking-wider mt-2" style={{ color: 'var(--color-text-muted)' }}>
-                {t('onboarding.coreFitness')} <span className="normal-case font-normal">({t('onboarding.optional')})</span>
-              </p>
-              <div className="grid grid-cols-2 gap-3">
-                <div className="flex flex-col gap-1">
-                  <label className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>
-                    {t('onboarding.plankHold')}
-                  </label>
-                  <div className="relative">
-                    <input
-                      type="number"
-                      value={form.plankTimeSec}
-                      onChange={(e) => setForm((f) => ({ ...f, plankTimeSec: e.target.value }))}
-                      placeholder="60"
-                      className="w-full pr-10"
-                    />
-                    <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs" style={{ color: 'var(--color-text-muted)' }}>sec</span>
-                  </div>
-                </div>
-
-                <div className="flex flex-col gap-1">
-                  <label className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>
-                    {t('onboarding.restingHR')}
-                  </label>
-                  <div className="relative">
-                    <input
-                      type="number"
-                      value={form.restingHeartRate}
-                      onChange={(e) => setForm((f) => ({ ...f, restingHeartRate: e.target.value }))}
-                      placeholder="72"
-                      className="w-full pr-10"
-                    />
-                    <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs" style={{ color: 'var(--color-text-muted)' }}>bpm</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Ball Control */}
-              <div className="flex flex-col gap-1">
-                <label className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>
-                  {t('onboarding.juggleRecord')} <span style={{ color: 'var(--color-text-muted)' }}>({t('onboarding.optional')})</span>
-                </label>
-                <input
-                  type="number"
-                  value={form.juggleRecord}
-                  onChange={(e) => setForm((f) => ({ ...f, juggleRecord: e.target.value }))}
-                  placeholder="25"
-                  className="w-full"
-                />
-              </div>
+                )
+              })}
 
               <button
                 className="btn-primary mt-4 w-full"
@@ -674,7 +544,8 @@ export function OnboardingPage() {
                 {t('onboarding.continue')}
               </button>
             </div>
-          )}
+            )
+          })()}
 
           {step === 'assessment' && (
             <div className="flex flex-col gap-4 animate-fade-up">
@@ -732,9 +603,9 @@ export function OnboardingPage() {
                 <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
                   {form.positions.join(' / ')} • {form.teams.map((t) => t.name).join(', ') || '—'}
                 </p>
-                {form.heightCm && form.weightKg && (
+                {form.physicalFields?.heightCm && form.physicalFields?.weightKg && (
                   <p className="text-xs mt-1 font-data" style={{ color: 'var(--color-text-muted)' }}>
-                    {form.heightCm} cm • {form.weightKg} kg
+                    {form.physicalFields.heightCm} cm • {form.physicalFields.weightKg} kg
                   </p>
                 )}
               </div>
@@ -742,6 +613,22 @@ export function OnboardingPage() {
           )}
         </main>
       </div>
+
+      {/* Add new team dialog */}
+      {addTeamName !== null && (
+        <AddTeamDialog
+          initialName={addTeamName}
+          defaultCountry={form.country}
+          onAdd={(name, sharedTeam) => {
+            const already = form.teams.some((t) => t.name.toLowerCase() === name.toLowerCase())
+            if (!already) {
+              setForm((f) => ({ ...f, teams: [...f.teams, { name, sharedTeam }] }))
+            }
+            setAddTeamName(null)
+          }}
+          onCancel={() => setAddTeamName(null)}
+        />
+      )}
     </div>
   )
 }

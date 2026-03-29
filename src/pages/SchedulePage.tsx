@@ -24,6 +24,46 @@ const WEEKDAYS_KEYS = [
 
 const WEEKDAY_NAMES = ['schedule.sun', 'schedule.mon', 'schedule.tue', 'schedule.wed', 'schedule.thu', 'schedule.fri', 'schedule.sat']
 
+// Hours 6–23, minutes 00/15/30/45
+const HOURS = Array.from({ length: 18 }, (_, i) => i + 6) // 6..23
+const MINUTES = ['00', '15', '30', '45']
+
+function TimePicker({ value, onChange, label }: { value: string; onChange: (v: string) => void; label?: string }) {
+  const [h, m] = value.split(':')
+  const hour = parseInt(h) || 18
+  const minute = m || '00'
+  const nearestMin = MINUTES.reduce((prev, curr) =>
+    Math.abs(parseInt(curr) - parseInt(minute)) < Math.abs(parseInt(prev) - parseInt(minute)) ? curr : prev
+  )
+
+  return (
+    <div>
+      {label && <label className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>{label}</label>}
+      <div className="flex gap-1 mt-1">
+        <select
+          value={hour}
+          onChange={(e) => onChange(`${String(e.target.value).padStart(2, '0')}:${nearestMin}`)}
+          className="flex-1 text-sm p-2 rounded-lg border text-center"
+        >
+          {HOURS.map((hr) => (
+            <option key={hr} value={hr}>{String(hr).padStart(2, '0')}</option>
+          ))}
+        </select>
+        <span className="flex items-center text-lg font-bold" style={{ color: 'var(--color-text-muted)' }}>:</span>
+        <select
+          value={nearestMin}
+          onChange={(e) => onChange(`${String(hour).padStart(2, '0')}:${e.target.value}`)}
+          className="flex-1 text-sm p-2 rounded-lg border text-center"
+        >
+          {MINUTES.map((min) => (
+            <option key={min} value={min}>{min}</option>
+          ))}
+        </select>
+      </div>
+    </div>
+  )
+}
+
 function getMonthDays(year: number, month: number): (number | null)[] {
   const firstDay = new Date(year, month, 1).getDay()
   const offset = firstDay === 0 ? 6 : firstDay - 1 // Monday-first
@@ -393,28 +433,8 @@ export function SchedulePage() {
               />
 
               <div className="grid grid-cols-2 gap-2">
-                <div>
-                  <label className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>
-                    {t('schedule.startTime')}
-                  </label>
-                  <input
-                    type="time"
-                    value={formTime}
-                    onChange={(e) => setFormTime(e.target.value)}
-                    className="w-full"
-                  />
-                </div>
-                <div>
-                  <label className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>
-                    {t('schedule.endTime')}
-                  </label>
-                  <input
-                    type="time"
-                    value={formEndTime}
-                    onChange={(e) => setFormEndTime(e.target.value)}
-                    className="w-full"
-                  />
-                </div>
+                <TimePicker value={formTime} onChange={setFormTime} label={t('schedule.startTime')} />
+                <TimePicker value={formEndTime} onChange={setFormEndTime} label={t('schedule.endTime')} />
               </div>
 
               <input
@@ -498,14 +518,8 @@ export function SchedulePage() {
 
               {/* Times */}
               <div className="grid grid-cols-2 gap-2">
-                <div>
-                  <label className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>{t('schedule.startTime')}</label>
-                  <input type="time" value={rtStart} onChange={(e) => setRtStart(e.target.value)} className="w-full" />
-                </div>
-                <div>
-                  <label className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>{t('schedule.endTime')}</label>
-                  <input type="time" value={rtEnd} onChange={(e) => setRtEnd(e.target.value)} className="w-full" />
-                </div>
+                <TimePicker value={rtStart} onChange={setRtStart} label={t('schedule.startTime')} />
+                <TimePicker value={rtEnd} onChange={setRtEnd} label={t('schedule.endTime')} />
               </div>
 
               {/* Location */}

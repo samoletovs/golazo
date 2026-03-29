@@ -407,6 +407,13 @@
   "teams.verified": "Verificēts",
   "teams.founded": "Dibināts",
   "teams.ageGroups": "Vecuma grupas",
+  "teams.addNewTitle": "Pievienot jaunu komandu",
+  "teams.clubName": "Kluba nosaukums",
+  "teams.addBtn": "Pievienot",
+  "teams.duplicateFound": "Šī komanda jau pastāv reģistrā:",
+  "teams.useThis": "Izmantot šo",
+  "teams.addAnyway": "Pievienot tāpat",
+  "teams.duplicateError": "Komanda ar šādu nosaukumu jau pastāv",
   "teams.knownAs": "Pazīstami arī kā",
 
   "onboarding.jerseyNumber": "Krekla numurs",

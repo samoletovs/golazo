@@ -460,6 +460,13 @@
   "teams.verified": "Kinnitatud",
   "teams.founded": "Asutatud",
   "teams.ageGroups": "Vanusegrupid",
+  "teams.addNewTitle": "Lisa uus meeskond",
+  "teams.clubName": "Klubi nimi",
+  "teams.addBtn": "Lisa",
+  "teams.duplicateFound": "See meeskond on juba registris:",
+  "teams.useThis": "Kasuta seda",
+  "teams.addAnyway": "Lisa ikkagi",
+  "teams.duplicateError": "Selle nimega meeskond on juba olemas",
   "teams.knownAs": "Tuntud ka nimega",
 
   "onboarding.jerseyNumber": "Mängunumber",
