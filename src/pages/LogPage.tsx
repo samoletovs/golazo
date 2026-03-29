@@ -4,12 +4,14 @@ import { TrainingLog } from './TrainingLog'
 import { MatchLog } from './MatchLog'
 import { DiaryPage } from './DiaryPage'
 import { TournamentPage } from './TournamentPage'
+import { TournamentImport } from '../components/TournamentImport'
 
 type LogType = 'select' | 'training' | 'match' | 'diary' | 'tournament'
 
 export function LogPage() {
   const { t } = useTranslation()
   const [logType, setLogType] = useState<LogType>('select')
+  const [showImport, setShowImport] = useState(false)
 
   if (logType === 'training') return <TrainingLog onBack={() => setLogType('select')} />
   if (logType === 'match') return <MatchLog onBack={() => setLogType('select')} />
@@ -28,9 +30,7 @@ export function LogPage() {
         <span className="text-3xl">⚽</span>
         <div>
           <p className="text-base font-bold">{t('log.training')}</p>
-          <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
-            +20 XP
-          </p>
+          <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>+20 XP</p>
         </div>
       </button>
 
@@ -42,9 +42,7 @@ export function LogPage() {
         <span className="text-3xl">🏟️</span>
         <div>
           <p className="text-base font-bold">{t('log.match')}</p>
-          <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
-            +30 XP
-          </p>
+          <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>+30 XP</p>
         </div>
       </button>
 
@@ -56,9 +54,7 @@ export function LogPage() {
         <span className="text-3xl">📝</span>
         <div>
           <p className="text-base font-bold">{t('log.diary')}</p>
-          <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
-            +15 XP
-          </p>
+          <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>+15 XP</p>
         </div>
       </button>
 
@@ -70,11 +66,25 @@ export function LogPage() {
         <span className="text-3xl">🏆</span>
         <div>
           <p className="text-base font-bold">{t('log.tournament')}</p>
-          <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
-            +50 XP
-          </p>
+          <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>+50 XP</p>
         </div>
       </button>
+
+      {/* Import Tournament */}
+      <button
+        className="card tap-target flex items-center gap-4 text-left"
+        style={{ borderLeft: '3px solid var(--color-gold-500)' }}
+        onClick={() => setShowImport(true)}
+        aria-label={t('import.button')}
+      >
+        <span className="text-3xl">📥</span>
+        <div>
+          <p className="text-base font-bold">{t('import.button')}</p>
+          <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{t('import.urlHint')}</p>
+        </div>
+      </button>
+
+      {showImport && <TournamentImport onClose={() => setShowImport(false)} />}
     </div>
   )
 }

@@ -417,6 +417,10 @@
   "teams.knownAs": "Известны как",
 
   "onboarding.jerseyNumber": "Номер футболки",
+  "onboarding.country": "Страна",
+  "onboarding.city": "Город",
+  "onboarding.cityPlaceholder": "напр. Рига",
+  "match.playingFor": "Играю за",
 
   "empty.matches.title": "Матчей пока нет",
   "empty.matches.text": "Запиши свой первый матч и начни отслеживать прогресс!",

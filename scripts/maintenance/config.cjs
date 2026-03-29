@@ -6,12 +6,21 @@
  */
 
 const path = require('path')
+const fs = require('fs')
 
-// Try to load .env from project root (local dev only)
-try {
-  require('dotenv').config({ path: path.join(__dirname, '..', '..', '.env') })
-} catch {
-  // dotenv not installed in CI — env vars set by GitHub Actions
+// Load .env from project root (no dotenv dependency)
+const envPath = path.join(__dirname, '..', '..', '.env')
+if (fs.existsSync(envPath)) {
+  const lines = fs.readFileSync(envPath, 'utf-8').split('\n')
+  for (const line of lines) {
+    const trimmed = line.trim()
+    if (!trimmed || trimmed.startsWith('#')) continue
+    const eqIdx = trimmed.indexOf('=')
+    if (eqIdx === -1) continue
+    const key = trimmed.slice(0, eqIdx).trim()
+    const value = trimmed.slice(eqIdx + 1).trim()
+    if (!process.env[key]) process.env[key] = value
+  }
 }
 
 const config = {

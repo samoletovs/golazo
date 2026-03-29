@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
 import { awardXp, XP_AWARDS } from '../engine/xp'
+import { TeamPicker } from '../components/TeamPicker'
 import type { Position, EnergyLevel, MatchEntry } from '../engine/types'
 
 const POSITIONS: { key: Position; label: string }[] = [
@@ -21,6 +22,7 @@ export function MatchLog({ onBack }: { onBack?: () => void }) {
   const today = new Date().toISOString().split('T')[0]
   const [opponent, setOpponent] = useState('')
   const [competition, setCompetition] = useState('')
+  const [playingFor, setPlayingFor] = useState(profile?.team || '')
   const [scoreUs, setScoreUs] = useState(0)
   const [scoreThem, setScoreThem] = useState(0)
   const [positions, setPositions] = useState<Position[]>(profile?.positions?.length ? [profile.positions[0]] : ['CM'])
@@ -35,7 +37,10 @@ export function MatchLog({ onBack }: { onBack?: () => void }) {
   const [toImprove, setToImprove] = useState('')
   const [mood, setMood] = useState<EnergyLevel>(3)
 
-  const teamName = profile?.team || '???'
+  const teamName = playingFor || profile?.team || '???'
+
+  // Player's teams for "playing for" selector
+  const playerTeams = profile?.teams?.filter(team => team.active) ?? []
 
   function togglePosition(pos: Position) {
     setPositions((prev) =>
@@ -49,6 +54,7 @@ export function MatchLog({ onBack }: { onBack?: () => void }) {
     const entry: MatchEntry = {
       id: crypto.randomUUID(),
       playerId: 'default',
+      playingFor: playingFor || undefined,
       date: today,
       opponent,
       competition,
@@ -95,13 +101,41 @@ export function MatchLog({ onBack }: { onBack?: () => void }) {
         <h2 className="text-lg font-bold">{t('match.title')}</h2>
       </div>
 
-      {/* Opponent & Competition */}
-      <input
-        className="w-full text-sm"
-        placeholder={t('match.opponent')}
-        value={opponent}
-        onChange={(e) => setOpponent(e.target.value)}
-      />
+      {/* Playing for (team selector) */}
+      {playerTeams.length > 1 && (
+        <div>
+          <label className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>
+            {t('match.playingFor')}
+          </label>
+          <select
+            value={playingFor}
+            onChange={(e) => setPlayingFor(e.target.value)}
+            className="w-full text-sm p-2 rounded-lg border mt-1"
+          >
+            {playerTeams.map((team) => (
+              <option key={team.id} value={team.name}>
+                {team.name} {team.isPrimary ? '⭐' : ''}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
+
+      {/* Opponent (team search) */}
+      <div>
+        <label className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>
+          {t('match.opponent')}
+        </label>
+        <TeamPicker
+          value={opponent}
+          onChange={(name) => setOpponent(name)}
+          country={profile?.country}
+          placeholder={t('match.opponent')}
+          className="w-full mt-1"
+        />
+      </div>
+
+      {/* Competition */}
       <input
         className="w-full text-sm"
         placeholder={t('match.competition')}

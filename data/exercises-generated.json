@@ -1,0 +1,208 @@
+[
+  {
+    "id": "gen-tech-ballControl-d1",
+    "nameKey": "ex.gen.gen-tech-ballControl-d1",
+    "descriptionKey": "ex.gen.gen-tech-ballControl-d1.desc",
+    "nameEn": "Ball Control — Beginner",
+    "descEn": "Practice ball control for 5 minutes. 10 reps per set. Based on Coerver Coaching method.",
+    "category": "technical",
+    "subSkill": "ballControl",
+    "difficulty": 2,
+    "durationMinutes": 5,
+    "equipment": [
+      "ballOnly",
+      "cones"
+    ],
+    "positions": [],
+    "methodology": "coerver",
+    "source": "generated",
+    "createdAt": "2026-03-29T13:25:23.193Z",
+    "videoUrl": "https://www.youtube.com/watch?v=naEccnjzLxM",
+    "thumbnailUrl": "https://i.ytimg.com/vi/naEccnjzLxM/mqdefault.jpg"
+  },
+  {
+    "id": "gen-tech-ballControl-d2",
+    "nameKey": "ex.gen.gen-tech-ballControl-d2",
+    "descriptionKey": "ex.gen.gen-tech-ballControl-d2.desc",
+    "nameEn": "Ball Control — Intermediate",
+    "descEn": "Practice ball control for 10 minutes. 20 reps per set. Based on Coerver Coaching method.",
+    "category": "technical",
+    "subSkill": "ballControl",
+    "difficulty": 3,
+    "durationMinutes": 10,
+    "equipment": [
+      "ballOnly",
+      "wall"
+    ],
+    "positions": [],
+    "methodology": "coerver",
+    "source": "generated",
+    "createdAt": "2026-03-29T13:25:23.194Z",
+    "videoUrl": "https://www.youtube.com/watch?v=uBgZvWDG9yA",
+    "thumbnailUrl": "https://i.ytimg.com/vi/uBgZvWDG9yA/mqdefault.jpg"
+  },
+  {
+    "id": "gen-tech-ballControl-d3",
+    "nameKey": "ex.gen.gen-tech-ballControl-d3",
+    "descriptionKey": "ex.gen.gen-tech-ballControl-d3.desc",
+    "nameEn": "Ball Control — Advanced",
+    "descEn": "Practice ball control for 15 minutes. 30 reps per set. Based on Coerver Coaching method.",
+    "category": "technical",
+    "subSkill": "ballControl",
+    "difficulty": 4,
+    "durationMinutes": 15,
+    "equipment": [
+      "ballOnly",
+      "wall"
+    ],
+    "positions": [],
+    "methodology": "coerver",
+    "source": "generated",
+    "createdAt": "2026-03-29T13:25:23.194Z",
+    "videoUrl": "https://www.youtube.com/watch?v=uBgZvWDG9yA",
+    "thumbnailUrl": "https://i.ytimg.com/vi/uBgZvWDG9yA/mqdefault.jpg"
+  },
+  {
+    "id": "gen-tech-dribbling-d1",
+    "nameKey": "ex.gen.gen-tech-dribbling-d1",
+    "descriptionKey": "ex.gen.gen-tech-dribbling-d1.desc",
+    "nameEn": "Dribbling — Beginner",
+    "descEn": "Practice dribbling for 5 minutes. 10 reps per set. Based on Coerver Coaching method.",
+    "category": "technical",
+    "subSkill": "dribbling",
+    "difficulty": 2,
+    "durationMinutes": 5,
+    "equipment": [
+      "ballOnly",
+      "cones"
+    ],
+    "positions": [],
+    "methodology": "coerver",
+    "source": "generated",
+    "createdAt": "2026-03-29T13:25:23.194Z",
+    "videoUrl": "https://www.youtube.com/watch?v=naEccnjzLxM",
+    "thumbnailUrl": "https://i.ytimg.com/vi/naEccnjzLxM/mqdefault.jpg"
+  },
+  {
+    "id": "gen-tech-dribbling-d2",
+    "nameKey": "ex.gen.gen-tech-dribbling-d2",
+    "descriptionKey": "ex.gen.gen-tech-dribbling-d2.desc",
+    "nameEn": "Dribbling — Intermediate",
+    "descEn": "Practice dribbling for 10 minutes. 20 reps per set. Based on Coerver Coaching method.",
+    "category": "technical",
+    "subSkill": "dribbling",
+    "difficulty": 3,
+    "durationMinutes": 10,
+    "equipment": [
+      "ballOnly"
+    ],
+    "positions": [],
+    "methodology": "coerver",
+    "source": "generated",
+    "createdAt": "2026-03-29T13:25:23.194Z",
+    "videoUrl": "https://www.youtube.com/watch?v=rhRDXvlPoFQ",
+    "thumbnailUrl": "https://i.ytimg.com/vi/rhRDXvlPoFQ/mqdefault.jpg"
+  },
+  {
+    "id": "gen-tech-dribbling-d3",
+    "nameKey": "ex.gen.gen-tech-dribbling-d3",
+    "descriptionKey": "ex.gen.gen-tech-dribbling-d3.desc",
+    "nameEn": "Dribbling — Advanced",
+    "descEn": "Practice dribbling for 15 minutes. 30 reps per set. Based on Coerver Coaching method.",
+    "category": "technical",
+    "subSkill": "dribbling",
+    "difficulty": 4,
+    "durationMinutes": 15,
+    "equipment": [
+      "ballOnly"
+    ],
+    "positions": [],
+    "methodology": "coerver",
+    "source": "generated",
+    "createdAt": "2026-03-29T13:25:23.194Z",
+    "videoUrl": "https://www.youtube.com/watch?v=rhRDXvlPoFQ",
+    "thumbnailUrl": "https://i.ytimg.com/vi/rhRDXvlPoFQ/mqdefault.jpg"
+  },
+  {
+    "id": "gen-tech-firstTouch-d1",
+    "nameKey": "ex.gen.gen-tech-firstTouch-d1",
+    "descriptionKey": "ex.gen.gen-tech-firstTouch-d1.desc",
+    "nameEn": "First Touch — Beginner",
+    "descEn": "Practice first touch for 5 minutes. 10 reps per set. Based on Coerver Coaching method.",
+    "category": "technical",
+    "subSkill": "firstTouch",
+    "difficulty": 2,
+    "durationMinutes": 5,
+    "equipment": [
+      "ballOnly",
+      "cones"
+    ],
+    "positions": [],
+    "methodology": "coerver",
+    "source": "generated",
+    "createdAt": "2026-03-29T13:25:23.194Z",
+    "videoUrl": "https://www.youtube.com/watch?v=2fbO9AKTPnI",
+    "thumbnailUrl": "https://i.ytimg.com/vi/2fbO9AKTPnI/mqdefault.jpg"
+  },
+  {
+    "id": "gen-tech-firstTouch-d2",
+    "nameKey": "ex.gen.gen-tech-firstTouch-d2",
+    "descriptionKey": "ex.gen.gen-tech-firstTouch-d2.desc",
+    "nameEn": "First Touch — Intermediate",
+    "descEn": "Practice first touch for 10 minutes. 20 reps per set. Based on Coerver Coaching method.",
+    "category": "technical",
+    "subSkill": "firstTouch",
+    "difficulty": 3,
+    "durationMinutes": 10,
+    "equipment": [
+      "ballOnly"
+    ],
+    "positions": [],
+    "methodology": "coerver",
+    "source": "generated",
+    "createdAt": "2026-03-29T13:25:23.194Z",
+    "videoUrl": "https://www.youtube.com/watch?v=2fbO9AKTPnI",
+    "thumbnailUrl": "https://i.ytimg.com/vi/2fbO9AKTPnI/mqdefault.jpg"
+  },
+  {
+    "id": "gen-tech-firstTouch-d3",
+    "nameKey": "ex.gen.gen-tech-firstTouch-d3",
+    "descriptionKey": "ex.gen.gen-tech-firstTouch-d3.desc",
+    "nameEn": "First Touch — Advanced",
+    "descEn": "Practice first touch for 15 minutes. 30 reps per set. Based on Coerver Coaching method.",
+    "category": "technical",
+    "subSkill": "firstTouch",
+    "difficulty": 4,
+    "durationMinutes": 15,
+    "equipment": [
+      "ballOnly",
+      "wall"
+    ],
+    "positions": [],
+    "methodology": "coerver",
+    "source": "generated",
+    "createdAt": "2026-03-29T13:25:23.194Z",
+    "videoUrl": "https://www.youtube.com/watch?v=2fbO9AKTPnI",
+    "thumbnailUrl": "https://i.ytimg.com/vi/2fbO9AKTPnI/mqdefault.jpg"
+  },
+  {
+    "id": "gen-tech-weakFoot-d1",
+    "nameKey": "ex.gen.gen-tech-weakFoot-d1",
+    "descriptionKey": "ex.gen.gen-tech-weakFoot-d1.desc",
+    "nameEn": "Weak Foot — Beginner",
+    "descEn": "Practice weak foot for 5 minutes. 10 reps per set. Based on Coerver Coaching method.",
+    "category": "technical",
+    "subSkill": "weakFoot",
+    "difficulty": 2,
+    "durationMinutes": 5,
+    "equipment": [
+      "ballOnly"
+    ],
+    "positions": [],
+    "methodology": "coerver",
+    "source": "generated",
+    "createdAt": "2026-03-29T13:25:23.194Z",
+    "videoUrl": "https://www.youtube.com/watch?v=EW4N16-0obw",
+    "thumbnailUrl": "https://i.ytimg.com/vi/EW4N16-0obw/mqdefault.jpg"
+  }
+]

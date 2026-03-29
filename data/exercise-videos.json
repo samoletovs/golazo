@@ -1,0 +1,152 @@
+{
+  "tech-01": {
+    "videoUrl": "https://www.youtube.com/watch?v=dvQOcAP9LNg",
+    "thumbnailUrl": "https://i.ytimg.com/vi/dvQOcAP9LNg/mqdefault.jpg",
+    "channelTitle": "SOCCSTER",
+    "fetchedAt": "2026-03-29T13:25:06.935Z"
+  },
+  "tech-02": {
+    "videoUrl": "https://www.youtube.com/watch?v=rhRDXvlPoFQ",
+    "thumbnailUrl": "https://i.ytimg.com/vi/rhRDXvlPoFQ/mqdefault.jpg",
+    "channelTitle": "Unisport",
+    "fetchedAt": "2026-03-29T13:25:07.591Z"
+  },
+  "tech-03": {
+    "videoUrl": "https://www.youtube.com/watch?v=guoGeVB3UbY",
+    "thumbnailUrl": "https://i.ytimg.com/vi/guoGeVB3UbY/mqdefault.jpg",
+    "channelTitle": "Prolific Soccer",
+    "fetchedAt": "2026-03-29T13:25:08.374Z"
+  },
+  "tech-04": {
+    "videoUrl": "https://www.youtube.com/watch?v=HGU3r0fb3Z8",
+    "thumbnailUrl": "https://i.ytimg.com/vi/HGU3r0fb3Z8/mqdefault.jpg",
+    "channelTitle": "Kreider Academy",
+    "fetchedAt": "2026-03-29T13:25:09.075Z"
+  },
+  "tech-05": {
+    "videoUrl": "https://www.youtube.com/watch?v=R-tKGGgSWos",
+    "thumbnailUrl": "https://i.ytimg.com/vi/R-tKGGgSWos/mqdefault.jpg",
+    "channelTitle": "Liverpool FC",
+    "fetchedAt": "2026-03-29T13:25:09.724Z"
+  },
+  "phys-01": {
+    "videoUrl": "https://www.youtube.com/watch?v=WU4gekXAYJQ",
+    "thumbnailUrl": "https://i.ytimg.com/vi/WU4gekXAYJQ/mqdefault.jpg",
+    "channelTitle": "Armas Strength and Conditioning",
+    "fetchedAt": "2026-03-29T13:25:10.341Z"
+  },
+  "phys-02": {
+    "videoUrl": "https://www.youtube.com/watch?v=pctIqjikWX8",
+    "thumbnailUrl": "https://i.ytimg.com/vi/pctIqjikWX8/mqdefault.jpg",
+    "channelTitle": "Prolific Soccer",
+    "fetchedAt": "2026-03-29T13:25:11.002Z"
+  },
+  "phys-03": {
+    "videoUrl": "https://www.youtube.com/watch?v=AtLK1nAw6lU",
+    "thumbnailUrl": "https://i.ytimg.com/vi/AtLK1nAw6lU/mqdefault.jpg",
+    "channelTitle": "Jack Folan - Club Kick",
+    "fetchedAt": "2026-03-29T13:25:11.555Z"
+  },
+  "phys-04": {
+    "videoUrl": "https://www.youtube.com/watch?v=p_qBAXAlO84",
+    "thumbnailUrl": "https://i.ytimg.com/vi/p_qBAXAlO84/mqdefault.jpg",
+    "channelTitle": "Joner Football",
+    "fetchedAt": "2026-03-29T13:25:12.268Z"
+  },
+  "phys-05": {
+    "videoUrl": "https://www.youtube.com/watch?v=H23yEfXAtBg",
+    "thumbnailUrl": "https://i.ytimg.com/vi/H23yEfXAtBg/mqdefault.jpg",
+    "channelTitle": "SHIN’S JOURNEY / Shinya Kadono",
+    "fetchedAt": "2026-03-29T13:25:12.977Z"
+  },
+  "tact-01": {
+    "videoUrl": "https://www.youtube.com/watch?v=8n-1EaMTJKw",
+    "thumbnailUrl": "https://i.ytimg.com/vi/8n-1EaMTJKw/mqdefault.jpg",
+    "channelTitle": "RC Performance Training",
+    "fetchedAt": "2026-03-29T13:25:13.679Z"
+  },
+  "tact-02": {
+    "videoUrl": "https://www.youtube.com/watch?v=SbN-APMYvcg",
+    "thumbnailUrl": "https://i.ytimg.com/vi/SbN-APMYvcg/mqdefault.jpg",
+    "channelTitle": "Next Star Football TV",
+    "fetchedAt": "2026-03-29T13:25:14.398Z"
+  },
+  "tact-03": {
+    "videoUrl": "https://www.youtube.com/watch?v=IHeUKdsVHHg",
+    "thumbnailUrl": "https://i.ytimg.com/vi/IHeUKdsVHHg/mqdefault.jpg",
+    "channelTitle": "KS Performance",
+    "fetchedAt": "2026-03-29T13:25:15.077Z"
+  },
+  "tact-04": {
+    "videoUrl": "https://www.youtube.com/watch?v=tmTJQoKRj_Q",
+    "thumbnailUrl": "https://i.ytimg.com/vi/tmTJQoKRj_Q/mqdefault.jpg",
+    "channelTitle": "Onside - Training",
+    "fetchedAt": "2026-03-29T13:25:15.773Z"
+  },
+  "tact-05": {
+    "videoUrl": "https://www.youtube.com/watch?v=ugAfdOzbSu0",
+    "thumbnailUrl": "https://i.ytimg.com/vi/ugAfdOzbSu0/mqdefault.jpg",
+    "channelTitle": "Football Focus",
+    "fetchedAt": "2026-03-29T13:25:16.249Z"
+  },
+  "ment-01": {
+    "videoUrl": "https://www.youtube.com/watch?v=lLaB7fNeimw",
+    "thumbnailUrl": "https://i.ytimg.com/vi/lLaB7fNeimw/mqdefault.jpg",
+    "channelTitle": "OneAthlete — Improve your game",
+    "fetchedAt": "2026-03-29T13:25:16.871Z"
+  },
+  "ment-02": {
+    "videoUrl": "https://www.youtube.com/watch?v=c5jATacUrqQ",
+    "thumbnailUrl": "https://i.ytimg.com/vi/c5jATacUrqQ/mqdefault.jpg",
+    "channelTitle": "Coach Christo",
+    "fetchedAt": "2026-03-29T13:25:17.685Z"
+  },
+  "ment-03": {
+    "videoUrl": "https://www.youtube.com/watch?v=reJoL7-QCbY",
+    "thumbnailUrl": "https://i.ytimg.com/vi/reJoL7-QCbY/mqdefault.jpg",
+    "channelTitle": "OneAthlete — Improve your game",
+    "fetchedAt": "2026-03-29T13:25:18.279Z"
+  },
+  "ment-04": {
+    "videoUrl": "https://www.youtube.com/watch?v=r60gPCfZvoM",
+    "thumbnailUrl": "https://i.ytimg.com/vi/r60gPCfZvoM/mqdefault.jpg",
+    "channelTitle": "ASB Soccer",
+    "fetchedAt": "2026-03-29T13:25:18.953Z"
+  },
+  "ment-05": {
+    "videoUrl": "https://www.youtube.com/watch?v=ij57OFjvwpk",
+    "thumbnailUrl": "https://i.ytimg.com/vi/ij57OFjvwpk/mqdefault.jpg",
+    "channelTitle": "Progressive Soccer",
+    "fetchedAt": "2026-03-29T13:25:19.629Z"
+  },
+  "deep-01": {
+    "videoUrl": "https://www.youtube.com/watch?v=QB76gpRYFIg",
+    "thumbnailUrl": "https://i.ytimg.com/vi/QB76gpRYFIg/mqdefault.jpg",
+    "channelTitle": "Dom Futbol",
+    "fetchedAt": "2026-03-29T13:25:20.296Z"
+  },
+  "deep-02": {
+    "videoUrl": "https://www.youtube.com/watch?v=PLG7nG1EWZM",
+    "thumbnailUrl": "https://i.ytimg.com/vi/PLG7nG1EWZM/mqdefault.jpg",
+    "channelTitle": "Kreider Academy",
+    "fetchedAt": "2026-03-29T13:25:20.954Z"
+  },
+  "deep-03": {
+    "videoUrl": "https://www.youtube.com/watch?v=2fbO9AKTPnI",
+    "thumbnailUrl": "https://i.ytimg.com/vi/2fbO9AKTPnI/mqdefault.jpg",
+    "channelTitle": "Unisport",
+    "fetchedAt": "2026-03-29T13:25:21.651Z"
+  },
+  "know-01": {
+    "videoUrl": "https://www.youtube.com/watch?v=GePlbCsGniA",
+    "thumbnailUrl": "https://i.ytimg.com/vi/GePlbCsGniA/mqdefault.jpg",
+    "channelTitle": "LifeOnPaul",
+    "fetchedAt": "2026-03-29T13:25:22.368Z"
+  },
+  "know-02": {
+    "videoUrl": "https://www.youtube.com/watch?v=gm5TTqMckhA",
+    "thumbnailUrl": "https://i.ytimg.com/vi/gm5TTqMckhA/mqdefault.jpg",
+    "channelTitle": "Oskar Jansson",
+    "fetchedAt": "2026-03-29T13:25:22.978Z"
+  }
+}

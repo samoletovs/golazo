@@ -49,6 +49,8 @@ interface OnboardingForm {
   role: AccountRole
   name: string
   birthDate: string
+  country: string
+  city: string
   team: string
   jerseyNumber: string
   positions: Position[]
@@ -101,6 +103,8 @@ export function OnboardingPage() {
     role: 'player',
     name: '',
     birthDate: '',
+    country: 'LV',
+    city: '',
     team: '',
     jerseyNumber: '',
     positions: [],
@@ -153,6 +157,8 @@ export function OnboardingPage() {
       role: form.role,
       name: form.name || 'Player',
       birthDate: form.birthDate,
+      country: form.country || undefined,
+      city: form.city || undefined,
       team: form.team,
       jerseyNumber: form.jerseyNumber ? parseInt(form.jerseyNumber, 10) : undefined,
       positions: form.positions.length > 0 ? form.positions : ['CM'],
@@ -272,12 +278,47 @@ export function OnboardingPage() {
                   className="w-full"
                 />
 
+                <div className="grid grid-cols-2 gap-2 mt-2">
+                  <div>
+                    <label className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>
+                      {t('onboarding.country')}
+                    </label>
+                    <select
+                      value={form.country}
+                      onChange={(e) => setForm((f) => ({ ...f, country: e.target.value }))}
+                      className="w-full text-sm p-2 rounded-lg border"
+                    >
+                      <option value="LV">🇱🇻 Latvia</option>
+                      <option value="EE">🇪🇪 Estonia</option>
+                      <option value="LT">🇱🇹 Lithuania</option>
+                      <option value="PL">🇵🇱 Poland</option>
+                      <option value="FI">🇫🇮 Finland</option>
+                      <option value="SE">🇸🇪 Sweden</option>
+                      <option value="DE">🇩🇪 Germany</option>
+                      <option value="OTHER">Other</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>
+                      {t('onboarding.city')}
+                    </label>
+                    <input
+                      type="text"
+                      value={form.city}
+                      onChange={(e) => setForm((f) => ({ ...f, city: e.target.value }))}
+                      placeholder={t('onboarding.cityPlaceholder')}
+                      className="w-full"
+                    />
+                  </div>
+                </div>
+
                 <label className="text-xs font-bold mt-2" style={{ color: 'var(--color-text-secondary)' }}>
                   {t('onboarding.team')}
                 </label>
                 <TeamPicker
                   value={form.team}
                   onChange={(name) => setForm((f) => ({ ...f, team: name }))}
+                  country={form.country}
                   placeholder={t('onboarding.teamPlaceholder')}
                   className="w-full"
                 />

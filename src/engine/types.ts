@@ -30,6 +30,8 @@ export interface PlayerProfile {
   role: AccountRole
   name: string
   birthDate: string // ISO date
+  country?: string  // ISO 3166-1 alpha-2
+  city?: string
   team: string
   jerseyNumber?: number
   teams?: PlayerTeam[]
@@ -50,6 +52,7 @@ export interface PlayerTeam {
   logoUrl?: string   // team logo (fetched from website or manual)
   shortInfo?: string // brief description from website
   registryId?: string // link to SharedTeam in shared registry
+  isPrimary?: boolean // main team
   active: boolean
   createdAt: string
 }
@@ -133,6 +136,7 @@ export interface MatchEntry {
   id: string
   playerId: string
   tournamentId?: string
+  playingFor?: string    // team name the player played for
   date: string
   opponent: string
   competition: string

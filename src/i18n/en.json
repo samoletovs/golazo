@@ -403,6 +403,10 @@
   "teams.knownAs": "Also known as",
 
   "onboarding.jerseyNumber": "Jersey number",
+  "onboarding.country": "Country",
+  "onboarding.city": "City",
+  "onboarding.cityPlaceholder": "e.g. Riga",
+  "match.playingFor": "Playing for",
 
   "empty.matches.title": "No matches yet",
   "empty.matches.text": "Log your first match to start tracking your progress!",

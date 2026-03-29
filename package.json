@@ -13,7 +13,7 @@
     "preview": "vite preview",
     "maintain": "node scripts/maintenance/maintain.cjs",
     "maintain:dry": "node scripts/maintenance/maintain.cjs --dry-run --verbose",
-    "maintain:exercises": "node scripts/maintenance/maintain.cjs --task exercises --verbose",
+    "maintain:exercises": "node scripts/maintenance/maintain.cjs --task exercise --verbose",
     "maintain:teams": "node scripts/maintenance/maintain.cjs --task team --verbose"
   },
   "dependencies": {

@@ -114,6 +114,11 @@ export function Profile() {
             <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
               {profile?.jerseyNumber ? `#${profile.jerseyNumber} • ` : ''}{profile?.positions?.join(' / ') ?? 'CM'} • {profile?.team ?? '???'}
             </p>
+            {(profile?.city || profile?.country) && (
+              <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
+                📍 {[profile?.city, profile?.country].filter(Boolean).join(', ')}
+              </p>
+            )}
             <p className="text-xs font-data" style={{ color: 'var(--color-text-muted)' }}>
               Level {xp.level} • {xp.totalXp.toLocaleString()} XP
             </p>
