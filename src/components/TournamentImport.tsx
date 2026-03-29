@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
+import { TeamPicker } from './TeamPicker'
 import type { Tournament, ScheduleEvent } from '../engine/types'
 
 interface ParsedGame {
@@ -27,11 +28,22 @@ export function TournamentImport({ onClose }: { onClose: () => void }) {
   const { t } = useTranslation()
   const { profile, addTournament, addScheduleEvent } = useApp()
 
+  // Player's saved teams (from profile)
+  const playerTeams = profile?.teams?.filter((t) => t.active) ?? []
+  const hasTeams = playerTeams.length > 0
+
   const [url, setUrl] = useState('')
+  // The name used to search in the tournament fixtures
   const [teamName, setTeamName] = useState(profile?.team || '')
+  // Which of the player's teams this tournament is for
+  const [selectedTeamId, setSelectedTeamId] = useState(playerTeams[0]?.id ?? '')
   const [durationMin, setDurationMin] = useState(DEFAULT_DURATION_MIN)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+
+  // Step 0.5: after loading teams from URL, let user pick from dropdown
+  const [fetchedTeams, setFetchedTeams] = useState<string[]>([])
+  const [showTeamPicker, setShowTeamPicker] = useState(false)
 
   // Preview state
   const [result, setResult] = useState<ImportResult | null>(null)
@@ -52,8 +64,11 @@ export function TournamentImport({ onClose }: { onClose: () => void }) {
       const data = await res.json()
 
       if (!res.ok) {
+        // Show team picker if server returned team list
         if (data.allTeams?.length) {
-          setError(`${data.error}\n${t('import.teamsFound')}: ${data.allTeams.join(', ')}`)
+          setFetchedTeams(data.allTeams)
+          setShowTeamPicker(true)
+          setError(data.error || t('import.fetchError'))
         } else {
           setError(data.error || t('import.fetchError'))
         }
@@ -61,11 +76,14 @@ export function TournamentImport({ onClose }: { onClose: () => void }) {
       }
 
       if (data.matchedGames === 0 && data.allTeams?.length) {
-        setError(`${t('import.noGamesForTeam', { team: teamName })}\n${t('import.teamsFound')}: ${data.allTeams.join(', ')}`)
+        setFetchedTeams(data.allTeams)
+        setShowTeamPicker(true)
+        setError(t('import.noGamesForTeam', { team: teamName }))
         return
       }
 
       setResult(data)
+      setShowTeamPicker(false)
     } catch {
       setError(t('import.fetchError'))
     } finally {
@@ -187,18 +205,64 @@ export function TournamentImport({ onClose }: { onClose: () => void }) {
               </p>
             </div>
 
+            {/* Which of your teams is playing */}
+            {hasTeams && (
+              <div>
+                <label className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>
+                  {t('import.playingFor')}
+                </label>
+                <select
+                  value={selectedTeamId}
+                  onChange={(e) => setSelectedTeamId(e.target.value)}
+                  className="w-full text-sm p-2 rounded-lg border"
+                >
+                  {playerTeams.map((pt) => (
+                    <option key={pt.id} value={pt.id}>{pt.name}</option>
+                  ))}
+                </select>
+              </div>
+            )}
+
+            {/* Team name in tournament */}
             <div>
               <label className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>
-                {t('import.teamName')}
+                {t('import.tournamentTeamName')}
               </label>
-              <input
-                type="text"
+              <TeamPicker
                 value={teamName}
-                onChange={(e) => setTeamName(e.target.value)}
+                onChange={(name) => setTeamName(name)}
                 placeholder={t('import.teamNameHint')}
                 className="w-full"
               />
+              <p className="text-[0.65rem] mt-1" style={{ color: 'var(--color-text-muted)' }}>
+                {t('import.tournamentTeamHint')}
+              </p>
             </div>
+
+            {/* Team picker from fetched teams */}
+            {showTeamPicker && fetchedTeams.length > 0 && (
+              <div>
+                <label className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>
+                  {t('import.teamsFound')}
+                </label>
+                <div className="flex flex-wrap gap-1.5 mt-1">
+                  {fetchedTeams.map((team) => (
+                    <button
+                      key={team}
+                      className="text-[0.7rem] px-2.5 py-1 rounded-full"
+                      style={{
+                        background: teamName === team ? 'var(--color-green-glow)' : 'var(--color-glass-hover)',
+                        color: teamName === team ? 'var(--color-green-500)' : 'var(--color-text-secondary)',
+                        border: teamName === team ? '1px solid var(--color-green-500)' : '1px solid transparent',
+                      }}
+                      onClick={() => { setTeamName(team); setError('') }}
+                    >
+                      {team}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
 
             <div>
               <label className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>

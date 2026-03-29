@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
 import { useAuth } from '../contexts/AuthContext'
 import { createInitialSkillTree, updateSkillRating } from '../engine/skills'
+import { TeamPicker } from '../components/TeamPicker'
 import type { AccountRole, Position, DominantFoot, SkillCategory, Language, PhysicalMeasurement, SkillTree } from '../engine/types'
 
 type Step = 'role' | 'basics' | 'football' | 'physical' | 'assessment' | 'done'
@@ -49,6 +50,7 @@ interface OnboardingForm {
   name: string
   birthDate: string
   team: string
+  jerseyNumber: string
   positions: Position[]
   dominantFoot: DominantFoot
   yearsPlaying: number
@@ -100,6 +102,7 @@ export function OnboardingPage() {
     name: '',
     birthDate: '',
     team: '',
+    jerseyNumber: '',
     positions: [],
     dominantFoot: 'right',
     yearsPlaying: 0,
@@ -151,6 +154,7 @@ export function OnboardingPage() {
       name: form.name || 'Player',
       birthDate: form.birthDate,
       team: form.team,
+      jerseyNumber: form.jerseyNumber ? parseInt(form.jerseyNumber, 10) : undefined,
       positions: form.positions.length > 0 ? form.positions : ['CM'],
       dominantFoot: form.dominantFoot,
       language: i18n.language as Language,
@@ -271,12 +275,24 @@ export function OnboardingPage() {
                 <label className="text-xs font-bold mt-2" style={{ color: 'var(--color-text-secondary)' }}>
                   {t('onboarding.team')}
                 </label>
-                <input
-                  type="text"
+                <TeamPicker
                   value={form.team}
-                  onChange={(e) => setForm((f) => ({ ...f, team: e.target.value }))}
+                  onChange={(name) => setForm((f) => ({ ...f, team: name }))}
                   placeholder={t('onboarding.teamPlaceholder')}
                   className="w-full"
+                />
+
+                <label className="text-xs font-bold mt-2" style={{ color: 'var(--color-text-secondary)' }}>
+                  {t('onboarding.jerseyNumber')}
+                </label>
+                <input
+                  type="number"
+                  value={form.jerseyNumber}
+                  onChange={(e) => setForm((f) => ({ ...f, jerseyNumber: e.target.value }))}
+                  placeholder="10"
+                  min={1}
+                  max={99}
+                  className="w-24"
                 />
 
                 <label className="text-xs font-bold mt-2" style={{ color: 'var(--color-text-secondary)' }}>

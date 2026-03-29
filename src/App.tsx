@@ -1,6 +1,7 @@
 import { useState, useEffect, lazy, Suspense } from 'react'
 import { AppProvider, useApp } from './contexts/AppContext'
 import { AuthProvider, useAuth } from './contexts/AuthContext'
+import { ToastProvider } from './contexts/ToastContext'
 import { XpBar } from './components/XpBar'
 import { BottomNav } from './components/BottomNav'
 import FeedbackButton from './components/FeedbackButton'
@@ -21,9 +22,18 @@ type Page = 'dashboard' | 'log' | 'exercises' | 'challenges' | 'profile' | 'sche
 
 function AppContent() {
   const [page, setPage] = useState<Page>('dashboard')
+  const [pageKey, setPageKey] = useState(0)
   const { user, loading: authLoading } = useAuth()
   const { onboardingComplete } = useApp()
   const [skippedLogin, setSkippedLogin] = useState(false)
+
+  // Page transition — re-key the content wrapper to trigger animation
+  const handleNavigate = (p: string) => {
+    if (p !== page) {
+      setPage(p as Page)
+      setPageKey(k => k + 1)
+    }
+  }
 
   // Listen for skip-login event (local dev)
   useEffect(() => {
@@ -63,16 +73,18 @@ function AppContent() {
         </header>
 
         <main className="flex-1 overflow-y-auto pb-20">
-          {page === 'dashboard' && <Dashboard />}
-          {page === 'log' && <LogPage />}
-          <Suspense fallback={<div className="flex items-center justify-center p-8"><span className="text-3xl">⚽</span></div>}>
-            {page === 'exercises' && <Exercises />}
-            {page === 'challenges' && <Challenges />}
-            {page === 'profile' && <Profile />}
-            {page === 'schedule' && <SchedulePage />}
-            {page === 'progress' && <ProgressPage />}
-            {page === 'leaderboard' && <LeaderboardPage />}
-          </Suspense>
+          <div key={pageKey} className="page-enter">
+            {page === 'dashboard' && <Dashboard />}
+            {page === 'log' && <LogPage />}
+            <Suspense fallback={<div className="flex items-center justify-center p-8"><span className="text-3xl">⚽</span></div>}>
+              {page === 'exercises' && <Exercises />}
+              {page === 'challenges' && <Challenges />}
+              {page === 'profile' && <Profile />}
+              {page === 'schedule' && <SchedulePage />}
+              {page === 'progress' && <ProgressPage />}
+              {page === 'leaderboard' && <LeaderboardPage />}
+            </Suspense>
+          </div>
         </main>
 
         <footer className="nl-footer">
@@ -80,7 +92,7 @@ function AppContent() {
         </footer>
       </div>
 
-      <BottomNav active={page} onNavigate={(p) => setPage(p as Page)} />
+      <BottomNav active={page} onNavigate={handleNavigate} />
       <FeedbackButton />
     </div>
   )
@@ -90,7 +102,9 @@ export default function App() {
   return (
     <AuthProvider>
       <AppProvider>
-        <AppContent />
+        <ToastProvider>
+          <AppContent />
+        </ToastProvider>
       </AppProvider>
     </AuthProvider>
   )

@@ -1,0 +1,121 @@
+[
+  {
+    "name": "FK Žalgiris",
+    "abbreviation": "ZAL",
+    "aliases": ["FK ŽALGIRIS", "ŽALGIRIS", "ZALGIRIS", "FA ŽALGIRIS"],
+    "city": "Vilnius",
+    "website": "https://www.fkzalgiris.lt",
+    "league": "TOPLYGA",
+    "ageGroups": ["U15","U17","U19","Senior","Women"],
+    "stadium": "LFF Stadium",
+    "foundedYear": 1947,
+    "colors": ["#006400","#FFFFFF"]
+  },
+  {
+    "name": "FK Kauno Žalgiris",
+    "abbreviation": "KZA",
+    "aliases": ["KAUNO ŽALGIRIS", "K. ŽALGIRIS", "KAUNO ZALGIRIS"],
+    "city": "Kaunas",
+    "website": "https://www.fkkaunozalgiris.lt",
+    "league": "TOPLYGA",
+    "ageGroups": ["U15","U17","U19","Senior"],
+    "stadium": "Dariaus ir Girėno stadionas",
+    "foundedYear": 2004,
+    "colors": ["#006400","#FFFF00"]
+  },
+  {
+    "name": "FK Sūduva",
+    "abbreviation": "SUD",
+    "aliases": ["SŪDUVA", "SUDUVA", "FK SŪDUVA"],
+    "city": "Marijampolė",
+    "website": "https://www.fksuduva.lt",
+    "league": "TOPLYGA",
+    "ageGroups": ["U15","U17","U19","Senior"],
+    "stadium": "Sūduvos stadionas",
+    "foundedYear": 1968,
+    "colors": ["#FF0000","#000000"]
+  },
+  {
+    "name": "FC Hegelmann",
+    "abbreviation": "HEG",
+    "aliases": ["HEGELMANN", "FC HEGELMANN"],
+    "city": "Kaunas",
+    "league": "TOPLYGA",
+    "ageGroups": ["U17","U19","Senior"],
+    "foundedYear": 2018,
+    "colors": ["#0000FF","#FFFFFF"]
+  },
+  {
+    "name": "FK Panevėžys",
+    "abbreviation": "PAN",
+    "aliases": ["PANEVĖŽYS", "FK PANEVĖŽYS", "PANEVEZYS"],
+    "city": "Panevėžys",
+    "league": "TOPLYGA",
+    "ageGroups": ["U17","U19","Senior"],
+    "stadium": "Aukštaitijos stadionas",
+    "foundedYear": 2018,
+    "colors": ["#FF4500","#000000"]
+  },
+  {
+    "name": "FK Banga",
+    "abbreviation": "BAN",
+    "aliases": ["BANGA", "FK BANGA"],
+    "city": "Gargždai",
+    "league": "TOPLYGA",
+    "ageGroups": ["U17","U19","Senior"],
+    "stadium": "Banga Stadium",
+    "foundedYear": 1960,
+    "colors": ["#FF6600","#000000"]
+  },
+  {
+    "name": "FC Džiugas",
+    "abbreviation": "DZI",
+    "aliases": ["DŽIUGAS", "DZIUGAS", "FC DŽIUGAS"],
+    "city": "Telšiai",
+    "league": "TOPLYGA",
+    "ageGroups": ["U17","U19","Senior"],
+    "foundedYear": 1935,
+    "colors": ["#008000","#FFFFFF"]
+  },
+  {
+    "name": "FK Riteriai",
+    "abbreviation": "RIT",
+    "aliases": ["RITERIAI", "FK RITERIAI"],
+    "city": "Vilnius",
+    "league": "TOPLYGA",
+    "ageGroups": ["U13","U15","U17","U19","Senior"],
+    "stadium": "SFA stadionas",
+    "foundedYear": 1996,
+    "colors": ["#000080","#FFD700"]
+  },
+  {
+    "name": "FA Šiauliai",
+    "abbreviation": "SAI",
+    "aliases": ["FA ŠIAULIAI", "FA SIAULIAI", "ŠIAULIAI"],
+    "city": "Šiauliai",
+    "league": "TOPLYGA",
+    "ageGroups": ["U13","U15","U17","U19","Senior"],
+    "foundedYear": 2019,
+    "colors": ["#FFD700","#006400"]
+  },
+  {
+    "name": "FK TransInvest",
+    "abbreviation": "TRA",
+    "aliases": ["TRANSINVEST", "FK TRANSINVEST"],
+    "city": "Vilnius",
+    "league": "TOPLYGA",
+    "ageGroups": ["U19","Senior"],
+    "foundedYear": 2020,
+    "colors": ["#0000CD","#FF0000"]
+  },
+  {
+    "name": "DFK Dainava",
+    "abbreviation": "DAI",
+    "aliases": ["DFK DAINAVA", "DAINAVA"],
+    "city": "Alytus",
+    "league": "I Lyga",
+    "ageGroups": ["U15","U17","U19","Senior"],
+    "foundedYear": 1998,
+    "colors": ["#00FF00","#000000"]
+  }
+]

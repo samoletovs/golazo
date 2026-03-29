@@ -1,5 +1,5 @@
 const { app } = require('@azure/functions');
-const { getUser, jsonResponse } = require('../cosmos');
+const { getUser, getTeamsContainer, jsonResponse } = require('../cosmos');
 
 /**
  * POST /api/tournament-import — fetch a tournament URL and parse fixtures.
@@ -50,12 +50,16 @@ app.http('tournament-import', {
       // Export all team names for helpful error messages
       const allTeams = [...new Set(allGames.flatMap((g) => [g.home, g.away]))].sort();
 
+      // Match tournament teams against shared registry
+      const registryMatches = await matchTeamsAgainstRegistry(allTeams);
+
       return jsonResponse({
         tournament: tournamentName,
         totalGames: allGames.length,
         matchedGames: filtered.length,
         games: filtered,
         allTeams,
+        registryMatches,
       });
     } catch (err) {
       console.error('Tournament import failed:', err.message);
@@ -88,18 +92,32 @@ async function fetchPage(url) {
 /* ── Tournament name extraction ───────────────────────────── */
 
 function extractTournamentName(html, url) {
-  // Try <title> tag first
+  // Try URL path first — often the most readable name
+  // e.g. turniir.ee/nordic-spring-cup/fixtures → "Nordic Spring Cup"
+  try {
+    const urlObj = new URL(url);
+    const pathParts = urlObj.pathname.split('/').filter(Boolean);
+    // Skip generic segments like "fixtures", "schedule", "games"
+    const skip = new Set(['fixtures', 'schedule', 'games', 'matches', 'results', 'standings', 'groups']);
+    const namePart = pathParts.find((p) => p.length > 3 && !skip.has(p.toLowerCase()) && /[a-z]/i.test(p));
+    if (namePart) {
+      const pretty = namePart.replace(/[-_]/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()).trim();
+      if (pretty.length > 3 && pretty.length < 80) return pretty;
+    }
+  } catch { /* ignore */ }
+
+  // Try <title> tag
   const titleMatch = html.match(/<title[^>]*>([^<]+)<\/title>/i);
   if (titleMatch) {
     let title = titleMatch[1].trim();
     // Clean common suffixes
     title = title.replace(/\s*[|\-–—]\s*(Turniir|Tournament Manager|SportData|Tournify).*$/i, '').trim();
     title = title.replace(/\s*-\s*Fixtures.*$/i, '').trim();
-    if (title.length > 3 && title.length < 100) return title;
+    if (title.length > 5 && title.length < 100) return title;
   }
 
   // Fallback: <h1> or <h2>
-  const headingMatch = html.match(/<h[12][^>]*>([^<]{3,80})<\/h[12]>/i);
+  const headingMatch = html.match(/<h[12][^>]*>([^<]{5,80})<\/h[12]>/i);
   if (headingMatch) return headingMatch[1].trim();
 
   // Last resort: domain name
@@ -212,4 +230,47 @@ function teamMatches(gameTeams, filter) {
     if (normFilter.includes(part.trim()) || part.trim().includes(normFilter)) return true;
   }
   return normFilter.includes(normGame) || normGame.includes(normFilter);
+}
+
+/* ── Registry matching ────────────────────────────────────── */
+
+/**
+ * Match tournament team names against the shared team registry.
+ * Returns { [teamName]: { id, name, country, logoUrl, verified } | null }
+ */
+async function matchTeamsAgainstRegistry(teamNames) {
+  const container = await getTeamsContainer();
+  if (!container) return {};
+
+  const result = {};
+  try {
+    // Load all registry teams (cached per request — registries are small)
+    const { resources: registry } = await container.items
+      .query('SELECT c.id, c.name, c.abbreviation, c.aliases, c.country, c.logoUrl, c.verified FROM c')
+      .fetchAll();
+
+    for (const tournamentName of teamNames) {
+      const norm = normalizeTeam(tournamentName);
+      let match = null;
+
+      for (const team of registry) {
+        // Check exact name match
+        if (normalizeTeam(team.name) === norm) { match = team; break; }
+        // Check abbreviation
+        if (team.abbreviation && normalizeTeam(team.abbreviation) === norm) { match = team; break; }
+        // Check aliases
+        if (team.aliases?.some((a) => normalizeTeam(a) === norm)) { match = team; break; }
+        // Check substring (team name contains tournament name or vice versa)
+        const normTeam = normalizeTeam(team.name);
+        if (norm.includes(normTeam) || normTeam.includes(norm)) { match = team; break; }
+      }
+
+      result[tournamentName] = match
+        ? { id: match.id, name: match.name, country: match.country, logoUrl: match.logoUrl, verified: match.verified }
+        : null;
+    }
+  } catch (err) {
+    console.warn('Registry matching failed:', err.message);
+  }
+  return result;
 }

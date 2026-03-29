@@ -31,11 +31,53 @@ export interface PlayerProfile {
   name: string
   birthDate: string // ISO date
   team: string
+  jerseyNumber?: number
+  teams?: PlayerTeam[]
   positions: Position[]
   dominantFoot: DominantFoot
   language: Language
   photoUrl?: string
   createdAt: string
+}
+
+/* ── Player Teams ─────────────────────────────────────────── */
+
+export interface PlayerTeam {
+  id: string
+  name: string
+  aliases: string[]  // alternative names (tournament names, merged names)
+  website?: string   // team homepage URL
+  logoUrl?: string   // team logo (fetched from website or manual)
+  shortInfo?: string // brief description from website
+  registryId?: string // link to SharedTeam in shared registry
+  active: boolean
+  createdAt: string
+}
+
+/* ── Shared Team Registry ─────────────────────────────────── */
+
+export interface SharedTeam {
+  id: string
+  country: string              // ISO 3166-1 alpha-2 (partition key)
+  name: string                 // Official club name
+  abbreviation?: string        // "RFS", "MNSS", etc.
+  aliases: string[]            // Tournament names, historical names
+  city?: string
+  website?: string
+  logoUrl?: string
+  colors?: string[]            // Hex codes
+  foundedYear?: number
+  league?: string              // "Virsliga", "Premium Liiga", etc.
+  ageGroups?: string[]         // "U7","U9",..."U19","Senior","Women"
+  socialMedia?: { platform: string; url: string }[]
+  stadium?: string
+  parentClubId?: string        // For squads → parent club's id
+  regCode?: string             // Government registry code
+  verified: boolean
+  verifiedAt?: string
+  addedBy: 'system' | 'user'
+  createdAt: string
+  updatedAt: string
 }
 
 /* ── XP & Levels ──────────────────────────────────────────── */
@@ -96,7 +138,7 @@ export interface MatchEntry {
   competition: string
   scoreUs: number
   scoreThem: number
-  position: Position
+  position: Position | Position[]
   minutesPlayed: number
   goals: number
   assists: number

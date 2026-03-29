@@ -332,6 +332,8 @@ export function SchedulePage() {
           </div>
         </div>
       )}
+
+      {showImport && <TournamentImport onClose={() => setShowImport(false)} />}
     </div>
   )
 }

@@ -15,7 +15,7 @@ const ENERGY_EMOJIS = ['😴', '😐', '🙂', '😄', '🔥']
 
 export function MatchLog({ onBack }: { onBack?: () => void }) {
   const { t } = useTranslation()
-  const { xp, setXp, addMatch } = useApp()
+  const { xp, setXp, addMatch, profile } = useApp()
   const [saved, setSaved] = useState(false)
 
   const today = new Date().toISOString().split('T')[0]
@@ -23,7 +23,7 @@ export function MatchLog({ onBack }: { onBack?: () => void }) {
   const [competition, setCompetition] = useState('')
   const [scoreUs, setScoreUs] = useState(0)
   const [scoreThem, setScoreThem] = useState(0)
-  const [position, setPosition] = useState<Position>('CM')
+  const [positions, setPositions] = useState<Position[]>(profile?.positions?.length ? [profile.positions[0]] : ['CM'])
   const [minutes] = useState(70)
   const [goals, setGoals] = useState(0)
   const [assists, setAssists] = useState(0)
@@ -35,6 +35,16 @@ export function MatchLog({ onBack }: { onBack?: () => void }) {
   const [toImprove, setToImprove] = useState('')
   const [mood, setMood] = useState<EnergyLevel>(3)
 
+  const teamName = profile?.team || '???'
+
+  function togglePosition(pos: Position) {
+    setPositions((prev) =>
+      prev.includes(pos)
+        ? prev.length > 1 ? prev.filter((p) => p !== pos) : prev
+        : [...prev, pos]
+    )
+  }
+
   function handleSave() {
     const entry: MatchEntry = {
       id: crypto.randomUUID(),
@@ -44,7 +54,7 @@ export function MatchLog({ onBack }: { onBack?: () => void }) {
       competition,
       scoreUs,
       scoreThem,
-      position,
+      position: positions,
       minutesPlayed: minutes,
       goals, assists, shots, keyPasses, tackles,
       selfRating,
@@ -104,7 +114,7 @@ export function MatchLog({ onBack }: { onBack?: () => void }) {
         <p className="section-label mb-2">{t('match.score')}</p>
         <div className="flex items-center justify-center gap-4">
           <div className="flex flex-col items-center gap-1">
-            <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>RFS</span>
+            <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{teamName}</span>
             <div className="flex items-center gap-2">
               <button className="tap-target card px-3 py-1" onClick={() => setScoreUs(Math.max(0, scoreUs - 1))} aria-label="Decrease our score">−</button>
               <span className="text-2xl font-bold w-8 text-center">{scoreUs}</span>
@@ -123,7 +133,7 @@ export function MatchLog({ onBack }: { onBack?: () => void }) {
         </div>
       </div>
 
-      {/* Position */}
+      {/* Position (multi-select) */}
       <div>
         <p className="section-label mb-2">{t('match.position')}</p>
         <div className="flex flex-wrap gap-2">
@@ -131,8 +141,8 @@ export function MatchLog({ onBack }: { onBack?: () => void }) {
             <button
               key={p.key}
               className="btn-choice tap-target text-xs px-3 py-2"
-              onClick={() => setPosition(p.key)}
-              aria-pressed={position === p.key}
+              onClick={() => togglePosition(p.key)}
+              aria-pressed={positions.includes(p.key)}
             >
               {p.label}
             </button>

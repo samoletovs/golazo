@@ -2,6 +2,7 @@ const { CosmosClient } = require('@azure/cosmos');
 const { DefaultAzureCredential } = require('@azure/identity');
 
 let _container = null;
+let _teamsContainer = null;
 
 /**
  * Singleton Cosmos DB container client.
@@ -24,6 +25,28 @@ async function getContainer() {
   const db = client.database(database);
   _container = db.container(container);
   return _container;
+}
+
+/**
+ * Singleton Cosmos DB container for shared team registry.
+ * Partition key: /country (ISO alpha-2).
+ */
+async function getTeamsContainer() {
+  if (_teamsContainer) return _teamsContainer;
+
+  const endpoint = process.env.COSMOS_ENDPOINT;
+  if (!endpoint) return null;
+
+  const database = process.env.COSMOS_DATABASE || 'golazo';
+
+  const client = new CosmosClient({
+    endpoint,
+    aadCredentials: new DefaultAzureCredential(),
+  });
+
+  const db = client.database(database);
+  _teamsContainer = db.container('teams');
+  return _teamsContainer;
 }
 
 /**
@@ -58,4 +81,4 @@ function jsonResponse(body, status = 200) {
   };
 }
 
-module.exports = { getContainer, getUser, jsonResponse };
+module.exports = { getContainer, getTeamsContainer, getUser, jsonResponse };

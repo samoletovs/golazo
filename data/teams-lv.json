@@ -1,0 +1,223 @@
+[
+  {
+    "name": "FK RFS",
+    "abbreviation": "RFS",
+    "aliases": ["RFS", "RFS ACADEMY", "RĪGAS FS", "RIGAS FS", "Rīgas Futbola skola"],
+    "city": "Rīga",
+    "website": "https://www.fcrfs.lv",
+    "league": "Virslīga",
+    "ageGroups": ["U7","U9","U11","U13","U15","U17","U19","Senior","Women"],
+    "stadium": "Daugava Stadium",
+    "foundedYear": 2014,
+    "colors": ["#003DA5","#FFFFFF"],
+    "regCode": "40008237950"
+  },
+  {
+    "name": "Riga FC",
+    "abbreviation": "RFC",
+    "aliases": ["RIGA FC", "RIGA"],
+    "city": "Rīga",
+    "website": "https://www.rigafc.lv",
+    "league": "Virslīga",
+    "ageGroups": ["U15","U17","U19","Senior"],
+    "stadium": "Skonto Stadium",
+    "foundedYear": 2014,
+    "colors": ["#1A1A1A","#FFFFFF"]
+  },
+  {
+    "name": "FK Liepāja",
+    "abbreviation": "FKL",
+    "aliases": ["FK LIEPAJA", "FK LIEPĀJA"],
+    "city": "Liepāja",
+    "website": "https://www.fkliepaja.lv",
+    "league": "Virslīga",
+    "ageGroups": ["U13","U15","U17","U19","Senior"],
+    "stadium": "Daugava Stadium Liepāja",
+    "foundedYear": 2014,
+    "colors": ["#FF6600","#000000"]
+  },
+  {
+    "name": "BFC Daugavpils",
+    "abbreviation": "BFC",
+    "aliases": ["BFC DAUGAVPILS"],
+    "city": "Daugavpils",
+    "website": "https://www.bfc.lv",
+    "league": "Virslīga",
+    "ageGroups": ["U15","U17","U19","Senior"],
+    "stadium": "Celtnieks Stadium",
+    "foundedYear": 2003,
+    "colors": ["#0000AA","#FFFFFF"]
+  },
+  {
+    "name": "FK Auda",
+    "abbreviation": "AUDA",
+    "aliases": ["FK AUDA", "AUDA"],
+    "city": "Rīga",
+    "league": "Virslīga",
+    "ageGroups": ["U15","U17","U19","Senior"],
+    "foundedYear": 2015,
+    "colors": ["#B8860B","#000000"]
+  },
+  {
+    "name": "FS Jelgava",
+    "abbreviation": "FSJ",
+    "aliases": ["FS JELGAVA", "FK JELGAVA", "JELGAVA"],
+    "city": "Jelgava",
+    "league": "Virslīga",
+    "ageGroups": ["U13","U15","U17","U19","Senior"],
+    "foundedYear": 2004,
+    "colors": ["#008000","#FFFFFF"]
+  },
+  {
+    "name": "FK Tukums 2000",
+    "abbreviation": "TUK",
+    "aliases": ["FK TUKUMS 2000", "TUKUMS"],
+    "city": "Tukums",
+    "league": "Virslīga",
+    "ageGroups": ["U15","U17","U19","Senior"],
+    "foundedYear": 2000,
+    "colors": ["#FF0000","#000000"]
+  },
+  {
+    "name": "SK Super Nova",
+    "abbreviation": "SN",
+    "aliases": ["SUPER NOVA", "SK SUPER NOVA"],
+    "city": "Rīga",
+    "league": "Virslīga",
+    "ageGroups": ["U13","U15","U17","U19","Senior"],
+    "foundedYear": 2016,
+    "colors": ["#FFD700","#000080"]
+  },
+  {
+    "name": "Grobiņas SC",
+    "abbreviation": "GSC",
+    "aliases": ["GROBIŅAS SC", "GROBINAS SC"],
+    "city": "Grobiņa",
+    "league": "Virslīga",
+    "foundedYear": 2015,
+    "colors": ["#FF0000","#FFFFFF"]
+  },
+  {
+    "name": "Ogre United FC",
+    "abbreviation": "OGR",
+    "aliases": ["OGRE UNITED", "OGRE"],
+    "city": "Ogre",
+    "league": "Virslīga",
+    "foundedYear": 2017,
+    "colors": ["#004D00","#FFFFFF"]
+  },
+  {
+    "name": "Valmiera FC",
+    "abbreviation": "VFC",
+    "aliases": ["VALMIERA FC", "VALMIERA"],
+    "city": "Valmiera",
+    "website": "https://www.valmierapk.lv",
+    "league": "LVBET līga",
+    "ageGroups": ["U13","U15","U17","U19","Senior"],
+    "foundedYear": 2016,
+    "colors": ["#E30613","#000000"]
+  },
+  {
+    "name": "FK Smiltene/BJSS",
+    "abbreviation": "SMI",
+    "aliases": ["FK SMILTENE/BJSS", "FK SMILTENE", "SMILTENE"],
+    "city": "Smiltene",
+    "league": "LVBET līga",
+    "foundedYear": 2006,
+    "colors": ["#006400","#FFFFFF"]
+  },
+  {
+    "name": "JFK Ventspils",
+    "abbreviation": "JFK",
+    "aliases": ["JFK VENTSPILS", "FK VENTSPILS", "VENTSPILS"],
+    "city": "Ventspils",
+    "league": "LVBET līga",
+    "foundedYear": 1997,
+    "colors": ["#FFD700","#0000FF"]
+  },
+  {
+    "name": "FS Metta",
+    "abbreviation": "MET",
+    "aliases": ["FS METTA", "FS METTA / SKANSTE", "METTA/LU", "METTA"],
+    "city": "Rīga",
+    "website": "https://www.fsmetta.lv",
+    "league": "LFF Jaunatne",
+    "ageGroups": ["U7","U9","U11","U13","U15","U17","U19","Senior"],
+    "foundedYear": 2006,
+    "colors": ["#FF0000","#000000"]
+  },
+  {
+    "name": "JDFS Alberts",
+    "abbreviation": "ALB",
+    "aliases": ["JDFS ALBERTS", "ALBERTS"],
+    "city": "Rīga",
+    "league": "LFF Jaunatne",
+    "ageGroups": ["U7","U9","U11","U13","U15","U17","U19"],
+    "foundedYear": 2001,
+    "colors": ["#0000FF","#FFFFFF"]
+  },
+  {
+    "name": "Mārupes NSS",
+    "abbreviation": "MNSS",
+    "aliases": ["MĀRUPES NSS", "MARUPES NSS", "MĀRUPES NSS / 2013", "MĀRUPES NSS / 2014", "MĀRUPES NSS / 2015", "MĀRUPES NSS / BABĪTE"],
+    "city": "Mārupe",
+    "league": "LFF Jaunatne",
+    "ageGroups": ["U7","U9","U11","U13","U15","U17"],
+    "foundedYear": 2008,
+    "colors": ["#FFD700","#006400"]
+  },
+  {
+    "name": "FK Valor",
+    "abbreviation": "VAL",
+    "aliases": ["FK VALOR", "VALOR"],
+    "city": "Rīga",
+    "league": "LFF Jaunatne",
+    "ageGroups": ["U9","U11","U13","U15"],
+    "foundedYear": 2018
+  },
+  {
+    "name": "FK Iecava",
+    "abbreviation": "IEC",
+    "aliases": ["FK IECAVA", "IECAVA"],
+    "city": "Iecava",
+    "league": "LFF Jaunatne",
+    "ageGroups": ["U11","U13","U15"],
+    "foundedYear": 2003
+  },
+  {
+    "name": "Rēzeknes FA",
+    "abbreviation": "RFA",
+    "aliases": ["RĒZEKNES FA", "REZEKNES FA", "RĒZEKNE"],
+    "city": "Rēzekne",
+    "league": "LFF Jaunatne",
+    "ageGroups": ["U11","U13","U15","U17"],
+    "foundedYear": 2010
+  },
+  {
+    "name": "JFC Corona Borealis",
+    "abbreviation": "JFC",
+    "aliases": ["JFC CORONA BOREALIS", "JFC CORONA BOARELIS", "CORONA BOREALIS"],
+    "city": "Rīga",
+    "league": "LFF Jaunatne",
+    "ageGroups": ["U9","U11","U13"],
+    "foundedYear": 2015
+  },
+  {
+    "name": "TFK Salaspils",
+    "abbreviation": "SAL",
+    "aliases": ["TFK SALASPILS", "SALASPILS"],
+    "city": "Salaspils",
+    "league": "LFF Jaunatne",
+    "ageGroups": ["U11","U13","U15"],
+    "foundedYear": 2005
+  },
+  {
+    "name": "FC Nikers",
+    "abbreviation": "NIK",
+    "aliases": ["FC NIKERS", "NIKERS"],
+    "city": "Rīga",
+    "league": "LFF Jaunatne",
+    "ageGroups": ["U11","U13","U15"],
+    "foundedYear": 2012
+  }
+]

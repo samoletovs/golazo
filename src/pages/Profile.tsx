@@ -7,6 +7,7 @@ import { fifaCardRatings, overallRating } from '../engine/skills'
 import { renderFifaCard } from '../engine/fifaCard'
 import { PhotoUpload } from '../components/PhotoUpload'
 import { AchievementsList } from '../components/AchievementsList'
+import { TeamsManager } from '../components/TeamsManager'
 import type { Language } from '../engine/types'
 
 const LANG_OPTIONS: { key: Language; label: string }[] = [
@@ -29,6 +30,7 @@ export function Profile() {
   const ratings = fifaCardRatings(skillTree)
   const overall = overallRating(skillTree)
   const [exporting, setExporting] = useState(false)
+  const [showTeams, setShowTeams] = useState(false)
 
   const seasonGoals = matches.reduce((s, m) => s + m.goals, 0)
   const seasonAssists = matches.reduce((s, m) => s + m.assists, 0)
@@ -110,7 +112,7 @@ export function Profile() {
           <div className="flex-1">
             <p className="text-lg font-bold">{profile?.name ?? 'Player'}</p>
             <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
-              {profile?.positions?.join(' / ') ?? 'CM'} • {profile?.team ?? 'RFS'}
+              {profile?.jerseyNumber ? `#${profile.jerseyNumber} • ` : ''}{profile?.positions?.join(' / ') ?? 'CM'} • {profile?.team ?? '???'}
             </p>
             <p className="text-xs font-data" style={{ color: 'var(--color-text-muted)' }}>
               Level {xp.level} • {xp.totalXp.toLocaleString()} XP
@@ -159,6 +161,23 @@ export function Profile() {
         aria-label={t('profile.export')}
       >
         {exporting ? t('common.loading') : t('profile.export')}
+      </button>
+
+      {/* My Teams */}
+      <button
+        className="card w-full text-left flex items-center gap-3 animate-fade-up"
+        onClick={() => setShowTeams(true)}
+      >
+        <span className="text-xl">⚽</span>
+        <div className="flex-1">
+          <p className="text-sm font-bold">{t('teams.title')}</p>
+          <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
+            {(profile?.teams?.length ?? 0) > 0
+              ? profile!.teams!.filter((t) => t.active).map((t) => t.name).join(', ')
+              : t('teams.empty')}
+          </p>
+        </div>
+        <span style={{ color: 'var(--color-text-muted)' }}>→</span>
       </button>
 
       {/* Achievements */}
@@ -254,6 +273,8 @@ export function Profile() {
           </button>
         </div>
       </div>
+
+      {showTeams && <TeamsManager onClose={() => setShowTeams(false)} />}
     </div>
   )
 }

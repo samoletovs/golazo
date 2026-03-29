@@ -1,8 +1,8 @@
 /* ── Golazo Game Design System ────────────────────────────── */
-/* Visual thesis: Duolingo meets Techne Football — LIGHT,      */
-/* vibrant, celebration-driven. Bright grass green on white.    */
-/* Chunky cards, vivid category colors, oversized numbers,     */
-/* bold rank badges. A GAME that pops off the screen.          */
+/* Visual thesis: Nike Training Club meets Duolingo — LIGHT,   */
+/* premium, celebration-driven. Clean whites, vivid green       */
+/* accents, bold Outfit headings, oversized numbers, smooth     */
+/* page transitions. A daily football companion that pops.      */
 /* Follows design-system-playful shared patterns.              */
 @import "tailwindcss";
 
@@ -10,28 +10,28 @@
   /* ── Game Identity Tokens ── */
   --color-game-primary: #16a34a;
   --color-game-secondary: #0ea5e9;
-  --color-game-accent: #f59e0b;
-  --color-game-bg: #f0f7f0;
+  --color-game-accent: #fbbf24;
+  --color-game-bg: #FAFBFA;
   --color-game-surface: #ffffff;
   --color-game-text: #1a2e1a;
   --color-game-text-muted: #64748b;
 
-  /* ── Pitch Light ── */
-  --color-bg: #f5f5f5;
-  --color-bg-warm: #fafafa;
+  /* ── Pitch Light (warmer, premium) ── */
+  --color-bg: #FAFBFA;
+  --color-bg-warm: #F7FAF7;
   --color-bg-field: #f0f7f0;
 
-  /* ── Pitch Green (primary action — slightly muted for sophistication) ── */
+  /* ── Pitch Green (primary action) ── */
   --color-green-500: #15803d;
   --color-green-400: #16a34a;
   --color-green-600: #166534;
-  --color-green-glow: rgba(21, 128, 61, 0.15);
+  --color-green-glow: rgba(21, 128, 61, 0.12);
 
-  /* ── Gold (XP, rewards — slightly deeper) ── */
-  --color-gold-500: #d97706;
-  --color-gold-400: #f59e0b;
-  --color-gold-300: #fbbf24;
-  --color-gold-glow: rgba(217, 119, 6, 0.15);
+  /* ── Gold (XP, rewards — brighter, more pop) ── */
+  --color-gold-500: #f59e0b;
+  --color-gold-400: #fbbf24;
+  --color-gold-300: #fde68a;
+  --color-gold-glow: rgba(245, 158, 11, 0.15);
 
   /* ── Rank Colors ── */
   --color-bronze: #cd7f32;
@@ -47,15 +47,17 @@
   --color-cat-knowledge: #06b6d4;
   --color-cat-matchplay: #ec4899;
 
-  /* ── Accents ── */
+  /* ── Semantic ── */
   --color-cyan: #0ea5e9;
   --color-danger: #ef4444;
   --color-warn: #f97316;
+  --color-success: #16a34a;
+  --color-info: #3b82f6;
 
-  /* ── Card Surface ── */
+  /* ── Card Surface (premium layering) ── */
   --color-glass: #ffffff;
-  --color-glass-border: rgba(0, 0, 0, 0.06);
-  --color-glass-hover: #fafafa;
+  --color-glass-border: rgba(0, 0, 0, 0.05);
+  --color-glass-hover: #F7FAF7;
   --color-glass-active: rgba(22, 163, 74, 0.06);
 
   /* ── Text ── */
@@ -65,7 +67,7 @@
 
   /* ── Type ── */
   --font-body: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
-  --font-display: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-display: "Outfit", "Plus Jakarta Sans", system-ui, sans-serif;
   --font-data: "JetBrains Mono", "IBM Plex Mono", monospace;
 
   /* ── Spacing ── */
@@ -77,11 +79,17 @@
   --space-8: 32px;
 
   /* ── Radius (refined — sporty, less chunky) ── */
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
   --radius-xl: 24px;
   --radius-full: 9999px;
+
+  /* ── Shadows (NTC-style premium layering) ── */
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.03), 0 4px 12px rgba(0, 0, 0, 0.05);
+  --shadow-card-hover: 0 2px 6px rgba(0, 0, 0, 0.04), 0 8px 20px rgba(0, 0, 0, 0.07);
+  --shadow-elevated: 0 8px 24px rgba(22, 163, 74, 0.1), 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-glow: 0 0 20px rgba(22, 163, 74, 0.15);
 
   /* ── Motion ── */
   --duration-instant: 60ms;
@@ -89,6 +97,8 @@
   --duration-normal: 200ms;
   --duration-slow: 350ms;
   --duration-dramatic: 600ms;
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* ── Base ────────────────────────────────────────────────── */
@@ -122,19 +132,19 @@ body {
 
 /* ── Gradient text (game signature) ──────────────────────── */
 .text-gradient-green {
-  background: linear-gradient(135deg, #15803d, #0e7490);
+  background: linear-gradient(135deg, #16a34a, #0ea5e9);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 .text-gradient-gold {
-  background: linear-gradient(135deg, #d97706, #dc2626);
+  background: linear-gradient(135deg, #f59e0b, #ef4444);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 .text-gradient-fire {
-  background: linear-gradient(135deg, #dc2626, #d97706);
+  background: linear-gradient(135deg, #ef4444, #f59e0b);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -151,10 +161,10 @@ body {
   position: sticky;
   top: 0;
   z-index: 40;
-  background: rgba(245, 245, 245, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  background: rgba(250, 251, 250, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 /* ── Desktop container ───────────────────────────────────── */
@@ -162,6 +172,9 @@ body {
   max-width: 480px;
   margin: 0 auto;
   width: 100%;
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+  box-sizing: border-box;
 }
 @media (min-width: 768px) {
   .app-shell {
@@ -174,45 +187,45 @@ body {
   }
 }
 
-/* ── Card (primary container) ────────────────────────────── */
+/* ── Card (primary container — premium layered shadows) ──── */
 .card {
   background: #ffffff;
   border-radius: var(--radius-md);
-  padding: 16px;
-  transition: all 0.2s ease;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 6px rgba(0, 0, 0, 0.03);
+  padding: 18px;
+  transition: all 0.2s var(--ease-out, ease);
+  box-shadow: var(--shadow-card);
 }
 .card:hover {
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06), 0 2px 12px rgba(0, 0, 0, 0.04);
+  box-shadow: var(--shadow-card-hover);
 }
 
 /* ── Glow Card (special/highlighted) ─────────────────────── */
 .card-glow {
   background: #ffffff;
-  border: 1px solid rgba(21, 128, 61, 0.15);
+  border: 1px solid rgba(21, 128, 61, 0.12);
   border-radius: var(--radius-md);
-  padding: 16px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 6px rgba(0, 0, 0, 0.03);
+  padding: 18px;
+  box-shadow: var(--shadow-card);
 }
 
 /* ── Gold Card (reward/profile card) ─────────────────────── */
 .card-gold {
   background: #ffffff;
-  border: 1px solid rgba(217, 119, 6, 0.2);
+  border: 1.5px solid rgba(251, 191, 36, 0.25);
   border-radius: var(--radius-md);
-  padding: 16px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 6px rgba(0, 0, 0, 0.03);
+  padding: 18px;
+  box-shadow: var(--shadow-card), 0 0 0 1px rgba(251, 191, 36, 0.08);
 }
 
 /* ── Hero Stat Card (big numbers) ────────────────────────── */
 .stat-card {
   background: #ffffff;
   border-radius: var(--radius-md);
-  padding: 12px 10px;
+  padding: 14px 10px;
   text-align: center;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 6px rgba(0, 0, 0, 0.03);
+  box-shadow: var(--shadow-card);
 }
 .stat-card::before {
   content: '';
@@ -255,7 +268,7 @@ body {
   border: none;
 }
 
-/* ── XP Bar ──────────────────────────────────────────────── */
+/* ── XP Bar (with shimmer highlight) ────────────────────── */
 .xp-bar-track {
   background: #e5e7eb;
   border-radius: 999px;
@@ -269,6 +282,22 @@ body {
   transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 1px 4px var(--color-green-glow);
   position: relative;
+}
+.xp-bar-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.35) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: xp-shimmer 2.4s ease-in-out infinite;
+  border-radius: inherit;
+}
+@keyframes xp-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
 }
 
 /* ── Progress Bar (generic) ──────────────────────────────── */
@@ -305,30 +334,32 @@ body {
   box-shadow: 0 2px 12px var(--color-green-glow);
 }
 
-/* ── Primary Button ──────────────────────────────────────── */
+/* ── Primary Button (premium CTA) ──────────────────────────── */
 .btn-primary {
   background: linear-gradient(135deg, var(--color-green-600) 0%, var(--color-green-500) 50%, #0ea5e9 100%);
   color: #fff;
-  font-weight: 800;
+  font-weight: 700;
+  font-family: var(--font-display);
   border: none;
-  border-radius: var(--radius-md);
-  padding: 14px 24px;
-  font-size: 1rem;
+  border-radius: var(--radius-full);
+  padding: 14px 28px;
+  font-size: 0.95rem;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow:
     0 4px 16px rgba(22, 163, 74, 0.25),
-    0 2px 4px rgba(0, 0, 0, 0.1);
+    0 2px 4px rgba(0, 0, 0, 0.08);
   letter-spacing: 0.01em;
 }
 .btn-primary:hover {
   transform: translateY(-2px);
   box-shadow:
     0 8px 24px rgba(22, 163, 74, 0.3),
-    0 4px 8px rgba(0, 0, 0, 0.1);
+    0 4px 8px rgba(0, 0, 0, 0.08);
 }
 .btn-primary:active {
-  transform: scale(0.97);
+  transform: scale(0.96);
+  box-shadow: 0 2px 8px rgba(22, 163, 74, 0.2);
 }
 .btn-primary:disabled {
   opacity: 0.35;
@@ -370,11 +401,13 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  background: #ffffff;
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
   display: flex;
   justify-content: center;
-  padding: 0;
+  padding: 0 env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
   z-index: 50;
 }
 
@@ -394,7 +427,7 @@ body {
   max-width: 96px;
   min-height: 48px;
   justify-content: center;
-  transition: color 0.15s ease;
+  transition: color 0.2s var(--ease-out, ease);
   position: relative;
   background: none;
   border: none;
@@ -405,16 +438,27 @@ body {
 .bottom-nav-item[data-active="true"] {
   color: var(--color-green-500);
 }
-.bottom-nav-item[data-active="true"]::after {
+/* Active pill indicator behind icon */
+.bottom-nav-item[data-active="true"]::before {
   content: '';
   position: absolute;
-  top: 0;
+  top: 4px;
   left: 50%;
   transform: translateX(-50%);
-  width: 20px;
-  height: 3px;
-  background: var(--color-green-500);
-  border-radius: 0 0 4px 4px;
+  width: 40px;
+  height: 28px;
+  background: rgba(22, 163, 74, 0.1);
+  border-radius: var(--radius-full);
+  z-index: -1;
+  animation: nav-pill-in 0.25s var(--ease-bounce, ease) both;
+}
+@keyframes nav-pill-in {
+  from { transform: translateX(-50%) scale(0.7); opacity: 0; }
+  to { transform: translateX(-50%) scale(1); opacity: 1; }
+}
+/* Remove old top stripe indicator */
+.bottom-nav-item[data-active="true"]::after {
+  display: none;
 }
 
 /* ── Section label ───────────────────────────────────────── */
@@ -572,9 +616,23 @@ input[type="range"]::-webkit-slider-thumb {
   transition: transform 60ms cubic-bezier(0.5, 0, 0, 1);
 }
 
-/* ── Display Font (headings) ─────────────────────────────── */
+/* ── Display Font (headings — Outfit for sporty impact) ─── */
 h1, h2, h3, h4 {
   font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+/* ── Page transition ───────────────────────────────────── */
+@keyframes page-enter {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes page-exit {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+.page-enter {
+  animation: page-enter 0.25s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 /* ── NauroLabs Footer ────────────────────────────────────── */
@@ -774,4 +832,92 @@ input[type="date"], input[type="time"] {
 input[type="date"]:focus, input[type="time"]:focus {
   border-color: var(--color-green-500);
   box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
+}
+
+/* ── Toast Notifications ─────────────────────────────────── */
+.toast-container {
+  position: fixed;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+  width: 100%;
+  max-width: 400px;
+  padding: 0 16px;
+}
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-family: var(--font-display);
+  pointer-events: auto;
+  cursor: pointer;
+  animation: toast-in 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+@keyframes toast-in {
+  from { opacity: 0; transform: translateY(-12px) scale(0.92); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.toast-success {
+  background: rgba(22, 163, 74, 0.95);
+  color: #fff;
+}
+.toast-error {
+  background: rgba(239, 68, 68, 0.95);
+  color: #fff;
+}
+.toast-info {
+  background: rgba(59, 130, 246, 0.95);
+  color: #fff;
+}
+.toast-achievement {
+  background: linear-gradient(135deg, #f59e0b, #fbbf24);
+  color: #1c1917;
+  box-shadow: 0 4px 20px rgba(245, 158, 11, 0.3);
+}
+.toast-icon {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+.toast-message {
+  flex: 1;
+  line-height: 1.3;
+}
+
+/* ── Empty State ─────────────────────────────────────────── */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 48px 24px;
+  gap: 12px;
+}
+.empty-state-icon {
+  font-size: 3.5rem;
+  opacity: 0.8;
+  animation: float 3s ease-in-out infinite;
+}
+.empty-state-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+.empty-state-text {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  max-width: 280px;
+  line-height: 1.5;
 }

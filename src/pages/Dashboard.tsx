@@ -15,6 +15,11 @@ export function Dashboard() {
   const seasonAssists = matches.reduce((s, m) => s + m.assists, 0)
   const wins = matches.filter((m) => getMatchResult(m) === 'win').length
 
+  // Today's activity count
+  const today = new Date().toISOString().slice(0, 10)
+  const todayMatches = matches.filter(m => m.date.startsWith(today)).length
+  const todayTrainings = trainings.filter(t => t.date.startsWith(today)).length
+
   return (
     <div className="flex flex-col gap-5 p-4 pb-32">
       {/* ── Hero: Big level + XP showcase ── */}
@@ -84,12 +89,33 @@ export function Dashboard() {
         </div>
       </div>
 
-      {/* ── Training counter ── */}
+      {/* ── Today's activity (daily hook) ── */}
       <div className="card animate-fade-up animate-stagger-2 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <span className="text-2xl">📅</span>
+          <div>
+            <p className="text-sm font-bold" style={{ fontFamily: 'var(--font-display)' }}>{t('dashboard.today')}</p>
+            <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
+              {todayMatches > 0 || todayTrainings > 0
+                ? `${todayMatches} ${t('dashboard.matches').toLowerCase()}, ${todayTrainings} ${t('log.training').toLowerCase()}`
+                : t('dashboard.todayEmpty')
+              }
+            </p>
+          </div>
+        </div>
+        {todayMatches === 0 && todayTrainings === 0 && (
+          <span className="stat-pill stat-pill-green text-xs">
+            {t('dashboard.todayAction')}
+          </span>
+        )}
+      </div>
+
+      {/* ── Training counter ── */}
+      <div className="card animate-fade-up animate-stagger-3 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <span className="text-2xl">🏃</span>
           <div>
-            <p className="text-sm font-bold">{t('dashboard.season')}</p>
+            <p className="text-sm font-bold" style={{ fontFamily: 'var(--font-display)' }}>{t('dashboard.season')}</p>
             <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
               {t('log.training')}
             </p>

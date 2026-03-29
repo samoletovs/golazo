@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
 import { SkillRadar } from '../components/SkillRadar'
+import { EmptyState } from '../components/EmptyState'
 import { getMatchResult } from '../engine/types'
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, BarChart, Bar, Cell } from 'recharts'
 
@@ -88,6 +89,14 @@ export function ProgressPage() {
   return (
     <div className="flex flex-col gap-5 p-4 pb-32">
       <h1 className="text-xl font-extrabold">{t('progress.title')}</h1>
+
+      {matches.length === 0 && trainings.length === 0 && (
+        <EmptyState
+          icon="📈"
+          titleKey="empty.progress.title"
+          textKey="empty.progress.text"
+        />
+      )}
 
       {/* ── XP Trend ── */}
       <div className="card animate-fade-up">
