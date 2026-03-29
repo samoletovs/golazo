@@ -90,7 +90,11 @@ const STORAGE_KEY = 'golazo-state'
 function loadState(): AppState {
   try {
     const raw = localStorage.getItem(STORAGE_KEY)
-    if (raw) return JSON.parse(raw) as AppState
+    if (raw) {
+      const parsed = JSON.parse(raw)
+      // Merge with defaults to handle newly added fields
+      return { ...createDefaultState(), ...parsed }
+    }
   } catch { /* ignore corrupted storage */ }
   return createDefaultState()
 }
