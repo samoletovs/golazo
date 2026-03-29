@@ -111,6 +111,11 @@
   "exercises.markDone": "Выполнить",
   "exercises.recommended": "Рекомендуем для тебя",
   "exercises.methodology": "Методология",
+  "equipment.ballOnly": "Мяч",
+  "equipment.cones": "Конусы",
+  "equipment.wall": "Стена",
+  "equipment.partner": "Партнёр",
+  "equipment.none": "Без инвентаря",
 
   "challenges.title": "Вызовы",
   "challenges.daily": "Ежедневные",
