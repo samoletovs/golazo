@@ -364,55 +364,6 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
         </div>
       )}
 
-      {/* ── Challenges preview (horizontal scroll) ── */}
-      <div className="animate-fade-up">
-        <div className="flex items-center justify-between mb-2">
-          <p className="section-label">{t('nav.challenges')}</p>
-          {onNavigate && (
-            <button
-              className="text-xs font-bold"
-              style={{ color: 'var(--color-primary-dark)' }}
-              onClick={() => onNavigate('challenges')}
-            >
-              {t('exercises.all')} →
-            </button>
-          )}
-        </div>
-        <div className="h-scroll">
-          {/* Daily challenge cards */}
-          <div className="challenge-card-h" style={{ borderTop: '3px solid var(--color-gold-400)' }}>
-            <div className="flex items-center gap-2">
-              <span className="text-lg">⚡</span>
-              <span className="text-xs font-bold" style={{ color: 'var(--color-gold-500)' }}>{t('challenges.daily')}</span>
-            </div>
-            <p className="text-sm font-bold" style={{ fontFamily: 'var(--font-display)' }}>
-              {t('challenges.daily1')}
-            </p>
-            <span className="stat-pill stat-pill-gold text-[10px] self-start">+25 XP</span>
-          </div>
-          <div className="challenge-card-h" style={{ borderTop: '3px solid var(--color-primary)' }}>
-            <div className="flex items-center gap-2">
-              <span className="text-lg">🏋️</span>
-              <span className="text-xs font-bold" style={{ color: 'var(--color-primary-dark)' }}>{t('challenges.special')}</span>
-            </div>
-            <p className="text-sm font-bold" style={{ fontFamily: 'var(--font-display)' }}>
-              {t('challenges.weakFoot')}
-            </p>
-            <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>30 {t('challenges.days')}</p>
-          </div>
-          <div className="challenge-card-h" style={{ borderTop: '3px solid var(--color-cyan)' }}>
-            <div className="flex items-center gap-2">
-              <span className="text-lg">🧠</span>
-              <span className="text-xs font-bold" style={{ color: 'var(--color-cyan)' }}>{t('challenges.special')}</span>
-            </div>
-            <p className="text-sm font-bold" style={{ fontFamily: 'var(--font-display)' }}>
-              {t('challenges.mentalChamp')}
-            </p>
-            <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>21 {t('challenges.days')}</p>
-          </div>
-        </div>
-      </div>
-
       {/* ── Quick action: Schedule ── */}
       {onNavigate && (
         <button

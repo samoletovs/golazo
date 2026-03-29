@@ -72,8 +72,7 @@ export function Challenges() {
   }
 
   return (
-    <div className="flex flex-col gap-4 p-4 pb-32">
-      <h2 className="text-xl font-extrabold">{t('challenges.title')}</h2>
+    <div className="flex flex-col gap-4">
 
       {/* Daily */}
       <div>

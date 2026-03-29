@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, lazy, Suspense } from 'react'
 import { createPortal } from 'react-dom'
 import { useTranslation } from 'react-i18next'
 import { exercises } from '../data/exercises'
@@ -6,6 +6,8 @@ import { VideoPlayer } from '../components/VideoPlayer'
 import { useApp } from '../contexts/AppContext'
 import { awardXp, XP_AWARDS } from '../engine/xp'
 import type { SkillCategory, Exercise } from '../engine/types'
+
+const Challenges = lazy(() => import('./Challenges').then(m => ({ default: m.Challenges })))
 
 const FILTER_OPTIONS: { key: SkillCategory | 'all'; labelKey: string; emoji: string }[] = [
   { key: 'all', labelKey: 'exercises.all', emoji: '🎯' },
@@ -143,6 +145,7 @@ function ExerciseDetailModal({
 export function Exercises() {
   const { t } = useTranslation()
   const { xp, setXp } = useApp()
+  const [activeTab, setActiveTab] = useState<'exercises' | 'challenges'>('exercises')
   const [filter, setFilter] = useState<SkillCategory | 'all'>('all')
   const [search, setSearch] = useState('')
   const [sortBy, setSortBy] = useState<SortKey>('name')
@@ -178,7 +181,38 @@ export function Exercises() {
 
   return (
     <div className="flex flex-col gap-4 p-4 pb-32">
-      <h2 className="text-xl font-extrabold">{t('exercises.title')}</h2>
+      {/* Tab switcher: Exercises | Challenges */}
+      <div className="flex items-center gap-1 p-1 rounded-xl" style={{ background: 'var(--color-glass-active, #f1f5f9)' }}>
+        <button
+          className="flex-1 py-2 px-3 rounded-lg text-sm font-bold transition-all"
+          style={{
+            background: activeTab === 'exercises' ? '#fff' : 'transparent',
+            color: activeTab === 'exercises' ? 'var(--color-primary-dark)' : 'var(--color-text-muted)',
+            boxShadow: activeTab === 'exercises' ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
+          }}
+          onClick={() => setActiveTab('exercises')}
+        >
+          ⚽ {t('exercises.title')}
+        </button>
+        <button
+          className="flex-1 py-2 px-3 rounded-lg text-sm font-bold transition-all"
+          style={{
+            background: activeTab === 'challenges' ? '#fff' : 'transparent',
+            color: activeTab === 'challenges' ? 'var(--color-primary-dark)' : 'var(--color-text-muted)',
+            boxShadow: activeTab === 'challenges' ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
+          }}
+          onClick={() => setActiveTab('challenges')}
+        >
+          🏆 {t('challenges.title')}
+        </button>
+      </div>
+
+      {activeTab === 'challenges' ? (
+        <Suspense fallback={<div className="flex items-center justify-center p-8"><span className="text-3xl">🏆</span></div>}>
+          <Challenges />
+        </Suspense>
+      ) : (
+      <>
 
       {/* Search bar */}
       <div className="exercise-search-wrap">
@@ -307,6 +341,8 @@ export function Exercises() {
           t={t}
         />,
         document.body
+      )}
+      </>
       )}
     </div>
   )
