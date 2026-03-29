@@ -1,26 +1,40 @@
 const { CosmosClient } = require('@azure/cosmos');
-const { DefaultAzureCredential } = require('@azure/identity');
 
+let _client = null;
 let _container = null;
 let _teamsContainer = null;
 
 /**
- * Singleton Cosmos DB container client.
- * Uses DefaultAzureCredential in Azure, falls back to no-op if not configured.
+ * Get or create Cosmos client singleton.
+ * Uses key-based auth (COSMOS_KEY) if available, otherwise DefaultAzureCredential.
  */
-async function getContainer() {
-  if (_container) return _container;
+function getClient() {
+  if (_client) return _client;
 
   const endpoint = process.env.COSMOS_ENDPOINT;
   if (!endpoint) return null;
 
+  const key = process.env.COSMOS_KEY;
+  if (key) {
+    _client = new CosmosClient({ endpoint, key });
+  } else {
+    const { DefaultAzureCredential } = require('@azure/identity');
+    _client = new CosmosClient({ endpoint, aadCredentials: new DefaultAzureCredential() });
+  }
+  return _client;
+}
+
+/**
+ * Singleton Cosmos DB container client (user data).
+ */
+async function getContainer() {
+  if (_container) return _container;
+
+  const client = getClient();
+  if (!client) return null;
+
   const database = process.env.COSMOS_DATABASE || 'golazo';
   const container = process.env.COSMOS_CONTAINER || 'golazo';
-
-  const client = new CosmosClient({
-    endpoint,
-    aadCredentials: new DefaultAzureCredential(),
-  });
 
   const db = client.database(database);
   _container = db.container(container);
@@ -34,16 +48,10 @@ async function getContainer() {
 async function getTeamsContainer() {
   if (_teamsContainer) return _teamsContainer;
 
-  const endpoint = process.env.COSMOS_ENDPOINT;
-  if (!endpoint) return null;
+  const client = getClient();
+  if (!client) return null;
 
   const database = process.env.COSMOS_DATABASE || 'golazo';
-
-  const client = new CosmosClient({
-    endpoint,
-    aadCredentials: new DefaultAzureCredential(),
-  });
-
   const db = client.database(database);
   _teamsContainer = db.container('teams');
   return _teamsContainer;
