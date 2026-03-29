@@ -57,14 +57,13 @@ async function handleSearch(req) {
   }
 }
 
-/** Strip accents and uppercase for Baltic-friendly search */
+/** Strip accents and lowercase for Baltic-friendly search */
 function normalize(s) {
   return s.toLowerCase()
     .replace(/[āàâä]/g, 'a').replace(/[čć]/g, 'c').replace(/[ēėèêë]/g, 'e')
     .replace(/[ģ]/g, 'g').replace(/[īìîï]/g, 'i').replace(/[ķ]/g, 'k')
     .replace(/[ļ]/g, 'l').replace(/[ņ]/g, 'n').replace(/[ōõöò]/g, 'o')
     .replace(/[šś]/g, 's').replace(/[ūùûü]/g, 'u').replace(/[žź]/g, 'z');
-}
 }
 
 /* ── POST /api/teams ────────────────────────────────────── */
