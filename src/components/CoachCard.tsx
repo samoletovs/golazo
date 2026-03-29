@@ -22,12 +22,15 @@ export function CoachCard() {
     if (cached) {
       try {
         const parsed = JSON.parse(cached)
-        if (Date.now() - parsed.ts < 24 * 60 * 60 * 1000) {
+        // Reject stale cache or old "not configured" fallback
+        if (Date.now() - parsed.ts < 24 * 60 * 60 * 1000 && parsed.data?.focusArea !== 'general') {
           setAiAdvice(parsed.data)
           setAiAvailable(true)
           return
         }
-      } catch { /* ignore */ }
+        // Clear invalid cache
+        localStorage.removeItem('golazo-coach')
+      } catch { localStorage.removeItem('golazo-coach') }
     }
   }, [])
 
