@@ -450,19 +450,22 @@ export type AgeTier = 'u8' | 'u12' | 'u16' | 'u19plus'
 export interface PhysicalMeasurement {
   heightCm: number
   weightKg: number
+  sittingHeightCm?: number // sitting height for PHV tracking (U10+)
   shoeSize?: number // EU shoe size
-  sprintTime30m?: number // seconds (U8/U12)
-  sprintTime100m?: number // seconds (U12+)
-  standingJumpCm?: number // standing long jump distance in cm
+  sprintTime10m?: number // 10m sprint in seconds (acceleration)
+  sprintTime20m?: number // 20m sprint in seconds (acceleration)
+  sprintTime30m?: number // 30m sprint in seconds
+  standingJumpCm?: number // standing long jump distance in cm (U8-U12)
+  cmjCm?: number // countermovement jump height in cm (U12+)
   verticalJumpCm?: number // vertical jump height in cm (U16+)
-  beepTestLevel?: number // Yo-Yo / beep test level (e.g. 8.5)
-  agilityCourseTime?: number // seconds (T-test or Illinois)
+  yoyoIR1Level?: number // Yo-Yo IR1 level (e.g. 15.2) — football standard
+  agilityCourseTime?: number // seconds (Illinois agility test)
   plankTimeSec?: number // plank hold duration in seconds
-  sitAndReachCm?: number // sit & reach flexibility in cm (U12+)
+  sitAndReachCm?: number // sit & reach flexibility in cm (U10+)
   pushUps1min?: number // push-ups in 1 minute (U16+)
   restingHeartRate?: number // resting heart rate in bpm
-  bodyFatPct?: number // body fat percentage (U19+ only)
-  armSpanCm?: number // arm span in cm (U16+)
+  bodyFatPct?: number // body fat percentage (U13+)
+  armSpanCm?: number // arm span in cm (U13+, GK especially)
   juggleRecord?: number // best consecutive count
   measuredAt: string // ISO date
 }

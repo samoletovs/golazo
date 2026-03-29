@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
-import type { PhysicalMeasurement, AgeTier } from '../engine/types'
+import type { AgeTier } from '../engine/types'
 import { getAgeTier } from '../engine/types'
-import { getTrackedFieldConfigs, PHYSICAL_GROUPS, type PhysicalFieldKey } from '../engine/physical'
+import { getTrackedFieldConfigs, buildMeasurement, PHYSICAL_GROUPS, type PhysicalFieldKey } from '../engine/physical'
 
 interface Props {
   onClose: () => void
@@ -33,26 +33,7 @@ export function PhysicalUpdateFlow({ onClose }: Props) {
   })
 
   function save() {
-    const now = new Date().toISOString()
-    const measurement: PhysicalMeasurement = {
-      heightCm: parseFloat(values.heightCm ?? '') || 0,
-      weightKg: parseFloat(values.weightKg ?? '') || 0,
-      shoeSize: values.shoeSize ? parseFloat(values.shoeSize) : undefined,
-      sprintTime30m: values.sprintTime30m ? parseFloat(values.sprintTime30m) : undefined,
-      sprintTime100m: values.sprintTime100m ? parseFloat(values.sprintTime100m) : undefined,
-      standingJumpCm: values.standingJumpCm ? parseFloat(values.standingJumpCm) : undefined,
-      verticalJumpCm: values.verticalJumpCm ? parseFloat(values.verticalJumpCm) : undefined,
-      beepTestLevel: values.beepTestLevel ? parseFloat(values.beepTestLevel) : undefined,
-      agilityCourseTime: values.agilityCourseTime ? parseFloat(values.agilityCourseTime) : undefined,
-      plankTimeSec: values.plankTimeSec ? parseFloat(values.plankTimeSec) : undefined,
-      sitAndReachCm: values.sitAndReachCm ? parseFloat(values.sitAndReachCm) : undefined,
-      pushUps1min: values.pushUps1min ? parseInt(values.pushUps1min, 10) : undefined,
-      restingHeartRate: values.restingHeartRate ? parseInt(values.restingHeartRate, 10) : undefined,
-      bodyFatPct: values.bodyFatPct ? parseFloat(values.bodyFatPct) : undefined,
-      armSpanCm: values.armSpanCm ? parseFloat(values.armSpanCm) : undefined,
-      juggleRecord: values.juggleRecord ? parseInt(values.juggleRecord, 10) : undefined,
-      measuredAt: now,
-    }
+    const measurement = buildMeasurement(values)
 
     const existing = physicalProfile?.measurements ?? []
     setPhysicalProfile({
@@ -73,7 +54,7 @@ export function PhysicalUpdateFlow({ onClose }: Props) {
     if (Math.abs(diff) < 0.01) return null
     const isPositive = diff > 0
     // For sprint/agility times, lower is better
-    const lowerIsBetter = key === 'sprintTime30m' || key === 'sprintTime100m' || key === 'agilityCourseTime' || key === 'restingHeartRate'
+    const lowerIsBetter = key === 'sprintTime10m' || key === 'sprintTime20m' || key === 'sprintTime30m' || key === 'agilityCourseTime' || key === 'restingHeartRate'
     const isGood = lowerIsBetter ? !isPositive : isPositive
     return (
       <span className="text-[10px] font-bold font-data ml-1" style={{ color: isGood ? 'var(--color-primary-dark)' : 'var(--color-danger)' }}>

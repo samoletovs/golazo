@@ -5,9 +5,9 @@ import { useAuth } from '../contexts/AuthContext'
 import { createInitialSkillTree, updateSkillRating } from '../engine/skills'
 import { TeamPicker } from '../components/TeamPicker'
 import { AddTeamDialog } from '../components/AddTeamDialog'
-import type { AccountRole, Position, DominantFoot, SkillCategory, Language, PhysicalMeasurement, SkillTree, SharedTeam, PlayerTeam, AgeTier } from '../engine/types'
+import type { AccountRole, Position, DominantFoot, SkillCategory, Language, SkillTree, SharedTeam, PlayerTeam, AgeTier } from '../engine/types'
 import { getAgeTier } from '../engine/types'
-import { getDefaultTrackedFields, PHYSICAL_FIELDS, PHYSICAL_GROUPS, type PhysicalFieldKey } from '../engine/physical'
+import { getDefaultTrackedFields, PHYSICAL_FIELDS, PHYSICAL_GROUPS, buildMeasurement, type PhysicalFieldKey } from '../engine/physical'
 
 type Step = 'role' | 'basics' | 'football' | 'physical' | 'assessment' | 'done'
 
@@ -187,26 +187,7 @@ export function OnboardingPage() {
     })
 
     // Create physical profile from dynamic fields
-    const pf = form.physicalFields
-    const physical: PhysicalMeasurement = {
-      heightCm: parseFloat(pf.heightCm ?? '') || 0,
-      weightKg: parseFloat(pf.weightKg ?? '') || 0,
-      shoeSize: pf.shoeSize ? parseFloat(pf.shoeSize) : undefined,
-      sprintTime30m: pf.sprintTime30m ? parseFloat(pf.sprintTime30m) : undefined,
-      sprintTime100m: pf.sprintTime100m ? parseFloat(pf.sprintTime100m) : undefined,
-      standingJumpCm: pf.standingJumpCm ? parseFloat(pf.standingJumpCm) : undefined,
-      verticalJumpCm: pf.verticalJumpCm ? parseFloat(pf.verticalJumpCm) : undefined,
-      beepTestLevel: pf.beepTestLevel ? parseFloat(pf.beepTestLevel) : undefined,
-      agilityCourseTime: pf.agilityCourseTime ? parseFloat(pf.agilityCourseTime) : undefined,
-      plankTimeSec: pf.plankTimeSec ? parseFloat(pf.plankTimeSec) : undefined,
-      sitAndReachCm: pf.sitAndReachCm ? parseFloat(pf.sitAndReachCm) : undefined,
-      pushUps1min: pf.pushUps1min ? parseInt(pf.pushUps1min, 10) : undefined,
-      restingHeartRate: pf.restingHeartRate ? parseInt(pf.restingHeartRate, 10) : undefined,
-      bodyFatPct: pf.bodyFatPct ? parseFloat(pf.bodyFatPct) : undefined,
-      armSpanCm: pf.armSpanCm ? parseFloat(pf.armSpanCm) : undefined,
-      juggleRecord: pf.juggleRecord ? parseInt(pf.juggleRecord, 10) : undefined,
-      measuredAt: now,
-    }
+    const physical = buildMeasurement(form.physicalFields)
     setPhysicalProfile({ measurements: [physical], latestIndex: 0, trackedFields: form.trackedFields })
 
     // Prefill skill tree from assessment

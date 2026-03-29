@@ -16,7 +16,7 @@ export interface PhysicalFieldConfig {
 }
 
 export const PHYSICAL_FIELDS: PhysicalFieldConfig[] = [
-  // ── Body ──
+  // ── Body (Anthropometry) ──
   {
     key: 'heightCm', labelKey: 'physical.height', unit: 'cm',
     placeholder: '150', min: 50, max: 250,
@@ -26,6 +26,11 @@ export const PHYSICAL_FIELDS: PhysicalFieldConfig[] = [
     key: 'weightKg', labelKey: 'physical.weight', unit: 'kg',
     placeholder: '45', min: 10, max: 200, step: '0.1',
     group: 'body', tiers: ['u8', 'u12', 'u16', 'u19plus'], required: true,
+  },
+  {
+    key: 'sittingHeightCm', labelKey: 'physical.sittingHeight', unit: 'cm',
+    placeholder: '80', min: 30, max: 120,
+    group: 'body', tiers: ['u12', 'u16', 'u19plus'],
   },
   {
     key: 'shoeSize', labelKey: 'physical.shoeSize', unit: 'EU',
@@ -40,23 +45,33 @@ export const PHYSICAL_FIELDS: PhysicalFieldConfig[] = [
   {
     key: 'bodyFatPct', labelKey: 'physical.bodyFat', unit: '%',
     placeholder: '15', min: 3, max: 50, step: '0.1',
-    group: 'body', tiers: ['u19plus'],
+    group: 'body', tiers: ['u16', 'u19plus'],
   },
 
-  // ── Speed & Power ──
+  // ── Speed & Power (UEFA standard sprint distances) ──
   {
-    key: 'sprintTime30m', labelKey: 'physical.sprint30m', unit: 'sec',
-    placeholder: '5.5', step: '0.1', min: 2, max: 15,
-    group: 'speed', tiers: ['u8', 'u12'],
+    key: 'sprintTime10m', labelKey: 'physical.sprint10m', unit: 'sec',
+    placeholder: '2.1', step: '0.01', min: 1, max: 5,
+    group: 'speed', tiers: ['u8', 'u12', 'u16', 'u19plus'],
   },
   {
-    key: 'sprintTime100m', labelKey: 'physical.sprint100m', unit: 'sec',
-    placeholder: '14.5', step: '0.1', min: 8, max: 30,
-    group: 'speed', tiers: ['u12', 'u16', 'u19plus'],
+    key: 'sprintTime20m', labelKey: 'physical.sprint20m', unit: 'sec',
+    placeholder: '3.5', step: '0.01', min: 2, max: 8,
+    group: 'speed', tiers: ['u8', 'u12', 'u16', 'u19plus'],
+  },
+  {
+    key: 'sprintTime30m', labelKey: 'physical.sprint30m', unit: 'sec',
+    placeholder: '5.0', step: '0.01', min: 3, max: 10,
+    group: 'speed', tiers: ['u16', 'u19plus'],
   },
   {
     key: 'standingJumpCm', labelKey: 'physical.standingJump', unit: 'cm',
-    placeholder: '180', min: 30, max: 350,
+    placeholder: '150', min: 30, max: 350,
+    group: 'speed', tiers: ['u8', 'u12'],
+  },
+  {
+    key: 'cmjCm', labelKey: 'physical.cmj', unit: 'cm',
+    placeholder: '30', min: 5, max: 80,
     group: 'speed', tiers: ['u12', 'u16', 'u19plus'],
   },
   {
@@ -67,14 +82,14 @@ export const PHYSICAL_FIELDS: PhysicalFieldConfig[] = [
 
   // ── Endurance & Agility ──
   {
-    key: 'beepTestLevel', labelKey: 'physical.beepTest', unit: 'lvl',
-    placeholder: '8.5', step: '0.1', min: 1, max: 21,
-    group: 'endurance', tiers: ['u16', 'u19plus'],
+    key: 'yoyoIR1Level', labelKey: 'physical.yoyoIR1', unit: 'lvl',
+    placeholder: '15.2', step: '0.1', min: 5, max: 23,
+    group: 'endurance', tiers: ['u12', 'u16', 'u19plus'],
   },
   {
     key: 'agilityCourseTime', labelKey: 'physical.agility', unit: 'sec',
-    placeholder: '12.0', step: '0.1', min: 5, max: 30,
-    group: 'endurance', tiers: ['u16', 'u19plus'],
+    placeholder: '18.0', step: '0.1', min: 10, max: 35,
+    group: 'endurance', tiers: ['u12', 'u16', 'u19plus'],
   },
   {
     key: 'sitAndReachCm', labelKey: 'physical.sitAndReach', unit: 'cm',
@@ -150,4 +165,26 @@ export function getTrackedFieldConfigs(physicalProfile: PhysicalProfile | null, 
     return PHYSICAL_FIELDS.filter((f) => tracked.includes(f.key))
   }
   return getFieldsForTier(tier)
+}
+
+/** Integer field keys — parsed with parseInt instead of parseFloat */
+const INTEGER_FIELDS: Set<PhysicalFieldKey> = new Set(['pushUps1min', 'restingHeartRate', 'juggleRecord'])
+
+/** Build a PhysicalMeasurement from string field values (from form inputs) */
+export function buildMeasurement(values: Partial<Record<PhysicalFieldKey, string>>): PhysicalMeasurement {
+  const result: PhysicalMeasurement = {
+    heightCm: parseFloat(values.heightCm ?? '') || 0,
+    weightKg: parseFloat(values.weightKg ?? '') || 0,
+    measuredAt: new Date().toISOString(),
+  }
+  for (const field of PHYSICAL_FIELDS) {
+    if (field.key === 'heightCm' || field.key === 'weightKg') continue
+    const raw = values[field.key]
+    if (raw) {
+      (result as unknown as Record<string, unknown>)[field.key] = INTEGER_FIELDS.has(field.key)
+        ? parseInt(raw, 10)
+        : parseFloat(raw)
+    }
+  }
+  return result
 }

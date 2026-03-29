@@ -86,6 +86,27 @@ function dateKey(y: number, m: number, d: number): string {
   return `${y}-${String(m + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`
 }
 
+/** Get Monday of the week containing `date` */
+function getWeekMonday(date: Date): Date {
+  const d = new Date(date)
+  const day = d.getDay()
+  const diff = day === 0 ? -6 : 1 - day // Monday = 1
+  d.setDate(d.getDate() + diff)
+  d.setHours(0, 0, 0, 0)
+  return d
+}
+
+/** Get 7 date strings (Mon–Sun) for a week starting at `monday` */
+function getWeekDates(monday: Date): string[] {
+  const dates: string[] = []
+  for (let i = 0; i < 7; i++) {
+    const d = new Date(monday)
+    d.setDate(monday.getDate() + i)
+    dates.push(dateKey(d.getFullYear(), d.getMonth(), d.getDate()))
+  }
+  return dates
+}
+
 export function SchedulePage() {
   const { t } = useTranslation()
   const { schedule, addScheduleEvent, removeScheduleEvent, recurringTrainings, setRecurringTrainings, profile } = useApp()
@@ -105,6 +126,7 @@ export function SchedulePage() {
   const [formCompetition, setFormCompetition] = useState('')
   const [showImport, setShowImport] = useState(false)
   const [showWeeklySetup, setShowWeeklySetup] = useState(false)
+  const [weekOffset, setWeekOffset] = useState(0)
   const [rtName, setRtName] = useState('')
   const [rtType, setRtType] = useState<TrainingType>('team')
   const [rtDay, setRtDay] = useState(1) // Monday
@@ -210,6 +232,71 @@ export function SchedulePage() {
     eventsByDate.set(ev.date, existing)
   }
 
+  // Week view: get the Monday for current week + offset
+  const weekMonday = useMemo(() => {
+    const m = getWeekMonday(today)
+    m.setDate(m.getDate() + weekOffset * 7)
+    return m
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [weekOffset])
+
+  const weekDates = useMemo(() => getWeekDates(weekMonday), [weekMonday])
+
+  // Also expand recurring for the week view (may be outside current viewMonth)
+  const weekRecurringEvents = useMemo(() => {
+    const events: ScheduleEvent[] = []
+    for (const dk of weekDates) {
+      const [y, m, d] = dk.split('-').map(Number)
+      const date = new Date(y, m - 1, d)
+      const dow = date.getDay()
+      for (const rt of recurringTrainings) {
+        if (rt.active && rt.dayOfWeek === dow) {
+          // Only add if not already in recurringEvents for the month view
+          const alreadyExists = recurringEvents.some((e) => e.id === `rt-${rt.id}-${dk}`)
+          if (!alreadyExists) {
+            events.push({
+              id: `rt-${rt.id}-${dk}`,
+              familyId: profile?.familyId ?? 'local',
+              playerId: profile?.id ?? 'local',
+              type: 'training',
+              title: rt.name || t(`training.type.${rt.trainingType}`),
+              date: dk,
+              startTime: rt.startTime,
+              endTime: rt.endTime,
+              location: rt.location,
+              createdBy: 'recurring',
+              createdAt: rt.createdAt,
+            })
+          }
+        }
+      }
+    }
+    return events
+  }, [weekDates, recurringTrainings, recurringEvents, profile, t])
+
+  // All events for the week view (schedule + recurring from month + extra recurring outside month + shared)
+  const weekAllEvents = useMemo(
+    () => [...schedule, ...recurringEvents, ...weekRecurringEvents, ...sharedGames],
+    [schedule, recurringEvents, weekRecurringEvents, sharedGames],
+  )
+
+  const weekEventsByDate = useMemo(() => {
+    const map = new Map<string, ScheduleEvent[]>()
+    for (const ev of weekAllEvents) {
+      if (weekDates.includes(ev.date)) {
+        const existing = map.get(ev.date) ?? []
+        existing.push(ev)
+        map.set(ev.date, existing)
+      }
+    }
+    return map
+  }, [weekAllEvents, weekDates])
+
+  const isCurrentWeek = weekOffset === 0
+  const weekSunday = new Date(weekMonday)
+  weekSunday.setDate(weekMonday.getDate() + 6)
+  const weekLabel = `${weekMonday.toLocaleDateString(undefined, { day: 'numeric', month: 'short' })} – ${weekSunday.toLocaleDateString(undefined, { day: 'numeric', month: 'short' })}`
+
   function prevMonth() {
     if (viewMonth === 0) {
       setViewMonth(11)
@@ -310,22 +397,111 @@ export function SchedulePage() {
 
   return (
     <div className="flex flex-col gap-4 p-4 pb-32">
-      <div className="flex items-center justify-between">
-        <h2 className="text-xl font-extrabold">{t('mentor.schedule.title')}</h2>
+      <h2 className="text-xl font-extrabold">{t('mentor.schedule.title')}</h2>
+
+      {/* ── My Week Schedule (navigable) ── */}
+      <div className="card">
+        <div className="flex items-center justify-between mb-3">
+          <button className="tap-target text-lg font-bold px-2" onClick={() => setWeekOffset(weekOffset - 1)} aria-label="Previous week">←</button>
+          <div className="text-center">
+            <p className="section-label mb-0">{t('schedule.weeklyTitle')}</p>
+            <p className="text-[0.65rem]" style={{ color: 'var(--color-text-muted)' }}>
+              {weekLabel}
+              {!isCurrentWeek && (
+                <button
+                  className="ml-2 underline"
+                  style={{ color: 'var(--color-primary-dark)' }}
+                  onClick={() => setWeekOffset(0)}
+                >
+                  {t('schedule.thisWeek')}
+                </button>
+              )}
+            </p>
+          </div>
+          <button className="tap-target text-lg font-bold px-2" onClick={() => setWeekOffset(weekOffset + 1)} aria-label="Next week">→</button>
+        </div>
+
+        {/* Week day rows */}
+        <div className="flex flex-col gap-1">
+          {weekDates.map((dk, idx) => {
+            const dayEvents = weekEventsByDate.get(dk) ?? []
+            const [, , dayNum] = dk.split('-')
+            const dow = (idx + 1) % 7 // Mon=1..Sun=0 → idx: 0=Mon..6=Sun → dow: 1,2..6,0
+            const realDow = dow === 6 ? 0 : idx + 1
+            const isToday = dk === todayStr
+            return (
+              <div
+                key={dk}
+                className="flex items-start gap-2 py-1.5 rounded-lg px-2"
+                style={{
+                  background: isToday ? 'rgba(var(--color-primary-rgb), 0.06)' : undefined,
+                  borderLeft: isToday ? '3px solid var(--color-primary-dark)' : '3px solid transparent',
+                }}
+              >
+                <div className="w-10 shrink-0 pt-0.5">
+                  <span className="text-xs font-bold block" style={{ color: isToday ? 'var(--color-primary-dark)' : 'var(--color-text-muted)' }}>
+                    {t(WEEKDAY_NAMES[realDow])}
+                  </span>
+                  <span className="text-[0.6rem]" style={{ color: 'var(--color-text-muted)' }}>{dayNum}</span>
+                </div>
+                <div className="flex-1 min-w-0">
+                  {dayEvents.length === 0 ? (
+                    <span className="text-[0.6rem]" style={{ color: 'var(--color-text-muted)' }}>—</span>
+                  ) : (
+                    <div className="flex flex-col gap-0.5">
+                      {dayEvents.map((ev) => {
+                        const evType = EVENT_TYPES.find((et) => et.key === ev.type)
+                        return (
+                          <div key={ev.id} className="flex items-center gap-1.5">
+                            <div className="w-2 h-2 rounded-full shrink-0" style={{ background: evType?.color ?? 'var(--color-primary-dark)' }} />
+                            <span className="text-[0.65rem] font-medium truncate">{ev.startTime}</span>
+                            <span className="text-[0.65rem] truncate" style={{ color: 'var(--color-text-secondary)' }}>{ev.title}</span>
+                            {ev.id.startsWith('rt-') && <span className="text-[0.5rem]" style={{ color: 'var(--color-text-muted)' }}>🔁</span>}
+                            {ev.id.startsWith('shared-') && <span className="text-[0.5rem]" style={{ color: 'var(--color-primary-dark)' }}>👥</span>}
+                          </div>
+                        )
+                      })}
+                    </div>
+                  )}
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      </div>
+
+      {/* ── Add Buttons (grouped) ── */}
+      <div className="grid grid-cols-3 gap-2">
         <button
-          className="text-xs font-bold px-3 py-1.5 rounded-lg"
-          style={{ background: 'var(--color-gold-glow)', color: 'var(--color-gold-500)' }}
-          onClick={() => setShowImport(true)}
-          aria-label={t('import.addTournament')}
+          className="card flex flex-col items-center gap-1.5 py-3"
+          style={{ cursor: 'pointer' }}
+          onClick={() => { setFormType('training'); openAddForm(selectedDate ?? todayStr) }}
         >
-          🏆 {t('import.addTournament')}
+          <span className="text-lg">⚽</span>
+          <span className="text-[0.65rem] font-bold" style={{ color: 'var(--color-primary-dark)' }}>{t('schedule.addTraining')}</span>
+        </button>
+        <button
+          className="card flex flex-col items-center gap-1.5 py-3"
+          style={{ cursor: 'pointer' }}
+          onClick={() => { setFormType('match'); openAddForm(selectedDate ?? todayStr) }}
+        >
+          <span className="text-lg">🏟️</span>
+          <span className="text-[0.65rem] font-bold" style={{ color: 'var(--color-cat-physical)' }}>{t('schedule.addMatch')}</span>
+        </button>
+        <button
+          className="card flex flex-col items-center gap-1.5 py-3"
+          style={{ cursor: 'pointer' }}
+          onClick={() => setShowImport(true)}
+        >
+          <span className="text-lg">🏆</span>
+          <span className="text-[0.65rem] font-bold" style={{ color: 'var(--color-gold-500)' }}>{t('schedule.addTournament')}</span>
         </button>
       </div>
 
-      {/* ── My Weekly Schedule ── */}
+      {/* ── Recurring trainings (compact) ── */}
       <div className="card">
         <div className="flex items-center justify-between mb-2">
-          <p className="section-label">{t('schedule.weeklyTitle')}</p>
+          <p className="section-label">{t('schedule.recurringTitle')}</p>
           <button
             className="text-xs font-bold px-3 py-1.5 rounded-lg"
             style={{ background: 'var(--color-primary-bg)', color: 'var(--color-primary-dark)' }}
@@ -391,7 +567,8 @@ export function SchedulePage() {
           {days.map((day, i) => {
             if (day === null) return <div key={`empty-${i}`} />
             const dk = dateKey(viewYear, viewMonth, day)
-            const hasEvents = eventsByDate.has(dk)
+            const dayEvents = eventsByDate.get(dk) ?? []
+            const hasEvents = dayEvents.length > 0
             const isToday = dk === todayStr
             const isSelected = dk === selectedDate
             return (
@@ -402,17 +579,17 @@ export function SchedulePage() {
                 data-selected={isSelected}
                 data-has-events={hasEvents}
                 onClick={() => setSelectedDate(dk)}
-                aria-label={`${day} ${hasEvents ? `(${eventsByDate.get(dk)?.length} events)` : ''}`}
+                aria-label={`${day} ${hasEvents ? `(${dayEvents.length} events)` : ''}`}
               >
                 <span className="text-xs font-bold">{day}</span>
                 {hasEvents && (
-                  <div className="flex gap-0.5 justify-center mt-0.5">
-                    {(eventsByDate.get(dk) ?? []).slice(0, 3).map((ev) => {
+                  <div className="flex gap-[3px] justify-center mt-0.5">
+                    {dayEvents.slice(0, 4).map((ev) => {
                       const evType = EVENT_TYPES.find((et) => et.key === ev.type)
                       return (
                         <div
                           key={ev.id}
-                          className="w-1.5 h-1.5 rounded-full"
+                          className="cal-dot"
                           style={{ background: evType?.color ?? 'var(--color-primary-dark)' }}
                         />
                       )
@@ -472,7 +649,7 @@ export function SchedulePage() {
                     </p>
                   )}
                 </div>
-                {!ev.id.startsWith('rt-') && (
+                {!ev.id.startsWith('rt-') && !ev.id.startsWith('shared-') && (
                 <button
                   className="text-xs px-2 py-1 rounded"
                   style={{ color: 'var(--color-danger)' }}

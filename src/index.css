@@ -1164,6 +1164,17 @@ h1, h2, h3, h4 {
 .cal-day[data-selected="true"] .w-1\.5 {
   background: #fff !important;
 }
+.cal-day[data-selected="true"] .cal-dot {
+  background: #fff !important;
+}
+
+/* Calendar event dots — visible and color-coded */
+.cal-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
 
 /* ── Special Challenge Card ──────────────────────────────── */
 .special-challenge-card {
