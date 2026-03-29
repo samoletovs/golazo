@@ -7,6 +7,8 @@ import {
   updateSkillRating,
   weakestCategory,
   SUB_SKILLS,
+  GK_TECHNICAL_SKILLS,
+  TRAINABLE_CATEGORIES,
 } from '../src/engine/skills'
 
 describe('createInitialSkillTree', () => {
@@ -50,7 +52,7 @@ describe('fifaCardRatings', () => {
     const ratings = fifaCardRatings(createInitialSkillTree('p'))
     expect(ratings).toHaveLength(6)
     expect(ratings.map((r) => r.category)).toEqual([
-      'technical', 'physical', 'tactical', 'mental', 'matchPlay', 'knowledge',
+      'technical', 'physical', 'tactical', 'mental', 'performance', 'knowledge',
     ])
   })
 })
@@ -81,10 +83,10 @@ describe('updateSkillRating', () => {
 })
 
 describe('weakestCategory', () => {
-  it('returns any category for initial tree (all equal)', () => {
+  it('returns a trainable category for initial tree (all equal)', () => {
     const tree = createInitialSkillTree('p')
     const weakest = weakestCategory(tree)
-    expect(Object.keys(SUB_SKILLS)).toContain(weakest)
+    expect(TRAINABLE_CATEGORIES).toContain(weakest)
   })
 
   it('returns the updated weakest after improvements', () => {
@@ -96,5 +98,42 @@ describe('weakestCategory', () => {
     // Knowledge should still be at 1, so it's the weakest (or tied)
     const weakest = weakestCategory(tree)
     expect(weakest).not.toBe('technical')
+  })
+
+  it('excludes performance from weakest calculation', () => {
+    let tree = createInitialSkillTree('p')
+    // Boost all trainable categories to 5
+    for (const cat of TRAINABLE_CATEGORIES) {
+      for (const skill of SUB_SKILLS[cat]) {
+        tree = updateSkillRating(tree, cat, skill, 5)
+      }
+    }
+    // Performance is still at 1, but weakest should not return it
+    const weakest = weakestCategory(tree)
+    expect(weakest).not.toBe('performance')
+  })
+})
+
+describe('GK skill branch', () => {
+  it('uses GK-specific technical skills when isGK is true', () => {
+    const tree = createInitialSkillTree('gk1', true)
+    const techSkills = tree.ratings.filter((r) => r.category === 'technical').map((r) => r.subSkill)
+    expect(techSkills).toEqual(GK_TECHNICAL_SKILLS)
+    expect(techSkills).toContain('reflexes')
+    expect(techSkills).toContain('shotStopping')
+    expect(techSkills).not.toContain('dribbling')
+  })
+
+  it('uses standard technical skills when isGK is false', () => {
+    const tree = createInitialSkillTree('p1', false)
+    const techSkills = tree.ratings.filter((r) => r.category === 'technical').map((r) => r.subSkill)
+    expect(techSkills).toEqual(SUB_SKILLS.technical)
+    expect(techSkills).toContain('dribbling')
+    expect(techSkills).not.toContain('reflexes')
+  })
+
+  it('still has 60 total ratings for GK', () => {
+    const tree = createInitialSkillTree('gk1', true)
+    expect(tree.ratings.length).toBe(60)
   })
 })

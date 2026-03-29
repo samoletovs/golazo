@@ -10,6 +10,8 @@ export const quotes: Quote[] = [
       lv: 'Es vienmēr biju mazākais, bet nekad neļāvu tam mani apturēt',
       en: 'I was always the smallest, but I never let that stop me',
       es: 'Siempre fui el más pequeño, pero nunca dejé que eso me detuviera',
+      lt: 'Visada buvau mažiausias, bet niekada neleidau tam manęs sustabdyti',
+      et: 'Olin alati kõige väiksem, aga ei lasknud sellel end kunagi peatada',
     },
   },
   {
@@ -21,6 +23,8 @@ export const quotes: Quote[] = [
       lv: 'Smags darbs un centība — īsāku ceļu nav',
       en: 'Hard work and dedication — there are no shortcuts',
       es: 'Trabajo duro y dedicación — no hay atajos',
+      lt: 'Sunkus darbas ir atsidavimas — trumpų kelių nėra',
+      et: 'Raske töö ja pühendumus — otseteid pole',
     },
   },
   {
@@ -32,6 +36,8 @@ export const quotes: Quote[] = [
       lv: 'Tev nav jābūt lielākajam. Tev jābūt gudrākajam',
       en: "You don't need to be the biggest. You need to be the smartest",
       es: 'No necesitas ser el más grande. Necesitas ser el más inteligente',
+      lt: 'Nereikia būti didžiausiam. Reikia būti protingiausiam',
+      et: 'Sa ei pea olema suurim. Sa pead olema kõige targem',
     },
   },
   {
@@ -43,6 +49,8 @@ export const quotes: Quote[] = [
       lv: 'Es sāku agri un beidzu vēlu. Man bija nepieciešami 17 gadi, lai kļūtu par "tūlītēju" panākumu',
       en: 'I start early, and I stay late, day after day. It took me 17 years to become an overnight success',
       es: 'Empiezo temprano y me quedo hasta tarde, día tras día. Me tomó 17 años ser un éxito de la noche a la mañana',
+      lt: 'Pradedu anksti ir baigiu vėlai, dieną po dienos. Man prireikė 17 metų tapti staigiu sėkme',
+      et: 'Alustan vara ja jään hiliseks, päev päeva järel. Kulus 17 aastat, et saada üleöö edukas',
     },
   },
   {
@@ -54,6 +62,8 @@ export const quotes: Quote[] = [
       lv: 'Tev ir jācīnās, lai sasniegtu savu sapni. Ir jāupurē un smagi jāstrādā',
       en: 'You have to fight to reach your dream. You have to sacrifice and work hard for it',
       es: 'Tienes que luchar para alcanzar tu sueño. Tienes que sacrificarte y trabajar duro',
+      lt: 'Turi kovoti, kad pasiektum savo svajonę. Turi aukotis ir sunkiai dirbti',
+      et: 'Pead võitlema, et oma unistuseni jõuda. Pead ohverdama ja kõvasti tööd tegema',
     },
   },
   {
@@ -65,6 +75,8 @@ export const quotes: Quote[] = [
       lv: 'Talants bez smaga darba ir nekas',
       en: 'Talent without working hard is nothing',
       es: 'El talento sin trabajo duro no es nada',
+      lt: 'Talentas be sunkaus darbo yra niekas',
+      et: 'Talent ilma raske tööta on eimiski',
     },
   },
   {
@@ -76,6 +88,8 @@ export const quotes: Quote[] = [
       lv: 'Tu nevari trenēt tikai ķermeni. Tev jātrenē arī prāts',
       en: "You can't just train your body. You have to train your mind too",
       es: 'No puedes entrenar solo tu cuerpo. También tienes que entrenar tu mente',
+      lt: 'Negali treniruoti tik kūno. Turi treniruoti ir protą',
+      et: 'Sa ei saa treenida ainult keha. Pead treenima ka mõistust',
     },
   },
   {
@@ -87,6 +101,8 @@ export const quotes: Quote[] = [
       lv: 'Bumbai vienmēr jābūt tavam labākajam draugam',
       en: 'The ball must always be your best friend',
       es: 'El balón siempre debe ser tu mejor amigo',
+      lt: 'Kamuolys visada turi būti tavo geriausias draugas',
+      et: 'Pall peab alati olema su parim sõber',
     },
   },
   {
@@ -98,6 +114,8 @@ export const quotes: Quote[] = [
       lv: 'Kontrolē bumbu — kontrolē spēli',
       en: 'Control the ball, control the game',
       es: 'Controla el balón, controla el juego',
+      lt: 'Kontroliuok kamuolį — kontroliuok žaidimą',
+      et: 'Kontrolli palli — kontrolli mängu',
     },
   },
   {
@@ -109,6 +127,8 @@ export const quotes: Quote[] = [
       lv: 'Futbolā rezultāts ir ilūzija. Process ir realitāte',
       en: 'In football, the result is an illusion. The process is the reality',
       es: 'En el fútbol, el resultado es una ilusión. El proceso es la realidad',
+      lt: 'Futbole rezultatas yra iliuzija. Procesas yra realybė',
+      et: 'Jalgpallis on tulemus illusioon. Protsess on reaalsus',
     },
   },
   {
@@ -120,6 +140,8 @@ export const quotes: Quote[] = [
       lv: 'Katru dienu treniņā es cenšos uzlabot vienu lietu',
       en: 'Every day I come to training, I try to improve one thing',
       es: 'Cada día que vengo a entrenar, intento mejorar una cosa',
+      lt: 'Kiekvieną dieną treniruotėje stengiuosi pagerinti vieną dalyką',
+      et: 'Iga päev treeningul proovin parandada ühte asja',
     },
   },
   {
@@ -131,6 +153,8 @@ export const quotes: Quote[] = [
       lv: 'Nav spiediena, kad tu piepildi sapni',
       en: 'There is no pressure when you are making a dream come true',
       es: 'No hay presión cuando estás haciendo un sueño realidad',
+      lt: 'Nėra spaudimo, kai pildai savo svajonę',
+      et: 'Survet pole, kui sa teed unistuse teoks',
     },
   },
   {
@@ -142,6 +166,8 @@ export const quotes: Quote[] = [
       lv: 'Katru dienu es trenējos tā, it kā tā būtu mana pēdējā iespēja',
       en: 'Every day I trained as if it was my last chance',
       es: 'Cada día entrenaba como si fuera mi última oportunidad',
+      lt: 'Kiekvieną dieną treniruodavausi taip, lyg tai būtų mano paskutinė galimybė',
+      et: 'Treenisin iga päev nii, nagu oleks see minu viimane võimalus',
     },
   },
   {
@@ -153,6 +179,8 @@ export const quotes: Quote[] = [
       lv: 'Viss ir prakse',
       en: 'Everything is practice',
       es: 'Todo es práctica',
+      lt: 'Viskas yra praktika',
+      et: 'Kõik on harjutamine',
     },
   },
   {
@@ -164,6 +192,8 @@ export const quotes: Quote[] = [
       lv: 'Spēlēt futbolu ir vienkārši, bet spēlēt vienkārši ir visgrūtākais',
       en: 'Playing football is very simple, but playing simple football is the hardest thing',
       es: 'Jugar al fútbol es muy simple, pero jugar fútbol simple es lo más difícil',
+      lt: 'Žaisti futbolą paprasta, bet žaisti paprastą futbolą — sunkiausia',
+      et: 'Jalgpalli mängimine on lihtne, aga lihtsa jalgpalli mängimine on kõige raskem',
     },
   },
   {
@@ -175,6 +205,8 @@ export const quotes: Quote[] = [
       lv: 'Manas prasmes nepiedzima kopā ar mani. Es tās ieguvu ar stundu, dienu, nedēļu un gadu treniņu',
       en: 'My skills were not born with me. They were earned through hours, days, weeks and years of training',
       es: 'Mis habilidades no nacieron conmigo. Se ganaron con horas, días, semanas y años de entrenamiento',
+      lt: 'Mano įgūdžiai negimė kartu su manimi. Jie buvo uždirbti valandomis, dienomis, savaitėmis ir metais treniruočių',
+      et: 'Minu oskused ei sündinud koos minuga. Need teeniti tundide, päevade, nädalate ja aastate treeninguga',
     },
   },
 ]

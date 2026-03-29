@@ -3,7 +3,7 @@
   "Values": {
     "FUNCTIONS_WORKER_RUNTIME": "node",
     "AzureWebJobsStorage": "",
-    "COSMOS_ENDPOINT": "",
+    "COSMOS_ENDPOINT": "https://golazo-cosmos.documents.azure.com:443/",
     "COSMOS_DATABASE": "golazo",
     "COSMOS_CONTAINER": "golazo"
   }

@@ -4,7 +4,7 @@ import { useApp } from '../contexts/AppContext'
 import { useAuth } from '../contexts/AuthContext'
 import { createInitialSkillTree, updateSkillRating } from '../engine/skills'
 import { TeamPicker } from '../components/TeamPicker'
-import type { AccountRole, Position, DominantFoot, SkillCategory, Language, PhysicalMeasurement, SkillTree, SharedTeam } from '../engine/types'
+import type { AccountRole, Position, DominantFoot, SkillCategory, Language, PhysicalMeasurement, SkillTree, SharedTeam, PlayerTeam } from '../engine/types'
 
 type Step = 'role' | 'basics' | 'football' | 'physical' | 'assessment' | 'done'
 
@@ -45,13 +45,18 @@ const ASSESS_LABELS = [
   'onboarding.assessExpert',
 ]
 
+interface OnboardingTeamEntry {
+  name: string
+  sharedTeam?: SharedTeam
+}
+
 interface OnboardingForm {
   role: AccountRole
   name: string
   birthDate: string
   country: string
   city: string
-  team: string
+  teams: OnboardingTeamEntry[]
   jerseyNumber: string
   positions: Position[]
   dominantFoot: DominantFoot
@@ -59,6 +64,11 @@ interface OnboardingForm {
   heightCm: string
   weightKg: string
   sprintTime100m: string
+  standingJumpCm: string
+  beepTestLevel: string
+  agilityCourseTime: string
+  plankTimeSec: string
+  restingHeartRate: string
   juggleRecord: string
   assessment: Partial<Record<SkillCategory, number>>
 }
@@ -67,8 +77,9 @@ function prefillSkillTree(
   playerId: string,
   assessment: Partial<Record<SkillCategory, number>>,
   yearsPlaying: number,
+  isGK: boolean,
 ): SkillTree {
-  let tree = createInitialSkillTree(playerId)
+  let tree = createInitialSkillTree(playerId, isGK)
 
   // Each self-assessment level (1-5) maps to a base rating (1-2, 2-4, 3-6, 5-7, 7-9)
   const baseFromAssessment = (level: number): number => {
@@ -105,7 +116,7 @@ export function OnboardingPage() {
     birthDate: '',
     country: 'LV',
     city: '',
-    team: '',
+    teams: [],
     jerseyNumber: '',
     positions: [],
     dominantFoot: 'right',
@@ -113,11 +124,14 @@ export function OnboardingPage() {
     heightCm: '',
     weightKg: '',
     sprintTime100m: '',
+    standingJumpCm: '',
+    beepTestLevel: '',
+    agilityCourseTime: '',
+    plankTimeSec: '',
+    restingHeartRate: '',
     juggleRecord: '',
     assessment: {},
   })
-
-  const [teamColors, setTeamColors] = useState<string[] | undefined>()
 
   const stepIndex = STEPS.indexOf(step)
   const progress = ((stepIndex) / (STEPS.length - 1)) * 100
@@ -152,16 +166,19 @@ export function OnboardingPage() {
     const now = new Date().toISOString()
     const playerId = user?.userId ?? 'local'
 
-    // Create profile
-    const teamEntry = form.team ? {
+    // Build teams array from onboarding entries
+    const playerTeams: PlayerTeam[] = form.teams.map((entry, i) => ({
       id: crypto.randomUUID(),
-      name: form.team,
-      aliases: [],
-      isPrimary: true,
-      colors: teamColors,
+      name: entry.name,
+      aliases: entry.sharedTeam?.aliases ?? [],
+      registryId: entry.sharedTeam?.id,
+      logoUrl: entry.sharedTeam?.logoUrl,
+      colors: entry.sharedTeam?.colors,
+      isPrimary: i === 0,
       active: true,
       createdAt: now,
-    } : undefined
+    }))
+    const primaryTeam = form.teams[0]
     setProfile({
       id: playerId,
       familyId: playerId,
@@ -170,9 +187,9 @@ export function OnboardingPage() {
       birthDate: form.birthDate,
       country: form.country || undefined,
       city: form.city || undefined,
-      team: form.team,
+      team: primaryTeam?.name ?? '',
       jerseyNumber: form.jerseyNumber ? parseInt(form.jerseyNumber, 10) : undefined,
-      teams: teamEntry ? [teamEntry] : [],
+      teams: playerTeams,
       positions: form.positions.length > 0 ? form.positions : ['CM'],
       dominantFoot: form.dominantFoot,
       language: i18n.language as Language,
@@ -184,13 +201,19 @@ export function OnboardingPage() {
       heightCm: parseFloat(form.heightCm) || 0,
       weightKg: parseFloat(form.weightKg) || 0,
       sprintTime100m: form.sprintTime100m ? parseFloat(form.sprintTime100m) : undefined,
+      standingJumpCm: form.standingJumpCm ? parseFloat(form.standingJumpCm) : undefined,
+      beepTestLevel: form.beepTestLevel ? parseFloat(form.beepTestLevel) : undefined,
+      agilityCourseTime: form.agilityCourseTime ? parseFloat(form.agilityCourseTime) : undefined,
+      plankTimeSec: form.plankTimeSec ? parseFloat(form.plankTimeSec) : undefined,
+      restingHeartRate: form.restingHeartRate ? parseInt(form.restingHeartRate, 10) : undefined,
       juggleRecord: form.juggleRecord ? parseInt(form.juggleRecord, 10) : undefined,
       measuredAt: now,
     }
     setPhysicalProfile({ measurements: [physical], latestIndex: 0 })
 
     // Prefill skill tree from assessment
-    const tree = prefillSkillTree(playerId, form.assessment, form.yearsPlaying)
+    const isGK = form.positions.includes('GK') && form.positions.length === 1
+    const tree = prefillSkillTree(playerId, form.assessment, form.yearsPlaying, isGK)
     setSkillTree(tree)
 
     setOnboardingComplete(true)
@@ -325,14 +348,63 @@ export function OnboardingPage() {
                 </div>
 
                 <label className="text-xs font-bold mt-2" style={{ color: 'var(--color-text-secondary)' }}>
-                  {t('onboarding.team')}
+                  {t('onboarding.teams')}
                 </label>
+                <p className="text-[0.65rem] mb-1" style={{ color: 'var(--color-text-muted)' }}>
+                  {t('onboarding.teamsHint')}
+                </p>
+
+                {/* Added teams as chips */}
+                {form.teams.length > 0 && (
+                  <div className="flex flex-wrap gap-2 mb-2">
+                    {form.teams.map((entry, i) => (
+                      <span
+                        key={i}
+                        className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold"
+                        style={{
+                          background: i === 0 ? 'var(--color-primary-light, #dcfce7)' : 'var(--color-glass-active, #f1f5f9)',
+                          color: i === 0 ? 'var(--color-primary-dark, #166534)' : 'var(--color-text)',
+                        }}
+                      >
+                        {entry.sharedTeam?.logoUrl && (
+                          <img src={entry.sharedTeam.logoUrl} alt="" className="w-4 h-4 rounded object-contain" />
+                        )}
+                        {entry.name}
+                        {i === 0 && <span className="text-[0.5rem] opacity-60">★</span>}
+                        <button
+                          className="ml-0.5 text-xs opacity-50 hover:opacity-100"
+                          onClick={() => setForm((f) => ({ ...f, teams: f.teams.filter((_, j) => j !== i) }))}
+                          aria-label={`Remove ${entry.name}`}
+                        >
+                          ✕
+                        </button>
+                      </span>
+                    ))}
+                  </div>
+                )}
+
+                {/* Team search input */}
                 <TeamPicker
-                  value={form.team}
-                  onChange={(name, sharedTeam?: SharedTeam) => { setForm((f) => ({ ...f, team: name })); setTeamColors(sharedTeam?.colors) }}
+                  value=""
+                  onChange={(_name, sharedTeam) => {
+                    if (sharedTeam) {
+                      // Registry match — add immediately
+                      const already = form.teams.some((t) => t.name.toLowerCase() === sharedTeam.name.toLowerCase())
+                      if (!already) {
+                        setForm((f) => ({ ...f, teams: [...f.teams, { name: sharedTeam.name, sharedTeam }] }))
+                      }
+                    }
+                  }}
                   country={form.country}
-                  placeholder={t('onboarding.teamPlaceholder')}
+                  placeholder={form.teams.length === 0 ? t('onboarding.teamPlaceholder') : t('onboarding.addAnotherTeam')}
                   className="w-full"
+                  showAddNew
+                  onAddNew={(name) => {
+                    const already = form.teams.some((t) => t.name.toLowerCase() === name.toLowerCase())
+                    if (!already) {
+                      setForm((f) => ({ ...f, teams: [...f.teams, { name }] }))
+                    }
+                  }}
                 />
 
                 <label className="text-xs font-bold mt-2" style={{ color: 'var(--color-text-secondary)' }}>
@@ -429,6 +501,7 @@ export function OnboardingPage() {
                 {t('onboarding.physicalHint')}
               </p>
 
+              {/* Body measurements (required) */}
               <div className="grid grid-cols-2 gap-3">
                 <div className="flex flex-col gap-1">
                   <label className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>
@@ -463,23 +536,124 @@ export function OnboardingPage() {
                 </div>
               </div>
 
-              <div className="flex flex-col gap-1">
-                <label className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>
-                  {t('onboarding.sprint')} <span style={{ color: 'var(--color-text-muted)' }}>({t('onboarding.optional')})</span>
-                </label>
-                <div className="relative">
-                  <input
-                    type="number"
-                    step="0.1"
-                    value={form.sprintTime100m}
-                    onChange={(e) => setForm((f) => ({ ...f, sprintTime100m: e.target.value }))}
-                    placeholder="14.5"
-                    className="w-full pr-10"
-                  />
-                  <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs" style={{ color: 'var(--color-text-muted)' }}>sec</span>
+              {/* Speed & Power (optional) */}
+              <p className="text-[10px] font-bold uppercase tracking-wider mt-2" style={{ color: 'var(--color-text-muted)' }}>
+                {t('onboarding.speedPower')} <span className="normal-case font-normal">({t('onboarding.optional')})</span>
+              </p>
+              <div className="grid grid-cols-2 gap-3">
+                <div className="flex flex-col gap-1">
+                  <label className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>
+                    {t('onboarding.sprint')}
+                  </label>
+                  <div className="relative">
+                    <input
+                      type="number"
+                      step="0.1"
+                      value={form.sprintTime100m}
+                      onChange={(e) => setForm((f) => ({ ...f, sprintTime100m: e.target.value }))}
+                      placeholder="14.5"
+                      className="w-full pr-10"
+                    />
+                    <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs" style={{ color: 'var(--color-text-muted)' }}>sec</span>
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-1">
+                  <label className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>
+                    {t('onboarding.standingJump')}
+                  </label>
+                  <div className="relative">
+                    <input
+                      type="number"
+                      value={form.standingJumpCm}
+                      onChange={(e) => setForm((f) => ({ ...f, standingJumpCm: e.target.value }))}
+                      placeholder="180"
+                      className="w-full pr-10"
+                    />
+                    <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs" style={{ color: 'var(--color-text-muted)' }}>cm</span>
+                  </div>
                 </div>
               </div>
 
+              {/* Endurance & Agility (optional) */}
+              <p className="text-[10px] font-bold uppercase tracking-wider mt-2" style={{ color: 'var(--color-text-muted)' }}>
+                {t('onboarding.enduranceAgility')} <span className="normal-case font-normal">({t('onboarding.optional')})</span>
+              </p>
+              <div className="grid grid-cols-2 gap-3">
+                <div className="flex flex-col gap-1">
+                  <label className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>
+                    {t('onboarding.beepTest')}
+                  </label>
+                  <div className="relative">
+                    <input
+                      type="number"
+                      step="0.1"
+                      value={form.beepTestLevel}
+                      onChange={(e) => setForm((f) => ({ ...f, beepTestLevel: e.target.value }))}
+                      placeholder="8.5"
+                      className="w-full pr-10"
+                    />
+                    <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs" style={{ color: 'var(--color-text-muted)' }}>lvl</span>
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-1">
+                  <label className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>
+                    {t('onboarding.agility')}
+                  </label>
+                  <div className="relative">
+                    <input
+                      type="number"
+                      step="0.1"
+                      value={form.agilityCourseTime}
+                      onChange={(e) => setForm((f) => ({ ...f, agilityCourseTime: e.target.value }))}
+                      placeholder="12.0"
+                      className="w-full pr-10"
+                    />
+                    <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs" style={{ color: 'var(--color-text-muted)' }}>sec</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Core & Fitness (optional) */}
+              <p className="text-[10px] font-bold uppercase tracking-wider mt-2" style={{ color: 'var(--color-text-muted)' }}>
+                {t('onboarding.coreFitness')} <span className="normal-case font-normal">({t('onboarding.optional')})</span>
+              </p>
+              <div className="grid grid-cols-2 gap-3">
+                <div className="flex flex-col gap-1">
+                  <label className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>
+                    {t('onboarding.plankHold')}
+                  </label>
+                  <div className="relative">
+                    <input
+                      type="number"
+                      value={form.plankTimeSec}
+                      onChange={(e) => setForm((f) => ({ ...f, plankTimeSec: e.target.value }))}
+                      placeholder="60"
+                      className="w-full pr-10"
+                    />
+                    <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs" style={{ color: 'var(--color-text-muted)' }}>sec</span>
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-1">
+                  <label className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>
+                    {t('onboarding.restingHR')}
+                  </label>
+                  <div className="relative">
+                    <input
+                      type="number"
+                      value={form.restingHeartRate}
+                      onChange={(e) => setForm((f) => ({ ...f, restingHeartRate: e.target.value }))}
+                      placeholder="72"
+                      className="w-full pr-10"
+                    />
+                    <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs" style={{ color: 'var(--color-text-muted)' }}>bpm</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Ball Control */}
               <div className="flex flex-col gap-1">
                 <label className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>
                   {t('onboarding.juggleRecord')} <span style={{ color: 'var(--color-text-muted)' }}>({t('onboarding.optional')})</span>
@@ -556,7 +730,7 @@ export function OnboardingPage() {
               <div className="card-glow text-center mt-4">
                 <p className="text-sm font-bold">{form.name}</p>
                 <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
-                  {form.positions.join(' / ')} • {form.team}
+                  {form.positions.join(' / ')} • {form.teams.map((t) => t.name).join(', ') || '—'}
                 </p>
                 {form.heightCm && form.weightKg && (
                   <p className="text-xs mt-1 font-data" style={{ color: 'var(--color-text-muted)' }}>

@@ -3,21 +3,28 @@ import type { SkillCategory, SkillRating, SkillTree } from './types'
 /* ── Sub-skills per category ──────────────────────────────── */
 
 export const SUB_SKILLS: Record<SkillCategory, string[]> = {
-  technical: ['dribbling', 'shortPass', 'longPass', 'shooting', 'firstTouch', 'weakFoot', 'crossing', 'heading', 'freeKick', 'ballControl'],
+  technical: ['dribbling', 'shortPass', 'longPass', 'shooting', 'firstTouch', 'weakFoot', 'crossing', 'heading', 'tackling', 'ballControl'],
   physical: ['speed', 'stamina', 'agility', 'strength', 'acceleration', 'balance', 'coordination', 'flexibility', 'jumping', 'recovery'],
   tactical: ['positioning', 'vision', 'decisionMaking', 'pressing', 'spaceAwareness', 'offTheBall', 'transitions', 'setPlays', 'formation', 'gameReading'],
-  mental: ['confidence', 'focus', 'resilience', 'leadership', 'selfTalk', 'visualization', 'composure', 'motivation', 'teamAttitude', 'coachability'],
-  matchPlay: ['goals', 'assists', 'keyPasses', 'tackles', 'interceptions', 'aerialDuels', 'successfulDribbles', 'passAccuracy', 'shotsOnTarget', 'minutesPlayed'],
-  knowledge: ['rules', 'footballHistory', 'nutrition', 'recovery', 'warmUp', 'coolDown', 'injuryPrevention', 'formations', 'refereeSignals', 'fairPlay'],
+  mental: ['confidence', 'focus', 'resilience', 'leadership', 'communication', 'visualization', 'composure', 'motivation', 'teamwork', 'coachability'],
+  performance: ['goals', 'assists', 'keyPasses', 'tackles', 'interceptions', 'aerialDuels', 'successfulDribbles', 'passAccuracy', 'shotsOnTarget', 'minutesPlayed'],
+  knowledge: ['rules', 'footballHistory', 'nutrition', 'restAndRecovery', 'warmUp', 'coolDown', 'injuryPrevention', 'formations', 'videoAnalysis', 'fairPlay'],
 }
 
+/** GK-specific sub-skills — replace Technical sub-skills when position is GK */
+export const GK_TECHNICAL_SKILLS: string[] = [
+  'reflexes', 'shotStopping', 'positioning', 'distribution', 'aerialCommand',
+  'oneOnOne', 'footwork', 'communication', 'rushingOut', 'weakFoot',
+]
+
 /** Create initial skill tree with all ratings at 1 */
-export function createInitialSkillTree(playerId: string): SkillTree {
+export function createInitialSkillTree(playerId: string, isGK = false): SkillTree {
   const now = new Date().toISOString()
   const ratings: SkillRating[] = []
 
   for (const [category, skills] of Object.entries(SUB_SKILLS)) {
-    for (const subSkill of skills) {
+    const effectiveSkills = (isGK && category === 'technical') ? GK_TECHNICAL_SKILLS : skills
+    for (const subSkill of effectiveSkills) {
       ratings.push({
         category: category as SkillCategory,
         subSkill,
@@ -38,16 +45,22 @@ export function categoryAverage(tree: SkillTree, category: SkillCategory): numbe
   return Math.round((sum / catRatings.length) * 10) / 10
 }
 
+/** Categories that represent trainable skills (excludes performance stats) */
+export const TRAINABLE_CATEGORIES: SkillCategory[] = ['technical', 'physical', 'tactical', 'mental', 'knowledge']
+
+/** All categories including performance stats */
+export const ALL_CATEGORIES: SkillCategory[] = ['technical', 'physical', 'tactical', 'mental', 'performance', 'knowledge']
+
 /** Get overall average rating across all categories (for FIFA card) */
 export function overallRating(tree: SkillTree): number {
-  const categories: SkillCategory[] = ['technical', 'physical', 'tactical', 'mental', 'matchPlay', 'knowledge']
+  const categories = ALL_CATEGORIES
   const avg = categories.reduce((sum, cat) => sum + categoryAverage(tree, cat), 0) / categories.length
   return Math.round(avg * 10) / 10
 }
 
 /** Get the top 6 ratings for FIFA-style card (one per category) */
 export function fifaCardRatings(tree: SkillTree): { category: SkillCategory; rating: number }[] {
-  const categories: SkillCategory[] = ['technical', 'physical', 'tactical', 'mental', 'matchPlay', 'knowledge']
+  const categories = ALL_CATEGORIES
   return categories.map((cat) => ({
     category: cat,
     rating: Math.round(categoryAverage(tree, cat)),
@@ -73,7 +86,7 @@ export function updateSkillRating(
 
 /** Identify weakest skill category for AI coach recommendations */
 export function weakestCategory(tree: SkillTree): SkillCategory {
-  const categories: SkillCategory[] = ['technical', 'physical', 'tactical', 'mental', 'matchPlay', 'knowledge']
+  const categories = TRAINABLE_CATEGORIES
   let weakest: SkillCategory = 'technical'
   let lowestAvg = 11
 

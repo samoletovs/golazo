@@ -53,6 +53,11 @@ export function ProgressPage() {
       height: m.heightCm,
       weight: m.weightKg,
       sprint: m.sprintTime100m,
+      jump: m.standingJumpCm,
+      beep: m.beepTestLevel,
+      agility: m.agilityCourseTime,
+      plank: m.plankTimeSec,
+      hr: m.restingHeartRate,
       juggles: m.juggleRecord,
     }))
   }, [physicalProfile])

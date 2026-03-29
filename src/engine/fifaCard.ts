@@ -15,7 +15,7 @@ const RANK_COLORS: Record<string, [string, string]> = {
 
 const FIFA_LABELS: Record<string, string> = {
   technical: 'TEC', physical: 'PHY', tactical: 'TAC',
-  mental: 'MEN', matchPlay: 'MAT', knowledge: 'KNO',
+  mental: 'MEN', performance: 'PER', knowledge: 'KNO',
 }
 
 /**

@@ -117,9 +117,9 @@ export function SchedulePage() {
           className="text-xs font-bold px-3 py-1.5 rounded-lg"
           style={{ background: 'var(--color-gold-glow)', color: 'var(--color-gold-500)' }}
           onClick={() => setShowImport(true)}
-          aria-label={t('import.button')}
+          aria-label={t('import.addTournament')}
         >
-          🏆 {t('import.button')}
+          🏆 {t('import.addTournament')}
         </button>
       </div>
 

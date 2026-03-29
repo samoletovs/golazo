@@ -24,7 +24,7 @@ const CAT_STRIPE: Record<string, string> = {
   tactical: 'cat-stripe-tactical',
   mental: 'cat-stripe-mental',
   knowledge: 'cat-stripe-knowledge',
-  matchPlay: 'cat-stripe-matchPlay',
+  performance: 'cat-stripe-performance',
 }
 
 const CAT_EMOJI: Record<string, string> = {
@@ -33,7 +33,7 @@ const CAT_EMOJI: Record<string, string> = {
   tactical: '🧠',
   mental: '🧘',
   knowledge: '📚',
-  matchPlay: '🎯',
+  performance: '📊',
 }
 
 function getThumbnailUrl(videoUrl: string): string | null {

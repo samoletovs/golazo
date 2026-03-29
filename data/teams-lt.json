@@ -315,5 +315,36 @@
       "#000000"
     ],
     "stadium": "Alytaus miesto stadionas"
+  },
+  {
+    "name": "FK Atmosfera",
+    "abbreviation": "ATM",
+    "aliases": [
+      "FK ATMOSFERA",
+      "ATMOSFERA"
+    ],
+    "city": "Mažeikiai",
+    "website": "https://www.fkatmosfera.eu",
+    "league": "I Lyga",
+    "type": "club",
+    "ageGroups": [
+      "U13",
+      "U15",
+      "U17",
+      "U19",
+      "Senior"
+    ],
+    "foundedYear": 2012,
+    "colors": [
+      "#FFFFFF",
+      "#DC143C",
+      "#000000"
+    ],
+    "socialMedia": [
+      {
+        "platform": "facebook",
+        "url": "https://www.facebook.com/fkatmosfera/"
+      }
+    ]
   }
 ]

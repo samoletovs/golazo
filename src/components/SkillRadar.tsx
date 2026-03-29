@@ -1,16 +1,16 @@
 import { useApp } from '../contexts/AppContext'
-import { categoryAverage } from '../engine/skills'
+import { categoryAverage, TRAINABLE_CATEGORIES } from '../engine/skills'
 import type { SkillCategory } from '../engine/types'
 import { useTranslation } from 'react-i18next'
 
-const CATEGORIES: SkillCategory[] = ['technical', 'physical', 'tactical', 'mental', 'matchPlay', 'knowledge']
+const CATEGORIES = TRAINABLE_CATEGORIES
 
 const LABEL_KEYS: Record<SkillCategory, string> = {
   technical: 'skills.technical',
   physical: 'skills.physical',
   tactical: 'skills.tactical',
   mental: 'skills.mental',
-  matchPlay: 'skills.matchPlay',
+  performance: 'skills.performance',
   knowledge: 'skills.knowledge',
 }
 

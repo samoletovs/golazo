@@ -56,11 +56,11 @@ const curatedExercises: Exercise[] = [
     equipment: ['none'], positions: [], methodology: 'uefa',
   },
 
-  // ── Tactical: Horst Wein mini-games ──
+  // ── Tactical: solo decision-making & awareness drills ──
   {
-    id: 'tact-01', nameKey: 'ex.tact.3v1Rondo', descriptionKey: 'ex.tact.3v1Rondo.desc',
+    id: 'tact-01', nameKey: 'ex.tact.coneDecision', descriptionKey: 'ex.tact.coneDecision.desc',
     category: 'tactical', subSkill: 'decisionMaking', difficulty: 2, durationMinutes: 15,
-    equipment: ['ballOnly', 'partner'], positions: [], methodology: 'horstWein',
+    equipment: ['ballOnly', 'cones'], positions: [], methodology: 'horstWein',
   },
   {
     id: 'tact-02', nameKey: 'ex.tact.positionShadow', descriptionKey: 'ex.tact.positionShadow.desc',
@@ -68,19 +68,19 @@ const curatedExercises: Exercise[] = [
     equipment: ['cones'], positions: ['CM', 'CDM', 'CAM'], methodology: 'horstWein',
   },
   {
-    id: 'tact-03', nameKey: 'ex.tact.pressAndRecover', descriptionKey: 'ex.tact.pressAndRecover.desc',
+    id: 'tact-03', nameKey: 'ex.tact.defensiveAngles', descriptionKey: 'ex.tact.defensiveAngles.desc',
     category: 'tactical', subSkill: 'pressing', difficulty: 3, durationMinutes: 15,
-    equipment: ['ballOnly', 'partner'], positions: ['CM', 'CDM', 'LM', 'RM'], methodology: 'horstWein',
+    equipment: ['cones'], positions: ['CM', 'CDM', 'CB'], methodology: 'horstWein',
   },
   {
-    id: 'tact-04', nameKey: 'ex.tact.findThePass', descriptionKey: 'ex.tact.findThePass.desc',
+    id: 'tact-04', nameKey: 'ex.tact.targetZonePass', descriptionKey: 'ex.tact.targetZonePass.desc',
     category: 'tactical', subSkill: 'vision', difficulty: 3, durationMinutes: 15,
-    equipment: ['ballOnly', 'cones', 'partner'], positions: ['CM', 'CAM'], methodology: 'horstWein',
+    equipment: ['ballOnly', 'cones', 'wall'], positions: ['CM', 'CAM'], methodology: 'horstWein',
   },
   {
-    id: 'tact-05', nameKey: 'ex.tact.transitionGame', descriptionKey: 'ex.tact.transitionGame.desc',
-    category: 'tactical', subSkill: 'transitions', difficulty: 4, durationMinutes: 20,
-    equipment: ['ballOnly', 'partner'], positions: [], methodology: 'horstWein',
+    id: 'tact-05', nameKey: 'ex.tact.matchAnalysis', descriptionKey: 'ex.tact.matchAnalysis.desc',
+    category: 'tactical', subSkill: 'gameReading', difficulty: 2, durationMinutes: 15,
+    equipment: ['none'], positions: [], methodology: 'horstWein',
   },
 
   // ── Mental: Dan Abrahams 4C model ──
@@ -91,7 +91,7 @@ const curatedExercises: Exercise[] = [
   },
   {
     id: 'ment-02', nameKey: 'ex.ment.selfTalk', descriptionKey: 'ex.ment.selfTalk.desc',
-    category: 'mental', subSkill: 'selfTalk', difficulty: 1, durationMinutes: 5,
+    category: 'mental', subSkill: 'resilience', difficulty: 1, durationMinutes: 5,
     equipment: ['none'], positions: [], methodology: 'danAbrahams',
   },
   {

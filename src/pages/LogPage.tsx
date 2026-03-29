@@ -3,10 +3,9 @@ import { useTranslation } from 'react-i18next'
 import { TrainingLog } from './TrainingLog'
 import { MatchLog } from './MatchLog'
 import { DiaryPage } from './DiaryPage'
-import { TournamentPage } from './TournamentPage'
 import { TournamentImport } from '../components/TournamentImport'
 
-type LogType = 'select' | 'training' | 'match' | 'diary' | 'tournament'
+type LogType = 'select' | 'training' | 'match' | 'diary'
 
 export function LogPage() {
   const { t } = useTranslation()
@@ -16,7 +15,6 @@ export function LogPage() {
   if (logType === 'training') return <TrainingLog onBack={() => setLogType('select')} />
   if (logType === 'match') return <MatchLog onBack={() => setLogType('select')} />
   if (logType === 'diary') return <DiaryPage onBack={() => setLogType('select')} />
-  if (logType === 'tournament') return <TournamentPage onBack={() => setLogType('select')} />
 
   return (
     <div className="flex flex-col gap-4 p-4 pb-32">
@@ -58,29 +56,17 @@ export function LogPage() {
         </div>
       </button>
 
-      <button
-        className="card tap-target flex items-center gap-4 text-left"
-        onClick={() => setLogType('tournament')}
-        aria-label={t('log.tournament')}
-      >
-        <span className="text-3xl">🏆</span>
-        <div>
-          <p className="text-base font-bold">{t('log.tournament')}</p>
-          <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>+50 XP</p>
-        </div>
-      </button>
-
-      {/* Import Tournament */}
+      {/* Add Tournament */}
       <button
         className="card tap-target flex items-center gap-4 text-left"
         style={{ borderLeft: '3px solid var(--color-gold-500)' }}
         onClick={() => setShowImport(true)}
-        aria-label={t('import.button')}
+        aria-label={t('import.addTournament')}
       >
-        <span className="text-3xl">📥</span>
+        <span className="text-3xl">🏆</span>
         <div>
-          <p className="text-base font-bold">{t('import.button')}</p>
-          <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{t('import.urlHint')}</p>
+          <p className="text-base font-bold">{t('import.addTournament')}</p>
+          <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{t('import.addTournamentHint')}</p>
         </div>
       </button>
 

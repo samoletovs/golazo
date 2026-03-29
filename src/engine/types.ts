@@ -20,7 +20,7 @@ export type Position = (typeof POSITIONS)[keyof typeof POSITIONS]
 export const DOMINANT_FOOT = { right: 'right', left: 'left', both: 'both' } as const
 export type DominantFoot = (typeof DOMINANT_FOOT)[keyof typeof DOMINANT_FOOT]
 
-export type Language = 'ru' | 'lv' | 'en' | 'es'
+export type Language = 'ru' | 'lv' | 'en' | 'es' | 'lt' | 'et'
 
 export type AccountRole = 'player' | 'mentor'
 
@@ -219,7 +219,7 @@ export const SKILL_CATEGORIES = {
   physical: 'physical',
   tactical: 'tactical',
   mental: 'mental',
-  matchPlay: 'matchPlay',
+  performance: 'performance',
   knowledge: 'knowledge',
 } as const
 export type SkillCategory = (typeof SKILL_CATEGORIES)[keyof typeof SKILL_CATEGORIES]
@@ -281,7 +281,6 @@ export const EQUIPMENT = {
   ballOnly: 'ballOnly',
   cones: 'cones',
   wall: 'wall',
-  partner: 'partner',
   none: 'none',
 } as const
 export type Equipment = (typeof EQUIPMENT)[keyof typeof EQUIPMENT]
@@ -362,6 +361,8 @@ export interface Quote {
     lv: string
     en: string
     es: string
+    lt: string
+    et: string
   }
 }
 
@@ -371,8 +372,12 @@ export interface PhysicalMeasurement {
   heightCm: number
   weightKg: number
   sprintTime100m?: number // seconds
+  standingJumpCm?: number // standing long jump distance in cm
+  beepTestLevel?: number // Yo-Yo / beep test level (e.g. 8.5)
+  agilityCourseTime?: number // seconds (T-test or Illinois)
+  plankTimeSec?: number // plank hold duration in seconds
+  restingHeartRate?: number // resting heart rate in bpm
   juggleRecord?: number // best consecutive count
-  agilityCourseTime?: number // seconds
   measuredAt: string // ISO date
 }
 

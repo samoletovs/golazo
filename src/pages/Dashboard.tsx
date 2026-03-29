@@ -10,10 +10,11 @@ import { ConfettiBurst } from '../components/ConfettiBurst'
 import { getMatchResult } from '../engine/types'
 import { getRank } from '../engine/xp'
 import { exercises } from '../data/exercises'
+import type { ScheduleEvent } from '../engine/types'
 
 export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void }) {
   const { t } = useTranslation()
-  const { matches, trainings, xp, profile } = useApp()
+  const { matches, trainings, xp, profile, schedule } = useApp()
   const rank = getRank(xp.level)
 
   const seasonGoals = matches.reduce((s, m) => s + m.goals, 0)
@@ -31,6 +32,13 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
   const todayMatches = matches.filter(m => m.date.startsWith(today)).length
   const todayTrainings = trainings.filter(tr => tr.date.startsWith(today)).length
   const todayGoals = matches.filter(m => m.date.startsWith(today)).reduce((s, m) => s + m.goals, 0)
+
+  // Today's scheduled events (sorted by start time)
+  const todayEvents = useMemo(() => {
+    return schedule
+      .filter((ev: ScheduleEvent) => ev.date === today)
+      .sort((a: ScheduleEvent, b: ScheduleEvent) => (a.startTime ?? '').localeCompare(b.startTime ?? ''))
+  }, [schedule, today])
 
   // "vs last week" comparisons
   const vsLastWeek = useMemo(() => {
@@ -174,25 +182,80 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
       {/* ── Weekly training goal ring ── */}
       <WeeklyGoalRing />
 
-      {/* ── Today's action-urge ── */}
-      <div className="card animate-fade-up animate-stagger-2 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <span className="text-2xl">📅</span>
-          <div>
-            <p className="text-sm font-bold" style={{ fontFamily: 'var(--font-display)' }}>{t('dashboard.today')}</p>
-            <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
-              {todayMatches > 0 || todayTrainings > 0
-                ? t('dashboard.todaySummary', { matches: todayMatches, trainings: todayTrainings, goals: todayGoals })
-                : t('dashboard.todayEmpty')
-              }
-            </p>
-          </div>
+      {/* ── Today's Plan ── */}
+      <div className="card animate-fade-up animate-stagger-2">
+        <div className="flex items-center gap-2 mb-3">
+          <span className="text-lg">📅</span>
+          <p className="section-label">{t('dashboard.today')}</p>
         </div>
-        {todayMatches === 0 && todayTrainings === 0 && (
-          <span className="stat-pill stat-pill-green text-xs">
-            {t('dashboard.todayAction')}
-          </span>
+
+        {todayEvents.length > 0 ? (
+          <div className="flex flex-col gap-2">
+            {todayEvents.map((ev: ScheduleEvent) => {
+              const isMatch = ev.type === 'match' || ev.type === 'tournament'
+              const emoji = isMatch ? '🏟️' : ev.type === 'training' ? '⚽' : '📋'
+              const logged = isMatch
+                ? matches.some(m => m.date.startsWith(today) && m.opponent === ev.opponent)
+                : trainings.some(tr => tr.date.startsWith(today))
+              return (
+                <button
+                  key={ev.id}
+                  className="flex items-center gap-3 p-3 rounded-xl text-left tap-target"
+                  style={{
+                    background: logged ? 'var(--color-primary-bg-subtle)' : 'var(--color-bg-field)',
+                    opacity: logged ? 0.7 : 1,
+                  }}
+                  onClick={() => !logged && onNavigate?.('log')}
+                >
+                  <span className="text-xl">{logged ? '✅' : emoji}</span>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-bold truncate">{ev.title}{ev.opponent ? ` vs ${ev.opponent}` : ''}</p>
+                    <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
+                      {ev.startTime}{ev.location ? ` · ${ev.location}` : ''}
+                    </p>
+                  </div>
+                  {!logged && (
+                    <span className="text-xs font-bold px-2 py-1 rounded-full" style={{ background: 'rgba(var(--color-primary-rgb), 0.12)', color: 'var(--color-primary-dark)' }}>
+                      {t('dashboard.todayAction')}
+                    </span>
+                  )}
+                </button>
+              )
+            })}
+          </div>
+        ) : (
+          <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
+            {todayMatches > 0 || todayTrainings > 0
+              ? t('dashboard.todaySummary', { matches: todayMatches, trainings: todayTrainings, goals: todayGoals })
+              : t('dashboard.todayEmpty')
+            }
+          </p>
         )}
+
+        {/* Quick log actions — always visible */}
+        <div className="flex gap-2 mt-3">
+          <button
+            className="flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-xs font-bold tap-target"
+            style={{ background: 'rgba(var(--color-primary-rgb), 0.08)', color: 'var(--color-primary-dark)' }}
+            onClick={() => onNavigate?.('log')}
+          >
+            ⚽ {t('log.training')}
+          </button>
+          <button
+            className="flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-xs font-bold tap-target"
+            style={{ background: 'rgba(var(--color-primary-rgb), 0.08)', color: 'var(--color-primary-dark)' }}
+            onClick={() => onNavigate?.('log')}
+          >
+            🏟️ {t('log.match')}
+          </button>
+          <button
+            className="flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-xs font-bold tap-target"
+            style={{ background: 'rgba(var(--color-primary-rgb), 0.08)', color: 'var(--color-primary-dark)' }}
+            onClick={() => onNavigate?.('log')}
+          >
+            📝 {t('log.diary')}
+          </button>
+        </div>
       </div>
 
       {/* ── Drill of the day ── */}

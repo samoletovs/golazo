@@ -13,13 +13,15 @@ import type { Language } from '../engine/types'
 const LANG_OPTIONS: { key: Language; label: string }[] = [
   { key: 'ru', label: '🇷🇺 Русский' },
   { key: 'lv', label: '🇱🇻 Latviešu' },
+  { key: 'lt', label: '🇱🇹 Lietuvių' },
+  { key: 'et', label: '🇪🇪 Eesti' },
   { key: 'en', label: '🇬🇧 English' },
   { key: 'es', label: '🇪🇸 Español' },
 ]
 
 const FIFA_LABELS: Record<string, string> = {
   technical: 'TEC', physical: 'PHY', tactical: 'TAC',
-  mental: 'MEN', matchPlay: 'MAT', knowledge: 'KNO',
+  mental: 'MEN', performance: 'PER', knowledge: 'KNO',
 }
 
 export function Profile() {
@@ -216,7 +218,7 @@ export function Profile() {
           {(() => {
             const m = physicalProfile.measurements[physicalProfile.latestIndex]
             return (
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-3 gap-3">
                 {m.heightCm > 0 && (
                   <div className="text-center">
                     <p className="text-lg font-black font-data">{m.heightCm}</p>
@@ -233,6 +235,36 @@ export function Profile() {
                   <div className="text-center">
                     <p className="text-lg font-black font-data">{m.sprintTime100m}s</p>
                     <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>100m</p>
+                  </div>
+                )}
+                {m.standingJumpCm && (
+                  <div className="text-center">
+                    <p className="text-lg font-black font-data">{m.standingJumpCm}</p>
+                    <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{t('profile.jump')}</p>
+                  </div>
+                )}
+                {m.beepTestLevel && (
+                  <div className="text-center">
+                    <p className="text-lg font-black font-data">{m.beepTestLevel}</p>
+                    <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{t('profile.beepTest')}</p>
+                  </div>
+                )}
+                {m.agilityCourseTime && (
+                  <div className="text-center">
+                    <p className="text-lg font-black font-data">{m.agilityCourseTime}s</p>
+                    <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{t('profile.agility')}</p>
+                  </div>
+                )}
+                {m.plankTimeSec && (
+                  <div className="text-center">
+                    <p className="text-lg font-black font-data">{m.plankTimeSec}s</p>
+                    <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{t('profile.plank')}</p>
+                  </div>
+                )}
+                {m.restingHeartRate && (
+                  <div className="text-center">
+                    <p className="text-lg font-black font-data">{m.restingHeartRate}</p>
+                    <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{t('profile.heartRate')}</p>
                   </div>
                 )}
                 {m.juggleRecord && (
