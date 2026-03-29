@@ -2,145 +2,362 @@
   {
     "name": "Nõmme Kalju FC",
     "abbreviation": "NKFC",
-    "aliases": ["NÕMME KALJU FC", "NOMME KALJU", "KALJU"],
+    "aliases": [
+      "NÕMME KALJU FC",
+      "NOMME KALJU",
+      "KALJU"
+    ],
     "city": "Tallinn",
     "website": "https://www.nommekaljufc.ee",
     "league": "Premium Liiga",
-    "ageGroups": ["U15","U17","U19","Senior"],
+    "ageGroups": [
+      "U15",
+      "U17",
+      "U19",
+      "Senior"
+    ],
     "stadium": "Hiiu Stadium",
     "foundedYear": 1923,
-    "colors": ["#000000","#FFFFFF"],
-    "logoUrl": "https://jalgpall.ee/images/logos/C287B9A18B8C02FDA9A7E921E6D3E645"
+    "colors": [
+      "#000000",
+      "#FFFFFF"
+    ],
+    "logoUrl": "https://jalgpall.ee/images/logos/C287B9A18B8C02FDA9A7E921E6D3E645",
+    "socialMedia": [
+      {
+        "platform": "facebook",
+        "url": "https://www.facebook.com/NommeKaljuFC/"
+      },
+      {
+        "platform": "instagram",
+        "url": "https://www.instagram.com/nommekaljufc/"
+      }
+    ]
   },
   {
     "name": "Tallinna FCI Levadia",
     "abbreviation": "LEV",
-    "aliases": ["TALLINNA FCI LEVADIA", "FCI LEVADIA", "LEVADIA"],
+    "aliases": [
+      "TALLINNA FCI LEVADIA",
+      "FCI LEVADIA",
+      "LEVADIA"
+    ],
     "city": "Tallinn",
     "website": "https://www.fcilevadia.ee",
     "league": "Premium Liiga",
-    "ageGroups": ["U15","U17","U19","Senior"],
+    "ageGroups": [
+      "U15",
+      "U17",
+      "U19",
+      "Senior"
+    ],
     "stadium": "Maarjamäe Stadium",
     "foundedYear": 1998,
-    "colors": ["#006400","#FFFFFF"],
-    "logoUrl": "https://jalgpall.ee/images/logos/057147CE8C38CC81522C3741AADA2D4B"
+    "colors": [
+      "#006400",
+      "#FFFFFF"
+    ],
+    "logoUrl": "https://jalgpall.ee/images/logos/057147CE8C38CC81522C3741AADA2D4B",
+    "socialMedia": [
+      {
+        "platform": "facebook",
+        "url": "https://www.facebook.com/fcilevadia"
+      },
+      {
+        "platform": "instagram",
+        "url": "https://www.instagram.com/fcilevadia/"
+      },
+      {
+        "platform": "youtube",
+        "url": "https://www.youtube.com/channel/UCPpi1lGfzlVITgwOmVOYMkw"
+      },
+      {
+        "platform": "x",
+        "url": "https://twitter.com/LevadiaFCI"
+      }
+    ]
   },
   {
     "name": "Tallinna FC Flora",
     "abbreviation": "FLO",
-    "aliases": ["TALLINNA FC FLORA", "FC FLORA", "FLORA"],
+    "aliases": [
+      "TALLINNA FC FLORA",
+      "FC FLORA",
+      "FLORA"
+    ],
     "city": "Tallinn",
     "website": "https://www.fcflora.ee",
     "league": "Premium Liiga",
-    "ageGroups": ["U13","U15","U17","U19","Senior","Women"],
+    "ageGroups": [
+      "U13",
+      "U15",
+      "U17",
+      "U19",
+      "Senior",
+      "Women"
+    ],
     "stadium": "A. Le Coq Arena",
     "foundedYear": 1990,
-    "colors": ["#006400","#FFFFFF"],
-    "logoUrl": "https://www.jalgpall.ee/images/teams/9FA11522AB09B90003E8875D5B25116A"
+    "colors": [
+      "#006400",
+      "#FFFFFF"
+    ],
+    "logoUrl": "https://www.jalgpall.ee/images/teams/9FA11522AB09B90003E8875D5B25116A",
+    "socialMedia": [
+      {
+        "platform": "facebook",
+        "url": "https://www.facebook.com/fcflora"
+      },
+      {
+        "platform": "instagram",
+        "url": "https://www.instagram.com/fcflora/"
+      },
+      {
+        "platform": "youtube",
+        "url": "https://www.youtube.com/@fcfloratallinn"
+      }
+    ]
   },
   {
     "name": "Paide Linnameeskond",
     "abbreviation": "PAI",
-    "aliases": ["PAIDE LINNAMEESKOND", "PAIDE"],
+    "aliases": [
+      "PAIDE LINNAMEESKOND",
+      "PAIDE"
+    ],
     "city": "Paide",
     "website": "https://www.jkpaide.ee",
     "league": "Premium Liiga",
-    "ageGroups": ["U17","U19","Senior"],
+    "ageGroups": [
+      "U17",
+      "U19",
+      "Senior"
+    ],
     "stadium": "Paide linnastaadion",
     "foundedYear": 1990,
-    "colors": ["#FFA500","#000000"],
-    "logoUrl": "https://jalgpall.ee/images/clubs/04DA1E5682F6B6CACC9A577CED953711"
+    "colors": [
+      "#FFA500",
+      "#000000"
+    ],
+    "logoUrl": "https://jalgpall.ee/images/clubs/04DA1E5682F6B6CACC9A577CED953711",
+    "socialMedia": [
+      {
+        "platform": "facebook",
+        "url": "https://www.facebook.com/PaideLinnameeskond/"
+      },
+      {
+        "platform": "instagram",
+        "url": "https://www.instagram.com/paidelinnameeskond/"
+      }
+    ]
   },
   {
     "name": "FC Nõmme United",
     "abbreviation": "NUN",
-    "aliases": ["FC NÕMME UNITED", "NOMME UNITED"],
+    "aliases": [
+      "FC NÕMME UNITED",
+      "NOMME UNITED"
+    ],
     "city": "Tallinn",
     "league": "Premium Liiga",
-    "ageGroups": ["U17","U19","Senior"],
+    "ageGroups": [
+      "U17",
+      "U19",
+      "Senior"
+    ],
     "foundedYear": 2012,
-    "colors": ["#FF4500","#000000"],
-    "logoUrl": "https://jalgpall.ee/images/logos/33222BD6CE3DA91F68515106EA5CAAAF"
+    "colors": [
+      "#FF4500",
+      "#000000"
+    ],
+    "logoUrl": "https://jalgpall.ee/images/logos/33222BD6CE3DA91F68515106EA5CAAAF",
+    "stadium": "Nõmme Kalju Staadion"
   },
   {
     "name": "Tartu JK Tammeka",
     "abbreviation": "TAM",
-    "aliases": ["TARTU JK TAMMEKA", "JK TAMMEKA", "TAMMEKA"],
+    "aliases": [
+      "TARTU JK TAMMEKA",
+      "JK TAMMEKA",
+      "TAMMEKA"
+    ],
     "city": "Tartu",
     "website": "https://www.jktammeka.ee",
     "league": "Premium Liiga",
-    "ageGroups": ["U15","U17","U19","Senior"],
+    "ageGroups": [
+      "U15",
+      "U17",
+      "U19",
+      "Senior"
+    ],
     "stadium": "Tamme Stadium",
     "foundedYear": 1989,
-    "colors": ["#800080","#FFFFFF"],
-    "logoUrl": "https://jalgpall.ee/images/clubs/81AD4B4CED48E03076052BE2AD56B0B6"
+    "colors": [
+      "#800080",
+      "#FFFFFF"
+    ],
+    "logoUrl": "https://jalgpall.ee/images/clubs/81AD4B4CED48E03076052BE2AD56B0B6",
+    "socialMedia": [
+      {
+        "platform": "facebook",
+        "url": "https://www.facebook.com/jktammeka"
+      },
+      {
+        "platform": "instagram",
+        "url": "https://www.instagram.com/jktammeka/"
+      },
+      {
+        "platform": "youtube",
+        "url": "https://www.youtube.com/@TammekaTV"
+      },
+      {
+        "platform": "tiktok",
+        "url": "https://www.tiktok.com/@tartujktammeka"
+      }
+    ]
   },
   {
     "name": "JK Narva Trans",
     "abbreviation": "NTR",
-    "aliases": ["JK NARVA TRANS", "NARVA TRANS"],
+    "aliases": [
+      "JK NARVA TRANS",
+      "NARVA TRANS"
+    ],
     "city": "Narva",
     "website": "https://www.jknarvatrans.ee",
     "league": "Premium Liiga",
-    "ageGroups": ["U17","U19","Senior"],
+    "ageGroups": [
+      "U17",
+      "U19",
+      "Senior"
+    ],
     "stadium": "Kreenholmi Stadium",
     "foundedYear": 1979,
-    "colors": ["#000080","#FFD700"],
-    "logoUrl": "https://jalgpall.ee/images/clubs/4A3FF0803D0C049C81C5924B98567A9E"
+    "colors": [
+      "#000080",
+      "#FFD700"
+    ],
+    "logoUrl": "https://jalgpall.ee/images/clubs/4A3FF0803D0C049C81C5924B98567A9E",
+    "socialMedia": [
+      {
+        "platform": "facebook",
+        "url": "https://www.facebook.com/jknarvatrans/"
+      },
+      {
+        "platform": "instagram",
+        "url": "https://www.instagram.com/jknarvatrans/"
+      }
+    ]
   },
   {
     "name": "FC Kuressaare",
     "abbreviation": "FKK",
-    "aliases": ["FC KURESSAARE", "KURESSAARE"],
+    "aliases": [
+      "FC KURESSAARE",
+      "KURESSAARE"
+    ],
     "city": "Kuressaare",
     "league": "Premium Liiga",
-    "ageGroups": ["U17","U19","Senior"],
+    "ageGroups": [
+      "U17",
+      "U19",
+      "Senior"
+    ],
     "stadium": "Kuressaare linnastaadion",
     "foundedYear": 1990,
-    "colors": ["#FFD700","#006400"],
+    "colors": [
+      "#FFD700",
+      "#006400"
+    ],
     "logoUrl": "https://jalgpall.ee/images/logos/82513CF228618115FBB68121D90A730F"
   },
   {
     "name": "Pärnu JK Vaprus",
     "abbreviation": "VAP",
-    "aliases": ["PÄRNU JK VAPRUS", "JK VAPRUS", "VAPRUS"],
+    "aliases": [
+      "PÄRNU JK VAPRUS",
+      "JK VAPRUS",
+      "VAPRUS"
+    ],
     "city": "Pärnu",
     "league": "Premium Liiga",
-    "ageGroups": ["U17","U19","Senior"],
+    "ageGroups": [
+      "U17",
+      "U19",
+      "Senior"
+    ],
     "stadium": "Pärnu Rannastaadion",
     "foundedYear": 1922,
-    "colors": ["#FF0000","#FFFFFF"],
+    "colors": [
+      "#FF0000",
+      "#FFFFFF"
+    ],
     "logoUrl": "https://jalgpall.ee/images/clubs/D8034B13F45C52A82CC8EAFFB756EABF"
   },
   {
     "name": "Harju JK Laagri",
     "abbreviation": "LAA",
-    "aliases": ["HARJU JK LAAGRI", "JK LAAGRI", "LAAGRI"],
+    "aliases": [
+      "HARJU JK LAAGRI",
+      "JK LAAGRI",
+      "LAAGRI"
+    ],
     "city": "Laagri",
     "league": "Premium Liiga",
-    "ageGroups": ["U17","U19","Senior"],
+    "ageGroups": [
+      "U17",
+      "U19",
+      "Senior"
+    ],
     "foundedYear": 2004,
-    "colors": ["#008B8B","#FFFFFF"],
-    "logoUrl": "https://jalgpall.ee/images/clubs/B35E6F475CFD782B9499B3FAF26C3A55"
+    "colors": [
+      "#008B8B",
+      "#FFFFFF"
+    ],
+    "logoUrl": "https://jalgpall.ee/images/clubs/B35E6F475CFD782B9499B3FAF26C3A55",
+    "stadium": "Laagri Staadion"
   },
   {
     "name": "Tartu JK Kalev",
     "abbreviation": "TKA",
-    "aliases": ["TARTU KALEV", "TARTU JK KALEV"],
+    "aliases": [
+      "TARTU KALEV",
+      "TARTU JK KALEV"
+    ],
     "city": "Tartu",
     "league": "Esiliiga",
-    "ageGroups": ["U15","U17","U19","Senior"],
+    "ageGroups": [
+      "U15",
+      "U17",
+      "U19",
+      "Senior"
+    ],
     "foundedYear": 2002,
-    "colors": ["#0000FF","#FFFFFF"]
+    "colors": [
+      "#0000FF",
+      "#FFFFFF"
+    ],
+    "stadium": "Tartu Tamme Staadion"
   },
   {
     "name": "TJK Legion",
     "abbreviation": "LEG",
-    "aliases": ["TJK LEGION", "LEGION"],
+    "aliases": [
+      "TJK LEGION",
+      "LEGION"
+    ],
     "city": "Tallinn",
     "league": "Esiliiga",
-    "ageGroups": ["U15","U17","Senior"],
+    "ageGroups": [
+      "U15",
+      "U17",
+      "Senior"
+    ],
     "foundedYear": 2007,
-    "colors": ["#FF0000","#000000"]
+    "colors": [
+      "#FF0000",
+      "#000000"
+    ],
+    "stadium": "Tallinna Kalevi Keskstaadion"
   }
 ]

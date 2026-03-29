@@ -9,6 +9,7 @@ import { Dashboard } from './pages/Dashboard'
 import { LogPage } from './pages/LogPage'
 import { LoginPage } from './pages/LoginPage'
 import { OnboardingPage } from './pages/OnboardingPage'
+import { applyTeamTheme, getPrimaryTeamColor } from './utils/teamTheme'
 
 // Lazy-load heavier pages to reduce initial bundle
 const Exercises = lazy(() => import('./pages/Exercises').then(m => ({ default: m.Exercises })))
@@ -24,8 +25,14 @@ function AppContent() {
   const [page, setPage] = useState<Page>('dashboard')
   const [pageKey, setPageKey] = useState(0)
   const { user, loading: authLoading } = useAuth()
-  const { onboardingComplete } = useApp()
+  const { onboardingComplete, profile } = useApp()
   const [skippedLogin, setSkippedLogin] = useState(false)
+
+  // Apply team-based color theme
+  useEffect(() => {
+    const teamColor = getPrimaryTeamColor(profile?.teams)
+    applyTeamTheme(teamColor)
+  }, [profile?.teams])
 
   // Page transition — re-key the content wrapper to trigger animation
   const handleNavigate = (p: string) => {

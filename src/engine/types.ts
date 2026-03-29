@@ -53,11 +53,14 @@ export interface PlayerTeam {
   shortInfo?: string // brief description from website
   registryId?: string // link to SharedTeam in shared registry
   isPrimary?: boolean // main team
+  colors?: string[]  // hex codes from SharedTeam (for app theming)
   active: boolean
   createdAt: string
 }
 
 /* ── Shared Team Registry ─────────────────────────────────── */
+
+export type TeamType = 'club' | 'academy' | 'squad'
 
 export interface SharedTeam {
   id: string
@@ -65,6 +68,7 @@ export interface SharedTeam {
   name: string                 // Official club name
   abbreviation?: string        // "RFS", "MNSS", etc.
   aliases: string[]            // Tournament names, historical names
+  type?: TeamType              // 'club' (pro), 'academy' (youth school), 'squad' (year/team)
   city?: string
   website?: string
   logoUrl?: string
@@ -74,7 +78,9 @@ export interface SharedTeam {
   ageGroups?: string[]         // "U7","U9",..."U19","Senior","Women"
   socialMedia?: { platform: string; url: string }[]
   stadium?: string
-  parentClubId?: string        // For squads → parent club's id
+  parentClubId?: string        // Academy → parent club, Squad → parent academy
+  birthYear?: number           // Squad birth year (e.g. 2014)
+  squadLabel?: string          // Squad label: "A", "B", "1", "2"
   regCode?: string             // Government registry code
   verified: boolean
   verifiedAt?: string

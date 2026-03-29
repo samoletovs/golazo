@@ -4,6 +4,9 @@ import { useApp } from '../contexts/AppContext'
 import { QuoteCard } from '../components/QuoteCard'
 import { SkillRadar } from '../components/SkillRadar'
 import { CoachCard } from '../components/CoachCard'
+import { WeeklyGoalRing } from '../components/WeeklyGoalRing'
+import { useCountUp } from '../hooks/useCountUp'
+import { ConfettiBurst } from '../components/ConfettiBurst'
 import { getMatchResult } from '../engine/types'
 import { getRank } from '../engine/xp'
 import { exercises } from '../data/exercises'
@@ -16,6 +19,12 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
   const seasonGoals = matches.reduce((s, m) => s + m.goals, 0)
   const seasonAssists = matches.reduce((s, m) => s + m.assists, 0)
   const wins = matches.filter((m) => getMatchResult(m) === 'win').length
+
+  // Animated count-ups for stat cards
+  const animMatches = useCountUp(matches.length, 500, 100)
+  const animGoals = useCountUp(seasonGoals, 500, 200)
+  const animAssists = useCountUp(seasonAssists, 500, 300)
+  const animWins = useCountUp(wins, 500, 400)
 
   // Today's activity count
   const today = new Date().toISOString().slice(0, 10)
@@ -72,14 +81,19 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
     if (diff === 0) return null
     const isUp = diff > 0
     return (
-      <span className="text-xs font-data font-bold" style={{ color: isUp ? 'var(--color-green-500)' : 'var(--color-danger)' }}>
+      <span className="text-xs font-data font-bold" style={{ color: isUp ? 'var(--color-primary-dark)' : 'var(--color-danger)' }}>
         {isUp ? '↑' : '↓'}{Math.abs(diff)}
       </span>
     )
   }
 
+  // Confetti on streak milestones (5, 10, 20, 30, 50, 100)
+  const STREAK_MILESTONES = [5, 10, 20, 30, 50, 100]
+  const isStreakMilestone = STREAK_MILESTONES.includes(xp.streakDays)
+
   return (
     <div className="flex flex-col gap-5 p-4 pb-32">
+      <ConfettiBurst trigger={isStreakMilestone} />
       {/* ── Welcome greeting ── */}
       <div className="animate-fade-up">
         <p className="text-lg font-bold" style={{ fontFamily: 'var(--font-display)' }}>
@@ -130,40 +144,35 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
       {/* ── Season stats with vs-last-week arrows ── */}
       <div className="grid grid-cols-4 gap-3 animate-fade-up animate-stagger-1">
         <div className="stat-card stat-card-green">
-          <p className="text-3xl font-black font-data text-gradient-green animate-number-pop">
-            {matches.length}
+          <p className="stat-number text-gradient-green animate-number-pop">
+            {animMatches}
           </p>
-          <p className="text-xs font-semibold mt-1" style={{ color: 'var(--color-text-muted)' }}>
-            {t('dashboard.matches')}
-          </p>
+          <p className="stat-label">{t('dashboard.matches')}</p>
           <ComparisonArrow diff={vsLastWeek.matches} />
         </div>
         <div className="stat-card stat-card-gold">
-          <p className="text-3xl font-black font-data text-gradient-gold animate-number-pop" style={{ animationDelay: '0.1s' }}>
-            {seasonGoals}
+          <p className="stat-number text-gradient-gold animate-number-pop" style={{ animationDelay: '0.1s' }}>
+            {animGoals}
           </p>
-          <p className="text-xs font-semibold mt-1" style={{ color: 'var(--color-text-muted)' }}>
-            {t('dashboard.goals')}
-          </p>
+          <p className="stat-label">{t('dashboard.goals')}</p>
           <ComparisonArrow diff={vsLastWeek.goals} />
         </div>
         <div className="stat-card stat-card-cyan">
-          <p className="text-3xl font-black font-data text-gradient-green animate-number-pop" style={{ animationDelay: '0.2s' }}>
-            {seasonAssists}
+          <p className="stat-number text-gradient-green animate-number-pop" style={{ animationDelay: '0.2s' }}>
+            {animAssists}
           </p>
-          <p className="text-xs font-semibold mt-1" style={{ color: 'var(--color-text-muted)' }}>
-            {t('dashboard.assists')}
-          </p>
+          <p className="stat-label">{t('dashboard.assists')}</p>
         </div>
         <div className="stat-card stat-card-green">
-          <p className="text-3xl font-black font-data text-gradient-green animate-number-pop" style={{ animationDelay: '0.3s' }}>
-            {wins}
+          <p className="stat-number text-gradient-green animate-number-pop" style={{ animationDelay: '0.3s' }}>
+            {animWins}
           </p>
-          <p className="text-xs font-semibold mt-1" style={{ color: 'var(--color-text-muted)' }}>
-            {t('dashboard.wins')}
-          </p>
+          <p className="stat-label">{t('dashboard.wins')}</p>
         </div>
       </div>
+
+      {/* ── Weekly training goal ring ── */}
+      <WeeklyGoalRing />
 
       {/* ── Today's action-urge ── */}
       <div className="card animate-fade-up animate-stagger-2 flex items-center justify-between">
@@ -208,7 +217,7 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
           {onNavigate && (
             <button
               className="ml-auto text-xs font-bold px-3 py-1 rounded-full"
-              style={{ background: 'var(--color-green-glow)', color: 'var(--color-green-500)' }}
+              style={{ background: 'rgba(var(--color-primary-rgb), 0.12)', color: 'var(--color-primary-dark)' }}
               onClick={() => onNavigate('exercises')}
             >
               {t('exercises.all')} →
@@ -226,7 +235,7 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
             <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
               {t('log.training')}
               {vsLastWeek.trainings !== 0 && (
-                <span className="ml-1 font-data font-bold" style={{ color: vsLastWeek.trainings > 0 ? 'var(--color-green-500)' : 'var(--color-danger)' }}>
+                <span className="ml-1 font-data font-bold" style={{ color: vsLastWeek.trainings > 0 ? 'var(--color-primary-dark)' : 'var(--color-danger)' }}>
                   {vsLastWeek.trainings > 0 ? '↑' : '↓'}{Math.abs(vsLastWeek.trainings)} {t('dashboard.vsLastWeek')}
                 </span>
               )}
@@ -247,30 +256,44 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
       {/* ── Skill radar ── */}
       <SkillRadar />
 
-      {/* ── Recent matches ── */}
+      {/* ── Recent matches (horizontal scroll) ── */}
       {matches.length > 0 && (
-        <div className="card animate-fade-up animate-stagger-4">
-          <p className="section-label mb-3">
-            {t('dashboard.matches')}
-          </p>
-          <div className="flex flex-col gap-1">
-            {matches.slice(-5).reverse().map((m) => {
+        <div className="animate-fade-up animate-stagger-4">
+          <div className="flex items-center justify-between mb-2 px-0">
+            <p className="section-label">{t('dashboard.matches')}</p>
+            {onNavigate && (
+              <button
+                className="text-xs font-bold"
+                style={{ color: 'var(--color-primary-dark)' }}
+                onClick={() => onNavigate('progress')}
+              >
+                {t('exercises.all')} →
+              </button>
+            )}
+          </div>
+          <div className="h-scroll">
+            {matches.slice(-8).reverse().map((m) => {
               const result = getMatchResult(m)
-              const resultColor =
-                result === 'win' ? '#15803d'
-                : result === 'loss' ? '#dc2626'
-                : '#d97706'
-              const resultBg =
-                result === 'win' ? '#dcfce7'
-                : result === 'loss' ? '#fee2e2'
-                : '#fef3c7'
               return (
-                <div key={m.id} className="flex justify-between items-center py-2.5 px-3 rounded-xl text-sm"
-                  style={{ background: resultBg }}>
-                  <span className="font-medium" style={{ color: 'var(--color-text)' }}>{m.opponent}</span>
-                  <span className="font-data font-black text-base" style={{ color: resultColor }}>
-                    {m.scoreUs} : {m.scoreThem}
-                  </span>
+                <div key={m.id} className="match-card-h" data-result={result}>
+                  <p className="text-xs font-bold" style={{ color: 'var(--color-text-muted)' }}>
+                    {new Date(m.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
+                  </p>
+                  <p className="text-sm font-bold mt-1" style={{ fontFamily: 'var(--font-display)' }}>
+                    {m.opponent}
+                  </p>
+                  <div className="flex items-baseline gap-2 mt-2">
+                    <span className="stat-number" style={{
+                      fontSize: '1.5rem',
+                      color: result === 'win' ? 'var(--color-primary-dark)' : result === 'loss' ? '#dc2626' : '#d97706'
+                    }}>
+                      {m.scoreUs} : {m.scoreThem}
+                    </span>
+                  </div>
+                  <div className="flex gap-2 mt-2">
+                    {m.goals > 0 && <span className="stat-pill stat-pill-green text-[10px]">⚽ {m.goals}</span>}
+                    {m.assists > 0 && <span className="stat-pill stat-pill-cyan text-[10px]">🎯 {m.assists}</span>}
+                  </div>
                 </div>
               )
             })}
@@ -278,24 +301,64 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
         </div>
       )}
 
-      {/* ── Quick actions ── */}
-      {onNavigate && (
-        <div className="flex gap-2 animate-fade-up">
-          <button
-            className="card flex-1 tap-target flex items-center gap-2 justify-center py-3"
-            onClick={() => onNavigate('schedule')}
-          >
-            <span>📅</span>
-            <span className="text-xs font-bold">{t('nav.schedule')}</span>
-          </button>
-          <button
-            className="card flex-1 tap-target flex items-center gap-2 justify-center py-3"
-            onClick={() => onNavigate('challenges')}
-          >
-            <span>🏆</span>
-            <span className="text-xs font-bold">{t('nav.challenges')}</span>
-          </button>
+      {/* ── Challenges preview (horizontal scroll) ── */}
+      <div className="animate-fade-up">
+        <div className="flex items-center justify-between mb-2">
+          <p className="section-label">{t('nav.challenges')}</p>
+          {onNavigate && (
+            <button
+              className="text-xs font-bold"
+              style={{ color: 'var(--color-primary-dark)' }}
+              onClick={() => onNavigate('challenges')}
+            >
+              {t('exercises.all')} →
+            </button>
+          )}
         </div>
+        <div className="h-scroll">
+          {/* Daily challenge cards */}
+          <div className="challenge-card-h" style={{ borderTop: '3px solid var(--color-gold-400)' }}>
+            <div className="flex items-center gap-2">
+              <span className="text-lg">⚡</span>
+              <span className="text-xs font-bold" style={{ color: 'var(--color-gold-500)' }}>{t('challenges.daily')}</span>
+            </div>
+            <p className="text-sm font-bold" style={{ fontFamily: 'var(--font-display)' }}>
+              {t('challenges.daily1')}
+            </p>
+            <span className="stat-pill stat-pill-gold text-[10px] self-start">+25 XP</span>
+          </div>
+          <div className="challenge-card-h" style={{ borderTop: '3px solid var(--color-primary)' }}>
+            <div className="flex items-center gap-2">
+              <span className="text-lg">🏋️</span>
+              <span className="text-xs font-bold" style={{ color: 'var(--color-primary-dark)' }}>{t('challenges.special')}</span>
+            </div>
+            <p className="text-sm font-bold" style={{ fontFamily: 'var(--font-display)' }}>
+              {t('challenges.weakFoot')}
+            </p>
+            <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>30 {t('challenges.days')}</p>
+          </div>
+          <div className="challenge-card-h" style={{ borderTop: '3px solid var(--color-cyan)' }}>
+            <div className="flex items-center gap-2">
+              <span className="text-lg">🧠</span>
+              <span className="text-xs font-bold" style={{ color: 'var(--color-cyan)' }}>{t('challenges.special')}</span>
+            </div>
+            <p className="text-sm font-bold" style={{ fontFamily: 'var(--font-display)' }}>
+              {t('challenges.mentalChamp')}
+            </p>
+            <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>21 {t('challenges.days')}</p>
+          </div>
+        </div>
+      </div>
+
+      {/* ── Quick action: Schedule ── */}
+      {onNavigate && (
+        <button
+          className="card tap-target flex items-center gap-3 justify-center py-3 animate-fade-up w-full"
+          onClick={() => onNavigate('schedule')}
+        >
+          <span>📅</span>
+          <span className="text-xs font-bold">{t('nav.schedule')}</span>
+        </button>
       )}
     </div>
   )

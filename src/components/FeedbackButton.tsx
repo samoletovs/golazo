@@ -67,7 +67,7 @@ export default function FeedbackButton() {
             style={{
               flex: 1, padding: 6, borderRadius: 8, fontSize: 11, fontWeight: 500,
               border: 'none', cursor: 'pointer',
-              background: type === k ? '#16a34a' : '#f1f5f9',
+              background: type === k ? 'var(--color-primary)' : '#f1f5f9',
               color: type === k ? '#fff' : '#475569',
             }}
           >
@@ -95,7 +95,7 @@ export default function FeedbackButton() {
         <button
           onClick={submit}
           disabled={!text.trim()}
-          style={{ flex: 1, padding: 8, borderRadius: 8, background: '#16a34a', color: '#fff', border: 'none', cursor: 'pointer', fontWeight: 600, opacity: text.trim() ? 1 : 0.5 }}
+          style={{ flex: 1, padding: 8, borderRadius: 8, background: 'var(--color-primary)', color: '#fff', border: 'none', cursor: 'pointer', fontWeight: 600, opacity: text.trim() ? 1 : 0.5 }}
         >
           Submit
         </button>

@@ -77,22 +77,22 @@ export function SkillRadar() {
         {/* Data polygon — gradient fill */}
         <defs>
           <linearGradient id="radarFill" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#16a34a" stopOpacity="0.25" />
+            <stop offset="0%" stopColor="var(--color-primary)" stopOpacity="0.25" />
             <stop offset="100%" stopColor="#f59e0b" stopOpacity="0.12" />
           </linearGradient>
         </defs>
         <polygon
           points={dataPoints.map((p) => p.join(',')).join(' ')}
           fill="url(#radarFill)"
-          stroke="var(--color-green-500)"
+          stroke="var(--color-primary-dark)"
           strokeWidth="2"
         />
 
         {/* Data points — glowing */}
         {dataPoints.map((p, i) => (
           <g key={i}>
-            <circle cx={p[0]} cy={p[1]} r="6" fill="var(--color-green-500)" fillOpacity="0.2" />
-            <circle cx={p[0]} cy={p[1]} r="3" fill="var(--color-green-500)" />
+            <circle cx={p[0]} cy={p[1]} r="6" fill="var(--color-primary-dark)" fillOpacity="0.2" />
+            <circle cx={p[0]} cy={p[1]} r="3" fill="var(--color-primary-dark)" />
           </g>
         ))}
 

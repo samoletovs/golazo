@@ -65,6 +65,7 @@ function extractInfo(html, baseUrl) {
     description: '',
     logoUrl: '',
     favicon: '',
+    colors: [],
   };
 
   // Extract <title>
@@ -110,7 +111,42 @@ function extractInfo(html, baseUrl) {
     }
   }
 
+  // Extract brand colors from meta theme-color and CSS custom properties
+  const themeColorMatch = html.match(/<meta[^>]*name=["']theme-color["'][^>]*content=["']([^"']{1,50})["']/i)
+    || html.match(/<meta[^>]*content=["']([^"']{1,50})["'][^>]*name=["']theme-color["']/i);
+  if (themeColorMatch) {
+    const hex = normalizeColor(themeColorMatch[1].trim());
+    if (hex) result.colors.push(hex);
+  }
+
+  // Extract msapplication-TileColor
+  const tileColorMatch = html.match(/<meta[^>]*name=["']msapplication-TileColor["'][^>]*content=["']([^"']{1,50})["']/i);
+  if (tileColorMatch) {
+    const hex = normalizeColor(tileColorMatch[1].trim());
+    if (hex && !result.colors.includes(hex)) result.colors.push(hex);
+  }
+
+  // Dedupe and limit to 3 colors
+  result.colors = [...new Set(result.colors)].slice(0, 3);
+
   return result;
+}
+
+/** Normalize a CSS color string to #RRGGBB hex. Returns null if unrecognized. */
+function normalizeColor(str) {
+  if (!str) return null;
+  // Already hex
+  if (/^#[0-9a-fA-F]{6}$/.test(str)) return str.toUpperCase();
+  if (/^#[0-9a-fA-F]{3}$/.test(str)) {
+    return '#' + str[1] + str[1] + str[2] + str[2] + str[3] + str[3];
+  }
+  // rgb(r,g,b)
+  const rgbMatch = str.match(/^rgb\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)$/i);
+  if (rgbMatch) {
+    const [, r, g, b] = rgbMatch;
+    return '#' + [r, g, b].map(c => parseInt(c).toString(16).padStart(2, '0')).join('').toUpperCase();
+  }
+  return null;
 }
 
 function resolveUrl(href, baseUrl) {

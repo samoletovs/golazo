@@ -85,7 +85,7 @@ export function MatchLog({ onBack }: { onBack?: () => void }) {
     return (
       <div className="flex flex-col items-center justify-center gap-4 p-8 pb-32 animate-fade-up">
         <span className="text-5xl animate-float">⚽</span>
-        <p className="text-lg font-bold" style={{ color: 'var(--color-green-500)' }}>
+        <p className="text-lg font-bold" style={{ color: 'var(--color-primary-dark)' }}>
           {t('match.saved', { xp: XP_AWARDS.logMatch })}
         </p>
       </div>
@@ -218,7 +218,7 @@ export function MatchLog({ onBack }: { onBack?: () => void }) {
             className="flex-1"
             aria-label={t('match.rating')}
           />
-          <span className="text-2xl font-black font-data w-8 text-center" style={{ color: selfRating >= 7 ? 'var(--color-green-400)' : selfRating >= 4 ? 'var(--color-warn)' : 'var(--color-danger)' }}>
+          <span className="text-2xl font-black font-data w-8 text-center" style={{ color: selfRating >= 7 ? 'var(--color-primary)' : selfRating >= 4 ? 'var(--color-warn)' : 'var(--color-danger)' }}>
             {selfRating}
           </span>
         </div>

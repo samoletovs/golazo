@@ -5,7 +5,7 @@ import { TournamentImport } from '../components/TournamentImport'
 import type { ScheduleType, ScheduleEvent } from '../engine/types'
 
 const EVENT_TYPES: { key: ScheduleType; emoji: string; labelKey: string; color: string }[] = [
-  { key: 'training', emoji: '⚽', labelKey: 'mentor.schedule.training', color: 'var(--color-green-500)' },
+  { key: 'training', emoji: '⚽', labelKey: 'mentor.schedule.training', color: 'var(--color-primary-dark)' },
   { key: 'match', emoji: '🏟️', labelKey: 'mentor.schedule.match', color: 'var(--color-cat-physical)' },
   { key: 'tournament', emoji: '🏆', labelKey: 'mentor.schedule.tournament', color: 'var(--color-gold-500)' },
 ]
@@ -165,7 +165,7 @@ export function SchedulePage() {
                         <div
                           key={ev.id}
                           className="w-1.5 h-1.5 rounded-full"
-                          style={{ background: evType?.color ?? 'var(--color-green-500)' }}
+                          style={{ background: evType?.color ?? 'var(--color-primary-dark)' }}
                         />
                       )
                     })}
@@ -186,7 +186,7 @@ export function SchedulePage() {
             </p>
             <button
               className="text-xs font-bold px-3 py-1.5 rounded-lg"
-              style={{ background: '#dcfce7', color: '#15803d' }}
+              style={{ background: 'var(--color-primary-bg)', color: 'var(--color-primary-dark)' }}
               onClick={() => openAddForm(selectedDate)}
               aria-label={t('mentor.schedule.add')}
             >
@@ -317,7 +317,7 @@ export function SchedulePage() {
                   type="checkbox"
                   checked={formRecurring}
                   onChange={(e) => setFormRecurring(e.target.checked)}
-                  className="w-5 h-5 accent-[var(--color-green-500)]"
+                  className="w-5 h-5 accent-[var(--color-primary-dark)]"
                 />
                 {t('mentor.schedule.recurring')}
               </label>

@@ -233,8 +233,52 @@ function teamMatches(gameTeams, filter) {
 /* ── Registry matching ────────────────────────────────────── */
 
 /**
+ * Parse squad info from a tournament team name.
+ * Patterns: "MĀRUPES NSS / 2014", "RFS 2014-A", "FK VALOR 2015/2", "METTA 2014 B"
+ * Returns { baseName, birthYear?, squadLabel? }
+ */
+function parseSquadInfo(tournamentName) {
+  let name = tournamentName.trim();
+
+  // Pattern: "TEAM / YYYY-A" or "TEAM / YYYY/A" (year+squad after slash)
+  let m = name.match(/^(.+?)\s*\/\s*(20\d{2})\s*[-/]?\s*([A-C1-9])$/i);
+  if (m) return { baseName: m[1].trim(), birthYear: parseInt(m[2]), squadLabel: m[3].toUpperCase() };
+
+  // Pattern: "TEAM / YYYY" or "TEAM /YYYY" (year after slash, no squad)
+  m = name.match(/^(.+?)\s*\/\s*(20\d{2})$/);
+  if (m) return { baseName: m[1].trim(), birthYear: parseInt(m[2]) };
+
+  // Pattern: "TEAM YYYY-A" or "TEAM YYYY/A" or "TEAM YYYY A"
+  m = name.match(/^(.+?)\s+(20\d{2})\s*[-/]?\s*([A-C1-9])$/i);
+  if (m) return { baseName: m[1].trim(), birthYear: parseInt(m[2]), squadLabel: m[3].toUpperCase() };
+
+  // Pattern: "TEAM YYYY" (just a year at the end, no squad label)
+  m = name.match(/^(.+?)\s+(20\d{2})$/);
+  if (m) return { baseName: m[1].trim(), birthYear: parseInt(m[2]) };
+
+  return { baseName: name };
+}
+
+/**
+ * Find a team in the registry by normalized name matching.
+ */
+function findTeamInRegistry(registry, searchName) {
+  const norm = normalizeTeam(searchName);
+  for (const team of registry) {
+    if (normalizeTeam(team.name) === norm) return team;
+    if (team.abbreviation && normalizeTeam(team.abbreviation) === norm) return team;
+    if (team.aliases?.some((a) => normalizeTeam(a) === norm)) return team;
+    const normTeam = normalizeTeam(team.name);
+    if (norm.includes(normTeam) || normTeam.includes(norm)) return team;
+  }
+  return null;
+}
+
+/**
  * Match tournament team names against the shared team registry.
- * Returns { [teamName]: { id, name, country, logoUrl, verified } | null }
+ * Returns { [teamName]: { id, name, country, logoUrl, verified, squad? } | null }
+ * When a squad pattern is detected (e.g. "MĀRUPES NSS / 2014"), returns the parent
+ * academy match plus squad info: { birthYear, squadLabel }.
  */
 async function matchTeamsAgainstRegistry(teamNames) {
   const container = await getTeamsContainer();
@@ -242,30 +286,38 @@ async function matchTeamsAgainstRegistry(teamNames) {
 
   const result = {};
   try {
-    // Load all registry teams (cached per request — registries are small)
     const { resources: registry } = await container.items
-      .query('SELECT c.id, c.name, c.abbreviation, c.aliases, c.country, c.logoUrl, c.verified FROM c')
+      .query('SELECT c.id, c.name, c.abbreviation, c.aliases, c.country, c.logoUrl, c.verified, c.type FROM c')
       .fetchAll();
 
     for (const tournamentName of teamNames) {
-      const norm = normalizeTeam(tournamentName);
-      let match = null;
+      // Try exact match first (full tournament name against registry)
+      let match = findTeamInRegistry(registry, tournamentName);
 
-      for (const team of registry) {
-        // Check exact name match
-        if (normalizeTeam(team.name) === norm) { match = team; break; }
-        // Check abbreviation
-        if (team.abbreviation && normalizeTeam(team.abbreviation) === norm) { match = team; break; }
-        // Check aliases
-        if (team.aliases?.some((a) => normalizeTeam(a) === norm)) { match = team; break; }
-        // Check substring (team name contains tournament name or vice versa)
-        const normTeam = normalizeTeam(team.name);
-        if (norm.includes(normTeam) || normTeam.includes(norm)) { match = team; break; }
+      if (match) {
+        result[tournamentName] = {
+          id: match.id, name: match.name, country: match.country,
+          logoUrl: match.logoUrl, verified: match.verified,
+        };
+        continue;
       }
 
-      result[tournamentName] = match
-        ? { id: match.id, name: match.name, country: match.country, logoUrl: match.logoUrl, verified: match.verified }
-        : null;
+      // Parse squad info and try matching base name
+      const { baseName, birthYear, squadLabel } = parseSquadInfo(tournamentName);
+
+      if (baseName !== tournamentName.trim()) {
+        match = findTeamInRegistry(registry, baseName);
+      }
+
+      if (match) {
+        result[tournamentName] = {
+          id: match.id, name: match.name, country: match.country,
+          logoUrl: match.logoUrl, verified: match.verified,
+          squad: { birthYear, squadLabel },
+        };
+      } else {
+        result[tournamentName] = null;
+      }
     }
   } catch (err) {
     console.warn('Registry matching failed:', err.message);

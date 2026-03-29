@@ -74,10 +74,56 @@ async function run(config) {
       }
     }
 
-    // Count teams with logos
+    // Validate colors format
+    for (const team of teams) {
+      if (team.colors) {
+        if (!Array.isArray(team.colors)) {
+          result.errors.push(`${country}/${team.name}: 'colors' must be an array`)
+        } else {
+          for (const color of team.colors) {
+            if (!/^#[0-9A-Fa-f]{6}$/.test(color)) {
+              result.errors.push(`${country}/${team.name}: invalid color '${color}' (must be #RRGGBB)`)
+            }
+          }
+        }
+      }
+    }
+
+    // Count teams with data completeness
     const withLogo = teams.filter(t => t.logoUrl).length
     const withWebsite = teams.filter(t => t.website).length
-    console.log(`│    Logos: ${withLogo}/${teams.length}  Websites: ${withWebsite}/${teams.length}`)
+    const withColors = teams.filter(t => t.colors && t.colors.length > 0).length
+    const byType = teams.reduce((a, t) => { a[t.type || 'club'] = (a[t.type || 'club'] || 0) + 1; return a }, {})
+    console.log(`│    Logos: ${withLogo}/${teams.length}  Websites: ${withWebsite}/${teams.length}  Colors: ${withColors}/${teams.length}`)
+    console.log(`│    Types: ${Object.entries(byType).map(([k,v]) => `${k}=${v}`).join(' ')}`)
+
+    // Validate type field
+    const validTypes = ['club', 'academy', 'squad']
+    for (const team of teams) {
+      if (team.type && !validTypes.includes(team.type)) {
+        result.errors.push(`${country}/${team.name}: invalid type '${team.type}' (must be club/academy/squad)`)
+      }
+    }
+
+    // Validate parentClubId references (must exist in same country)
+    const teamNames = new Set(teams.map(t => t.name))
+    for (const team of teams) {
+      if (team.parentClubId && !teams.some(t => t.name === team.parentClubId)) {
+        // parentClubId is an id (UUID), not a name — can't fully validate without DB
+        // Just flag if it looks wrong (not a UUID pattern)
+        if (!/^[0-9a-f-]{36}$/.test(team.parentClubId)) {
+          result.errors.push(`${country}/${team.name}: parentClubId '${team.parentClubId}' doesn't look like a UUID`)
+        }
+      }
+    }
+
+    // Flag teams missing colors
+    const missingColors = teams.filter(t => !t.colors || t.colors.length === 0)
+    if (missingColors.length > 0) {
+      for (const t of missingColors) {
+        result.errors.push(`${country}/${t.name}: missing 'colors'`)
+      }
+    }
 
     result.updated += teams.length
   }

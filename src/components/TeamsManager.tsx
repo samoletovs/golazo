@@ -153,7 +153,7 @@ export function TeamsManager({ onClose }: { onClose: () => void }) {
                   className="text-xs"
                   onClick={() => toggleActive(team.id)}
                   aria-label={team.active ? 'Deactivate' : 'Activate'}
-                  style={{ color: team.active ? 'var(--color-green-500)' : 'var(--color-text-muted)' }}
+                  style={{ color: team.active ? 'var(--color-primary-dark)' : 'var(--color-text-muted)' }}
                 >
                   {team.active ? '✅' : '⏸️'}
                 </button>
@@ -265,7 +265,7 @@ export function TeamsManager({ onClose }: { onClose: () => void }) {
                     />
                     <button
                       className="text-xs px-2 py-1 rounded"
-                      style={{ background: 'var(--color-glass-active)', color: 'var(--color-green-500)' }}
+                      style={{ background: 'var(--color-glass-active)', color: 'var(--color-primary-dark)' }}
                       onClick={() => addAlias(team.id)}
                     >
                       +

@@ -11,7 +11,7 @@ const DAILY_CHALLENGES = [
 ]
 
 const SPECIAL_TRACKS = [
-  { id: 'weakFoot', titleKey: 'challenges.weakFoot', descKey: 'challenges.weakFootDesc', days: 30, color: 'var(--color-green-400)' },
+  { id: 'weakFoot', titleKey: 'challenges.weakFoot', descKey: 'challenges.weakFootDesc', days: 30, color: 'var(--color-primary)' },
   { id: 'mentalChamp', titleKey: 'challenges.mentalChamp', descKey: 'challenges.mentalChampDesc', days: 21, color: 'var(--color-cyan)' },
   { id: 'deepPractice', titleKey: 'challenges.deepPractice', descKey: 'challenges.deepPracticeDesc', days: 7, color: 'var(--color-gold-400)' },
 ]
@@ -89,7 +89,7 @@ export function Challenges() {
                 <button
                   className="tap-target rounded-xl px-3 py-2 text-xs font-bold whitespace-nowrap"
                   style={{
-                    background: isDone ? '#16a34a' : '#fef3c7',
+                    background: isDone ? 'var(--color-primary)' : '#fef3c7',
                     color: isDone ? '#fff' : '#b45309',
                     border: 'none',
                   }}
@@ -131,12 +131,12 @@ export function Challenges() {
                     {t(track.titleKey)}
                   </p>
                   {progress && (
-                    <span className="text-xs font-data font-bold" style={{ color: isComplete ? 'var(--color-green-500)' : 'var(--color-text-muted)' }}>
+                    <span className="text-xs font-data font-bold" style={{ color: isComplete ? 'var(--color-primary-dark)' : 'var(--color-text-muted)' }}>
                       {isComplete ? '✓' : `${progress.daysCompleted}/${track.days}`}
                     </span>
                   )}
                   {!progress && (
-                    <span className="text-xs font-bold px-2 py-0.5 rounded-full" style={{ background: '#dcfce7', color: '#15803d' }}>
+                    <span className="text-xs font-bold px-2 py-0.5 rounded-full" style={{ background: 'var(--color-primary-bg)', color: 'var(--color-primary-dark)' }}>
                       {t('challenges.start')}
                     </span>
                   )}
@@ -151,7 +151,7 @@ export function Challenges() {
                   />
                 </div>
                 {loggedToday && !isComplete && (
-                  <p className="text-[0.65rem] mt-1 font-bold" style={{ color: 'var(--color-green-500)' }}>
+                  <p className="text-[0.65rem] mt-1 font-bold" style={{ color: 'var(--color-primary-dark)' }}>
                     ✓ {t('challenges.loggedToday')}
                   </p>
                 )}

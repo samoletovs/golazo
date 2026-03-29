@@ -85,6 +85,17 @@ export function LogPage() {
       </button>
 
       {showImport && <TournamentImport onClose={() => setShowImport(false)} />}
+
+      {/* ── Motivational tip ── */}
+      <div className="tip-card animate-fade-up" style={{ marginTop: 8 }}>
+        <span className="tip-card-icon">💡</span>
+        <div>
+          <p className="text-sm font-bold" style={{ fontFamily: 'var(--font-display)' }}>{t('log.tipTitle')}</p>
+          <p className="text-xs mt-1 leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
+            {t('log.tipText')}
+          </p>
+        </div>
+      </div>
     </div>
   )
 }

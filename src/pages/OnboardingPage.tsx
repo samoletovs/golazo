@@ -4,7 +4,7 @@ import { useApp } from '../contexts/AppContext'
 import { useAuth } from '../contexts/AuthContext'
 import { createInitialSkillTree, updateSkillRating } from '../engine/skills'
 import { TeamPicker } from '../components/TeamPicker'
-import type { AccountRole, Position, DominantFoot, SkillCategory, Language, PhysicalMeasurement, SkillTree } from '../engine/types'
+import type { AccountRole, Position, DominantFoot, SkillCategory, Language, PhysicalMeasurement, SkillTree, SharedTeam } from '../engine/types'
 
 type Step = 'role' | 'basics' | 'football' | 'physical' | 'assessment' | 'done'
 
@@ -117,6 +117,8 @@ export function OnboardingPage() {
     assessment: {},
   })
 
+  const [teamColors, setTeamColors] = useState<string[] | undefined>()
+
   const stepIndex = STEPS.indexOf(step)
   const progress = ((stepIndex) / (STEPS.length - 1)) * 100
 
@@ -151,6 +153,15 @@ export function OnboardingPage() {
     const playerId = user?.userId ?? 'local'
 
     // Create profile
+    const teamEntry = form.team ? {
+      id: crypto.randomUUID(),
+      name: form.team,
+      aliases: [],
+      isPrimary: true,
+      colors: teamColors,
+      active: true,
+      createdAt: now,
+    } : undefined
     setProfile({
       id: playerId,
       familyId: playerId,
@@ -161,6 +172,7 @@ export function OnboardingPage() {
       city: form.city || undefined,
       team: form.team,
       jerseyNumber: form.jerseyNumber ? parseInt(form.jerseyNumber, 10) : undefined,
+      teams: teamEntry ? [teamEntry] : [],
       positions: form.positions.length > 0 ? form.positions : ['CM'],
       dominantFoot: form.dominantFoot,
       language: i18n.language as Language,
@@ -192,7 +204,7 @@ export function OnboardingPage() {
           <div className="progress-track" style={{ height: '4px' }}>
             <div
               className="progress-fill"
-              style={{ width: `${progress}%`, background: 'var(--color-green-500)' }}
+              style={{ width: `${progress}%`, background: 'var(--color-primary-dark)' }}
             />
           </div>
           <div className="flex justify-between mt-2">
@@ -202,7 +214,7 @@ export function OnboardingPage() {
             {stepIndex > 0 && (
               <button
                 className="text-xs font-bold"
-                style={{ color: 'var(--color-green-500)' }}
+                style={{ color: 'var(--color-primary-dark)' }}
                 onClick={back}
                 aria-label={t('common.back')}
               >
@@ -317,7 +329,7 @@ export function OnboardingPage() {
                 </label>
                 <TeamPicker
                   value={form.team}
-                  onChange={(name) => setForm((f) => ({ ...f, team: name }))}
+                  onChange={(name, sharedTeam?: SharedTeam) => { setForm((f) => ({ ...f, team: name })); setTeamColors(sharedTeam?.colors) }}
                   country={form.country}
                   placeholder={t('onboarding.teamPlaceholder')}
                   className="w-full"

@@ -6,7 +6,7 @@ interface BottomNavProps {
 }
 
 function NavIcon({ name, active }: { name: string; active: boolean }) {
-  const color = active ? 'var(--color-green-500)' : 'var(--color-text-muted)'
+  const color = active ? 'var(--color-primary-dark)' : 'var(--color-text-muted)'
   const strokeWidth = active ? 2.2 : 1.8
 
   switch (name) {

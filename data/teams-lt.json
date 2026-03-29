@@ -2,120 +2,318 @@
   {
     "name": "FK Žalgiris",
     "abbreviation": "ZAL",
-    "aliases": ["FK ŽALGIRIS", "ŽALGIRIS", "ZALGIRIS", "FA ŽALGIRIS"],
+    "aliases": [
+      "FK ŽALGIRIS",
+      "ŽALGIRIS",
+      "ZALGIRIS",
+      "FA ŽALGIRIS"
+    ],
     "city": "Vilnius",
     "website": "https://www.fkzalgiris.lt",
     "league": "TOPLYGA",
-    "ageGroups": ["U15","U17","U19","Senior","Women"],
+    "ageGroups": [
+      "U15",
+      "U17",
+      "U19",
+      "Senior",
+      "Women"
+    ],
     "stadium": "LFF Stadium",
     "foundedYear": 1947,
-    "colors": ["#006400","#FFFFFF"]
+    "colors": [
+      "#006400",
+      "#FFFFFF"
+    ],
+    "socialMedia": [
+      {
+        "platform": "facebook",
+        "url": "https://www.facebook.com/fkzalgiris/"
+      },
+      {
+        "platform": "instagram",
+        "url": "https://www.instagram.com/fkzalgiris/"
+      },
+      {
+        "platform": "youtube",
+        "url": "https://www.youtube.com/channel/UC1ag8JLxGirltMUoLlzfZLA"
+      },
+      {
+        "platform": "x",
+        "url": "https://twitter.com/fkzalgiris"
+      },
+      {
+        "platform": "tiktok",
+        "url": "https://www.tiktok.com/@fkzalgiris"
+      }
+    ]
   },
   {
     "name": "FK Kauno Žalgiris",
     "abbreviation": "KZA",
-    "aliases": ["KAUNO ŽALGIRIS", "K. ŽALGIRIS", "KAUNO ZALGIRIS"],
+    "aliases": [
+      "KAUNO ŽALGIRIS",
+      "K. ŽALGIRIS",
+      "KAUNO ZALGIRIS"
+    ],
     "city": "Kaunas",
     "website": "https://www.fkkaunozalgiris.lt",
     "league": "TOPLYGA",
-    "ageGroups": ["U15","U17","U19","Senior"],
+    "ageGroups": [
+      "U15",
+      "U17",
+      "U19",
+      "Senior"
+    ],
     "stadium": "Dariaus ir Girėno stadionas",
     "foundedYear": 2004,
-    "colors": ["#006400","#FFFF00"]
+    "colors": [
+      "#006400",
+      "#FFFF00"
+    ],
+    "socialMedia": [
+      {
+        "platform": "facebook",
+        "url": "https://www.facebook.com/fkkaunozalgiris/"
+      },
+      {
+        "platform": "instagram",
+        "url": "https://www.instagram.com/fkkaunozalgiris/"
+      },
+      {
+        "platform": "youtube",
+        "url": "https://www.youtube.com/channel/UCNfVMIN5z3IFo3mss0RJCXw"
+      },
+      {
+        "platform": "x",
+        "url": "https://x.com/FKKaunoZalgiris"
+      },
+      {
+        "platform": "tiktok",
+        "url": "https://www.tiktok.com/@fkkaunozalgiris"
+      }
+    ]
   },
   {
     "name": "FK Sūduva",
     "abbreviation": "SUD",
-    "aliases": ["SŪDUVA", "SUDUVA", "FK SŪDUVA"],
+    "aliases": [
+      "SŪDUVA",
+      "SUDUVA",
+      "FK SŪDUVA"
+    ],
     "city": "Marijampolė",
     "website": "https://www.fksuduva.lt",
     "league": "TOPLYGA",
-    "ageGroups": ["U15","U17","U19","Senior"],
+    "ageGroups": [
+      "U15",
+      "U17",
+      "U19",
+      "Senior"
+    ],
     "stadium": "Sūduvos stadionas",
     "foundedYear": 1968,
-    "colors": ["#FF0000","#000000"]
+    "colors": [
+      "#FF0000",
+      "#000000"
+    ],
+    "socialMedia": [
+      {
+        "platform": "facebook",
+        "url": "https://www.facebook.com/fksuduva"
+      },
+      {
+        "platform": "instagram",
+        "url": "https://www.instagram.com/fksuduva/"
+      },
+      {
+        "platform": "youtube",
+        "url": "https://www.youtube.com/channel/UCDZ2HTdXA0GdJeLdZvfO53g"
+      }
+    ]
   },
   {
     "name": "FC Hegelmann",
     "abbreviation": "HEG",
-    "aliases": ["HEGELMANN", "FC HEGELMANN"],
+    "aliases": [
+      "HEGELMANN",
+      "FC HEGELMANN"
+    ],
     "city": "Kaunas",
     "league": "TOPLYGA",
-    "ageGroups": ["U17","U19","Senior"],
+    "ageGroups": [
+      "U17",
+      "U19",
+      "Senior"
+    ],
     "foundedYear": 2018,
-    "colors": ["#0000FF","#FFFFFF"]
+    "colors": [
+      "#0000FF",
+      "#FFFFFF"
+    ],
+    "stadium": "Hegelmann Arena, Kaunas"
   },
   {
     "name": "FK Panevėžys",
     "abbreviation": "PAN",
-    "aliases": ["PANEVĖŽYS", "FK PANEVĖŽYS", "PANEVEZYS"],
+    "aliases": [
+      "PANEVĖŽYS",
+      "FK PANEVĖŽYS",
+      "PANEVEZYS"
+    ],
     "city": "Panevėžys",
     "league": "TOPLYGA",
-    "ageGroups": ["U17","U19","Senior"],
+    "ageGroups": [
+      "U17",
+      "U19",
+      "Senior"
+    ],
     "stadium": "Aukštaitijos stadionas",
     "foundedYear": 2018,
-    "colors": ["#FF4500","#000000"]
+    "colors": [
+      "#FF4500",
+      "#000000"
+    ],
+    "website": "https://fk-panevezys.lt",
+    "socialMedia": [
+      {
+        "platform": "facebook",
+        "url": "https://www.facebook.com/fkpanevezys/"
+      },
+      {
+        "platform": "instagram",
+        "url": "https://www.instagram.com/fkpanevezys/"
+      }
+    ]
   },
   {
     "name": "FK Banga",
     "abbreviation": "BAN",
-    "aliases": ["BANGA", "FK BANGA"],
+    "aliases": [
+      "BANGA",
+      "FK BANGA"
+    ],
     "city": "Gargždai",
     "league": "TOPLYGA",
-    "ageGroups": ["U17","U19","Senior"],
+    "ageGroups": [
+      "U17",
+      "U19",
+      "Senior"
+    ],
     "stadium": "Banga Stadium",
     "foundedYear": 1960,
-    "colors": ["#FF6600","#000000"]
+    "colors": [
+      "#FF6600",
+      "#000000"
+    ]
   },
   {
     "name": "FC Džiugas",
     "abbreviation": "DZI",
-    "aliases": ["DŽIUGAS", "DZIUGAS", "FC DŽIUGAS"],
+    "aliases": [
+      "DŽIUGAS",
+      "DZIUGAS",
+      "FC DŽIUGAS"
+    ],
     "city": "Telšiai",
     "league": "TOPLYGA",
-    "ageGroups": ["U17","U19","Senior"],
+    "ageGroups": [
+      "U17",
+      "U19",
+      "Senior"
+    ],
     "foundedYear": 1935,
-    "colors": ["#008000","#FFFFFF"]
+    "colors": [
+      "#008000",
+      "#FFFFFF"
+    ],
+    "stadium": "Telšių miesto stadionas"
   },
   {
     "name": "FK Riteriai",
     "abbreviation": "RIT",
-    "aliases": ["RITERIAI", "FK RITERIAI"],
+    "aliases": [
+      "RITERIAI",
+      "FK RITERIAI"
+    ],
     "city": "Vilnius",
     "league": "TOPLYGA",
-    "ageGroups": ["U13","U15","U17","U19","Senior"],
+    "ageGroups": [
+      "U13",
+      "U15",
+      "U17",
+      "U19",
+      "Senior"
+    ],
     "stadium": "SFA stadionas",
     "foundedYear": 1996,
-    "colors": ["#000080","#FFD700"]
+    "colors": [
+      "#000080",
+      "#FFD700"
+    ]
   },
   {
     "name": "FA Šiauliai",
     "abbreviation": "SAI",
-    "aliases": ["FA ŠIAULIAI", "FA SIAULIAI", "ŠIAULIAI"],
+    "aliases": [
+      "FA ŠIAULIAI",
+      "FA SIAULIAI",
+      "ŠIAULIAI"
+    ],
     "city": "Šiauliai",
     "league": "TOPLYGA",
-    "ageGroups": ["U13","U15","U17","U19","Senior"],
+    "ageGroups": [
+      "U13",
+      "U15",
+      "U17",
+      "U19",
+      "Senior"
+    ],
     "foundedYear": 2019,
-    "colors": ["#FFD700","#006400"]
+    "colors": [
+      "#FFD700",
+      "#006400"
+    ],
+    "stadium": "Šiaulių miesto stadionas"
   },
   {
     "name": "FK TransInvest",
     "abbreviation": "TRA",
-    "aliases": ["TRANSINVEST", "FK TRANSINVEST"],
+    "aliases": [
+      "TRANSINVEST",
+      "FK TRANSINVEST"
+    ],
     "city": "Vilnius",
     "league": "TOPLYGA",
-    "ageGroups": ["U19","Senior"],
+    "ageGroups": [
+      "U19",
+      "Senior"
+    ],
     "foundedYear": 2020,
-    "colors": ["#0000CD","#FF0000"]
+    "colors": [
+      "#0000CD",
+      "#FF0000"
+    ]
   },
   {
     "name": "DFK Dainava",
     "abbreviation": "DAI",
-    "aliases": ["DFK DAINAVA", "DAINAVA"],
+    "aliases": [
+      "DFK DAINAVA",
+      "DAINAVA"
+    ],
     "city": "Alytus",
     "league": "I Lyga",
-    "ageGroups": ["U15","U17","U19","Senior"],
+    "ageGroups": [
+      "U15",
+      "U17",
+      "U19",
+      "Senior"
+    ],
     "foundedYear": 1998,
-    "colors": ["#00FF00","#000000"]
+    "colors": [
+      "#00FF00",
+      "#000000"
+    ],
+    "stadium": "Alytaus miesto stadionas"
   }
 ]

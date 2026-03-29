@@ -260,9 +260,9 @@ export function TournamentImport({ onClose }: { onClose: () => void }) {
                       key={team}
                       className="text-[0.7rem] px-2.5 py-1 rounded-full"
                       style={{
-                        background: teamName === team ? 'var(--color-green-glow)' : 'var(--color-glass-hover)',
-                        color: teamName === team ? 'var(--color-green-500)' : 'var(--color-text-secondary)',
-                        border: teamName === team ? '1px solid var(--color-green-500)' : '1px solid transparent',
+                        background: teamName === team ? 'rgba(var(--color-primary-rgb), 0.12)' : 'var(--color-glass-hover)',
+                        color: teamName === team ? 'var(--color-primary-dark)' : 'var(--color-text-secondary)',
+                        border: teamName === team ? '1px solid var(--color-primary-dark)' : '1px solid transparent',
                       }}
                       onClick={() => { setTeamName(team); setError('') }}
                     >
@@ -311,7 +311,7 @@ export function TournamentImport({ onClose }: { onClose: () => void }) {
               <p className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>
                 {result.tournament}
               </p>
-              <p className="text-sm font-extrabold mt-1" style={{ color: 'var(--color-green-500)' }}>
+              <p className="text-sm font-extrabold mt-1" style={{ color: 'var(--color-primary-dark)' }}>
                 {t('import.foundGames', { count: result.matchedGames, total: result.totalGames })}
               </p>
             </div>
@@ -329,7 +329,7 @@ export function TournamentImport({ onClose }: { onClose: () => void }) {
                     <div className="flex flex-wrap gap-1 mb-2">
                       {matched.map(([name, team]) => (
                         <span key={name} className="inline-flex items-center gap-1 text-[0.6rem] px-2 py-0.5 rounded-full"
-                          style={{ background: 'var(--color-glass-active)', color: 'var(--color-green-600)' }}>
+                          style={{ background: 'var(--color-glass-active)', color: 'var(--color-primary-darker)' }}>
                           {team?.logoUrl && <img src={team.logoUrl} alt="" className="w-3 h-3 rounded object-contain" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }} />}
                           ✓ {team?.name ?? name}
                         </span>

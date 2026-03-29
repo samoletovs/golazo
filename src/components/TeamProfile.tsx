@@ -40,11 +40,11 @@ export function TeamProfile({ team, onClose }: TeamProfileProps) {
               {[team.city, team.country].filter(Boolean).join(', ')}
             </p>
             {team.league && (
-              <p className="text-xs font-bold mt-0.5" style={{ color: 'var(--color-green-500)' }}>{team.league}</p>
+              <p className="text-xs font-bold mt-0.5" style={{ color: 'var(--color-primary-dark)' }}>{team.league}</p>
             )}
             {team.verified && (
               <span className="inline-block text-[0.6rem] px-2 py-0.5 rounded-full mt-1"
-                style={{ background: 'var(--color-glass-active)', color: 'var(--color-green-600)' }}>
+                style={{ background: 'var(--color-glass-active)', color: 'var(--color-primary-darker)' }}>
                 ✓ {t('teams.verified')}
               </span>
             )}
