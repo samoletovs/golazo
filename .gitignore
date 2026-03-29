@@ -5,3 +5,9 @@ dist/
 *.log
 .DS_Store
 Thumbs.db
+
+# Screenshots & dev artifacts
+screenshots/
+test-screenshots/
+.playwright-mcp/
+*.png
