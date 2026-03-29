@@ -172,6 +172,12 @@ export function getMatchResult(m: MatchEntry): MatchResult {
 
 /* ── Tournament ───────────────────────────────────────────── */
 
+export interface TournamentRules {
+  format?: string            // 'round-robin' | 'groups+playoff' | 'knockout'
+  matchDuration?: number     // minutes
+  playersPerSide?: number    // 5, 7, 8, 11
+}
+
 export interface Tournament {
   id: string
   playerId: string
@@ -183,6 +189,12 @@ export interface Tournament {
   selfRating?: number
   mvpMoment?: string
   completed: boolean
+  sourceUrl?: string          // tournament page URL (enables background enrichment)
+  className?: string          // age class: "2013A", "2014B"
+  birthYear?: number          // parsed from class: 2013, 2014
+  rules?: TournamentRules
+  organizer?: string
+  enrichedAt?: string         // set when background agent processes full results
   createdAt: string
 }
 

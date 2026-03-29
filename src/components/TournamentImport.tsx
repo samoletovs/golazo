@@ -29,6 +29,8 @@ interface ImportResult {
   games: ParsedGame[]
   allTeams: string[]
   registryMatches?: Record<string, RegistryMatch | null>
+  className?: string
+  dateWarning?: string
 }
 
 const DEFAULT_DURATION_MIN = 30
@@ -123,6 +125,9 @@ export function TournamentImport({ onClose }: { onClose: () => void }) {
       location: result.games[0]?.venue || '',
       expectedGames: result.games.length,
       completed: false,
+      sourceUrl: url,
+      className: result.className,
+      rules: { matchDuration: durationMin },
       createdAt: new Date().toISOString(),
     }
     addTournament(tournament)
@@ -314,6 +319,11 @@ export function TournamentImport({ onClose }: { onClose: () => void }) {
               <p className="text-sm font-extrabold mt-1" style={{ color: 'var(--color-primary-dark)' }}>
                 {t('import.foundGames', { count: result.matchedGames, total: result.totalGames })}
               </p>
+              {result.dateWarning && (
+                <p className="text-xs mt-1 px-2 py-1 rounded" style={{ background: 'var(--color-warning-bg, #FFF3CD)', color: 'var(--color-warning-text, #856404)' }}>
+                  ⚠️ {result.dateWarning}
+                </p>
+              )}
             </div>
 
             {/* Registry match summary */}

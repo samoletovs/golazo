@@ -14,14 +14,21 @@ const POSITIONS: { key: Position; label: string }[] = [
 
 const ENERGY_EMOJIS = ['😴', '😐', '🙂', '😄', '🔥']
 
-export function MatchLog({ onBack }: { onBack?: () => void }) {
+export interface MatchLogProps {
+  onBack?: () => void
+  inline?: boolean
+  prefill?: { opponent?: string; competition?: string; tournamentId?: string }
+  onSaved?: () => void
+}
+
+export function MatchLog({ onBack, inline, prefill, onSaved }: MatchLogProps) {
   const { t } = useTranslation()
   const { xp, setXp, addMatch, profile } = useApp()
   const [saved, setSaved] = useState(false)
 
   const today = new Date().toISOString().split('T')[0]
-  const [opponent, setOpponent] = useState('')
-  const [competition, setCompetition] = useState('')
+  const [opponent, setOpponent] = useState(prefill?.opponent ?? '')
+  const [competition, setCompetition] = useState(prefill?.competition ?? '')
   const [playingFor, setPlayingFor] = useState(profile?.team || '')
   const [scoreUs, setScoreUs] = useState(0)
   const [scoreThem, setScoreThem] = useState(0)
@@ -78,10 +85,11 @@ export function MatchLog({ onBack }: { onBack?: () => void }) {
     }
     setXp(awardXp(xp, totalXp, today))
     setSaved(true)
-    setTimeout(() => setSaved(false), 3000)
+    onSaved?.()
+    if (!inline) setTimeout(() => setSaved(false), 3000)
   }
 
-  if (saved) {
+  if (saved && !inline) {
     return (
       <div className="flex flex-col items-center justify-center gap-4 p-8 pb-32 animate-fade-up">
         <span className="text-5xl animate-float">⚽</span>
@@ -92,14 +100,27 @@ export function MatchLog({ onBack }: { onBack?: () => void }) {
     )
   }
 
-  return (
-    <div className="flex flex-col gap-4 p-4 pb-32">
-      <div className="flex items-center gap-3">
-        {onBack && (
-          <button onClick={onBack} className="tap-target text-xl" aria-label={t('common.back')}>←</button>
-        )}
-        <h2 className="text-lg font-bold">{t('match.title')}</h2>
+  if (saved && inline) {
+    return (
+      <div className="flex items-center gap-2 p-3 rounded-xl" style={{ background: 'var(--color-primary-bg-subtle)' }}>
+        <span className="text-xl">✅</span>
+        <p className="text-sm font-bold" style={{ color: 'var(--color-primary-dark)' }}>
+          {t('match.saved', { xp: XP_AWARDS.logMatch })}
+        </p>
       </div>
+    )
+  }
+
+  return (
+    <div className={inline ? 'flex flex-col gap-4' : 'flex flex-col gap-4 p-4 pb-32'}>
+      {!inline && (
+        <div className="flex items-center gap-3">
+          {onBack && (
+            <button onClick={onBack} className="tap-target text-xl" aria-label={t('common.back')}>←</button>
+          )}
+          <h2 className="text-lg font-bold">{t('match.title')}</h2>
+        </div>
+      )}
 
       {/* Playing for (team selector) */}
       {playerTeams.length > 1 && (

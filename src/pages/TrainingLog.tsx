@@ -21,7 +21,13 @@ const FOCUS: { key: FocusArea; labelKey: string }[] = [
 const DURATIONS = [60, 90, 120]
 const ENERGY_EMOJIS = ['😴', '😐', '🙂', '😄', '🔥']
 
-export function TrainingLog({ onBack }: { onBack?: () => void }) {
+export interface TrainingLogProps {
+  onBack?: () => void
+  inline?: boolean
+  onSaved?: () => void
+}
+
+export function TrainingLog({ onBack, inline, onSaved }: TrainingLogProps) {
   const { t } = useTranslation()
   const { xp, setXp, addTraining } = useApp()
   const [saved, setSaved] = useState(false)
@@ -55,10 +61,11 @@ export function TrainingLog({ onBack }: { onBack?: () => void }) {
     addTraining(entry)
     setXp(awardXp(xp, XP_AWARDS.logTraining, today))
     setSaved(true)
-    setTimeout(() => setSaved(false), 3000)
+    onSaved?.()
+    if (!inline) setTimeout(() => setSaved(false), 3000)
   }
 
-  if (saved) {
+  if (saved && !inline) {
     return (
       <div className="flex flex-col items-center justify-center gap-4 p-8 pb-32 animate-fade-up">
         <span className="text-5xl animate-float">✅</span>
@@ -69,14 +76,27 @@ export function TrainingLog({ onBack }: { onBack?: () => void }) {
     )
   }
 
-  return (
-    <div className="flex flex-col gap-4 p-4 pb-32">
-      <div className="flex items-center gap-3">
-        {onBack && (
-          <button onClick={onBack} className="tap-target text-xl" aria-label={t('common.back')}>←</button>
-        )}
-        <h2 className="text-lg font-bold">{t('training.title')}</h2>
+  if (saved && inline) {
+    return (
+      <div className="flex items-center gap-2 p-3 rounded-xl" style={{ background: 'var(--color-primary-bg-subtle)' }}>
+        <span className="text-xl">✅</span>
+        <p className="text-sm font-bold" style={{ color: 'var(--color-primary-dark)' }}>
+          {t('training.saved', { xp: XP_AWARDS.logTraining })}
+        </p>
       </div>
+    )
+  }
+
+  return (
+    <div className={inline ? 'flex flex-col gap-4' : 'flex flex-col gap-4 p-4 pb-32'}>
+      {!inline && (
+        <div className="flex items-center gap-3">
+          {onBack && (
+            <button onClick={onBack} className="tap-target text-xl" aria-label={t('common.back')}>←</button>
+          )}
+          <h2 className="text-lg font-bold">{t('training.title')}</h2>
+        </div>
+      )}
 
       {/* Type selector */}
       <div>

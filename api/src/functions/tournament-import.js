@@ -51,6 +51,22 @@ app.http('tournament-import', {
       // Match tournament teams against shared registry
       const registryMatches = await matchTeamsAgainstRegistry(allTeams);
 
+      // Detect class name from URL query parameter (turniir.ee uses ?class=NNNN)
+      const urlObj = new URL(url);
+      const className = urlObj.searchParams.get('class') || undefined;
+
+      // Smart date detection: warn if tournament is old
+      const now = new Date();
+      const gameDates = allGames.filter(g => g.date).map(g => {
+        const [day, month] = g.date.split('.');
+        return new Date(now.getFullYear(), parseInt(month) - 1, parseInt(day));
+      }).filter(d => !isNaN(d.getTime()));
+      const latestDate = gameDates.length ? new Date(Math.max(...gameDates)) : null;
+      const daysSinceLatest = latestDate ? Math.floor((now - latestDate) / 86400000) : null;
+      const dateWarning = daysSinceLatest !== null && daysSinceLatest > 30
+        ? `This tournament's latest game was ${daysSinceLatest} days ago.`
+        : undefined;
+
       return jsonResponse({
         tournament: tournamentName,
         totalGames: allGames.length,
@@ -58,6 +74,8 @@ app.http('tournament-import', {
         games: filtered,
         allTeams,
         registryMatches,
+        className,
+        dateWarning,
       });
     } catch (err) {
       console.error('Tournament import failed:', err.message);

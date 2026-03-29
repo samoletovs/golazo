@@ -138,8 +138,7 @@ export function TeamPicker({ value, onChange, country, placeholder, className, s
         return (
           <div
             key={team.id}
-            className="flex items-center gap-2 px-3 py-2 hover:bg-gray-50 transition-colors cursor-pointer"
-            onClick={() => selectTeam(team)}
+            className="flex items-center gap-2 px-3 py-2 hover:bg-gray-50 transition-colors"
           >
             {team.logoUrl ? (
               <img
@@ -165,6 +164,14 @@ export function TeamPicker({ value, onChange, country, placeholder, className, s
             {team.verified && (
               <span className="text-[0.6rem] shrink-0" title="Verified">✓</span>
             )}
+            <button
+              className="text-xs px-2 py-1 shrink-0 rounded-lg font-bold"
+              style={{ background: 'var(--color-primary-bg, #dcfce7)', color: 'var(--color-primary-dark, #166534)' }}
+              onClick={() => selectTeam(team)}
+              aria-label={`Add ${team.name}`}
+            >
+              + Add
+            </button>
             <button
               className="text-xs px-1.5 py-1 shrink-0 rounded"
               style={{ color: 'var(--color-text-muted)' }}

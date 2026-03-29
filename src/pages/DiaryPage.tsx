@@ -15,7 +15,13 @@ const PROMPTS = [
 
 const MOOD_EMOJIS = ['😴', '😐', '🙂', '😄', '🔥']
 
-export function DiaryPage({ onBack }: { onBack?: () => void }) {
+export interface DiaryPageProps {
+  onBack?: () => void
+  inline?: boolean
+  onSaved?: () => void
+}
+
+export function DiaryPage({ onBack, inline, onSaved }: DiaryPageProps) {
   const { t } = useTranslation()
   const { xp, setXp, addDiary } = useApp()
   const [saved, setSaved] = useState(false)
@@ -46,10 +52,11 @@ export function DiaryPage({ onBack }: { onBack?: () => void }) {
     addDiary(entry)
     setXp(awardXp(xp, XP_AWARDS.diaryEntry, today))
     setSaved(true)
-    setTimeout(() => setSaved(false), 3000)
+    onSaved?.()
+    if (!inline) setTimeout(() => setSaved(false), 3000)
   }
 
-  if (saved) {
+  if (saved && !inline) {
     return (
       <div className="flex flex-col items-center justify-center gap-4 p-8 pb-32 animate-fade-up">
         <span className="text-5xl animate-float">📝</span>
@@ -60,18 +67,33 @@ export function DiaryPage({ onBack }: { onBack?: () => void }) {
     )
   }
 
-  return (
-    <div className="flex flex-col gap-4 p-4 pb-32">
-      <div className="flex items-center gap-3">
-        {onBack && (
-          <button onClick={onBack} className="tap-target text-xl" aria-label={t('common.back')}>←</button>
-        )}
-        <h2 className="text-lg font-bold">{t('diary.title')}</h2>
+  if (saved && inline) {
+    return (
+      <div className="flex items-center gap-2 p-3 rounded-xl" style={{ background: 'var(--color-primary-bg-subtle)' }}>
+        <span className="text-xl">✅</span>
+        <p className="text-sm font-bold" style={{ color: 'var(--color-primary-dark)' }}>
+          {t('diary.saved', { xp: 15 })}
+        </p>
       </div>
+    )
+  }
 
-      <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
-        {t('diary.private')}
-      </p>
+  return (
+    <div className={inline ? 'flex flex-col gap-4' : 'flex flex-col gap-4 p-4 pb-32'}>
+      {!inline && (
+        <div className="flex items-center gap-3">
+          {onBack && (
+            <button onClick={onBack} className="tap-target text-xl" aria-label={t('common.back')}>←</button>
+          )}
+          <h2 className="text-lg font-bold">{t('diary.title')}</h2>
+        </div>
+      )}
+
+      {!inline && (
+        <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
+          {t('diary.private')}
+        </p>
+      )}
 
       {/* Prompt shortcuts */}
       <div className="flex flex-wrap gap-2">

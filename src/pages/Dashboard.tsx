@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
 import { QuoteCard } from '../components/QuoteCard'
@@ -10,6 +10,9 @@ import { ConfettiBurst } from '../components/ConfettiBurst'
 import { getMatchResult } from '../engine/types'
 import { getRank } from '../engine/xp'
 import { exercises } from '../data/exercises'
+import { MatchLog } from './MatchLog'
+import { TrainingLog } from './TrainingLog'
+import { DiaryPage } from './DiaryPage'
 import type { ScheduleEvent } from '../engine/types'
 
 export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void }) {
@@ -99,6 +102,11 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
   const STREAK_MILESTONES = [5, 10, 20, 30, 50, 100]
   const isStreakMilestone = STREAK_MILESTONES.includes(xp.streakDays)
 
+  // Inline logging state
+  const [expandedEventId, setExpandedEventId] = useState<string | null>(null)
+  const [addingType, setAddingType] = useState<'training' | 'match' | 'diary' | null>(null)
+  const [loggedEventIds, setLoggedEventIds] = useState<Set<string>>(new Set())
+
   return (
     <div className="flex flex-col gap-5 p-4 pb-32">
       <ConfettiBurst trigger={isStreakMilestone} />
@@ -182,49 +190,82 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
       {/* ── Weekly training goal ring ── */}
       <WeeklyGoalRing />
 
-      {/* ── Today's Plan ── */}
+      {/* ── Today's Plan — Inline Logging Hub ── */}
       <div className="card animate-fade-up animate-stagger-2">
         <div className="flex items-center gap-2 mb-3">
           <span className="text-lg">📅</span>
           <p className="section-label">{t('dashboard.today')}</p>
         </div>
 
+        {/* Scheduled events */}
         {todayEvents.length > 0 ? (
           <div className="flex flex-col gap-2">
             {todayEvents.map((ev: ScheduleEvent) => {
               const isMatch = ev.type === 'match' || ev.type === 'tournament'
               const emoji = isMatch ? '🏟️' : ev.type === 'training' ? '⚽' : '📋'
-              const logged = isMatch
+              const isLogged = loggedEventIds.has(ev.id) || (isMatch
                 ? matches.some(m => m.date.startsWith(today) && m.opponent === ev.opponent)
-                : trainings.some(tr => tr.date.startsWith(today))
+                : trainings.some(tr => tr.date.startsWith(today)))
+              const isExpanded = expandedEventId === ev.id
+
               return (
-                <button
-                  key={ev.id}
-                  className="flex items-center gap-3 p-3 rounded-xl text-left tap-target"
-                  style={{
-                    background: logged ? 'var(--color-primary-bg-subtle)' : 'var(--color-bg-field)',
-                    opacity: logged ? 0.7 : 1,
-                  }}
-                  onClick={() => !logged && onNavigate?.('log')}
-                >
-                  <span className="text-xl">{logged ? '✅' : emoji}</span>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-bold truncate">{ev.title}{ev.opponent ? ` vs ${ev.opponent}` : ''}</p>
-                    <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
-                      {ev.startTime}{ev.location ? ` · ${ev.location}` : ''}
-                    </p>
-                  </div>
-                  {!logged && (
-                    <span className="text-xs font-bold px-2 py-1 rounded-full" style={{ background: 'rgba(var(--color-primary-rgb), 0.12)', color: 'var(--color-primary-dark)' }}>
-                      {t('dashboard.todayAction')}
-                    </span>
+                <div key={ev.id} className="rounded-2xl overflow-hidden" style={{ background: 'var(--color-bg-field)' }}>
+                  {/* Event header — tap to expand */}
+                  <button
+                    className="flex items-center gap-3 p-3 w-full text-left tap-target"
+                    style={{ opacity: isLogged ? 0.7 : 1 }}
+                    onClick={() => {
+                      if (isLogged) return
+                      setExpandedEventId(isExpanded ? null : ev.id)
+                      setAddingType(null)
+                    }}
+                  >
+                    <span className="text-xl">{isLogged ? '✅' : emoji}</span>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-bold truncate">{ev.title}{ev.opponent ? ` vs ${ev.opponent}` : ''}</p>
+                      <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
+                        {ev.startTime}{ev.location ? ` · ${ev.location}` : ''}
+                      </p>
+                    </div>
+                    {!isLogged && (
+                      <span className="text-xs font-bold px-2 py-1 rounded-full" style={{
+                        background: isExpanded ? 'var(--color-primary-dark)' : 'rgba(var(--color-primary-rgb), 0.12)',
+                        color: isExpanded ? '#fff' : 'var(--color-primary-dark)',
+                      }}>
+                        {isExpanded ? '▼' : t('dashboard.todayAction')}
+                      </span>
+                    )}
+                  </button>
+
+                  {/* Expanded inline form */}
+                  {isExpanded && !isLogged && (
+                    <div className="px-3 pb-4 pt-1" style={{ borderTop: '1px solid #e5e7eb' }}>
+                      {isMatch ? (
+                        <MatchLog
+                          inline
+                          prefill={{ opponent: ev.opponent, competition: ev.competition }}
+                          onSaved={() => {
+                            setLoggedEventIds(prev => new Set([...prev, ev.id]))
+                            setExpandedEventId(null)
+                          }}
+                        />
+                      ) : (
+                        <TrainingLog
+                          inline
+                          onSaved={() => {
+                            setLoggedEventIds(prev => new Set([...prev, ev.id]))
+                            setExpandedEventId(null)
+                          }}
+                        />
+                      )}
+                    </div>
                   )}
-                </button>
+                </div>
               )
             })}
           </div>
         ) : (
-          <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
+          <p className="text-xs mb-3" style={{ color: 'var(--color-text-muted)' }}>
             {todayMatches > 0 || todayTrainings > 0
               ? t('dashboard.todaySummary', { matches: todayMatches, trainings: todayTrainings, goals: todayGoals })
               : t('dashboard.todayEmpty')
@@ -232,30 +273,57 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
           </p>
         )}
 
-        {/* Quick log actions — always visible */}
-        <div className="flex gap-2 mt-3">
-          <button
-            className="flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-xs font-bold tap-target"
-            style={{ background: 'rgba(var(--color-primary-rgb), 0.08)', color: 'var(--color-primary-dark)' }}
-            onClick={() => onNavigate?.('log')}
-          >
-            ⚽ {t('log.training')}
-          </button>
-          <button
-            className="flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-xs font-bold tap-target"
-            style={{ background: 'rgba(var(--color-primary-rgb), 0.08)', color: 'var(--color-primary-dark)' }}
-            onClick={() => onNavigate?.('log')}
-          >
-            🏟️ {t('log.match')}
-          </button>
-          <button
-            className="flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-xs font-bold tap-target"
-            style={{ background: 'rgba(var(--color-primary-rgb), 0.08)', color: 'var(--color-primary-dark)' }}
-            onClick={() => onNavigate?.('log')}
-          >
-            📝 {t('log.diary')}
-          </button>
-        </div>
+        {/* Add unplanned activity */}
+        {addingType ? (
+          <div className="mt-3 rounded-2xl p-3" style={{ background: 'var(--color-bg-field)' }}>
+            <div className="flex items-center justify-between mb-3">
+              <p className="text-sm font-bold">
+                {addingType === 'match' ? '🏟️' : addingType === 'training' ? '⚽' : '📝'}{' '}
+                {t(`log.${addingType}`)}
+              </p>
+              <button
+                className="text-xs font-bold px-2 py-1 rounded-full tap-target"
+                style={{ background: 'rgba(0,0,0,0.05)' }}
+                onClick={() => setAddingType(null)}
+              >
+                ✕
+              </button>
+            </div>
+            {addingType === 'match' && (
+              <MatchLog inline onSaved={() => setAddingType(null)} />
+            )}
+            {addingType === 'training' && (
+              <TrainingLog inline onSaved={() => setAddingType(null)} />
+            )}
+            {addingType === 'diary' && (
+              <DiaryPage inline onSaved={() => setAddingType(null)} />
+            )}
+          </div>
+        ) : (
+          <div className="flex gap-2 mt-3">
+            <button
+              className="flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-xs font-bold tap-target"
+              style={{ background: 'rgba(var(--color-primary-rgb), 0.08)', color: 'var(--color-primary-dark)' }}
+              onClick={() => { setAddingType('training'); setExpandedEventId(null) }}
+            >
+              ⚽ {t('log.training')}
+            </button>
+            <button
+              className="flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-xs font-bold tap-target"
+              style={{ background: 'rgba(var(--color-primary-rgb), 0.08)', color: 'var(--color-primary-dark)' }}
+              onClick={() => { setAddingType('match'); setExpandedEventId(null) }}
+            >
+              🏟️ {t('log.match')}
+            </button>
+            <button
+              className="flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-xs font-bold tap-target"
+              style={{ background: 'rgba(var(--color-primary-rgb), 0.08)', color: 'var(--color-primary-dark)' }}
+              onClick={() => { setAddingType('diary'); setExpandedEventId(null) }}
+            >
+              📝 {t('log.diary')}
+            </button>
+          </div>
+        )}
       </div>
 
       {/* ── Drill of the day ── */}
