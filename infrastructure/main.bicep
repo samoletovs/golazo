@@ -141,6 +141,35 @@ resource teamsContainer 'Microsoft.DocumentDB/databaseAccounts/sqlDatabases/cont
   }
 }
 
+// ── Shared Tournaments container ──
+resource tournamentsContainer 'Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers@2024-05-15' = {
+  parent: cosmosDatabase
+  name: 'tournaments'
+  properties: {
+    resource: {
+      id: 'tournaments'
+      partitionKey: {
+        paths: ['/sourceUrl']
+        kind: 'Hash'
+      }
+      indexingPolicy: {
+        indexingMode: 'consistent'
+        automatic: true
+        includedPaths: [
+          { path: '/sourceUrl/?' }
+          { path: '/status/?' }
+          { path: '/startDate/?' }
+        ]
+        excludedPaths: [
+          { path: '/games/*' }
+          { path: '/participants/*' }
+          { path: '/*' }
+        ]
+      }
+    }
+  }
+}
+
 // ── SWA app settings (link Cosmos) ──
 resource swaAppSettings 'Microsoft.Web/staticSites/config@2023-12-01' = {
   parent: staticWebApp

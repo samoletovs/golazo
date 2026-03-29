@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, createContext, useContext } from 'react'
 import type { ReactNode } from 'react'
-import type { XpState, PlayerProfile, SkillTree, TrainingEntry, MatchEntry, Tournament, DiaryEntry, ScheduleEvent, SpecialChallengeProgress, PhysicalProfile } from '../engine/types'
+import type { XpState, PlayerProfile, SkillTree, TrainingEntry, MatchEntry, Tournament, DiaryEntry, ScheduleEvent, SpecialChallengeProgress, PhysicalProfile, RecurringTraining } from '../engine/types'
 import { createInitialXpState } from '../engine/xp'
 import { createInitialSkillTree } from '../engine/skills'
 
@@ -15,6 +15,7 @@ interface AppState {
   tournaments: Tournament[]
   diary: DiaryEntry[]
   schedule: ScheduleEvent[]
+  recurringTrainings: RecurringTraining[]
   specialChallenges: SpecialChallengeProgress[]
   physicalProfile: PhysicalProfile | null
   onboardingComplete: boolean
@@ -31,6 +32,7 @@ interface AppContextValue extends AppState {
   addDiary: (d: DiaryEntry) => void
   addScheduleEvent: (e: ScheduleEvent) => void
   removeScheduleEvent: (id: string) => void
+  setRecurringTrainings: (rt: RecurringTraining[]) => void
   setSpecialChallenges: (sc: SpecialChallengeProgress[]) => void
   setPhysicalProfile: (pp: PhysicalProfile) => void
   setOnboardingComplete: (v: boolean) => void
@@ -103,6 +105,7 @@ function createDefaultState(): AppState {
     tournaments: [],
     diary: [],
     schedule: [],
+    recurringTrainings: [],
     specialChallenges: [],
     physicalProfile: null,
     onboardingComplete: false,
@@ -153,6 +156,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     addDiary: (d) => update({ diary: [...state.diary, d] }),
     addScheduleEvent: (e) => update({ schedule: [...state.schedule, e] }),
     removeScheduleEvent: (id) => update({ schedule: state.schedule.filter((e) => e.id !== id) }),
+    setRecurringTrainings: (rt) => update({ recurringTrainings: rt }),
     setSpecialChallenges: (sc) => update({ specialChallenges: sc }),
     setPhysicalProfile: (pp) => update({ physicalProfile: pp }),
     setOnboardingComplete: (v) => update({ onboardingComplete: v }),

@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
 import { QuoteCard } from '../components/QuoteCard'
@@ -17,7 +17,7 @@ import type { ScheduleEvent } from '../engine/types'
 
 export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void }) {
   const { t } = useTranslation()
-  const { matches, trainings, xp, profile, schedule } = useApp()
+  const { matches, trainings, xp, profile, schedule, tournaments } = useApp()
   const rank = getRank(xp.level)
 
   const seasonGoals = matches.reduce((s, m) => s + m.goals, 0)
@@ -106,6 +106,37 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
   const [expandedEventId, setExpandedEventId] = useState<string | null>(null)
   const [addingType, setAddingType] = useState<'training' | 'match' | 'diary' | null>(null)
   const [loggedEventIds, setLoggedEventIds] = useState<Set<string>>(new Set())
+
+  // Tournament discovery — find shared tournaments for player's teams
+  const [discoveredTournaments, setDiscoveredTournaments] = useState<Array<{
+    id: string; name: string; startDate: string; endDate: string; location: string;
+    participantCount: number; teams: string[]
+  }>>([])
+
+  useEffect(() => {
+    const teams = profile?.teams?.filter((t) => t.active) ?? []
+    if (teams.length === 0) return
+
+    // Check for shared tournaments matching any of the player's team names
+    const teamNames = teams.flatMap((t) => [t.name, ...t.aliases])
+    const uniqueNames = [...new Set(teamNames)].slice(0, 3) // limit queries
+
+    Promise.all(
+      uniqueNames.map((name) =>
+        fetch(`/api/shared-tournaments?team=${encodeURIComponent(name)}&status=live`)
+          .then((r) => r.ok ? r.json() : { tournaments: [] })
+          .catch(() => ({ tournaments: [] }))
+      )
+    ).then((results) => {
+      const all = results.flatMap((r) => r.tournaments || [])
+      // Dedupe by id, exclude already-imported tournaments
+      const existingUrls = new Set(tournaments.map((t) => t.sourceUrl).filter(Boolean))
+      const fresh = all.filter((t, i, arr) =>
+        arr.findIndex((x) => x.id === t.id) === i && !existingUrls.has(t.sourceUrl)
+      )
+      setDiscoveredTournaments(fresh)
+    })
+  }, [profile?.teams, tournaments])
 
   return (
     <div className="flex flex-col gap-5 p-4 pb-32">
@@ -326,6 +357,46 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
         )}
       </div>
 
+      {/* ── Schedule quick link (after Today) ── */}
+      {onNavigate && (
+        <button
+          className="card tap-target flex items-center gap-3 justify-center py-3 animate-fade-up w-full"
+          onClick={() => onNavigate('schedule')}
+        >
+          <span>📅</span>
+          <span className="text-xs font-bold">{t('nav.schedule')}</span>
+        </button>
+      )}
+
+      {/* ── Tournament Discovery — teammate shared tournaments ── */}
+      {discoveredTournaments.length > 0 && (
+        <div className="card animate-fade-up animate-stagger-2" style={{ border: '2px solid var(--color-primary-light, #22c55e)', background: 'rgba(34, 197, 94, 0.04)' }}>
+          <div className="flex items-center gap-2 mb-3">
+            <span className="text-lg">🏆</span>
+            <p className="section-label">{t('dashboard.tournamentDiscovery', { defaultValue: 'Your team is playing!' })}</p>
+          </div>
+          {discoveredTournaments.slice(0, 2).map((st) => (
+            <div key={st.id} className="flex items-center gap-3 py-2" style={{ borderBottom: '1px solid var(--color-glass-border, #e5e7eb)' }}>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-bold truncate">{st.name}</p>
+                <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
+                  {st.startDate} · {st.location} · {t('dashboard.teammates', { count: st.participantCount, defaultValue: `${st.participantCount} players joined` })}
+                </p>
+              </div>
+              {onNavigate && (
+                <button
+                  className="text-xs font-bold px-3 py-1.5 rounded-full shrink-0"
+                  style={{ background: 'var(--color-primary-dark)', color: '#fff' }}
+                  onClick={() => onNavigate('schedule')}
+                >
+                  {t('dashboard.joinTournament', { defaultValue: 'Join' })}
+                </button>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
+
       {/* ── Drill of the day ── */}
       <div className="card-glow animate-fade-up animate-stagger-3">
         <div className="flex items-center gap-2 mb-2">
@@ -432,16 +503,6 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
         </div>
       )}
 
-      {/* ── Quick action: Schedule ── */}
-      {onNavigate && (
-        <button
-          className="card tap-target flex items-center gap-3 justify-center py-3 animate-fade-up w-full"
-          onClick={() => onNavigate('schedule')}
-        >
-          <span>📅</span>
-          <span className="text-xs font-bold">{t('nav.schedule')}</span>
-        </button>
-      )}
     </div>
   )
 }

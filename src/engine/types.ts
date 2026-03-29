@@ -178,6 +178,47 @@ export interface TournamentRules {
   playersPerSide?: number    // 5, 7, 8, 11
 }
 
+/** Shared tournament — visible to all players, created on first import. */
+export interface SharedTournament {
+  id: string
+  sourceUrl: string           // tournament page URL (partition key in Cosmos)
+  name: string                // "NORDIC SPRING CUP"
+  classes: string[]           // ["2013A", "2014A", "2014B"]
+  startDate: string
+  endDate: string
+  location: string
+  status: 'upcoming' | 'live' | 'completed'
+  rules?: TournamentRules
+  organizer?: string
+  games: Record<string, SharedTournamentGame[]> // keyed by class name
+  participants: SharedTournamentParticipant[]
+  lastScrapedAt?: string
+  createdBy: string           // userId of first importer
+  createdAt: string
+}
+
+export interface SharedTournamentGame {
+  date: string                // DD.MM
+  time: string                // HH:MM
+  home: string
+  away: string
+  venue: string
+  homeScore?: number
+  awayScore?: number
+  penalties?: string          // "3-4"
+  stage: 'group' | 'playoff' | 'final' | 'unknown'
+  finished: boolean
+}
+
+export interface SharedTournamentParticipant {
+  userId: string
+  playerId: string
+  teamName: string            // as it appears in fixtures: "RĪGAS FS"
+  className: string           // "2013A"
+  joinedAt: string
+}
+
+/** Per-player tournament — links to shared + holds personal reflections. */
 export interface Tournament {
   id: string
   playerId: string
@@ -190,6 +231,7 @@ export interface Tournament {
   mvpMoment?: string
   completed: boolean
   sourceUrl?: string          // tournament page URL (enables background enrichment)
+  sharedTournamentId?: string // links to SharedTournament.id
   className?: string          // age class: "2013A", "2014B"
   birthYear?: number          // parsed from class: 2013, 2014
   rules?: TournamentRules
@@ -329,6 +371,20 @@ export const SCHEDULE_TYPE = {
   tournament: 'tournament',
 } as const
 export type ScheduleType = (typeof SCHEDULE_TYPE)[keyof typeof SCHEDULE_TYPE]
+
+/* ── Recurring Training ───────────────────────────────────── */
+
+export interface RecurringTraining {
+  id: string
+  name: string            // "Team training", "Individual", "Gym"
+  trainingType: TrainingType
+  dayOfWeek: number       // 0=Sun ... 6=Sat
+  startTime: string       // "19:00"
+  endTime: string         // "21:00"
+  location?: string
+  active: boolean
+  createdAt: string
+}
 
 export interface ScheduleEvent {
   id: string

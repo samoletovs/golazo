@@ -116,13 +116,17 @@ export function TournamentImport({ onClose }: { onClose: () => void }) {
     }).sort()
 
     // Create Tournament object
+    const startDate = dates[0] || new Date().toISOString().slice(0, 10)
+    const endDate = dates[dates.length - 1] || dates[0] || new Date().toISOString().slice(0, 10)
+    const location = result.games[0]?.venue || ''
+
     const tournament: Tournament = {
       id: crypto.randomUUID(),
       playerId,
       name: result.tournament,
-      startDate: dates[0] || new Date().toISOString().slice(0, 10),
-      endDate: dates[dates.length - 1] || dates[0] || new Date().toISOString().slice(0, 10),
-      location: result.games[0]?.venue || '',
+      startDate,
+      endDate,
+      location,
       expectedGames: result.games.length,
       completed: false,
       sourceUrl: url,
@@ -131,6 +135,10 @@ export function TournamentImport({ onClose }: { onClose: () => void }) {
       createdAt: new Date().toISOString(),
     }
     addTournament(tournament)
+
+    // Best-effort: create/join shared tournament for teammates to discover
+    createOrJoinSharedTournament(url, result.tournament, startDate, endDate, location, result.games)
+      .catch(() => { /* shared creation is best-effort */ })
 
     // Create ScheduleEvent for each game
     for (const game of result.games) {
@@ -170,6 +178,47 @@ export function TournamentImport({ onClose }: { onClose: () => void }) {
     }
 
     setImported(true)
+  }
+
+  /** Best-effort: create a shared tournament or join existing one so teammates can discover it. */
+  async function createOrJoinSharedTournament(
+    sourceUrl: string, name: string, startDate: string, endDate: string,
+    location: string, games: ParsedGame[],
+  ) {
+    try {
+      const classKey = result?.className || 'default'
+      const sharedGames: Record<string, unknown[]> = {}
+      sharedGames[classKey] = games.map((g) => {
+        const parts = g.score ? g.score.split(/\s*-\s*/) : []
+        const hs = parts[0] ? parseInt(parts[0]) : undefined
+        const as = parts[1] ? parseInt(parts[1]) : undefined
+        return {
+          date: g.date, time: g.time, home: g.home, away: g.away, venue: g.venue,
+          homeScore: isNaN(hs as number) ? undefined : hs,
+          awayScore: isNaN(as as number) ? undefined : as,
+          stage: 'unknown', finished: g.finished,
+        }
+      })
+
+      const res = await fetch('/api/shared-tournaments', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          sourceUrl, name, classes: [classKey], startDate, endDate, location,
+          games: sharedGames, teamName, className: result?.className,
+          rules: { matchDuration: durationMin },
+        }),
+      })
+
+      if (res.status === 409) {
+        const { id } = await res.json()
+        await fetch(`/api/shared-tournaments/${id}/join`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ teamName, className: result?.className, playerId: profile?.id }),
+        })
+      }
+    } catch { /* silent — shared is best-effort */ }
   }
 
   // Success view

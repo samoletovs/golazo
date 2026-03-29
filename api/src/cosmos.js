@@ -3,6 +3,7 @@ const { CosmosClient } = require('@azure/cosmos');
 let _client = null;
 let _container = null;
 let _teamsContainer = null;
+let _tournamentsContainer = null;
 
 /**
  * Get or create Cosmos client singleton.
@@ -58,6 +59,22 @@ async function getTeamsContainer() {
 }
 
 /**
+ * Singleton Cosmos DB container for shared tournaments.
+ * Partition key: /sourceUrl.
+ */
+async function getTournamentsContainer() {
+  if (_tournamentsContainer) return _tournamentsContainer;
+
+  const client = getClient();
+  if (!client) return null;
+
+  const database = process.env.COSMOS_DATABASE || 'golazo';
+  const db = client.database(database);
+  _tournamentsContainer = db.container('tournaments');
+  return _tournamentsContainer;
+}
+
+/**
  * Extract authenticated user from SWA client principal header.
  * @param {import('@azure/functions').HttpRequest} req
  * @returns {{ userId: string, email: string } | null}
@@ -89,4 +106,4 @@ function jsonResponse(body, status = 200) {
   };
 }
 
-module.exports = { getContainer, getTeamsContainer, getUser, jsonResponse };
+module.exports = { getContainer, getTeamsContainer, getTournamentsContainer, getUser, jsonResponse };
