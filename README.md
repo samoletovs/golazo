@@ -29,7 +29,15 @@ npm run dev      # Start dev server
 npm run build    # Type-check + build
 npm run lint     # ESLint
 npm test         # Vitest
+npm run validate:football-terms  # UEFA/FIFA terminology guardrail
 ```
+
+## UEFA/FIFA guardrails
+
+- Canonical terminology reference: `docs/football-terminology.md`
+- Youth development and duration guidance: `docs/youth-development.md`
+- Current alignment report: `docs/fifa-uefa-alignment.md`
+- CI enforces terminology compliance via `npm run validate:football-terms`
 
 ## Methodologies
 

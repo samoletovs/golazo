@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
 import { awardXp, XP_AWARDS } from '../engine/xp'
 import { TeamPicker } from '../components/TeamPicker'
+import { getMatchDurationRecommendation } from '../engine/footballStandards'
 import type { Position, EnergyLevel, MatchEntry } from '../engine/types'
 
 const POSITIONS: { key: Position; label: string }[] = [
@@ -24,6 +25,7 @@ export interface MatchLogProps {
 export function MatchLog({ onBack, inline, prefill, onSaved }: MatchLogProps) {
   const { t } = useTranslation()
   const { xp, setXp, addMatch, profile } = useApp()
+  const durationRecommendation = getMatchDurationRecommendation(profile?.birthDate)
   const [saved, setSaved] = useState(false)
 
   const today = new Date().toISOString().split('T')[0]
@@ -33,7 +35,7 @@ export function MatchLog({ onBack, inline, prefill, onSaved }: MatchLogProps) {
   const [scoreUs, setScoreUs] = useState(0)
   const [scoreThem, setScoreThem] = useState(0)
   const [positions, setPositions] = useState<Position[]>(profile?.positions?.length ? [profile.positions[0]] : ['CM'])
-  const [minutes] = useState(70)
+  const [minutes] = useState(durationRecommendation.totalMinutes)
   const [goals, setGoals] = useState(0)
   const [assists, setAssists] = useState(0)
   const [shots, setShots] = useState(0)

@@ -3,12 +3,14 @@ import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
 import { TournamentImport } from '../components/TournamentImport'
 import { TeamPicker } from '../components/TeamPicker'
+import { addMinutesToTime, getMatchDurationRecommendation } from '../engine/footballStandards'
 import type { ScheduleType, ScheduleEvent, RecurringTraining, TrainingType, MatchType } from '../engine/types'
 
 const EVENT_TYPES: { key: ScheduleType; emoji: string; labelKey: string; color: string }[] = [
   { key: 'training', emoji: '⚽', labelKey: 'mentor.schedule.training', color: 'var(--color-primary-dark)' },
   { key: 'match', emoji: '🏟️', labelKey: 'mentor.schedule.match', color: 'var(--color-cat-physical)' },
   { key: 'tournament', emoji: '🏆', labelKey: 'mentor.schedule.tournament', color: 'var(--color-gold-500)' },
+  { key: 'event', emoji: '📅', labelKey: 'mentor.schedule.event', color: 'var(--color-text-secondary)' },
 ]
 
 const MATCH_TYPES: { key: MatchType; emoji: string; labelKey: string }[] = [
@@ -16,12 +18,18 @@ const MATCH_TYPES: { key: MatchType; emoji: string; labelKey: string }[] = [
   { key: 'league', emoji: '🏅', labelKey: 'schedule.matchLeague' },
   { key: 'cup', emoji: '🏆', labelKey: 'schedule.matchCup' },
   { key: 'tournament', emoji: '⚡', labelKey: 'schedule.matchTournament' },
+  { key: 'playoff', emoji: '🔥', labelKey: 'schedule.matchPlayoff' },
+  { key: 'futsal', emoji: '🔲', labelKey: 'schedule.matchFutsal' },
 ]
 
-const TRAINING_TYPES: { key: TrainingType; emoji: string; labelKey: string }[] = [
+const TRAINING_TYPES_UI: { key: TrainingType; emoji: string; labelKey: string }[] = [
   { key: 'team', emoji: '⚽', labelKey: 'training.type.team' },
   { key: 'individual', emoji: '🏃', labelKey: 'training.type.individual' },
+  { key: 'technical', emoji: '🎯', labelKey: 'training.type.technical' },
+  { key: 'tactical', emoji: '🧩', labelKey: 'training.type.tactical' },
+  { key: 'physical', emoji: '💨', labelKey: 'training.type.physical' },
   { key: 'gym', emoji: '💪', labelKey: 'training.type.gym' },
+  { key: 'recovery', emoji: '🧘', labelKey: 'training.type.recovery' },
   { key: 'futsal', emoji: '🔲', labelKey: 'training.type.futsal' },
 ]
 
@@ -110,6 +118,7 @@ function getWeekDates(monday: Date): string[] {
 export function SchedulePage() {
   const { t } = useTranslation()
   const { schedule, addScheduleEvent, removeScheduleEvent, recurringTrainings, setRecurringTrainings, profile } = useApp()
+  const matchDurationRecommendation = getMatchDurationRecommendation(profile?.birthDate)
 
   const today = new Date()
   const [viewYear, setViewYear] = useState(today.getFullYear())
@@ -119,7 +128,7 @@ export function SchedulePage() {
   const [formType, setFormType] = useState<ScheduleType>('training')
   const [formTitle, setFormTitle] = useState('')
   const [formTime, setFormTime] = useState('18:00')
-  const [formEndTime, setFormEndTime] = useState('19:30')
+  const [formEndTime, setFormEndTime] = useState(addMinutesToTime('18:00', matchDurationRecommendation.totalMinutes))
   const [formLocation, setFormLocation] = useState('')
   const [formOpponent, setFormOpponent] = useState('')
   const [formMatchType, setFormMatchType] = useState<MatchType>('friendly')
@@ -127,6 +136,10 @@ export function SchedulePage() {
   const [showImport, setShowImport] = useState(false)
   const [showWeeklySetup, setShowWeeklySetup] = useState(false)
   const [weekOffset, setWeekOffset] = useState(0)
+  const [activeTab, setActiveTab] = useState<'week' | 'month'>('week')
+  const [formNotes, setFormNotes] = useState('')
+  const [formTrainingType, setFormTrainingType] = useState<TrainingType>('team')
+  const [selectDateHint, setSelectDateHint] = useState(false)
   const [rtName, setRtName] = useState('')
   const [rtType, setRtType] = useState<TrainingType>('team')
   const [rtDay, setRtDay] = useState(1) // Monday
@@ -217,7 +230,7 @@ export function SchedulePage() {
 
     fetchShared()
     return () => { cancelled = true }
-  }, [profile?.teams, viewYear, viewMonth, schedule])
+  }, [profile?.teams, profile?.familyId, profile?.id, viewYear, viewMonth, schedule])
 
   const allEvents = useMemo(
     () => [...schedule, ...recurringEvents, ...sharedGames],
@@ -315,25 +328,41 @@ export function SchedulePage() {
     }
   }
 
-  function openAddForm(date: string) {
+  function openAddForm(date: string, nextType: ScheduleType = formType) {
     setSelectedDate(date)
     setShowForm(true)
+    setFormType(nextType)
     setFormTitle('')
+    setFormTime('18:00')
+    setFormEndTime(nextType === 'match' ? addMinutesToTime('18:00', matchDurationRecommendation.totalMinutes) : '19:30')
     setFormLocation('')
     setFormOpponent('')
     setFormMatchType('friendly')
     setFormCompetition('')
+    setFormNotes('')
+    setFormTrainingType('team')
+    setSelectDateHint(false)
+  }
+
+  function tryOpenAdd(nextType: ScheduleType) {
+    if (!selectedDate) {
+      setSelectDateHint(true)
+      setTimeout(() => setSelectDateHint(false), 2500)
+      return
+    }
+    openAddForm(selectedDate, nextType)
   }
 
   function saveEvent() {
     if (!selectedDate) return
     const isMatch = formType === 'match'
+    const isTraining = formType === 'training'
     const ev: ScheduleEvent = {
       id: crypto.randomUUID(),
       familyId: profile?.familyId ?? 'local',
       playerId: profile?.id ?? 'local',
       type: formType,
-      title: formTitle || (isMatch ? `${t(`schedule.matchType.${formMatchType}`)} vs ${formOpponent || '?'}` : t(`mentor.schedule.${formType}`)),
+      title: formTitle || (isMatch ? `${t(`schedule.matchType.${formMatchType}`)} vs ${formOpponent || '?'}` : isTraining ? t(`training.type.${formTrainingType}`) : t(`mentor.schedule.${formType}`)),
       date: selectedDate,
       startTime: formTime,
       endTime: formEndTime || undefined,
@@ -341,6 +370,8 @@ export function SchedulePage() {
       opponent: isMatch ? formOpponent || undefined : undefined,
       competition: isMatch ? formCompetition || undefined : undefined,
       matchType: isMatch ? formMatchType : undefined,
+      trainingType: isTraining ? formTrainingType : undefined,
+      notes: formNotes || undefined,
       createdBy: profile?.id ?? 'local',
       createdAt: new Date().toISOString(),
     }
@@ -399,305 +430,334 @@ export function SchedulePage() {
     <div className="flex flex-col gap-4 p-4 pb-32">
       <h2 className="text-xl font-extrabold">{t('mentor.schedule.title')}</h2>
 
-      {/* ── My Week Schedule (navigable) ── */}
-      <div className="card">
-        <div className="flex items-center justify-between mb-3">
-          <button className="tap-target text-lg font-bold px-2" onClick={() => setWeekOffset(weekOffset - 1)} aria-label="Previous week">←</button>
-          <div className="text-center">
-            <p className="section-label mb-0">{t('schedule.weeklyTitle')}</p>
-            <p className="text-[0.65rem]" style={{ color: 'var(--color-text-muted)' }}>
-              {weekLabel}
-              {!isCurrentWeek && (
-                <button
-                  className="ml-2 underline"
-                  style={{ color: 'var(--color-primary-dark)' }}
-                  onClick={() => setWeekOffset(0)}
-                >
-                  {t('schedule.thisWeek')}
-                </button>
-              )}
-            </p>
-          </div>
-          <button className="tap-target text-lg font-bold px-2" onClick={() => setWeekOffset(weekOffset + 1)} aria-label="Next week">→</button>
-        </div>
+      {/* ── Tab switcher ── */}
+      <div className="schedule-tabs">
+        <button className="schedule-tab" aria-selected={activeTab === 'week'} onClick={() => setActiveTab('week')}>
+          📅 {t('schedule.tabWeek')}
+        </button>
+        <button className="schedule-tab" aria-selected={activeTab === 'month'} onClick={() => setActiveTab('month')}>
+          🗓️ {t('schedule.tabMonth')}
+        </button>
+      </div>
 
-        {/* Week day rows */}
-        <div className="flex flex-col gap-1">
-          {weekDates.map((dk, idx) => {
-            const dayEvents = weekEventsByDate.get(dk) ?? []
-            const [, , dayNum] = dk.split('-')
-            const dow = (idx + 1) % 7 // Mon=1..Sun=0 → idx: 0=Mon..6=Sun → dow: 1,2..6,0
-            const realDow = dow === 6 ? 0 : idx + 1
-            const isToday = dk === todayStr
-            return (
-              <div
-                key={dk}
-                className="flex items-start gap-2 py-1.5 rounded-lg px-2"
-                style={{
-                  background: isToday ? 'rgba(var(--color-primary-rgb), 0.06)' : undefined,
-                  borderLeft: isToday ? '3px solid var(--color-primary-dark)' : '3px solid transparent',
-                }}
-              >
-                <div className="w-10 shrink-0 pt-0.5">
-                  <span className="text-xs font-bold block" style={{ color: isToday ? 'var(--color-primary-dark)' : 'var(--color-text-muted)' }}>
-                    {t(WEEKDAY_NAMES[realDow])}
-                  </span>
-                  <span className="text-[0.6rem]" style={{ color: 'var(--color-text-muted)' }}>{dayNum}</span>
-                </div>
-                <div className="flex-1 min-w-0">
-                  {dayEvents.length === 0 ? (
-                    <span className="text-[0.6rem]" style={{ color: 'var(--color-text-muted)' }}>—</span>
-                  ) : (
-                    <div className="flex flex-col gap-0.5">
-                      {dayEvents.map((ev) => {
-                        const evType = EVENT_TYPES.find((et) => et.key === ev.type)
-                        return (
-                          <div key={ev.id} className="flex items-center gap-1.5">
-                            <div className="w-2 h-2 rounded-full shrink-0" style={{ background: evType?.color ?? 'var(--color-primary-dark)' }} />
-                            <span className="text-[0.65rem] font-medium truncate">{ev.startTime}</span>
-                            <span className="text-[0.65rem] truncate" style={{ color: 'var(--color-text-secondary)' }}>{ev.title}</span>
-                            {ev.id.startsWith('rt-') && <span className="text-[0.5rem]" style={{ color: 'var(--color-text-muted)' }}>🔁</span>}
-                            {ev.id.startsWith('shared-') && <span className="text-[0.5rem]" style={{ color: 'var(--color-primary-dark)' }}>👥</span>}
-                          </div>
-                        )
-                      })}
-                    </div>
+      {/* ══════════════════════ WEEK TAB ══════════════════════ */}
+      {activeTab === 'week' && (
+        <>
+          {/* Week navigation */}
+          <div className="card">
+            <div className="flex items-center justify-between mb-3">
+              <button className="tap-target text-lg font-bold px-2" onClick={() => setWeekOffset(weekOffset - 1)} aria-label="Previous week">←</button>
+              <div className="text-center">
+                <p className="section-label mb-0">{t('schedule.weeklyTitle')}</p>
+                <p className="text-[0.65rem]" style={{ color: 'var(--color-text-muted)' }}>
+                  {weekLabel}
+                  {!isCurrentWeek && (
+                    <button className="ml-2 underline" style={{ color: 'var(--color-primary-dark)' }} onClick={() => setWeekOffset(0)}>
+                      {t('schedule.thisWeek')}
+                    </button>
                   )}
-                </div>
+                </p>
               </div>
-            )
-          })}
-        </div>
-      </div>
-
-      {/* ── Add Buttons (grouped) ── */}
-      <div className="grid grid-cols-3 gap-2">
-        <button
-          className="card flex flex-col items-center gap-1.5 py-3"
-          style={{ cursor: 'pointer' }}
-          onClick={() => { setFormType('training'); openAddForm(selectedDate ?? todayStr) }}
-        >
-          <span className="text-lg">⚽</span>
-          <span className="text-[0.65rem] font-bold" style={{ color: 'var(--color-primary-dark)' }}>{t('schedule.addTraining')}</span>
-        </button>
-        <button
-          className="card flex flex-col items-center gap-1.5 py-3"
-          style={{ cursor: 'pointer' }}
-          onClick={() => { setFormType('match'); openAddForm(selectedDate ?? todayStr) }}
-        >
-          <span className="text-lg">🏟️</span>
-          <span className="text-[0.65rem] font-bold" style={{ color: 'var(--color-cat-physical)' }}>{t('schedule.addMatch')}</span>
-        </button>
-        <button
-          className="card flex flex-col items-center gap-1.5 py-3"
-          style={{ cursor: 'pointer' }}
-          onClick={() => setShowImport(true)}
-        >
-          <span className="text-lg">🏆</span>
-          <span className="text-[0.65rem] font-bold" style={{ color: 'var(--color-gold-500)' }}>{t('schedule.addTournament')}</span>
-        </button>
-      </div>
-
-      {/* ── Recurring trainings (compact) ── */}
-      <div className="card">
-        <div className="flex items-center justify-between mb-2">
-          <p className="section-label">{t('schedule.recurringTitle')}</p>
-          <button
-            className="text-xs font-bold px-3 py-1.5 rounded-lg"
-            style={{ background: 'var(--color-primary-bg)', color: 'var(--color-primary-dark)' }}
-            onClick={() => setShowWeeklySetup(true)}
-          >
-            + {t('schedule.addRecurring')}
-          </button>
-        </div>
-        {recurringTrainings.length === 0 ? (
-          <p className="text-xs text-center py-3" style={{ color: 'var(--color-text-muted)' }}>
-            {t('schedule.noRecurring')}
-          </p>
-        ) : (
-          <div className="flex flex-col gap-1.5">
-            {[1, 2, 3, 4, 5, 6, 0].map((dow) => {
-              const dayTrainings = recurringTrainings.filter((r) => r.dayOfWeek === dow && r.active)
-              if (dayTrainings.length === 0) return null
-              return (
-                <div key={dow} className="flex items-start gap-2">
-                  <span className="text-xs font-bold w-8 pt-1 shrink-0" style={{ color: 'var(--color-text-muted)' }}>
-                    {t(WEEKDAY_NAMES[dow])}
-                  </span>
-                  <div className="flex flex-wrap gap-1 flex-1">
-                    {dayTrainings.map((rt) => {
-                      const ttType = TRAINING_TYPES.find((tt) => tt.key === rt.trainingType)
-                      return (
-                        <span key={rt.id} className="inline-flex items-center gap-1 text-[0.65rem] px-2 py-1 rounded-lg" style={{ background: 'var(--color-glass-active, #f1f5f9)' }}>
-                          {ttType?.emoji} {rt.startTime}–{rt.endTime}
-                          {rt.location && <span style={{ color: 'var(--color-text-muted)' }}>· {rt.location}</span>}
-                          <button
-                            className="ml-0.5 opacity-40 hover:opacity-100"
-                            onClick={() => removeRecurring(rt.id)}
-                            aria-label="Remove"
-                          >✕</button>
-                        </span>
-                      )
-                    })}
-                  </div>
-                </div>
-              )
-            })}
-          </div>
-        )}
-      </div>
-
-      {/* Month navigation */}
-      <div className="flex items-center justify-between">
-        <button className="tap-target text-lg font-bold px-2" onClick={prevMonth} aria-label="Previous month">←</button>
-        <span className="text-sm font-bold capitalize">{monthName}</span>
-        <button className="tap-target text-lg font-bold px-2" onClick={nextMonth} aria-label="Next month">→</button>
-      </div>
-
-      {/* Calendar grid */}
-      <div className="card p-3">
-        <div className="grid grid-cols-7 gap-1 mb-2">
-          {WEEKDAYS_KEYS.map((k) => (
-            <div key={k} className="text-center text-[0.6rem] font-bold" style={{ color: 'var(--color-text-muted)' }}>
-              {t(k)}
+              <button className="tap-target text-lg font-bold px-2" onClick={() => setWeekOffset(weekOffset + 1)} aria-label="Next week">→</button>
             </div>
-          ))}
-        </div>
-        <div className="grid grid-cols-7 gap-1">
-          {days.map((day, i) => {
-            if (day === null) return <div key={`empty-${i}`} />
-            const dk = dateKey(viewYear, viewMonth, day)
-            const dayEvents = eventsByDate.get(dk) ?? []
-            const hasEvents = dayEvents.length > 0
-            const isToday = dk === todayStr
-            const isSelected = dk === selectedDate
-            return (
-              <button
-                key={dk}
-                className="cal-day tap-target relative"
-                data-today={isToday}
-                data-selected={isSelected}
-                data-has-events={hasEvents}
-                onClick={() => setSelectedDate(dk)}
-                aria-label={`${day} ${hasEvents ? `(${dayEvents.length} events)` : ''}`}
-              >
-                <span className="text-xs font-bold">{day}</span>
-                {hasEvents && (
-                  <div className="flex gap-[3px] justify-center mt-0.5">
-                    {dayEvents.slice(0, 4).map((ev) => {
-                      const evType = EVENT_TYPES.find((et) => et.key === ev.type)
-                      return (
-                        <div
-                          key={ev.id}
-                          className="cal-dot"
-                          style={{ background: evType?.color ?? 'var(--color-primary-dark)' }}
-                        />
-                      )
-                    })}
-                  </div>
-                )}
-              </button>
-            )
-          })}
-        </div>
-      </div>
 
-      {/* Selected date events */}
-      {selectedDate && (
-        <div className="flex flex-col gap-2 animate-fade-up">
+            {/* Week day rows — smart collapsing */}
+            <div className="flex flex-col">
+              {weekDates.map((dk, idx) => {
+                const dayEvents = weekEventsByDate.get(dk) ?? []
+                const [, , dayNum] = dk.split('-')
+                const jsDow = idx < 6 ? idx + 1 : 0
+                const isToday = dk === todayStr
+                const isWeekend = jsDow === 0 || jsDow === 6
+                return (
+                  <div
+                    key={dk}
+                    className="flex items-start gap-2 py-2 px-2 rounded-lg"
+                    style={{
+                      background: isToday ? 'rgba(var(--color-primary-rgb), 0.06)' : undefined,
+                      borderLeft: isToday ? '3px solid var(--color-primary-dark)' : '3px solid transparent',
+                      borderBottom: idx < 6 ? '1px solid var(--color-pitch-line, #e5e7eb)' : undefined,
+                    }}
+                  >
+                    <div className="w-12 shrink-0 pt-0.5">
+                      <span className="text-xs font-bold block" style={{ color: isToday ? 'var(--color-primary-dark)' : isWeekend ? 'var(--color-text-muted)' : 'var(--color-text-secondary)' }}>
+                        {t(WEEKDAY_NAMES[jsDow])}
+                      </span>
+                      <span className="text-[0.65rem] font-data" style={{ color: 'var(--color-text-muted)' }}>{dayNum}</span>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      {dayEvents.length === 0 ? (
+                        <span className="text-[0.65rem] py-0.5" style={{ color: 'var(--color-text-muted)', opacity: 0.5 }}>—</span>
+                      ) : (
+                        <div className="flex flex-col gap-1">
+                          {dayEvents.map((ev) => {
+                            const evType = EVENT_TYPES.find((et) => et.key === ev.type)
+                            const isRemovable = !ev.id.startsWith('rt-') && !ev.id.startsWith('shared-')
+                            return (
+                              <div key={ev.id} className="flex items-center gap-1.5 group">
+                                <div className="w-2 h-2 rounded-full shrink-0" style={{ background: evType?.color ?? 'var(--color-primary-dark)' }} />
+                                <span className="text-[0.65rem] font-bold shrink-0" style={{ color: 'var(--color-text-secondary)' }}>{ev.startTime}</span>
+                                <span className="text-[0.65rem] truncate flex-1" style={{ color: 'var(--color-text-primary)' }}>{ev.title}</span>
+                                {ev.id.startsWith('rt-') && <span className="text-[0.5rem]">🔁</span>}
+                                {ev.id.startsWith('shared-') && <span className="text-[0.5rem]" style={{ color: 'var(--color-primary-dark)' }}>👥</span>}
+                                {isRemovable && (
+                                  <button
+                                    className="text-[0.6rem] px-1 opacity-30 group-hover:opacity-100 shrink-0"
+                                    style={{ color: 'var(--color-danger)' }}
+                                    onClick={() => removeScheduleEvent(ev.id)}
+                                    aria-label="Remove"
+                                  >✕</button>
+                                )}
+                              </div>
+                            )
+                          })}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        </>
+      )}
+
+      {/* ══════════════════════ MONTH TAB ══════════════════════ */}
+      {activeTab === 'month' && (
+        <>
+          {/* Month navigation */}
           <div className="flex items-center justify-between">
-            <p className="section-label">
-              {new Date(selectedDate + 'T00:00:00').toLocaleDateString(undefined, { weekday: 'long', month: 'short', day: 'numeric' })}
-            </p>
-            <button
-              className="text-xs font-bold px-3 py-1.5 rounded-lg"
-              style={{ background: 'var(--color-primary-bg)', color: 'var(--color-primary-dark)' }}
-              onClick={() => openAddForm(selectedDate)}
-              aria-label={t('mentor.schedule.add')}
-            >
-              + {t('mentor.schedule.add')}
-            </button>
+            <button className="tap-target text-lg font-bold px-2" onClick={prevMonth} aria-label="Previous month">←</button>
+            <span className="text-sm font-bold capitalize">{monthName}</span>
+            <button className="tap-target text-lg font-bold px-2" onClick={nextMonth} aria-label="Next month">→</button>
           </div>
 
-          {selectedEvents.length === 0 && (
-            <p className="text-xs text-center py-6" style={{ color: 'var(--color-text-muted)' }}>
-              {t('schedule.noEvents')}
+          {/* Calendar grid */}
+          <div className="card p-3">
+            <div className="grid grid-cols-7 gap-1 mb-2">
+              {WEEKDAYS_KEYS.map((k) => (
+                <div key={k} className="text-center text-[0.6rem] font-bold" style={{ color: 'var(--color-text-muted)' }}>
+                  {t(k)}
+                </div>
+              ))}
+            </div>
+            <div className="grid grid-cols-7 gap-1">
+              {days.map((day, i) => {
+                if (day === null) return <div key={`empty-${i}`} />
+                const dk = dateKey(viewYear, viewMonth, day)
+                const dayEvents = eventsByDate.get(dk) ?? []
+                const hasEvents = dayEvents.length > 0
+                const isToday = dk === todayStr
+                const isSelected = dk === selectedDate
+                return (
+                  <button
+                    key={dk}
+                    className="cal-day tap-target relative"
+                    data-today={isToday}
+                    data-selected={isSelected}
+                    data-has-events={hasEvents}
+                    onClick={() => { setSelectedDate(dk); setSelectDateHint(false) }}
+                    aria-label={`${day} ${hasEvents ? `(${dayEvents.length} events)` : ''}`}
+                  >
+                    <span className="text-xs font-bold">{day}</span>
+                    {hasEvents && (
+                      <div className="flex gap-[3px] justify-center mt-0.5">
+                        {dayEvents.slice(0, 4).map((ev) => {
+                          const evType = EVENT_TYPES.find((et) => et.key === ev.type)
+                          return (
+                            <div
+                              key={ev.id}
+                              className="cal-dot"
+                              style={{ background: evType?.color ?? 'var(--color-primary-dark)' }}
+                            />
+                          )
+                        })}
+                      </div>
+                    )}
+                  </button>
+                )
+              })}
+            </div>
+          </div>
+
+          {/* Add buttons — always visible */}
+          <div className="grid grid-cols-4 gap-2">
+            {([
+              { type: 'training' as ScheduleType, emoji: '⚽', labelKey: 'schedule.addTraining', color: 'var(--color-primary-dark)' },
+              { type: 'match' as ScheduleType, emoji: '🏟️', labelKey: 'schedule.addMatch', color: 'var(--color-cat-physical)' },
+              { type: 'tournament' as ScheduleType, emoji: '🏆', labelKey: 'schedule.addTournament', color: 'var(--color-gold-500)' },
+              { type: 'event' as ScheduleType, emoji: '📅', labelKey: 'schedule.addEvent', color: 'var(--color-text-secondary)' },
+            ]).map((btn) => (
+              <button
+                key={btn.type}
+                className="card flex flex-col items-center gap-1 py-2.5"
+                style={{ cursor: 'pointer' }}
+                onClick={() => btn.type === 'tournament' ? setShowImport(true) : tryOpenAdd(btn.type)}
+              >
+                <span className="text-base">{btn.emoji}</span>
+                <span className="text-[0.6rem] font-bold leading-tight text-center" style={{ color: btn.color }}>{t(btn.labelKey)}</span>
+              </button>
+            ))}
+          </div>
+
+          {/* Select date hint */}
+          {selectDateHint && (
+            <p className="text-xs text-center animate-fade-up" style={{ color: 'var(--color-danger)' }}>
+              ☝️ {t('schedule.selectDate')}
             </p>
           )}
 
-          {selectedEvents.map((ev) => {
-            const evType = EVENT_TYPES.find((et) => et.key === ev.type)
-            return (
-              <div key={ev.id} className="card flex items-center gap-3">
-                <span className="text-xl">{evType?.emoji ?? '📅'}</span>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-1.5">
-                    <p className="text-sm font-bold truncate">{ev.title}</p>
-                    {ev.matchType && (
-                      <span className="text-[0.55rem] px-1.5 py-0.5 rounded-full shrink-0" style={{ background: 'var(--color-glass-active)', color: 'var(--color-text-secondary)' }}>
-                        {MATCH_TYPES.find((m) => m.key === ev.matchType)?.emoji} {t(`schedule.matchType.${ev.matchType}`, ev.matchType)}
+          {/* Selected date events */}
+          {selectedDate && (
+            <div className="flex flex-col gap-2 animate-fade-up">
+              <div className="flex items-center justify-between">
+                <p className="section-label">
+                  {new Date(selectedDate + 'T00:00:00').toLocaleDateString(undefined, { weekday: 'long', month: 'short', day: 'numeric' })}
+                </p>
+                <button
+                  className="text-xs font-bold px-3 py-1.5 rounded-lg"
+                  style={{ background: 'var(--color-primary-bg)', color: 'var(--color-primary-dark)' }}
+                  onClick={() => openAddForm(selectedDate)}
+                  aria-label={t('mentor.schedule.add')}
+                >
+                  + {t('mentor.schedule.add')}
+                </button>
+              </div>
+
+              {selectedEvents.length === 0 && (
+                <p className="text-xs text-center py-6" style={{ color: 'var(--color-text-muted)' }}>
+                  {t('schedule.noEvents')}
+                </p>
+              )}
+
+              {selectedEvents.map((ev) => {
+                const evType = EVENT_TYPES.find((et) => et.key === ev.type)
+                return (
+                  <div key={ev.id} className="card flex items-center gap-3">
+                    <span className="text-xl">{evType?.emoji ?? '📅'}</span>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-1.5">
+                        <p className="text-sm font-bold truncate">{ev.title}</p>
+                        {ev.matchType && (
+                          <span className="text-[0.55rem] px-1.5 py-0.5 rounded-full shrink-0" style={{ background: 'var(--color-glass-active)', color: 'var(--color-text-secondary)' }}>
+                            {MATCH_TYPES.find((m) => m.key === ev.matchType)?.emoji} {t(`schedule.matchType.${ev.matchType}`, ev.matchType)}
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-xs font-data" style={{ color: 'var(--color-text-muted)' }}>
+                        {ev.startTime}{ev.endTime ? ` – ${ev.endTime}` : ''}
+                        {ev.location ? ` • ${ev.location}` : ''}
+                      </p>
+                      {ev.opponent && (
+                        <p className="text-xs" style={{ color: 'var(--color-text-secondary)' }}>
+                          vs {ev.opponent}{ev.competition ? ` · ${ev.competition}` : ''}
+                        </p>
+                      )}
+                      {ev.notes && (
+                        <p className="text-xs mt-0.5" style={{ color: 'var(--color-text-muted)' }}>
+                          {ev.notes}
+                        </p>
+                      )}
+                    </div>
+                    {!ev.id.startsWith('rt-') && !ev.id.startsWith('shared-') && (
+                      <button
+                        className="text-xs px-2 py-1 rounded"
+                        style={{ color: 'var(--color-danger)' }}
+                        onClick={() => removeScheduleEvent(ev.id)}
+                        aria-label="Delete event"
+                      >
+                        ✕
+                      </button>
+                    )}
+                    {ev.id.startsWith('rt-') && (
+                      <span className="text-[0.55rem] px-1.5 py-0.5 rounded-full" style={{ background: 'var(--color-glass-active)', color: 'var(--color-text-muted)' }}>
+                        🔁
+                      </span>
+                    )}
+                    {ev.id.startsWith('shared-') && (
+                      <span className="text-[0.55rem] px-1.5 py-0.5 rounded-full" style={{ background: 'var(--color-primary-bg, #dcfce7)', color: 'var(--color-primary-dark, #166534)' }}>
+                        👥 {t('schedule.teamShared', { defaultValue: 'Team' })}
                       </span>
                     )}
                   </div>
-                  <p className="text-xs font-data" style={{ color: 'var(--color-text-muted)' }}>
-                    {ev.startTime}{ev.endTime ? ` – ${ev.endTime}` : ''}
-                    {ev.location ? ` • ${ev.location}` : ''}
-                  </p>
-                  {ev.opponent && (
-                    <p className="text-xs" style={{ color: 'var(--color-text-secondary)' }}>
-                      vs {ev.opponent}{ev.competition ? ` · ${ev.competition}` : ''}
-                    </p>
-                  )}
-                </div>
-                {!ev.id.startsWith('rt-') && !ev.id.startsWith('shared-') && (
-                <button
-                  className="text-xs px-2 py-1 rounded"
-                  style={{ color: 'var(--color-danger)' }}
-                  onClick={() => removeScheduleEvent(ev.id)}
-                  aria-label="Delete event"
-                >
-                  ✕
-                </button>
-                )}
-                {ev.id.startsWith('rt-') && (
-                  <span className="text-[0.55rem] px-1.5 py-0.5 rounded-full" style={{ background: 'var(--color-glass-active)', color: 'var(--color-text-muted)' }}>
-                    🔁
-                  </span>
-                )}
-                {ev.id.startsWith('shared-') && (
-                  <span className="text-[0.55rem] px-1.5 py-0.5 rounded-full" style={{ background: 'var(--color-primary-bg, #dcfce7)', color: 'var(--color-primary-dark, #166534)' }}>
-                    👥 {t('schedule.teamShared', { defaultValue: 'Team' })}
-                  </span>
-                )}
+                )
+              })}
+            </div>
+          )}
+
+          {/* ── Recurring trainings ── */}
+          <div className="card">
+            <div className="flex items-center justify-between mb-2">
+              <p className="section-label">{t('schedule.recurringTitle')}</p>
+              <button
+                className="text-xs font-bold px-3 py-1.5 rounded-lg"
+                style={{ background: 'var(--color-primary-bg)', color: 'var(--color-primary-dark)' }}
+                onClick={() => setShowWeeklySetup(true)}
+              >
+                + {t('schedule.addRecurring')}
+              </button>
+            </div>
+            {recurringTrainings.length === 0 ? (
+              <p className="text-xs text-center py-3" style={{ color: 'var(--color-text-muted)' }}>
+                {t('schedule.noRecurring')}
+              </p>
+            ) : (
+              <div className="flex flex-col gap-1.5">
+                {[1, 2, 3, 4, 5, 6, 0].map((dow) => {
+                  const dayTrainings = recurringTrainings.filter((r) => r.dayOfWeek === dow && r.active)
+                  if (dayTrainings.length === 0) return null
+                  return (
+                    <div key={dow} className="flex items-start gap-2">
+                      <span className="text-xs font-bold w-8 pt-1 shrink-0" style={{ color: 'var(--color-text-muted)' }}>
+                        {t(WEEKDAY_NAMES[dow])}
+                      </span>
+                      <div className="flex flex-wrap gap-1 flex-1">
+                        {dayTrainings.map((rt) => {
+                          const ttType = TRAINING_TYPES_UI.find((tt) => tt.key === rt.trainingType)
+                          return (
+                            <span key={rt.id} className="inline-flex items-center gap-1 text-[0.65rem] px-2 py-1 rounded-lg" style={{ background: 'var(--color-glass-active, #f1f5f9)' }}>
+                              {ttType?.emoji} {rt.startTime}–{rt.endTime}
+                              {rt.location && <span style={{ color: 'var(--color-text-muted)' }}>· {rt.location}</span>}
+                              <button
+                                className="ml-0.5 opacity-40 hover:opacity-100"
+                                onClick={() => removeRecurring(rt.id)}
+                                aria-label="Remove"
+                              >✕</button>
+                            </span>
+                          )
+                        })}
+                      </div>
+                    </div>
+                  )
+                })}
               </div>
-            )
-          })}
-        </div>
+            )}
+          </div>
+        </>
       )}
 
-      {/* Add event form (overlay) */}
+      {/* ══════════════════════ ADD EVENT FORM (overlay) ══════════════════════ */}
       {showForm && (
         <div className="fixed inset-0 z-50 flex items-end justify-center" style={{ background: 'rgba(0,0,0,0.4)' }}>
-          <div className="app-shell w-full bg-white rounded-t-2xl p-4 pb-8 animate-fade-up" style={{ maxHeight: '80dvh', overflowY: 'auto' }}>
+          <div className="app-shell w-full bg-white rounded-t-2xl p-4 pb-8 animate-fade-up" style={{ maxHeight: '85dvh', overflowY: 'auto' }}>
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-extrabold">{t('mentor.schedule.add')}</h3>
-              <button
-                className="tap-target text-lg"
-                onClick={() => setShowForm(false)}
-                aria-label={t('common.cancel')}
-              >
-                ✕
-              </button>
+              <button className="tap-target text-lg" onClick={() => setShowForm(false)} aria-label={t('common.cancel')}>✕</button>
             </div>
 
             {/* Event type chips */}
             <div className="flex gap-2 mb-4">
-              {EVENT_TYPES.map((et) => (
+              {EVENT_TYPES.filter((et) => et.key !== 'tournament').map((et) => (
                 <button
                   key={et.key}
                   className="btn-choice tap-target flex-1 text-center text-xs py-2"
                   aria-pressed={formType === et.key}
-                  onClick={() => setFormType(et.key)}
+                  onClick={() => {
+                    setFormType(et.key)
+                    if (et.key === 'match') {
+                      setFormEndTime(addMinutesToTime(formTime, matchDurationRecommendation.totalMinutes))
+                    }
+                  }}
                 >
                   {et.emoji} {t(et.labelKey)}
                 </button>
@@ -705,6 +765,26 @@ export function SchedulePage() {
             </div>
 
             <div className="flex flex-col gap-3">
+              {/* Training type selector */}
+              {formType === 'training' && (
+                <div>
+                  <label className="text-xs font-bold mb-1 block" style={{ color: 'var(--color-text-secondary)' }}>{t('schedule.trainingTypeLabel')}</label>
+                  <div className="grid grid-cols-4 gap-1">
+                    {TRAINING_TYPES_UI.map((tt) => (
+                      <button
+                        key={tt.key}
+                        className="btn-choice tap-target text-center text-[0.6rem] py-1.5"
+                        aria-pressed={formTrainingType === tt.key}
+                        onClick={() => setFormTrainingType(tt.key)}
+                      >
+                        {tt.emoji}
+                        <span className="block text-[0.55rem] mt-0.5">{t(tt.labelKey).split(/\s/)[0]}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               <input
                 type="text"
                 value={formTitle}
@@ -726,16 +806,16 @@ export function SchedulePage() {
                 className="w-full"
               />
 
+              {/* Match-specific fields */}
               {formType === 'match' && (
                 <>
-                  {/* Match type */}
                   <div>
                     <label className="text-xs font-bold mb-1 block" style={{ color: 'var(--color-text-secondary)' }}>{t('schedule.matchTypeLabel')}</label>
-                    <div className="flex gap-1">
+                    <div className="grid grid-cols-3 gap-1">
                       {MATCH_TYPES.map((mt) => (
                         <button
                           key={mt.key}
-                          className="btn-choice tap-target flex-1 text-center text-[0.65rem] py-1.5"
+                          className="btn-choice tap-target text-center text-[0.6rem] py-1.5"
                           aria-pressed={formMatchType === mt.key}
                           onClick={() => setFormMatchType(mt.key)}
                         >
@@ -745,7 +825,6 @@ export function SchedulePage() {
                     </div>
                   </div>
 
-                  {/* Opponent (with TeamPicker) */}
                   <div>
                     <label className="text-xs font-bold mb-1 block" style={{ color: 'var(--color-text-secondary)' }}>{t('schedule.opponent')}</label>
                     <TeamPicker
@@ -757,7 +836,6 @@ export function SchedulePage() {
                     />
                   </div>
 
-                  {/* Competition name */}
                   <input
                     type="text"
                     value={formCompetition}
@@ -767,19 +845,27 @@ export function SchedulePage() {
                   />
                 </>
               )}
+
+              {/* Event notes */}
+              {formType === 'event' && (
+                <textarea
+                  value={formNotes}
+                  onChange={(e) => setFormNotes(e.target.value)}
+                  placeholder={t('schedule.eventNotes')}
+                  className="w-full"
+                  rows={2}
+                />
+              )}
             </div>
 
-            <button
-              className="btn-primary mt-4 w-full"
-              onClick={saveEvent}
-            >
+            <button className="btn-primary mt-4 w-full" onClick={saveEvent}>
               {t('common.save')}
             </button>
           </div>
         </div>
       )}
 
-      {/* Add recurring training form */}
+      {/* ══════════════════════ ADD RECURRING FORM (overlay) ══════════════════════ */}
       {showWeeklySetup && (
         <div className="fixed inset-0 z-50 flex items-end justify-center" style={{ background: 'rgba(0,0,0,0.4)' }}>
           <div className="app-shell w-full bg-white rounded-t-2xl p-4 pb-8 animate-fade-up" style={{ maxHeight: '80dvh', overflowY: 'auto' }}>
@@ -789,18 +875,22 @@ export function SchedulePage() {
             </div>
 
             <div className="flex flex-col gap-3">
-              {/* Training type */}
-              <div className="flex gap-2">
-                {TRAINING_TYPES.map((tt) => (
-                  <button
-                    key={tt.key}
-                    className="btn-choice tap-target flex-1 text-center text-xs py-2"
-                    aria-pressed={rtType === tt.key}
-                    onClick={() => setRtType(tt.key)}
-                  >
-                    {tt.emoji} {t(tt.labelKey)}
-                  </button>
-                ))}
+              {/* Training type — 8 options in 2 rows of 4 */}
+              <div>
+                <label className="text-xs font-bold mb-1 block" style={{ color: 'var(--color-text-secondary)' }}>{t('schedule.trainingTypeLabel')}</label>
+                <div className="grid grid-cols-4 gap-1">
+                  {TRAINING_TYPES_UI.map((tt) => (
+                    <button
+                      key={tt.key}
+                      className="btn-choice tap-target text-center text-[0.6rem] py-1.5"
+                      aria-pressed={rtType === tt.key}
+                      onClick={() => setRtType(tt.key)}
+                    >
+                      {tt.emoji}
+                      <span className="block text-[0.55rem] mt-0.5">{t(tt.labelKey).split(/\s/)[0]}</span>
+                    </button>
+                  ))}
+                </div>
               </div>
 
               {/* Day of week */}
@@ -820,7 +910,6 @@ export function SchedulePage() {
                 </div>
               </div>
 
-              {/* Name */}
               <input
                 type="text"
                 value={rtName}
@@ -829,13 +918,11 @@ export function SchedulePage() {
                 className="w-full"
               />
 
-              {/* Times */}
               <div className="grid grid-cols-2 gap-2">
                 <TimePicker value={rtStart} onChange={setRtStart} label={t('schedule.startTime')} />
                 <TimePicker value={rtEnd} onChange={setRtEnd} label={t('schedule.endTime')} />
               </div>
 
-              {/* Location */}
               <input
                 type="text"
                 value={rtLocation}

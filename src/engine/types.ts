@@ -105,7 +105,11 @@ export interface XpState {
 export const TRAINING_TYPES = {
   team: 'team',
   individual: 'individual',
+  technical: 'technical',
+  tactical: 'tactical',
+  physical: 'physical',
   gym: 'gym',
+  recovery: 'recovery',
   futsal: 'futsal',
 } as const
 export type TrainingType = (typeof TRAINING_TYPES)[keyof typeof TRAINING_TYPES]
@@ -369,6 +373,7 @@ export const SCHEDULE_TYPE = {
   training: 'training',
   match: 'match',
   tournament: 'tournament',
+  event: 'event',
 } as const
 export type ScheduleType = (typeof SCHEDULE_TYPE)[keyof typeof SCHEDULE_TYPE]
 
@@ -391,6 +396,8 @@ export const MATCH_TYPE = {
   league: 'league',
   cup: 'cup',
   tournament: 'tournament',
+  playoff: 'playoff',
+  futsal: 'futsal',
 } as const
 export type MatchType = (typeof MATCH_TYPE)[keyof typeof MATCH_TYPE]
 
@@ -407,6 +414,8 @@ export interface ScheduleEvent {
   opponent?: string
   competition?: string
   matchType?: MatchType
+  trainingType?: TrainingType
+  notes?: string
   tournamentId?: string
   recurring?: {
     frequency: 'weekly'

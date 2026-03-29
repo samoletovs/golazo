@@ -7,7 +7,11 @@ import type { TrainingType, FocusArea, EnergyLevel, TrainingEntry } from '../eng
 const TYPES: { key: TrainingType; labelKey: string }[] = [
   { key: 'team', labelKey: 'training.type.team' },
   { key: 'individual', labelKey: 'training.type.individual' },
+  { key: 'technical', labelKey: 'training.type.technical' },
+  { key: 'tactical', labelKey: 'training.type.tactical' },
+  { key: 'physical', labelKey: 'training.type.physical' },
   { key: 'gym', labelKey: 'training.type.gym' },
+  { key: 'recovery', labelKey: 'training.type.recovery' },
   { key: 'futsal', labelKey: 'training.type.futsal' },
 ]
 

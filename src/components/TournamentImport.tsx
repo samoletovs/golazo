@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
 import { TeamPicker } from './TeamPicker'
+import { getMatchDurationRecommendation } from '../engine/footballStandards'
 import type { Tournament, ScheduleEvent } from '../engine/types'
 
 interface ParsedGame {
@@ -33,11 +34,10 @@ interface ImportResult {
   dateWarning?: string
 }
 
-const DEFAULT_DURATION_MIN = 30
-
 export function TournamentImport({ onClose }: { onClose: () => void }) {
   const { t } = useTranslation()
   const { profile, addTournament, addScheduleEvent } = useApp()
+  const durationRecommendation = getMatchDurationRecommendation(profile?.birthDate)
 
   // Player's saved teams (from profile)
   const playerTeams = profile?.teams?.filter((t) => t.active) ?? []
@@ -48,7 +48,7 @@ export function TournamentImport({ onClose }: { onClose: () => void }) {
   const [teamName, setTeamName] = useState(profile?.team || '')
   // Which of the player's teams this tournament is for
   const [selectedTeamId, setSelectedTeamId] = useState(playerTeams[0]?.id ?? '')
-  const [durationMin, setDurationMin] = useState(DEFAULT_DURATION_MIN)
+  const [durationMin, setDurationMin] = useState(durationRecommendation.totalMinutes)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
 

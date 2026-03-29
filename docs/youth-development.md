@@ -18,14 +18,10 @@
 
 ### Golazo Age Tier Mapping
 ```
-U7  → 'u7'   (born 2019+)
-U9  → 'u9'   (born 2017-2018)
-U11 → 'u11'  (born 2015-2016)
-U13 → 'u13'  (born 2013-2014)
-U15 → 'u15'  (born 2011-2012)
-U17 → 'u17'  (born 2009-2010)
-U19 → 'u19'  (born 2007-2008)
-Senior → 'senior' (born 2006 or earlier)
+U8       → 'u8'
+U12      → 'u12'
+U16      → 'u16'
+U19+     → 'u19plus'
 ```
 
 ## The "Four Corner" Development Model (English FA)
@@ -94,8 +90,15 @@ Every session and development plan should address four pillars:
 | Senior | 2 × 45 min | 45 min | 3-5 |
 
 ### Golazo Default Duration
-When importing tournaments or creating matches, default to 30 minutes for youth players
-(can be overridden). Detect from tournament rules when available.
+Golazo now sets an age-aware default match duration (still editable):
+
+- U10 and younger: 50 min total (2x25)
+- U11-U12: 60 min total (2x30)
+- U13-U14: 70 min total (2x35)
+- U15-U16: 80 min total (2x40)
+- U17+: 90 min total (2x45)
+
+This follows IFAB Law 7 baseline (2x45) while applying youth-appropriate reduced durations.
 
 ## Physical Testing Benchmarks (by age)
 

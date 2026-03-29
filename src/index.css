@@ -1129,6 +1129,33 @@ h1, h2, h3, h4 {
   transform: scale(0.95);
 }
 
+/* ── Schedule Tabs ───────────────────────────────────────── */
+.schedule-tabs {
+  display: flex;
+  gap: 4px;
+  padding: 3px;
+  border-radius: 12px;
+  background: var(--color-glass-active, #f1f5f9);
+}
+.schedule-tab {
+  flex: 1;
+  text-align: center;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  background: none;
+  color: var(--color-text-muted);
+}
+.schedule-tab[aria-selected="true"] {
+  background: #fff;
+  color: var(--color-text-primary);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
 /* ── Calendar Day ────────────────────────────────────────── */
 .cal-day {
   display: flex;
