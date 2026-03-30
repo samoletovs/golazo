@@ -189,8 +189,8 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
         <PhysicalUpdateFlow onClose={() => setShowPhysicalUpdate(false)} />
       )}
 
-      {/* ── Physical update reminder ── */}
-      {physicalUpdateDue && (
+      {/* ── Physical update reminder (U12+ only — too advanced for Foundation age) ── */}
+      {physicalUpdateDue && !isYoung && (
         <div className="card animate-fade-up flex items-center gap-3" style={{ background: 'var(--color-primary-light, #dcfce7)', border: '1px solid var(--color-primary, #22c55e)' }}>
           <span className="text-2xl">📏</span>
           <div className="flex-1">
@@ -237,6 +237,35 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
           )}
         </div>
       </div>
+
+      {/* ── First-day welcome (shown when player has zero activity) ── */}
+      {matches.length === 0 && trainings.length === 0 && checkIns.length === 0 && (
+        <div className="card-glow animate-fade-up flex flex-col gap-3">
+          <div className="flex items-center gap-2">
+            <span className="text-2xl">🎉</span>
+            <p className="text-sm font-bold" style={{ fontFamily: 'var(--font-display)' }}>
+              {t('dashboard.welcomeTitle', { defaultValue: 'Welcome to Golazo!' })}
+            </p>
+          </div>
+          <p className="text-xs leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
+            {t('dashboard.welcomeText', { defaultValue: 'Start your journey! Here\'s what to do:' })}
+          </p>
+          <div className="flex flex-col gap-2">
+            <div className="flex items-center gap-2 text-xs">
+              <span>1️⃣</span>
+              <span>{t('dashboard.welcomeStep1', { defaultValue: 'Complete your morning routine (2 min)' })}</span>
+            </div>
+            <div className="flex items-center gap-2 text-xs">
+              <span>2️⃣</span>
+              <span>{t('dashboard.welcomeStep2', { defaultValue: 'Log your first training session' })}</span>
+            </div>
+            <div className="flex items-center gap-2 text-xs">
+              <span>3️⃣</span>
+              <span>{t('dashboard.welcomeStep3', { defaultValue: 'Explore exercises in the Learn tab' })}</span>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* ── Morning Routine CTA ── */}
       {!routineComplete && (

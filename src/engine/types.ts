@@ -498,10 +498,10 @@ export function getAgeTier(birthDate: string): AgeTier {
   if (monthDiff < 0 || (monthDiff === 0 && now.getDate() < birth.getDate())) {
     age--
   }
-  if (age < 8) return 'u8'
-  if (age < 12) return 'u12'
-  if (age < 16) return 'u16'
-  return 'u19plus'
+  if (age < 10) return 'u8'   // U8-U10 Foundation
+  if (age < 12) return 'u12'  // U10-U12 Development
+  if (age < 16) return 'u16'  // U12-U16 Youth
+  return 'u19plus'            // U16+
 }
 
 /** Get age in years from birth date */

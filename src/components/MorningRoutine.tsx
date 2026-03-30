@@ -20,6 +20,9 @@ export function MorningRoutine({ onClose }: MorningRoutineProps) {
   const checkedIn = checkIns.some((c) => c.date === today)
   const quizzed = quizAnswers.some((q) => q.date === today)
 
+  // Track XP awarded during this routine session to avoid stale state
+  const [xpAwarded, setXpAwarded] = useState(0)
+
   // Skip already-completed steps
   const initialStep: Step = !checkedIn ? 'checkin' : 'challenge'
   const [step, setStep] = useState<Step>(initialStep)
@@ -34,20 +37,24 @@ export function MorningRoutine({ onClose }: MorningRoutineProps) {
 
   function handleChallengeComplete() {
     setChallengeDone(true)
-    // Award daily challenge XP immediately
-    setXp(awardXp(xp, XP_AWARDS.dailyChallenge, today))
+    // Award daily challenge XP — use xp + accumulated awards to avoid stale state
+    const currentXp = awardXp(xp, xpAwarded, today) // rebase to latest
+    setXp(awardXp(currentXp, XP_AWARDS.dailyChallenge, today))
+    setXpAwarded((prev) => prev + XP_AWARDS.dailyChallenge)
     setTimeout(() => {
       if (quizzed) {
-        finishRoutine()
+        finishRoutine(XP_AWARDS.dailyChallenge)
       } else {
         setStep('quiz')
       }
     }, 800)
   }
 
-  function finishRoutine() {
-    // Award morning routine bonus
-    setXp(awardXp(xp, XP_AWARDS.morningRoutineBonus, today))
+  function finishRoutine(extraXpSoFar = 0) {
+    // Award morning routine bonus — rebase from original xp + all accumulated
+    const totalAccumulated = xpAwarded + extraXpSoFar
+    const currentXp = awardXp(xp, totalAccumulated, today)
+    setXp(awardXp(currentXp, XP_AWARDS.morningRoutineBonus, today))
     setStep('done')
   }
 
@@ -139,7 +146,7 @@ export function MorningRoutine({ onClose }: MorningRoutineProps) {
               <p className="text-lg font-bold mb-4" style={{ fontFamily: 'var(--font-display)' }}>
                 🧠 {t('quiz.title', { defaultValue: 'Quiz of the Day' })}
               </p>
-              <DailyQuiz compact onComplete={() => setTimeout(finishRoutine, 500)} />
+              <DailyQuiz compact onComplete={() => setTimeout(() => finishRoutine(), 500)} />
             </div>
           )}
 

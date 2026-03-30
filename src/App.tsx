@@ -10,6 +10,7 @@ import { LogPage } from './pages/LogPage'
 import { LoginPage } from './pages/LoginPage'
 import { OnboardingPage } from './pages/OnboardingPage'
 import { applyTeamTheme, getPrimaryTeamColor } from './utils/teamTheme'
+import { ErrorBoundary } from './components/ErrorBoundary'
 
 // Lazy-load heavier pages to reduce initial bundle
 const Exercises = lazy(() => import('./pages/Exercises').then(m => ({ default: m.Exercises })))
@@ -117,12 +118,14 @@ function AppContent() {
 
 export default function App() {
   return (
-    <AuthProvider>
-      <AppProvider>
-        <ToastProvider>
-          <AppContent />
-        </ToastProvider>
-      </AppProvider>
-    </AuthProvider>
+    <ErrorBoundary>
+      <AuthProvider>
+        <AppProvider>
+          <ToastProvider>
+            <AppContent />
+          </ToastProvider>
+        </AppProvider>
+      </AuthProvider>
+    </ErrorBoundary>
   )
 }
