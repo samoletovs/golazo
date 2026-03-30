@@ -90,7 +90,7 @@ export function MorningRoutine({ onClose }: MorningRoutineProps) {
             />
           </div>
           <p className="text-xs mt-1" style={{ color: 'var(--color-text-muted)' }}>
-            {t('routine.step', { defaultValue: `Step ${stepNumber} of ${totalSteps}`, step: stepNumber, total: totalSteps })}
+            {t('routine.step', { step: stepNumber, total: totalSteps })}
           </p>
         </div>
       )}

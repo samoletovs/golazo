@@ -269,7 +269,7 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
             </p>
           </div>
           <p className="text-xs leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
-            {t('dashboard.welcomeText', { defaultValue: 'Start your journey! Here\'s what to do:' })}
+            {t('dashboard.welcomeText')}
           </p>
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-2 text-xs">

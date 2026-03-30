@@ -68,9 +68,7 @@ export function MentorDashboard({ onBack }: { onBack?: () => void }) {
         result.push({
           type: 'warning',
           icon: '⚠️',
-          message: t('mentor.alertLowMood', {
-            defaultValue: `${playerName || 'Your player'} has had low mood (≤2/5) for 3+ consecutive days. Consider a conversation.`,
-          }),
+          message: t('mentor.dashboard.alertLowMood', { name: playerName || 'Your player' }),
         })
       }
     }
@@ -85,9 +83,7 @@ export function MentorDashboard({ onBack }: { onBack?: () => void }) {
         result.push({
           type: 'warning',
           icon: '🔴',
-          message: t('mentor.alertBurnout', {
-            defaultValue: `Possible overtraining: low energy (${avgEnergy.toFixed(1)}/5) with ${recentTrainings.length} sessions this week.`,
-          }),
+          message: t('mentor.dashboard.alertBurnout', { energy: avgEnergy.toFixed(1), sessions: recentTrainings.length }),
         })
       }
     }
@@ -100,9 +96,7 @@ export function MentorDashboard({ onBack }: { onBack?: () => void }) {
         result.push({
           type: 'info',
           icon: 'ℹ️',
-          message: t('mentor.alertInactive', {
-            defaultValue: `No check-ins for ${daysSince} days. Engagement may be dropping.`,
-          }),
+          message: t('mentor.dashboard.alertInactive', { days: daysSince }),
         })
       }
     }
@@ -133,7 +127,7 @@ export function MentorDashboard({ onBack }: { onBack?: () => void }) {
             {t('mentor.title')}
           </h2>
           <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
-            {playerName ? t('mentor.subtitle', { defaultValue: `${playerName}'s wellbeing & activity`, name: playerName }) : ''}
+            {playerName ? t('mentor.dashboard.subtitle', { name: playerName }) : ''}
           </p>
         </div>
       </div>

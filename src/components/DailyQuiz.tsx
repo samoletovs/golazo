@@ -120,7 +120,7 @@ export function DailyQuiz({ onComplete, compact }: DailyQuizProps) {
           <p className="text-xs font-bold" style={{ color: selected === question.correctIndex ? 'var(--color-primary-dark)' : 'var(--color-text-secondary)' }}>
             {selected === question.correctIndex
               ? t('quiz.correct')
-              : t('quiz.wrong', { defaultValue: 'Not this time — you\'ll get it tomorrow!' })}
+              : t('quiz.wrong')}
           </p>
         </div>
       )}

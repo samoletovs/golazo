@@ -695,5 +695,13 @@
   "weeklySummary.trainings": "{{count}} тренировок",
   "weeklySummary.matches": "{{count}} матчей",
   "weeklySummary.avgMood": "Ср. настроение: {{mood}}/5",
-  "weeklySummary.focus": "Фокус на неделю: {{area}}"
+  "weeklySummary.focus": "Фокус на неделю: {{area}}",
+
+  "dashboard.welcomeTitle": "Добро пожаловать в Golazo!",
+  "dashboard.welcomeText": "Начни свой путь! Вот что делать:",
+  "dashboard.welcomeStep1": "Пройди утреннюю рутину (2 мин)",
+  "dashboard.welcomeStep2": "Запиши первую тренировку",
+  "dashboard.welcomeStep3": "Открой упражнения на вкладке Учиться",
+
+  "mentor.subtitle": "Самочувствие и активность: {{name}}"
 }

@@ -681,5 +681,13 @@
   "weeklySummary.trainings": "{{count}} trainings",
   "weeklySummary.matches": "{{count}} matches",
   "weeklySummary.avgMood": "Avg mood: {{mood}}/5",
-  "weeklySummary.focus": "Focus this week: {{area}}"
+  "weeklySummary.focus": "Focus this week: {{area}}",
+
+  "dashboard.welcomeTitle": "Welcome to Golazo!",
+  "dashboard.welcomeText": "Start your journey! Here's what to do:",
+  "dashboard.welcomeStep1": "Complete your morning routine (2 min)",
+  "dashboard.welcomeStep2": "Log your first training session",
+  "dashboard.welcomeStep3": "Explore exercises in the Learn tab",
+
+  "mentor.subtitle": "{{name}}'s wellbeing & activity"
 }

@@ -125,14 +125,14 @@ export function DiaryPage({ onBack, inline, onSaved }: DiaryPageProps) {
               key={gp.key}
               className="btn-choice tap-target text-sm text-left flex items-center gap-2"
               onClick={() => {
-                const label = t(gp.labelKey, { defaultValue: gp.defaultLabel })
+                const label = t(gp.labelKey)
                 setText((prev) => prev + (prev ? '\n\n' : '') + `${gp.emoji} ${label}\n`)
                 setUsedPrompts((prev) => [...new Set([...prev, gp.key])])
               }}
               aria-pressed={usedPrompts.includes(gp.key)}
             >
               <span>{gp.emoji}</span>
-              <span>{t(gp.labelKey, { defaultValue: gp.defaultLabel })}</span>
+              <span>{t(gp.labelKey)}</span>
             </button>
           ))}
         </div>
@@ -193,7 +193,7 @@ export function DiaryPage({ onBack, inline, onSaved }: DiaryPageProps) {
               onClick={() => setMoodContext(moodContext === ctx.key ? null : ctx.key)}
               aria-pressed={moodContext === ctx.key}
             >
-              {ctx.emoji} {t(ctx.labelKey, { defaultValue: ctx.defaultLabel })}
+              {ctx.emoji} {t(ctx.labelKey)}
             </button>
           ))}
         </div>

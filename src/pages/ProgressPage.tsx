@@ -272,7 +272,6 @@ export function ProgressPage() {
             </p>
             <p className="text-xs mt-0.5" style={{ color: 'var(--color-text-secondary)' }}>
               {t('progress.burnoutDetail', {
-                defaultValue: `Avg energy ${burnoutRisk.avgEnergy.toFixed(1)}/5 · Avg mood ${burnoutRisk.avgMood.toFixed(1)}/5 · ${burnoutRisk.trainDays} sessions this week`,
                 energy: burnoutRisk.avgEnergy.toFixed(1),
                 mood: burnoutRisk.avgMood.toFixed(1),
                 sessions: burnoutRisk.trainDays,

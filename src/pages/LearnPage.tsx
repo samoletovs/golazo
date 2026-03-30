@@ -284,7 +284,7 @@ export function LearnContent() {
                       >
                         {loggedToday
                           ? `✅ ${t('learn.loggedToday')}`
-                          : `${t('learn.logDay', { defaultValue: 'Log today\'s session' })} (+${XP_AWARDS.completeExercise} XP)`}
+                          : `${t('learn.logDay')} (+${XP_AWARDS.completeExercise} XP)`}
                       </button>
                     )}
                     {isComplete && (
