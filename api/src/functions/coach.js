@@ -41,9 +41,9 @@ app.http('coach', {
     }
 
     const body = await req.json();
-    const { skillTree, recentMatches, recentTrainings, recentDiary, physicalProfile } = body;
+    const { skillTree, recentMatches, recentTrainings, recentDiary, recentCheckIns, physicalProfile } = body;
 
-    const prompt = buildPrompt(skillTree, recentMatches, recentTrainings, recentDiary, physicalProfile);
+    const prompt = buildPrompt(skillTree, recentMatches, recentTrainings, recentDiary, recentCheckIns, physicalProfile);
 
     try {
       const response = await fetch(
@@ -117,7 +117,7 @@ Respond in JSON format:
 
 Include 4-6 insights covering different categories. Always include at least one "wellbeing" insight if there are signs of low mood or tough period.`;
 
-function buildPrompt(skillTree, recentMatches, recentTrainings, recentDiary, physicalProfile) {
+function buildPrompt(skillTree, recentMatches, recentTrainings, recentDiary, recentCheckIns, physicalProfile) {
   const parts = ['Here is the player data for a personalized weekly coaching session:'];
 
   if (skillTree?.ratings) {
@@ -166,6 +166,17 @@ function buildPrompt(skillTree, recentMatches, recentTrainings, recentDiary, phy
   if (recentDiary?.length > 0) {
     const avgMood = (recentDiary.reduce((s, d) => s + (d.mood || 3), 0) / recentDiary.length).toFixed(1);
     parts.push(`\nGeneral wellbeing indicator: ${avgMood}/5 (from ${recentDiary.length} recent check-ins)`);
+  }
+
+  if (recentCheckIns?.length > 0) {
+    const avgMood = (recentCheckIns.reduce((s, c) => s + c.mood, 0) / recentCheckIns.length).toFixed(1);
+    const avgEnergy = (recentCheckIns.reduce((s, c) => s + c.energy, 0) / recentCheckIns.length).toFixed(1);
+    const last3 = recentCheckIns.slice(-3);
+    const decliningEnergy = last3.length >= 3 && last3.every(c => c.energy <= 2);
+    parts.push(`\nDaily check-ins (last ${recentCheckIns.length} days): avg mood ${avgMood}/5, avg energy ${avgEnergy}/5`);
+    if (decliningEnergy) {
+      parts.push('WARNING: Energy has been consistently low (≤2/5) for the last 3 days — possible overtraining or fatigue');
+    }
   }
 
   if (physicalProfile?.measurements?.length > 0) {

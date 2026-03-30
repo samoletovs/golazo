@@ -13,6 +13,21 @@ const PROMPTS = [
   'diary.prompt.modric',
 ]
 
+const GUIDED_PROMPTS = [
+  { key: 'whatWentWell', emoji: '✅', labelKey: 'diary.guided.whatWentWell', defaultLabel: 'What went well today?' },
+  { key: 'whatWasHard', emoji: '😤', labelKey: 'diary.guided.whatWasHard', defaultLabel: 'What was hard?' },
+  { key: 'oneThing', emoji: '💡', labelKey: 'diary.guided.oneThing', defaultLabel: 'One thing I learned' },
+  { key: 'grateful', emoji: '🙏', labelKey: 'diary.guided.grateful', defaultLabel: 'What am I grateful for?' },
+]
+
+const MOOD_CONTEXTS = [
+  { key: 'training', emoji: '⚽', labelKey: 'diary.context.training', defaultLabel: 'Training' },
+  { key: 'match', emoji: '🏟️', labelKey: 'diary.context.match', defaultLabel: 'Match' },
+  { key: 'school', emoji: '📚', labelKey: 'diary.context.school', defaultLabel: 'School' },
+  { key: 'friends', emoji: '👥', labelKey: 'diary.context.friends', defaultLabel: 'Friends' },
+  { key: 'family', emoji: '👨‍👩‍👦', labelKey: 'diary.context.family', defaultLabel: 'Family' },
+]
+
 const MOOD_EMOJIS = ['😴', '😐', '🙂', '😄', '🔥']
 
 export interface DiaryPageProps {
@@ -30,7 +45,8 @@ export function DiaryPage({ onBack, inline, onSaved }: DiaryPageProps) {
   const [text, setText] = useState('')
   const [mood, setMood] = useState<EnergyLevel>(3)
   const [usedPrompts, setUsedPrompts] = useState<string[]>([])
-
+  const [moodContext, setMoodContext] = useState<string | null>(null)
+  const [aiConsent, setAiConsent] = useState(true)
   function togglePrompt(p: string) {
     setUsedPrompts((prev) => (prev.includes(p) ? prev.filter((x) => x !== p) : [...prev, p]))
     setText((prev) => prev + (prev ? '\n\n' : '') + t(p))
@@ -95,18 +111,43 @@ export function DiaryPage({ onBack, inline, onSaved }: DiaryPageProps) {
         </p>
       )}
 
-      {/* Prompt shortcuts */}
-      <div className="flex flex-wrap gap-2">
-        {PROMPTS.map((p) => (
-          <button
-            key={p}
-            className="btn-choice tap-target text-xs px-3 py-2"
-            onClick={() => togglePrompt(p)}
-            aria-pressed={usedPrompts.includes(p)}
-          >
-            {t(p)}
-          </button>
-        ))}
+      {/* Guided prompts (new structured questions) */}
+      <div>
+        <p className="section-label mb-2">{t('diary.guidedTitle', { defaultValue: 'Guided reflection' })}</p>
+        <div className="flex flex-col gap-2">
+          {GUIDED_PROMPTS.map((gp) => (
+            <button
+              key={gp.key}
+              className="btn-choice tap-target text-sm text-left flex items-center gap-2"
+              onClick={() => {
+                const label = t(gp.labelKey, { defaultValue: gp.defaultLabel })
+                setText((prev) => prev + (prev ? '\n\n' : '') + `${gp.emoji} ${label}\n`)
+                setUsedPrompts((prev) => [...new Set([...prev, gp.key])])
+              }}
+              aria-pressed={usedPrompts.includes(gp.key)}
+            >
+              <span>{gp.emoji}</span>
+              <span>{t(gp.labelKey, { defaultValue: gp.defaultLabel })}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Mental model prompt shortcuts */}
+      <div>
+        <p className="section-label mb-2">{t('diary.promptTitle', { defaultValue: '4C Framework' })}</p>
+        <div className="flex flex-wrap gap-2">
+          {PROMPTS.map((p) => (
+            <button
+              key={p}
+              className="btn-choice tap-target text-xs px-3 py-2"
+              onClick={() => togglePrompt(p)}
+              aria-pressed={usedPrompts.includes(p)}
+            >
+              {t(p)}
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Text area */}
@@ -134,6 +175,41 @@ export function DiaryPage({ onBack, inline, onSaved }: DiaryPageProps) {
             </button>
           ))}
         </div>
+      </div>
+
+      {/* Mood context */}
+      <div>
+        <p className="section-label mb-2">{t('diary.moodContext', { defaultValue: 'What is this about?' })}</p>
+        <div className="flex flex-wrap gap-2">
+          {MOOD_CONTEXTS.map((ctx) => (
+            <button
+              key={ctx.key}
+              className="btn-choice tap-target text-xs px-3 py-2"
+              onClick={() => setMoodContext(moodContext === ctx.key ? null : ctx.key)}
+              aria-pressed={moodContext === ctx.key}
+            >
+              {ctx.emoji} {t(ctx.labelKey, { defaultValue: ctx.defaultLabel })}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* AI consent toggle */}
+      <div className="flex items-center gap-3 px-1">
+        <button
+          className="tap-target w-10 h-6 rounded-full transition-colors relative"
+          style={{ background: aiConsent ? 'var(--color-primary)' : '#d1d5db' }}
+          onClick={() => setAiConsent(!aiConsent)}
+          aria-label="AI consent"
+        >
+          <span
+            className="absolute top-0.5 w-5 h-5 rounded-full bg-white shadow transition-transform"
+            style={{ left: aiConsent ? 18 : 2 }}
+          />
+        </button>
+        <p className="text-xs" style={{ color: 'var(--color-text-secondary)' }}>
+          {t('diary.aiConsent', { defaultValue: 'Let AI Coach read this entry for better advice' })}
+        </p>
       </div>
 
       <button

@@ -16,7 +16,7 @@ function InsightRow({ insight }: { insight: CoachInsight }) {
 
 export function CoachCard() {
   const { t } = useTranslation()
-  const { skillTree, matches, trainings, diary, tournaments, physicalProfile } = useApp()
+  const { skillTree, matches, trainings, diary, tournaments, physicalProfile, checkIns } = useApp()
   const [aiAdvice, setAiAdvice] = useState<CoachAdvice | null>(null)
   const [loading, setLoading] = useState(false)
   const [aiAvailable, setAiAvailable] = useState<boolean | null>(null)
@@ -53,6 +53,7 @@ export function CoachCard() {
           recentMatches: matches.slice(-10),
           recentTrainings: trainings.slice(-10),
           recentDiary: diary.slice(-10).map((d) => ({ date: d.date, mood: d.mood })),
+          recentCheckIns: checkIns.slice(-14).map((c) => ({ date: c.date, mood: c.mood, energy: c.energy })),
           physicalProfile,
         }),
       })

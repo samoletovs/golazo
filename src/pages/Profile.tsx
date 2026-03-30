@@ -15,12 +15,12 @@ import { PhysicalUpdateFlow } from '../components/PhysicalUpdateFlow'
 import { TrackedFieldsEditor } from '../components/TrackedFieldsEditor'
 
 const LANG_OPTIONS: { key: Language; label: string }[] = [
-  { key: 'ru', label: '🇷🇺 Русский' },
-  { key: 'lv', label: '🇱🇻 Latviešu' },
-  { key: 'lt', label: '🇱🇹 Lietuvių' },
-  { key: 'et', label: '🇪🇪 Eesti' },
   { key: 'en', label: '🇬🇧 English' },
+  { key: 'et', label: '🇪🇪 Eesti' },
   { key: 'es', label: '🇪🇸 Español' },
+  { key: 'lv', label: '🇱🇻 Latviešu' },
+  { key: 'ru', label: '🇷🇺 Русский' },
+  { key: 'lt', label: '🇱🇹 Lietuvių' },
 ]
 
 const FIFA_LABELS: Record<string, string> = {
@@ -28,7 +28,7 @@ const FIFA_LABELS: Record<string, string> = {
   mental: 'MEN', performance: 'PER', knowledge: 'KNO',
 }
 
-export function Profile() {
+export function Profile({ onNavigate }: { onNavigate?: (page: string) => void }) {
   const { t, i18n } = useTranslation()
   const { xp, skillTree, matches, trainings, profile, physicalProfile, resetState } = useApp()
   const { user, logout } = useAuth()
@@ -292,6 +292,16 @@ export function Profile() {
           </p>
         )}
         <div className="flex flex-col gap-2">
+          {/* Parent/Mentor Dashboard */}
+          {onNavigate && (
+            <button
+              className="btn-choice tap-target text-sm text-center w-full flex items-center justify-center gap-2"
+              onClick={() => onNavigate('mentor')}
+            >
+              👨‍👩‍👦 {t('profile.mentorDashboard', { defaultValue: 'Parent Dashboard' })}
+            </button>
+          )}
+
           {user && (
             <button
               className="btn-choice tap-target text-sm text-center"

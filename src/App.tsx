@@ -20,8 +20,9 @@ const SchedulePage = lazy(() => import('./pages/SchedulePage').then(m => ({ defa
 const ProgressPage = lazy(() => import('./pages/ProgressPage').then(m => ({ default: m.ProgressPage })))
 const LeaderboardPage = lazy(() => import('./pages/LeaderboardPage').then(m => ({ default: m.LeaderboardPage })))
 const FootballPortal = lazy(() => import('./pages/FootballPortal').then(m => ({ default: m.FootballPortal })))
+const MentorDashboard = lazy(() => import('./pages/MentorDashboard').then(m => ({ default: m.MentorDashboard })))
 
-type Page = 'dashboard' | 'log' | 'learn' | 'exercises' | 'profile' | 'schedule' | 'progress' | 'leaderboard' | 'challenges' | 'portal'
+type Page = 'dashboard' | 'log' | 'learn' | 'exercises' | 'profile' | 'schedule' | 'progress' | 'leaderboard' | 'challenges' | 'portal' | 'mentor'
 
 function AppContent() {
   const [page, setPage] = useState<Page>('dashboard')
@@ -89,11 +90,12 @@ function AppContent() {
               {page === 'learn' && <LearnPage />}
               {page === 'exercises' && <Exercises />}
               {page === 'challenges' && <Challenges />}
-              {page === 'profile' && <Profile />}
+              {page === 'profile' && <Profile onNavigate={handleNavigate} />}
               {page === 'schedule' && <SchedulePage />}
               {page === 'progress' && <ProgressPage />}
               {page === 'leaderboard' && <LeaderboardPage />}
               {page === 'portal' && <FootballPortal />}
+              {page === 'mentor' && <MentorDashboard onBack={() => handleNavigate('profile')} />}
             </Suspense>
           </div>
         </main>

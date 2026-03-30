@@ -8,7 +8,7 @@ import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, BarChart, 
 
 export function ProgressPage() {
   const { t } = useTranslation()
-  const { matches, trainings, xp, physicalProfile } = useApp()
+  const { matches, trainings, xp, physicalProfile, checkIns } = useApp()
 
   /* ── XP trend (last 30 days) ── */
   const xpTrend = useMemo(() => {
@@ -81,6 +81,61 @@ export function ProgressPage() {
       rating: m.selfRating,
     }))
   }, [matches])
+
+  /* ── Mood & Energy trends (from check-ins, last 30 days) ── */
+  const moodTrend = useMemo(() => {
+    const now = new Date()
+    const days: { date: string; mood: number | null; energy: number | null }[] = []
+    for (let i = 29; i >= 0; i--) {
+      const d = new Date(now)
+      d.setDate(d.getDate() - i)
+      const iso = d.toISOString().slice(0, 10)
+      const ci = checkIns.find((c) => c.date === iso)
+      days.push({
+        date: iso.slice(5),
+        mood: ci?.mood ?? null,
+        energy: ci?.energy ?? null,
+      })
+    }
+    return days.filter((d) => d.mood !== null)
+  }, [checkIns])
+
+  /* ── Mood vs Performance correlation ── */
+  const moodPerformance = useMemo(() => {
+    return matches.slice(-20).map((m) => {
+      // Find check-in on match day
+      const ci = checkIns.find((c) => c.date === m.date.slice(0, 10))
+      return {
+        match: m.opponent.slice(0, 6),
+        mood: ci?.mood ?? m.mood,
+        rating: m.selfRating,
+        goals: m.goals,
+      }
+    })
+  }, [matches, checkIns])
+
+  /* ── Burnout / Overtraining Risk ── */
+  const burnoutRisk = useMemo(() => {
+    const recent7 = checkIns.filter((c) => {
+      const d = new Date(c.date)
+      return d.getTime() > Date.now() - 7 * 24 * 60 * 60 * 1000
+    })
+    if (recent7.length < 3) return null // not enough data
+    const avgEnergy = recent7.reduce((s, c) => s + c.energy, 0) / recent7.length
+    const avgMood = recent7.reduce((s, c) => s + c.mood, 0) / recent7.length
+    const recentTrainings7 = trainings.filter((tr) => {
+      const d = new Date(tr.date)
+      return d.getTime() > Date.now() - 7 * 24 * 60 * 60 * 1000
+    })
+    const trainDays = recentTrainings7.length
+    // Declining energy + high frequency = overtraining risk
+    const decliningEnergy = recent7.length >= 3 &&
+      recent7.slice(-3).every((c) => c.energy <= 2)
+    const highFreq = trainDays >= 6
+    if (decliningEnergy && highFreq) return { level: 'high' as const, avgEnergy, avgMood, trainDays }
+    if (avgEnergy < 2.5 || avgMood < 2.5) return { level: 'medium' as const, avgEnergy, avgMood, trainDays }
+    return { level: 'low' as const, avgEnergy, avgMood, trainDays }
+  }, [checkIns, trainings])
 
   return (
     <div className="flex flex-col gap-5 p-4 pb-32">
@@ -198,6 +253,72 @@ export function ProgressPage() {
         <h2 className="text-sm font-bold mb-3">{t('progress.skillRadar')}</h2>
         <SkillRadar />
       </div>
+
+      {/* ── Burnout Risk Indicator ── */}
+      {burnoutRisk && burnoutRisk.level !== 'low' && (
+        <div
+          className="card animate-fade-up flex items-center gap-3"
+          style={{
+            background: burnoutRisk.level === 'high' ? '#fef2f2' : '#fffbeb',
+            border: `1px solid ${burnoutRisk.level === 'high' ? '#fecaca' : '#fde68a'}`,
+          }}
+        >
+          <span className="text-2xl">{burnoutRisk.level === 'high' ? '🔴' : '🟡'}</span>
+          <div>
+            <p className="text-sm font-bold">
+              {burnoutRisk.level === 'high'
+                ? t('progress.burnoutHigh', { defaultValue: 'Rest day recommended' })
+                : t('progress.burnoutMedium', { defaultValue: 'Watch your energy' })}
+            </p>
+            <p className="text-xs mt-0.5" style={{ color: 'var(--color-text-secondary)' }}>
+              {t('progress.burnoutDetail', {
+                defaultValue: `Avg energy ${burnoutRisk.avgEnergy.toFixed(1)}/5 · Avg mood ${burnoutRisk.avgMood.toFixed(1)}/5 · ${burnoutRisk.trainDays} sessions this week`,
+                energy: burnoutRisk.avgEnergy.toFixed(1),
+                mood: burnoutRisk.avgMood.toFixed(1),
+                sessions: burnoutRisk.trainDays,
+              })}
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* ── Mood & Energy Trend ── */}
+      {moodTrend.length > 2 && (
+        <div className="card animate-fade-up">
+          <h2 className="text-sm font-bold mb-3">{t('progress.moodTrend', { defaultValue: 'Mood & Energy' })}</h2>
+          <ResponsiveContainer width="100%" height={160}>
+            <LineChart data={moodTrend}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
+              <XAxis dataKey="date" tick={{ fontSize: 9, fill: '#94a3b8' }} axisLine={false} tickLine={false} />
+              <YAxis domain={[1, 5]} ticks={[1, 2, 3, 4, 5]} tick={{ fontSize: 10, fill: '#94a3b8' }} width={20} axisLine={false} tickLine={false} />
+              <Tooltip contentStyle={{ fontSize: 12, borderRadius: 12, border: 'none', boxShadow: '0 4px 16px rgba(0,0,0,0.1)' }} />
+              <Line type="monotone" dataKey="mood" stroke="#f59e0b" strokeWidth={2.5} dot={{ r: 3, fill: '#f59e0b', stroke: '#fff', strokeWidth: 2 }} name={t('checkin.mood', { defaultValue: 'Mood' })} />
+              <Line type="monotone" dataKey="energy" stroke="#3b82f6" strokeWidth={2.5} dot={{ r: 3, fill: '#3b82f6', stroke: '#fff', strokeWidth: 2 }} name={t('checkin.energy', { defaultValue: 'Energy' })} />
+            </LineChart>
+          </ResponsiveContainer>
+          <div className="flex justify-center gap-4 mt-2">
+            <span className="text-xs flex items-center gap-1"><span className="inline-block w-2 h-2 rounded-full" style={{ background: '#f59e0b' }} /> {t('checkin.mood', { defaultValue: 'Mood' })}</span>
+            <span className="text-xs flex items-center gap-1"><span className="inline-block w-2 h-2 rounded-full" style={{ background: '#3b82f6' }} /> {t('checkin.energy', { defaultValue: 'Energy' })}</span>
+          </div>
+        </div>
+      )}
+
+      {/* ── Mood vs Performance ── */}
+      {moodPerformance.length > 2 && (
+        <div className="card animate-fade-up">
+          <h2 className="text-sm font-bold mb-3">{t('progress.moodPerformance', { defaultValue: 'Mood vs Performance' })}</h2>
+          <ResponsiveContainer width="100%" height={160}>
+            <LineChart data={moodPerformance}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
+              <XAxis dataKey="match" tick={{ fontSize: 9, fill: '#94a3b8' }} axisLine={false} tickLine={false} />
+              <YAxis domain={[0, 10]} tick={{ fontSize: 10, fill: '#94a3b8' }} width={20} axisLine={false} tickLine={false} />
+              <Tooltip contentStyle={{ fontSize: 12, borderRadius: 12, border: 'none', boxShadow: '0 4px 16px rgba(0,0,0,0.1)' }} />
+              <Line type="monotone" dataKey="mood" stroke="#f59e0b" strokeWidth={2} dot={{ r: 3, fill: '#f59e0b', stroke: '#fff', strokeWidth: 2 }} name={t('checkin.mood', { defaultValue: 'Mood' })} />
+              <Line type="monotone" dataKey="rating" stroke="var(--color-primary)" strokeWidth={2.5} dot={{ r: 3, fill: 'var(--color-primary)', stroke: '#fff', strokeWidth: 2 }} name={t('progress.selfRating', { defaultValue: 'Self Rating' })} />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+      )}
 
       {/* ── Physical Growth ── */}
       {physicalData.length > 0 && (
