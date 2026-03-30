@@ -34,6 +34,8 @@ export function MorningRoutine({ onClose }: MorningRoutineProps) {
 
   function handleChallengeComplete() {
     setChallengeDone(true)
+    // Award daily challenge XP immediately
+    setXp(awardXp(xp, XP_AWARDS.dailyChallenge, today))
     setTimeout(() => {
       if (quizzed) {
         finishRoutine()

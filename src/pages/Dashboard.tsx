@@ -7,7 +7,7 @@ import { CoachCard } from '../components/CoachCard'
 import { WeeklyGoalRing } from '../components/WeeklyGoalRing'
 import { useCountUp } from '../hooks/useCountUp'
 import { ConfettiBurst } from '../components/ConfettiBurst'
-import { getMatchResult } from '../engine/types'
+import { getMatchResult, getAgeTier } from '../engine/types'
 import { getRank } from '../engine/xp'
 import { exercises } from '../data/exercises'
 import { MatchLog } from './MatchLog'
@@ -25,6 +25,10 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
   const { t } = useTranslation()
   const { matches, trainings, xp, profile, schedule, tournaments, physicalProfile, checkIns, quizAnswers } = useApp()
   const rank = getRank(xp.level)
+
+  // Age tier for adaptive UI
+  const ageTier = profile?.birthDate ? getAgeTier(profile.birthDate) : 'u12'
+  const isYoung = ageTier === 'u8' // U8-U10: simplified UI
 
   // Level-up detection
   const [prevLevel, setPrevLevel] = useState(xp.level)
@@ -305,35 +309,54 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
         </div>
       </div>
 
-      {/* ── Season stats with vs-last-week arrows ── */}
-      <div className="grid grid-cols-4 gap-3 animate-fade-up animate-stagger-1">
-        <div className="stat-card stat-card-green">
-          <p className="stat-number text-gradient-green animate-number-pop">
-            {animMatches}
-          </p>
-          <p className="stat-label">{t('dashboard.matches')}</p>
-          <ComparisonArrow diff={vsLastWeek.matches} />
+      {/* ── Season stats ── */}
+      {isYoung ? (
+        /* U8-U10: Simple 2-column layout — just matches + goals, big and fun */
+        <div className="grid grid-cols-2 gap-3 animate-fade-up animate-stagger-1">
+          <div className="stat-card stat-card-green">
+            <p className="stat-number text-gradient-green animate-number-pop" style={{ fontSize: '2.5rem' }}>
+              {animMatches}
+            </p>
+            <p className="stat-label">{t('dashboard.matches')} ⚽</p>
+          </div>
+          <div className="stat-card stat-card-gold">
+            <p className="stat-number text-gradient-gold animate-number-pop" style={{ fontSize: '2.5rem', animationDelay: '0.1s' }}>
+              {animGoals}
+            </p>
+            <p className="stat-label">{t('dashboard.goals')} 🥅</p>
+          </div>
         </div>
-        <div className="stat-card stat-card-gold">
-          <p className="stat-number text-gradient-gold animate-number-pop" style={{ animationDelay: '0.1s' }}>
-            {animGoals}
-          </p>
-          <p className="stat-label">{t('dashboard.goals')}</p>
-          <ComparisonArrow diff={vsLastWeek.goals} />
+      ) : (
+        /* U12+: Full 4-column stats with comparison arrows */
+        <div className="grid grid-cols-4 gap-3 animate-fade-up animate-stagger-1">
+          <div className="stat-card stat-card-green">
+            <p className="stat-number text-gradient-green animate-number-pop">
+              {animMatches}
+            </p>
+            <p className="stat-label">{t('dashboard.matches')}</p>
+            <ComparisonArrow diff={vsLastWeek.matches} />
+          </div>
+          <div className="stat-card stat-card-gold">
+            <p className="stat-number text-gradient-gold animate-number-pop" style={{ animationDelay: '0.1s' }}>
+              {animGoals}
+            </p>
+            <p className="stat-label">{t('dashboard.goals')}</p>
+            <ComparisonArrow diff={vsLastWeek.goals} />
+          </div>
+          <div className="stat-card stat-card-cyan">
+            <p className="stat-number text-gradient-green animate-number-pop" style={{ animationDelay: '0.2s' }}>
+              {animAssists}
+            </p>
+            <p className="stat-label">{t('dashboard.assists')}</p>
+          </div>
+          <div className="stat-card stat-card-green">
+            <p className="stat-number text-gradient-green animate-number-pop" style={{ animationDelay: '0.3s' }}>
+              {animWins}
+            </p>
+            <p className="stat-label">{t('dashboard.wins')}</p>
+          </div>
         </div>
-        <div className="stat-card stat-card-cyan">
-          <p className="stat-number text-gradient-green animate-number-pop" style={{ animationDelay: '0.2s' }}>
-            {animAssists}
-          </p>
-          <p className="stat-label">{t('dashboard.assists')}</p>
-        </div>
-        <div className="stat-card stat-card-green">
-          <p className="stat-number text-gradient-green animate-number-pop" style={{ animationDelay: '0.3s' }}>
-            {animWins}
-          </p>
-          <p className="stat-label">{t('dashboard.wins')}</p>
-        </div>
-      </div>
+      )}
 
       {/* ── Weekly training goal ring ── */}
       <WeeklyGoalRing />
@@ -591,11 +614,11 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
       {/* ── AI Coach ── */}
       <CoachCard />
 
-      {/* ── Weekly Summary ── */}
-      <WeeklySummary />
+      {/* ── Weekly Summary (U12+) ── */}
+      {!isYoung && <WeeklySummary />}
 
-      {/* ── Skill radar ── */}
-      <SkillRadar />
+      {/* ── Skill radar (U12+) ── */}
+      {!isYoung && <SkillRadar />}
 
       {/* ── Recent matches (horizontal scroll) ── */}
       {matches.length > 0 && (

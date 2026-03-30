@@ -10,7 +10,7 @@ import type { QuizAnswer, QuizDifficulty } from '../engine/types'
 function tierToDifficulty(tier: string): QuizDifficulty {
   if (tier === 'u8') return 'u10'
   if (tier === 'u12') return 'u12'
-  if (tier === 'u16') return 'u14'
+  if (tier === 'u16') return 'u16'
   return 'u16'
 }
 

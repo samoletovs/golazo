@@ -158,7 +158,7 @@ function ExerciseDetailModal({
   )
 }
 
-export function Exercises() {
+export function Exercises({ embedded }: { embedded?: boolean }) {
   const { t } = useTranslation()
   const { xp, setXp, savedExercises, toggleSavedExercise } = useApp()
   const [activeTab, setActiveTab] = useState<'exercises' | 'challenges'>('exercises')
@@ -196,8 +196,9 @@ export function Exercises() {
   }
 
   return (
-    <div className="flex flex-col gap-4 p-4 pb-32">
-      {/* Tab switcher: Exercises | Challenges */}
+    <div className={embedded ? 'flex flex-col gap-4' : 'flex flex-col gap-4 p-4 pb-32'}>
+      {/* Tab switcher: Exercises | Challenges — hidden when embedded in LearnPage */}
+      {!embedded && (
       <div className="flex items-center gap-1 p-1 rounded-xl" style={{ background: 'var(--color-glass-active, #f1f5f9)' }}>
         <button
           className="flex-1 py-2 px-3 rounded-lg text-sm font-bold transition-all"
@@ -222,8 +223,9 @@ export function Exercises() {
           🏆 {t('challenges.title')}
         </button>
       </div>
+      )}
 
-      {activeTab === 'challenges' ? (
+      {(!embedded && activeTab === 'challenges') ? (
         <Suspense fallback={<div className="flex items-center justify-center p-8"><span className="text-3xl">🏆</span></div>}>
           <Challenges />
         </Suspense>

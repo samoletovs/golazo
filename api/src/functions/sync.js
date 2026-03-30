@@ -46,6 +46,11 @@ async function handleGet(container, userId) {
     physicalProfile: null,
     xp: null,
     skillTree: null,
+    checkIns: [],
+    quizAnswers: [],
+    readArticles: [],
+    savedExercises: [],
+    programProgress: [],
   };
 
   for (const doc of resources) {
@@ -60,6 +65,11 @@ async function handleGet(container, userId) {
       case 'physical': state.physicalProfile = doc.data; break;
       case 'xp': state.xp = doc.data; break;
       case 'skillTree': state.skillTree = doc.data; break;
+      case 'checkIn': state.checkIns.push(doc.data); break;
+      case 'quizAnswer': state.quizAnswers.push(doc.data); break;
+      case 'readArticle': state.readArticles.push(doc.data); break;
+      case 'savedExercises': state.savedExercises = doc.data; break;
+      case 'programProgress': state.programProgress.push(doc.data); break;
     }
   }
 
@@ -67,7 +77,65 @@ async function handleGet(container, userId) {
 }
 
 async function handlePut(container, userId, req) {
-  const body = await req.json();
+  let body;
+  try {
+    body = await req.json();
+  } catch {
+    return jsonResponse({ error: 'Invalid JSON' }, 400);
+  }
+
+  if (!body || typeof body !== 'object') {
+    return jsonResponse({ error: 'Body must be an object' }, 400);
+  }
+
+  // Basic validation: reject oversized payloads (> 2MB stringified)
+  const bodyStr = JSON.stringify(body);
+  if (bodyStr.length > 2 * 1024 * 1024) {
+    return jsonResponse({ error: 'Payload too large' }, 413);
+  }
+
+  // Validate profile if present
+  if (body.profile) {
+    if (typeof body.profile !== 'object' || !body.profile.name || typeof body.profile.name !== 'string') {
+      return jsonResponse({ error: 'Invalid profile: name is required' }, 400);
+    }
+  }
+
+  // Validate XP state if present
+  if (body.xp) {
+    if (typeof body.xp !== 'object' || typeof body.xp.totalXp !== 'number' || body.xp.totalXp < 0) {
+      return jsonResponse({ error: 'Invalid XP state' }, 400);
+    }
+  }
+
+  // Validate array fields: each item must have an id string
+  const arrayFieldKeys = ['trainings', 'matches', 'tournaments', 'diary', 'schedule', 'specialChallenges', 'checkIns', 'quizAnswers', 'readArticles', 'programProgress'];
+  for (const key of arrayFieldKeys) {
+    if (body[key] !== undefined && !Array.isArray(body[key])) {
+      return jsonResponse({ error: `${key} must be an array` }, 400);
+    }
+    if (Array.isArray(body[key])) {
+      for (const item of body[key]) {
+        if (!item || typeof item !== 'object' || (typeof item.id !== 'string' && key !== 'readArticles' && key !== 'quizAnswers' && key !== 'programProgress')) {
+          // readArticles/quizAnswers/programProgress may use different id fields
+          if (key === 'readArticles' && (!item.articleId || typeof item.articleId !== 'string')) {
+            return jsonResponse({ error: 'readArticles items must have articleId' }, 400);
+          }
+          if (key === 'quizAnswers' && (!item.questionId || typeof item.questionId !== 'string')) {
+            return jsonResponse({ error: 'quizAnswers items must have questionId' }, 400);
+          }
+        }
+      }
+    }
+  }
+
+  // savedExercises is a string array
+  if (body.savedExercises !== undefined) {
+    if (!Array.isArray(body.savedExercises) || body.savedExercises.some(e => typeof e !== 'string')) {
+      return jsonResponse({ error: 'savedExercises must be a string array' }, 400);
+    }
+  }
+
   const operations = [];
 
   // Upsert profile
@@ -122,13 +190,16 @@ async function handlePut(container, userId, req) {
     { key: 'diary', type: 'diary' },
     { key: 'schedule', type: 'schedule' },
     { key: 'specialChallenges', type: 'challenge' },
+    { key: 'checkIns', type: 'checkIn' },
+    { key: 'programProgress', type: 'programProgress' },
   ];
 
   for (const { key, type } of arrayFields) {
     if (Array.isArray(body[key])) {
       for (const item of body[key]) {
+        const itemId = item.id || item.articleId || item.questionId || item.programId || crypto.randomUUID()
         operations.push(container.items.upsert({
-          id: `${userId}:${type}:${item.id}`,
+          id: `${userId}:${type}:${itemId}`,
           userId,
           docType: type,
           data: item,
@@ -136,6 +207,43 @@ async function handlePut(container, userId, req) {
         }));
       }
     }
+  }
+
+  // Upsert quizAnswers (keyed by questionId+date)
+  if (Array.isArray(body.quizAnswers)) {
+    for (const item of body.quizAnswers) {
+      operations.push(container.items.upsert({
+        id: `${userId}:quizAnswer:${item.questionId}:${item.date}`,
+        userId,
+        docType: 'quizAnswer',
+        data: item,
+        updatedAt: new Date().toISOString(),
+      }));
+    }
+  }
+
+  // Upsert readArticles (keyed by articleId)
+  if (Array.isArray(body.readArticles)) {
+    for (const item of body.readArticles) {
+      operations.push(container.items.upsert({
+        id: `${userId}:readArticle:${item.articleId}`,
+        userId,
+        docType: 'readArticle',
+        data: item,
+        updatedAt: new Date().toISOString(),
+      }));
+    }
+  }
+
+  // Upsert savedExercises (single doc — string array)
+  if (Array.isArray(body.savedExercises)) {
+    operations.push(container.items.upsert({
+      id: `${userId}:savedExercises`,
+      userId,
+      docType: 'savedExercises',
+      data: body.savedExercises,
+      updatedAt: new Date().toISOString(),
+    }));
   }
 
   await Promise.all(operations);

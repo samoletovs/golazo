@@ -116,7 +116,7 @@ export function LearnContent() {
       {/* ── Exercises tab ── */}
       {tab === 'exercises' && (
         <Suspense fallback={<div className="flex items-center justify-center p-8"><span className="text-3xl">⚽</span></div>}>
-          <Exercises />
+          <Exercises embedded />
         </Suspense>
       )}
 

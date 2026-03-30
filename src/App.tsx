@@ -45,8 +45,10 @@ function AppContent() {
     }
   }
 
-  // Listen for skip-login event (local dev)
+  // Listen for skip-login event (local dev only — not available in production)
   useEffect(() => {
+    const isLocalDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+    if (!isLocalDev) return
     function handleSkip() { setSkippedLogin(true) }
     window.addEventListener('golazo-skip-login', handleSkip)
     return () => window.removeEventListener('golazo-skip-login', handleSkip)
@@ -64,8 +66,10 @@ function AppContent() {
     )
   }
 
-  // Show login if not authenticated (and didn't skip + hasn't completed onboarding before)
-  const isLoggedIn = user !== null || skippedLogin || onboardingComplete
+  // Show login if not authenticated
+  // In production: require actual auth. In dev: allow skip + onboarding fallback.
+  const isLocalDev = typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+  const isLoggedIn = user !== null || (isLocalDev && (skippedLogin || onboardingComplete))
   if (!isLoggedIn) {
     return <LoginPage />
   }
