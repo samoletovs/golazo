@@ -109,6 +109,19 @@ export function awardXp(state: XpState, xpAmount: number, today: string): XpStat
     nextLevelXp: progress.nextLevelXp,
     streakDays: newStreak,
     lastActivityDate: today,
+    checkInStreakDays: state.checkInStreakDays,
+    lastCheckInDate: state.lastCheckInDate,
+  }
+}
+
+/** Award XP + update check-in streak */
+export function awardCheckInXp(state: XpState, xpAmount: number, today: string): XpState {
+  const base = awardXp(state, xpAmount, today)
+  const newCheckInStreak = calculateStreak(state.lastCheckInDate, today, state.checkInStreakDays)
+  return {
+    ...base,
+    checkInStreakDays: newCheckInStreak,
+    lastCheckInDate: today,
   }
 }
 
@@ -120,5 +133,7 @@ export function createInitialXpState(): XpState {
     nextLevelXp: xpForLevel(2),
     streakDays: 0,
     lastActivityDate: new Date().toISOString().split('T')[0],
+    checkInStreakDays: 0,
+    lastCheckInDate: '',
   }
 }

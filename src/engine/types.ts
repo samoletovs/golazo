@@ -98,6 +98,8 @@ export interface XpState {
   nextLevelXp: number
   streakDays: number
   lastActivityDate: string // ISO date
+  checkInStreakDays: number
+  lastCheckInDate: string // ISO date
 }
 
 /* ── Training ─────────────────────────────────────────────── */
@@ -267,6 +269,8 @@ export interface DiaryEntry {
   photoUrl?: string
   linkedTrainingIds: string[]
   linkedMatchIds: string[]
+  moodContext?: string // training, match, school, friends, family
+  aiConsent?: boolean // true = AI coach can read this entry
   createdAt: string
 }
 

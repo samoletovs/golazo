@@ -6,7 +6,7 @@ describe('Quiz data', () => {
     const tiers = ['u10', 'u12', 'u14', 'u16'] as const
     for (const tier of tiers) {
       const questions = quizQuestions.filter((q) => q.difficulty === tier)
-      expect(questions.length).toBeGreaterThanOrEqual(8)
+      expect(questions.length).toBeGreaterThanOrEqual(13)
     }
   })
 

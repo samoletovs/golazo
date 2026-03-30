@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, lazy, Suspense } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
 import { awardXp, XP_AWARDS } from '../engine/xp'
@@ -6,6 +6,8 @@ import { articles } from '../data/articles'
 import { programs } from '../data/programs'
 import { getAgeTier } from '../engine/types'
 import type { Article, ArticleCategory, TrainingProgram, QuizDifficulty, ReadArticle, ProgramProgress } from '../engine/types'
+
+const Exercises = lazy(() => import('./Exercises').then(m => ({ default: m.Exercises })))
 
 function tierToDifficulty(tier: string): QuizDifficulty {
   if (tier === 'u8') return 'u10'
@@ -23,7 +25,7 @@ const ARTICLE_CATEGORIES: { key: ArticleCategory | 'all'; label: string; emoji: 
   { key: 'stories', label: 'Player Stories', emoji: '⭐' },
 ]
 
-type LearnTab = 'articles' | 'programs'
+type LearnTab = 'articles' | 'programs' | 'exercises'
 
 export function LearnContent() {
   const { t } = useTranslation()
@@ -93,16 +95,30 @@ export function LearnContent() {
           aria-pressed={tab === 'articles'}
           onClick={() => setTab('articles')}
         >
-          📖 {t('learn.articles', { defaultValue: 'Articles' })}
+          📖 {t('learn.articles')}
         </button>
         <button
           className="btn-choice tap-target flex-1 text-center text-sm"
           aria-pressed={tab === 'programs'}
           onClick={() => setTab('programs')}
         >
-          📋 {t('learn.programs', { defaultValue: 'Programs' })}
+          📋 {t('learn.programs')}
+        </button>
+        <button
+          className="btn-choice tap-target flex-1 text-center text-sm"
+          aria-pressed={tab === 'exercises'}
+          onClick={() => setTab('exercises')}
+        >
+          ⚽ {t('learn.exercises')}
         </button>
       </div>
+
+      {/* ── Exercises tab ── */}
+      {tab === 'exercises' && (
+        <Suspense fallback={<div className="flex items-center justify-center p-8"><span className="text-3xl">⚽</span></div>}>
+          <Exercises />
+        </Suspense>
+      )}
 
       {/* ── Articles tab ── */}
       {tab === 'articles' && (

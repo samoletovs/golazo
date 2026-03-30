@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
-import { awardXp, XP_AWARDS } from '../engine/xp'
+import { awardCheckInXp, XP_AWARDS } from '../engine/xp'
 import type { EnergyLevel, DailyCheckIn as DailyCheckInType } from '../engine/types'
 
 const EMOJIS = ['😴', '😐', '🙂', '😄', '🔥']
@@ -36,7 +36,7 @@ export function DailyCheckIn({ onComplete, compact }: DailyCheckInProps) {
       createdAt: new Date().toISOString(),
     }
     addCheckIn(entry)
-    setXp(awardXp(xp, XP_AWARDS.dailyCheckIn, today))
+    setXp(awardCheckInXp(xp, XP_AWARDS.dailyCheckIn, today))
     setSaved(true)
     onComplete?.()
   }

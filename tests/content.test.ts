@@ -6,13 +6,17 @@ describe('Articles data', () => {
   it('has articles in all categories', () => {
     const categories = ['tactics', 'nutrition', 'mental', 'rules', 'stories'] as const
     for (const cat of categories) {
-      expect(articles.filter((a) => a.category === cat).length).toBeGreaterThanOrEqual(1)
+      expect(articles.filter((a) => a.category === cat).length).toBeGreaterThanOrEqual(2)
     }
   })
 
   it('all articles have unique IDs', () => {
     const ids = articles.map((a) => a.id)
     expect(new Set(ids).size).toBe(ids.length)
+  })
+
+  it('has at least 20 articles total', () => {
+    expect(articles.length).toBeGreaterThanOrEqual(20)
   })
 
   it('all articles have valid reading time', () => {

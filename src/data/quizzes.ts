@@ -53,6 +53,35 @@ export const quizQuestions: QuizQuestion[] = [
   { id: 'u16-players-1', questionKey: 'Who is considered the youngest player to score in a World Cup final?', options: ['Mbappé', 'Pelé', 'Ronaldo', 'Owen'], correctIndex: 1, category: 'players', difficulty: 'u16' },
   { id: 'u16-history-1', questionKey: 'What tactical innovation did Johan Cruyff bring to Barcelona?', options: ['Catenaccio', 'Total Football / positional play', 'Route one', 'Park the bus'], correctIndex: 1, category: 'history', difficulty: 'u16' },
   { id: 'u16-history-2', questionKey: 'Which country has won the most World Cups?', options: ['Germany', 'Italy', 'Argentina', 'Brazil'], correctIndex: 3, category: 'history', difficulty: 'u16' },
+
+  // ── Additional questions (5 per tier) ─────────────────────
+  // U10 extra
+  { id: 'u10-rules-4', questionKey: 'What shape is a football pitch?', options: ['Circle', 'Rectangle', 'Square', 'Triangle'], correctIndex: 1, category: 'rules', difficulty: 'u10' },
+  { id: 'u10-players-3', questionKey: 'Which player is nicknamed "The Egyptian King"?', options: ['Messi', 'Salah', 'Neymar', 'Benzema'], correctIndex: 1, category: 'players', difficulty: 'u10' },
+  { id: 'u10-tactics-2', questionKey: 'What does a goalkeeper mainly do?', options: ['Score goals', 'Stop the ball going in the net', 'Take corners', 'Sub players'], correctIndex: 1, category: 'tactics', difficulty: 'u10' },
+  { id: 'u10-history-3', questionKey: 'How often is the FIFA World Cup held?', options: ['Every year', 'Every 2 years', 'Every 4 years', 'Every 5 years'], correctIndex: 2, category: 'history', difficulty: 'u10' },
+  { id: 'u10-nutrition-3', questionKey: 'Which fruit is a great snack before training?', options: ['Lemon', 'Banana', 'Onion', 'Chili'], correctIndex: 1, category: 'nutrition', difficulty: 'u10' },
+
+  // U12 extra
+  { id: 'u12-rules-4', questionKey: 'What is a direct free kick awarded for?', options: ['Offside', 'A foul involving contact', 'Goalkeeper holds ball too long', 'Ball goes out of play'], correctIndex: 1, category: 'rules', difficulty: 'u12' },
+  { id: 'u12-players-3', questionKey: 'Which club did Erling Haaland join before Manchester City?', options: ['Barca', 'Dortmund', 'PSG', 'Juventus'], correctIndex: 1, category: 'players', difficulty: 'u12' },
+  { id: 'u12-tactics-3', questionKey: 'What is a "through ball"?', options: ['A ball kicked very hard', 'A pass played into space behind defenders', 'A header', 'A long goal kick'], correctIndex: 1, category: 'tactics', difficulty: 'u12' },
+  { id: 'u12-nutrition-2', questionKey: 'Why should you avoid fizzy drinks on match day?', options: ['They are expensive', 'Sugar causes energy crash and bloating', 'They taste bad', 'The coach said so'], correctIndex: 1, category: 'nutrition', difficulty: 'u12' },
+  { id: 'u12-history-3', questionKey: 'Which country won Euro 2024?', options: ['England', 'France', 'Spain', 'Germany'], correctIndex: 2, category: 'history', difficulty: 'u12' },
+
+  // U14 extra
+  { id: 'u14-rules-3', questionKey: 'What happens if a match is drawn in a knockout tournament?', options: ['Replay next week', 'Extra time and penalties', 'Coin flip', 'Both teams go through'], correctIndex: 1, category: 'rules', difficulty: 'u14' },
+  { id: 'u14-players-3', questionKey: 'Who is the top scorer in Champions League history?', options: ['Messi', 'Lewandowski', 'Cristiano Ronaldo', 'Benzema'], correctIndex: 2, category: 'players', difficulty: 'u14' },
+  { id: 'u14-tactics-4', questionKey: 'What is "parking the bus"?', options: ['Arriving late to the match', 'Defending deep with all players behind the ball', 'Playing only forwards', 'A training drill'], correctIndex: 1, category: 'tactics', difficulty: 'u14' },
+  { id: 'u14-nutrition-2', questionKey: 'How much water should a young athlete drink per day?', options: ['1 glass', '1-2 liters', '5 liters', 'Only during training'], correctIndex: 1, category: 'nutrition', difficulty: 'u14' },
+  { id: 'u14-history-3', questionKey: 'Which country invented modern football?', options: ['Brazil', 'Spain', 'England', 'Italy'], correctIndex: 2, category: 'history', difficulty: 'u14' },
+
+  // U16 extra
+  { id: 'u16-tactics-4', questionKey: 'What is the "half-space" in positional play?', options: ['The area between centre and wing — a channel between CBs and fullbacks', 'Half the pitch', 'The bench area', 'Behind the goal'], correctIndex: 0, category: 'tactics', difficulty: 'u16' },
+  { id: 'u16-rules-3', questionKey: 'What is the "triple punishment" rule that was abolished?', options: ['Red card + penalty + suspension was considered too harsh, so IFAB removed auto-red for denying a goal-scoring opportunity in the box if the foul was an attempt to play the ball', 'Three yellow cards in a tournament', 'Fouling three times', 'Missing three penalties'], correctIndex: 0, category: 'rules', difficulty: 'u16' },
+  { id: 'u16-players-2', questionKey: 'Which player holds the record for most international goals?', options: ['Messi', 'Ronaldo', 'Ali Daei', 'Pelé'], correctIndex: 1, category: 'players', difficulty: 'u16' },
+  { id: 'u16-nutrition-3', questionKey: 'What is "periodized nutrition" in football?', options: ['Eating differently based on training load — more carbs on match days, more protein on recovery days', 'Only eating at certain times', 'A diet brand', 'Eating the same thing every day'], correctIndex: 0, category: 'nutrition', difficulty: 'u16' },
+  { id: 'u16-history-3', questionKey: 'What year did VAR (Video Assistant Referee) debut at a World Cup?', options: ['2014', '2016', '2018', '2022'], correctIndex: 2, category: 'history', difficulty: 'u16' },
 ]
 
 /** Get today's quiz question — deterministic by date + age tier */

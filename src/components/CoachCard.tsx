@@ -52,7 +52,7 @@ export function CoachCard() {
           skillTree,
           recentMatches: matches.slice(-10),
           recentTrainings: trainings.slice(-10),
-          recentDiary: diary.slice(-10).map((d) => ({ date: d.date, mood: d.mood })),
+          recentDiary: diary.filter((d) => d.aiConsent !== false).slice(-10).map((d) => ({ date: d.date, mood: d.mood })),
           recentCheckIns: checkIns.slice(-14).map((c) => ({ date: c.date, mood: c.mood, energy: c.energy })),
           physicalProfile,
         }),

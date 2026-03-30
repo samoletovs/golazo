@@ -146,4 +146,93 @@ export const articles: Article[] = [
     readingTimeMin: 2,
     imageEmoji: '🇪🇸',
   },
+
+  // ── Additional Tactics ────────────────────────────────────
+  {
+    id: 'art-tac-04',
+    titleKey: 'Creating Space Off the Ball',
+    bodyKey: 'The best players are always moving — even when the ball is nowhere near them. Creating space means making runs, checking in and out, and pulling defenders away so your teammates have room. Watch how top strikers constantly drift left, then sprint right. They are creating confusion. In training, practice "L-runs": jog toward a defender, then suddenly change direction at a right angle. The key is timing — make your run just before the pass, not after.',
+    category: 'tactics',
+    ageTiers: ['u12', 'u14', 'u16'],
+    readingTimeMin: 2,
+    imageEmoji: '🏃',
+  },
+  {
+    id: 'art-tac-05',
+    titleKey: 'Reading the Game: What to Watch When You Are Not on the Ball',
+    bodyKey: 'Great players see the game differently. While average players watch the ball, elite players scan the entire pitch. Every 3-4 seconds, glance around: where are your teammates? Where is the space? Where are opponents pressing? This is called "scanning." Studies of Barcelona and Manchester City players show they scan up to 6 times in 10 seconds before receiving the ball. Start small: before every pass comes to you, look over your shoulder once. That is already more than most players do.',
+    category: 'tactics',
+    ageTiers: ['u14', 'u16'],
+    readingTimeMin: 2,
+    imageEmoji: '👀',
+  },
+
+  // ── Additional Nutrition ──────────────────────────────────
+  {
+    id: 'art-nut-04',
+    titleKey: 'Sleep Is Your Superpower',
+    bodyKey: 'Young athletes need 9-11 hours of sleep for optimal recovery and growth. During deep sleep, your body releases growth hormone — the same hormone that repairs muscles and builds strength. Studies show that athletes who sleep less than 8 hours are 1.7x more likely to get injured. Tips: stop screens 30 minutes before bed, keep your room cool and dark, try to sleep and wake at the same time every day — even weekends. Your body recovers during sleep, not during training.',
+    category: 'nutrition',
+    ageTiers: ['u10', 'u12', 'u14', 'u16'],
+    readingTimeMin: 2,
+    imageEmoji: '😴',
+  },
+  {
+    id: 'art-nut-05',
+    titleKey: 'Match Day Timeline: When to Eat What',
+    bodyKey: '3-4 hours before: Big meal — pasta, rice, chicken, vegetables. 1-2 hours before: Light snack — banana, energy bar, toast with honey. 30 minutes before: Small sip of water or sports drink. During the match: Water at every break, small bites of orange if available. After the match (within 30 min): Chocolate milk or yogurt + banana. Evening: Balanced meal with protein (chicken, fish) + carbs (rice, potato) + vegetables. Following this timeline means your body has fuel when you need it most.',
+    category: 'nutrition',
+    ageTiers: ['u12', 'u14', 'u16'],
+    readingTimeMin: 2,
+    imageEmoji: '⏰',
+  },
+
+  // ── Additional Player Stories ─────────────────────────────
+  {
+    id: 'art-story-05',
+    titleKey: 'Kevin De Bruyne: The Quiet Kid Who Became the Best Passer in the World',
+    bodyKey: 'De Bruyne grew up in Drongen, a small town in Belgium. He was not the fastest, not the strongest, and not the most talented in his youth teams. But he had one thing others did not: work ethic. He would stay after training to practice crosses and through-balls for hours. At Chelsea, he barely got to play — Mourinho did not trust him. Instead of complaining, he went to Wolfsburg, dominated the Bundesliga, and forced Manchester City to pay £55 million for him. His lesson: rejection is redirection. Keep working.',
+    category: 'stories',
+    ageTiers: ['u12', 'u14', 'u16'],
+    readingTimeMin: 3,
+    imageEmoji: '🇧🇪',
+  },
+  {
+    id: 'art-story-06',
+    titleKey: 'Vinícius Jr: From the Favela to the Bernabéu',
+    bodyKey: 'Vinícius grew up in São Gonçalo, one of the poorest and most violent neighborhoods in Rio de Janeiro. His family could barely afford food, let alone football equipment. He played barefoot on concrete. At 13, Flamengo signed him. At 16, Real Madrid paid €45 million for a teenager who had barely played professional football. Why? Because he played with joy. Every dribble, every sprint, every trick — Vinícius played like every moment could be his last on the pitch. That fearless joy is what got him out. Never lose yours.',
+    category: 'stories',
+    ageTiers: ['u10', 'u12', 'u14', 'u16'],
+    readingTimeMin: 3,
+    imageEmoji: '🇧🇷',
+  },
+  {
+    id: 'art-story-07',
+    titleKey: 'Alexia Putellas: The Greatest Player Most People Never Heard Of',
+    bodyKey: 'Alexia Putellas won back-to-back Ballon d\'Or awards in 2021 and 2022 — the best female footballer in the world. She grew up in Mollet del Vallès, a working-class suburb of Barcelona. As a girl in Spain in the 2000s, there was almost no pathway for women in football. She played on boys\' teams until they stopped letting her. She joined Barcelona\'s women\'s team at 17 and spent a decade building it into the best in the world. She tore her ACL right before the 2022 Euros. Came back stronger. The lesson: the path does not exist — you create it.',
+    category: 'stories',
+    ageTiers: ['u12', 'u14', 'u16'],
+    readingTimeMin: 3,
+    imageEmoji: '🇪🇸',
+  },
+  {
+    id: 'art-story-08',
+    titleKey: 'Football in the Baltics: Small Countries, Big Dreams',
+    bodyKey: 'Latvia, Estonia, and Lithuania have a combined population smaller than London — but their football ambitions are growing fast. Latvia produced Vitalijs Astafjevs (record 167 caps), Estonia has Ragnar Klavan (the first Estonian to play in the Premier League), and Lithuania\'s national team keeps improving every cycle. Youth academies across the Baltics are investing in modern training methodology. The advantage of being small: every talented player gets noticed. The clubs know you, the coaches track you. In a big country, you can get lost — in the Baltics, talent rises fast. Your next training session could be the one that changes everything.',
+    category: 'stories',
+    ageTiers: ['u10', 'u12', 'u14', 'u16'],
+    readingTimeMin: 3,
+    imageEmoji: '🌍',
+  },
+
+  // ── Additional Mental ─────────────────────────────────────
+  {
+    id: 'art-men-04',
+    titleKey: 'How to Build Confidence When You Are Doubting Yourself',
+    bodyKey: 'Confidence is not something you are born with — it is built through preparation and small wins. Dan Abrahams, one of the top sports psychologists, teaches the "Confidence Bank" method: every good training session, every ball won, every successful pass is a deposit. Write down 3 things you did well after every training or match. Over time, your confidence bank grows and you can draw on it when pressure hits. The worst thing for confidence is overthinking. In the next match, pick ONE thing to focus on — and nail it.',
+    category: 'mental',
+    ageTiers: ['u12', 'u14', 'u16'],
+    readingTimeMin: 2,
+    imageEmoji: '💎',
+  },
 ]

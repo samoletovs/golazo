@@ -20,6 +20,7 @@ import { MorningRoutine } from '../components/MorningRoutine'
 import { DailyCheckIn } from '../components/DailyCheckIn'
 import { DailyQuiz } from '../components/DailyQuiz'
 import { LevelUpCelebration } from '../components/LevelUpCelebration'
+import { WeeklySummary } from '../components/WeeklySummary'
 
 export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void }) {
   const { t } = useTranslation()
@@ -220,11 +221,18 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
         <p className="text-lg font-bold" style={{ fontFamily: 'var(--font-display)' }}>
           {greeting}{playerName ? `, ${playerName}` : ''} 👋
         </p>
-        {xp.streakDays > 0 && (
-          <p className="text-xs mt-0.5" style={{ color: 'var(--color-text-muted)' }}>
-            {t('dashboard.streakMessage', { days: xp.streakDays })}
-          </p>
-        )}
+        <div className="flex items-center gap-3 mt-0.5">
+          {xp.streakDays > 0 && (
+            <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
+              🔥 {t('dashboard.streakMessage', { days: xp.streakDays })}
+            </p>
+          )}
+          {xp.checkInStreakDays > 0 && (
+            <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
+              ✅ {t('checkin.streak', { days: xp.checkInStreakDays })}
+            </p>
+          )}
+        </div>
       </div>
 
       {/* ── Morning Routine CTA ── */}
@@ -571,6 +579,9 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
 
       {/* ── AI Coach ── */}
       <CoachCard />
+
+      {/* ── Weekly Summary ── */}
+      <WeeklySummary />
 
       {/* ── Skill radar ── */}
       <SkillRadar />

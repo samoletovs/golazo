@@ -63,6 +63,8 @@ export function DiaryPage({ onBack, inline, onSaved }: DiaryPageProps) {
       promptsUsed: usedPrompts,
       linkedTrainingIds: [],
       linkedMatchIds: [],
+      moodContext: moodContext ?? undefined,
+      aiConsent,
       createdAt: new Date().toISOString(),
     }
     addDiary(entry)
