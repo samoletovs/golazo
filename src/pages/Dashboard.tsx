@@ -401,15 +401,31 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
         )}
       </div>
 
-      {/* ── Schedule quick link (after Today) ── */}
+      {/* ── Quick Actions — access pages removed from nav ── */}
       {onNavigate && (
-        <button
-          className="card tap-target flex items-center gap-3 justify-center py-3 animate-fade-up w-full"
-          onClick={() => onNavigate('schedule')}
-        >
-          <span>📅</span>
-          <span className="text-xs font-bold">{t('nav.schedule')}</span>
-        </button>
+        <div className="grid grid-cols-3 gap-3 animate-fade-up">
+          <button
+            className="card tap-target flex flex-col items-center gap-1.5 py-3"
+            onClick={() => onNavigate('schedule')}
+          >
+            <span className="text-xl">📅</span>
+            <span className="text-[11px] font-bold" style={{ color: 'var(--color-text-secondary)' }}>{t('nav.schedule')}</span>
+          </button>
+          <button
+            className="card tap-target flex flex-col items-center gap-1.5 py-3"
+            onClick={() => onNavigate('challenges')}
+          >
+            <span className="text-xl">🏆</span>
+            <span className="text-[11px] font-bold" style={{ color: 'var(--color-text-secondary)' }}>{t('nav.challenges')}</span>
+          </button>
+          <button
+            className="card tap-target flex flex-col items-center gap-1.5 py-3"
+            onClick={() => onNavigate('portal')}
+          >
+            <span className="text-xl">🏟️</span>
+            <span className="text-[11px] font-bold" style={{ color: 'var(--color-text-secondary)' }}>{t('nav.portal')}</span>
+          </button>
+        </div>
       )}
 
       {/* ── Tournament Discovery — teammate shared tournaments ── */}
@@ -464,7 +480,7 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
             <button
               className="ml-auto text-xs font-bold px-3 py-1 rounded-full"
               style={{ background: 'rgba(var(--color-primary-rgb), 0.12)', color: 'var(--color-primary-dark)' }}
-              onClick={() => onNavigate('exercises')}
+              onClick={() => onNavigate('learn')}
             >
               {t('exercises.all')} →
             </button>

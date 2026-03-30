@@ -35,6 +35,7 @@ export function TrainingLog({ onBack, inline, onSaved }: TrainingLogProps) {
   const { t } = useTranslation()
   const { xp, setXp, addTraining } = useApp()
   const [saved, setSaved] = useState(false)
+  const [showDetails, setShowDetails] = useState(false)
 
   const today = new Date().toISOString().split('T')[0]
   const [type, setType] = useState<TrainingType>('team')
@@ -140,25 +141,6 @@ export function TrainingLog({ onBack, inline, onSaved }: TrainingLogProps) {
         </div>
       </div>
 
-      {/* Focus areas */}
-      <div>
-        <p className="section-label mb-2">
-          {t('training.focus')}
-        </p>
-        <div className="flex flex-wrap gap-2">
-          {FOCUS.map((f) => (
-            <button
-              key={f.key}
-              className="btn-choice tap-target text-sm px-4"
-              onClick={() => toggleFocus(f.key)}
-              aria-pressed={focus.includes(f.key)}
-            >
-              {t(f.labelKey)}
-            </button>
-          ))}
-        </div>
-      </div>
-
       {/* Energy */}
       <div>
         <p className="section-label mb-2">
@@ -179,37 +161,69 @@ export function TrainingLog({ onBack, inline, onSaved }: TrainingLogProps) {
         </div>
       </div>
 
-      {/* Mood */}
-      <div>
-        <p className="section-label mb-2">
-          {t('training.mood')}
-        </p>
-        <div className="flex gap-2 justify-center">
-          {ENERGY_EMOJIS.map((emoji, i) => (
-            <button
-              key={i}
-              className="emoji-btn"
-              data-selected={mood === (i + 1)}
-              onClick={() => setMood((i + 1) as EnergyLevel)}
-              aria-label={`Mood level ${i + 1}`}
-            >
-              {emoji}
-            </button>
-          ))}
-        </div>
-      </div>
+      {/* Details toggle */}
+      <button
+        className="text-xs font-bold tap-target flex items-center gap-1 justify-center"
+        style={{ color: 'var(--color-primary-dark)' }}
+        onClick={() => setShowDetails(!showDetails)}
+      >
+        {showDetails ? t('common.lessDetails', { defaultValue: '▲ Less details' }) : t('common.moreDetails', { defaultValue: '▼ More details' })}
+      </button>
 
-      {/* Notes */}
-      <div>
-        <textarea
-          className="w-full rounded-xl p-3 text-sm"
-          style={{ resize: 'none' }}
-          rows={3}
-          placeholder={t('training.notes')}
-          value={notes}
-          onChange={(e) => setNotes(e.target.value)}
-        />
-      </div>
+      {showDetails && (
+        <>
+          {/* Focus areas */}
+          <div>
+            <p className="section-label mb-2">
+              {t('training.focus')}
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {FOCUS.map((f) => (
+                <button
+                  key={f.key}
+                  className="btn-choice tap-target text-sm px-4"
+                  onClick={() => toggleFocus(f.key)}
+                  aria-pressed={focus.includes(f.key)}
+                >
+                  {t(f.labelKey)}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Mood */}
+          <div>
+            <p className="section-label mb-2">
+              {t('training.mood')}
+            </p>
+            <div className="flex gap-2 justify-center">
+              {ENERGY_EMOJIS.map((emoji, i) => (
+                <button
+                  key={i}
+                  className="emoji-btn"
+                  data-selected={mood === (i + 1)}
+                  onClick={() => setMood((i + 1) as EnergyLevel)}
+                  aria-label={`Mood level ${i + 1}`}
+                >
+                  {emoji}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Notes */}
+          <div>
+            <textarea
+              className="w-full rounded-xl p-3 text-sm"
+              style={{ resize: 'none' }}
+              rows={3}
+              placeholder={t('training.notes')}
+              value={notes}
+              onChange={(e) => setNotes(e.target.value)}
+            />
+          </div>
+        </>
+      )}
 
       {/* Save button */}
       <button

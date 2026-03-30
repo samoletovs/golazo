@@ -27,6 +27,7 @@ export function MatchLog({ onBack, inline, prefill, onSaved }: MatchLogProps) {
   const { xp, setXp, addMatch, profile } = useApp()
   const durationRecommendation = getMatchDurationRecommendation(profile?.birthDate)
   const [saved, setSaved] = useState(false)
+  const [showDetails, setShowDetails] = useState(false)
 
   const today = new Date().toISOString().split('T')[0]
   const [opponent, setOpponent] = useState(prefill?.opponent ?? '')
@@ -158,14 +159,6 @@ export function MatchLog({ onBack, inline, prefill, onSaved }: MatchLogProps) {
         />
       </div>
 
-      {/* Competition */}
-      <input
-        className="w-full text-sm"
-        placeholder={t('match.competition')}
-        value={competition}
-        onChange={(e) => setCompetition(e.target.value)}
-      />
-
       {/* Score */}
       <div className="card">
         <p className="section-label mb-2">{t('match.score')}</p>
@@ -190,44 +183,6 @@ export function MatchLog({ onBack, inline, prefill, onSaved }: MatchLogProps) {
         </div>
       </div>
 
-      {/* Position (multi-select) */}
-      <div>
-        <p className="section-label mb-2">{t('match.position')}</p>
-        <div className="flex flex-wrap gap-2">
-          {POSITIONS.map((p) => (
-            <button
-              key={p.key}
-              className="btn-choice tap-target text-xs px-3 py-2"
-              onClick={() => togglePosition(p.key)}
-              aria-pressed={positions.includes(p.key)}
-            >
-              {p.label}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Stats — Tap counters */}
-      <div className="card">
-        <p className="section-label mb-3">{t('match.stats')}</p>
-        {([
-          { label: t('match.goals'), icon: '⚽', value: goals, set: setGoals },
-          { label: t('match.assists'), icon: '🅰️', value: assists, set: setAssists },
-          { label: t('match.shots'), icon: '👟', value: shots, set: setShots },
-          { label: t('match.keyPasses'), icon: '🎯', value: keyPasses, set: setKeyPasses },
-          { label: t('match.tackles'), icon: '🛡️', value: tackles, set: setTackles },
-        ] as const).map((stat) => (
-          <div key={stat.label} className="flex items-center justify-between py-2">
-            <span className="text-sm">{stat.icon} {stat.label}</span>
-            <div className="flex items-center gap-2">
-              <button className="tap-target card px-3 py-1 text-sm" onClick={() => stat.set(Math.max(0, stat.value - 1))} aria-label={`Decrease ${stat.label}`}>−</button>
-              <span className="text-lg font-bold w-6 text-center">{stat.value}</span>
-              <button className="tap-target card px-3 py-1 text-sm" onClick={() => stat.set(stat.value + 1)} aria-label={`Increase ${stat.label}`}>+</button>
-            </div>
-          </div>
-        ))}
-      </div>
-
       {/* Self rating */}
       <div className="card">
         <p className="section-label mb-2">{t('match.rating')}</p>
@@ -247,37 +202,96 @@ export function MatchLog({ onBack, inline, prefill, onSaved }: MatchLogProps) {
         </div>
       </div>
 
-      {/* Reflections */}
-      <input
-        className="w-full text-sm"
-        placeholder={t('match.bestMoment')}
-        value={bestMoment}
-        onChange={(e) => setBestMoment(e.target.value)}
-      />
-      <input
-        className="w-full text-sm"
-        placeholder={t('match.toImprove')}
-        value={toImprove}
-        onChange={(e) => setToImprove(e.target.value)}
-      />
+      {/* Details toggle */}
+      <button
+        className="text-xs font-bold tap-target flex items-center gap-1 justify-center"
+        style={{ color: 'var(--color-primary-dark)' }}
+        onClick={() => setShowDetails(!showDetails)}
+      >
+        {showDetails ? t('common.lessDetails', { defaultValue: '▲ Less details' }) : t('common.moreDetails', { defaultValue: '▼ More details' })}
+      </button>
 
-      {/* Mood */}
-      <div>
-        <p className="section-label mb-2">{t('training.mood')}</p>
-        <div className="flex gap-2 justify-center">
-          {ENERGY_EMOJIS.map((emoji, i) => (
-            <button
-              key={i}
-              className="emoji-btn"
-              data-selected={mood === (i + 1)}
-              onClick={() => setMood((i + 1) as EnergyLevel)}
-              aria-label={`Mood ${i + 1}`}
-            >
-              {emoji}
-            </button>
-          ))}
-        </div>
-      </div>
+      {showDetails && (
+        <>
+          {/* Competition */}
+          <input
+            className="w-full text-sm"
+            placeholder={t('match.competition')}
+            value={competition}
+            onChange={(e) => setCompetition(e.target.value)}
+          />
+
+          {/* Position (multi-select) */}
+          <div>
+            <p className="section-label mb-2">{t('match.position')}</p>
+            <div className="flex flex-wrap gap-2">
+              {POSITIONS.map((p) => (
+                <button
+                  key={p.key}
+                  className="btn-choice tap-target text-xs px-3 py-2"
+                  onClick={() => togglePosition(p.key)}
+                  aria-pressed={positions.includes(p.key)}
+                >
+                  {p.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Stats — Tap counters */}
+          <div className="card">
+            <p className="section-label mb-3">{t('match.stats')}</p>
+            {([
+              { label: t('match.goals'), icon: '⚽', value: goals, set: setGoals },
+              { label: t('match.assists'), icon: '🅰️', value: assists, set: setAssists },
+              { label: t('match.shots'), icon: '👟', value: shots, set: setShots },
+              { label: t('match.keyPasses'), icon: '🎯', value: keyPasses, set: setKeyPasses },
+              { label: t('match.tackles'), icon: '🛡️', value: tackles, set: setTackles },
+            ] as const).map((stat) => (
+              <div key={stat.label} className="flex items-center justify-between py-2">
+                <span className="text-sm">{stat.icon} {stat.label}</span>
+                <div className="flex items-center gap-2">
+                  <button className="tap-target card px-3 py-1 text-sm" onClick={() => stat.set(Math.max(0, stat.value - 1))} aria-label={`Decrease ${stat.label}`}>−</button>
+                  <span className="text-lg font-bold w-6 text-center">{stat.value}</span>
+                  <button className="tap-target card px-3 py-1 text-sm" onClick={() => stat.set(stat.value + 1)} aria-label={`Increase ${stat.label}`}>+</button>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Reflections */}
+          <input
+            className="w-full text-sm"
+            placeholder={t('match.bestMoment')}
+            value={bestMoment}
+            onChange={(e) => setBestMoment(e.target.value)}
+          />
+          <input
+            className="w-full text-sm"
+            placeholder={t('match.toImprove')}
+            value={toImprove}
+            onChange={(e) => setToImprove(e.target.value)}
+          />
+
+          {/* Mood */}
+          <div>
+            <p className="section-label mb-2">{t('training.mood')}</p>
+            <div className="flex gap-2 justify-center">
+              {ENERGY_EMOJIS.map((emoji, i) => (
+                <button
+                  key={i}
+                  className="emoji-btn"
+                  data-selected={mood === (i + 1)}
+                  onClick={() => setMood((i + 1) as EnergyLevel)}
+                  aria-label={`Mood ${i + 1}`}
+                >
+                  {emoji}
+                </button>
+              ))}
+            </div>
+          </div>
+        </>
+      )}
 
       {/* Save */}
       <button

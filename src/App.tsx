@@ -6,7 +6,7 @@ import { XpBar } from './components/XpBar'
 import { BottomNav } from './components/BottomNav'
 import FeedbackButton from './components/FeedbackButton'
 import { Dashboard } from './pages/Dashboard'
-import { FootballPortal } from './pages/FootballPortal'
+import { LogPage } from './pages/LogPage'
 import { LoginPage } from './pages/LoginPage'
 import { OnboardingPage } from './pages/OnboardingPage'
 import { applyTeamTheme, getPrimaryTeamColor } from './utils/teamTheme'
@@ -18,8 +18,9 @@ const Profile = lazy(() => import('./pages/Profile').then(m => ({ default: m.Pro
 const SchedulePage = lazy(() => import('./pages/SchedulePage').then(m => ({ default: m.SchedulePage })))
 const ProgressPage = lazy(() => import('./pages/ProgressPage').then(m => ({ default: m.ProgressPage })))
 const LeaderboardPage = lazy(() => import('./pages/LeaderboardPage').then(m => ({ default: m.LeaderboardPage })))
+const FootballPortal = lazy(() => import('./pages/FootballPortal').then(m => ({ default: m.FootballPortal })))
 
-type Page = 'dashboard' | 'portal' | 'exercises' | 'challenges' | 'profile' | 'schedule' | 'progress' | 'leaderboard'
+type Page = 'dashboard' | 'log' | 'learn' | 'profile' | 'schedule' | 'progress' | 'leaderboard' | 'challenges' | 'portal'
 
 function AppContent() {
   const [page, setPage] = useState<Page>('dashboard')
@@ -82,14 +83,15 @@ function AppContent() {
         <main className="flex-1 overflow-y-auto pb-20">
           <div key={pageKey} className="page-enter">
             {page === 'dashboard' && <Dashboard onNavigate={handleNavigate} />}
-            {page === 'portal' && <FootballPortal />}
+            {page === 'log' && <LogPage />}
             <Suspense fallback={<div className="flex items-center justify-center p-8"><span className="text-3xl">⚽</span></div>}>
-              {page === 'exercises' && <Exercises />}
+              {page === 'learn' && <Exercises />}
               {page === 'challenges' && <Challenges />}
               {page === 'profile' && <Profile />}
               {page === 'schedule' && <SchedulePage />}
               {page === 'progress' && <ProgressPage />}
               {page === 'leaderboard' && <LeaderboardPage />}
+              {page === 'portal' && <FootballPortal />}
             </Suspense>
           </div>
         </main>
