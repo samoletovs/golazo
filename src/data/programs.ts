@@ -1,0 +1,55 @@
+import type { TrainingProgram } from '../engine/types'
+
+/** Structured training programs — 4-week focused development. */
+export const programs: TrainingProgram[] = [
+  {
+    id: 'prog-ball-mastery',
+    titleKey: 'Ball Mastery',
+    descriptionKey: '4 weeks of daily ball control drills. Build your first touch, dribbling confidence, and weak foot skills using Coerver methodology.',
+    category: 'technical',
+    durationWeeks: 4,
+    ageTiers: ['u10', 'u12', 'u14'],
+    exerciseIds: ['tech-01', 'tech-02', 'tech-04', 'tech-03', 'tech-05'],
+    imageEmoji: '⚽',
+  },
+  {
+    id: 'prog-speed-agility',
+    titleKey: 'Speed & Agility',
+    descriptionKey: '4 weeks of sprint drills, agility courses, and coordination exercises. Improve your acceleration, change of direction, and match fitness.',
+    category: 'physical',
+    durationWeeks: 4,
+    ageTiers: ['u12', 'u14', 'u16'],
+    exerciseIds: ['phys-01', 'phys-02', 'phys-03', 'phys-04', 'phys-05'],
+    imageEmoji: '🏃',
+  },
+  {
+    id: 'prog-game-iq',
+    titleKey: 'Game Intelligence',
+    descriptionKey: '4 weeks of tactical awareness drills. Learn positioning, decision-making under pressure, and how to read the game like a pro.',
+    category: 'tactical',
+    durationWeeks: 4,
+    ageTiers: ['u12', 'u14', 'u16'],
+    exerciseIds: ['tact-01', 'tact-02', 'tact-03', 'tact-04', 'tact-05'],
+    imageEmoji: '🧠',
+  },
+  {
+    id: 'prog-mental-strength',
+    titleKey: 'Mental Strength',
+    descriptionKey: '3 weeks of mental conditioning using Dan Abrahams\' 4C framework: Commitment, Concentration, Confidence, Control.',
+    category: 'mental',
+    durationWeeks: 3,
+    ageTiers: ['u12', 'u14', 'u16'],
+    exerciseIds: ['ment-01', 'ment-02', 'ment-03', 'ment-04', 'ment-05'],
+    imageEmoji: '🧘',
+  },
+  {
+    id: 'prog-shooting',
+    titleKey: 'Finishing School',
+    descriptionKey: '4 weeks focused on shooting technique, placement, and composure in front of goal. For forwards and attacking midfielders.',
+    category: 'technical',
+    durationWeeks: 4,
+    ageTiers: ['u12', 'u14', 'u16'],
+    exerciseIds: ['tech-05', 'tech-01', 'tech-03', 'deep-02', 'deep-03'],
+    imageEmoji: '🥅',
+  },
+]

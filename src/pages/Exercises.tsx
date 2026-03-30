@@ -64,14 +64,18 @@ function DifficultyDots({ level }: { level: number }) {
 function ExerciseDetailModal({
   exercise,
   isDone,
+  isSaved,
   onClose,
   onMarkDone,
+  onToggleSave,
   t,
 }: {
   exercise: Exercise
   isDone: boolean
+  isSaved: boolean
   onClose: () => void
   onMarkDone: () => void
+  onToggleSave: () => void
   t: (key: string, opts?: Record<string, unknown>) => string
 }) {
   const thumbnail = exercise.thumbnailUrl || (exercise.videoUrl ? getThumbnailUrl(exercise.videoUrl) : null)
@@ -125,18 +129,30 @@ function ExerciseDetailModal({
           </div>
         </div>
 
-        {/* Action button */}
-        <button
-          className="exercise-modal-action"
-          onClick={onMarkDone}
-          disabled={isDone}
-          style={{
-            background: isDone ? 'var(--color-primary)' : 'var(--color-primary)',
-            color: '#fff',
-          }}
-        >
-          {isDone ? `✓ ${t('exercises.done', { xp: XP_AWARDS.completeExercise })}` : `${t('exercises.markDone')} +${XP_AWARDS.completeExercise} XP`}
-        </button>
+        {/* Save / Action buttons */}
+        <div className="flex gap-2">
+          <button
+            className="flex-1 tap-target text-sm font-bold py-3 rounded-full"
+            style={{
+              background: isSaved ? 'var(--color-gold-300)' : '#f3f4f6',
+              color: isSaved ? '#92400e' : 'var(--color-text-secondary)',
+            }}
+            onClick={onToggleSave}
+          >
+            {isSaved ? '★ Saved' : '☆ Save'}
+          </button>
+          <button
+            className="flex-1 exercise-modal-action"
+            onClick={onMarkDone}
+            disabled={isDone}
+            style={{
+              background: 'var(--color-primary)',
+              color: '#fff',
+            }}
+          >
+            {isDone ? `✓ ${t('exercises.done', { xp: XP_AWARDS.completeExercise })}` : `${t('exercises.markDone')} +${XP_AWARDS.completeExercise} XP`}
+          </button>
+        </div>
       </div>
     </div>
   )
@@ -144,7 +160,7 @@ function ExerciseDetailModal({
 
 export function Exercises() {
   const { t } = useTranslation()
-  const { xp, setXp } = useApp()
+  const { xp, setXp, savedExercises, toggleSavedExercise } = useApp()
   const [activeTab, setActiveTab] = useState<'exercises' | 'challenges'>('exercises')
   const [filter, setFilter] = useState<SkillCategory | 'all'>('all')
   const [search, setSearch] = useState('')
@@ -334,10 +350,12 @@ export function Exercises() {
         <ExerciseDetailModal
           exercise={detailExercise}
           isDone={doneIds.has(detailExercise.id)}
+          isSaved={savedExercises.includes(detailExercise.id)}
           onClose={() => setDetailExercise(null)}
           onMarkDone={() => {
             markDone(detailExercise.id)
           }}
+          onToggleSave={() => toggleSavedExercise(detailExercise.id)}
           t={t}
         />,
         document.body

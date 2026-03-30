@@ -1,0 +1,284 @@
+import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useApp } from '../contexts/AppContext'
+import { awardXp, XP_AWARDS } from '../engine/xp'
+import { articles } from '../data/articles'
+import { programs } from '../data/programs'
+import { getAgeTier } from '../engine/types'
+import type { Article, ArticleCategory, TrainingProgram, QuizDifficulty, ReadArticle, ProgramProgress } from '../engine/types'
+
+function tierToDifficulty(tier: string): QuizDifficulty {
+  if (tier === 'u8') return 'u10'
+  if (tier === 'u12') return 'u12'
+  if (tier === 'u16') return 'u14'
+  return 'u16'
+}
+
+const ARTICLE_CATEGORIES: { key: ArticleCategory | 'all'; label: string; emoji: string }[] = [
+  { key: 'all', label: 'All', emoji: '📖' },
+  { key: 'tactics', label: 'Tactics', emoji: '🧠' },
+  { key: 'nutrition', label: 'Nutrition', emoji: '🍎' },
+  { key: 'mental', label: 'Mental', emoji: '💪' },
+  { key: 'rules', label: 'Rules', emoji: '📋' },
+  { key: 'stories', label: 'Player Stories', emoji: '⭐' },
+]
+
+type LearnTab = 'articles' | 'programs'
+
+export function LearnContent() {
+  const { t } = useTranslation()
+  const { profile, readArticles, markArticleRead, xp, setXp, programProgress, updateProgramProgress } = useApp()
+  const [tab, setTab] = useState<LearnTab>('articles')
+  const [categoryFilter, setCategoryFilter] = useState<ArticleCategory | 'all'>('all')
+  const [expandedArticle, setExpandedArticle] = useState<string | null>(null)
+  const [expandedProgram, setExpandedProgram] = useState<string | null>(null)
+
+  const ageTier = profile?.birthDate ? getAgeTier(profile.birthDate) : 'u12'
+  const difficulty = tierToDifficulty(ageTier)
+
+  // Filter articles by age tier and category
+  const filteredArticles = articles.filter((a) => {
+    if (!a.ageTiers.includes(difficulty)) return false
+    if (categoryFilter !== 'all' && a.category !== categoryFilter) return false
+    return true
+  })
+
+  const readIds = new Set(readArticles.map((r) => r.articleId))
+
+  function handleReadArticle(article: Article) {
+    if (readIds.has(article.id)) return
+    const entry: ReadArticle = { articleId: article.id, readAt: new Date().toISOString() }
+    markArticleRead(entry)
+    setXp(awardXp(xp, XP_AWARDS.completeExercise, new Date().toISOString().slice(0, 10))) // 10 XP for reading
+  }
+
+  function handleStartProgram(program: TrainingProgram) {
+    const existing = programProgress.find((p) => p.programId === program.id)
+    if (existing) return
+    const progress: ProgramProgress = {
+      programId: program.id,
+      startedAt: new Date().toISOString(),
+      completedDays: 0,
+      totalDays: program.durationWeeks * 5, // 5 days/week
+      lastActivityDate: '',
+    }
+    updateProgramProgress(progress)
+  }
+
+  function handleLogProgramDay(programId: string) {
+    const existing = programProgress.find((p) => p.programId === programId)
+    if (!existing) return
+    const today = new Date().toISOString().slice(0, 10)
+    if (existing.lastActivityDate === today) return // already logged today
+    const updated: ProgramProgress = {
+      ...existing,
+      completedDays: existing.completedDays + 1,
+      lastActivityDate: today,
+    }
+    updateProgramProgress(updated)
+    setXp(awardXp(xp, XP_AWARDS.completeExercise, today))
+  }
+
+  // Filter programs by age tier
+  const filteredPrograms = programs.filter((p) => p.ageTiers.includes(difficulty))
+
+  return (
+    <div className="flex flex-col gap-4 p-4 pb-32">
+      <h2 className="text-xl font-extrabold">{t('nav.learn', { defaultValue: 'Learn' })}</h2>
+
+      {/* Tab switcher */}
+      <div className="flex gap-2">
+        <button
+          className="btn-choice tap-target flex-1 text-center text-sm"
+          aria-pressed={tab === 'articles'}
+          onClick={() => setTab('articles')}
+        >
+          📖 {t('learn.articles', { defaultValue: 'Articles' })}
+        </button>
+        <button
+          className="btn-choice tap-target flex-1 text-center text-sm"
+          aria-pressed={tab === 'programs'}
+          onClick={() => setTab('programs')}
+        >
+          📋 {t('learn.programs', { defaultValue: 'Programs' })}
+        </button>
+      </div>
+
+      {/* ── Articles tab ── */}
+      {tab === 'articles' && (
+        <>
+          {/* Category filter */}
+          <div className="flex gap-2 overflow-x-auto pb-1" style={{ scrollbarWidth: 'none' }}>
+            {ARTICLE_CATEGORIES.map((cat) => (
+              <button
+                key={cat.key}
+                className="btn-choice tap-target text-xs px-3 py-1.5 whitespace-nowrap"
+                aria-pressed={categoryFilter === cat.key}
+                onClick={() => setCategoryFilter(cat.key)}
+              >
+                {cat.emoji} {cat.label}
+              </button>
+            ))}
+          </div>
+
+          {/* Article list */}
+          <div className="flex flex-col gap-3">
+            {filteredArticles.map((article) => {
+              const isRead = readIds.has(article.id)
+              const isExpanded = expandedArticle === article.id
+
+              return (
+                <div key={article.id} className="card" style={{ opacity: isRead ? 0.7 : 1 }}>
+                  <button
+                    className="w-full text-left tap-target flex items-start gap-3"
+                    onClick={() => setExpandedArticle(isExpanded ? null : article.id)}
+                  >
+                    <span className="text-2xl">{article.imageEmoji || '📄'}</span>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-bold" style={{ fontFamily: 'var(--font-display)' }}>
+                        {isRead && '✅ '}{article.titleKey}
+                      </p>
+                      <div className="flex items-center gap-2 mt-1">
+                        <span className="text-[10px] px-2 py-0.5 rounded-full" style={{ background: '#f3f4f6', color: '#6b7280' }}>
+                          {article.readingTimeMin} min
+                        </span>
+                        <span className="text-[10px] px-2 py-0.5 rounded-full" style={{ background: '#fef3c7', color: '#b45309' }}>
+                          {article.category}
+                        </span>
+                      </div>
+                    </div>
+                    <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
+                      {isExpanded ? '▲' : '▼'}
+                    </span>
+                  </button>
+
+                  {isExpanded && (
+                    <div className="mt-3 pt-3 animate-fade-up" style={{ borderTop: '1px solid #e5e7eb' }}>
+                      <p className="text-sm leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
+                        {article.bodyKey}
+                      </p>
+                      {!isRead && (
+                        <button
+                          className="btn-primary tap-target w-full mt-3 text-sm"
+                          onClick={() => handleReadArticle(article)}
+                        >
+                          {t('learn.markRead', { defaultValue: 'Mark as read' })} (+{XP_AWARDS.completeExercise} XP)
+                        </button>
+                      )}
+                    </div>
+                  )}
+                </div>
+              )
+            })}
+
+            {filteredArticles.length === 0 && (
+              <div className="text-center py-8">
+                <span className="text-3xl">📚</span>
+                <p className="text-sm mt-2" style={{ color: 'var(--color-text-muted)' }}>
+                  {t('learn.noArticles', { defaultValue: 'No articles in this category yet.' })}
+                </p>
+              </div>
+            )}
+          </div>
+
+          {/* Reading progress */}
+          <div className="card flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <span className="text-lg">📊</span>
+              <p className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>
+                {t('learn.readProgress', { defaultValue: 'Articles read' })}
+              </p>
+            </div>
+            <span className="stat-pill stat-pill-green text-sm font-black">
+              {readArticles.length} / {articles.filter(a => a.ageTiers.includes(difficulty)).length}
+            </span>
+          </div>
+        </>
+      )}
+
+      {/* ── Programs tab ── */}
+      {tab === 'programs' && (
+        <div className="flex flex-col gap-3">
+          {filteredPrograms.map((program) => {
+            const progress = programProgress.find((p) => p.programId === program.id)
+            const isStarted = !!progress
+            const isExpanded = expandedProgram === program.id
+            const today = new Date().toISOString().slice(0, 10)
+            const loggedToday = progress?.lastActivityDate === today
+            const isComplete = progress && progress.completedDays >= progress.totalDays
+
+            return (
+              <div key={program.id} className="card">
+                <button
+                  className="w-full text-left tap-target flex items-start gap-3"
+                  onClick={() => setExpandedProgram(isExpanded ? null : program.id)}
+                >
+                  <span className="text-2xl">{program.imageEmoji || '📋'}</span>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-bold" style={{ fontFamily: 'var(--font-display)' }}>
+                      {isComplete ? '🏆 ' : ''}{program.titleKey}
+                    </p>
+                    <p className="text-xs mt-0.5" style={{ color: 'var(--color-text-muted)' }}>
+                      {program.durationWeeks} {t('learn.weeks', { defaultValue: 'weeks' })} · {program.category}
+                    </p>
+                    {isStarted && progress && (
+                      <div className="mt-2">
+                        <div className="progress-track">
+                          <div
+                            className="progress-fill"
+                            style={{
+                              width: `${Math.min((progress.completedDays / progress.totalDays) * 100, 100)}%`,
+                              background: 'var(--color-primary)',
+                            }}
+                          />
+                        </div>
+                        <p className="text-[10px] mt-1 font-data" style={{ color: 'var(--color-text-muted)' }}>
+                          {progress.completedDays} / {progress.totalDays} {t('learn.days', { defaultValue: 'days' })}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                </button>
+
+                {isExpanded && (
+                  <div className="mt-3 pt-3 animate-fade-up" style={{ borderTop: '1px solid #e5e7eb' }}>
+                    <p className="text-sm leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
+                      {program.descriptionKey}
+                    </p>
+                    {!isStarted && (
+                      <button
+                        className="btn-primary tap-target w-full mt-3 text-sm"
+                        onClick={() => handleStartProgram(program)}
+                      >
+                        {t('learn.startProgram', { defaultValue: 'Start program' })}
+                      </button>
+                    )}
+                    {isStarted && !isComplete && (
+                      <button
+                        className="btn-primary tap-target w-full mt-3 text-sm"
+                        onClick={() => handleLogProgramDay(program.id)}
+                        disabled={loggedToday}
+                      >
+                        {loggedToday
+                          ? `✅ ${t('learn.loggedToday', { defaultValue: 'Logged today' })}`
+                          : `${t('learn.logDay', { defaultValue: 'Log today\'s session' })} (+${XP_AWARDS.completeExercise} XP)`}
+                      </button>
+                    )}
+                    {isComplete && (
+                      <div className="flex items-center gap-2 mt-3 p-3 rounded-xl" style={{ background: 'var(--color-primary-bg-subtle)' }}>
+                        <span className="text-lg">🏆</span>
+                        <p className="text-sm font-bold" style={{ color: 'var(--color-primary-dark)' }}>
+                          {t('learn.programComplete', { defaultValue: 'Program completed!' })}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            )
+          })}
+        </div>
+      )}
+    </div>
+  )
+}

@@ -534,7 +534,7 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
             <button
               className="ml-auto text-xs font-bold px-3 py-1 rounded-full"
               style={{ background: 'rgba(var(--color-primary-rgb), 0.12)', color: 'var(--color-primary-dark)' }}
-              onClick={() => onNavigate('learn')}
+              onClick={() => onNavigate('exercises')}
             >
               {t('exercises.all')} →
             </button>

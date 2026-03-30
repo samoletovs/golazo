@@ -586,3 +586,43 @@ export interface QuizAnswer {
   category: string
   answeredAt: string
 }
+
+/* ── Articles ─────────────────────────────────────────────── */
+
+export type ArticleCategory = 'tactics' | 'nutrition' | 'mental' | 'rules' | 'stories'
+
+export interface Article {
+  id: string
+  titleKey: string    // i18n key or plain text
+  bodyKey: string     // i18n key or plain text (markdown)
+  category: ArticleCategory
+  ageTiers: QuizDifficulty[] // which age tiers see this article
+  readingTimeMin: number
+  imageEmoji?: string // emoji hero (cheaper than images)
+}
+
+export interface ReadArticle {
+  articleId: string
+  readAt: string
+}
+
+/* ── Training Programs ────────────────────────────────────── */
+
+export interface TrainingProgram {
+  id: string
+  titleKey: string
+  descriptionKey: string
+  category: SkillCategory
+  durationWeeks: number
+  ageTiers: QuizDifficulty[]
+  exerciseIds: string[] // exercises per week (repeat pattern)
+  imageEmoji?: string
+}
+
+export interface ProgramProgress {
+  programId: string
+  startedAt: string
+  completedDays: number
+  totalDays: number
+  lastActivityDate: string
+}

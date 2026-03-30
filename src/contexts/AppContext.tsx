@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, createContext, useContext } from 'react'
 import type { ReactNode } from 'react'
-import type { XpState, PlayerProfile, SkillTree, TrainingEntry, MatchEntry, Tournament, DiaryEntry, ScheduleEvent, SpecialChallengeProgress, PhysicalProfile, RecurringTraining, DailyCheckIn, QuizAnswer } from '../engine/types'
+import type { XpState, PlayerProfile, SkillTree, TrainingEntry, MatchEntry, Tournament, DiaryEntry, ScheduleEvent, SpecialChallengeProgress, PhysicalProfile, RecurringTraining, DailyCheckIn, QuizAnswer, ReadArticle, ProgramProgress } from '../engine/types'
 import { createInitialXpState } from '../engine/xp'
 import { createInitialSkillTree } from '../engine/skills'
 
@@ -20,6 +20,9 @@ interface AppState {
   physicalProfile: PhysicalProfile | null
   checkIns: DailyCheckIn[]
   quizAnswers: QuizAnswer[]
+  readArticles: ReadArticle[]
+  savedExercises: string[] // exercise IDs
+  programProgress: ProgramProgress[]
   onboardingComplete: boolean
 }
 
@@ -39,6 +42,9 @@ interface AppContextValue extends AppState {
   setPhysicalProfile: (pp: PhysicalProfile) => void
   addCheckIn: (c: DailyCheckIn) => void
   addQuizAnswer: (q: QuizAnswer) => void
+  markArticleRead: (r: ReadArticle) => void
+  toggleSavedExercise: (id: string) => void
+  updateProgramProgress: (p: ProgramProgress) => void
   setOnboardingComplete: (v: boolean) => void
   syncToCloud: () => Promise<void>
   resetState: () => void
@@ -118,6 +124,9 @@ function createDefaultState(): AppState {
     physicalProfile: null,
     checkIns: [],
     quizAnswers: [],
+    readArticles: [],
+    savedExercises: [],
+    programProgress: [],
     onboardingComplete: false,
   }
 }
@@ -171,6 +180,18 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setPhysicalProfile: (pp) => update({ physicalProfile: pp }),
     addCheckIn: (c) => update({ checkIns: [...state.checkIns, c] }),
     addQuizAnswer: (q) => update({ quizAnswers: [...state.quizAnswers, q] }),
+    markArticleRead: (r) => update({ readArticles: [...state.readArticles.filter(a => a.articleId !== r.articleId), r] }),
+    toggleSavedExercise: (id) => update({
+      savedExercises: state.savedExercises.includes(id)
+        ? state.savedExercises.filter(e => e !== id)
+        : [...state.savedExercises, id],
+    }),
+    updateProgramProgress: (p) => update({
+      programProgress: [
+        ...state.programProgress.filter(x => x.programId !== p.programId),
+        p,
+      ],
+    }),
     setOnboardingComplete: (v) => update({ onboardingComplete: v }),
     syncToCloud,
     resetState: () => {

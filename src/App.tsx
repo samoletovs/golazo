@@ -13,6 +13,7 @@ import { applyTeamTheme, getPrimaryTeamColor } from './utils/teamTheme'
 
 // Lazy-load heavier pages to reduce initial bundle
 const Exercises = lazy(() => import('./pages/Exercises').then(m => ({ default: m.Exercises })))
+const LearnPage = lazy(() => import('./pages/LearnPage').then(m => ({ default: m.LearnContent })))
 const Challenges = lazy(() => import('./pages/Challenges').then(m => ({ default: m.Challenges })))
 const Profile = lazy(() => import('./pages/Profile').then(m => ({ default: m.Profile })))
 const SchedulePage = lazy(() => import('./pages/SchedulePage').then(m => ({ default: m.SchedulePage })))
@@ -20,7 +21,7 @@ const ProgressPage = lazy(() => import('./pages/ProgressPage').then(m => ({ defa
 const LeaderboardPage = lazy(() => import('./pages/LeaderboardPage').then(m => ({ default: m.LeaderboardPage })))
 const FootballPortal = lazy(() => import('./pages/FootballPortal').then(m => ({ default: m.FootballPortal })))
 
-type Page = 'dashboard' | 'log' | 'learn' | 'profile' | 'schedule' | 'progress' | 'leaderboard' | 'challenges' | 'portal'
+type Page = 'dashboard' | 'log' | 'learn' | 'exercises' | 'profile' | 'schedule' | 'progress' | 'leaderboard' | 'challenges' | 'portal'
 
 function AppContent() {
   const [page, setPage] = useState<Page>('dashboard')
@@ -85,7 +86,8 @@ function AppContent() {
             {page === 'dashboard' && <Dashboard onNavigate={handleNavigate} />}
             {page === 'log' && <LogPage />}
             <Suspense fallback={<div className="flex items-center justify-center p-8"><span className="text-3xl">⚽</span></div>}>
-              {page === 'learn' && <Exercises />}
+              {page === 'learn' && <LearnPage />}
+              {page === 'exercises' && <Exercises />}
               {page === 'challenges' && <Challenges />}
               {page === 'profile' && <Profile />}
               {page === 'schedule' && <SchedulePage />}
