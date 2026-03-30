@@ -23,8 +23,8 @@ export function CoachCard() {
   const [expanded, setExpanded] = useState(false)
 
   const localAdvice = useMemo(
-    () => generateLocalAdvice(skillTree, matches, trainings, t, diary, tournaments),
-    [skillTree, matches, trainings, t, diary, tournaments],
+    () => generateLocalAdvice(skillTree, matches, trainings, t, diary, tournaments, checkIns),
+    [skillTree, matches, trainings, t, diary, tournaments, checkIns],
   )
 
   useEffect(() => {

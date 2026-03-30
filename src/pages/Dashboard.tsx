@@ -17,7 +17,6 @@ import type { ScheduleEvent } from '../engine/types'
 import { isPhysicalUpdateDue, daysSinceLastMeasurement } from '../engine/physical'
 import { PhysicalUpdateFlow } from '../components/PhysicalUpdateFlow'
 import { MorningRoutine } from '../components/MorningRoutine'
-import { DailyCheckIn } from '../components/DailyCheckIn'
 import { DailyQuiz } from '../components/DailyQuiz'
 import { LevelUpCelebration } from '../components/LevelUpCelebration'
 import { WeeklySummary } from '../components/WeeklySummary'
@@ -256,8 +255,20 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
         </button>
       )}
 
-      {/* ── Standalone Check-in (if routine not used but not checked in) ── */}
-      {routineComplete && <DailyCheckIn />}
+      {/* ── Check-in streak badge (shown after routine is done) ── */}
+      {routineComplete && todayCheckedIn && xp.checkInStreakDays > 0 && (
+        <div className="card flex items-center gap-3 animate-fade-up">
+          <span className="text-xl">✅</span>
+          <div>
+            <p className="text-sm font-bold" style={{ color: 'var(--color-primary-dark)' }}>
+              {t('checkin.done')}
+            </p>
+            <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
+              {t('checkin.streak', { days: xp.checkInStreakDays })}
+            </p>
+          </div>
+        </div>
+      )}
 
       {/* ── Hero: Big level + XP showcase — gradient bg ── */}
       <div className="card-hero animate-fade-up relative overflow-hidden text-center py-8 px-6">

@@ -1,4 +1,4 @@
-import type { SkillTree, SkillCategory, Exercise, TrainingEntry, MatchEntry, DiaryEntry, EnergyLevel, Tournament } from './types'
+import type { SkillTree, SkillCategory, Exercise, TrainingEntry, MatchEntry, DiaryEntry, EnergyLevel, Tournament, DailyCheckIn } from './types'
 import { categoryAverage, weakestCategory, SUB_SKILLS } from './skills'
 import { exercises } from '../data/exercises'
 import { getMatchResult } from './types'
@@ -62,11 +62,13 @@ function collectMoodHistory(
   trainings: TrainingEntry[],
   matches: MatchEntry[],
   diary: DiaryEntry[],
+  checkIns: DailyCheckIn[] = [],
 ): MoodSnapshot[] {
   const all: MoodSnapshot[] = []
   for (const tr of trainings) all.push({ date: tr.date, mood: tr.mood, source: 'training' })
   for (const m of matches) all.push({ date: m.date, mood: m.mood, source: 'match' })
   for (const d of diary) all.push({ date: d.date, mood: d.mood, source: 'diary' })
+  for (const c of checkIns) all.push({ date: c.date, mood: c.mood, source: 'training' })
   all.sort((a, b) => a.date.localeCompare(b.date))
   return all
 }
@@ -118,14 +120,21 @@ function generateWellbeingInsight(
   matches: MatchEntry[],
   diary: DiaryEntry[],
   t: T,
+  checkIns: DailyCheckIn[] = [],
 ): CoachInsight | null {
-  const moods = collectMoodHistory(trainings, matches, diary)
+  const moods = collectMoodHistory(trainings, matches, diary, checkIns)
   const recentMoods = moods.filter((m) => new Date(m.date).getTime() > twoWeeksAgo())
   const trend = moodTrend(recentMoods)
   const avg = averageMood(recentMoods)
   const losses = recentLossStreak(matches)
   const inactiveDays = daysSinceLastActivity(trainings, matches)
   const energy = recentAvgEnergy(trainings)
+
+  // Check-in specific: low energy streak from morning check-ins
+  const recentCheckIns = checkIns.filter((c) => new Date(c.date).getTime() > weekAgo())
+  if (recentCheckIns.length >= 3 && recentCheckIns.slice(-3).every((c) => c.energy <= 2)) {
+    return { category: 'wellbeing', icon: '🧘', text: t('coach.wellbeing.burnout') }
+  }
 
   // Priority 1: consecutive losses with low mood
   if (losses >= 2 && avg < 3) {
@@ -300,6 +309,7 @@ export function generateLocalAdvice(
   t: T,
   diary: DiaryEntry[] = [],
   _tournaments: Tournament[] = [],
+  checkIns: DailyCheckIn[] = [],
 ): CoachAdvice {
   const focusArea = weakestCategory(skillTree)
   const avgRating = categoryAverage(skillTree, focusArea)
@@ -323,7 +333,7 @@ export function generateLocalAdvice(
   // Generate insights across all areas — wellbeing first (most important)
   const insights: CoachInsight[] = []
 
-  const wellbeing = generateWellbeingInsight(trainings, matches, diary, t)
+  const wellbeing = generateWellbeingInsight(trainings, matches, diary, t, checkIns)
   if (wellbeing) insights.push(wellbeing)
 
   const technical = generateTechnicalInsight(skillTree, t)

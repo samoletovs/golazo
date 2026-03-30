@@ -86,6 +86,11 @@ async function syncToApi(state: AppState): Promise<void> {
         schedule: state.schedule,
         specialChallenges: state.specialChallenges,
         physicalProfile: state.physicalProfile,
+        checkIns: state.checkIns,
+        quizAnswers: state.quizAnswers,
+        readArticles: state.readArticles,
+        savedExercises: state.savedExercises,
+        programProgress: state.programProgress,
       }),
     })
   } catch {

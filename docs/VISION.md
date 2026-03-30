@@ -140,13 +140,13 @@ All content types, prioritized:
 
 | Priority | Content Type | Source | Status |
 |----------|-------------|--------|--------|
-| P0 | Exercise library with videos | Curated YouTube + original | ✅ Exists (25+ drills) |
-| P0 | Footballer quotes | Manually curated | ✅ Exists (16 quotes) |
-| P1 | Daily challenges / drills | Generated from exercise library | 🔄 Scaffolded |
-| P1 | Football knowledge quizzes | AI-generated per age group | ❌ Not started |
-| P1 | Micro-articles (tactics, nutrition, mental) | AI-curated from methodology books | ❌ Not started |
-| P2 | Player stories (famous players' youth) | Research + write | ❌ Not started |
-| P2 | Structured training programs by age | Based on UEFA methodology | ❌ Not started |
+| P0 | Exercise library with videos | Curated YouTube + original | ✅ 25+ drills |
+| P0 | Footballer quotes | Manually curated | ✅ 16 quotes |
+| P1 | Daily challenges / drills | Generated from exercise library | ✅ Drill of the day + morning routine |
+| P1 | Football knowledge quizzes | Static bank, age-filtered | ✅ 60 questions across 4 age tiers |
+| P1 | Micro-articles (tactics, nutrition, mental) | Curated content | ✅ 24 articles in 5 categories |
+| P2 | Player stories (famous players' youth) | Research + write | ✅ 8 stories (Modrić, Messi, Haaland, Pedri, De Bruyne, Vinícius, Putellas, Baltic) |
+| P2 | Structured training programs by age | Based on UEFA methodology | ✅ 5 programs (3-4 weeks each) |
 | P3 | Video tutorials (original) | Record / commission | ❌ Not started |
 
 ## Platform Strategy
