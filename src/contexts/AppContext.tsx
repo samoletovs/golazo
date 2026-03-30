@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, createContext, useContext } from 'react'
 import type { ReactNode } from 'react'
-import type { XpState, PlayerProfile, SkillTree, TrainingEntry, MatchEntry, Tournament, DiaryEntry, ScheduleEvent, SpecialChallengeProgress, PhysicalProfile, RecurringTraining } from '../engine/types'
+import type { XpState, PlayerProfile, SkillTree, TrainingEntry, MatchEntry, Tournament, DiaryEntry, ScheduleEvent, SpecialChallengeProgress, PhysicalProfile, RecurringTraining, DailyCheckIn, QuizAnswer } from '../engine/types'
 import { createInitialXpState } from '../engine/xp'
 import { createInitialSkillTree } from '../engine/skills'
 
@@ -18,6 +18,8 @@ interface AppState {
   recurringTrainings: RecurringTraining[]
   specialChallenges: SpecialChallengeProgress[]
   physicalProfile: PhysicalProfile | null
+  checkIns: DailyCheckIn[]
+  quizAnswers: QuizAnswer[]
   onboardingComplete: boolean
 }
 
@@ -35,6 +37,8 @@ interface AppContextValue extends AppState {
   setRecurringTrainings: (rt: RecurringTraining[]) => void
   setSpecialChallenges: (sc: SpecialChallengeProgress[]) => void
   setPhysicalProfile: (pp: PhysicalProfile) => void
+  addCheckIn: (c: DailyCheckIn) => void
+  addQuizAnswer: (q: QuizAnswer) => void
   setOnboardingComplete: (v: boolean) => void
   syncToCloud: () => Promise<void>
   resetState: () => void
@@ -112,6 +116,8 @@ function createDefaultState(): AppState {
     recurringTrainings: [],
     specialChallenges: [],
     physicalProfile: null,
+    checkIns: [],
+    quizAnswers: [],
     onboardingComplete: false,
   }
 }
@@ -163,6 +169,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setRecurringTrainings: (rt) => update({ recurringTrainings: rt }),
     setSpecialChallenges: (sc) => update({ specialChallenges: sc }),
     setPhysicalProfile: (pp) => update({ physicalProfile: pp }),
+    addCheckIn: (c) => update({ checkIns: [...state.checkIns, c] }),
+    addQuizAnswer: (q) => update({ quizAnswers: [...state.quizAnswers, q] }),
     setOnboardingComplete: (v) => update({ onboardingComplete: v }),
     syncToCloud,
     resetState: () => {

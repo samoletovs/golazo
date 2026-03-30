@@ -59,6 +59,8 @@ export const XP_AWARDS = {
   growthXp: 10, // logging bad match + writing improvement
   streakBonus: 5, // per consecutive day, capped
   streakBonusCap: 50,
+  dailyCheckIn: 10,
+  morningRoutineBonus: 15, // bonus for completing full check-in + challenge + quiz
 } as const
 
 /* ── Rank names (RU primary, translatable via i18n) ────── */

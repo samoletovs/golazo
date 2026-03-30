@@ -16,11 +16,26 @@ import { DiaryPage } from './DiaryPage'
 import type { ScheduleEvent } from '../engine/types'
 import { isPhysicalUpdateDue, daysSinceLastMeasurement } from '../engine/physical'
 import { PhysicalUpdateFlow } from '../components/PhysicalUpdateFlow'
+import { MorningRoutine } from '../components/MorningRoutine'
+import { DailyCheckIn } from '../components/DailyCheckIn'
+import { DailyQuiz } from '../components/DailyQuiz'
+import { LevelUpCelebration } from '../components/LevelUpCelebration'
 
 export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void }) {
   const { t } = useTranslation()
-  const { matches, trainings, xp, profile, schedule, tournaments, physicalProfile } = useApp()
+  const { matches, trainings, xp, profile, schedule, tournaments, physicalProfile, checkIns, quizAnswers } = useApp()
   const rank = getRank(xp.level)
+
+  // Level-up detection
+  const [prevLevel, setPrevLevel] = useState(xp.level)
+  const [showLevelUp, setShowLevelUp] = useState(false)
+
+  useEffect(() => {
+    if (xp.level > prevLevel) {
+      setShowLevelUp(true)
+    }
+    setPrevLevel(xp.level)
+  }, [xp.level, prevLevel])
 
   const seasonGoals = matches.reduce((s, m) => s + m.goals, 0)
   const seasonAssists = matches.reduce((s, m) => s + m.assists, 0)
@@ -116,6 +131,12 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
   const physicalUpdateDue = isPhysicalUpdateDue(lastMeasuredAt) && !physicalDismissed
   const daysSinceMeasurement = daysSinceLastMeasurement(lastMeasuredAt)
 
+  // Morning routine state
+  const [showRoutine, setShowRoutine] = useState(false)
+  const todayCheckedIn = checkIns.some((c) => c.date === today)
+  const todayQuizzed = quizAnswers.some((q) => q.date === today)
+  const routineComplete = todayCheckedIn && todayQuizzed
+
   // Tournament discovery — find shared tournaments for player's teams
   const [discoveredTournaments, setDiscoveredTournaments] = useState<Array<{
     id: string; name: string; startDate: string; endDate: string; location: string;
@@ -150,6 +171,15 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
   return (
     <div className="flex flex-col gap-5 p-4 pb-32">
       <ConfettiBurst trigger={isStreakMilestone} />
+      {/* ── Level Up Celebration ── */}
+      {showLevelUp && (
+        <LevelUpCelebration level={xp.level} onClose={() => setShowLevelUp(false)} />
+      )}
+      {/* ── Morning Routine Overlay ── */}
+      {showRoutine && (
+        <MorningRoutine onClose={() => setShowRoutine(false)} />
+      )}
+
       {/* ── Physical Update Flow ── */}
       {showPhysicalUpdate && (
         <PhysicalUpdateFlow onClose={() => setShowPhysicalUpdate(false)} />
@@ -196,6 +226,30 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
           </p>
         )}
       </div>
+
+      {/* ── Morning Routine CTA ── */}
+      {!routineComplete && (
+        <button
+          className="card-glow tap-target w-full flex items-center gap-3 py-4 animate-fade-up"
+          onClick={() => setShowRoutine(true)}
+        >
+          <span className="text-2xl">☀️</span>
+          <div className="flex-1 text-left">
+            <p className="text-sm font-bold" style={{ fontFamily: 'var(--font-display)' }}>
+              {t('routine.cta', { defaultValue: 'Start morning routine' })}
+            </p>
+            <p className="text-xs mt-0.5" style={{ color: 'var(--color-text-muted)' }}>
+              {t('routine.ctaSub', { defaultValue: 'Check-in · Challenge · Quiz — 2 min' })}
+            </p>
+          </div>
+          <span className="text-xs font-bold px-3 py-1.5 rounded-full" style={{ background: 'var(--color-primary-dark)', color: '#fff' }}>
+            {t('routine.go', { defaultValue: 'Go' })}
+          </span>
+        </button>
+      )}
+
+      {/* ── Standalone Check-in (if routine not used but not checked in) ── */}
+      {routineComplete && <DailyCheckIn />}
 
       {/* ── Hero: Big level + XP showcase — gradient bg ── */}
       <div className="card-hero animate-fade-up relative overflow-hidden text-center py-8 px-6">
@@ -487,6 +541,9 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
           )}
         </div>
       </div>
+
+      {/* ── Quiz of the Day ── */}
+      <DailyQuiz />
 
       {/* ── Training counter (vs last week) ── */}
       <div className="card animate-fade-up animate-stagger-4 flex items-center justify-between">

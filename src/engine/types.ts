@@ -554,3 +554,35 @@ export interface Achievement {
   icon: string
   unlockedAt?: string
 }
+
+/* ── Daily Check-in ───────────────────────────────────────── */
+
+export interface DailyCheckIn {
+  id: string
+  date: string // ISO date (YYYY-MM-DD)
+  mood: EnergyLevel
+  energy: EnergyLevel
+  note?: string
+  createdAt: string
+}
+
+/* ── Quiz ──────────────────────────────────────────────────── */
+
+export type QuizDifficulty = 'u10' | 'u12' | 'u14' | 'u16'
+
+export interface QuizQuestion {
+  id: string
+  questionKey: string // i18n key
+  options: string[] // 4 option i18n keys (or plain text)
+  correctIndex: number // 0-3
+  category: 'rules' | 'history' | 'tactics' | 'nutrition' | 'players'
+  difficulty: QuizDifficulty
+}
+
+export interface QuizAnswer {
+  questionId: string
+  date: string
+  correct: boolean
+  category: string
+  answeredAt: string
+}
