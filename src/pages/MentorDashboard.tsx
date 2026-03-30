@@ -130,7 +130,7 @@ export function MentorDashboard({ onBack }: { onBack?: () => void }) {
         )}
         <div>
           <h2 className="text-lg font-bold" style={{ fontFamily: 'var(--font-display)' }}>
-            {t('mentor.title', { defaultValue: 'Parent Dashboard' })}
+            {t('mentor.title')}
           </h2>
           <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
             {playerName ? t('mentor.subtitle', { defaultValue: `${playerName}'s wellbeing & activity`, name: playerName }) : ''}
@@ -142,7 +142,7 @@ export function MentorDashboard({ onBack }: { onBack?: () => void }) {
       <div className="flex items-center gap-2 px-3 py-2 rounded-xl" style={{ background: '#f0f9ff', border: '1px solid #bae6fd' }}>
         <span className="text-sm">🔒</span>
         <p className="text-xs" style={{ color: '#0369a1' }}>
-          {t('mentor.privacy', { defaultValue: 'You see trends only — diary content stays private.' })}
+          {t('mentor.privacy')}
         </p>
       </div>
 
@@ -167,22 +167,22 @@ export function MentorDashboard({ onBack }: { onBack?: () => void }) {
       <div className="grid grid-cols-3 gap-3">
         <div className="stat-card stat-card-gold">
           <p className="stat-number" style={{ fontSize: '1.75rem', color: '#d97706' }}>{avgMood7}</p>
-          <p className="stat-label">{t('mentor.avgMood', { defaultValue: 'Avg Mood' })}</p>
+          <p className="stat-label">{t('mentor.avgMood')}</p>
         </div>
         <div className="stat-card stat-card-cyan">
           <p className="stat-number" style={{ fontSize: '1.75rem', color: '#0284c7' }}>{avgEnergy7}</p>
-          <p className="stat-label">{t('mentor.avgEnergy', { defaultValue: 'Avg Energy' })}</p>
+          <p className="stat-label">{t('mentor.avgEnergy')}</p>
         </div>
         <div className="stat-card stat-card-green">
           <p className="stat-number" style={{ fontSize: '1.75rem', color: 'var(--color-primary-dark)' }}>{xp.streakDays}</p>
-          <p className="stat-label">{t('mentor.streak', { defaultValue: 'Streak' })}</p>
+          <p className="stat-label">{t('mentor.streak')}</p>
         </div>
       </div>
 
       {/* Mood trend chart */}
       {moodTrend.length > 2 && (
         <div className="card animate-fade-up">
-          <h3 className="text-sm font-bold mb-3">{t('mentor.moodTrend', { defaultValue: 'Mood & Energy (30 days)' })}</h3>
+          <h3 className="text-sm font-bold mb-3">{t('mentor.moodTrend')}</h3>
           <ResponsiveContainer width="100%" height={160}>
             <LineChart data={moodTrend}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
@@ -198,7 +198,7 @@ export function MentorDashboard({ onBack }: { onBack?: () => void }) {
 
       {/* Training consistency */}
       <div className="card animate-fade-up">
-        <h3 className="text-sm font-bold mb-3">{t('mentor.activity', { defaultValue: 'Weekly Activity' })}</h3>
+        <h3 className="text-sm font-bold mb-3">{t('mentor.activity')}</h3>
         <div className="flex flex-col gap-2">
           {weeklyActivity.map((w) => (
             <div key={w.week} className="flex items-center gap-3">
@@ -225,8 +225,8 @@ export function MentorDashboard({ onBack }: { onBack?: () => void }) {
           ))}
         </div>
         <div className="flex gap-4 mt-2">
-          <span className="text-xs flex items-center gap-1"><span className="inline-block w-2 h-2 rounded" style={{ background: 'var(--color-primary)' }} /> {t('log.training', { defaultValue: 'Training' })}</span>
-          <span className="text-xs flex items-center gap-1"><span className="inline-block w-2 h-2 rounded" style={{ background: '#3b82f6' }} /> {t('log.match', { defaultValue: 'Match' })}</span>
+          <span className="text-xs flex items-center gap-1"><span className="inline-block w-2 h-2 rounded" style={{ background: 'var(--color-primary)' }} /> {t('log.training')}</span>
+          <span className="text-xs flex items-center gap-1"><span className="inline-block w-2 h-2 rounded" style={{ background: '#3b82f6' }} /> {t('log.match')}</span>
         </div>
       </div>
 
@@ -235,7 +235,7 @@ export function MentorDashboard({ onBack }: { onBack?: () => void }) {
         <div className="text-center py-8">
           <span className="text-3xl">📊</span>
           <p className="text-sm mt-2" style={{ color: 'var(--color-text-muted)' }}>
-            {t('mentor.noData', { defaultValue: 'No check-in data yet. Encourage daily check-ins!' })}
+            {t('mentor.noData')}
           </p>
         </div>
       )}

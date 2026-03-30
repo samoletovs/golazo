@@ -164,6 +164,28 @@ export function Profile({ onNavigate }: { onNavigate?: (page: string) => void })
             <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{t('log.training')}</p>
           </div>
         </div>
+
+        {/* Activity Streaks */}
+        <div className="flex gap-3 mt-3">
+          {xp.streakDays > 0 && (
+            <div className="flex-1 flex items-center gap-2 px-3 py-2 rounded-xl" style={{ background: '#fef3c7' }}>
+              <span>🔥</span>
+              <div>
+                <p className="text-sm font-bold">{xp.streakDays}</p>
+                <p className="text-[10px]" style={{ color: 'var(--color-text-muted)' }}>{t('dashboard.streak', { days: xp.streakDays })}</p>
+              </div>
+            </div>
+          )}
+          {xp.checkInStreakDays > 0 && (
+            <div className="flex-1 flex items-center gap-2 px-3 py-2 rounded-xl" style={{ background: '#dcfce7' }}>
+              <span>✅</span>
+              <div>
+                <p className="text-sm font-bold">{xp.checkInStreakDays}</p>
+                <p className="text-[10px]" style={{ color: 'var(--color-text-muted)' }}>{t('checkin.streak', { days: xp.checkInStreakDays })}</p>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Export FIFA card */}
@@ -298,7 +320,7 @@ export function Profile({ onNavigate }: { onNavigate?: (page: string) => void })
               className="btn-choice tap-target text-sm text-center w-full flex items-center justify-center gap-2"
               onClick={() => onNavigate('mentor')}
             >
-              👨‍👩‍👦 {t('profile.mentorDashboard', { defaultValue: 'Parent Dashboard' })}
+              👨‍👩‍👦 {t('profile.mentorDashboard')}
             </button>
           )}
 

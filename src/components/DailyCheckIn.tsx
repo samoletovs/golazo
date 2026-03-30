@@ -49,7 +49,7 @@ export function DailyCheckIn({ onComplete, compact }: DailyCheckInProps) {
       <div className={compact ? 'flex items-center gap-2 p-2' : 'card flex items-center gap-3 animate-fade-up'}>
         <span className="text-xl">✅</span>
         <p className="text-sm font-bold" style={{ color: 'var(--color-primary-dark)' }}>
-          {t('checkin.done', { defaultValue: 'Checked in today!' })} +{scaledCheckInXp} XP
+          {t('checkin.done')} +{scaledCheckInXp} XP
         </p>
       </div>
     )
@@ -61,14 +61,14 @@ export function DailyCheckIn({ onComplete, compact }: DailyCheckInProps) {
         <div className="flex items-center gap-2">
           <span className="text-lg">🌤️</span>
           <p className="text-sm font-bold" style={{ fontFamily: 'var(--font-display)' }}>
-            {t('checkin.title', { defaultValue: 'How are you feeling?' })}
+            {t('checkin.title')}
           </p>
         </div>
       )}
 
       {/* Mood */}
       <div>
-        <p className="section-label mb-2">{t('checkin.mood', { defaultValue: 'Mood' })}</p>
+        <p className="section-label mb-2">{t('checkin.mood')}</p>
         <div className="flex gap-2 justify-center">
           {EMOJIS.map((emoji, i) => (
             <button
@@ -86,7 +86,7 @@ export function DailyCheckIn({ onComplete, compact }: DailyCheckInProps) {
 
       {/* Energy */}
       <div>
-        <p className="section-label mb-2">{t('checkin.energy', { defaultValue: 'Energy' })}</p>
+        <p className="section-label mb-2">{t('checkin.energy')}</p>
         <div className="flex gap-2 justify-center">
           {EMOJIS.map((emoji, i) => (
             <button
@@ -108,7 +108,7 @@ export function DailyCheckIn({ onComplete, compact }: DailyCheckInProps) {
           className="w-full rounded-xl p-3 text-sm"
           style={{ resize: 'none' }}
           rows={2}
-          placeholder={t('checkin.notePlaceholder', { defaultValue: 'Anything on your mind?' })}
+          placeholder={t('checkin.notePlaceholder')}
           value={note}
           onChange={(e) => setNote(e.target.value)}
         />
@@ -118,7 +118,7 @@ export function DailyCheckIn({ onComplete, compact }: DailyCheckInProps) {
           style={{ color: 'var(--color-text-muted)' }}
           onClick={() => setShowNote(true)}
         >
-          + {t('checkin.addNote', { defaultValue: 'Add a note' })}
+          + {t('checkin.addNote')}
         </button>
       )}
 
@@ -128,7 +128,7 @@ export function DailyCheckIn({ onComplete, compact }: DailyCheckInProps) {
         onClick={handleSave}
         disabled={mood === null || energy === null}
       >
-        {t('checkin.save', { defaultValue: 'Check in' })} (+{scaledCheckInXp} XP)
+        {t('checkin.save')} (+{scaledCheckInXp} XP)
       </button>
     </div>
   )

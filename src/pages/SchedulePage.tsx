@@ -676,7 +676,7 @@ export function SchedulePage() {
                     )}
                     {ev.id.startsWith('shared-') && (
                       <span className="text-[0.55rem] px-1.5 py-0.5 rounded-full" style={{ background: 'var(--color-primary-bg, #dcfce7)', color: 'var(--color-primary-dark, #166534)' }}>
-                        👥 {t('schedule.teamShared', { defaultValue: 'Team' })}
+                        👥 {t('schedule.teamShared')}
                       </span>
                     )}
                   </div>

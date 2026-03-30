@@ -74,7 +74,7 @@ export function DiaryPage({ onBack, inline, onSaved }: DiaryPageProps) {
     setXp(awardXp(xp, XP_AWARDS.diaryEntry, today, ageTier))
     setSaved(true)
     onSaved?.()
-    if (!inline) setTimeout(() => setSaved(false), 3000)
+    if (!inline) setTimeout(() => { setSaved(false); onBack?.() }, 2000)
   }
 
   if (saved && !inline) {
@@ -118,7 +118,7 @@ export function DiaryPage({ onBack, inline, onSaved }: DiaryPageProps) {
 
       {/* Guided prompts (new structured questions) */}
       <div>
-        <p className="section-label mb-2">{t('diary.guidedTitle', { defaultValue: 'Guided reflection' })}</p>
+        <p className="section-label mb-2">{t('diary.guidedTitle')}</p>
         <div className="flex flex-col gap-2">
           {GUIDED_PROMPTS.map((gp) => (
             <button
@@ -140,7 +140,7 @@ export function DiaryPage({ onBack, inline, onSaved }: DiaryPageProps) {
 
       {/* Mental model prompt shortcuts */}
       <div>
-        <p className="section-label mb-2">{t('diary.promptTitle', { defaultValue: '4C Framework' })}</p>
+        <p className="section-label mb-2">{t('diary.promptTitle')}</p>
         <div className="flex flex-wrap gap-2">
           {PROMPTS.map((p) => (
             <button
@@ -184,7 +184,7 @@ export function DiaryPage({ onBack, inline, onSaved }: DiaryPageProps) {
 
       {/* Mood context */}
       <div>
-        <p className="section-label mb-2">{t('diary.moodContext', { defaultValue: 'What is this about?' })}</p>
+        <p className="section-label mb-2">{t('diary.moodContext')}</p>
         <div className="flex flex-wrap gap-2">
           {MOOD_CONTEXTS.map((ctx) => (
             <button
@@ -213,7 +213,7 @@ export function DiaryPage({ onBack, inline, onSaved }: DiaryPageProps) {
           />
         </button>
         <p className="text-xs" style={{ color: 'var(--color-text-secondary)' }}>
-          {t('diary.aiConsent', { defaultValue: 'Let AI Coach read this entry for better advice' })}
+          {t('diary.aiConsent')}
         </p>
       </div>
 

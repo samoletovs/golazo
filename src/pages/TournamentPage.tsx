@@ -1,12 +1,15 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
-import { awardXp, XP_AWARDS } from '../engine/xp'
+import { awardXp, XP_AWARDS, scaleXp } from '../engine/xp'
+import { getAgeTier } from '../engine/types'
 import type { Tournament } from '../engine/types'
 
 export function TournamentPage({ onBack }: { onBack?: () => void }) {
   const { t } = useTranslation()
-  const { xp, setXp, addTournament } = useApp()
+  const { xp, setXp, addTournament, profile } = useApp()
+  const ageTier = profile?.birthDate ? getAgeTier(profile.birthDate) : undefined
+  const scaledTournamentXp = scaleXp(XP_AWARDS.completeTournament, ageTier)
   const [saved, setSaved] = useState(false)
   const today = new Date().toISOString().split('T')[0]
 
@@ -29,7 +32,7 @@ export function TournamentPage({ onBack }: { onBack?: () => void }) {
       createdAt: new Date().toISOString(),
     }
     addTournament(entry)
-    setXp(awardXp(xp, XP_AWARDS.completeTournament, today))
+    setXp(awardXp(xp, XP_AWARDS.completeTournament, today, ageTier))
     setSaved(true)
     setTimeout(() => setSaved(false), 3000)
   }
@@ -39,7 +42,7 @@ export function TournamentPage({ onBack }: { onBack?: () => void }) {
       <div className="flex flex-col items-center justify-center gap-4 p-8 pb-32 animate-fade-up">
         <span className="text-5xl animate-float">🏆</span>
         <p className="text-lg font-bold" style={{ color: 'var(--color-primary-dark)' }}>
-          {t('tournament.completed', { xp: 50 })}
+          {t('tournament.completed', { xp: scaledTournamentXp })}
         </p>
       </div>
     )

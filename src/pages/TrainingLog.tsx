@@ -70,7 +70,7 @@ export function TrainingLog({ onBack, inline, onSaved }: TrainingLogProps) {
     setXp(awardXp(xp, XP_AWARDS.logTraining, today, ageTier))
     setSaved(true)
     onSaved?.()
-    if (!inline) setTimeout(() => setSaved(false), 3000)
+    if (!inline) setTimeout(() => { setSaved(false); onBack?.() }, 2000)
   }
 
   if (saved && !inline) {
@@ -170,7 +170,7 @@ export function TrainingLog({ onBack, inline, onSaved }: TrainingLogProps) {
         style={{ color: 'var(--color-primary-dark)' }}
         onClick={() => setShowDetails(!showDetails)}
       >
-        {showDetails ? t('common.lessDetails', { defaultValue: '▲ Less details' }) : t('common.moreDetails', { defaultValue: '▼ More details' })}
+        {showDetails ? t('common.lessDetails') : t('common.moreDetails')}
       </button>
 
       {showDetails && (

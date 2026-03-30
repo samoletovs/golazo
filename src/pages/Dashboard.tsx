@@ -23,7 +23,7 @@ import { WeeklySummary } from '../components/WeeklySummary'
 
 export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void }) {
   const { t } = useTranslation()
-  const { matches, trainings, xp, profile, schedule, tournaments, physicalProfile, checkIns, quizAnswers } = useApp()
+  const { matches, trainings, xp, profile, schedule, tournaments, physicalProfile, checkIns, quizAnswers, recurringTrainings } = useApp()
   const rank = getRank(xp.level)
 
   // Age tier for adaptive UI
@@ -57,12 +57,33 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
   const todayTrainings = trainings.filter(tr => tr.date.startsWith(today)).length
   const todayGoals = matches.filter(m => m.date.startsWith(today)).reduce((s, m) => s + m.goals, 0)
 
-  // Today's scheduled events (sorted by start time)
+  // Today's scheduled events (sorted by start time) — includes recurring trainings
   const todayEvents = useMemo(() => {
-    return schedule
+    const manualEvents = schedule
       .filter((ev: ScheduleEvent) => ev.date === today)
-      .sort((a: ScheduleEvent, b: ScheduleEvent) => (a.startTime ?? '').localeCompare(b.startTime ?? ''))
-  }, [schedule, today])
+
+    // Expand recurring trainings that match today's day of week
+    const todayDow = new Date(today).getDay()
+    const recurringEvents: ScheduleEvent[] = (recurringTrainings ?? [])
+      .filter((rt) => rt.active && rt.dayOfWeek === todayDow)
+      .map((rt) => ({
+        id: `recurring-${rt.id}`,
+        familyId: '',
+        playerId: 'default',
+        type: 'training' as const,
+        title: rt.name,
+        date: today,
+        startTime: rt.startTime,
+        endTime: rt.endTime,
+        location: rt.location,
+        trainingType: rt.trainingType,
+        createdBy: 'recurring',
+        createdAt: rt.createdAt,
+      }))
+
+    return [...manualEvents, ...recurringEvents]
+      .sort((a, b) => (a.startTime ?? '').localeCompare(b.startTime ?? ''))
+  }, [schedule, recurringTrainings, today])
 
   // "vs last week" comparisons
   const vsLastWeek = useMemo(() => {
@@ -244,7 +265,7 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
           <div className="flex items-center gap-2">
             <span className="text-2xl">🎉</span>
             <p className="text-sm font-bold" style={{ fontFamily: 'var(--font-display)' }}>
-              {t('dashboard.welcomeTitle', { defaultValue: 'Welcome to Golazo!' })}
+              {t('dashboard.welcomeTitle')}
             </p>
           </div>
           <p className="text-xs leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
@@ -253,15 +274,15 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-2 text-xs">
               <span>1️⃣</span>
-              <span>{t('dashboard.welcomeStep1', { defaultValue: 'Complete your morning routine (2 min)' })}</span>
+              <span>{t('dashboard.welcomeStep1')}</span>
             </div>
             <div className="flex items-center gap-2 text-xs">
               <span>2️⃣</span>
-              <span>{t('dashboard.welcomeStep2', { defaultValue: 'Log your first training session' })}</span>
+              <span>{t('dashboard.welcomeStep2')}</span>
             </div>
             <div className="flex items-center gap-2 text-xs">
               <span>3️⃣</span>
-              <span>{t('dashboard.welcomeStep3', { defaultValue: 'Explore exercises in the Learn tab' })}</span>
+              <span>{t('dashboard.welcomeStep3')}</span>
             </div>
           </div>
         </div>
@@ -276,14 +297,14 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
           <span className="text-2xl">☀️</span>
           <div className="flex-1 text-left">
             <p className="text-sm font-bold" style={{ fontFamily: 'var(--font-display)' }}>
-              {t('routine.cta', { defaultValue: 'Start morning routine' })}
+              {t('routine.cta')}
             </p>
             <p className="text-xs mt-0.5" style={{ color: 'var(--color-text-muted)' }}>
-              {t('routine.ctaSub', { defaultValue: 'Check-in · Challenge · Quiz — 2 min' })}
+              {t('routine.ctaSub')}
             </p>
           </div>
           <span className="text-xs font-bold px-3 py-1.5 rounded-full" style={{ background: 'var(--color-primary-dark)', color: '#fff' }}>
-            {t('routine.go', { defaultValue: 'Go' })}
+            {t('routine.go')}
           </span>
         </button>
       )}
@@ -558,14 +579,14 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
         <div className="card animate-fade-up animate-stagger-2" style={{ border: '2px solid var(--color-primary-light, #22c55e)', background: 'rgba(34, 197, 94, 0.04)' }}>
           <div className="flex items-center gap-2 mb-3">
             <span className="text-lg">🏆</span>
-            <p className="section-label">{t('dashboard.tournamentDiscovery', { defaultValue: 'Your team is playing!' })}</p>
+            <p className="section-label">{t('dashboard.tournamentDiscovery')}</p>
           </div>
           {discoveredTournaments.slice(0, 2).map((st) => (
             <div key={st.id} className="flex items-center gap-3 py-2" style={{ borderBottom: '1px solid var(--color-glass-border, #e5e7eb)' }}>
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-bold truncate">{st.name}</p>
                 <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
-                  {st.startDate} · {st.location} · {t('dashboard.teammates', { count: st.participantCount, defaultValue: `${st.participantCount} players joined` })}
+                  {st.startDate} · {st.location} · {t('dashboard.teammates', { count: st.participantCount })}
                 </p>
               </div>
               {onNavigate && (
@@ -574,7 +595,7 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
                   style={{ background: 'var(--color-primary-dark)', color: '#fff' }}
                   onClick={() => onNavigate('schedule')}
                 >
-                  {t('dashboard.joinTournament', { defaultValue: 'Join' })}
+                  {t('dashboard.joinTournament')}
                 </button>
               )}
             </div>

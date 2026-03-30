@@ -38,7 +38,7 @@ export function LevelUpCelebration({ level, onClose }: LevelUpCelebrationProps) 
       >
         <span className="text-5xl animate-float">🎉</span>
         <p className="text-2xl font-black" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-primary-dark)' }}>
-          {t('levelUp.title', { defaultValue: 'Level Up!' })}
+          {t('levelUp.title')}
         </p>
         <p className="stat-number text-gradient-green" style={{ fontSize: '3rem' }}>
           {level}
@@ -47,7 +47,7 @@ export function LevelUpCelebration({ level, onClose }: LevelUpCelebrationProps) 
           {t(rank.key)}
         </p>
         <button className="btn-primary tap-target mt-2" onClick={onClose}>
-          {t('levelUp.continue', { defaultValue: 'Awesome!' })}
+          {t('levelUp.continue')}
         </button>
       </div>
     </div>

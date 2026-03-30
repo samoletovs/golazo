@@ -65,7 +65,7 @@ export function MorningRoutine({ onClose }: MorningRoutineProps) {
         <div className="flex items-center gap-2">
           <span className="text-lg">☀️</span>
           <p className="text-sm font-bold" style={{ fontFamily: 'var(--font-display)' }}>
-            {t('routine.title', { defaultValue: 'Morning Routine' })}
+            {t('routine.title')}
           </p>
         </div>
         <button
@@ -101,7 +101,7 @@ export function MorningRoutine({ onClose }: MorningRoutineProps) {
           {step === 'checkin' && (
             <div className="animate-fade-up">
               <p className="text-lg font-bold mb-4" style={{ fontFamily: 'var(--font-display)' }}>
-                🌤️ {t('checkin.title', { defaultValue: 'How are you feeling?' })}
+                🌤️ {t('checkin.title')}
               </p>
               <DailyCheckIn
                 compact
@@ -113,7 +113,7 @@ export function MorningRoutine({ onClose }: MorningRoutineProps) {
           {step === 'challenge' && (
             <div className="animate-fade-up">
               <p className="text-lg font-bold mb-4" style={{ fontFamily: 'var(--font-display)' }}>
-                🎯 {t('routine.challengeTitle', { defaultValue: 'Daily Challenge' })}
+                🎯 {t('routine.challengeTitle')}
               </p>
               <div className="card flex flex-col gap-3">
                 <p className="text-sm font-bold">{t(drill.nameKey)}</p>
@@ -134,8 +134,8 @@ export function MorningRoutine({ onClose }: MorningRoutineProps) {
                   disabled={challengeDone}
                 >
                   {challengeDone
-                    ? `✅ ${t('routine.challengeComplete', { defaultValue: 'Done!' })}`
-                    : t('routine.markDone', { defaultValue: 'Mark as done' })}
+                    ? `✅ ${t('routine.challengeComplete')}`
+                    : t('routine.markDone')}
                 </button>
               </div>
             </div>
@@ -144,7 +144,7 @@ export function MorningRoutine({ onClose }: MorningRoutineProps) {
           {step === 'quiz' && (
             <div className="animate-fade-up">
               <p className="text-lg font-bold mb-4" style={{ fontFamily: 'var(--font-display)' }}>
-                🧠 {t('quiz.title', { defaultValue: 'Quiz of the Day' })}
+                🧠 {t('quiz.title')}
               </p>
               <DailyQuiz compact onComplete={() => setTimeout(() => finishRoutine(), 500)} />
             </div>
@@ -154,13 +154,13 @@ export function MorningRoutine({ onClose }: MorningRoutineProps) {
             <div className="flex flex-col items-center justify-center gap-4 py-16 animate-fade-up">
               <span className="text-6xl animate-float">🎉</span>
               <p className="text-xl font-bold" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-primary-dark)' }}>
-                {t('routine.complete', { defaultValue: 'Routine complete!' })}
+                {t('routine.complete')}
               </p>
               <p className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>
-                +{XP_AWARDS.morningRoutineBonus} XP {t('routine.bonus', { defaultValue: 'bonus' })}
+                +{XP_AWARDS.morningRoutineBonus} XP {t('routine.bonus')}
               </p>
               <button className="btn-primary tap-target mt-4" onClick={onClose}>
-                {t('routine.backHome', { defaultValue: 'Back to home' })}
+                {t('routine.backHome')}
               </button>
             </div>
           )}

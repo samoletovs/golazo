@@ -65,8 +65,8 @@ export function DailyQuiz({ onComplete, compact }: DailyQuizProps) {
         <span className="text-xl">{todayAnswer?.correct ? '✅' : '❌'}</span>
         <p className="text-sm font-bold" style={{ color: todayAnswer?.correct ? 'var(--color-primary-dark)' : 'var(--color-danger)' }}>
           {todayAnswer?.correct
-            ? t('quiz.alreadyCorrect', { defaultValue: 'Quiz done — nice one!' })
-            : t('quiz.alreadyWrong', { defaultValue: 'Quiz done — better luck tomorrow!' })}
+            ? t('quiz.alreadyCorrect')
+            : t('quiz.alreadyWrong')}
         </p>
       </div>
     )
@@ -77,7 +77,7 @@ export function DailyQuiz({ onComplete, compact }: DailyQuizProps) {
       {!compact && (
         <div className="flex items-center gap-2">
           <span className="text-lg">🧠</span>
-          <p className="section-label">{t('quiz.title', { defaultValue: 'Quiz of the Day' })}</p>
+          <p className="section-label">{t('quiz.title')}</p>
         </div>
       )}
 
@@ -119,7 +119,7 @@ export function DailyQuiz({ onComplete, compact }: DailyQuizProps) {
           <span className="text-lg">{selected === question.correctIndex ? '🎉' : '💪'}</span>
           <p className="text-xs font-bold" style={{ color: selected === question.correctIndex ? 'var(--color-primary-dark)' : 'var(--color-text-secondary)' }}>
             {selected === question.correctIndex
-              ? t('quiz.correct', { defaultValue: `Correct! +${XP_AWARDS.quizCorrect} XP` })
+              ? t('quiz.correct')
               : t('quiz.wrong', { defaultValue: 'Not this time — you\'ll get it tomorrow!' })}
           </p>
         </div>

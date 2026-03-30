@@ -267,8 +267,8 @@ export function ProgressPage() {
           <div>
             <p className="text-sm font-bold">
               {burnoutRisk.level === 'high'
-                ? t('progress.burnoutHigh', { defaultValue: 'Rest day recommended' })
-                : t('progress.burnoutMedium', { defaultValue: 'Watch your energy' })}
+                ? t('progress.burnoutHigh')
+                : t('progress.burnoutMedium')}
             </p>
             <p className="text-xs mt-0.5" style={{ color: 'var(--color-text-secondary)' }}>
               {t('progress.burnoutDetail', {
@@ -285,20 +285,20 @@ export function ProgressPage() {
       {/* ── Mood & Energy Trend ── */}
       {moodTrend.length > 2 && (
         <div className="card animate-fade-up">
-          <h2 className="text-sm font-bold mb-3">{t('progress.moodTrend', { defaultValue: 'Mood & Energy' })}</h2>
+          <h2 className="text-sm font-bold mb-3">{t('progress.moodTrend')}</h2>
           <ResponsiveContainer width="100%" height={160}>
             <LineChart data={moodTrend}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
               <XAxis dataKey="date" tick={{ fontSize: 9, fill: '#94a3b8' }} axisLine={false} tickLine={false} />
               <YAxis domain={[1, 5]} ticks={[1, 2, 3, 4, 5]} tick={{ fontSize: 10, fill: '#94a3b8' }} width={20} axisLine={false} tickLine={false} />
               <Tooltip contentStyle={{ fontSize: 12, borderRadius: 12, border: 'none', boxShadow: '0 4px 16px rgba(0,0,0,0.1)' }} />
-              <Line type="monotone" dataKey="mood" stroke="#f59e0b" strokeWidth={2.5} dot={{ r: 3, fill: '#f59e0b', stroke: '#fff', strokeWidth: 2 }} name={t('checkin.mood', { defaultValue: 'Mood' })} />
-              <Line type="monotone" dataKey="energy" stroke="#3b82f6" strokeWidth={2.5} dot={{ r: 3, fill: '#3b82f6', stroke: '#fff', strokeWidth: 2 }} name={t('checkin.energy', { defaultValue: 'Energy' })} />
+              <Line type="monotone" dataKey="mood" stroke="#f59e0b" strokeWidth={2.5} dot={{ r: 3, fill: '#f59e0b', stroke: '#fff', strokeWidth: 2 }} name={t('checkin.mood')} />
+              <Line type="monotone" dataKey="energy" stroke="#3b82f6" strokeWidth={2.5} dot={{ r: 3, fill: '#3b82f6', stroke: '#fff', strokeWidth: 2 }} name={t('checkin.energy')} />
             </LineChart>
           </ResponsiveContainer>
           <div className="flex justify-center gap-4 mt-2">
-            <span className="text-xs flex items-center gap-1"><span className="inline-block w-2 h-2 rounded-full" style={{ background: '#f59e0b' }} /> {t('checkin.mood', { defaultValue: 'Mood' })}</span>
-            <span className="text-xs flex items-center gap-1"><span className="inline-block w-2 h-2 rounded-full" style={{ background: '#3b82f6' }} /> {t('checkin.energy', { defaultValue: 'Energy' })}</span>
+            <span className="text-xs flex items-center gap-1"><span className="inline-block w-2 h-2 rounded-full" style={{ background: '#f59e0b' }} /> {t('checkin.mood')}</span>
+            <span className="text-xs flex items-center gap-1"><span className="inline-block w-2 h-2 rounded-full" style={{ background: '#3b82f6' }} /> {t('checkin.energy')}</span>
           </div>
         </div>
       )}
@@ -306,15 +306,15 @@ export function ProgressPage() {
       {/* ── Mood vs Performance ── */}
       {moodPerformance.length > 2 && (
         <div className="card animate-fade-up">
-          <h2 className="text-sm font-bold mb-3">{t('progress.moodPerformance', { defaultValue: 'Mood vs Performance' })}</h2>
+          <h2 className="text-sm font-bold mb-3">{t('progress.moodPerformance')}</h2>
           <ResponsiveContainer width="100%" height={160}>
             <LineChart data={moodPerformance}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
               <XAxis dataKey="match" tick={{ fontSize: 9, fill: '#94a3b8' }} axisLine={false} tickLine={false} />
               <YAxis domain={[0, 10]} tick={{ fontSize: 10, fill: '#94a3b8' }} width={20} axisLine={false} tickLine={false} />
               <Tooltip contentStyle={{ fontSize: 12, borderRadius: 12, border: 'none', boxShadow: '0 4px 16px rgba(0,0,0,0.1)' }} />
-              <Line type="monotone" dataKey="mood" stroke="#f59e0b" strokeWidth={2} dot={{ r: 3, fill: '#f59e0b', stroke: '#fff', strokeWidth: 2 }} name={t('checkin.mood', { defaultValue: 'Mood' })} />
-              <Line type="monotone" dataKey="rating" stroke="var(--color-primary)" strokeWidth={2.5} dot={{ r: 3, fill: 'var(--color-primary)', stroke: '#fff', strokeWidth: 2 }} name={t('progress.selfRating', { defaultValue: 'Self Rating' })} />
+              <Line type="monotone" dataKey="mood" stroke="#f59e0b" strokeWidth={2} dot={{ r: 3, fill: '#f59e0b', stroke: '#fff', strokeWidth: 2 }} name={t('checkin.mood')} />
+              <Line type="monotone" dataKey="rating" stroke="var(--color-primary)" strokeWidth={2.5} dot={{ r: 3, fill: 'var(--color-primary)', stroke: '#fff', strokeWidth: 2 }} name={t('progress.selfRating')} />
             </LineChart>
           </ResponsiveContainer>
         </div>

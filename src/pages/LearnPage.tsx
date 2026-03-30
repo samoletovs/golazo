@@ -1,4 +1,4 @@
-import { useState, lazy, Suspense } from 'react'
+import { useState, useEffect, lazy, Suspense } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
 import { awardXp, XP_AWARDS } from '../engine/xp'
@@ -30,7 +30,14 @@ type LearnTab = 'articles' | 'programs' | 'exercises'
 export function LearnContent() {
   const { t } = useTranslation()
   const { profile, readArticles, markArticleRead, xp, setXp, programProgress, updateProgramProgress } = useApp()
-  const [tab, setTab] = useState<LearnTab>('articles')
+  const [tab, setTab] = useState<LearnTab>(() => {
+    const saved = localStorage.getItem('golazo-learn-tab') as LearnTab | null
+    return saved && ['articles', 'programs', 'exercises'].includes(saved) ? saved : 'articles'
+  })
+
+  useEffect(() => {
+    localStorage.setItem('golazo-learn-tab', tab)
+  }, [tab])
   const [categoryFilter, setCategoryFilter] = useState<ArticleCategory | 'all'>('all')
   const [expandedArticle, setExpandedArticle] = useState<string | null>(null)
   const [expandedProgram, setExpandedProgram] = useState<string | null>(null)
@@ -86,7 +93,7 @@ export function LearnContent() {
 
   return (
     <div className="flex flex-col gap-4 p-4 pb-32">
-      <h2 className="text-xl font-extrabold">{t('nav.learn', { defaultValue: 'Learn' })}</h2>
+      <h2 className="text-xl font-extrabold">{t('nav.learn')}</h2>
 
       {/* Tab switcher */}
       <div className="flex gap-2">
@@ -178,7 +185,7 @@ export function LearnContent() {
                           className="btn-primary tap-target w-full mt-3 text-sm"
                           onClick={() => handleReadArticle(article)}
                         >
-                          {t('learn.markRead', { defaultValue: 'Mark as read' })} (+{XP_AWARDS.completeExercise} XP)
+                          {t('learn.markRead')} (+{XP_AWARDS.completeExercise} XP)
                         </button>
                       )}
                     </div>
@@ -191,7 +198,7 @@ export function LearnContent() {
               <div className="text-center py-8">
                 <span className="text-3xl">📚</span>
                 <p className="text-sm mt-2" style={{ color: 'var(--color-text-muted)' }}>
-                  {t('learn.noArticles', { defaultValue: 'No articles in this category yet.' })}
+                  {t('learn.noArticles')}
                 </p>
               </div>
             )}
@@ -202,7 +209,7 @@ export function LearnContent() {
             <div className="flex items-center gap-2">
               <span className="text-lg">📊</span>
               <p className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>
-                {t('learn.readProgress', { defaultValue: 'Articles read' })}
+                {t('learn.readProgress')}
               </p>
             </div>
             <span className="stat-pill stat-pill-green text-sm font-black">
@@ -235,7 +242,7 @@ export function LearnContent() {
                       {isComplete ? '🏆 ' : ''}{program.titleKey}
                     </p>
                     <p className="text-xs mt-0.5" style={{ color: 'var(--color-text-muted)' }}>
-                      {program.durationWeeks} {t('learn.weeks', { defaultValue: 'weeks' })} · {program.category}
+                      {program.durationWeeks} {t('learn.weeks')} · {program.category}
                     </p>
                     {isStarted && progress && (
                       <div className="mt-2">
@@ -249,7 +256,7 @@ export function LearnContent() {
                           />
                         </div>
                         <p className="text-[10px] mt-1 font-data" style={{ color: 'var(--color-text-muted)' }}>
-                          {progress.completedDays} / {progress.totalDays} {t('learn.days', { defaultValue: 'days' })}
+                          {progress.completedDays} / {progress.totalDays} {t('learn.days')}
                         </p>
                       </div>
                     )}
@@ -266,7 +273,7 @@ export function LearnContent() {
                         className="btn-primary tap-target w-full mt-3 text-sm"
                         onClick={() => handleStartProgram(program)}
                       >
-                        {t('learn.startProgram', { defaultValue: 'Start program' })}
+                        {t('learn.startProgram')}
                       </button>
                     )}
                     {isStarted && !isComplete && (
@@ -276,7 +283,7 @@ export function LearnContent() {
                         disabled={loggedToday}
                       >
                         {loggedToday
-                          ? `✅ ${t('learn.loggedToday', { defaultValue: 'Logged today' })}`
+                          ? `✅ ${t('learn.loggedToday')}`
                           : `${t('learn.logDay', { defaultValue: 'Log today\'s session' })} (+${XP_AWARDS.completeExercise} XP)`}
                       </button>
                     )}
@@ -284,7 +291,7 @@ export function LearnContent() {
                       <div className="flex items-center gap-2 mt-3 p-3 rounded-xl" style={{ background: 'var(--color-primary-bg-subtle)' }}>
                         <span className="text-lg">🏆</span>
                         <p className="text-sm font-bold" style={{ color: 'var(--color-primary-dark)' }}>
-                          {t('learn.programComplete', { defaultValue: 'Program completed!' })}
+                          {t('learn.programComplete')}
                         </p>
                       </div>
                     )}
