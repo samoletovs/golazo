@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
-import { awardXp, XP_AWARDS } from '../engine/xp'
+import { awardXp, XP_AWARDS, scaleXp } from '../engine/xp'
+import { getAgeTier } from '../engine/types'
 import type { DiaryEntry, EnergyLevel } from '../engine/types'
 
 const PROMPTS = [
@@ -38,7 +39,9 @@ export interface DiaryPageProps {
 
 export function DiaryPage({ onBack, inline, onSaved }: DiaryPageProps) {
   const { t } = useTranslation()
-  const { xp, setXp, addDiary } = useApp()
+  const { xp, setXp, addDiary, profile } = useApp()
+  const ageTier = profile?.birthDate ? getAgeTier(profile.birthDate) : undefined
+  const scaledDiaryXp = scaleXp(XP_AWARDS.diaryEntry, ageTier)
   const [saved, setSaved] = useState(false)
   const today = new Date().toISOString().split('T')[0]
 
@@ -68,7 +71,7 @@ export function DiaryPage({ onBack, inline, onSaved }: DiaryPageProps) {
       createdAt: new Date().toISOString(),
     }
     addDiary(entry)
-    setXp(awardXp(xp, XP_AWARDS.diaryEntry, today))
+    setXp(awardXp(xp, XP_AWARDS.diaryEntry, today, ageTier))
     setSaved(true)
     onSaved?.()
     if (!inline) setTimeout(() => setSaved(false), 3000)
@@ -79,7 +82,7 @@ export function DiaryPage({ onBack, inline, onSaved }: DiaryPageProps) {
       <div className="flex flex-col items-center justify-center gap-4 p-8 pb-32 animate-fade-up">
         <span className="text-5xl animate-float">📝</span>
         <p className="text-lg font-bold" style={{ color: 'var(--color-primary-dark)' }}>
-          {t('diary.saved', { xp: 15 })}
+          {t('diary.saved', { xp: scaledDiaryXp })}
         </p>
       </div>
     )
@@ -90,7 +93,7 @@ export function DiaryPage({ onBack, inline, onSaved }: DiaryPageProps) {
       <div className="flex items-center gap-2 p-3 rounded-xl" style={{ background: 'var(--color-primary-bg-subtle)' }}>
         <span className="text-xl">✅</span>
         <p className="text-sm font-bold" style={{ color: 'var(--color-primary-dark)' }}>
-          {t('diary.saved', { xp: 15 })}
+          {t('diary.saved', { xp: scaledDiaryXp })}
         </p>
       </div>
     )
@@ -220,7 +223,7 @@ export function DiaryPage({ onBack, inline, onSaved }: DiaryPageProps) {
         disabled={!text.trim()}
         aria-label={t('diary.save')}
       >
-        {t('diary.save')} (+15 XP)
+        {t('diary.save')} (+{scaledDiaryXp} XP)
       </button>
     </div>
   )

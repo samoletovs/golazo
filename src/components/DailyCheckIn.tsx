@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
-import { awardCheckInXp, XP_AWARDS } from '../engine/xp'
+import { awardCheckInXp, XP_AWARDS, scaleXp } from '../engine/xp'
+import { getAgeTier } from '../engine/types'
 import type { EnergyLevel, DailyCheckIn as DailyCheckInType } from '../engine/types'
 
 const EMOJIS = ['😴', '😐', '🙂', '😄', '🔥']
@@ -13,7 +14,9 @@ interface DailyCheckInProps {
 
 export function DailyCheckIn({ onComplete, compact }: DailyCheckInProps) {
   const { t } = useTranslation()
-  const { xp, setXp, checkIns, addCheckIn } = useApp()
+  const { xp, setXp, checkIns, addCheckIn, profile } = useApp()
+  const ageTier = profile?.birthDate ? getAgeTier(profile.birthDate) : undefined
+  const scaledCheckInXp = scaleXp(XP_AWARDS.dailyCheckIn, ageTier)
 
   const today = new Date().toISOString().slice(0, 10)
   const alreadyCheckedIn = checkIns.some((c) => c.date === today)
@@ -36,7 +39,7 @@ export function DailyCheckIn({ onComplete, compact }: DailyCheckInProps) {
       createdAt: new Date().toISOString(),
     }
     addCheckIn(entry)
-    setXp(awardCheckInXp(xp, XP_AWARDS.dailyCheckIn, today))
+    setXp(awardCheckInXp(xp, XP_AWARDS.dailyCheckIn, today, ageTier))
     setSaved(true)
     onComplete?.()
   }
@@ -46,7 +49,7 @@ export function DailyCheckIn({ onComplete, compact }: DailyCheckInProps) {
       <div className={compact ? 'flex items-center gap-2 p-2' : 'card flex items-center gap-3 animate-fade-up'}>
         <span className="text-xl">✅</span>
         <p className="text-sm font-bold" style={{ color: 'var(--color-primary-dark)' }}>
-          {t('checkin.done', { defaultValue: 'Checked in today!' })} +{XP_AWARDS.dailyCheckIn} XP
+          {t('checkin.done', { defaultValue: 'Checked in today!' })} +{scaledCheckInXp} XP
         </p>
       </div>
     )
@@ -125,7 +128,7 @@ export function DailyCheckIn({ onComplete, compact }: DailyCheckInProps) {
         onClick={handleSave}
         disabled={mood === null || energy === null}
       >
-        {t('checkin.save', { defaultValue: 'Check in' })} (+{XP_AWARDS.dailyCheckIn} XP)
+        {t('checkin.save', { defaultValue: 'Check in' })} (+{scaledCheckInXp} XP)
       </button>
     </div>
   )

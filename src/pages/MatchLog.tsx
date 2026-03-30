@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
-import { awardXp, XP_AWARDS } from '../engine/xp'
+import { awardXp, XP_AWARDS, scaleXp } from '../engine/xp'
 import { TeamPicker } from '../components/TeamPicker'
 import { getMatchDurationRecommendation } from '../engine/footballStandards'
+import { getAgeTier } from '../engine/types'
 import type { Position, EnergyLevel, MatchEntry } from '../engine/types'
 
 const POSITIONS: { key: Position; label: string }[] = [
@@ -26,6 +27,8 @@ export function MatchLog({ onBack, inline, prefill, onSaved }: MatchLogProps) {
   const { t } = useTranslation()
   const { xp, setXp, addMatch, profile } = useApp()
   const durationRecommendation = getMatchDurationRecommendation(profile?.birthDate)
+  const ageTier = profile?.birthDate ? getAgeTier(profile.birthDate) : undefined
+  const scaledMatchXp = scaleXp(XP_AWARDS.logMatch, ageTier)
   const [saved, setSaved] = useState(false)
   const [showDetails, setShowDetails] = useState(false)
 
@@ -86,7 +89,7 @@ export function MatchLog({ onBack, inline, prefill, onSaved }: MatchLogProps) {
     if (selfRating <= 4 && toImprove.length > 0) {
       totalXp += XP_AWARDS.growthXp
     }
-    setXp(awardXp(xp, totalXp, today))
+    setXp(awardXp(xp, totalXp, today, ageTier))
     setSaved(true)
     onSaved?.()
     if (!inline) setTimeout(() => setSaved(false), 3000)
@@ -97,7 +100,7 @@ export function MatchLog({ onBack, inline, prefill, onSaved }: MatchLogProps) {
       <div className="flex flex-col items-center justify-center gap-4 p-8 pb-32 animate-fade-up">
         <span className="text-5xl animate-float">⚽</span>
         <p className="text-lg font-bold" style={{ color: 'var(--color-primary-dark)' }}>
-          {t('match.saved', { xp: XP_AWARDS.logMatch })}
+          {t('match.saved', { xp: scaledMatchXp })}
         </p>
       </div>
     )
@@ -108,7 +111,7 @@ export function MatchLog({ onBack, inline, prefill, onSaved }: MatchLogProps) {
       <div className="flex items-center gap-2 p-3 rounded-xl" style={{ background: 'var(--color-primary-bg-subtle)' }}>
         <span className="text-xl">✅</span>
         <p className="text-sm font-bold" style={{ color: 'var(--color-primary-dark)' }}>
-          {t('match.saved', { xp: XP_AWARDS.logMatch })}
+          {t('match.saved', { xp: scaledMatchXp })}
         </p>
       </div>
     )
@@ -300,7 +303,7 @@ export function MatchLog({ onBack, inline, prefill, onSaved }: MatchLogProps) {
         disabled={!opponent}
         aria-label={t('match.save')}
       >
-        {t('match.save')} (+{XP_AWARDS.logMatch} XP)
+        {t('match.save')} (+{scaledMatchXp} XP)
       </button>
     </div>
   )

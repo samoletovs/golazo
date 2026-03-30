@@ -9,6 +9,7 @@ import {
   getRank,
   createInitialXpState,
   XP_AWARDS,
+  scaleXp,
 } from '../src/engine/xp'
 
 describe('levelFromXp', () => {
@@ -129,5 +130,42 @@ describe('awardXp', () => {
     const state = createInitialXpState()
     const next = awardXp(state, XP_AWARDS.logTraining, '2024-03-15')
     expect(next.totalXp).toBe(20)
+  })
+})
+
+describe('scaleXp', () => {
+  it('returns 1.5x for u8 (Foundation)', () => {
+    expect(scaleXp(20, 'u8')).toBe(30)
+  })
+
+  it('returns 1.0x for u12 (Development)', () => {
+    expect(scaleXp(20, 'u12')).toBe(20)
+  })
+
+  it('returns 1.0x for u16 (Youth)', () => {
+    expect(scaleXp(20, 'u16')).toBe(20)
+  })
+
+  it('returns 0.8x for u19plus (Senior)', () => {
+    expect(scaleXp(20, 'u19plus')).toBe(16)
+  })
+
+  it('returns unscaled amount when no tier provided', () => {
+    expect(scaleXp(20)).toBe(20)
+    expect(scaleXp(20, undefined)).toBe(20)
+  })
+
+  it('rounds to nearest integer', () => {
+    expect(scaleXp(15, 'u8')).toBe(23) // 15 * 1.5 = 22.5 → 23
+    expect(scaleXp(15, 'u19plus')).toBe(12) // 15 * 0.8 = 12
+  })
+
+  it('applies scaling in awardXp', () => {
+    const state = createInitialXpState()
+    const u8Result = awardXp(state, 20, '2024-03-15', 'u8')
+    expect(u8Result.totalXp).toBe(30) // 20 * 1.5
+
+    const u19Result = awardXp(state, 20, '2024-03-15', 'u19plus')
+    expect(u19Result.totalXp).toBe(16) // 20 * 0.8
   })
 })

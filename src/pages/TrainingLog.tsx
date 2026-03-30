@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
-import { awardXp, XP_AWARDS } from '../engine/xp'
+import { awardXp, XP_AWARDS, scaleXp } from '../engine/xp'
+import { getAgeTier } from '../engine/types'
 import type { TrainingType, FocusArea, EnergyLevel, TrainingEntry } from '../engine/types'
 
 const TYPES: { key: TrainingType; labelKey: string }[] = [
@@ -33,7 +34,9 @@ export interface TrainingLogProps {
 
 export function TrainingLog({ onBack, inline, onSaved }: TrainingLogProps) {
   const { t } = useTranslation()
-  const { xp, setXp, addTraining } = useApp()
+  const { xp, setXp, addTraining, profile } = useApp()
+  const ageTier = profile?.birthDate ? getAgeTier(profile.birthDate) : undefined
+  const scaledTrainingXp = scaleXp(XP_AWARDS.logTraining, ageTier)
   const [saved, setSaved] = useState(false)
   const [showDetails, setShowDetails] = useState(false)
 
@@ -64,7 +67,7 @@ export function TrainingLog({ onBack, inline, onSaved }: TrainingLogProps) {
       createdAt: new Date().toISOString(),
     }
     addTraining(entry)
-    setXp(awardXp(xp, XP_AWARDS.logTraining, today))
+    setXp(awardXp(xp, XP_AWARDS.logTraining, today, ageTier))
     setSaved(true)
     onSaved?.()
     if (!inline) setTimeout(() => setSaved(false), 3000)
@@ -75,7 +78,7 @@ export function TrainingLog({ onBack, inline, onSaved }: TrainingLogProps) {
       <div className="flex flex-col items-center justify-center gap-4 p-8 pb-32 animate-fade-up">
         <span className="text-5xl animate-float">✅</span>
         <p className="text-lg font-bold" style={{ color: 'var(--color-primary-dark)' }}>
-          {t('training.saved', { xp: XP_AWARDS.logTraining })}
+          {t('training.saved', { xp: scaledTrainingXp })}
         </p>
       </div>
     )
@@ -86,7 +89,7 @@ export function TrainingLog({ onBack, inline, onSaved }: TrainingLogProps) {
       <div className="flex items-center gap-2 p-3 rounded-xl" style={{ background: 'var(--color-primary-bg-subtle)' }}>
         <span className="text-xl">✅</span>
         <p className="text-sm font-bold" style={{ color: 'var(--color-primary-dark)' }}>
-          {t('training.saved', { xp: XP_AWARDS.logTraining })}
+          {t('training.saved', { xp: scaledTrainingXp })}
         </p>
       </div>
     )
@@ -231,7 +234,7 @@ export function TrainingLog({ onBack, inline, onSaved }: TrainingLogProps) {
         onClick={handleSave}
         aria-label={t('training.save')}
       >
-        {t('training.save')} (+{XP_AWARDS.logTraining} XP)
+        {t('training.save')} (+{scaledTrainingXp} XP)
       </button>
     </div>
   )

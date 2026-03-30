@@ -1,4 +1,4 @@
-import type { XpState } from './types'
+import type { XpState, AgeTier } from './types'
 
 /* ── Level thresholds ─────────────────────────────────────── */
 
@@ -94,10 +94,30 @@ export function streakXpBonus(streakDays: number): number {
   return Math.min(streakDays * XP_AWARDS.streakBonus, XP_AWARDS.streakBonusCap)
 }
 
+/* ── Age-scaled XP multiplier ──────────────────────────────── */
+/* U8-U10 (Foundation): 1.5x — faster leveling, more celebrations, instant gratification */
+/* U10-U12 (Development): 1.0x — baseline, balanced progression */
+/* U12-U16 (Youth): 1.0x — standard grind, competitive feel */
+/* U16+ (Senior): 0.8x — slower, elite feel, milestones mean more */
+
+const AGE_XP_MULTIPLIER: Record<AgeTier, number> = {
+  u8: 1.5,
+  u12: 1.0,
+  u16: 1.0,
+  u19plus: 0.8,
+}
+
+/** Scale XP amount by age tier */
+export function scaleXp(amount: number, ageTier?: AgeTier): number {
+  if (!ageTier) return amount
+  return Math.round(amount * AGE_XP_MULTIPLIER[ageTier])
+}
+
 /* ── Award XP and recalculate state ───────────────────────── */
 
-export function awardXp(state: XpState, xpAmount: number, today: string): XpState {
-  const newTotalXp = state.totalXp + xpAmount
+export function awardXp(state: XpState, xpAmount: number, today: string, ageTier?: AgeTier): XpState {
+  const scaledAmount = scaleXp(xpAmount, ageTier)
+  const newTotalXp = state.totalXp + scaledAmount
   const newLevel = levelFromXp(newTotalXp)
   const progress = levelProgress(newTotalXp)
   const newStreak = calculateStreak(state.lastActivityDate, today, state.streakDays)
@@ -115,8 +135,8 @@ export function awardXp(state: XpState, xpAmount: number, today: string): XpStat
 }
 
 /** Award XP + update check-in streak */
-export function awardCheckInXp(state: XpState, xpAmount: number, today: string): XpState {
-  const base = awardXp(state, xpAmount, today)
+export function awardCheckInXp(state: XpState, xpAmount: number, today: string, ageTier?: AgeTier): XpState {
+  const base = awardXp(state, xpAmount, today, ageTier)
   const newCheckInStreak = calculateStreak(state.lastCheckInDate, today, state.checkInStreakDays)
   return {
     ...base,
