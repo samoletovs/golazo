@@ -5,6 +5,7 @@ import { exercises } from '../data/exercises'
 import { VideoPlayer } from '../components/VideoPlayer'
 import { useApp } from '../contexts/AppContext'
 import { awardXp, XP_AWARDS } from '../engine/xp'
+import { getAgeTier } from '../engine/types'
 import type { SkillCategory, Exercise } from '../engine/types'
 
 const Challenges = lazy(() => import('./Challenges').then(m => ({ default: m.Challenges })))
@@ -160,7 +161,8 @@ function ExerciseDetailModal({
 
 export function Exercises({ embedded }: { embedded?: boolean }) {
   const { t } = useTranslation()
-  const { xp, setXp, savedExercises, toggleSavedExercise } = useApp()
+  const { xp, setXp, savedExercises, toggleSavedExercise, profile } = useApp()
+  const ageTier = profile?.birthDate ? getAgeTier(profile.birthDate) : undefined
   const [activeTab, setActiveTab] = useState<'exercises' | 'challenges'>('exercises')
   const [filter, setFilter] = useState<SkillCategory | 'all'>('all')
   const [search, setSearch] = useState('')
@@ -192,7 +194,7 @@ export function Exercises({ embedded }: { embedded?: boolean }) {
   function markDone(id: string) {
     setDoneIds((prev) => new Set(prev).add(id))
     const today = new Date().toISOString().split('T')[0]
-    setXp(awardXp(xp, XP_AWARDS.completeExercise, today))
+    setXp(awardXp(xp, XP_AWARDS.completeExercise, today, ageTier))
   }
 
   return (

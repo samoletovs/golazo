@@ -49,7 +49,7 @@ export function DailyQuiz({ onComplete, compact }: DailyQuizProps) {
     addQuizAnswer(answer)
 
     if (correct) {
-      setXp(awardXp(xp, XP_AWARDS.quizCorrect, today))
+      setXp(awardXp(xp, XP_AWARDS.quizCorrect, today, ageTier))
     }
 
     // Auto-advance after a delay

@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
-import { awardXp, XP_AWARDS } from '../engine/xp'
+import { awardXp, XP_AWARDS, scaleXp } from '../engine/xp'
 import { DailyCheckIn } from './DailyCheckIn'
 import { DailyQuiz } from './DailyQuiz'
 import { exercises } from '../data/exercises'
+import { getAgeTier } from '../engine/types'
 
 type Step = 'checkin' | 'challenge' | 'quiz' | 'done'
 
@@ -14,7 +15,9 @@ interface MorningRoutineProps {
 
 export function MorningRoutine({ onClose }: MorningRoutineProps) {
   const { t } = useTranslation()
-  const { xp, setXp, checkIns, quizAnswers } = useApp()
+  const { xp, setXp, checkIns, quizAnswers, profile } = useApp()
+  const ageTier = profile?.birthDate ? getAgeTier(profile.birthDate) : undefined
+  const scaledRoutineBonus = scaleXp(XP_AWARDS.morningRoutineBonus, ageTier)
 
   const today = new Date().toISOString().slice(0, 10)
   const checkedIn = checkIns.some((c) => c.date === today)
@@ -38,8 +41,8 @@ export function MorningRoutine({ onClose }: MorningRoutineProps) {
   function handleChallengeComplete() {
     setChallengeDone(true)
     // Award daily challenge XP — use xp + accumulated awards to avoid stale state
-    const currentXp = awardXp(xp, xpAwarded, today) // rebase to latest
-    setXp(awardXp(currentXp, XP_AWARDS.dailyChallenge, today))
+    const currentXp = awardXp(xp, xpAwarded, today, ageTier) // rebase to latest
+    setXp(awardXp(currentXp, XP_AWARDS.dailyChallenge, today, ageTier))
     setXpAwarded((prev) => prev + XP_AWARDS.dailyChallenge)
     setTimeout(() => {
       if (quizzed) {
@@ -53,8 +56,8 @@ export function MorningRoutine({ onClose }: MorningRoutineProps) {
   function finishRoutine(extraXpSoFar = 0) {
     // Award morning routine bonus — rebase from original xp + all accumulated
     const totalAccumulated = xpAwarded + extraXpSoFar
-    const currentXp = awardXp(xp, totalAccumulated, today)
-    setXp(awardXp(currentXp, XP_AWARDS.morningRoutineBonus, today))
+    const currentXp = awardXp(xp, totalAccumulated, today, ageTier)
+    setXp(awardXp(currentXp, XP_AWARDS.morningRoutineBonus, today, ageTier))
     setStep('done')
   }
 
@@ -157,7 +160,7 @@ export function MorningRoutine({ onClose }: MorningRoutineProps) {
                 {t('routine.complete')}
               </p>
               <p className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>
-                +{XP_AWARDS.morningRoutineBonus} XP {t('routine.bonus')}
+                +{scaledRoutineBonus} XP {t('routine.bonus')}
               </p>
               <button className="btn-primary tap-target mt-4" onClick={onClose}>
                 {t('routine.backHome')}

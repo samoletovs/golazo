@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
 import { awardXp, XP_AWARDS } from '../engine/xp'
+import { getAgeTier } from '../engine/types'
 import type { SpecialChallengeProgress } from '../engine/types'
 
 const DAILY_CHALLENGES = [
@@ -18,7 +19,8 @@ const SPECIAL_TRACKS = [
 
 export function Challenges() {
   const { t } = useTranslation()
-  const { xp, setXp, specialChallenges, setSpecialChallenges } = useApp()
+  const { xp, setXp, specialChallenges, setSpecialChallenges, profile } = useApp()
+  const ageTier = profile?.birthDate ? getAgeTier(profile.birthDate) : undefined
 
   // Persist completed challenges per day in localStorage
   const todayKey = new Date().toISOString().split('T')[0]
@@ -35,7 +37,7 @@ export function Challenges() {
     setDoneIds(updated)
     localStorage.setItem(`golazo-challenges-${todayKey}`, JSON.stringify([...updated]))
     const today = new Date().toISOString().split('T')[0]
-    setXp(awardXp(xp, xpReward, today))
+    setXp(awardXp(xp, xpReward, today, ageTier))
   }
 
   function getSpecialProgress(id: string): SpecialChallengeProgress | undefined {
@@ -56,7 +58,7 @@ export function Challenges() {
           : sc,
       )
       setSpecialChallenges(updated)
-      setXp(awardXp(xp, XP_AWARDS.dailyChallenge, today))
+      setXp(awardXp(xp, XP_AWARDS.dailyChallenge, today, ageTier))
     } else {
       // Start new challenge
       const newChallenge: SpecialChallengeProgress = {
@@ -67,7 +69,7 @@ export function Challenges() {
         startedAt: today,
       }
       setSpecialChallenges([...specialChallenges, newChallenge])
-      setXp(awardXp(xp, XP_AWARDS.dailyChallenge, today))
+      setXp(awardXp(xp, XP_AWARDS.dailyChallenge, today, ageTier))
     }
   }
 

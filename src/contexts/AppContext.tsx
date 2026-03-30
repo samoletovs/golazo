@@ -108,7 +108,15 @@ function loadState(): AppState {
     if (raw) {
       const parsed = JSON.parse(raw)
       // Merge with defaults to handle newly added fields
-      return { ...createDefaultState(), ...parsed }
+      const merged = { ...createDefaultState(), ...parsed }
+      // Ensure new array fields are never undefined (old localStorage won't have them)
+      merged.checkIns = merged.checkIns ?? []
+      merged.quizAnswers = merged.quizAnswers ?? []
+      merged.readArticles = merged.readArticles ?? []
+      merged.savedExercises = merged.savedExercises ?? []
+      merged.programProgress = merged.programProgress ?? []
+      merged.recurringTrainings = merged.recurringTrainings ?? []
+      return merged
     }
   } catch { /* ignore corrupted storage */ }
   return createDefaultState()
