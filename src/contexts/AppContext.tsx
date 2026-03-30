@@ -157,6 +157,13 @@ export function AppProvider({ children }: { children: ReactNode }) {
       if (remote && remote.profile) {
         setState((prev) => {
           const merged = { ...prev, ...remote, onboardingComplete: prev.onboardingComplete || !!remote.profile }
+          // Preserve local arrays if remote doesn't have them (avoids data loss)
+          merged.checkIns = merged.checkIns ?? prev.checkIns ?? []
+          merged.quizAnswers = merged.quizAnswers ?? prev.quizAnswers ?? []
+          merged.readArticles = merged.readArticles ?? prev.readArticles ?? []
+          merged.savedExercises = merged.savedExercises ?? prev.savedExercises ?? []
+          merged.programProgress = merged.programProgress ?? prev.programProgress ?? []
+          merged.recurringTrainings = merged.recurringTrainings ?? prev.recurringTrainings ?? []
           saveState(merged)
           return merged
         })

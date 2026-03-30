@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" fill="none">
+  <circle cx="96" cy="96" r="88" fill="#059669"/>
+  <circle cx="96" cy="96" r="80" fill="#10b981" stroke="#047857" stroke-width="3"/>
+  <!-- Football pentagon pattern -->
+  <polygon points="96,40 120,60 112,88 80,88 72,60" fill="#047857" opacity="0.6"/>
+  <polygon points="136,80 148,108 128,128 108,116 112,88" fill="#047857" opacity="0.5"/>
+  <polygon points="56,80 80,88 84,116 64,128 44,108" fill="#047857" opacity="0.5"/>
+  <polygon points="80,128 84,116 108,116 112,128 96,148" fill="#047857" opacity="0.4"/>
+  <!-- Highlight -->
+  <circle cx="76" cy="56" r="16" fill="white" opacity="0.15"/>
+</svg>

@@ -12,7 +12,7 @@ const Exercises = lazy(() => import('./Exercises').then(m => ({ default: m.Exerc
 function tierToDifficulty(tier: string): QuizDifficulty {
   if (tier === 'u8') return 'u10'
   if (tier === 'u12') return 'u12'
-  if (tier === 'u16') return 'u14'
+  if (tier === 'u16') return 'u16'
   return 'u16'
 }
 
@@ -58,7 +58,7 @@ export function LearnContent() {
     if (readIds.has(article.id)) return
     const entry: ReadArticle = { articleId: article.id, readAt: new Date().toISOString() }
     markArticleRead(entry)
-    setXp(awardXp(xp, XP_AWARDS.completeExercise, new Date().toISOString().slice(0, 10))) // 10 XP for reading
+    setXp(awardXp(xp, XP_AWARDS.completeExercise, new Date().toISOString().slice(0, 10), ageTier)) // 10 XP for reading
   }
 
   function handleStartProgram(program: TrainingProgram) {
@@ -85,7 +85,7 @@ export function LearnContent() {
       lastActivityDate: today,
     }
     updateProgramProgress(updated)
-    setXp(awardXp(xp, XP_AWARDS.completeExercise, today))
+    setXp(awardXp(xp, XP_AWARDS.completeExercise, today, ageTier))
   }
 
   // Filter programs by age tier
