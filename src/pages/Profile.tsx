@@ -90,12 +90,7 @@ export function Profile({ onNavigate }: { onNavigate?: (page: string) => void })
     }
   }
 
-  const rankGradient =
-    rank.color === 'bronze' ? 'linear-gradient(135deg, #cd7f32, #a0622a)'
-    : rank.color === 'silver' ? 'linear-gradient(135deg, #94a3b8, #cbd5e1)'
-    : rank.color === 'gold' ? 'linear-gradient(135deg, #f59e0b, #fbbf24)'
-    : rank.color === 'diamond' ? 'linear-gradient(135deg, #3b82f6, #60a5fa)'
-    : 'linear-gradient(135deg, #8b5cf6, #c4b5fd)'
+  const accentGradient = 'linear-gradient(135deg, var(--color-primary-darker), var(--color-primary-dark))'
 
   return (
     <div className="flex flex-col gap-4 p-4 pb-32">
@@ -112,12 +107,12 @@ export function Profile({ onNavigate }: { onNavigate?: (page: string) => void })
         <div className="flex items-start gap-4">
           {/* Overall rating badge */}
           <div className="flex flex-col items-center pt-1">
-            <span className="text-5xl font-black font-data leading-none" style={{ background: rankGradient, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+            <span className="text-5xl font-black font-data leading-none" style={{ background: accentGradient, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
               {Math.round(overall * 10)}
             </span>
             <span
               className="mt-1 px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider text-white"
-              style={{ background: rankGradient }}
+              style={{ background: accentGradient }}
             >
               {t(rank.key)}
             </span>

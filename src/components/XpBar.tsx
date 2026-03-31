@@ -8,19 +8,12 @@ export function XpBar() {
   const rank = getRank(xp.level)
   const pct = xp.nextLevelXp > 0 ? Math.min((xp.currentLevelXp / xp.nextLevelXp) * 100, 100) : 100
 
-  const rankGradient =
-    rank.color === 'bronze' ? 'linear-gradient(135deg, #cd7f32, #a0622a)'
-    : rank.color === 'silver' ? 'linear-gradient(135deg, #94a3b8, #cbd5e1)'
-    : rank.color === 'gold' ? 'linear-gradient(135deg, #f59e0b, #fbbf24)'
-    : rank.color === 'diamond' ? 'linear-gradient(135deg, #3b82f6, #60a5fa)'
-    : 'linear-gradient(135deg, #8b5cf6, #c4b5fd)'
-
   return (
     <div className="flex items-center gap-3 px-4 py-3">
       {/* Level badge */}
       <div
         className="flex items-center justify-center w-9 h-9 rounded-xl text-sm font-black shadow-md"
-        style={{ background: rankGradient, color: '#fff' }}
+        style={{ background: 'linear-gradient(135deg, var(--color-primary-darker), var(--color-primary-dark))', color: '#fff' }}
         aria-label={t('dashboard.level', { level: xp.level })}
       >
         {xp.level}
