@@ -225,10 +225,10 @@ export function TournamentImport({ onClose }: { onClose: () => void }) {
   if (imported && result) {
     return (
       <div className="fixed inset-0 z-50 flex items-end justify-center" style={{ background: 'rgba(0,0,0,0.4)' }}>
-        <div className="app-shell w-full bg-white rounded-t-2xl p-4 pb-8 animate-fade-up" style={{ maxHeight: '80dvh', overflowY: 'auto' }}>
-          <div className="text-center py-6">
-            <div className="text-4xl mb-2">🏆</div>
-            <h3 className="text-lg font-extrabold">{t('import.success')}</h3>
+        <div className="app-shell w-full rounded-t-2xl p-5 pb-8 animate-fade-up" style={{ maxHeight: '80dvh', overflowY: 'auto', background: 'var(--color-bg, #fafafa)' }}>
+          <div className="text-center py-8">
+            <div className="text-5xl mb-3 animate-float">🏆</div>
+            <h3 className="text-xl font-extrabold" style={{ fontFamily: 'var(--font-display)' }}>{t('import.success')}</h3>
             <p className="text-sm mt-2" style={{ color: 'var(--color-text-secondary)' }}>
               {t('import.addedGames', { count: result.games.length, tournament: result.tournament })}
             </p>
@@ -243,17 +243,22 @@ export function TournamentImport({ onClose }: { onClose: () => void }) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-center" style={{ background: 'rgba(0,0,0,0.4)' }}>
-      <div className="app-shell w-full bg-white rounded-t-2xl p-4 pb-8 animate-fade-up" style={{ maxHeight: '85dvh', overflowY: 'auto' }}>
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg font-extrabold">🏆 {t('import.title')}</h3>
-          <button className="tap-target text-lg" onClick={onClose} aria-label={t('common.cancel')}>✕</button>
+      <div className="app-shell w-full rounded-t-2xl p-5 pb-8 animate-fade-up" style={{ maxHeight: '85dvh', overflowY: 'auto', background: 'var(--color-bg, #fafafa)' }}>
+        {/* Header */}
+        <div className="flex items-center justify-between mb-5">
+          <div className="flex items-center gap-2.5">
+            <span className="text-2xl">🏆</span>
+            <h3 className="text-lg font-extrabold" style={{ fontFamily: 'var(--font-display)' }}>{t('import.title')}</h3>
+          </div>
+          <button className="tap-target w-8 h-8 rounded-full flex items-center justify-center" style={{ background: 'var(--color-glass-active)' }} onClick={onClose} aria-label={t('common.cancel')}>✕</button>
         </div>
 
         {!result ? (
           /* ── Step 1: URL + team input ── */
-          <div className="flex flex-col gap-3">
-            <div>
-              <label className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>
+          <div className="flex flex-col gap-4">
+            {/* URL field */}
+            <div className="card p-4">
+              <label className="text-[10px] font-bold uppercase tracking-wider" style={{ color: 'var(--color-text-muted)' }}>
                 {t('import.url')}
               </label>
               <input
@@ -261,97 +266,112 @@ export function TournamentImport({ onClose }: { onClose: () => void }) {
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
                 placeholder="https://turniir.ee/..."
-                className="w-full"
+                className="w-full mt-1.5 text-sm p-2.5 rounded-lg"
+                style={{ background: 'var(--color-bg-field, #f8fafc)', border: '1px solid var(--color-glass-border)' }}
               />
-              <p className="text-[0.65rem] mt-1" style={{ color: 'var(--color-text-muted)' }}>
+              <p className="text-[0.6rem] mt-1.5" style={{ color: 'var(--color-text-muted)' }}>
                 {t('import.urlHint')}
               </p>
             </div>
 
-            {/* Which of your teams is playing */}
-            {hasTeams && (
-              <div>
-                <label className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>
-                  {t('import.playingFor')}
-                </label>
-                <select
-                  value={selectedTeamId}
-                  onChange={(e) => setSelectedTeamId(e.target.value)}
-                  className="w-full text-sm p-2 rounded-lg border"
-                >
-                  {playerTeams.map((pt) => (
-                    <option key={pt.id} value={pt.id}>{pt.name}</option>
-                  ))}
-                </select>
-              </div>
-            )}
-
-            {/* Team name in tournament */}
-            <div>
-              <label className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>
-                {t('import.tournamentTeamName')}
+            {/* Team selection card */}
+            <div className="card p-4">
+              <label className="text-[10px] font-bold uppercase tracking-wider" style={{ color: 'var(--color-text-muted)' }}>
+                {t('import.teamSetup')}
               </label>
-              <TeamPicker
-                value={teamName}
-                onChange={(name) => setTeamName(name)}
-                placeholder={t('import.teamNameHint')}
-                className="w-full"
-              />
-              <p className="text-[0.65rem] mt-1" style={{ color: 'var(--color-text-muted)' }}>
-                {t('import.tournamentTeamHint')}
+
+              {/* Which of your teams is playing */}
+              {hasTeams && (
+                <div className="mt-3">
+                  <label className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>
+                    {t('import.playingFor')}
+                  </label>
+                  <select
+                    value={selectedTeamId}
+                    onChange={(e) => setSelectedTeamId(e.target.value)}
+                    className="w-full text-sm p-2.5 rounded-lg mt-1"
+                    style={{ background: 'var(--color-bg-field, #f8fafc)', border: '1px solid var(--color-glass-border)' }}
+                  >
+                    {playerTeams.map((pt) => (
+                      <option key={pt.id} value={pt.id}>{pt.name}</option>
+                    ))}
+                  </select>
+                </div>
+              )}
+
+              {/* Team name in tournament */}
+              <div className="mt-3">
+                <label className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>
+                  {t('import.tournamentTeamName')}
+                </label>
+                <TeamPicker
+                  value={teamName}
+                  onChange={(name) => setTeamName(name)}
+                  placeholder={t('import.teamNameHint')}
+                  className="w-full mt-1"
+                />
+                <p className="text-[0.6rem] mt-1" style={{ color: 'var(--color-text-muted)' }}>
+                  {t('import.tournamentTeamHint')}
+                </p>
+              </div>
+
+              {/* Team picker from fetched teams */}
+              {showTeamPicker && fetchedTeams.length > 0 && (
+                <div className="mt-3 pt-3" style={{ borderTop: '1px solid var(--color-glass-border)' }}>
+                  <label className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>
+                    {t('import.teamsFound')}
+                  </label>
+                  <div className="flex flex-wrap gap-1.5 mt-2">
+                    {fetchedTeams.map((team) => (
+                      <button
+                        key={team}
+                        className="text-[0.7rem] px-2.5 py-1.5 rounded-full font-bold transition-all"
+                        style={{
+                          background: teamName === team ? 'rgba(var(--color-primary-rgb), 0.12)' : 'var(--color-glass-hover)',
+                          color: teamName === team ? 'var(--color-primary-dark)' : 'var(--color-text-secondary)',
+                          border: teamName === team ? '1.5px solid var(--color-primary-dark)' : '1.5px solid transparent',
+                        }}
+                        onClick={() => { setTeamName(team); setError('') }}
+                      >
+                        {team}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Match duration */}
+            <div className="card p-4">
+              <label className="text-[10px] font-bold uppercase tracking-wider" style={{ color: 'var(--color-text-muted)' }}>
+                {t('import.duration')}
+              </label>
+              <div className="flex items-center gap-3 mt-2">
+                {[40, 50, 60, 70, 80, 90].map((d) => (
+                  <button
+                    key={d}
+                    className="btn-choice tap-target flex-1 text-center text-sm py-2"
+                    aria-pressed={durationMin === d}
+                    onClick={() => setDurationMin(d)}
+                  >
+                    {d}
+                  </button>
+                ))}
+              </div>
+              <p className="text-[0.6rem] text-center mt-1.5" style={{ color: 'var(--color-text-muted)' }}>
+                {t('training.minutes', { min: durationMin })}
               </p>
             </div>
 
-            {/* Team picker from fetched teams */}
-            {showTeamPicker && fetchedTeams.length > 0 && (
-              <div>
-                <label className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>
-                  {t('import.teamsFound')}
-                </label>
-                <div className="flex flex-wrap gap-1.5 mt-1">
-                  {fetchedTeams.map((team) => (
-                    <button
-                      key={team}
-                      className="text-[0.7rem] px-2.5 py-1 rounded-full"
-                      style={{
-                        background: teamName === team ? 'rgba(var(--color-primary-rgb), 0.12)' : 'var(--color-glass-hover)',
-                        color: teamName === team ? 'var(--color-primary-dark)' : 'var(--color-text-secondary)',
-                        border: teamName === team ? '1px solid var(--color-primary-dark)' : '1px solid transparent',
-                      }}
-                      onClick={() => { setTeamName(team); setError('') }}
-                    >
-                      {team}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            <div>
-              <label className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>
-                {t('import.duration')}
-              </label>
-              <div className="flex items-center gap-2">
-                <input
-                  type="number"
-                  value={durationMin}
-                  onChange={(e) => setDurationMin(Math.max(10, Math.min(180, Number(e.target.value) || 30)))}
-                  className="w-20 text-center"
-                  min={10}
-                  max={180}
-                />
-                <span className="text-sm" style={{ color: 'var(--color-text-muted)' }}>min</span>
-              </div>
-            </div>
-
             {error && (
-              <div className="text-xs p-3 rounded-lg whitespace-pre-wrap" style={{ background: '#fef2f2', color: '#dc2626' }}>
-                {error}
+              <div className="flex items-start gap-2 text-xs p-3 rounded-xl whitespace-pre-wrap" style={{ background: '#fef2f2', color: '#dc2626' }}>
+                <span>⚠️</span>
+                <span>{error}</span>
               </div>
             )}
 
             <button
-              className="btn-primary w-full mt-2"
+              className="btn-primary w-full"
               onClick={handleFetch}
               disabled={loading || !url || !teamName}
             >
@@ -361,15 +381,20 @@ export function TournamentImport({ onClose }: { onClose: () => void }) {
         ) : (
           /* ── Step 2: Preview + confirm ── */
           <div className="flex flex-col gap-3">
-            <div className="card p-3">
-              <p className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>
-                {result.tournament}
-              </p>
-              <p className="text-sm font-extrabold mt-1" style={{ color: 'var(--color-primary-dark)' }}>
-                {t('import.foundGames', { count: result.matchedGames, total: result.totalGames })}
-              </p>
+            <div className="card p-4">
+              <div className="flex items-center gap-3">
+                <span className="text-2xl">📋</span>
+                <div>
+                  <p className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>
+                    {result.tournament}
+                  </p>
+                  <p className="text-base font-extrabold" style={{ color: 'var(--color-primary-dark)', fontFamily: 'var(--font-display)' }}>
+                    {t('import.foundGames', { count: result.matchedGames, total: result.totalGames })}
+                  </p>
+                </div>
+              </div>
               {result.dateWarning && (
-                <p className="text-xs mt-1 px-2 py-1 rounded" style={{ background: 'var(--color-warning-bg, #FFF3CD)', color: 'var(--color-warning-text, #856404)' }}>
+                <p className="text-xs mt-2 px-2.5 py-1.5 rounded-lg" style={{ background: 'var(--color-warning-bg, #FFF3CD)', color: 'var(--color-warning-text, #856404)' }}>
                   ⚠️ {result.dateWarning}
                 </p>
               )}
@@ -380,8 +405,8 @@ export function TournamentImport({ onClose }: { onClose: () => void }) {
               const matched = Object.entries(result.registryMatches).filter(([, v]) => v !== null)
               const unmatched = Object.entries(result.registryMatches).filter(([, v]) => v === null)
               return (matched.length > 0 || unmatched.length > 0) ? (
-                <div className="card p-3">
-                  <p className="text-xs font-bold mb-2" style={{ color: 'var(--color-text-secondary)' }}>
+                <div className="card p-4">
+                  <p className="text-[10px] font-bold uppercase tracking-wider mb-2" style={{ color: 'var(--color-text-muted)' }}>
                     {t('import.registryStatus')}
                   </p>
                   {matched.length > 0 && (
@@ -409,17 +434,20 @@ export function TournamentImport({ onClose }: { onClose: () => void }) {
               ) : null
             })()}
 
-            <div className="flex flex-col gap-1.5" style={{ maxHeight: '35dvh', overflowY: 'auto' }}>
+            <div className="card p-0 overflow-hidden" style={{ maxHeight: '35dvh', overflowY: 'auto' }}>
               {result.games.map((game, i) => {
                 const homeMatch = result.registryMatches?.[game.home]
                 const awayMatch = result.registryMatches?.[game.away]
                 return (
                   <div
                     key={i}
-                    className="flex items-center gap-2 p-2 rounded-lg text-xs"
-                    style={{ background: game.finished ? 'var(--color-glass-hover)' : 'var(--color-glass-active)' }}
+                    className="flex items-center gap-2 px-3 py-2.5 text-xs"
+                    style={{
+                      background: game.finished ? 'var(--color-glass-hover)' : 'transparent',
+                      borderBottom: i < result.games.length - 1 ? '1px solid var(--color-glass-border)' : undefined,
+                    }}
                   >
-                    <span className="font-data text-[0.65rem] shrink-0" style={{ color: 'var(--color-text-muted)', width: '70px' }}>
+                    <span className="font-data text-[0.65rem] shrink-0 w-[70px]" style={{ color: 'var(--color-text-muted)' }}>
                       {game.date} {game.time}
                     </span>
                     <span className="flex-1 font-bold truncate">
@@ -431,7 +459,7 @@ export function TournamentImport({ onClose }: { onClose: () => void }) {
                     </span>
                     {game.venue && (
                       <span className="text-[0.6rem] shrink-0" style={{ color: 'var(--color-text-muted)' }}>
-                        📍 {game.venue}
+                        📍
                       </span>
                     )}
                   </div>
@@ -439,7 +467,7 @@ export function TournamentImport({ onClose }: { onClose: () => void }) {
               })}
             </div>
 
-            <div className="flex gap-2 mt-2">
+            <div className="flex gap-2 mt-1">
               <button
                 className="flex-1 btn-secondary"
                 onClick={() => { setResult(null); setError('') }}

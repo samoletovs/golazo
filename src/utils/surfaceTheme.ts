@@ -1,147 +1,150 @@
 /**
- * Surface Theme — controls page background, card surfaces, button tints, and nav.
- * Each preset is a cohesive color story, not just a light tint.
+ * Surface Theme — cohesive page + card + button tinting.
+ *
+ * Design philosophy (Apple HIG + Material 3 + NNGroup 60-30-10):
+ * - Surfaces are BARELY tinted — you feel the warmth/coolness without overwhelming
+ * - Card surfaces are lighter than page backgrounds (Apple's grouped background pattern)
+ * - Borders/dividers pick up the theme subtly
+ * - Swatches in the picker are MORE vivid so users can tell themes apart
+ * - Each preset uses a monochromatic harmony (single hue, varying lightness)
  */
 
 export interface SurfacePreset {
   id: string
-  /** Page background */
   bg: string
-  /** Warm/secondary page bg */
   bgWarm: string
-  /** Card surface */
   surface: string
-  /** Card border tint (rgba) */
   borderTint: string
-  /** Card hover surface */
   surfaceHover: string
-  /** Active/pressed surface */
   surfaceActive: string
-  /** Header backdrop */
   headerBg: string
-  /** Bottom nav backdrop */
   navBg: string
-  /** Choice button bg */
   choiceBg: string
-  /** Choice button border */
   choiceBorder: string
-  /** Swatch colors for the picker UI [top, bottom, accent dot] */
+  /** Swatch: [vivid accent, medium tint, light card preview] */
   swatch: [string, string, string]
 }
 
 export const SURFACE_PRESETS: SurfacePreset[] = [
   {
+    // Pure white — Apple-clean, zero personality
     id: 'classic',
-    bg: '#FAFAFA',
-    bgWarm: '#F5F5F5',
+    bg: '#F8F8FA',
+    bgWarm: '#F3F3F5',
     surface: '#ffffff',
     borderTint: 'rgba(0, 0, 0, 0.06)',
-    surfaceHover: '#F7F7F7',
+    surfaceHover: '#F7F7F9',
     surfaceActive: 'rgba(0, 0, 0, 0.03)',
-    headerBg: 'rgba(250, 250, 250, 0.88)',
+    headerBg: 'rgba(248, 248, 250, 0.90)',
     navBg: 'rgba(255, 255, 255, 0.92)',
     choiceBg: '#ffffff',
-    choiceBorder: '#e5e7eb',
-    swatch: ['#F0F0F0', '#ffffff', '#9CA3AF'],
+    choiceBorder: 'rgba(0, 0, 0, 0.08)',
+    swatch: ['#C8C8D0', '#E8E8EC', '#F8F8FA'],
   },
   {
+    // Dynamic — derived from club primary color
     id: 'team',
-    // Placeholder — overridden dynamically from club colors
-    bg: '#EEF9F0',
-    bgWarm: '#E0F5E4',
-    surface: '#F4FBF5',
+    bg: '#F0FAF2',
+    bgWarm: '#E6F5E9',
+    surface: '#F7FCF8',
     borderTint: 'rgba(5, 150, 105, 0.10)',
-    surfaceHover: '#EAF7EC',
-    surfaceActive: 'rgba(5, 150, 105, 0.08)',
-    headerBg: 'rgba(238, 249, 240, 0.90)',
-    navBg: 'rgba(244, 251, 245, 0.92)',
-    choiceBg: '#F4FBF5',
-    choiceBorder: 'rgba(5, 150, 105, 0.15)',
-    swatch: ['#D1FAE5', '#F0FDF4', '#059669'],
+    surfaceHover: '#EEF8F0',
+    surfaceActive: 'rgba(5, 150, 105, 0.06)',
+    headerBg: 'rgba(240, 250, 242, 0.90)',
+    navBg: 'rgba(247, 252, 248, 0.93)',
+    choiceBg: '#F7FCF8',
+    choiceBorder: 'rgba(5, 150, 105, 0.12)',
+    swatch: ['#059669', '#A7F3D0', '#F0FAF2'],
   },
   {
+    // Fresh grass — football pitch energy
     id: 'pitch',
-    bg: '#E8F5E9',
-    bgWarm: '#C8E6C9',
-    surface: '#F1F8F2',
-    borderTint: 'rgba(46, 125, 50, 0.12)',
-    surfaceHover: '#E0F2E1',
-    surfaceActive: 'rgba(46, 125, 50, 0.08)',
-    headerBg: 'rgba(232, 245, 233, 0.90)',
-    navBg: 'rgba(241, 248, 242, 0.92)',
-    choiceBg: '#F1F8F2',
-    choiceBorder: 'rgba(46, 125, 50, 0.18)',
-    swatch: ['#A5D6A7', '#E8F5E9', '#2E7D32'],
+    bg: '#F0F9F1',
+    bgWarm: '#E4F3E6',
+    surface: '#F7FBF7',
+    borderTint: 'rgba(34, 197, 94, 0.10)',
+    surfaceHover: '#EDF7EE',
+    surfaceActive: 'rgba(34, 197, 94, 0.06)',
+    headerBg: 'rgba(240, 249, 241, 0.90)',
+    navBg: 'rgba(247, 251, 247, 0.93)',
+    choiceBg: '#F7FBF7',
+    choiceBorder: 'rgba(34, 197, 94, 0.12)',
+    swatch: ['#22C55E', '#86EFAC', '#E4F3E6'],
   },
   {
+    // Deep blue — ocean calm, focus mode
     id: 'ocean',
-    bg: '#E3F2FD',
-    bgWarm: '#BBDEFB',
-    surface: '#EDF5FC',
-    borderTint: 'rgba(25, 118, 210, 0.12)',
-    surfaceHover: '#DBE9F7',
-    surfaceActive: 'rgba(25, 118, 210, 0.08)',
-    headerBg: 'rgba(227, 242, 253, 0.90)',
-    navBg: 'rgba(237, 245, 252, 0.92)',
-    choiceBg: '#EDF5FC',
-    choiceBorder: 'rgba(25, 118, 210, 0.18)',
-    swatch: ['#90CAF9', '#E3F2FD', '#1565C0'],
+    bg: '#EEF4FB',
+    bgWarm: '#E1ECF8',
+    surface: '#F5F8FC',
+    borderTint: 'rgba(37, 99, 235, 0.09)',
+    surfaceHover: '#ECF2FA',
+    surfaceActive: 'rgba(37, 99, 235, 0.05)',
+    headerBg: 'rgba(238, 244, 251, 0.90)',
+    navBg: 'rgba(245, 248, 252, 0.93)',
+    choiceBg: '#F5F8FC',
+    choiceBorder: 'rgba(37, 99, 235, 0.12)',
+    swatch: ['#2563EB', '#93C5FD', '#E1ECF8'],
   },
   {
+    // Warm amber — golden hour, sunset energy
     id: 'sunset',
-    bg: '#FFF3E0',
-    bgWarm: '#FFE0B2',
-    surface: '#FFF8F0',
-    borderTint: 'rgba(230, 81, 0, 0.10)',
-    surfaceHover: '#FFECDB',
-    surfaceActive: 'rgba(230, 81, 0, 0.06)',
-    headerBg: 'rgba(255, 243, 224, 0.90)',
-    navBg: 'rgba(255, 248, 240, 0.92)',
-    choiceBg: '#FFF8F0',
-    choiceBorder: 'rgba(230, 81, 0, 0.15)',
-    swatch: ['#FFCC80', '#FFF3E0', '#E65100'],
+    bg: '#FBF5EE',
+    bgWarm: '#F7EDE0',
+    surface: '#FDF9F5',
+    borderTint: 'rgba(217, 119, 6, 0.09)',
+    surfaceHover: '#F9F2EC',
+    surfaceActive: 'rgba(217, 119, 6, 0.05)',
+    headerBg: 'rgba(251, 245, 238, 0.90)',
+    navBg: 'rgba(253, 249, 245, 0.93)',
+    choiceBg: '#FDF9F5',
+    choiceBorder: 'rgba(217, 119, 6, 0.12)',
+    swatch: ['#D97706', '#FCD34D', '#F7EDE0'],
   },
   {
+    // Soft purple — creative, playful
     id: 'lavender',
-    bg: '#EDE7F6',
-    bgWarm: '#D1C4E9',
-    surface: '#F3F0FA',
-    borderTint: 'rgba(103, 58, 183, 0.12)',
-    surfaceHover: '#E8E0F5',
-    surfaceActive: 'rgba(103, 58, 183, 0.06)',
-    headerBg: 'rgba(237, 231, 246, 0.90)',
-    navBg: 'rgba(243, 240, 250, 0.92)',
-    choiceBg: '#F3F0FA',
-    choiceBorder: 'rgba(103, 58, 183, 0.18)',
-    swatch: ['#B39DDB', '#EDE7F6', '#5E35B1'],
+    bg: '#F3F0FA',
+    bgWarm: '#EAE4F6',
+    surface: '#F8F6FC',
+    borderTint: 'rgba(124, 58, 237, 0.09)',
+    surfaceHover: '#F0EDF8',
+    surfaceActive: 'rgba(124, 58, 237, 0.05)',
+    headerBg: 'rgba(243, 240, 250, 0.90)',
+    navBg: 'rgba(248, 246, 252, 0.93)',
+    choiceBg: '#F8F6FC',
+    choiceBorder: 'rgba(124, 58, 237, 0.12)',
+    swatch: ['#7C3AED', '#C4B5FD', '#EAE4F6'],
   },
   {
+    // Warm neutral — earthy, mature, sand dune
     id: 'sand',
-    bg: '#FFF8E1',
-    bgWarm: '#FFECB3',
-    surface: '#FFFBF0',
-    borderTint: 'rgba(255, 160, 0, 0.10)',
-    surfaceHover: '#FFF3D6',
-    surfaceActive: 'rgba(255, 160, 0, 0.06)',
-    headerBg: 'rgba(255, 248, 225, 0.90)',
-    navBg: 'rgba(255, 251, 240, 0.92)',
-    choiceBg: '#FFFBF0',
-    choiceBorder: 'rgba(255, 160, 0, 0.15)',
-    swatch: ['#FFE082', '#FFF8E1', '#FF8F00'],
+    bg: '#FAF7F2',
+    bgWarm: '#F5F0E6',
+    surface: '#FCFAF7',
+    borderTint: 'rgba(180, 130, 60, 0.09)',
+    surfaceHover: '#F7F4EF',
+    surfaceActive: 'rgba(180, 130, 60, 0.05)',
+    headerBg: 'rgba(250, 247, 242, 0.90)',
+    navBg: 'rgba(252, 250, 247, 0.93)',
+    choiceBg: '#FCFAF7',
+    choiceBorder: 'rgba(180, 130, 60, 0.12)',
+    swatch: ['#B4823C', '#E8D5B0', '#F5F0E6'],
   },
   {
+    // Soft rose — warm pink, creative feminine
     id: 'rose',
-    bg: '#FCE4EC',
-    bgWarm: '#F8BBD0',
-    surface: '#FDF0F4',
-    borderTint: 'rgba(194, 24, 91, 0.10)',
-    surfaceHover: '#F9DEE7',
-    surfaceActive: 'rgba(194, 24, 91, 0.06)',
-    headerBg: 'rgba(252, 228, 236, 0.90)',
-    navBg: 'rgba(253, 240, 244, 0.92)',
-    choiceBg: '#FDF0F4',
-    choiceBorder: 'rgba(194, 24, 91, 0.15)',
-    swatch: ['#F48FB1', '#FCE4EC', '#AD1457'],
+    bg: '#FBF0F3',
+    bgWarm: '#F7E3E9',
+    surface: '#FDF6F8',
+    borderTint: 'rgba(219, 39, 119, 0.08)',
+    surfaceHover: '#F9EDF1',
+    surfaceActive: 'rgba(219, 39, 119, 0.05)',
+    headerBg: 'rgba(251, 240, 243, 0.90)',
+    navBg: 'rgba(253, 246, 248, 0.93)',
+    choiceBg: '#FDF6F8',
+    choiceBorder: 'rgba(219, 39, 119, 0.10)',
+    swatch: ['#DB2777', '#F9A8D4', '#F7E3E9'],
   },
 ]
 
@@ -151,25 +154,27 @@ export function deriveTeamSurface(hex: string): SurfacePreset {
   const g = parseInt(hex.slice(3, 5), 16)
   const b = parseInt(hex.slice(5, 7), 16)
 
+  // Apple-style subtle tinting — surfaces barely tinted, card lighter than bg
   const mix = (c: number, pct: number) => Math.round(c + (255 - c) * pct)
-  const bg = `rgb(${mix(r, 0.88)}, ${mix(g, 0.88)}, ${mix(b, 0.88)})`
-  const bgWarm = `rgb(${mix(r, 0.82)}, ${mix(g, 0.82)}, ${mix(b, 0.82)})`
-  const surface = `rgb(${mix(r, 0.94)}, ${mix(g, 0.94)}, ${mix(b, 0.94)})`
-  const surfaceHover = `rgb(${mix(r, 0.88)}, ${mix(g, 0.88)}, ${mix(b, 0.88)})`
+  const bg = `rgb(${mix(r, 0.93)}, ${mix(g, 0.93)}, ${mix(b, 0.93)})`
+  const bgWarm = `rgb(${mix(r, 0.90)}, ${mix(g, 0.90)}, ${mix(b, 0.90)})`
+  const surface = `rgb(${mix(r, 0.97)}, ${mix(g, 0.97)}, ${mix(b, 0.97)})`
+  const surfaceHover = `rgb(${mix(r, 0.94)}, ${mix(g, 0.94)}, ${mix(b, 0.94)})`
+  const midTint = `rgb(${mix(r, 0.60)}, ${mix(g, 0.60)}, ${mix(b, 0.60)})`
 
   return {
     id: 'team',
     bg,
     bgWarm,
     surface,
-    borderTint: `rgba(${r}, ${g}, ${b}, 0.12)`,
+    borderTint: `rgba(${r}, ${g}, ${b}, 0.10)`,
     surfaceHover,
-    surfaceActive: `rgba(${r}, ${g}, ${b}, 0.08)`,
-    headerBg: `rgba(${mix(r, 0.90)}, ${mix(g, 0.90)}, ${mix(b, 0.90)}, 0.90)`,
-    navBg: `rgba(${mix(r, 0.94)}, ${mix(g, 0.94)}, ${mix(b, 0.94)}, 0.92)`,
+    surfaceActive: `rgba(${r}, ${g}, ${b}, 0.06)`,
+    headerBg: `rgba(${mix(r, 0.94)}, ${mix(g, 0.94)}, ${mix(b, 0.94)}, 0.90)`,
+    navBg: `rgba(${mix(r, 0.97)}, ${mix(g, 0.97)}, ${mix(b, 0.97)}, 0.93)`,
     choiceBg: surface,
-    choiceBorder: `rgba(${r}, ${g}, ${b}, 0.18)`,
-    swatch: [bgWarm, bg, hex],
+    choiceBorder: `rgba(${r}, ${g}, ${b}, 0.12)`,
+    swatch: [hex, midTint, bg],
   }
 }
 
