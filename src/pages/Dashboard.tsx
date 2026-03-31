@@ -238,7 +238,7 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
 
       {/* ── Welcome greeting ── */}
       <div className="animate-fade-up">
-        <p className="text-lg font-bold" style={{ fontFamily: 'var(--font-display)' }}>
+        <p className="text-lg font-extrabold" style={{ fontFamily: 'var(--font-display)' }}>
           {greeting}{playerName ? `, ${playerName}` : ''} 👋
         </p>
         <div className="flex items-center gap-3 mt-0.5">

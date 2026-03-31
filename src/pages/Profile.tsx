@@ -193,19 +193,19 @@ export function Profile({ onNavigate }: { onNavigate?: (page: string) => void })
         <div className="grid grid-cols-4 gap-2 mt-4">
           <div className="text-center py-2 rounded-lg" style={{ background: 'var(--color-bg-warm)' }}>
             <p className="text-xl font-black font-data leading-none">{matches.length}</p>
-            <p className="text-[10px] font-semibold uppercase tracking-wider mt-1" style={{ color: 'var(--color-text-muted)' }}>{t('dashboard.matches')}</p>
+            <p className="text-[10px] font-bold uppercase tracking-wider mt-1" style={{ color: 'var(--color-text-muted)' }}>{t('dashboard.matches')}</p>
           </div>
           <div className="text-center py-2 rounded-lg" style={{ background: 'var(--color-bg-warm)' }}>
             <p className="text-xl font-black font-data leading-none" style={{ color: 'var(--color-gold-500)' }}>{seasonGoals}</p>
-            <p className="text-[10px] font-semibold uppercase tracking-wider mt-1" style={{ color: 'var(--color-text-muted)' }}>{t('dashboard.goals')}</p>
+            <p className="text-[10px] font-bold uppercase tracking-wider mt-1" style={{ color: 'var(--color-text-muted)' }}>{t('dashboard.goals')}</p>
           </div>
           <div className="text-center py-2 rounded-lg" style={{ background: 'var(--color-bg-warm)' }}>
             <p className="text-xl font-black font-data leading-none" style={{ color: 'var(--color-primary-light)' }}>{seasonAssists}</p>
-            <p className="text-[10px] font-semibold uppercase tracking-wider mt-1" style={{ color: 'var(--color-text-muted)' }}>{t('dashboard.assists')}</p>
+            <p className="text-[10px] font-bold uppercase tracking-wider mt-1" style={{ color: 'var(--color-text-muted)' }}>{t('dashboard.assists')}</p>
           </div>
           <div className="text-center py-2 rounded-lg" style={{ background: 'var(--color-bg-warm)' }}>
             <p className="text-xl font-black font-data leading-none">{trainings.length}</p>
-            <p className="text-[10px] font-semibold uppercase tracking-wider mt-1" style={{ color: 'var(--color-text-muted)' }}>{t('log.training')}</p>
+            <p className="text-[10px] font-bold uppercase tracking-wider mt-1" style={{ color: 'var(--color-text-muted)' }}>{t('log.training')}</p>
           </div>
         </div>
 
