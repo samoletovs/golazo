@@ -110,6 +110,11 @@ export function Profile({ onNavigate }: { onNavigate?: (page: string) => void })
     }
   }
 
+  // Show Teams page when active
+  if (showTeams) {
+    return <TeamsManager onClose={() => setShowTeams(false)} />
+  }
+
   return (
     <div className="flex flex-col gap-4 p-4 pb-32">
       <h2 className="text-xl font-extrabold">{t('profile.title')}</h2>
@@ -482,7 +487,6 @@ export function Profile({ onNavigate }: { onNavigate?: (page: string) => void })
         </div>
       </div>
 
-      {showTeams && <TeamsManager onClose={() => setShowTeams(false)} />}
     </div>
   )
 }

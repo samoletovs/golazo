@@ -120,12 +120,11 @@ export function TeamsManager({ onClose }: { onClose: () => void }) {
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center" style={{ background: 'rgba(0,0,0,0.4)' }}>
-      <div className="app-shell w-full bg-white rounded-t-2xl p-4 pb-8 animate-fade-up" style={{ maxHeight: '85dvh', overflowY: 'auto' }}>
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg font-extrabold">⚽ {t('teams.title')}</h3>
-          <button className="tap-target text-lg" onClick={onClose} aria-label={t('common.cancel')}>✕</button>
-        </div>
+    <div className="flex flex-col gap-4 p-4 pb-32">
+      <div className="flex items-center gap-3">
+        <button onClick={onClose} className="tap-target text-xl" aria-label={t('common.back')}>←</button>
+        <h2 className="text-lg font-extrabold" style={{ fontFamily: 'var(--font-display)' }}>⚽ {t('teams.title')}</h2>
+      </div>
 
         {/* Selected teams as chips */}
         {teams.length > 0 && (
@@ -376,7 +375,6 @@ export function TeamsManager({ onClose }: { onClose: () => void }) {
             )}
           </div>
         )}
-      </div>
 
       {/* Add new team dialog — same as onboarding */}
       {addTeamName !== null && (
