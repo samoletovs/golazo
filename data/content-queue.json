@@ -2712,5 +2712,729 @@
       "desc": "Žiūrėk 10 min aukšto lygio rungtynes ir analizuok vieną žaidėją TAVO pozicijoje. Sek: (1) pozicija su kamuoliu, (2) pozicija be kamuolio, (3) kaip dažnai žvalgosi, (4) kada greitina, kada ristynes. Užrašyk 3 dalykus, kuriuos gali kopijuoti kitose rungtynėse."
     },
     "publishedAt": "2026-03-31T20:07:08.027Z"
+  },
+  {
+    "type": "article",
+    "id": "art-tac-07",
+    "category": "tactics",
+    "ageTiers": [
+      "u12",
+      "u14",
+      "u16"
+    ],
+    "readingTimeMin": 2,
+    "emoji": "🧱",
+    "status": "published",
+    "en": {
+      "title": "Defending as a Team: The Art of the Defensive Block",
+      "body": "Great defending is not about one player — it is about the whole team moving together. A defensive block means all players stay compact, with no more than 10-12 meters between your defensive and midfield lines. When the opponent has the ball, shift as a unit toward the ball side. The most common mistake young players make is ball-watching — staring at the ball while an opponent runs behind them. Instead, position yourself so you can see BOTH the ball and your direct opponent. This is called \"half-turned\" positioning. Practice it: during training games, always know where your nearest opponent is without looking directly at them."
+    },
+    "ru": {
+      "title": "Командная оборона: искусство оборонительного блока",
+      "body": "Хорошая оборона — это не один игрок, а вся команда, двигающаяся вместе. Оборонительный блок значит, что между линиями защиты и полузащиты не более 10-12 метров. Когда мяч у соперника, смещайтесь как единое целое к стороне мяча. Самая частая ошибка молодых — уставиться на мяч, пока соперник забегает за спину. Вместо этого расположись так, чтобы видеть И мяч, И своего оппонента. Это называется «полуповорот». Тренируй: в игровых упражнениях всегда знай, где ближайший соперник, не глядя прямо на него."
+    },
+    "lv": {
+      "title": "Aizsardzība komandā: aizsardzības bloka māksla",
+      "body": "Laba aizsardzība nav par vienu spēlētāju — tā ir par visu komandu, kas kustas kopā. Aizsardzības bloks nozīmē, ka starp aizsardzības un pussargu līnijām nav vairāk par 10-12 metriem. Kad pretiniekam ir bumba, pārvietojieties kā vienots bloks uz bumbas pusi. Biežākā kļūda — skatīties uz bumbu, kamēr pretinieks ieskrien aiz muguras. Tā vietā novietojies tā, lai redzi GAN bumbu, GAN savu pretinieku. To sauc par \"puspagriešanos\". Trenē: spēļu vingrojumos vienmēr zini, kur tuvākais pretinieks, neskatoties tieši uz viņu."
+    },
+    "es": {
+      "title": "Defender en equipo: el arte del bloque defensivo",
+      "body": "La gran defensa no es de un jugador — es de todo el equipo moviéndose junto. Un bloque defensivo significa que no hay más de 10-12 metros entre las líneas de defensa y mediocampo. Cuando el rival tiene el balón, desplázate como unidad hacia el lado del balón. El error más común es mirar solo el balón mientras un rival corre detrás de ti. En su lugar, posiciónate para ver AMBOS: el balón y tu oponente directo. Se llama posición \"semilateral\". Practica: en juegos de entrenamiento, siempre sabe dónde está tu rival más cercano sin mirarlo directamente."
+    },
+    "et": {
+      "title": "Meeskondlik kaitsmine: kaitsebloki kunst",
+      "body": "Suurepärane kaitsmine pole ühe mängija asi — kogu meeskond liigub koos. Kaitseblokk tähendab, et kaitse- ja poolkaitsjoonte vahel pole rohkem kui 10-12 meetrit. Kui vastas on pall, nihku üksusena pallipoolsele küljele. Levinuim viga on pallivaatamine — vaatad palli, samal ajal vastane jookseb selja taha. Selle asemel asetu nii, et näed NII palli KUI oma vastast. Seda nimetatakse \"poolpööratud\" positsiooniks. Harjuta: treeningmängudes tea alati, kus on lähim vastane, ilma otse teda vaatamata."
+    },
+    "lt": {
+      "title": "Komandinė gynyba: gynybos bloko menas",
+      "body": "Puiki gynyba — ne vieno žaidėjo reikalas, o visos komandos judėjimas kartu. Gynybos blokas reiškia, kad tarp gynybos ir vidurio linijų ne daugiau nei 10-12 metrų. Kai priešininkas turi kamuolį, judėkite kaip vienas blokas kamuolio pusėn. Dažniausias klaidą — žiūrėti į kamuolį, kol priešininkas bėga už nugaros. Vietoj to išsidėstyk taip, kad matytum IR kamuolį, IR savo priešininką. Tai vadinama \"pusiau pasukta\" pozicija. Praktikuok: treniruočių žaidimuose visada žinok, kur artimiausias priešininkas, nežiūrėdamas tiesiai į jį."
+    },
+    "publishedAt": "2026-03-31T20:24:11.756Z"
+  },
+  {
+    "type": "article",
+    "id": "art-tac-08",
+    "category": "tactics",
+    "ageTiers": [
+      "u14",
+      "u16"
+    ],
+    "readingTimeMin": 2,
+    "emoji": "🔑",
+    "status": "published",
+    "en": {
+      "title": "The Third Man Run: Football's Most Underrated Move",
+      "body": "Player A passes to Player B. While everyone watches the ball, Player C makes a run into space behind the defence. Player B plays a first-time pass to the running Player C. This is the \"third man run\" — one of the most effective attacking plays in football. It works because defenders follow the ball, not the third player. To execute: when you see a teammate about to receive, DO NOT stand still. Sprint into space behind the defence — even if you do not get the ball, you pull a defender with you, creating space for others. The best teams (Barcelona, Manchester City) build their entire attacking system around third man combinations."
+    },
+    "ru": {
+      "title": "Забегание третьего: самый недооценённый приём в футболе",
+      "body": "Игрок А пасует игроку Б. Пока все следят за мячом, игрок В делает рывок в свободное пространство за спинами защитников. Игрок Б в одно касание отдаёт на бегущего игрока В. Это «забегание третьего» — один из самых эффективных атакующих приёмов. Работает потому, что защитники следят за мячом, а не за третьим. Для исполнения: когда видишь, что партнёр сейчас получит мяч — НЕ стой на месте. Рви за спины защитников — даже если не получишь мяч, ты утянешь за собой защитника, создавая пространство для других. Лучшие команды (Барселона, Манчестер Сити) строят всю атаку на комбинациях третьего."
+    },
+    "lv": {
+      "title": "Trešā spēlētāja ieskrējiens: futbola nenovērtētākais elements",
+      "body": "Spēlētājs A piespēlē spēlētājam B. Kamēr visi seko bumbai, spēlētājs C ieskrien brīvajā telpā aiz aizsargiem. Spēlētājs B uzreiz piespēlē skrienošajam spēlētājam C. Tas ir \"trešā spēlētāja ieskrējiens\" — viens no efektīvākajiem uzbrukuma elementiem. Tas strādā, jo aizsargi seko bumbai, nevis trešajam. Lai izpildītu: kad redzi, ka komandas biedrs saņems bumbu — NESTĀVI uz vietas. Skrien aiz aizsargiem — pat ja nesaņemsi bumbu, tu aizvilksi aizsargu sev līdzi, radot telpu citiem."
+    },
+    "es": {
+      "title": "La carrera del tercer hombre: la jugada más infravalorada",
+      "body": "Jugador A pasa a Jugador B. Mientras todos miran el balón, Jugador C hace una carrera al espacio detrás de la defensa. Jugador B pasa de primera al Jugador C que corre. Esta es la \"carrera del tercer hombre\" — una de las jugadas más efectivas. Funciona porque los defensores siguen el balón, no al tercer jugador. Para ejecutar: cuando veas que un compañero va a recibir — NO te quedes quieto. Sprint al espacio detrás de la defensa — aunque no recibas el balón, arrastras un defensor, creando espacio para otros."
+    },
+    "et": {
+      "title": "Kolmanda mehe jooks: jalgpalli alahinnatud element",
+      "body": "Mängija A söödab mängijale B. Samal ajal kui kõik vaatavad palli, teeb mängija C jooksu vabasse ruumi kaitsjoone taha. Mängija B söödab esimesest puutest jooksvale mängijale C. See on \"kolmanda mehe jooks\" — üks efektiivsemaid ründeelemente. See toimib, sest kaitsjad jälgivad palli, mitte kolmandat mängijat. Selleks: kui näed, et meeskonnakaaslane hakkab palli saama — ÄRA seisa paigal. Sprindi kaitsjoone taha — isegi kui sa palli ei saa, tõmbad kaitsja endaga kaasa, luues teistele ruumi."
+    },
+    "lt": {
+      "title": "Trečio žaidėjo bėgimas: neįvertintas futbolo elementas",
+      "body": "Žaidėjas A perduoda žaidėjui B. Kol visi seka kamuolį, žaidėjas C bėga į laisvą erdvę už gynėjų. Žaidėjas B iš pirmo prisilietimo perduoda bėgančiam žaidėjui C. Tai \"trečio žaidėjo bėgimas\" — vienas efektyviausių puolimo elementų. Veikia, nes gynėjai seka kamuolį, ne trečiąjį. Norėdamas atlikti: kai matai, kad komandos draugas gaus kamuolį — NESTOVĖK. Sprintuok už gynėjų — net jei negausi kamuolio, patrauksi gynėją su savimi, kurdamas erdvę kitiems."
+    },
+    "publishedAt": "2026-03-31T20:24:11.756Z"
+  },
+  {
+    "type": "article",
+    "id": "art-tac-09",
+    "category": "tactics",
+    "ageTiers": [
+      "u10",
+      "u12",
+      "u14"
+    ],
+    "readingTimeMin": 2,
+    "emoji": "🎮",
+    "status": "published",
+    "en": {
+      "title": "Playing Out from the Back: Why Goalkeepers Use Their Feet",
+      "body": "You might wonder why modern goalkeepers pass the ball instead of kicking it long. The reason: when the goalkeeper passes short to a defender, your team keeps the ball. When they kick long, it is a 50/50 — you might lose possession. Playing from the back requires bravery and trust. The goalkeeper passes to a centre-back, who passes to a full-back or midfielder. If the opponent presses, there is always a safe option: the goalkeeper can receive it back. Practice: in training, always try to play out — even if it feels risky. Mistakes happen, but the learning is priceless."
+    },
+    "ru": {
+      "title": "Розыгрыш от ворот: почему вратари играют ногами",
+      "body": "Тебе может быть непонятно, зачем вратари пасуют коротко вместо длинного выноса. Ответ прост: короткий пас защитнику сохраняет мяч у команды. Длинный вынос — это 50/50, можно потерять владение. Розыгрыш от ворот требует смелости и доверия. Вратарь пасует центральному защитнику, тот — крайнему или полузащитнику. Если соперник прессингует, всегда есть безопасный вариант: вратарь может принять мяч назад. Тренируй: в тренировках всегда старайся разыгрывать — даже если это кажется рискованным. Ошибки бывают, но этот опыт бесценен."
+    },
+    "lv": {
+      "title": "Izspēle no aizmugures: kāpēc vārtsargi izmanto kājas",
+      "body": "Tev var šķist dīvaini, kāpēc mūsdienu vārtsargi piespēlē bumbu nevis sit tālu. Iemesls: kad vārtsargs piespēlē īsi aizsargam, tava komanda saglabā bumbu. Tāls sitiens ir 50/50 — vari zaudēt valdījumu. Izspēle no aizmugures prasa drosmi un uzticību. Vārtsargs piespēlē centrālajam aizsargam, tas — sānu aizsargam vai pussargam. Ja pretinieks spiež, vienmēr ir droša opcija: vārtsargs var saņemt bumbu atpakaļ. Trenē: treniņos vienmēr mēģini izspēlēt — pat ja šķiet riskanti. Kļūdas gadās, bet pieredze ir nenovērtējama."
+    },
+    "es": {
+      "title": "Salir jugando desde atrás: por qué los porteros usan los pies",
+      "body": "Quizás te preguntes por qué los porteros modernos pasan el balón en corto en vez de despejarlo. La razón: cuando el portero pasa corto a un defensa, tu equipo mantiene el balón. Un despeje largo es 50/50 — puedes perder la posesión. Salir jugando requiere valentía y confianza. El portero pasa al central, que pasa al lateral o al medio. Si el rival presiona, siempre hay una opción segura: el portero puede recibirlo de vuelta. Practica: en entrenamiento, siempre intenta salir jugando — aunque parezca arriesgado. Los errores pasan, pero el aprendizaje no tiene precio."
+    },
+    "et": {
+      "title": "Mäng väravast üles: miks väravavahid kasutavad jalgu",
+      "body": "Sa võid mõelda, miks kaasaegsed väravavahid söödavad lühikeselt selle asemel, et kaugele lüüa. Põhjus: kui väravavaht söödab kaitsjale, hoiab meeskond palli. Kauglöök on 50/50 — sa võid valduse kaotada. Mäng väravast üles nõuab julgust ja usaldust. Väravavaht söödab keskkaitsjale, kes söödab äärekaitsjale või poolkaitsjale. Kui vastane pressib, on alati turvaline variant: väravavaht saab palli tagasi. Harjuta: treeningul proovi alati mängida — isegi kui tundub riskantne. Vead juhtuvad, aga kogemus on hindamatu."
+    },
+    "lt": {
+      "title": "Žaidimas nuo vartų: kodėl vartininkai naudoja kojas",
+      "body": "Gali stebėtis, kodėl šiuolaikiniai vartininkai perduoda trumpai, o ne muša toli. Priežastis: kai vartininkas perduoda trumpai gynėjui, komanda išlaiko kamuolį. Tolimas mušimas — 50/50, gali prarasti valdymą. Žaidimas nuo vartų reikalauja drąsos ir pasitikėjimo. Vartininkas perduoda centriniams, tie — kraštiniams ar vidurio linijos žaidėjams. Jei priešininkas spaudžia, visada yra saugus variantas: vartininkas gali priimti kamuolį atgal. Praktikuok: treniruotėse visada bandyk žaisti — net jei atrodo rizikinga. Klaidos pasitaiko, bet patirtis neįkainojama."
+    },
+    "publishedAt": "2026-03-31T20:24:11.756Z"
+  },
+  {
+    "type": "article",
+    "id": "art-tac-10",
+    "category": "tactics",
+    "ageTiers": [
+      "u12",
+      "u14",
+      "u16"
+    ],
+    "readingTimeMin": 2,
+    "emoji": "📐",
+    "status": "published",
+    "en": {
+      "title": "Triangles: The Shape That Controls Football",
+      "body": "Every great passing team creates triangles. When three players position themselves in a triangle around the ball carrier, that player always has at least two passing options. This makes it almost impossible for the opponent to block all passes. Barcelona perfected this with their \"positional play\" — players constantly form, dissolve, and reform triangles across the pitch. In practice, think about your position relative to the player with the ball. Are you at a good angle? Can they see you? Are you too close (easy to mark both of you) or too far (pass is too risky)? The ideal triangle side is 8-12 meters. If you do nothing else differently — just always form a triangle with the ball carrier — you will become a much better teammate."
+    },
+    "ru": {
+      "title": "Треугольники: фигура, которая управляет футболом",
+      "body": "Каждая великая пасующая команда создаёт треугольники. Когда три игрока располагаются треугольником вокруг владеющего мячом — у того всегда минимум два варианта паса. Это делает почти невозможным перекрытие всех передач. Барселона довела это до совершенства в «позиционной игре» — игроки постоянно формируют, распадают и снова создают треугольники. На практике думай о том, как ты расположен относительно партнёра с мячом. Ты под хорошим углом? Он тебя видит? Ты слишком близко (легко накрыть обоих) или далеко (пас рискованный)? Идеальная сторона треугольника — 8-12 метров."
+    },
+    "lv": {
+      "title": "Trīsstūri: forma, kas kontrolē futbolu",
+      "body": "Katra lieliska piespēļu komanda veido trīsstūrus. Kad trīs spēlētāji novietojas trīsstūrī ap bumbu nesošo spēlētāju — tam vienmēr ir vismaz divi piespēles varianti. Tas padara gandrīz neiespējamu visu piespēļu bloķēšanu. Barselona to pilnveidoja ar savu \"pozicionālo spēli\" — spēlētāji pastāvīgi veido, izjauc un atkal veido trīsstūrus. Praksē domā par savu pozīciju attiecībā pret spēlētāju ar bumbu. Vai tu esi labā leņķī? Vai viņš tevi redz? Vai esi par tuvu (viegli apsegt abus) vai par tālu (piespēle pārāk riskanta)? Ideālā trīsstūra mala ir 8-12 metru."
+    },
+    "es": {
+      "title": "Triángulos: la forma que controla el fútbol",
+      "body": "Todo gran equipo de pase crea triángulos. Cuando tres jugadores se posicionan en triángulo alrededor del portador del balón — ese jugador siempre tiene al menos dos opciones de pase. Esto hace casi imposible bloquear todos los pases. Barcelona lo perfeccionó con su \"juego posicional\" — los jugadores constantemente forman, disuelven y reforman triángulos. En la práctica, piensa en tu posición relativa al jugador con balón. ¿Estás en un buen ángulo? ¿Te puede ver? ¿Estás demasiado cerca (fácil marcaros a ambos) o lejos (pase arriesgado)? El triángulo ideal tiene lados de 8-12 metros."
+    },
+    "et": {
+      "title": "Kolmnurgad: kujund, mis kontrollib jalgpalli",
+      "body": "Iga suurepärane söötjate meeskond loob kolmnurki. Kui kolm mängijat positsioneerivad end kolmnurgana pallikandja ümber — on sellel mängijal alati vähemalt kaks sööduvalikut. See teeb peaaegu võimatuks kõigi söötude blokeerimise. Barcelona viimistles seda oma \"positsionaalse mänguga\" — mängijad moodustavad, lagunevad ja taasmoodustavad pidevalt kolmnurki. Praktikas mõtle oma positsioonile palliga mängija suhtes. Kas oled hea nurga all? Kas ta näeb sind? Kas oled liiga lähedal (lihtne mõlemat katta) või liiga kaugel (sööt liiga riskantne)? Ideaalne kolmnurga külg on 8-12 meetrit."
+    },
+    "lt": {
+      "title": "Trikampiai: forma, kontroliuojanti futbolą",
+      "body": "Kiekviena puiki perdavimų komanda kuria trikampius. Kai trys žaidėjai išsidėsto trikampiu aplink kamuolio turėtoją — tas visada turi mažiausiai du perdavimo variantus. Tai praktiškai neįmanoma užblokuoti visų perdavimų. Barcelona tai ištobulino savo \"poziciniu žaidimu\" — žaidėjai nuolat formuoja, ardosi ir iš naujo formuoja trikampius. Praktikoje galvok apie savo poziciją kamuolį turinčio žaidėjo atžvilgiu. Ar esi geru kampu? Ar jis tave mato? Ar per arti (lengva dengti abu) ar per toli (perdavimas per rizikingas)? Ideali trikampio kraštinė — 8-12 metrų."
+    },
+    "publishedAt": "2026-03-31T20:24:11.756Z"
+  },
+  {
+    "type": "article",
+    "id": "art-tac-11",
+    "category": "tactics",
+    "ageTiers": [
+      "u12",
+      "u14",
+      "u16"
+    ],
+    "readingTimeMin": 2,
+    "emoji": "⚡",
+    "status": "published",
+    "en": {
+      "title": "Counter-Pressing: Win It Back in 5 Seconds",
+      "body": "When you lose the ball, you have two choices: fall back and defend, or immediately try to win it back. Counter-pressing (or \"gegenpressing\") means the second option — the moment you lose possession, the nearest 2-3 players aggressively press the opponent. Why? Because in the first 3-5 seconds after losing the ball, the opponent is still organizing — they are vulnerable. Klopp's Liverpool and Guardiola's teams made this famous. The rule is simple: lose the ball → sprint toward it for 5 seconds. If you win it back, you are already in a great attacking position. If you do not, THEN fall back into your defensive shape. This habit alone will transform your team."
+    },
+    "ru": {
+      "title": "Контрпрессинг: отбери за 5 секунд",
+      "body": "Когда ты теряешь мяч, есть два варианта: откатиться и обороняться, или сразу попытаться отобрать. Контрпрессинг (или «гегенпрессинг») — это второй вариант: в момент потери ближайшие 2-3 игрока агрессивно атакуют соперника. Почему? Потому что в первые 3-5 секунд после потери соперник ещё не организован — он уязвим. Ливерпуль Клоппа и команды Гвардиолы сделали это знаменитым. Правило простое: потерял мяч → спринт к нему 5 секунд. Если отобрал — ты уже в отличной позиции для атаки. Если нет — ТОГДА откатывайся в оборонительную формацию. Одна эта привычка преобразит команду."
+    },
+    "lv": {
+      "title": "Kontrpresings: atgūsti 5 sekundēs",
+      "body": "Kad tu zaudē bumbu, ir divi varianti: atkāpties un aizstāvēties vai uzreiz mēģināt to atgūt. Kontrpresings nozīmē otro — bumbas zaudēšanas brīdī tuvākie 2-3 spēlētāji agresīvi uzbrūk pretiniekam. Kāpēc? Jo pirmajās 3-5 sekundēs pēc zaudēšanas pretinieks vēl organizējas — viņš ir ievainojams. Kloppa Liverpool un Gvardiolas komandas to padarīja slavenu. Noteikums vienkāršs: zaudēji bumbu → sprints uz to 5 sekundes. Ja atgūsti — tu jau esi lieliskā uzbrukuma pozīcijā. Ja nē — TAD atkāpies aizsardzības formācijā. Šis viens ieradums pārvērtīs tavu komandu."
+    },
+    "es": {
+      "title": "Contrapresión: recupéralo en 5 segundos",
+      "body": "Cuando pierdes el balón, tienes dos opciones: replegarte y defender, o intentar recuperarlo inmediatamente. La contrapresión (o \"gegenpressing\") es la segunda opción — en el momento de perder posesión, los 2-3 jugadores más cercanos presionan agresivamente. ¿Por qué? Porque en los primeros 3-5 segundos tras la pérdida, el rival aún se organiza — es vulnerable. El Liverpool de Klopp y los equipos de Guardiola lo hicieron famoso. La regla es simple: pierdes el balón → sprint hacia él 5 segundos. Si lo recuperas, estás en gran posición de ataque. Si no, ENTONCES replíegate. Este solo hábito transformará tu equipo."
+    },
+    "et": {
+      "title": "Kontrapressimine: võida tagasi 5 sekundiga",
+      "body": "Kui kaotad palli, on kaks valikut: tagane ja kaitse, või proovi kohe tagasi võita. Kontrapressimine tähendab teist — palli kaotamise hetkel 2-3 lähimat mängijat ründavad agressiivselt vastast. Miks? Sest esimese 3-5 sekundi jooksul on vastane veel organiseerumata — ta on haavatav. Kloppi Liverpool ja Guardiola meeskonnad tegid selle kuulsaks. Reegel on lihtne: kaotasid palli → sprint selle poole 5 sekundit. Kui võidad tagasi, oled juba suurepärases ründepositsioonis. Kui ei — SIIS tagane kaitseformatsioonile. See üks harjumus muudab su meeskonda."
+    },
+    "lt": {
+      "title": "Kontrapressingas: atkovok per 5 sekundes",
+      "body": "Kai prarandi kamuolį, turi du variantus: atsitraukti ir gintis arba iškart bandyti atkovoti. Kontrapressingas reiškia antrą — kamuolio praradimo momentu artimiausi 2-3 žaidėjai agresyviai puola priešininką. Kodėl? Nes pirmas 3-5 sekundes po praradimo priešininkas dar organizuojasi — jis pažeidžiamas. Kloppo Liverpool ir Guardiola komandos tai išgarsino. Taisyklė paprasta: praradai kamuolį → sprintas link jo 5 sekundes. Jei atkovoji — jau esi puikioje puolimo pozicijoje. Jei ne — TADA atsitrauk į gynybos formaciją."
+    },
+    "publishedAt": "2026-03-31T20:24:11.756Z"
+  },
+  {
+    "type": "article",
+    "id": "art-tac-12",
+    "category": "tactics",
+    "ageTiers": [
+      "u10",
+      "u12",
+      "u14"
+    ],
+    "readingTimeMin": 2,
+    "emoji": "🎯",
+    "status": "published",
+    "en": {
+      "title": "The Simple Pass Is the Best Pass",
+      "body": "Young players often try spectacular passes — long balls, through-balls over the top, backheel flicks. But the truth that every professional coach will tell you: the simple pass is always the best pass. A 5-meter pass to an open teammate is worth more than a 40-meter pass that might not arrive. Why? Because keeping the ball means the opponent cannot score. Every time you give the ball away with a risky pass, you give the opponent a chance. The rule: if you have a simple option, take it. Only try the difficult pass when there is NO simple option. Xavi Hernández made a career out of simple 5-10 meter passes. He changed the game without ever being spectacular."
+    },
+    "ru": {
+      "title": "Простой пас — лучший пас",
+      "body": "Молодые игроки часто пытаются отдать эффектный пас — длинный заброс, проникающий верхом, пятка. Но правда, которую скажет любой тренер: простой пас всегда лучший. Пас на 5 метров открытому партнёру ценнее 40-метрового заброса, который может не дойти. Почему? Потому что сохранение мяча означает, что соперник не может забить. Каждый раз, когда ты теряешь мяч рискованным пасом — ты даёшь сопернику шанс. Правило: если есть простой вариант — выбирай его. Сложный пас — только когда нет простого. Хави Эрнандес построил карьеру на простых пасах по 5-10 метров. Он изменил игру, не будучи зрелищным."
+    },
+    "lv": {
+      "title": "Vienkāršā piespēle ir labākā piespēle",
+      "body": "Jaunie spēlētāji bieži mēģina iespaidīgas piespēles — garas bumbas, caursitienus, papēžu piespēles. Bet patiesība: vienkāršā piespēle vienmēr ir labākā. 5 metru piespēle atklātam komandas biedram ir vērtīgāka par 40 metru piespēli, kas var neaiziet. Kāpēc? Jo bumbas saglabāšana nozīmē, ka pretinieks nevar iesist. Katru reizi, kad zaudē bumbu ar riskantu piespēli — tu dod pretiniekam iespēju. Noteikums: ja ir vienkāršs variants — izvēlies to. Sarežģītu piespēli — tikai kad nav vienkāršā. Xavi Hernandez uzbūvēja karjeru uz vienkāršām 5-10 metru piespēlēm."
+    },
+    "es": {
+      "title": "El pase simple es el mejor pase",
+      "body": "Los jugadores jóvenes intentan pases espectaculares — balones largos, pases por arriba, taconazos. Pero la verdad que todo entrenador te dirá: el pase simple siempre es el mejor. Un pase de 5 metros a un compañero libre vale más que uno de 40 metros que puede no llegar. ¿Por qué? Porque mantener el balón significa que el rival no puede marcar. Cada vez que pierdes el balón con un pase arriesgado, le das una oportunidad al rival. La regla: si tienes una opción simple, tómala. Solo intenta el pase difícil cuando NO hay opción simple. Xavi Hernández hizo una carrera con pases simples de 5-10 metros."
+    },
+    "et": {
+      "title": "Lihtne sööt on parim sööt",
+      "body": "Noored mängijad proovivad tihti efektseid sööte — pikki palle, läbisööte, kandade flikkimist. Aga tõde, mida iga treener ütleb: lihtne sööt on alati parim. 5-meetrine sööt lahtisele meeskonnakaaslasele on väärtuslikum kui 40-meetrine, mis ei pruugi kohale jõuda. Miks? Sest palli hoidmine tähendab, et vastane ei saa lüüa. Iga kord, kui kaotad palli riskantse sööduga, annad vastasele võimaluse. Reegel: kui on lihtne variant, kasuta seda. Keeruline sööt — ainult siis, kui lihtsat POLE. Xavi Hernández ehitas karjääri lihtsatele 5-10 meetri söötudele."
+    },
+    "lt": {
+      "title": "Paprastas perdavimas — geriausias perdavimas",
+      "body": "Jauni žaidėjai dažnai bando įspūdingus perdavimus — ilgus mušimus, perėjimus iš viršaus, kulno perdavimus. Bet tiesa: paprastas perdavimas visada geriausias. 5 metrų perdavimas laisvam komandos draugui vertingesnis nei 40 metrų, kuris gali neateiti. Kodėl? Nes kamuolio išlaikymas reiškia, kad priešininkas negali mušti. Kaskart, kai prarandi kamuolį riskingas perdavimu — duodi priešininkui šansą. Taisyklė: jei yra paprastas variantas — rinkis jį. Sudėtingas perdavimas — tik kai NĖRA paprasto. Xavi Hernandez pastatė karjerą ant paprastų 5-10 metrų perdavimų."
+    },
+    "publishedAt": "2026-03-31T20:24:11.756Z"
+  },
+  {
+    "type": "article",
+    "id": "art-nut-07",
+    "category": "nutrition",
+    "ageTiers": [
+      "u10",
+      "u12",
+      "u14",
+      "u16"
+    ],
+    "readingTimeMin": 2,
+    "emoji": "🥗",
+    "status": "published",
+    "en": {
+      "title": "The Footballer's Plate: What Should Half Your Meal Be?",
+      "body": "Imagine dividing your plate into sections. Half should be carbohydrates (rice, pasta, potatoes, bread) — this is your energy. A quarter should be protein (chicken, fish, eggs, beans) — this repairs your muscles. The last quarter should be vegetables and fruit — these give you vitamins and keep you healthy. On match days, make the carb section even bigger. On rest days, increase protein slightly. This is not a diet — it is how professional athletes eat. You do not need supplements or special foods. Just follow the plate rule: half carbs, quarter protein, quarter vegetables. Add water with every meal, and you have a footballer's nutrition plan."
+    },
+    "ru": {
+      "title": "Тарелка футболиста: чем заполнить половину?",
+      "body": "Представь, что тарелка разделена на секции. Половина — углеводы (рис, паста, картофель, хлеб) — это твоё топливо. Четверть — белок (курица, рыба, яйца, бобы) — для восстановления мышц. Последняя четверть — овощи и фрукты — для витаминов и здоровья. В день матча увеличь долю углеводов. В день отдыха — чуть больше белка. Это не диета — так едят профессиональные спортсмены. Тебе не нужны добавки или специальные продукты. Просто следуй правилу тарелки: половина углеводы, четверть белок, четверть овощи. Вода к каждому приёму пищи — и план питания готов."
+    },
+    "lv": {
+      "title": "Futbolista šķīvis: ar ko aizpildīt pusi?",
+      "body": "Iedomājies, ka šķīvis sadalīts daļās. Puse — ogļhidrāti (rīsi, makaroni, kartupeļi, maize) — tā ir tava enerģija. Ceturtdaļa — olbaltumvielas (vista, zivs, olas, pupiņas) — muskuļu atjaunošanai. Pēdējā ceturtdaļa — dārzeņi un augļi — vitamīniem un veselībai. Spēles dienā palielini ogļhidrātu daļu. Atpūtas dienā — nedaudz vairāk olbaltumvielu. Tā nav diēta — tā ēd profesionāli sportisti. Tev nav vajadzīgi piedevas. Vienkārši seko šķīvja noteikumam: puse ogļhidrāti, ceturtdaļa olbaltumvielas, ceturtdaļa dārzeņi. Ūdens pie katras maltītes — un tavs uzturs ir sakārtots."
+    },
+    "es": {
+      "title": "El plato del futbolista: ¿qué debería ser la mitad?",
+      "body": "Imagina dividir tu plato en secciones. La mitad deben ser carbohidratos (arroz, pasta, patatas, pan) — es tu energía. Un cuarto debe ser proteína (pollo, pescado, huevos, legumbres) — repara tus músculos. El último cuarto son verduras y frutas — vitaminas y salud. En día de partido, agranda la sección de carbos. En día de descanso, un poco más de proteína. Esto no es una dieta — así comen los atletas profesionales. No necesitas suplementos. Solo sigue la regla del plato: mitad carbos, cuarto proteína, cuarto verduras. Agua con cada comida y tienes un plan nutricional de futbolista."
+    },
+    "et": {
+      "title": "Jalgpalluri taldrik: mis peaks olema pool söögist?",
+      "body": "Kujuta ette, et jaotad taldriku osadeks. Pool peaks olema süsivesikud (riis, pasta, kartulid, leib) — see on su energia. Veerand peaks olema valk (kana, kala, munad, oad) — see parandab lihaseid. Viimane veerand olgu köögivili ja puuvili — need annavad vitamiine. Mängupäeval tee süsivesikute osa veelgi suuremaks. Puhkepäeval lisa veidi rohkem valku. See pole dieet — nii söövad profsportlased. Sa ei vaja toidulisandeid. Järgi lihtsalt taldrikureeglilt: pool süsivesikud, veerand valk, veerand köögivili."
+    },
+    "lt": {
+      "title": "Futbolininko lėkštė: kuo užpildyti pusę?",
+      "body": "Įsivaizduok, kad lėkštė padalinta į dalis. Pusė — angliavandeniai (ryžiai, makaronai, bulvės, duona) — tai tavo energija. Ketvirtadalis — baltymai (vištiena, žuvis, kiaušiniai, pupos) — raumenų atstatymui. Paskutinis ketvirtadalis — daržovės ir vaisiai — vitaminams ir sveikatai. Rungtynių dieną padidink angliavandenių dalį. Poilsio dieną — šiek tiek daugiau baltymų. Tai ne dieta — taip valgo profesionalūs sportininkai. Tau nereikia papildų. Tiesiog sekk lėkštės taisyklę: pusė angliavandenių, ketvirtadalis baltymų, ketvirtadalis daržovių."
+    },
+    "publishedAt": "2026-03-31T20:24:11.756Z"
+  },
+  {
+    "type": "article",
+    "id": "art-nut-08",
+    "category": "nutrition",
+    "ageTiers": [
+      "u12",
+      "u14",
+      "u16"
+    ],
+    "readingTimeMin": 2,
+    "emoji": "⚡",
+    "status": "published",
+    "en": {
+      "title": "Sugar: Friend or Enemy for Athletes?",
+      "body": "Sugar is not all bad — but timing matters. Simple sugars (candy, soda, juice) give you a quick energy spike, then a crash 30 minutes later. This is terrible before training. But DURING a long match or tournament day, a quick sugar boost (orange slices, sports drink) can actually help — your muscles are burning fuel fast and need quick replacement. The best approach: eat complex carbs (pasta, rice, oatmeal) 2-3 hours before playing for steady energy. Save simple sugars for DURING activity only. After training, a mix of sugar + protein (like chocolate milk) is ideal for recovery. Avoid energy drinks completely — the caffeine and excess sugar cause dehydration and heart racing."
+    },
+    "ru": {
+      "title": "Сахар: друг или враг спортсмена?",
+      "body": "Сахар не всегда плох — важен момент. Простые сахара (конфеты, газировка, сок) дают быстрый всплеск энергии, а через 30 минут — падение. Это ужасно перед тренировкой. Но ВО ВРЕМЯ длинного матча или турнирного дня быстрый сахар (дольки апельсина, спортивный напиток) реально помогает — мышцы быстро сжигают топливо. Лучший подход: сложные углеводы (паста, рис, овсянка) за 2-3 часа до игры для стабильной энергии. Простые сахара — только ВО ВРЕМЯ нагрузки. После тренировки: смесь сахар + белок (шоколадное молоко) идеальна для восстановления. Энергетики полностью избегай — кофеин и лишний сахар вызывают обезвоживание и учащённое сердцебиение."
+    },
+    "lv": {
+      "title": "Cukurs: draugs vai ienaidnieks sportistam?",
+      "body": "Cukurs nav vienmēr slikts — svarīgs ir laiks. Vienkāršie cukuri (konfektes, limonāde, sula) dod ātru enerģijas pieaugumu, tad krītumu pēc 30 minūtēm. Tas ir briesmīgi pirms treniņa. Bet SPĒLES laikā vai garā turnīra dienā ātrs cukura pieplūdums (apelsīnu šķēles, sporta dzēriens) var palīdzēt — muskuļi ātri sadedzina degvielu. Labākā pieeja: sarežģītie ogļhidrāti (makaroni, rīsi, putra) 2-3 stundas pirms spēles stabilai enerģijai. Vienkāršos cukurus — tikai AKTIVITĀTES laikā. Pēc treniņa: cukurs + olbaltumvielas (šokolādes piens) ir ideāli. Pilnībā izvairies no enerģijas dzērieniem — kofeīns un pārmērīgs cukurs izraisa dehidratāciju."
+    },
+    "es": {
+      "title": "¿Azúcar: amigo o enemigo del atleta?",
+      "body": "El azúcar no siempre es malo — el momento importa. Los azúcares simples (dulces, refrescos, zumos) dan un pico rápido de energía, luego un bajón 30 minutos después. Terrible antes de entrenar. Pero DURANTE un partido largo o día de torneo, un impulso rápido (naranjas, bebida deportiva) puede ayudar — los músculos queman combustible rápido. El mejor enfoque: carbos complejos (pasta, arroz, avena) 2-3 horas antes para energía estable. Azúcares simples solo DURANTE la actividad. Después: mezcla azúcar + proteína (leche con chocolate) es ideal. Evita completamente las bebidas energéticas — la cafeína y el exceso de azúcar causan deshidratación."
+    },
+    "et": {
+      "title": "Suhkur: sportlase sõber või vaenlane?",
+      "body": "Suhkur pole alati halb — ajastus loeb. Lihtsuhkrud (kommid, limonaad, mahl) annavad kiire energiatõusu, siis 30 minuti pärast languse. Kohutav enne treeningut. Aga MÄNGU ajal või pikal turniiripäeval võib kiire suhkrulöök (apelsinitükid, spordijook) tõesti aidata — lihased põletavad kütust kiiresti. Parim lähenemine: keerukad süsivesikud (pasta, riis, kaerahelbed) 2-3 tundi enne stabiilseks energiaks. Lihtsuhkrud ainult TEGEVUSE ajal. Pärast: suhkur + valk (šokolaadipiim) on ideaalne taastumiseks. Väldi täielikult energiajooke — kofeiin ja liigne suhkur põhjustavad dehüdratsiooni."
+    },
+    "lt": {
+      "title": "Cukrus: sportininko draugas ar priešas?",
+      "body": "Cukrus ne visada blogas — svarbus laikas. Paprasti cukrūs (saldainiai, limonadas, sultys) duoda greitą energijos šuolį, tada po 30 min — kritimą. Siaubinga prieš treniruotę. Bet RUNGTYNIŲ metu ar ilgą turnyro dieną greitas cukraus pliūpsnis (apelsinų skiltelės, sportinis gėrimas) gali padėti — raumenys greitai degina kurą. Geriausias požiūris: sudėtingi angliavandeniai (makaronai, ryžiai, avižinė) 2-3 val. prieš stabiliai energijai. Paprastus cukrus — tik VEIKLOS metu. Po treniruotės: cukrus + baltymai (šokoladinis pienas) idealus atsigavimui. Visiškai vengk energinių gėrimų."
+    },
+    "publishedAt": "2026-03-31T20:24:11.756Z"
+  },
+  {
+    "type": "article",
+    "id": "art-nut-09",
+    "category": "nutrition",
+    "ageTiers": [
+      "u10",
+      "u12",
+      "u14",
+      "u16"
+    ],
+    "readingTimeMin": 2,
+    "emoji": "🍳",
+    "status": "published",
+    "en": {
+      "title": "Breakfast: The Meal Champions Never Skip",
+      "body": "Your body has been fasting for 8-10 hours while you slept. Breakfast restarts your engine. Studies on young athletes show that those who eat breakfast perform 20% better in morning training than those who skip it. But not any breakfast works. The best footballer's breakfast: oatmeal with banana and honey (slow-release energy), eggs on toast (protein + carbs), or yogurt with fruit and granola. Avoid sugary cereals — they spike your blood sugar and crash it within an hour. If you have an early morning training, eat a banana 30 minutes before, then have a full breakfast after. Never train on a completely empty stomach."
+    },
+    "ru": {
+      "title": "Завтрак: приём пищи, который чемпионы не пропускают",
+      "body": "Твоё тело голодало 8-10 часов во сне. Завтрак перезапускает двигатель. Исследования молодых спортсменов показывают: те, кто завтракает, показывают на 20% лучше результаты на утренних тренировках. Но не любой завтрак подходит. Лучший завтрак футболиста: овсянка с бананом и мёдом (медленная энергия), яйца на тосте (белок + углеводы), или йогурт с фруктами и мюсли. Избегай сладких хлопьев — они резко поднимают сахар и роняют через час. Если утренняя тренировка рано — съешь банан за 30 минут, полный завтрак — после. Никогда не тренируйся на полностью пустой желудок."
+    },
+    "lv": {
+      "title": "Brokastis: ēdienreize, ko čempioni neizlaiž",
+      "body": "Tavs ķermenis ir badojies 8-10 stundas miega laikā. Brokastis restartē tavu motoru. Pētījumi ar jaunajiem sportistiem rāda: tie, kas brokasto, parāda par 20% labākus rezultātus rīta treniņos. Bet ne jebkuras brokastis der. Labākās futbolista brokastis: putra ar banānu un medu, olas uz grauzdiņa vai jogurts ar augļiem un granolu. Izvairies no cukurotām pārslām — tās strauji paceļ cukura līmeni un nogrūž stundas laikā. Ja rīta treniņš ir agri — apēd banānu 30 min pirms, pilnas brokastis — pēc. Nekad netrenējies pilnīgi tukšā dūšā."
+    },
+    "es": {
+      "title": "Desayuno: la comida que los campeones nunca se saltan",
+      "body": "Tu cuerpo ha estado en ayuno 8-10 horas mientras dormías. El desayuno reinicia tu motor. Estudios en atletas jóvenes muestran que los que desayunan rinden un 20% mejor en entrenamientos matutinos. Pero no cualquier desayuno sirve. El mejor desayuno del futbolista: avena con plátano y miel, huevos con tostada, o yogur con fruta y granola. Evita cereales azucarados — disparan el azúcar en sangre y lo desploman en una hora. Si tienes entrenamiento temprano, come un plátano 30 min antes, desayuno completo después. Nunca entrenes con el estómago completamente vacío."
+    },
+    "et": {
+      "title": "Hommikusöök: eine, mida tšempionid ei jäta vahele",
+      "body": "Su keha on paastunud 8-10 tundi une ajal. Hommikusöök taaskäivitab su mootori. Noorte sportlaste uuringud näitavad: need, kes söövad hommikust, on hommikustel treeningutel 20% paremad. Aga mitte iga hommikusöök sobib. Parim jalgpalluri hommik: kaerahelbed banaani ja meega, munad röstleival või jogurt puuviljaga. Väldi suhkrustatud helbekesi — need tõstavad veresuhkru järsult ja kukutavad tunni jooksul. Kui hommikune treening on vara, söö banaan 30 min enne, täishommikusöök pärast. Ära kunagi treeni täiesti tühja kõhuga."
+    },
+    "lt": {
+      "title": "Pusryčiai: valgis, kurio čempionai niekada nepraleidžia",
+      "body": "Tavo kūnas badavo 8-10 valandų miego metu. Pusryčiai perkrauna tavo variklį. Jaunų sportininkų tyrimai rodo: tie, kurie pusryčiauja, pasirodo 20% geriau rytinėse treniruotėse. Bet ne bet kokie pusryčiai tinka. Geriausi futbolininko pusryčiai: avižinė košė su bananu ir medumi, kiaušiniai ant skrudintos duonos arba jogurtas su vaisiais. Vengk cukruotų dribsnių — jie šauna cukrų kraujyje ir numuša per valandą. Jei rytinė treniruotė anksti — suvalgyk bananą 30 min prieš, pilnus pusryčius — po. Niekada netreniruokis visiškai tuščiu skrandžiu."
+    },
+    "publishedAt": "2026-03-31T20:24:11.756Z"
+  },
+  {
+    "type": "article",
+    "id": "art-nut-10",
+    "category": "nutrition",
+    "ageTiers": [
+      "u12",
+      "u14",
+      "u16"
+    ],
+    "readingTimeMin": 2,
+    "emoji": "🏋️",
+    "status": "published",
+    "en": {
+      "title": "Protein: How Much Do Young Footballers Really Need?",
+      "body": "Protein builds and repairs muscles. After every training session, tiny tears form in your muscle fibers — protein patches them up, making them stronger. Young athletes need about 1.2-1.6 grams of protein per kilogram of body weight per day. For a 50kg player, that is 60-80 grams daily. Good sources: chicken breast (31g per 100g), eggs (6g each), Greek yogurt (10g per 100g), tuna (25g per 100g), beans (8g per 100g). You do NOT need protein shakes — real food gives you everything. Spread protein across your meals: some at breakfast, lunch, and dinner. The most important protein meal is right after training — that is when your muscles are hungry for repair."
+    },
+    "ru": {
+      "title": "Белок: сколько реально нужно юным футболистам?",
+      "body": "Белок строит и восстанавливает мышцы. После каждой тренировки в мышечных волокнах образуются микроразрывы — белок их заживляет, делая сильнее. Молодым спортсменам нужно около 1.2-1.6 г белка на кг массы тела в день. Для игрока весом 50 кг — это 60-80 г в день. Хорошие источники: куриная грудка (31 г на 100 г), яйца (6 г каждое), греческий йогурт (10 г), тунец (25 г), бобы (8 г). Тебе НЕ нужны протеиновые коктейли — обычная еда даёт всё. Распредели белок по приёмам: немного на завтрак, обед, ужин. Самый важный белковый приём — сразу после тренировки: мышцы голодны для восстановления."
+    },
+    "lv": {
+      "title": "Olbaltumvielas: cik daudz tiešām vajag jaunajiem futbolistiem?",
+      "body": "Olbaltumvielas ceļ un atjauno muskuļus. Pēc katras treniņa tavos muskuļu šķiedrās veidojas sīki plīsumi — olbaltumvielas tos salabo, padarot stiprākus. Jaunajiem sportistiem vajag apmēram 1.2-1.6 g olbaltumvielu uz kg ķermeņa svara dienā. 50 kg spēlētājam — 60-80 g dienā. Labi avoti: vistas krūtiņa (31g uz 100g), olas (6g katra), grieķu jogurts (10g), tuncis (25g), pupiņas (8g). Tev NAV vajadzīgi proteīna kokteiļi — parasta pārtika dod visu. Sadali olbaltumvielas pa ēdienreizēm. Vissvarīgākā — tūlīt pēc treniņa: muskuļi ir izsalkuši pēc atjaunošanas."
+    },
+    "es": {
+      "title": "Proteína: ¿cuánta necesitan realmente los jóvenes futbolistas?",
+      "body": "La proteína construye y repara músculos. Después de cada entrenamiento se forman micro-roturas en las fibras musculares — la proteína las parcha, haciéndolas más fuertes. Los atletas jóvenes necesitan 1.2-1.6 gramos de proteína por kilo de peso al día. Para un jugador de 50kg, son 60-80g diarios. Buenas fuentes: pechuga de pollo (31g/100g), huevos (6g c/u), yogur griego (10g/100g), atún (25g/100g), legumbres (8g/100g). NO necesitas batidos de proteínas — la comida real lo da todo. Distribuye proteína entre comidas. La más importante es justo después del entrenamiento."
+    },
+    "et": {
+      "title": "Valk: kui palju noored jalgpallurid tegelikult vajavad?",
+      "body": "Valk ehitab ja parandab lihaseid. Pärast igat treeningut tekivad lihasekiududesse pisikesed rebendid — valk parandab need, muutes tugevamaks. Noored sportlased vajavad umbes 1.2-1.6 grammi valku kehakaalu kilogrammi kohta päevas. 50 kg mängija jaoks on see 60-80g päevas. Head allikad: kanarind (31g/100g), munad (6g tükk), kreeka jogurt (10g/100g), tuunikala (25g/100g), oad (8g/100g). Sa EI vaja valgujookke — päris toit annab kõik. Jaota valk söögikordade vahel. Kõige tähtsam on kohe pärast treeningut — siis on lihased näljased."
+    },
+    "lt": {
+      "title": "Baltymai: kiek tikrai reikia jauniems futbolininkams?",
+      "body": "Baltymai stato ir taiso raumenis. Po kiekvienos treniruotės raumenų skaidulose atsiranda mažyčiai plyšiai — baltymai juos užtaiso, darydami stipresnius. Jauniems sportininkams reikia apie 1.2-1.6 g baltymų kūno svorio kilogramui per dieną. 50 kg žaidėjui — 60-80g per dieną. Geri šaltiniai: vištos krūtinėlė (31g/100g), kiaušiniai (6g kiekvienas), graikiškas jogurtas (10g/100g), tunas (25g/100g), pupos (8g/100g). NEREIKIA baltymų kokteilių — tikras maistas duoda viską. Paskirstyk baltymus per valgius. Svarbiausia — iškart po treniruotės."
+    },
+    "publishedAt": "2026-03-31T20:24:11.756Z"
+  },
+  {
+    "type": "article",
+    "id": "art-nut-11",
+    "category": "nutrition",
+    "ageTiers": [
+      "u10",
+      "u12",
+      "u14",
+      "u16"
+    ],
+    "readingTimeMin": 2,
+    "emoji": "🤕",
+    "status": "published",
+    "en": {
+      "title": "What to Eat When You Are Injured",
+      "body": "Injuries are frustrating, but nutrition can speed up recovery. When injured, your body needs MORE protein (not less) — it is repairing tissue. Increase protein-rich foods: eggs, fish, chicken, yogurt, beans. Add foods with vitamin C (oranges, strawberries, peppers) — it helps rebuild collagen in ligaments and tendons. Omega-3 fats (salmon, walnuts, flaxseed) reduce inflammation. Do NOT crash diet because you are not training — your body needs calories to heal. Many young players make the mistake of eating less when injured, which actually slows recovery. Eat normally, focus on quality foods, stay hydrated, and let your body do its job."
+    },
+    "ru": {
+      "title": "Что есть при травме",
+      "body": "Травма — это обидно, но питание может ускорить восстановление. При травме организму нужно БОЛЬШЕ белка — он восстанавливает ткани. Увеличь продукты с белком: яйца, рыба, курица, йогурт, бобы. Добавь витамин C (апельсины, клубника, перец) — он помогает восстанавливать коллаген в связках. Омега-3 (лосось, грецкие орехи, семена льна) уменьшают воспаление. НЕ садись на диету из-за того, что не тренируешься — телу нужны калории для заживления. Многие молодые игроки ошибочно едят меньше при травме — это замедляет восстановление. Ешь нормально, выбирай качественные продукты, пей воду и дай телу делать свою работу."
+    },
+    "lv": {
+      "title": "Ko ēst traumas laikā",
+      "body": "Traumas ir nomācošas, bet uzturs var paātrināt atveseļošanos. Traumas laikā ķermenim vajag VAIRĀK olbaltumvielu — tas atjauno audus. Palielini olbaltumvielu produktus: olas, zivis, vistu, jogurtu, pupiņas. Pievieno C vitamīnu (apelsīni, zemenes, paprika) — tas palīdz atjaunot kolagēnu saitēs un cīpslās. Omega-3 (lasis, valrieksti, linsēklas) mazina iekaisumu. NESĀC diētu tāpēc, ka netrenējies — ķermenim vajag kalorijas dziedēšanai. Daudzi jaunie spēlētāji kļūdaini ēd mazāk traumas laikā — tas palēnina atveseļošanos. Ēd normāli, fokusējies uz kvalitatīvu pārtiku un ļauj ķermenim darīt savu darbu."
+    },
+    "es": {
+      "title": "Qué comer cuando estás lesionado",
+      "body": "Las lesiones son frustrantes, pero la nutrición puede acelerar la recuperación. Cuando estás lesionado, tu cuerpo necesita MÁS proteína — está reparando tejido. Aumenta alimentos ricos en proteína: huevos, pescado, pollo, yogur, legumbres. Añade vitamina C (naranjas, fresas, pimientos) — ayuda a reconstruir colágeno. Omega-3 (salmón, nueces, linaza) reduce la inflamación. NO hagas dieta porque no entrenas — tu cuerpo necesita calorías para sanar. Muchos jóvenes comen menos cuando están lesionados, lo que retrasa la recuperación. Come normal, elige alimentos de calidad, mantente hidratado y deja que tu cuerpo haga su trabajo."
+    },
+    "et": {
+      "title": "Mida süüa vigastuse ajal",
+      "body": "Vigastused on masendavad, aga toitumine saab taastumist kiirendada. Vigastuse ajal vajab keha ROHKEM valku — see parandab kudesid. Suurenda valgurikast toitu: munad, kala, kana, jogurt, oad. Lisa C-vitamiini (apelsinid, maasikad, paprika) — see aitab taastada kollageni sidemetes ja kõõlustes. Omega-3 (lõhe, kreeka pähklid, linaseemned) vähendavad põletikku. ÄRA hakka dieeti pidama, sest sa ei treeni — keha vajab kaloreid paranemiseks. Paljud noored söövad vigastuse ajal vähem, mis tegelikult aeglustab taastumist. Söö normaalselt ja lase kehal teha oma tööd."
+    },
+    "lt": {
+      "title": "Ką valgyti esant sužeistam",
+      "body": "Traumos yra liūdnos, bet mityba gali pagreitinti atsigavimą. Esant sužeistam, kūnui reikia DAUGIAU baltymų — jis taiso audinius. Padidink baltymingo maisto: kiaušinius, žuvį, vištieną, jogurtą, pupeles. Pridėk vitamino C (apelsinai, braškės, paprikos) — padeda atstatyti kolageną raiščiuose. Omega-3 (lašiša, graikiniai riešutai, linų sėklos) mažina uždegimą. NESĖSK ant dietos, nes netreniruojiesi — kūnui reikia kalorijų gijimui. Daugelis jaunų žaidėjų klysta valgydami mažiau per traumą — tai lėtina atsigavimą. Valgyk normaliai ir leisk kūnui daryti savo darbą."
+    },
+    "publishedAt": "2026-03-31T20:24:11.756Z"
+  },
+  {
+    "type": "article",
+    "id": "art-nut-12",
+    "category": "nutrition",
+    "ageTiers": [
+      "u12",
+      "u14",
+      "u16"
+    ],
+    "readingTimeMin": 2,
+    "emoji": "🏆",
+    "status": "published",
+    "en": {
+      "title": "Tournament Day Nutrition: How to Fuel for 3+ Matches",
+      "body": "Tournament days are different from regular match days. You might play 3-4 matches with short breaks. The key: eat small, eat often. Before the first match: your normal pre-match meal 2-3 hours prior. Between matches: light snacks every 45-60 minutes — banana, energy bar, handful of nuts, orange slices. Drink water constantly — do not wait until you feel thirsty. After each match: a quick snack within 15 minutes (banana + handful of trail mix). Avoid heavy meals between games — they will make you sluggish. For the final match, have an energy gel or sports drink 15 minutes before if available. The players who eat smart on tournament day perform better in the last match — when others fade, you stay sharp."
+    },
+    "ru": {
+      "title": "Питание в турнирный день: как держать энергию на 3+ матча",
+      "body": "Турнирные дни отличаются от обычных матчей. Ты можешь играть 3-4 матча с короткими перерывами. Ключ: ешь понемногу, ешь часто. Перед первым матчем: обычная предматчевая еда за 2-3 часа. Между матчами: лёгкие перекусы каждые 45-60 минут — банан, энергетический батончик, горсть орехов, дольки апельсина. Пей воду постоянно — не жди жажды. После каждого матча: быстрый перекус в течение 15 минут (банан + горсть орехов). Избегай тяжёлой еды между играми — станешь вялым. Перед финальным матчем — энергетический гель или спортивный напиток за 15 минут. Те, кто умно питается в турнирный день — играют лучше в последнем матче, когда остальные сдают."
+    },
+    "lv": {
+      "title": "Turnīra dienas uzturs: kā uzpildīties 3+ spēlēm",
+      "body": "Turnīra dienas atšķiras no parastajām. Tu vari spēlēt 3-4 spēles ar īsiem pārtraukumiem. Atslēga: ēd maz, ēd bieži. Pirms pirmās spēles: tavs parastais pirms-spēles ēdiens 2-3 stundas iepriekš. Starp spēlēm: vieglas uzkodas ik 45-60 minūtes — banāns, enerģijas batoniņš, sauja riekstu, apelsīnu šķēles. Dzer ūdeni pastāvīgi — negaidi slāpes. Pēc katras spēles: ātra uzkoda 15 minūšu laikā (banāns + rieksti). Izvairies no smagas ēdiena starp spēlēm. Pirms pēdējās spēles — enerģijas gels 15 min iepriekš. Spēlētāji, kas gudri ēd turnīra dienā — labāk spēlē pēdējā mačā, kad citi noplok."
+    },
+    "es": {
+      "title": "Nutrición en día de torneo: cómo alimentarte para 3+ partidos",
+      "body": "Los días de torneo son diferentes. Puedes jugar 3-4 partidos con descansos cortos. La clave: come poco, come frecuente. Antes del primer partido: tu comida pre-partido normal 2-3 horas antes. Entre partidos: snacks ligeros cada 45-60 min — plátano, barra energética, puñado de frutos secos, naranja. Bebe agua constantemente. Después de cada partido: snack rápido en 15 min (plátano + frutos secos). Evita comidas pesadas entre juegos. Antes del último: gel energético 15 min antes si hay disponible. Los que comen inteligente en día de torneo rinden mejor en el último partido — cuando otros se apagan, tú sigues fuerte."
+    },
+    "et": {
+      "title": "Turniiripäeva toitumine: kuidas tanki 3+ mänguks",
+      "body": "Turniiripäevad erinevad tavalistest. Võid mängida 3-4 mängu lühikeste vaheaegadega. Võti: söö vähe, söö tihti. Enne esimest mängu: tavaline eel-mängu söök 2-3 tundi varem. Mängude vahel: kerged snäkid iga 45-60 min — banaan, energiabatoon, peotäis pähkleid. Joo pidevalt vett. Iga mängu järel: kiire snäkk 15 min jooksul (banaan + pähklid). Väldi raskeid sööke mängude vahel. Viimase mängu eel: energiageel 15 min enne. Need, kes söövad targalt turniiripäeval, mängivad viimases mängus paremini — kui teised hajuvad, sina püsid terav."
+    },
+    "lt": {
+      "title": "Turnyro dienos mityba: kaip užsipildyti 3+ rungtynėms",
+      "body": "Turnyro dienos skiriasi nuo įprastų. Gali žaisti 3-4 rungtynes su trumpomis pertraukomis. Raktas: valgyk mažai, valgyk dažnai. Prieš pirmąsias: paprastas prieš-rungtynių maistas 2-3 val. prieš. Tarp rungtynių: lengvi užkandžiai kas 45-60 min — bananas, energijos batonėlis, sauja riešutų. Gerk vandenį nuolat. Po kiekvienų rungtynių: greitas užkandis per 15 min (bananas + riešutai). Vengk sunkaus maisto tarp žaidimų. Prieš paskutinį: energijos gelis 15 min prieš. Tie, kurie protingai valgo turnyro dieną — žaidžia geriau paskutiniame mače, kai kiti nuvargsta."
+    },
+    "publishedAt": "2026-03-31T20:24:11.756Z"
+  },
+  {
+    "type": "article",
+    "id": "art-men-06",
+    "category": "mental",
+    "ageTiers": [
+      "u10",
+      "u12",
+      "u14",
+      "u16"
+    ],
+    "readingTimeMin": 2,
+    "emoji": "🧠",
+    "status": "published",
+    "en": {
+      "title": "Growth Mindset: Your Mistakes Make You Better",
+      "body": "There are two types of mindsets: fixed and growth. A fixed mindset says \"I am bad at headers — I will never be good.\" A growth mindset says \"I am bad at headers — but I can improve with practice.\" Research by psychologist Carol Dweck shows that athletes with a growth mindset improve faster because they see mistakes as learning opportunities, not failures. After every mistake, ask yourself: \"What can I learn from this?\" A misplaced pass teaches you about timing. A missed shot teaches you about body position. Every error contains a lesson. The best players in the world are not the ones who make the fewest mistakes — they are the ones who learn the fastest from them."
+    },
+    "ru": {
+      "title": "Мышление роста: ошибки делают тебя лучше",
+      "body": "Есть два типа мышления: фиксированное и растущее. Фиксированное говорит: «Я плохо играю головой — никогда не научусь». Растущее: «Я плохо играю головой — но могу улучшиться с тренировкой». Исследования психолога Кэрол Дуэк показывают: спортсмены с мышлением роста улучшаются быстрее, потому что видят ошибки как возможности учиться, а не как провалы. После каждой ошибки спроси себя: «Чему я могу научиться?» Неточный пас учит таймингу. Промах — положению тела. Каждая ошибка содержит урок. Лучшие игроки мира — не те, кто ошибается меньше, а те, кто быстрее учится на ошибках."
+    },
+    "lv": {
+      "title": "Izaugsmes domāšana: kļūdas padara tevi labāku",
+      "body": "Ir divi domāšanas veidi: fiksētā un izaugsmes. Fiksētā saka: \"Es slikti spēlēju ar galvu — nekad nebūšu labs.\" Izaugsmes: \"Es slikti spēlēju ar galvu — bet varu uzlaboties ar treniņu.\" Psiholoģes Kerolā Dvekā pētījumi rāda: sportisti ar izaugsmes domāšanu uzlabojas ātrāk, jo saskata kļūdas kā mācīšanās iespējas, nevis kā neveiksmes. Pēc katras kļūdas pajautā sev: \"Ko es no tā varu iemācīties?\" Neprecīza piespēle māca par laicīgumu. Garām šāviens māca par ķermeņa stāvokli. Katra kļūda satur mācību. Labākie spēlētāji pasaulē nav tie, kas kļūdās retāk — bet tie, kas no tām mācās visātrāk."
+    },
+    "es": {
+      "title": "Mentalidad de crecimiento: tus errores te hacen mejor",
+      "body": "Hay dos tipos de mentalidad: fija y de crecimiento. La fija dice: \"Soy malo cabeceando — nunca seré bueno.\" La de crecimiento: \"Soy malo cabeceando — pero puedo mejorar con práctica.\" La investigación de la psicóloga Carol Dweck muestra que los atletas con mentalidad de crecimiento mejoran más rápido porque ven los errores como oportunidades de aprendizaje. Después de cada error, pregúntate: \"¿Qué puedo aprender?\" Un pase mal dado enseña sobre timing. Un tiro fallado enseña posición corporal. Cada error contiene una lección. Los mejores no son los que menos se equivocan — son los que aprenden más rápido de sus errores."
+    },
+    "et": {
+      "title": "Kasvumõtlemine: su vead teevad sind paremaks",
+      "body": "On kaks tüüpi mõtlemist: fikseeritud ja kasvu. Fikseeritud ütleb: \"Olen peaga mängimises halb — ei saa kunagi heaks.\" Kasvu: \"Olen peaga mängimises halb — aga saan harjutamisega paremaks.\" Psühholoogi Carol Dwecki uuringud näitavad: kasvumõtlemisega sportlased paranevad kiiremini, sest näevad vigu õppimisvõimalustena. Iga vea järel küsi: \"Mida saan sellest õppida?\" Ebatäpne sööt õpetab ajastust. Möödalöök õpetab kehapositsiooni. Iga viga sisaldab õppetunnid. Parimad mängijad pole need, kes eksivad vähem — vaid need, kes õpivad kõige kiiremini."
+    },
+    "lt": {
+      "title": "Augimo mąstymas: klaidos daro tave geresnį",
+      "body": "Yra du mąstymo tipai: fiksuotas ir augimo. Fiksuotas sako: \"Blogai žaidžiu galva — niekada neišmoksiu.\" Augimo: \"Blogai žaidžiu galva — bet galiu tobulėti treniruodamasis.\" Psichologės Carol Dweck tyrimai rodo: sportininkai su augimo mąstymu tobulėja greičiau, nes mato klaidas kaip mokymosi galimybes. Po kiekvienos klaidos paklausk savęs: \"Ko galiu iš to išmokti?\" Netikslus perdavimas moko laiko. Nepataikitas smūgis — kūno padėties. Kiekviena klaida turi pamoką. Geriausi žaidėjai — ne tie, kurie mažiausiai klysta, o tie, kurie greičiausiai mokosi iš klaidų."
+    },
+    "publishedAt": "2026-03-31T20:24:11.756Z"
+  },
+  {
+    "type": "article",
+    "id": "art-men-07",
+    "category": "mental",
+    "ageTiers": [
+      "u12",
+      "u14",
+      "u16"
+    ],
+    "readingTimeMin": 2,
+    "emoji": "🏔️",
+    "status": "published",
+    "en": {
+      "title": "Dealing with Pressure: What the Pros Do",
+      "body": "Pressure is what you feel when the result matters. Penalty kicks, important matches, tryouts — your heart races, your hands sweat, your mind speeds up. This is completely normal. The difference between players who crack and those who thrive is simple: preparation. Create a \"pressure routine\": (1) Take 3 deep breaths — in for 4, out for 6. This activates your calming nervous system. (2) Use a \"cue word\" — a single word that focuses you, like \"calm\" or \"ready\" or \"now.\" Say it to yourself. (3) Focus on the PROCESS, not the outcome — instead of \"I must score,\" think \"watch the ball, pick your spot, follow through.\" Practice these three steps so often that they become automatic. Then when real pressure comes, your body knows exactly what to do."
+    },
+    "ru": {
+      "title": "Как справиться с давлением: что делают профи",
+      "body": "Давление — это когда результат важен. Пенальти, решающий матч, просмотры — сердце колотится, ладони потеют, мысли мчатся. Это нормально. Разница между теми, кто ломается, и теми, кто побеждает — подготовка. Создай «ритуал давления»: (1) 3 глубоких вдоха — вдох на 4, выдох на 6. Это активирует систему успокоения. (2) Используй «ключевое слово» — одно слово, которое фокусирует: «спокойно», «готов», «сейчас». Скажи его себе. (3) Фокус на ПРОЦЕССЕ, а не на результате — вместо «я должен забить» думай «смотрю на мяч, выбираю угол, проводка». Тренируй эти три шага, пока они не станут автоматом."
+    },
+    "lv": {
+      "title": "Kā tikt galā ar spiedienu: ko dara profesionāļi",
+      "body": "Spiediens ir tas, ko jūti, kad rezultāts ir svarīgs. Pendelsitienu, svarīgas spēles, atlases — sirds pukst, rokas svīst, domas skrien. Tas ir normāli. Atšķirība starp tiem, kas salūst, un tiem, kas uzplaukst — sagatavotība. Izveido \"spiediena rutīnu\": (1) 3 dziļas elpas — ieelpa uz 4, izelpa uz 6. Tas aktivizē nomierinošo nervu sistēmu. (2) Lieto \"atslēgas vārdu\" — vienu vārdu, kas fokusē: \"mierīgi\", \"gatavs\", \"tagad\". Saki to sev. (3) Fokusējies uz PROCESU, ne rezultātu — tā vietā \"man jāiesit\" domā \"skatos uz bumbu, izvēlos stūri, izpildu\". Trenē šos trīs soļus, līdz tie kļūst automātiski."
+    },
+    "es": {
+      "title": "Manejar la presión: qué hacen los profesionales",
+      "body": "La presión es lo que sientes cuando el resultado importa. Penaltis, partidos importantes, pruebas — el corazón se acelera, las manos sudan. Esto es completamente normal. La diferencia entre los que se derrumban y los que brillan es simple: preparación. Crea una \"rutina de presión\": (1) 3 respiraciones profundas — inhala 4, exhala 6. Activa tu sistema calmante. (2) Usa una \"palabra clave\" — una palabra que te enfoque: \"calma\", \"listo\", \"ahora\". Dila para ti mismo. (3) Enfócate en el PROCESO, no en el resultado — en vez de \"debo marcar,\" piensa \"miro el balón, elijo mi esquina, acompaño.\" Practica estos pasos hasta que sean automáticos."
+    },
+    "et": {
+      "title": "Survega toimetulek: mida profid teevad",
+      "body": "Surve on see, mida tunned, kui tulemus loeb. Penaltid, olulised mängud, proovid — süda kiireneb, käed higistavad. See on täiesti normaalne. Vahe nende vahel, kes murduvad, ja nende, kes õitsevad, on lihtne: ettevalmistus. Loo \"surverutiin\": (1) 3 sügavat hingetõmmet — sisse 4, välja 6. See aktiveerib rahustava närvisüsteemi. (2) Kasuta \"märksõna\" — üks sõna, mis fokusseerib: \"rahulik\", \"valmis\", \"nüüd\". Ütle endale. (3) Keskendu PROTSESSILE, mitte tulemusele — \"pean lööma\" asemel mõtle \"vaatan palli, valin nurga, löögi lõpetamine.\" Harjuta neid kolme sammu, kuni need muutuvad automaatseks."
+    },
+    "lt": {
+      "title": "Kaip susitvarkyti su spaudimu: ką daro profesionalai",
+      "body": "Spaudimas — tai ką jauti, kai rezultatas svarbus. Baudiniai, svarbios rungtynės, atrankos — širdis plaka, delnai prakaituoja. Tai visiškai normalu. Skirtumas tarp tų, kurie lūžta, ir tų, kurie klesti — pasiruošimas. Sukurk \"spaudimo rutiną\": (1) 3 gilūs kvėpavimai — įkvėpimas 4, iškvėpimas 6. Tai aktyvuoja raminančią nervų sistemą. (2) Naudok \"raktinį žodį\" — vieną žodį, kuris koncentruoja: \"ramybė\", \"pasiruošęs\", \"dabar\". Pasakyk sau. (3) Koncentruokis į PROCESĄ, ne rezultatą — vietoj \"turiu pelnyti\" galvok \"žiūriu kamuolį, renkuosi kampą, užbaigimas.\" Treniruok šiuos 3 žingsnius, kol taps automatiniais."
+    },
+    "publishedAt": "2026-03-31T20:24:11.756Z"
+  },
+  {
+    "type": "article",
+    "id": "art-men-08",
+    "category": "mental",
+    "ageTiers": [
+      "u12",
+      "u14",
+      "u16"
+    ],
+    "readingTimeMin": 2,
+    "emoji": "🤝",
+    "status": "published",
+    "en": {
+      "title": "Being a Good Teammate: The Skill Nobody Teaches",
+      "body": "Football is a team sport, but nobody teaches you how to be a good teammate. Here are 5 habits that will make you the player everyone wants on their team: (1) Celebrate others' successes — when a teammate scores, be the first to congratulate them. (2) Encourage after mistakes — when someone misses, say \"next one is yours\" instead of looking frustrated. (3) Communicate on the pitch — call for the ball, warn about opponents, organize the defence. Silent players make their teammates' jobs harder. (4) Work for the team — track back, make defensive runs, do the unglamorous work. (5) Be reliable — show up on time, train honestly, keep your promises. Talent is great, but being a great teammate is what gets you picked for every squad."
+    },
+    "ru": {
+      "title": "Быть хорошим партнёром: навык, которому никто не учит",
+      "body": "Футбол — командный спорт, но никто не учит быть хорошим партнёром. Вот 5 привычек, которые сделают тебя игроком, которого все хотят в команде: (1) Празднуй успехи других — когда партнёр забивает, первым поздравь. (2) Поддерживай после ошибок — «следующий твой» вместо разочарованного взгляда. (3) Общайся на поле — проси мяч, предупреждай о соперниках, организуй оборону. Молчаливые игроки усложняют жизнь партнёрам. (4) Работай на команду — возвращайся, отрабатывай в обороне, делай неэффектную работу. (5) Будь надёжным — приходи вовремя, тренируйся честно. Талант — это здорово, но хорошее партнёрство — то, за что берут в каждую заявку."
+    },
+    "lv": {
+      "title": "Būt labam komandas biedram: prasme, ko neviens nemāca",
+      "body": "Futbols ir komandas sports, bet neviens nemāca būt labam komandas biedram. Šeit ir 5 ieradumi: (1) Svin citu panākumus — kad komandas biedrs iesit, esi pirmais, kas apsveic. (2) Iedrošini pēc kļūdām — sauc \"nākamais tavs\" nevis skaties sarūgtināts. (3) Komunicē laukumā — prasi bumbu, brīdini par pretiniekiem, organizē aizsardzību. Klusie spēlētāji apgrūtina komandas biedrus. (4) Strādā komandas labā — atgriezies, izpildi aizsardzības skrējienus. (5) Esi uzticams — nāc laikā, trenējies godīgi. Talants ir lielisks, bet labs komandas biedrs ir tas, ko vienmēr izvēlas komandā."
+    },
+    "es": {
+      "title": "Ser buen compañero: la habilidad que nadie enseña",
+      "body": "El fútbol es un deporte de equipo, pero nadie te enseña a ser buen compañero. 5 hábitos que te convertirán en el jugador que todos quieren: (1) Celebra los éxitos de otros — cuando un compañero marca, sé el primero en felicitarlo. (2) Anima después de errores — di \"el siguiente es tuyo\" en vez de frustrarte. (3) Comunica en la cancha — pide el balón, avisa de rivales, organiza la defensa. (4) Trabaja para el equipo — replíegate, haz el trabajo poco glamuroso. (5) Sé fiable — llega puntual, entrena con honestidad. El talento es genial, pero ser buen compañero es lo que te hace indispensable."
+    },
+    "et": {
+      "title": "Hea meeskonnakaaslane olemine: oskus, mida keegi ei õpeta",
+      "body": "Jalgpall on meeskonnamäng, aga keegi ei õpeta, kuidas olla hea meeskonnakaaslane. 5 harjumust: (1) Tähista teiste edu — kui meeskonnakaaslane lööb, ole esimene õnnitleja. (2) Julgusta pärast vigu — ütle \"järgmine on sinu\" selle asemel, et pettunud välja näha. (3) Suhtle väljakul — küsi palli, hoiata vastastest, organiseeri kaitse. (4) Tööta meeskonna jaoks — jookse tagasi, tee glamuuritut tööd. (5) Ole usaldusväärne — tule õigeks ajaks, treeni ausalt. Talent on suurepärane, aga hea meeskonnakaaslane olemine teeb sind asendamatuks."
+    },
+    "lt": {
+      "title": "Būti geru komandos draugu: įgūdis, kurio niekas nemoko",
+      "body": "Futbolas — komandinis sportas, bet niekas nemoko būti geru komandos draugu. 5 įpročiai: (1) Švęsk kitų sėkmes — kai komandos draugas pelno, būk pirmas pasveikinti. (2) Padrąsink po klaidų — sakyk \"kitas tavo\" vietoj nusivylimo. (3) Komunikuok aikštėje — prašyk kamuoliu, perspėk apie priešininkus, organizuok gynybą. (4) Dirbk komandai — grįžk, atlik neglamuringą darbą. (5) Būk patikimas — ateik laiku, treniruokis sąžiningai. Talentas puiku, bet geras komandos draugas — tai kas padaro tave nepakeičiamu."
+    },
+    "publishedAt": "2026-03-31T20:24:11.756Z"
+  },
+  {
+    "type": "article",
+    "id": "art-men-09",
+    "category": "mental",
+    "ageTiers": [
+      "u10",
+      "u12",
+      "u14"
+    ],
+    "readingTimeMin": 2,
+    "emoji": "😊",
+    "status": "published",
+    "en": {
+      "title": "Why Having Fun Is the Most Important Part of Football",
+      "body": "Here is a secret that the best coaches know: players who enjoy football improve faster than players who train out of obligation. When you have fun, your brain releases dopamine — a chemical that helps you learn faster. When you are stressed or forced, your brain releases cortisol — which blocks learning. This is why street football players in Brazil often have incredible skills — they played for hours because it was FUN, not because a coach told them to. Keep the joy alive: sometimes dribble just for fun, try crazy tricks, play with friends without keeping score. If football ever stops being fun, talk to your coach or parent. The goal of youth football is not to become a professional — it is to fall in love with the game. Everything else follows from that love."
+    },
+    "ru": {
+      "title": "Почему удовольствие — главная часть футбола",
+      "body": "Вот секрет, который знают лучшие тренеры: игроки, которым нравится футбол, прогрессируют быстрее тех, кто тренируется по обязанности. Когда тебе весело, мозг выделяет дофамин — химическое вещество, ускоряющее обучение. Когда ты под стрессом — кортизол, который блокирует обучение. Поэтому уличные футболисты Бразилии часто демонстрируют невероятную технику — они играли часами ради УДОВОЛЬСТВИЯ, а не потому что тренер сказал. Храни радость: иногда просто финти ради веселья, пробуй безумные трюки, играй с друзьями без счёта. Если футбол перестал приносить радость — поговори с тренером или родителем. Цель детского футбола — не стать профессионалом, а влюбиться в игру. Всё остальное следует из этой любви."
+    },
+    "lv": {
+      "title": "Kāpēc prieks ir vissvarīgākā futbola daļa",
+      "body": "Šeit ir noslēpums, ko zina labākie treneri: spēlētāji, kuriem patīk futbols, progresē ātrāk nekā tie, kas trenējas no pienākuma. Kad tev ir jautri, smadzenes izdala dopamīnu — ķīmisko vielu, kas palīdz ātrāk mācīties. Kad esi stresā — kortizolu, kas bloķē mācīšanos. Tāpēc ielas futbolisti Brazīlijā bieži demonstrē neticamas prasmes — viņi spēlēja stundām, jo tas bija JAUTRI. Saglabā prieku: dažreiz vienkārši driblē prieka pēc, mēģini traucus trikus, spēlē ar draugiem nevedot rezultātu. Ja futbols pārstāj sagādāt prieku — parunā ar treneri vai vecāku. Jauniešu futbola mērķis nav kļūt par profesionāli — bet iemīlēties spēlē."
+    },
+    "es": {
+      "title": "Por qué divertirse es lo más importante del fútbol",
+      "body": "Un secreto que los mejores entrenadores conocen: los jugadores que disfrutan mejoran más rápido que los que entrenan por obligación. Cuando te diviertes, tu cerebro libera dopamina — un químico que ayuda a aprender más rápido. Cuando estás estresado, libera cortisol — que bloquea el aprendizaje. Por eso los futbolistas callejeros de Brasil tienen habilidades increíbles — jugaban por diversión, no porque un entrenador se los dijera. Mantén la alegría: a veces regatea solo por diversión, prueba trucos locos, juega con amigos sin marcador. Si el fútbol deja de ser divertido, habla con tu entrenador o padre. El objetivo del fútbol juvenil no es ser profesional — es enamorarse del juego."
+    },
+    "et": {
+      "title": "Miks lõbu on jalgpalli kõige tähtsam osa",
+      "body": "Saladus, mida parimad treenerid teavad: mängijad, kes naudivad jalgpalli, arenevad kiiremini. Kui sul on lõbus, vabanevad ajus dopamiinid — keemiline aine, mis aitab kiiremini õppida. Stressi korral vabaneb kortisool — mis blokeerib õppimist. Sellepärast on Brasiilia tänavajalgpallurid tihti uskumatute oskustega — nad mängisid tundide kaupa LÕBU pärast. Hoia rõõm alles: mõnikord lihtsalt tribla lõbu pärast, proovi hullusid trikke, mängi sõpradega skoori pidamata. Kui jalgpall enam lõbus pole, räägi treeneriga. Noorte jalgpalli eesmärk pole saada profiks — vaid armuda mängu."
+    },
+    "lt": {
+      "title": "Kodėl smagumas — svarbiausia futbolo dalis",
+      "body": "Paslaptis, kurią žino geriausi treneriai: žaidėjai, kuriems patinka futbolas, tobulėja greičiau nei tie, kurie treniruojasi iš pareigos. Kai smagindamiesi, smegenys išskiria dopaminą — cheminę medžiagą, padedančią greičiau mokytis. Kai stresi — kortizolį, kuris blokuoja mokymąsi. Todėl gatvės futbolininkai Brazilijoje dažnai turi neįtikėtinų įgūdžių — jie žaidė valandų valandas PRAMOGAI. Saugok džiaugsmą: kartais tiesiog driblinkuok dėl malonumo, bandyk pašėlusius trikus, žaisk su draugais nevedant rezultato. Jei futbolas nustojo būti smagus — pakalbėk su treneriu. Jaunimo futbolo tikslas — ne tapti profesionalu, o įsimylėti žaidimą."
+    },
+    "publishedAt": "2026-03-31T20:24:11.756Z"
+  },
+  {
+    "type": "article",
+    "id": "art-men-10",
+    "category": "mental",
+    "ageTiers": [
+      "u14",
+      "u16"
+    ],
+    "readingTimeMin": 2,
+    "emoji": "📱",
+    "status": "published",
+    "en": {
+      "title": "Social Media and Football: Staying Focused in the Digital Age",
+      "body": "Social media can help your football (watching tutorials, following pros) or hurt it (comparing yourself to others, doomscrolling, losing sleep). The key rules: (1) Never compare your behind-the-scenes to someone else's highlight reel — you see their best moments, not their bad training days. (2) Limit phone use before bed — blue light from screens reduces sleep quality, which directly impacts recovery and performance. (3) Use social media to LEARN, not to scroll — follow coaching channels, watch skill tutorials, study match analysis. (4) Do not post during training — be fully present. Some academies ban phones in locker rooms for this reason. (5) If comments or comparisons make you feel bad, take a break. Your confidence should come from your training, not your likes."
+    },
+    "ru": {
+      "title": "Соцсети и футбол: как остаться сфокусированным в цифровую эпоху",
+      "body": "Соцсети могут помочь (уроки, профессионалы) или навредить футболу (сравнение с другими, бесконечная лента, бессонница). Ключевые правила: (1) Не сравнивай свою повседневность с чужими лучшими моментами — ты видишь их хайлайты, не плохие дни. (2) Ограничь телефон перед сном — синий свет экрана снижает качество сна, что влияет на восстановление. (3) Используй соцсети для ОБУЧЕНИЯ — подпишись на тренерские каналы, смотри уроки, изучай анализ матчей. (4) Не сиди в телефоне на тренировке — будь полностью здесь. Некоторые академии запрещают телефоны в раздевалке. (5) Если комментарии или сравнения расстраивают — сделай перерыв. Уверенность должна идти от тренировок, а не от лайков."
+    },
+    "lv": {
+      "title": "Sociālie mediji un futbols: kā palikt fokusētam digitālajā laikmetā",
+      "body": "Sociālie mediji var palīdzēt futbolam (pamācības, profesionāļu sekošana) vai kaitēt (salīdzināšanās, bezgalīga ritināšana, miega trūkums). Galvenie noteikumi: (1) Nesalīdzini savu ikdienu ar citu labākajiem momentiem — tu redzi viņu hailaitsu, ne sliktās dienas. (2) Ierobežo telefonu pirms miega — zils ekrāna gaisma samazina miega kvalitāti. (3) Lieto sociālos medijus MĀCĪBĀM — seko treneru kanāliem, skaties prasmju video, pēti spēļu analīzi. (4) Nelietot telefonu treniņa laikā — esi pilnībā klātesošs. (5) Ja komentāri vai salīdzinājumi rada sliktu pašsajūtu — paņem pauzi. Tavai pārliecībai jānāk no treniņiem, nevis no laikiem."
+    },
+    "es": {
+      "title": "Redes sociales y fútbol: mantener el enfoque en la era digital",
+      "body": "Las redes pueden ayudar (tutoriales, seguir pros) o perjudicar tu fútbol (compararte, scrollear, perder sueño). Reglas clave: (1) No compares tu día a día con los mejores momentos de otros — ves sus highlights, no sus días malos. (2) Limita el móvil antes de dormir — la luz azul reduce la calidad del sueño. (3) Usa redes para APRENDER — sigue canales de entrenamiento, mira tutoriales, estudia análisis. (4) No uses el móvil durante el entrenamiento — estate presente. (5) Si los comentarios o comparaciones te hacen sentir mal, toma un descanso. Tu confianza debe venir de tu entrenamiento, no de tus likes."
+    },
+    "et": {
+      "title": "Sotsiaalmeedia ja jalgpall: kuidas jääda keskendunuks",
+      "body": "Sotsiaalmeedia võib jalgpalli aidata (õpetused, profide jälgimine) või kahjustada (ennast teistega võrdlemine, lõputu kerimine, unepuudus). Peamised reeglid: (1) Ära võrdle oma argipäeva teiste parimate hetkidega. (2) Piira telefoni kasutust enne magamaminekut — sinine valgus vähendab une kvaliteeti. (3) Kasuta sotsiaalmeediat ÕPPIMISEKS — jälgi treenerite kanaleid, vaata õpetusi. (4) Ära kasuta telefoni treeningul — ole kohal. (5) Kui kommentaarid või võrdlused panevad halvasti tundma, tee paus. Enesekindlus peaks tulema treeningutest, mitte meeldimistest."
+    },
+    "lt": {
+      "title": "Socialiniai tinklai ir futbolas: kaip likti susikaupusiam",
+      "body": "Socialiniai tinklai gali padėti futbolui (pamokos, profesionalų sekimas) arba pakenkti (lyginimasis, begalinis slinkimas, miego praradimas). Pagrindinės taisyklės: (1) Nelygink savo kasdienybės su kitų geriausiais momentais. (2) Ribokk telefoną prieš miegą — mėlyna šviesa mažina miego kokybę. (3) Naudok socialinius tinklus MOKYMUISI — sek trenerių kanalus, žiūrėk pamokas. (4) Nenaudok telefono treniruotės metu — būk čia ir dabar. (5) Jei komentarai ar palyginimai kelia blogą nuotaiką — padaryk pertrauką. Pasitikėjimas turi ateiti iš treniruočių, ne iš patiktukų."
+    },
+    "publishedAt": "2026-03-31T20:24:11.756Z"
+  },
+  {
+    "type": "article",
+    "id": "art-rul-03",
+    "category": "rules",
+    "ageTiers": [
+      "u12",
+      "u14",
+      "u16"
+    ],
+    "readingTimeMin": 2,
+    "emoji": "📺",
+    "status": "published",
+    "en": {
+      "title": "VAR Explained: How Video Technology Changed Football",
+      "body": "VAR (Video Assistant Referee) was introduced to help referees make correct decisions on four types of incidents: (1) Goals — was there an offside, foul, or handball in the build-up? (2) Penalty decisions — was it a foul? Was it inside the box? (3) Direct red cards — did the referee miss a violent act? (4) Mistaken identity — did the referee card the wrong player? VAR does NOT check: yellow cards, throw-in decisions, corners, or general fouls. The process: a team of video referees watches every angle. If they see a \"clear and obvious error,\" they tell the on-field referee, who can review it on a pitchside monitor. VAR is not perfect — it takes time and creates controversy. But it has made football significantly fairer."
+    },
+    "ru": {
+      "title": "VAR: как видеотехнология изменила футбол",
+      "body": "VAR (видеоассистент рефери) создан для помощи судьям в четырёх типах ситуаций: (1) Голы — был ли офсайд, фол или рука в розыгрыше? (2) Пенальти — был ли фол? Он внутри штрафной? (3) Прямые красные — судья пропустил грубость? (4) Ошибка в идентификации — судья показал карточку не тому? VAR НЕ проверяет: жёлтые карточки, ауты, угловые и обычные нарушения. Процесс: команда видеосудей просматривает все углы. Если обнаружена «явная ошибка», они сообщают полевому судье, который может посмотреть повтор на мониторе у поля. VAR не идеален — занимает время и вызывает споры. Но значительно сделал футбол справедливее."
+    },
+    "lv": {
+      "title": "VAR skaidrots: kā videotehnoloģija mainīja futbolu",
+      "body": "VAR (Video asistenta tiesnesis) tika ieviests, lai palīdzētu tiesnešiem pieņemt pareizus lēmumus četros situāciju veidos: (1) Vārti — vai bija ofsaids, pārkāpums vai roka? (2) Pendelsitienu lēmumi — vai bija pārkāpums? Vai tas bija laukumā? (3) Tiešas sarkanās kartes — vai tiesnesis palaida garām rupju spēli? (4) Kļūda personas identificēšanā. VAR NEPĀRBAUDA: dzeltenās kartes, iemešanas, stūra sitienus. Process: video tiesnešu komanda skatās katru leņķi. Ja atrod \"acīmredzamu kļūdu\" — informē laukuma tiesnesi, kurš var apskatīt atkārtojumu monitorā. VAR nav ideāls — prasa laiku un rada diskusijas. Bet tas ir padarījis futbolu ievērojami godīgāku."
+    },
+    "es": {
+      "title": "VAR explicado: cómo la tecnología cambió el fútbol",
+      "body": "El VAR (Árbitro Asistente de Video) se introdujo para ayudar en cuatro tipos de incidentes: (1) Goles — ¿hubo fuera de juego, falta o mano? (2) Penaltis — ¿fue falta? ¿Fue dentro del área? (3) Tarjetas rojas directas — ¿el árbitro se perdió una agresión? (4) Error de identidad. El VAR NO revisa: amarillas, saques de banda, córners o faltas generales. El proceso: un equipo de árbitros de video mira cada ángulo. Si ven un \"error claro y obvio,\" avisan al árbitro de campo, que puede revisarlo en un monitor. El VAR no es perfecto — toma tiempo y genera controversia. Pero ha hecho el fútbol significativamente más justo."
+    },
+    "et": {
+      "title": "VAR selgitatud: kuidas videotehnoloogia jalgpalli muutis",
+      "body": "VAR (Videokohtuniku abi) toodi sisse nelja tüüpi juhtumite jaoks: (1) Väravad — kas oli suluseis, viga või käemäng? (2) Penaltiotsused — kas oli viga? Kas see oli karistusalas? (3) Punased kaardid — kas kohtunik jättis jõhkra teo märkamata? (4) Ekslik tuvastus. VAR EI kontrolli: kollaseid kaarte, aute, nurgalööke. Protsess: videokohturkike meeskond vaatab iga nurga alt. Kui nad näevad \"selget ja ilmset viga,\" teavitavad väljakukohtunikku, kes saab ekraanil üle vaadata. VAR pole täiuslik — võtab aega ja tekitab vaidlusi. Aga see on teinud jalgpalli märkimisväärselt õiglasemaks."
+    },
+    "lt": {
+      "title": "VAR paaiškinta: kaip videotechnologija pakeitė futbolą",
+      "body": "VAR (Vaizdo teisėjo asistentas) buvo įvestas padėti teisėjams keturiose situacijose: (1) Įvarčiai — ar buvo nuošalė, pražanga ar rankos? (2) Baudiniai — ar buvo pražanga? Ar ji buvo baudos aikštėje? (3) Raudonos kortelės — ar teisėjas prarado šiurkštų veiksmą? (4) Identifikacijos klaida. VAR NETIKRINA: geltonų kortelių, įmetimų, kampinių. Procesas: vaizdo teisėjų komanda žiūri kiekvieną kampą. Jei mato \"aiškią ir akivaizdžią klaidą,\" praneša aikštės teisėjui, kuris gali peržiūrėti monitoriuje. VAR nėra tobulas — užtrunka ir kelia diskusijas. Bet padarė futbolą žymiai teisingesniu."
+    },
+    "publishedAt": "2026-03-31T20:24:11.756Z"
+  },
+  {
+    "type": "article",
+    "id": "art-rul-04",
+    "category": "rules",
+    "ageTiers": [
+      "u10",
+      "u12",
+      "u14"
+    ],
+    "readingTimeMin": 2,
+    "emoji": "🟨",
+    "status": "published",
+    "en": {
+      "title": "Yellow and Red Cards: What Are They Really For?",
+      "body": "Yellow cards are WARNINGS. You get one for: reckless tackles, time-wasting, arguing with the referee, deliberately handling the ball, or entering/leaving the pitch without permission. Two yellows in one match = red card = sent off. Red cards are for SERIOUS offences: violent conduct (kicking or hitting an opponent), denying an obvious goal-scoring opportunity (last-man foul outside the box), serious foul play (studs-up tackles), or offensive language. When you get a red card, your team plays with one fewer player for the rest of the match — a huge disadvantage. The lesson: control your emotions. A moment of frustration can hurt your entire team. If you feel angry, take a breath, walk away, refocus. The best players stay calm under pressure — that is discipline."
+    },
+    "ru": {
+      "title": "Жёлтые и красные карточки: для чего они на самом деле",
+      "body": "Жёлтые — это ПРЕДУПРЕЖДЕНИЯ. Их дают за: грубые подкаты, затягивание времени, споры с судьёй, умышленную игру рукой или выход/вход на поле без разрешения. Две жёлтые в одном матче = красная = удаление. Красные — за СЕРЬЁЗНЫЕ нарушения: грубая игра (удар ногой или рукой), срыв явной голевой ситуации, опасный подкат (шипы вверх) или оскорбительные выражения. При красной карточке команда играет в меньшинстве до конца — огромный минус. Урок: контролируй эмоции. Секунда раздражения навредит всей команде. Если злишься — глубокий вдох, отойди, сфокусируйся. Лучшие игроки остаются спокойными — это дисциплина."
+    },
+    "lv": {
+      "title": "Dzeltenās un sarkanās kartes: kāpēc tās tiešām ir",
+      "body": "Dzeltenās kartes ir BRĪDINĀJUMI. Tās saņem par: bezatbildīgiem tīšiem pārkāpumiem, laika vilcināšanu, strīdēšanos ar tiesnesi, apzinātu bumbu turēšanu rokā vai ieiet/iziet no laukuma bez atļaujas. Divas dzeltenās vienā spēlē = sarkanā = izraidīšana. Sarkanās ir par NOPIETNIEM pārkāpumiem: vardarbīga rīcība, acīmredzamas gūšanas iespējas liegšana, bīstama spēle vai aizvainojoši izteicieni. Ar sarkanu karti komanda spēlē ar vienu spēlētāju mazāk — milzīgs trūkums. Mācība: kontrolē emocijas. Frustrācijas mirklis var kaitēt visai komandai. Ja esi dusmīgs — ieelpo, ej prom, fokusējies. Labākie spēlētāji paliek mierīgi — tā ir disciplīna."
+    },
+    "es": {
+      "title": "Tarjetas amarillas y rojas: ¿para qué sirven realmente?",
+      "body": "Las amarillas son ADVERTENCIAS. Las recibes por: entradas imprudentes, perder tiempo, protestar al árbitro, tocar el balón deliberadamente con la mano o entrar/salir de la cancha sin permiso. Dos amarillas = roja = expulsión. Las rojas son por ofensas GRAVES: conducta violenta, negar una clara oportunidad de gol, juego peligroso o lenguaje ofensivo. Con roja, tu equipo juega con uno menos — una gran desventaja. La lección: controla tus emociones. Un momento de frustración puede perjudicar a todo tu equipo. Si estás enfadado, respira, aléjate, reenfócate. Los mejores se mantienen calmados — eso es disciplina."
+    },
+    "et": {
+      "title": "Kollased ja punased kaardid: milleks need tegelikult on?",
+      "body": "Kollased kaardid on HOIATUSED. Saad neid: hoolimatute reeglirikkumiste, ajaviitmise, kohtunikuga vaidlemise, tahtliku käemängu või loata väljakule tuleku/lahkumise eest. Kaks kollast ühes mängus = punane = väljakult saatmine. Punane on TÕSISTE tegude eest: vägivaldne käitumine, ilmse väravalöömise võimaluse ärahoidmine, ohtlik mäng või solvav keel. Punase kaardi korral mängib meeskond ühe mängijaga vähem — tohutu puudus. Õppetund: kontrolli emotsioone. Hetk frustratsiooni võib kahjustada kogu meeskonda. Kui oled vihane, hinga, kõnni eemale, fokusseeru."
+    },
+    "lt": {
+      "title": "Geltonos ir raudonos kortelės: kam jos tikrai skirtos?",
+      "body": "Geltonos yra PERSPĖJIMAI. Jas gauni už: neapgalvotus pažeidimus, laiko vilkinimą, ginčus su teisėju, tyčinį rankos žaidimą. Dvi geltonos = raudona = pašalinimas. Raudonos už SUNKIUS pažeidimus: smurtinį elgesį, aiškios galimybės pelnyti atėmimą, pavojingą žaidimą ar įžeidžiančią kalbą. Su raudona komanda žaidžia vienu mažiau — didžiulis trūkumas. Pamoka: kontroliuok emocijas. Frustracija momentas gali pakenkti visai komandai. Jei pyksti — kvėpuok, atsitolk, susitelk. Geriausieji lieka ramūs — tai disciplina."
+    },
+    "publishedAt": "2026-03-31T20:24:11.756Z"
   }
 ]

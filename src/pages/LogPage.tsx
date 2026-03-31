@@ -179,21 +179,21 @@ export function LogPage() {
                       {pe.dayLabel} · {ev.startTime}{ev.location ? ` · ${ev.location}` : ''}
                     </p>
                   </div>
-                  <div className="flex items-center gap-1.5 shrink-0">
+                  <div className="flex items-center gap-2 shrink-0">
                     <button
-                      className="text-xs font-bold px-2.5 py-1 rounded-full tap-target"
+                      className="text-xs font-bold px-3 py-1.5 rounded-full tap-target"
                       style={{ background: 'rgba(var(--color-primary-rgb), 0.12)', color: 'var(--color-primary-dark)' }}
                       onClick={() => openFromPending(pe)}
                     >
                       {t('log.logNow')}
                     </button>
                     <button
-                      className="text-xs px-2 py-1 rounded-full tap-target"
-                      style={{ background: 'var(--color-glass-active)', color: 'var(--color-text-muted)' }}
-                      onClick={() => setSkipConfirmId(isSkipping ? null : ev.id)}
+                      className="text-xs font-bold px-3 py-1.5 rounded-full tap-target"
+                      style={{ background: 'var(--color-glass-active)', color: 'var(--color-danger, #dc2626)' }}
+                      onClick={(e) => { e.stopPropagation(); setSkipConfirmId(isSkipping ? null : ev.id) }}
                       aria-label={t('log.skip')}
                     >
-                      ✕
+                      {t('log.skip')}
                     </button>
                   </div>
                 </div>
