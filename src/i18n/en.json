@@ -606,6 +606,8 @@
   "portal.tournaments": "My Tournaments",
   "portal.recentResults": "Recent Results",
   "portal.upcoming": "Upcoming",
+  "portal.clubs": "Clubs & Teams",
+  "portal.noClubs": "No clubs with {{age}} teams found",
   "portal.emptyTitle": "No football activity yet",
   "portal.emptyText": "Add a tournament or log your first match to get started",
 

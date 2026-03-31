@@ -1,9 +1,10 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
 import { TournamentImport } from '../components/TournamentImport'
-import { getMatchResult } from '../engine/types'
-import type { ScheduleEvent, TournamentSummary, MatchEntry } from '../engine/types'
+import { TeamProfile } from '../components/TeamProfile'
+import { getMatchResult, getAgeTier } from '../engine/types'
+import type { ScheduleEvent, TournamentSummary, MatchEntry, SharedTeam } from '../engine/types'
 
 /* ── Calendar Strip ─────────────────────────────────────── */
 
@@ -181,11 +182,154 @@ function UpcomingEventRow({ event }: { event: ScheduleEvent }) {
   )
 }
 
+/* ── Clubs & Teams Browser ───────────────────────────────── */
+
+const AGE_GROUPS = ['U7', 'U8', 'U9', 'U10', 'U11', 'U12', 'U13', 'U14', 'U15', 'U16', 'U17', 'U19', 'Senior', 'Women']
+
+function getPlayerAgeGroup(birthDate?: string): string {
+  if (!birthDate) return 'U12'
+  const tier = getAgeTier(birthDate)
+  switch (tier) {
+    case 'u8': return 'U9'
+    case 'u12': return 'U11'
+    case 'u16': return 'U15'
+    case 'u19plus': return 'U19'
+    default: return 'U12'
+  }
+}
+
+function ClubsBrowser({ country, birthDate }: { country?: string; birthDate?: string }) {
+  const { t } = useTranslation()
+  const [allTeams, setAllTeams] = useState<SharedTeam[]>([])
+  const [loading, setLoading] = useState(false)
+  const [selectedAge, setSelectedAge] = useState(getPlayerAgeGroup(birthDate))
+  const [viewTeam, setViewTeam] = useState<SharedTeam | null>(null)
+
+  useEffect(() => {
+    let cancelled = false
+    async function load() {
+      setLoading(true)
+      try {
+        const params = new URLSearchParams({ limit: '100' })
+        if (country) params.set('country', country)
+        const res = await fetch(`/api/teams?${params}`)
+        if (res.ok && !cancelled) {
+          const data = await res.json()
+          setAllTeams(data.teams || [])
+        }
+      } catch { /* offline */ }
+      finally { if (!cancelled) setLoading(false) }
+    }
+    load()
+    return () => { cancelled = true }
+  }, [country])
+
+  const filteredTeams = useMemo(() => {
+    return allTeams
+      .filter((t) => t.ageGroups?.includes(selectedAge))
+      .sort((a, b) => a.name.localeCompare(b.name))
+  }, [allTeams, selectedAge])
+
+  const ageIdx = AGE_GROUPS.indexOf(selectedAge)
+
+  return (
+    <div>
+      <p className="section-label mb-3">{t('portal.clubs')}</p>
+
+      {/* Age group selector — swipeable pills */}
+      <div className="flex items-center gap-2 mb-3">
+        <button
+          className="tap-target text-lg shrink-0"
+          style={{ color: ageIdx > 0 ? 'var(--color-primary-dark)' : 'var(--color-text-muted)', opacity: ageIdx > 0 ? 1 : 0.3 }}
+          onClick={() => ageIdx > 0 && setSelectedAge(AGE_GROUPS[ageIdx - 1])}
+          disabled={ageIdx <= 0}
+          aria-label="Previous age group"
+        >
+          ‹
+        </button>
+        <div className="h-scroll gap-1.5 flex-1" style={{ scrollSnapType: 'x mandatory' }}>
+          {AGE_GROUPS.map((ag) => (
+            <button
+              key={ag}
+              className="text-xs font-bold px-3 py-1.5 rounded-full shrink-0 tap-target transition-all"
+              style={{
+                scrollSnapAlign: 'center',
+                background: ag === selectedAge ? 'var(--color-primary-dark)' : 'var(--color-glass-hover)',
+                color: ag === selectedAge ? '#fff' : 'var(--color-text-muted)',
+              }}
+              onClick={() => setSelectedAge(ag)}
+            >
+              {ag}
+            </button>
+          ))}
+        </div>
+        <button
+          className="tap-target text-lg shrink-0"
+          style={{ color: ageIdx < AGE_GROUPS.length - 1 ? 'var(--color-primary-dark)' : 'var(--color-text-muted)', opacity: ageIdx < AGE_GROUPS.length - 1 ? 1 : 0.3 }}
+          onClick={() => ageIdx < AGE_GROUPS.length - 1 && setSelectedAge(AGE_GROUPS[ageIdx + 1])}
+          disabled={ageIdx >= AGE_GROUPS.length - 1}
+          aria-label="Next age group"
+        >
+          ›
+        </button>
+      </div>
+
+      {/* Teams grid */}
+      {loading ? (
+        <div className="text-center py-4">
+          <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>...</span>
+        </div>
+      ) : filteredTeams.length > 0 ? (
+        <div className="grid grid-cols-2 gap-2">
+          {filteredTeams.map((team) => (
+            <button
+              key={team.id}
+              className="card tap-target flex items-center gap-2 p-3 text-left"
+              onClick={() => setViewTeam(team)}
+            >
+              {team.logoUrl ? (
+                <img
+                  src={team.logoUrl}
+                  alt=""
+                  className="w-8 h-8 rounded-lg object-contain shrink-0"
+                  style={{ background: 'rgba(255,255,255,0.5)' }}
+                  onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
+                />
+              ) : (
+                <div className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0" style={{ background: 'var(--color-glass-hover)' }}>
+                  <span className="text-sm">⚽</span>
+                </div>
+              )}
+              <div className="flex-1 min-w-0">
+                <p className="text-xs font-bold truncate">{team.name}</p>
+                {team.city && (
+                  <p className="text-[10px] truncate" style={{ color: 'var(--color-text-muted)' }}>{team.city}</p>
+                )}
+              </div>
+              {team.verified && (
+                <span className="text-[10px] shrink-0" style={{ color: 'var(--color-primary)' }}>✓</span>
+              )}
+            </button>
+          ))}
+        </div>
+      ) : (
+        <div className="card text-center py-4">
+          <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
+            {t('portal.noClubs', { age: selectedAge })}
+          </p>
+        </div>
+      )}
+
+      {viewTeam && <TeamProfile team={viewTeam} onClose={() => setViewTeam(null)} />}
+    </div>
+  )
+}
+
 /* ── Main Football Portal Page ──────────────────────────── */
 
 export function FootballPortal() {
   const { t } = useTranslation()
-  const { matches, tournaments, schedule } = useApp()
+  const { matches, tournaments, schedule, profile } = useApp()
   const [showImport, setShowImport] = useState(false)
 
   const today = new Date().toISOString().slice(0, 10)
@@ -316,6 +460,9 @@ export function FootballPortal() {
           </div>
         </div>
       )}
+
+      {/* Clubs & Teams Browser */}
+      <ClubsBrowser country={profile?.country} birthDate={profile?.birthDate} />
 
       {/* Empty state if nothing */}
       {tournamentSummaries.length === 0 && recentResults.length === 0 && upcoming.length === 0 && (

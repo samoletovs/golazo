@@ -620,6 +620,8 @@
   "portal.tournaments": "Мои турниры",
   "portal.recentResults": "Последние результаты",
   "portal.upcoming": "Предстоящие",
+  "portal.clubs": "Клубы и команды",
+  "portal.noClubs": "Клубы с командами {{age}} не найдены",
   "portal.emptyTitle": "Нет футбольной активности",
   "portal.emptyText": "Добавьте турнир или запишите первый матч",
 

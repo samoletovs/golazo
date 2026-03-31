@@ -607,6 +607,8 @@
   "portal.tournaments": "Minu turniirid",
   "portal.recentResults": "Viimased tulemused",
   "portal.upcoming": "Eelseisvad",
+  "portal.clubs": "Klubid ja meeskonnad",
+  "portal.noClubs": "{{age}} meeskondadega klubisid ei leitud",
   "portal.emptyTitle": "Jalgpalliaktiivsust pole veel",
   "portal.emptyText": "Lisa turniir või logi oma esimene mäng",
 

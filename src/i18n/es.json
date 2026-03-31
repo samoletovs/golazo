@@ -607,6 +607,8 @@
   "portal.tournaments": "Mis Torneos",
   "portal.recentResults": "Resultados Recientes",
   "portal.upcoming": "Próximos",
+  "portal.clubs": "Clubes y equipos",
+  "portal.noClubs": "No se encontraron clubes con equipos {{age}}",
   "portal.emptyTitle": "Sin actividad futbolística aún",
   "portal.emptyText": "Añade un torneo o registra tu primer partido",
 

@@ -621,6 +621,8 @@
   "portal.tournaments": "Mano turnyrai",
   "portal.recentResults": "Paskutiniai rezultatai",
   "portal.upcoming": "Artėjantys",
+  "portal.clubs": "Klubai ir komandos",
+  "portal.noClubs": "Nerasta klubų su {{age}} komandomis",
   "portal.emptyTitle": "Dar nėra futbolo veiklos",
   "portal.emptyText": "Pridėkite turnyrą arba užregistruokite pirmąsias rungtynes",
 

@@ -197,34 +197,58 @@ export function TeamPicker({ value, onChange, country, placeholder, className, s
   return (
     <>
       <div className="relative">
-        <input
-          ref={inputRef}
-          type="text"
-          value={query}
-          onChange={(e) => handleInput(e.target.value)}
-          onFocus={() => {
-            updatePosition()
-            if (results.length > 0) setOpen(true)
-          }}
-          placeholder={placeholder ?? t('teams.search')}
-          className={className ?? 'w-full'}
-          style={showInlineAdd ? { paddingRight: '4.5rem' } : undefined}
-          autoComplete="off"
-        />
-        {loading && (
-          <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs" style={{ color: 'var(--color-text-muted)' }}>
-            ...
-          </span>
-        )}
-        {showInlineAdd && !open && (
-          <button
-            className="absolute right-1.5 top-1/2 -translate-y-1/2 text-xs font-bold px-2.5 py-1 rounded-lg"
-            style={{ background: 'var(--color-primary-dark, #166534)', color: '#fff' }}
-            onClick={() => { onAddNew?.(query); setQuery(''); setSelected(false) }}
-            aria-label={t('teams.addCustom', { name: query })}
+        {/* Selected team chip — shown when a registry team is picked */}
+        {selected && query ? (
+          <div
+            className="flex items-center gap-2 px-3 py-2.5 rounded-xl"
+            style={{
+              background: 'var(--color-primary-bg, #dcfce7)',
+              border: '1.5px solid var(--color-primary, #22c55e)',
+            }}
           >
-            + {t('teams.addBtn')}
-          </button>
+            <span className="text-sm">✓</span>
+            <span className="text-sm font-bold flex-1 truncate">{query}</span>
+            <button
+              className="tap-target text-xs px-1.5 py-0.5 rounded-lg"
+              style={{ color: 'var(--color-text-muted)' }}
+              onClick={() => { setQuery(''); setSelected(false); onChange('', undefined); inputRef.current?.focus() }}
+              aria-label="Clear selection"
+            >
+              ✕
+            </button>
+          </div>
+        ) : (
+          <>
+            <input
+              ref={inputRef}
+              type="text"
+              value={query}
+              onChange={(e) => handleInput(e.target.value)}
+              onFocus={() => {
+                updatePosition()
+                if (results.length > 0) setOpen(true)
+              }}
+              placeholder={placeholder ?? t('teams.search')}
+              className={className ?? 'w-full'}
+              style={showInlineAdd ? { paddingRight: '4.5rem' } : undefined}
+              autoComplete="off"
+            />
+            {loading && (
+              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs" style={{ color: 'var(--color-text-muted)' }}>
+                ...
+              </span>
+            )}
+            {showInlineAdd && !open && (
+              <button
+                className="absolute right-1.5 top-1/2 -translate-y-1/2 text-xs font-bold px-2.5 py-1 rounded-lg"
+                style={{ background: 'var(--color-primary-dark, #166534)', color: '#fff' }}
+                onClick={() => { onAddNew?.(query); setQuery(''); setSelected(false) }}
+                aria-label={t('teams.addCustom', { name: query })}
+              >
+                + {t('teams.addBtn')}
+              </button>
+            )}
+          </>
         )}
       </div>
       {dropdown}

@@ -605,6 +605,8 @@
   "portal.tournaments": "Mani turnīri",
   "portal.recentResults": "Pēdējie rezultāti",
   "portal.upcoming": "Gaidāmie",
+  "portal.clubs": "Klubi un komandas",
+  "portal.noClubs": "Nav klubu ar {{age}} komandām",
   "portal.emptyTitle": "Vēl nav futbola aktivitātes",
   "portal.emptyText": "Pievieno turnīru vai ieraksti savu pirmo maču",
 
