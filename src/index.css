@@ -1184,6 +1184,9 @@ h1, h2, h3, h4 {
 .cal-day[data-today="true"] span {
   color: var(--color-primary-dark);
 }
+.cal-day[data-has-events="true"] {
+  font-weight: 800;
+}
 .cal-day[data-selected="true"] {
   background: var(--color-primary-dark);
   color: #fff;
@@ -1200,10 +1203,11 @@ h1, h2, h3, h4 {
 
 /* Calendar event dots — visible and color-coded */
 .cal-dot {
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
   flex-shrink: 0;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.6);
 }
 
 /* ── Special Challenge Card ──────────────────────────────── */

@@ -479,12 +479,13 @@ export function SchedulePage() {
                 return (
                   <div
                     key={dk}
-                    className="flex items-start gap-2 py-2 px-2 rounded-lg"
+                    className="flex items-start gap-2 py-2 px-2 rounded-lg cursor-pointer"
                     style={{
-                      background: isToday ? 'rgba(var(--color-primary-rgb), 0.06)' : undefined,
-                      borderLeft: isToday ? '3px solid var(--color-primary-dark)' : '3px solid transparent',
+                      background: dk === selectedDate ? 'rgba(var(--color-primary-rgb), 0.1)' : isToday ? 'rgba(var(--color-primary-rgb), 0.06)' : undefined,
+                      borderLeft: dk === selectedDate ? '3px solid var(--color-primary-dark)' : isToday ? '3px solid var(--color-primary-dark)' : '3px solid transparent',
                       borderBottom: idx < 6 ? '1px solid var(--color-pitch-line, #e5e7eb)' : undefined,
                     }}
+                    onClick={() => setSelectedDate(dk)}
                   >
                     <div className="w-12 shrink-0 pt-0.5">
                       <span className="text-xs font-bold block" style={{ color: isToday ? 'var(--color-primary-dark)' : isWeekend ? 'var(--color-text-muted)' : 'var(--color-text-secondary)' }}>
@@ -568,8 +569,8 @@ export function SchedulePage() {
                   >
                     <span className="text-xs font-bold">{day}</span>
                     {hasEvents && (
-                      <div className="flex gap-[3px] justify-center mt-0.5">
-                        {dayEvents.slice(0, 4).map((ev) => {
+                      <div className="flex gap-[2px] justify-center mt-0.5">
+                        {dayEvents.slice(0, 3).map((ev) => {
                           const evType = EVENT_TYPES.find((et) => et.key === ev.type)
                           return (
                             <div
@@ -594,8 +595,8 @@ export function SchedulePage() {
         {([
           { type: 'training' as ScheduleType, emoji: '⚽', labelKey: 'schedule.addTraining', color: 'var(--color-primary-dark)' },
           { type: 'match' as ScheduleType, emoji: '🏟️', labelKey: 'schedule.addMatch', color: 'var(--color-cat-physical)' },
-          { type: 'tournament' as ScheduleType, emoji: '🏆', labelKey: 'schedule.addTournament', color: 'var(--color-gold-500)' },
           { type: 'event' as ScheduleType, emoji: '📅', labelKey: 'schedule.addEvent', color: 'var(--color-text-secondary)' },
+          { type: 'tournament' as ScheduleType, emoji: '🏆', labelKey: 'schedule.addTournament', color: 'var(--color-gold-500)' },
         ]).map((btn) => (
           <button
             key={btn.type}
@@ -772,6 +773,18 @@ export function SchedulePage() {
             </div>
 
             <div className="flex flex-col gap-3">
+              {/* Date picker */}
+              <div>
+                <label className="text-xs font-bold mb-1 block" style={{ color: 'var(--color-text-secondary)' }}>{t('log.date')}</label>
+                <input
+                  type="date"
+                  value={selectedDate ?? ''}
+                  onChange={(e) => setSelectedDate(e.target.value)}
+                  className="w-full text-sm p-2.5 rounded-lg"
+                  style={{ background: 'var(--color-bg-field, #f8fafc)', border: '1px solid var(--color-glass-border)' }}
+                />
+              </div>
+
               {/* Training type selector */}
               {formType === 'training' && (
                 <div>
