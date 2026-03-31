@@ -274,14 +274,39 @@ export function Profile({ onNavigate }: { onNavigate?: (page: string) => void })
       )}
       {physicalProfile && physicalProfile.measurements.length > 0 && (() => {
         const m = physicalProfile.measurements[physicalProfile.latestIndex]
+        const prev = physicalProfile.measurements.length >= 2
+          ? physicalProfile.measurements[physicalProfile.latestIndex - 1] ?? physicalProfile.measurements[physicalProfile.measurements.length - 2]
+          : null
         const tier = profile?.birthDate ? getAgeTier(profile.birthDate) : 'u12'
         const fields = getTrackedFieldConfigs(physicalProfile, tier)
         const groups: string[] = [...new Set(fields.map((f: { group: string }) => f.group))]
+        const totalMeasurements = physicalProfile.measurements.length
+
+        // Fields where lower is better (sprint times, agility course time)
+        const lowerIsBetter = new Set(['sprintTime10m', 'sprintTime20m', 'sprintTime30m', 'agilityCourseTime', 'restingHeartRate', 'bodyFatPct'])
+
+        function getDiff(key: string): { value: number; improved: boolean } | null {
+          if (!prev) return null
+          const curr = (m as unknown as Record<string, number | undefined>)[key]
+          const old = (prev as unknown as Record<string, number | undefined>)[key]
+          if (curr == null || old == null || curr === 0 || old === 0) return null
+          const diff = curr - old
+          if (diff === 0) return null
+          const improved = lowerIsBetter.has(key) ? diff < 0 : diff > 0
+          return { value: diff, improved }
+        }
 
         return (
-          <div className="card">
-            <div className="flex items-center justify-between mb-3">
-              <p className="section-label">{t('profile.physical')}</p>
+          <div className="card animate-fade-up">
+            <div className="flex items-center justify-between mb-1">
+              <div className="flex items-center gap-2">
+                <p className="section-label">{t('profile.physical')}</p>
+                {totalMeasurements > 1 && (
+                  <span className="text-[10px] px-1.5 py-0.5 rounded-full font-bold" style={{ background: 'var(--color-glass-active)', color: 'var(--color-text-muted)' }}>
+                    {t('physical.measurementCount', { count: totalMeasurements })}
+                  </span>
+                )}
+              </div>
               <div className="flex items-center gap-2">
                 <button
                   className="text-xs tap-target"
@@ -292,14 +317,17 @@ export function Profile({ onNavigate }: { onNavigate?: (page: string) => void })
                   ⚙️
                 </button>
                 <button
-                  className="text-xs font-bold tap-target"
-                  style={{ color: 'var(--color-primary-dark)' }}
+                  className="text-xs font-bold px-3 py-1.5 rounded-lg tap-target"
+                  style={{ background: 'var(--color-primary-bg)', color: 'var(--color-primary-dark)' }}
                   onClick={() => setShowPhysicalUpdate(true)}
                 >
                   {t('physical.update')}
                 </button>
               </div>
             </div>
+            <p className="text-[10px] mb-3" style={{ color: 'var(--color-text-muted)' }}>
+              {t('physical.lastUpdated', { date: new Date(m.measuredAt).toLocaleDateString() })}
+            </p>
             {groups.map((group) => {
               const groupFields = fields.filter((f: { group: string }) => f.group === group)
               const groupInfo = PHYSICAL_GROUPS[group]
@@ -309,24 +337,35 @@ export function Profile({ onNavigate }: { onNavigate?: (page: string) => void })
               })
               if (visibleFields.length === 0) return null
               return (
-                <div key={group} className="mb-3">
+                <div key={group} className="mb-3 last:mb-0">
                   <p className="text-[10px] font-bold uppercase tracking-wider mb-1.5" style={{ color: 'var(--color-text-muted)' }}>
                     {groupInfo.emoji} {t(groupInfo.labelKey)}
                   </p>
-                  <div className="grid grid-cols-3 gap-3">
-                    {visibleFields.map((f: { key: string; unit: string }) => (
-                      <div key={f.key} className="text-center">
-                        <p className="text-lg font-black font-data">{String((m as unknown as Record<string, unknown>)[f.key] ?? '')}{f.unit === 'sec' || f.unit === '%' ? f.unit.charAt(0) : ''}</p>
-                        <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{f.unit}</p>
-                      </div>
-                    ))}
+                  <div className="grid grid-cols-2 gap-2">
+                    {visibleFields.map((f: { key: string; unit: string; labelKey: string }) => {
+                      const val = (m as unknown as Record<string, unknown>)[f.key]
+                      const diff = getDiff(f.key)
+                      return (
+                        <div key={f.key} className="flex items-center justify-between px-3 py-2 rounded-lg" style={{ background: 'var(--color-bg-warm)' }}>
+                          <div className="min-w-0">
+                            <p className="text-[10px] truncate" style={{ color: 'var(--color-text-muted)' }}>{t(f.labelKey)}</p>
+                            <div className="flex items-baseline gap-1">
+                              <span className="text-base font-black font-data">{String(val ?? '')}</span>
+                              <span className="text-[10px]" style={{ color: 'var(--color-text-muted)' }}>{f.unit}</span>
+                            </div>
+                          </div>
+                          {diff && (
+                            <span className="text-[10px] font-bold font-data shrink-0 ml-1" style={{ color: diff.improved ? 'var(--color-primary-dark)' : 'var(--color-danger)' }}>
+                              {diff.improved ? '↑' : '↓'}{Math.abs(diff.value).toFixed(f.unit === 'sec' ? 2 : f.unit === '%' || f.unit === 'kg' ? 1 : 0)}
+                            </span>
+                          )}
+                        </div>
+                      )
+                    })}
                   </div>
                 </div>
               )
             })}
-            <p className="text-[10px] text-right" style={{ color: 'var(--color-text-muted)' }}>
-              {t('physical.lastUpdated', { date: new Date(m.measuredAt).toLocaleDateString() })}
-            </p>
           </div>
         )
       })()}
@@ -352,7 +391,7 @@ export function Profile({ onNavigate }: { onNavigate?: (page: string) => void })
 
           {user && (
             <button
-              className="btn-choice tap-target text-sm text-center"
+              className="btn-choice tap-target text-sm text-center w-full flex items-center justify-center gap-2"
               onClick={logout}
             >
               {t('profile.logout')}

@@ -388,6 +388,7 @@
   "physical.reminderNever": "Dar neįvedėte matavimų.",
   "physical.reminderDays": "Paskutinis atnaujinimas prieš {{days}} d.",
   "physical.lastUpdated": "Atnaujinta: {{date}}",
+  "physical.measurementCount": "{{count}} testų",
   "physical.chooseFields": "Ką sekti",
   "physical.customize": "Tinkinti laukus",
   "physical.customizeTitle": "Sekami matavimai",

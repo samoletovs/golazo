@@ -373,6 +373,7 @@
   "physical.reminderNever": "You haven't recorded any measurements yet.",
   "physical.reminderDays": "Last updated {{days}} days ago.",
   "physical.lastUpdated": "Last updated: {{date}}",
+  "physical.measurementCount": "{{count}} tests",
   "physical.chooseFields": "Choose what to track",
   "physical.customize": "Customize fields",
   "physical.customizeTitle": "Tracked Measurements",

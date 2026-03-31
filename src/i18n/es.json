@@ -323,6 +323,7 @@
   "physical.reminderNever": "Aún no has registrado mediciones.",
   "physical.reminderDays": "Última actualización hace {{days}} días.",
   "physical.lastUpdated": "Actualizado: {{date}}",
+  "physical.measurementCount": "{{count}} pruebas",
   "physical.chooseFields": "Qué medir",
   "physical.customize": "Personalizar campos",
   "physical.customizeTitle": "Mediciones seguidas",

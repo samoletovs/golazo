@@ -387,6 +387,7 @@
   "physical.reminderNever": "Вы ещё не записали измерения.",
   "physical.reminderDays": "Последнее обновление {{days}} дн. назад.",
   "physical.lastUpdated": "Обновлено: {{date}}",
+  "physical.measurementCount": "{{count}} тестов",
   "physical.chooseFields": "Что отслеживать",
   "physical.customize": "Настроить поля",
   "physical.customizeTitle": "Отслеживаемые измерения",

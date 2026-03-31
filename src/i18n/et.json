@@ -375,6 +375,7 @@
   "physical.reminderNever": "Sa pole veel mõõtmisi sisestanud.",
   "physical.reminderDays": "Viimati uuendatud {{days}} päeva tagasi.",
   "physical.lastUpdated": "Uuendatud: {{date}}",
+  "physical.measurementCount": "{{count}} testi",
   "physical.chooseFields": "Mida jälgida",
   "physical.customize": "Kohanda välju",
   "physical.customizeTitle": "Jälgitavad mõõtmised",
