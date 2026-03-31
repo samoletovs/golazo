@@ -50,31 +50,34 @@ export function TrackedFieldsEditor({ onClose }: Props) {
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center" style={{ background: 'rgba(0,0,0,0.4)' }}>
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center" style={{ background: 'rgba(0,0,0,0.4)' }} onClick={onClose}>
       <div
-        className="w-full max-w-lg rounded-t-2xl overflow-y-auto"
+        className="w-full max-w-lg rounded-t-2xl sm:rounded-2xl overflow-y-auto"
         style={{
-          background: 'var(--color-bg)',
+          background: 'var(--color-bg, #fafafa)',
           maxHeight: '85vh',
           boxShadow: '0 -4px 24px rgba(0,0,0,0.15)',
         }}
+        onClick={(e) => e.stopPropagation()}
       >
-        <div className="p-4 flex flex-col gap-4">
+        <div className="p-5 flex flex-col gap-5">
           {/* Header */}
-          <div className="flex items-center justify-between">
-            <h2 className="text-lg font-extrabold">{t('physical.customizeTitle')}</h2>
-            <button
-              className="text-sm font-bold tap-target"
-              style={{ color: 'var(--color-text-muted)' }}
-              onClick={onClose}
-              aria-label={t('common.close')}
-            >
-              ✕
-            </button>
+          <div>
+            <div className="flex items-center justify-between">
+              <h2 className="text-lg font-extrabold" style={{ fontFamily: 'var(--font-display)' }}>{t('physical.customizeTitle')}</h2>
+              <button
+                className="tap-target w-8 h-8 rounded-full flex items-center justify-center"
+                style={{ background: 'var(--color-glass-active)', color: 'var(--color-text-muted)' }}
+                onClick={onClose}
+                aria-label={t('common.close')}
+              >
+                ✕
+              </button>
+            </div>
+            <p className="text-xs mt-1" style={{ color: 'var(--color-text-muted)' }}>
+              {t('physical.customizeHint')}
+            </p>
           </div>
-          <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
-            {t('physical.customizeHint')}
-          </p>
 
           {/* Field toggles by group */}
           {allGroups.map((group) => {
@@ -85,8 +88,8 @@ export function TrackedFieldsEditor({ onClose }: Props) {
                 <p className="text-[10px] font-bold uppercase tracking-wider mb-2" style={{ color: 'var(--color-text-muted)' }}>
                   {groupInfo.emoji} {t(groupInfo.labelKey)}
                 </p>
-                <div className="flex flex-col gap-1.5">
-                  {groupFields.map((field) => {
+                <div className="card p-0 overflow-hidden">
+                  {groupFields.map((field, idx) => {
                     const isOn = tracked.includes(field.key)
                     const isRequired = field.required
                     const isDefault = defaults.includes(field.key)
@@ -94,26 +97,34 @@ export function TrackedFieldsEditor({ onClose }: Props) {
                       <button
                         key={field.key}
                         type="button"
-                        className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-left transition-colors tap-target"
+                        className="flex items-center gap-3 px-4 py-3 w-full text-left tap-target"
                         style={{
-                          background: isOn ? 'var(--color-primary-light, #dcfce7)' : 'var(--color-glass, #f8fafc)',
-                          opacity: isRequired ? 0.8 : 1,
+                          borderBottom: idx < groupFields.length - 1 ? '1px solid var(--color-glass-border, #e5e7eb)' : undefined,
+                          background: 'transparent',
                         }}
                         onClick={() => toggle(field.key)}
                         disabled={isRequired}
                         aria-pressed={isOn}
                       >
-                        <span className="text-base">{isOn ? '✅' : '⬜'}</span>
-                        <div className="flex-1">
-                          <p className="text-sm font-bold" style={{ color: isOn ? 'var(--color-primary-dark, #166534)' : 'var(--color-text)' }}>
-                            {t(field.labelKey)}
-                          </p>
+                        {/* Toggle indicator */}
+                        <div
+                          className="w-5 h-5 rounded-md flex items-center justify-center shrink-0 transition-colors"
+                          style={{
+                            background: isOn ? 'var(--color-primary-dark)' : 'var(--color-glass-active, #e2e8f0)',
+                            border: isOn ? 'none' : '1.5px solid var(--color-glass-border, #cbd5e1)',
+                          }}
+                        >
+                          {isOn && <span className="text-white text-[10px] font-bold">✓</span>}
+                        </div>
+
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm font-bold">{t(field.labelKey)}</p>
                           <p className="text-[10px]" style={{ color: 'var(--color-text-muted)' }}>
                             {field.unit}{isDefault ? ` · ${t('physical.recommended')}` : ''}
                           </p>
                         </div>
                         {isRequired && (
-                          <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full" style={{ background: 'var(--color-glass-active, #e2e8f0)', color: 'var(--color-text-muted)' }}>
+                          <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full shrink-0" style={{ background: 'var(--color-glass-active, #e2e8f0)', color: 'var(--color-text-muted)' }}>
                             {t('physical.required')}
                           </span>
                         )}

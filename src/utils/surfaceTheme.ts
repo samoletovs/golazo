@@ -41,7 +41,7 @@ export const SURFACE_PRESETS: SurfacePreset[] = [
     navBg: 'rgba(255, 255, 255, 0.92)',
     choiceBg: '#ffffff',
     choiceBorder: 'rgba(0, 0, 0, 0.08)',
-    accent: '#334155',
+    accent: '#475569',
     swatch: ['#C8C8D0', '#E8E8EC', '#F8F8FA'],
   },
   {
