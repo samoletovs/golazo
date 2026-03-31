@@ -83,3 +83,4 @@ jobs:
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_SWA_TOKEN }}
           action: close
+          app_location: /

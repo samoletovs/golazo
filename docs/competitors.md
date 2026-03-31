@@ -17,11 +17,13 @@ Golazo's opportunity is to be the **first player-centric platform** that combine
 ## Direct Competitors
 
 ### 1. PlayerMaker (playermaker.com)
+
 **Category**: Hardware + Software performance tracking
 **Price**: ~€200 for sensor kit
 **Target**: Players 8+ (individual + club)
 
 **What they do well:**
+
 - Foot-mounted sensors track every touch, pass, kick, turn
 - Left/right foot analysis — unique data no other app has
 - AI-powered weekly targets and "Optimal Actions"
@@ -30,6 +32,7 @@ Golazo's opportunity is to be the **first player-centric platform** that combine
 - Real improvement data: +34% game involvement, +27% shooting power in 90 days
 
 **What they don't do:**
+
 - ❌ No mental health tracking
 - ❌ No gamification / XP system
 - ❌ No content library (articles, quizzes, player stories)
@@ -42,11 +45,13 @@ Golazo's opportunity is to be the **first player-centric platform** that combine
 ---
 
 ### 2. Coachbetter (coachbetter.com)
+
 **Category**: Coach-first platform for clubs and federations
 **Price**: Freemium (coach plans from ~€5/month, club plans higher)
 **Target**: Coaches, clubs, federations
 
 **What they do well:**
+
 - 700+ exercise library with session planning
 - Team & matchday management
 - Player evaluation and development tracking
@@ -58,6 +63,7 @@ Golazo's opportunity is to be the **first player-centric platform** that combine
 - Manchester City partnership (CityCoach)
 
 **What they don't do:**
+
 - ❌ Player-facing — it's a COACH tool, players don't log their own data
 - ❌ No gamification at all
 - ❌ No mental health monitoring
@@ -71,12 +77,14 @@ Golazo's opportunity is to be the **first player-centric platform** that combine
 ---
 
 ### 3. Heja (heja.io)
+
 **Category**: Team communication & scheduling
 **Price**: Free (Heja Pro for clubs)
 **Target**: Coaches, parents, players (all sports)
 **Scale**: 500,000+ teams, 4.8/5 App Store rating
 
 **What they do well:**
+
 - Dead-simple scheduling with RSVP and reminders
 - Team messaging (reduces WhatsApp chaos)
 - Calendar sync to personal calendars
@@ -86,6 +94,7 @@ Golazo's opportunity is to be the **first player-centric platform** that combine
 - "Gave coaches back 2 hours/week"
 
 **What they don't do:**
+
 - ❌ No performance tracking at all
 - ❌ No skill development content
 - ❌ No gamification
@@ -98,12 +107,14 @@ Golazo's opportunity is to be the **first player-centric platform** that combine
 ---
 
 ### 4. TeamSnap (teamsnap.com)
+
 **Category**: Club & league management platform
 **Price**: Team plans ~$10/month, club/league plans higher
 **Target**: Clubs, leagues, coaches, parents (all sports)
 **Scale**: Used by NFL FLAG, MLS, NBA Jr, USYS
 
 **What they do well:**
+
 - Registration, payments, rosters, schedules
 - Live streaming and highlights
 - Tournament management
@@ -112,6 +123,7 @@ Golazo's opportunity is to be the **first player-centric platform** that combine
 - Comprehensive league operations
 
 **What they don't do:**
+
 - ❌ No individual player development tracking
 - ❌ No training content or exercises
 - ❌ No gamification
@@ -124,12 +136,14 @@ Golazo's opportunity is to be the **first player-centric platform** that combine
 ---
 
 ### 5. Strava (strava.com)
+
 **Category**: Social fitness tracking (running, cycling, swimming)
 **Price**: Free basic, $12/month subscription
 **Target**: Amateur to elite athletes (endurance sports)
 **Scale**: 120M+ athletes
 
 **What they do well (relevant patterns):**
+
 - AI-powered insights ("Athlete Intelligence")
 - Personalized finish time predictions
 - Progress comparison over time
@@ -141,6 +155,7 @@ Golazo's opportunity is to be the **first player-centric platform** that combine
 - Community-driven motivation
 
 **What we should steal:**
+
 - ✅ Leaderboard / segment concept → adapt for skills/challenges
 - ✅ Progress comparison ("you vs 3 months ago")
 - ✅ AI insights from data → apply to football metrics
@@ -150,11 +165,13 @@ Golazo's opportunity is to be the **first player-centric platform** that combine
 ---
 
 ### 6. WHOOP (whoop.com)
+
 **Category**: Wearable + recovery/strain coaching
 **Price**: ~€30/month subscription + band
 **Target**: Serious athletes (all sports)
 
 **What they do well (relevant patterns):**
+
 - Recovery / strain / sleep scoring
 - Weekly plan with personalized goals
 - Journal feature → behavior impact analysis
@@ -164,6 +181,7 @@ Golazo's opportunity is to be the **first player-centric platform** that combine
 - Health biomarker tracking (Advanced Labs)
 
 **What we should steal:**
+
 - ✅ Daily journal → behavior impact (mood logging → training quality correlation)
 - ✅ Weekly plan with goals → adapt for training week planning
 - ✅ Trend views → already have in progress page, enhance
@@ -172,11 +190,13 @@ Golazo's opportunity is to be the **first player-centric platform** that combine
 ---
 
 ### 7. Catapult / PlayerTek (catapult.com)
+
 **Category**: GPS performance tracking (hardware)
 **Price**: ~€200+ for device
 **Target**: Youth to pro teams
 
 **What they do well:**
+
 - Elite-grade GPS + inertial sensors
 - Training load management
 - Injury risk mitigation
@@ -184,6 +204,7 @@ Golazo's opportunity is to be the **first player-centric platform** that combine
 - Products for all levels (Pro → Core → One for youth)
 
 **What they don't do:**
+
 - ❌ No player self-logging
 - ❌ No gamification
 - ❌ No content or education
@@ -195,7 +216,7 @@ Golazo's opportunity is to be the **first player-centric platform** that combine
 ## Gap Analysis: What's Missing in the Market
 
 | Need | PlayerMaker | Coachbetter | Heja | TeamSnap | Strava | Golazo |
-|------|:-:|:-:|:-:|:-:|:-:|:-:|
+| --- | :-: | :-: | :-: | :-: | :-: | :-: |
 | Player self-logging | ❌ | ❌ | ❌ | ❌ | ✅ | ✅ |
 | XP / gamification | ❌ | ❌ | ❌ | ❌ | 🟡 | ✅ |
 | Mental health tracking | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ |
@@ -220,6 +241,7 @@ Golazo's opportunity is to be the **first player-centric platform** that combine
 ## Golazo's Unique Position
 
 **No competitor combines ALL of these:**
+
 1. Player-first (not coach-first or admin-first)
 2. Mental wellbeing monitoring with parent alerts
 3. Gamification that motivates daily use
@@ -235,6 +257,7 @@ Golazo sits in the **white space** between all of them.
 ## What We Should Build Based on Competitor Insights
 
 ### High Priority (steal & adapt)
+
 - **Strava-style progress comparison** — "you 3 months ago vs now" visualizations
 - **Coachbetter-style exercise library UX** — browseable, filterable, with session planning
 - **WHOOP-style daily journal → behavior impact** — correlate mood with performance
@@ -242,11 +265,13 @@ Golazo sits in the **white space** between all of them.
 - **PlayerMaker-style weekly targets** — AI sets personalized goals per week
 
 ### Medium Priority
+
 - **Heja-style team scheduling** — simple, with RSVP and calendar sync
 - **Coachbetter-style coach dashboard** — when we expand to coach role
 - **Strava-style "Local Legend"** — most consistent trainer of the month on the team
 
 ### Lower Priority (future differentiation)
+
 - **Camera-based analysis** — AI analysis of uploaded training/match footage
 - **Integration with PlayerMaker/Catapult** — import hardware sensor data for players who have it
 - **Federation partnerships** — like Coachbetter with Austrian FA
