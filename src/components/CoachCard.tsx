@@ -94,7 +94,6 @@ export function CoachCard() {
 
   const advice = dailyAdvice
   const visibleInsights = advice.insights
-  const hasMore = false // No expand needed — we show at most 2 insights now
 
   return (
     <div className="card-glow animate-fade-up">
@@ -134,17 +133,6 @@ export function CoachCard() {
               <InsightRow key={i} insight={insight} />
             ))}
           </div>
-        )}
-
-        {/* Expand/collapse */}
-        {hasMore && (
-          <button
-            className="text-xs self-start"
-            style={{ color: 'var(--color-primary-dark)' }}
-            onClick={() => setExpanded(!expanded)}
-          >
-            {expanded ? t('coach.showLess') : t('coach.showMore', { count: advice.insights.length - 2 })}
-          </button>
         )}
 
         {/* Drills */}
