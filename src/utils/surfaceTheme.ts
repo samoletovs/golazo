@@ -205,8 +205,9 @@ export function applySurfaceTheme(presetId: string, teamHex?: string): void {
   if (presetId === 'classic') {
     // Remove surface overrides — let index.css defaults apply
     SURFACE_VARS.forEach((v) => root.style.removeProperty(v))
-    // Restore team accent (or default green)
-    applyTeamTheme(teamHex)
+    // Apply Classic's own accent (slate), not team color
+    const classicPreset = SURFACE_PRESETS.find((p) => p.id === 'classic')!
+    applyTeamTheme(classicPreset.accent ?? teamHex)
     return
   }
 

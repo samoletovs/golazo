@@ -517,6 +517,32 @@ export function getAge(birthDate: string): number {
   return age
 }
 
+/* ── Skip Reasons ─────────────────────────────────────────── */
+
+export type TrainingSkipReason = 'sick' | 'injury' | 'recovery' | 'school' | 'work' | 'family' | 'cancelled' | 'other'
+export type MatchSkipReason = 'sick' | 'injury' | 'suspended' | 'notSelected' | 'otherTeam' | 'cancelled' | 'other'
+
+export const TRAINING_SKIP_REASONS: readonly { key: TrainingSkipReason; minAge?: number }[] = [
+  { key: 'sick' },
+  { key: 'injury' },
+  { key: 'recovery' },
+  { key: 'school' },
+  { key: 'work', minAge: 16 },
+  { key: 'family' },
+  { key: 'cancelled' },
+  { key: 'other' },
+]
+
+export const MATCH_SKIP_REASONS: readonly { key: MatchSkipReason; minAge?: number }[] = [
+  { key: 'sick' },
+  { key: 'injury' },
+  { key: 'suspended' },
+  { key: 'notSelected' },
+  { key: 'otherTeam' },
+  { key: 'cancelled' },
+  { key: 'other' },
+]
+
 /* ── Onboarding ───────────────────────────────────────────── */
 
 export interface OnboardingData {

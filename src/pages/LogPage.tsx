@@ -5,7 +5,7 @@ import { TrainingLog } from './TrainingLog'
 import { MatchLog } from './MatchLog'
 import { DiaryPage } from './DiaryPage'
 import { TournamentImport } from '../components/TournamentImport'
-import type { ScheduleEvent, TrainingType } from '../engine/types'
+import { getAge, TRAINING_SKIP_REASONS, MATCH_SKIP_REASONS, type ScheduleEvent, type TrainingType } from '../engine/types'
 
 type LogType = 'select' | 'training' | 'match' | 'diary'
 
@@ -201,14 +201,16 @@ export function LogPage() {
                 {isSkipping && (
                   <div className="mt-2 pt-2 flex flex-wrap gap-1.5" style={{ borderTop: '1px solid var(--color-glass-border)' }}>
                     <p className="text-[10px] w-full mb-0.5" style={{ color: 'var(--color-text-muted)' }}>{t('log.skipReason')}</p>
-                    {(['sick', 'notAttending', 'cancelled', 'other'] as const).map((reason) => (
+                    {(isMatch ? MATCH_SKIP_REASONS : TRAINING_SKIP_REASONS)
+                      .filter((r) => !r.minAge || (profile?.birthDate && getAge(profile.birthDate) >= r.minAge))
+                      .map((r) => (
                       <button
-                        key={reason}
+                        key={r.key}
                         className="text-[11px] font-bold px-2.5 py-1 rounded-full tap-target"
                         style={{ background: 'var(--color-glass-hover)', color: 'var(--color-text-secondary)' }}
-                        onClick={() => skipEvent(ev.id, reason)}
+                        onClick={() => skipEvent(ev.id, r.key)}
                       >
-                        {t(`log.reason.${reason}`)}
+                        {t(`log.reason.${r.key}`)}
                       </button>
                     ))}
                   </div>
