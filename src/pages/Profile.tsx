@@ -289,7 +289,7 @@ export function Profile({ onNavigate }: { onNavigate?: (page: string) => void })
           if (!prev) return null
           const curr = (m as unknown as Record<string, number | undefined>)[key]
           const old = (prev as unknown as Record<string, number | undefined>)[key]
-          if (curr == null || old == null || curr === 0 || old === 0) return null
+          if (curr === null || curr === undefined || old === null || old === undefined || curr === 0 || old === 0) return null
           const diff = curr - old
           if (diff === 0) return null
           const improved = lowerIsBetter.has(key) ? diff < 0 : diff > 0
