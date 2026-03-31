@@ -17,14 +17,18 @@ export function TeamProfile({ team, onClose }: TeamProfileProps) {
   const secondaryColor = team.colors?.[1] ?? 'var(--color-primary-light)'
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center" style={{ background: 'rgba(0,0,0,0.5)' }}>
+    <div
+      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center"
+      style={{ background: 'rgba(0,0,0,0.5)' }}
+      onClick={(e) => { if (e.target === e.currentTarget) onClose() }}
+    >
       <div
-        className="app-shell w-full rounded-t-2xl animate-fade-up"
+        className="app-shell w-full rounded-t-2xl sm:rounded-2xl animate-fade-up"
         style={{ maxHeight: '85dvh', overflowY: 'auto', background: 'var(--color-glass, #fff)' }}
       >
         {/* ── Hero header with team color gradient ── */}
         <div
-          className="relative px-5 pt-5 pb-6 rounded-t-2xl overflow-hidden"
+          className="relative px-5 pt-5 pb-6 rounded-t-2xl sm:rounded-t-2xl overflow-hidden"
           style={{
             background: `linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%)`,
           }}
@@ -34,16 +38,6 @@ export function TeamProfile({ team, onClose }: TeamProfileProps) {
             backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)',
             backgroundSize: '20px 20px',
           }} />
-
-          {/* Close button */}
-          <button
-            className="absolute top-4 right-4 tap-target w-8 h-8 rounded-full flex items-center justify-center"
-            style={{ background: 'rgba(255,255,255,0.2)', color: '#fff' }}
-            onClick={onClose}
-            aria-label={t('common.cancel')}
-          >
-            ✕
-          </button>
 
           {/* Logo + Name row */}
           <div className="relative flex items-center gap-4">

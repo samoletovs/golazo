@@ -114,7 +114,7 @@
   {
     "type": "quiz",
     "id": "u10-tactics-3",
-    "status": "queued",
+    "status": "published",
     "category": "tactics",
     "difficulty": "u10",
     "en": {
@@ -126,12 +126,13 @@
       "Sit down",
       "Walk to the sideline"
     ],
-    "correctIndex": 1
+    "correctIndex": 1,
+    "publishedAt": "2026-03-31T19:52:07.792Z"
   },
   {
     "type": "quiz",
     "id": "u12-nutrition-3",
-    "status": "queued",
+    "status": "published",
     "category": "nutrition",
     "difficulty": "u12",
     "en": {
@@ -143,12 +144,13 @@
       "Making you run faster",
       "Replacing water"
     ],
-    "correctIndex": 1
+    "correctIndex": 1,
+    "publishedAt": "2026-03-31T19:52:07.792Z"
   },
   {
     "type": "quiz",
     "id": "u14-tactics-5",
-    "status": "queued",
+    "status": "published",
     "category": "tactics",
     "difficulty": "u14",
     "en": {
@@ -160,12 +162,13 @@
       "A type of free kick",
       "A defensive formation"
     ],
-    "correctIndex": 1
+    "correctIndex": 1,
+    "publishedAt": "2026-03-31T19:52:07.792Z"
   },
   {
     "type": "quote",
     "id": "putellas-1",
-    "status": "queued",
+    "status": "published",
     "player": "Alexia Putellas",
     "themes": [
       "motivation",
@@ -188,12 +191,13 @@
     },
     "lt": {
       "text": "Kelio nebuvo. Turėjau jį susikurti pati"
-    }
+    },
+    "publishedAt": "2026-03-31T19:52:07.792Z"
   },
   {
     "type": "quote",
     "id": "haaland-1",
-    "status": "queued",
+    "status": "published",
     "player": "Erling Haaland",
     "themes": [
       "hardWork",
@@ -216,12 +220,13 @@
     },
     "lt": {
       "text": "Aš tiesiog noriu pelnyti įvarčius. Kiekvieną dieną galvoju apie įvarčių mušimą"
-    }
+    },
+    "publishedAt": "2026-03-31T19:52:07.792Z"
   },
   {
     "type": "quote",
     "id": "mbappe-1",
-    "status": "queued",
+    "status": "published",
     "player": "Kylian Mbappé",
     "themes": [
       "motivation",
@@ -244,12 +249,13 @@
     },
     "lt": {
       "text": "Svajok drąsiai, likk kuklus ir niekada nepamiršk, iš kur atėjai"
-    }
+    },
+    "publishedAt": "2026-03-31T19:52:07.792Z"
   },
   {
     "type": "quote",
     "id": "pedri-1",
-    "status": "queued",
+    "status": "published",
     "player": "Pedri",
     "themes": [
       "technique",
@@ -272,12 +278,13 @@
     },
     "lt": {
       "text": "Futbolas — tai geri sprendimai. Greitis nieko nereiškia, jei bėgi ne ta kryptimi"
-    }
+    },
+    "publishedAt": "2026-03-31T19:52:07.792Z"
   },
   {
     "type": "exercise",
     "id": "tech-06",
-    "status": "queued",
+    "status": "published",
     "category": "technical",
     "subSkill": "heading",
     "difficulty": 2,
@@ -314,12 +321,13 @@
     "lt": {
       "name": "Galvos smūgio technika",
       "desc": "Partneris švelniai meta kamuolį, tu muši galva atgal. Koncentruokis į kontaktą kakta, akys atviros, kaklas tvirtas. Pradėk nuo 2m, palaipsniui didink. 3 serijos po 10."
-    }
+    },
+    "publishedAt": "2026-03-31T19:52:07.792Z"
   },
   {
     "type": "exercise",
     "id": "phys-06",
-    "status": "queued",
+    "status": "published",
     "category": "physical",
     "subSkill": "strength",
     "difficulty": 2,
@@ -352,6 +360,7 @@
     "lt": {
       "name": "Kūno svorio futbolo treniruotė",
       "desc": "4 pratimai po 30 sek, poilsis 15 sek: (1) Pritūpimai, (2) Atsispaudimai, (3) Išpuoliai, (4) Planka. Kartok 3 ratus. Dėmesys technikai."
-    }
+    },
+    "publishedAt": "2026-03-31T19:52:07.792Z"
   }
 ]
