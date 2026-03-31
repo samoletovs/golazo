@@ -219,6 +219,24 @@ export function MatchLog({ onBack, inline, prefill, onSaved }: MatchLogProps) {
         </div>
       </div>
 
+      {/* Mood — always visible (primary metric) */}
+      <div>
+        <p className="section-label mb-2">{t('training.mood')}</p>
+        <div className="flex gap-2 justify-center">
+          {ENERGY_EMOJIS.map((emoji, i) => (
+            <button
+              key={i}
+              className="emoji-btn"
+              data-selected={mood === (i + 1)}
+              onClick={() => setMood((i + 1) as EnergyLevel)}
+              aria-label={`Mood ${i + 1}`}
+            >
+              {emoji}
+            </button>
+          ))}
+        </div>
+      </div>
+
       {/* Details toggle */}
       <button
         className="text-xs font-bold tap-target flex items-center gap-1 justify-center"
@@ -289,24 +307,6 @@ export function MatchLog({ onBack, inline, prefill, onSaved }: MatchLogProps) {
             value={toImprove}
             onChange={(e) => setToImprove(e.target.value)}
           />
-
-          {/* Mood */}
-          <div>
-            <p className="section-label mb-2">{t('training.mood')}</p>
-            <div className="flex gap-2 justify-center">
-              {ENERGY_EMOJIS.map((emoji, i) => (
-                <button
-                  key={i}
-                  className="emoji-btn"
-                  data-selected={mood === (i + 1)}
-                  onClick={() => setMood((i + 1) as EnergyLevel)}
-                  aria-label={`Mood ${i + 1}`}
-                >
-                  {emoji}
-                </button>
-              ))}
-            </div>
-          </div>
         </>
       )}
 
