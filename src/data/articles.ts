@@ -5,8 +5,8 @@ export const articles: Article[] = [
   // ── Tactics ───────────────────────────────────────────────
   {
     id: 'art-tac-01',
-    titleKey: 'What is "Pressing" and Why Do Coaches Love It?',
-    bodyKey: 'Pressing means closing down the opponent quickly when they have the ball. The idea is simple: win the ball back as high up the pitch as possible. Modern coaches like Guardiola and Klopp built their teams around pressing. For young players, pressing starts with discipline — the moment you lose the ball, sprint toward it. Start with 3-second pressing: after losing possession, you have 3 seconds to win it back or get into a press position. This develops the habit without exhausting you.',
+    titleKey: 'art.tac01.title',
+    bodyKey: 'art.tac01.body',
     category: 'tactics',
     ageTiers: ['u12', 'u14', 'u16'],
     readingTimeMin: 2,
@@ -14,8 +14,8 @@ export const articles: Article[] = [
   },
   {
     id: 'art-tac-02',
-    titleKey: 'Understanding Your Position: What Does a Midfielder Really Do?',
-    bodyKey: 'A midfielder is the engine of the team — you connect defense to attack. Your main jobs: receive the ball under pressure, look for forward passes, support both defense and attack. The best midfielders (Modrić, De Bruyne, Pedri) share one trait: they always know where teammates are BEFORE receiving the ball. Practice "shoulder checking" — glance over your shoulder every few seconds during games. This one habit separates good midfielders from great ones.',
+    titleKey: 'art.tac02.title',
+    bodyKey: 'art.tac02.body',
     category: 'tactics',
     ageTiers: ['u12', 'u14', 'u16'],
     readingTimeMin: 2,
@@ -23,8 +23,8 @@ export const articles: Article[] = [
   },
   {
     id: 'art-tac-03',
-    titleKey: 'Why Passing Is More Important Than Dribbling',
-    bodyKey: 'The ball moves faster than any player. A pass covers 20 meters in under a second — the fastest dribbler needs 3-4 seconds. That is why the best teams pass more than they dribble. But passing is not just about accuracy — it is about timing and weight. A "heavy" pass is too hard for your teammate to control. A "soft" pass arrives too slowly and gets intercepted. Practice wall passes at different distances: 5m, 10m, 15m. Feel the difference in how hard you need to hit it.',
+    titleKey: 'art.tac03.title',
+    bodyKey: 'art.tac03.body',
     category: 'tactics',
     ageTiers: ['u10', 'u12', 'u14'],
     readingTimeMin: 2,
@@ -34,8 +34,8 @@ export const articles: Article[] = [
   // ── Nutrition ─────────────────────────────────────────────
   {
     id: 'art-nut-01',
-    titleKey: 'What to Eat Before a Match',
-    bodyKey: 'Your matchday meal should be 2-3 hours before kickoff. Focus on carbohydrates — they are your fuel. Good options: pasta with light sauce, rice with chicken, a banana sandwich, or oatmeal with fruit. Avoid heavy, fatty foods (pizza, burgers) — they sit in your stomach and slow you down. Drink water throughout the day, not just at the match. If you feel thirsty during warm-up, you started too late.',
+    titleKey: 'art.nut01.title',
+    bodyKey: 'art.nut01.body',
     category: 'nutrition',
     ageTiers: ['u10', 'u12', 'u14', 'u16'],
     readingTimeMin: 2,
@@ -43,8 +43,8 @@ export const articles: Article[] = [
   },
   {
     id: 'art-nut-02',
-    titleKey: 'Recovery Nutrition: What to Eat After Training',
-    bodyKey: 'The 30-60 minutes after intense training is your "recovery window" — your body absorbs nutrients most efficiently. You need two things: protein (for muscle repair) and carbs (to refuel energy). Great post-training snacks: chocolate milk (surprisingly good!), a banana with peanut butter, yogurt with granola, or a simple sandwich. Do not skip this — players who refuel properly recover faster and train better the next day.',
+    titleKey: 'art.nut02.title',
+    bodyKey: 'art.nut02.body',
     category: 'nutrition',
     ageTiers: ['u12', 'u14', 'u16'],
     readingTimeMin: 2,
@@ -52,8 +52,8 @@ export const articles: Article[] = [
   },
   {
     id: 'art-nut-03',
-    titleKey: 'Water: Your Secret Weapon',
-    bodyKey: 'Even 2% dehydration (that is just losing 1kg of water weight for a 50kg player) drops your performance by 10-20%. Your brain slows down, your muscles fatigue faster, and your decision making gets worse. Drink water throughout the day — do not wait until you are thirsty. A good rule: drink a glass of water with every meal and bring a bottle to every training session.',
+    titleKey: 'art.nut03.title',
+    bodyKey: 'art.nut03.body',
     category: 'nutrition',
     ageTiers: ['u10', 'u12', 'u14', 'u16'],
     readingTimeMin: 1,
@@ -63,8 +63,8 @@ export const articles: Article[] = [
   // ── Mental ────────────────────────────────────────────────
   {
     id: 'art-men-01',
-    titleKey: 'How to Handle a Bad Match',
-    bodyKey: 'Every player has bad matches — even Messi. The difference is what you do after. Step 1: Allow yourself to feel disappointed (it is normal). Step 2: Within 24 hours, write down ONE thing you did well and ONE thing to improve. Step 3: In your next training, focus only on that one improvement. Do not try to fix everything. The worst thing you can do is replay the bad match in your head over and over. Learn, then move forward.',
+    titleKey: 'art.men01.title',
+    bodyKey: 'art.men01.body',
     category: 'mental',
     ageTiers: ['u10', 'u12', 'u14', 'u16'],
     readingTimeMin: 2,
@@ -72,8 +72,8 @@ export const articles: Article[] = [
   },
   {
     id: 'art-men-02',
-    titleKey: 'Pre-Match Nerves: They Are Actually Good',
-    bodyKey: 'Feeling nervous before a match is not a problem — it is your body preparing for performance. Those butterflies in your stomach mean adrenaline is flowing, your focus is sharpening, and your muscles are getting ready. Top athletes reframe nervousness as excitement: instead of "I am nervous," say "I am excited." Try a simple breathing routine before matches: breathe in for 4 counts, hold for 4, breathe out for 4. Do this 5 times. You will feel calmer but still energized.',
+    titleKey: 'art.men02.title',
+    bodyKey: 'art.men02.body',
     category: 'mental',
     ageTiers: ['u12', 'u14', 'u16'],
     readingTimeMin: 2,
@@ -81,8 +81,8 @@ export const articles: Article[] = [
   },
   {
     id: 'art-men-03',
-    titleKey: 'The Power of Visualization',
-    bodyKey: 'Olympic athletes spend time imagining their perfect performance before competing. You can do the same. Before a match or training, close your eyes for 2 minutes and imagine: receiving the ball, making a great pass, scoring a goal, defending well. Be specific — imagine the feeling of the ball on your foot, the sound of teammates cheering. Studies show visualization activates the same brain pathways as actually performing the skill. It is like a free extra training session.',
+    titleKey: 'art.men03.title',
+    bodyKey: 'art.men03.body',
     category: 'mental',
     ageTiers: ['u12', 'u14', 'u16'],
     readingTimeMin: 2,
@@ -92,8 +92,8 @@ export const articles: Article[] = [
   // ── Rules ─────────────────────────────────────────────────
   {
     id: 'art-rul-01',
-    titleKey: 'The Offside Rule Explained Simply',
-    bodyKey: 'You are offside if ALL of these are true at the moment the ball is passed to you: (1) You are in the opponent half, (2) You are closer to the goal than the second-to-last defender (usually the last outfield player), (3) You are closer to the goal than the ball. You are NOT offside if: you receive the ball from a throw-in, goal kick, or corner kick. The key word is "at the moment the ball is PASSED" — you can run offside after the pass is made. Practice watching the defensive line and timing your runs.',
+    titleKey: 'art.rul01.title',
+    bodyKey: 'art.rul01.body',
     category: 'rules',
     ageTiers: ['u10', 'u12', 'u14'],
     readingTimeMin: 2,
@@ -101,8 +101,8 @@ export const articles: Article[] = [
   },
   {
     id: 'art-rul-02',
-    titleKey: 'Handball: When Is It a Foul?',
-    bodyKey: 'The handball rule changed in 2021. It is a foul if: your hand/arm is in an unnatural position AND makes your body bigger, OR you deliberately touch the ball. It is NOT a foul if: the ball hits your hand when it is next to your body, or you are falling and use your hand to support yourself, or the ball bounces off your own body to your hand. For attackers, ANY handball that leads directly to a goal is disallowed, even if accidental.',
+    titleKey: 'art.rul02.title',
+    bodyKey: 'art.rul02.body',
     category: 'rules',
     ageTiers: ['u12', 'u14', 'u16'],
     readingTimeMin: 2,
@@ -112,8 +112,8 @@ export const articles: Article[] = [
   // ── Stories (Player Youth Stories) ────────────────────────
   {
     id: 'art-story-01',
-    titleKey: 'Luka Modrić: The Boy from the War Zone',
-    bodyKey: 'Luka Modrić grew up during the Croatian War of Independence. His family was displaced, and his grandfather was killed. As a child, he practiced football in hotel parking lots where refugees lived. When he tried out for Hajduk Split at age 16, they rejected him — "too small, too weak." He did not give up. He went to Dinamo Zagreb instead, worked harder than everyone, and eventually became the best midfielder in the world, winning the Ballon d\'Or in 2018. His lesson: your circumstances do not define your ceiling. Hard work does.',
+    titleKey: 'art.story01.title',
+    bodyKey: 'art.story01.body',
     category: 'stories',
     ageTiers: ['u10', 'u12', 'u14', 'u16'],
     readingTimeMin: 3,
@@ -121,8 +121,8 @@ export const articles: Article[] = [
   },
   {
     id: 'art-story-02',
-    titleKey: 'Lionel Messi: Too Small to Play?',
-    bodyKey: 'At age 11, Messi was diagnosed with a growth hormone deficiency. He was much smaller than other kids his age. His local club in Argentina could not afford his treatment. Barcelona saw his talent and offered to pay for his medical treatment if he moved to Spain — at age 13, alone, far from family. He was homesick, small, and spoke with an accent kids mocked. But every single day he trained harder than anyone. By 17, he was in Barcelona\'s first team. By 22, he had his first Ballon d\'Or. Size never mattered — heart did.',
+    titleKey: 'art.story02.title',
+    bodyKey: 'art.story02.body',
     category: 'stories',
     ageTiers: ['u10', 'u12', 'u14', 'u16'],
     readingTimeMin: 3,
@@ -130,8 +130,8 @@ export const articles: Article[] = [
   },
   {
     id: 'art-story-03',
-    titleKey: 'Erling Haaland: The Machine Was Once Just a Kid',
-    bodyKey: 'Haaland was not always the goal machine you see today. As a teenager at Bryne FK in Norway, he was tall but uncoordinated. His father (a former pro) gave him a strict individual training plan on top of team training. Haaland did not complain — he added extra shooting sessions, sprint work, and strength training. By 16, he moved to Molde. By 19, he scored a hat-trick in the Champions League. The secret was never natural talent alone — it was the daily grind nobody saw.',
+    titleKey: 'art.story03.title',
+    bodyKey: 'art.story03.body',
     category: 'stories',
     ageTiers: ['u12', 'u14', 'u16'],
     readingTimeMin: 2,
@@ -139,8 +139,8 @@ export const articles: Article[] = [
   },
   {
     id: 'art-story-04',
-    titleKey: 'Pedri: From a Tiny Island to Barcelona',
-    bodyKey: 'Pedri grew up in Tegueste, a small town on the island of Tenerife with 11,000 people. He trained at a local academy, not a big-city super club. Barcelona signed him at 16, but he went on loan to Las Palmas first. At 17, playing in Spain\'s second division, he showed something rare: calm. While others rushed, Pedri slowed the game down, found pockets of space, and made everyone around him better. At 18, he was starting for Barcelona and Spain. You do not need to come from a big city. You need patience, vision, and the willingness to be different.',
+    titleKey: 'art.story04.title',
+    bodyKey: 'art.story04.body',
     category: 'stories',
     ageTiers: ['u12', 'u14', 'u16'],
     readingTimeMin: 2,
@@ -150,8 +150,8 @@ export const articles: Article[] = [
   // ── Additional Tactics ────────────────────────────────────
   {
     id: 'art-tac-04',
-    titleKey: 'Creating Space Off the Ball',
-    bodyKey: 'The best players are always moving — even when the ball is nowhere near them. Creating space means making runs, checking in and out, and pulling defenders away so your teammates have room. Watch how top strikers constantly drift left, then sprint right. They are creating confusion. In training, practice "L-runs": jog toward a defender, then suddenly change direction at a right angle. The key is timing — make your run just before the pass, not after.',
+    titleKey: 'art.tac04.title',
+    bodyKey: 'art.tac04.body',
     category: 'tactics',
     ageTiers: ['u12', 'u14', 'u16'],
     readingTimeMin: 2,
@@ -159,8 +159,8 @@ export const articles: Article[] = [
   },
   {
     id: 'art-tac-05',
-    titleKey: 'Reading the Game: What to Watch When You Are Not on the Ball',
-    bodyKey: 'Great players see the game differently. While average players watch the ball, elite players scan the entire pitch. Every 3-4 seconds, glance around: where are your teammates? Where is the space? Where are opponents pressing? This is called "scanning." Studies of Barcelona and Manchester City players show they scan up to 6 times in 10 seconds before receiving the ball. Start small: before every pass comes to you, look over your shoulder once. That is already more than most players do.',
+    titleKey: 'art.tac05.title',
+    bodyKey: 'art.tac05.body',
     category: 'tactics',
     ageTiers: ['u14', 'u16'],
     readingTimeMin: 2,
@@ -170,8 +170,8 @@ export const articles: Article[] = [
   // ── Additional Nutrition ──────────────────────────────────
   {
     id: 'art-nut-04',
-    titleKey: 'Sleep Is Your Superpower',
-    bodyKey: 'Young athletes need 9-11 hours of sleep for optimal recovery and growth. During deep sleep, your body releases growth hormone — the same hormone that repairs muscles and builds strength. Studies show that athletes who sleep less than 8 hours are 1.7x more likely to get injured. Tips: stop screens 30 minutes before bed, keep your room cool and dark, try to sleep and wake at the same time every day — even weekends. Your body recovers during sleep, not during training.',
+    titleKey: 'art.nut04.title',
+    bodyKey: 'art.nut04.body',
     category: 'nutrition',
     ageTiers: ['u10', 'u12', 'u14', 'u16'],
     readingTimeMin: 2,
@@ -179,8 +179,8 @@ export const articles: Article[] = [
   },
   {
     id: 'art-nut-05',
-    titleKey: 'Match Day Timeline: When to Eat What',
-    bodyKey: '3-4 hours before: Big meal — pasta, rice, chicken, vegetables. 1-2 hours before: Light snack — banana, energy bar, toast with honey. 30 minutes before: Small sip of water or sports drink. During the match: Water at every break, small bites of orange if available. After the match (within 30 min): Chocolate milk or yogurt + banana. Evening: Balanced meal with protein (chicken, fish) + carbs (rice, potato) + vegetables. Following this timeline means your body has fuel when you need it most.',
+    titleKey: 'art.nut05.title',
+    bodyKey: 'art.nut05.body',
     category: 'nutrition',
     ageTiers: ['u12', 'u14', 'u16'],
     readingTimeMin: 2,
@@ -190,8 +190,8 @@ export const articles: Article[] = [
   // ── Additional Player Stories ─────────────────────────────
   {
     id: 'art-story-05',
-    titleKey: 'Kevin De Bruyne: The Quiet Kid Who Became the Best Passer in the World',
-    bodyKey: 'De Bruyne grew up in Drongen, a small town in Belgium. He was not the fastest, not the strongest, and not the most talented in his youth teams. But he had one thing others did not: work ethic. He would stay after training to practice crosses and through-balls for hours. At Chelsea, he barely got to play — Mourinho did not trust him. Instead of complaining, he went to Wolfsburg, dominated the Bundesliga, and forced Manchester City to pay £55 million for him. His lesson: rejection is redirection. Keep working.',
+    titleKey: 'art.story05.title',
+    bodyKey: 'art.story05.body',
     category: 'stories',
     ageTiers: ['u12', 'u14', 'u16'],
     readingTimeMin: 3,
@@ -199,8 +199,8 @@ export const articles: Article[] = [
   },
   {
     id: 'art-story-06',
-    titleKey: 'Vinícius Jr: From the Favela to the Bernabéu',
-    bodyKey: 'Vinícius grew up in São Gonçalo, one of the poorest and most violent neighborhoods in Rio de Janeiro. His family could barely afford food, let alone football equipment. He played barefoot on concrete. At 13, Flamengo signed him. At 16, Real Madrid paid €45 million for a teenager who had barely played professional football. Why? Because he played with joy. Every dribble, every sprint, every trick — Vinícius played like every moment could be his last on the pitch. That fearless joy is what got him out. Never lose yours.',
+    titleKey: 'art.story06.title',
+    bodyKey: 'art.story06.body',
     category: 'stories',
     ageTiers: ['u10', 'u12', 'u14', 'u16'],
     readingTimeMin: 3,
@@ -208,8 +208,8 @@ export const articles: Article[] = [
   },
   {
     id: 'art-story-07',
-    titleKey: 'Alexia Putellas: The Greatest Player Most People Never Heard Of',
-    bodyKey: 'Alexia Putellas won back-to-back Ballon d\'Or awards in 2021 and 2022 — the best female footballer in the world. She grew up in Mollet del Vallès, a working-class suburb of Barcelona. As a girl in Spain in the 2000s, there was almost no pathway for women in football. She played on boys\' teams until they stopped letting her. She joined Barcelona\'s women\'s team at 17 and spent a decade building it into the best in the world. She tore her ACL right before the 2022 Euros. Came back stronger. The lesson: the path does not exist — you create it.',
+    titleKey: 'art.story07.title',
+    bodyKey: 'art.story07.body',
     category: 'stories',
     ageTiers: ['u12', 'u14', 'u16'],
     readingTimeMin: 3,
@@ -217,8 +217,8 @@ export const articles: Article[] = [
   },
   {
     id: 'art-story-08',
-    titleKey: 'Football in the Baltics: Small Countries, Big Dreams',
-    bodyKey: 'Latvia, Estonia, and Lithuania have a combined population smaller than London — but their football ambitions are growing fast. Latvia produced Vitalijs Astafjevs (record 167 caps), Estonia has Ragnar Klavan (the first Estonian to play in the Premier League), and Lithuania\'s national team keeps improving every cycle. Youth academies across the Baltics are investing in modern training methodology. The advantage of being small: every talented player gets noticed. The clubs know you, the coaches track you. In a big country, you can get lost — in the Baltics, talent rises fast. Your next training session could be the one that changes everything.',
+    titleKey: 'art.story08.title',
+    bodyKey: 'art.story08.body',
     category: 'stories',
     ageTiers: ['u10', 'u12', 'u14', 'u16'],
     readingTimeMin: 3,
@@ -228,8 +228,8 @@ export const articles: Article[] = [
   // ── Additional Mental ─────────────────────────────────────
   {
     id: 'art-men-04',
-    titleKey: 'How to Build Confidence When You Are Doubting Yourself',
-    bodyKey: 'Confidence is not something you are born with — it is built through preparation and small wins. Dan Abrahams, one of the top sports psychologists, teaches the "Confidence Bank" method: every good training session, every ball won, every successful pass is a deposit. Write down 3 things you did well after every training or match. Over time, your confidence bank grows and you can draw on it when pressure hits. The worst thing for confidence is overthinking. In the next match, pick ONE thing to focus on — and nail it.',
+    titleKey: 'art.men04.title',
+    bodyKey: 'art.men04.body',
     category: 'mental',
     ageTiers: ['u12', 'u14', 'u16'],
     readingTimeMin: 2,

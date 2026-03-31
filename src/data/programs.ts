@@ -4,8 +4,8 @@ import type { TrainingProgram } from '../engine/types'
 export const programs: TrainingProgram[] = [
   {
     id: 'prog-ball-mastery',
-    titleKey: 'Ball Mastery',
-    descriptionKey: '4 weeks of daily ball control drills. Build your first touch, dribbling confidence, and weak foot skills using Coerver methodology.',
+    titleKey: 'prog.ballMastery.title',
+    descriptionKey: 'prog.ballMastery.desc',
     category: 'technical',
     durationWeeks: 4,
     ageTiers: ['u10', 'u12', 'u14'],
@@ -14,8 +14,8 @@ export const programs: TrainingProgram[] = [
   },
   {
     id: 'prog-speed-agility',
-    titleKey: 'Speed & Agility',
-    descriptionKey: '4 weeks of sprint drills, agility courses, and coordination exercises. Improve your acceleration, change of direction, and match fitness.',
+    titleKey: 'prog.speedAgility.title',
+    descriptionKey: 'prog.speedAgility.desc',
     category: 'physical',
     durationWeeks: 4,
     ageTiers: ['u12', 'u14', 'u16'],
@@ -24,8 +24,8 @@ export const programs: TrainingProgram[] = [
   },
   {
     id: 'prog-game-iq',
-    titleKey: 'Game Intelligence',
-    descriptionKey: '4 weeks of tactical awareness drills. Learn positioning, decision-making under pressure, and how to read the game like a pro.',
+    titleKey: 'prog.gameIQ.title',
+    descriptionKey: 'prog.gameIQ.desc',
     category: 'tactical',
     durationWeeks: 4,
     ageTiers: ['u12', 'u14', 'u16'],
@@ -34,8 +34,8 @@ export const programs: TrainingProgram[] = [
   },
   {
     id: 'prog-mental-strength',
-    titleKey: 'Mental Strength',
-    descriptionKey: '3 weeks of mental conditioning using Dan Abrahams\' 4C framework: Commitment, Concentration, Confidence, Control.',
+    titleKey: 'prog.mentalStrength.title',
+    descriptionKey: 'prog.mentalStrength.desc',
     category: 'mental',
     durationWeeks: 3,
     ageTiers: ['u12', 'u14', 'u16'],
@@ -44,8 +44,8 @@ export const programs: TrainingProgram[] = [
   },
   {
     id: 'prog-shooting',
-    titleKey: 'Finishing School',
-    descriptionKey: '4 weeks focused on shooting technique, placement, and composure in front of goal. For forwards and attacking midfielders.',
+    titleKey: 'prog.shooting.title',
+    descriptionKey: 'prog.shooting.desc',
     category: 'technical',
     durationWeeks: 4,
     ageTiers: ['u12', 'u14', 'u16'],

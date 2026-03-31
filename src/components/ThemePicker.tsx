@@ -34,13 +34,22 @@ export function ThemePicker() {
               aria-pressed={isActive}
               aria-label={t(`theme.${preset.id}`)}
             >
-              {/* Color swatch */}
+              {/* Color swatch — 3-layer preview */}
               <div
-                className="w-10 h-10 rounded-lg overflow-hidden flex-shrink-0"
-                style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}
+                className="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 relative"
+                style={{ boxShadow: '0 1px 4px rgba(0,0,0,0.12)', border: '2px solid rgba(255,255,255,0.8)' }}
               >
                 <div className="w-full h-1/2" style={{ background: preset.swatch[0] }} />
                 <div className="w-full h-1/2" style={{ background: preset.swatch[1] }} />
+                <div
+                  className="absolute rounded-full"
+                  style={{
+                    width: 10, height: 10,
+                    bottom: 3, right: 3,
+                    background: preset.swatch[2],
+                    border: '1.5px solid rgba(255,255,255,0.9)',
+                  }}
+                />
               </div>
               <span
                 className="text-[10px] font-bold leading-tight text-center"

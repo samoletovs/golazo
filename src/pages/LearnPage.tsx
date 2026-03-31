@@ -16,13 +16,13 @@ function tierToDifficulty(tier: string): QuizDifficulty {
   return 'u16'
 }
 
-const ARTICLE_CATEGORIES: { key: ArticleCategory | 'all'; label: string; emoji: string }[] = [
-  { key: 'all', label: 'All', emoji: '📖' },
-  { key: 'tactics', label: 'Tactics', emoji: '🧠' },
-  { key: 'nutrition', label: 'Nutrition', emoji: '🍎' },
-  { key: 'mental', label: 'Mental', emoji: '💪' },
-  { key: 'rules', label: 'Rules', emoji: '📋' },
-  { key: 'stories', label: 'Player Stories', emoji: '⭐' },
+const ARTICLE_CATEGORIES: { key: ArticleCategory | 'all'; labelKey: string; emoji: string }[] = [
+  { key: 'all', labelKey: 'exercises.all', emoji: '📖' },
+  { key: 'tactics', labelKey: 'learn.cat.tactics', emoji: '🧠' },
+  { key: 'nutrition', labelKey: 'learn.cat.nutrition', emoji: '🍎' },
+  { key: 'mental', labelKey: 'learn.cat.mental', emoji: '💪' },
+  { key: 'rules', labelKey: 'learn.cat.rules', emoji: '📋' },
+  { key: 'stories', labelKey: 'learn.cat.stories', emoji: '⭐' },
 ]
 
 type LearnTab = 'articles' | 'programs' | 'exercises'
@@ -139,7 +139,7 @@ export function LearnContent() {
                 aria-pressed={categoryFilter === cat.key}
                 onClick={() => setCategoryFilter(cat.key)}
               >
-                {cat.emoji} {cat.label}
+                {cat.emoji} {t(cat.labelKey)}
               </button>
             ))}
           </div>
@@ -159,7 +159,7 @@ export function LearnContent() {
                     <span className="text-2xl">{article.imageEmoji || '📄'}</span>
                     <div className="flex-1 min-w-0">
                       <p className="text-sm font-bold" style={{ fontFamily: 'var(--font-display)' }}>
-                        {isRead && '✅ '}{article.titleKey}
+                        {isRead && '✅ '}{t(article.titleKey)}
                       </p>
                       <div className="flex items-center gap-2 mt-1">
                         <span className="text-[10px] px-2 py-0.5 rounded-full" style={{ background: '#f3f4f6', color: '#6b7280' }}>
@@ -178,7 +178,7 @@ export function LearnContent() {
                   {isExpanded && (
                     <div className="mt-3 pt-3 animate-fade-up" style={{ borderTop: '1px solid #e5e7eb' }}>
                       <p className="text-sm leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
-                        {article.bodyKey}
+                        {t(article.bodyKey)}
                       </p>
                       {!isRead && (
                         <button
@@ -239,10 +239,10 @@ export function LearnContent() {
                   <span className="text-2xl">{program.imageEmoji || '📋'}</span>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-bold" style={{ fontFamily: 'var(--font-display)' }}>
-                      {isComplete ? '🏆 ' : ''}{program.titleKey}
+                      {isComplete ? '🏆 ' : ''}{t(program.titleKey)}
                     </p>
                     <p className="text-xs mt-0.5" style={{ color: 'var(--color-text-muted)' }}>
-                      {program.durationWeeks} {t('learn.weeks')} · {program.category}
+                      {program.durationWeeks} {t('learn.weeks')} · {t(`learn.cat.${program.category}`)}
                     </p>
                     {isStarted && progress && (
                       <div className="mt-2">
@@ -266,7 +266,7 @@ export function LearnContent() {
                 {isExpanded && (
                   <div className="mt-3 pt-3 animate-fade-up" style={{ borderTop: '1px solid #e5e7eb' }}>
                     <p className="text-sm leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
-                      {program.descriptionKey}
+                      {t(program.descriptionKey)}
                     </p>
                     {!isStarted && (
                       <button

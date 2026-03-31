@@ -1,6 +1,6 @@
 /**
- * Surface Theme — controls page background + card surface colors.
- * Users can pick a preset or let club colors drive the palette.
+ * Surface Theme — controls page background, card surfaces, button tints, and nav.
+ * Each preset is a cohesive color story, not just a light tint.
  */
 
 export interface SurfacePreset {
@@ -19,8 +19,14 @@ export interface SurfacePreset {
   surfaceActive: string
   /** Header backdrop */
   headerBg: string
-  /** Swatch colors for the picker UI [bg, surface] */
-  swatch: [string, string]
+  /** Bottom nav backdrop */
+  navBg: string
+  /** Choice button bg */
+  choiceBg: string
+  /** Choice button border */
+  choiceBorder: string
+  /** Swatch colors for the picker UI [top, bottom, accent dot] */
+  swatch: [string, string, string]
 }
 
 export const SURFACE_PRESETS: SurfacePreset[] = [
@@ -33,85 +39,109 @@ export const SURFACE_PRESETS: SurfacePreset[] = [
     surfaceHover: '#F7F7F7',
     surfaceActive: 'rgba(0, 0, 0, 0.03)',
     headerBg: 'rgba(250, 250, 250, 0.88)',
-    swatch: ['#FAFAFA', '#ffffff'],
+    navBg: 'rgba(255, 255, 255, 0.92)',
+    choiceBg: '#ffffff',
+    choiceBorder: '#e5e7eb',
+    swatch: ['#F0F0F0', '#ffffff', '#9CA3AF'],
   },
   {
     id: 'team',
     // Placeholder — overridden dynamically from club colors
-    bg: '#F0FDF4',
-    bgWarm: '#ECFDF5',
-    surface: '#F7FEF9',
-    borderTint: 'rgba(5, 150, 105, 0.08)',
-    surfaceHover: '#ECFDF5',
-    surfaceActive: 'rgba(5, 150, 105, 0.06)',
-    headerBg: 'rgba(240, 253, 244, 0.88)',
-    swatch: ['#ECFDF5', '#F7FEF9'],
+    bg: '#EEF9F0',
+    bgWarm: '#E0F5E4',
+    surface: '#F4FBF5',
+    borderTint: 'rgba(5, 150, 105, 0.10)',
+    surfaceHover: '#EAF7EC',
+    surfaceActive: 'rgba(5, 150, 105, 0.08)',
+    headerBg: 'rgba(238, 249, 240, 0.90)',
+    navBg: 'rgba(244, 251, 245, 0.92)',
+    choiceBg: '#F4FBF5',
+    choiceBorder: 'rgba(5, 150, 105, 0.15)',
+    swatch: ['#D1FAE5', '#F0FDF4', '#059669'],
   },
   {
     id: 'pitch',
-    bg: '#F0FDF4',
-    bgWarm: '#ECFDF5',
-    surface: '#F7FEF9',
-    borderTint: 'rgba(22, 163, 74, 0.08)',
-    surfaceHover: '#ECFDF5',
-    surfaceActive: 'rgba(22, 163, 74, 0.06)',
-    headerBg: 'rgba(240, 253, 244, 0.88)',
-    swatch: ['#ECFDF5', '#F7FEF9'],
+    bg: '#E8F5E9',
+    bgWarm: '#C8E6C9',
+    surface: '#F1F8F2',
+    borderTint: 'rgba(46, 125, 50, 0.12)',
+    surfaceHover: '#E0F2E1',
+    surfaceActive: 'rgba(46, 125, 50, 0.08)',
+    headerBg: 'rgba(232, 245, 233, 0.90)',
+    navBg: 'rgba(241, 248, 242, 0.92)',
+    choiceBg: '#F1F8F2',
+    choiceBorder: 'rgba(46, 125, 50, 0.18)',
+    swatch: ['#A5D6A7', '#E8F5E9', '#2E7D32'],
   },
   {
     id: 'ocean',
-    bg: '#EFF6FF',
-    bgWarm: '#DBEAFE',
-    surface: '#F5F9FF',
-    borderTint: 'rgba(59, 130, 246, 0.08)',
-    surfaceHover: '#EFF6FF',
-    surfaceActive: 'rgba(59, 130, 246, 0.06)',
-    headerBg: 'rgba(239, 246, 255, 0.88)',
-    swatch: ['#DBEAFE', '#F5F9FF'],
+    bg: '#E3F2FD',
+    bgWarm: '#BBDEFB',
+    surface: '#EDF5FC',
+    borderTint: 'rgba(25, 118, 210, 0.12)',
+    surfaceHover: '#DBE9F7',
+    surfaceActive: 'rgba(25, 118, 210, 0.08)',
+    headerBg: 'rgba(227, 242, 253, 0.90)',
+    navBg: 'rgba(237, 245, 252, 0.92)',
+    choiceBg: '#EDF5FC',
+    choiceBorder: 'rgba(25, 118, 210, 0.18)',
+    swatch: ['#90CAF9', '#E3F2FD', '#1565C0'],
   },
   {
     id: 'sunset',
-    bg: '#FFF7ED',
-    bgWarm: '#FFEDD5',
-    surface: '#FFFBF5',
-    borderTint: 'rgba(249, 115, 22, 0.08)',
-    surfaceHover: '#FFF7ED',
-    surfaceActive: 'rgba(249, 115, 22, 0.06)',
-    headerBg: 'rgba(255, 247, 237, 0.88)',
-    swatch: ['#FFEDD5', '#FFFBF5'],
+    bg: '#FFF3E0',
+    bgWarm: '#FFE0B2',
+    surface: '#FFF8F0',
+    borderTint: 'rgba(230, 81, 0, 0.10)',
+    surfaceHover: '#FFECDB',
+    surfaceActive: 'rgba(230, 81, 0, 0.06)',
+    headerBg: 'rgba(255, 243, 224, 0.90)',
+    navBg: 'rgba(255, 248, 240, 0.92)',
+    choiceBg: '#FFF8F0',
+    choiceBorder: 'rgba(230, 81, 0, 0.15)',
+    swatch: ['#FFCC80', '#FFF3E0', '#E65100'],
   },
   {
     id: 'lavender',
-    bg: '#F5F3FF',
-    bgWarm: '#EDE9FE',
-    surface: '#FAF8FF',
-    borderTint: 'rgba(139, 92, 246, 0.08)',
-    surfaceHover: '#F5F3FF',
-    surfaceActive: 'rgba(139, 92, 246, 0.06)',
-    headerBg: 'rgba(245, 243, 255, 0.88)',
-    swatch: ['#EDE9FE', '#FAF8FF'],
+    bg: '#EDE7F6',
+    bgWarm: '#D1C4E9',
+    surface: '#F3F0FA',
+    borderTint: 'rgba(103, 58, 183, 0.12)',
+    surfaceHover: '#E8E0F5',
+    surfaceActive: 'rgba(103, 58, 183, 0.06)',
+    headerBg: 'rgba(237, 231, 246, 0.90)',
+    navBg: 'rgba(243, 240, 250, 0.92)',
+    choiceBg: '#F3F0FA',
+    choiceBorder: 'rgba(103, 58, 183, 0.18)',
+    swatch: ['#B39DDB', '#EDE7F6', '#5E35B1'],
   },
   {
     id: 'sand',
-    bg: '#FEFCE8',
-    bgWarm: '#FEF9C3',
-    surface: '#FEFEF5',
-    borderTint: 'rgba(202, 138, 4, 0.08)',
-    surfaceHover: '#FEFCE8',
-    surfaceActive: 'rgba(202, 138, 4, 0.06)',
-    headerBg: 'rgba(254, 252, 232, 0.88)',
-    swatch: ['#FEF9C3', '#FEFEF5'],
+    bg: '#FFF8E1',
+    bgWarm: '#FFECB3',
+    surface: '#FFFBF0',
+    borderTint: 'rgba(255, 160, 0, 0.10)',
+    surfaceHover: '#FFF3D6',
+    surfaceActive: 'rgba(255, 160, 0, 0.06)',
+    headerBg: 'rgba(255, 248, 225, 0.90)',
+    navBg: 'rgba(255, 251, 240, 0.92)',
+    choiceBg: '#FFFBF0',
+    choiceBorder: 'rgba(255, 160, 0, 0.15)',
+    swatch: ['#FFE082', '#FFF8E1', '#FF8F00'],
   },
   {
     id: 'rose',
-    bg: '#FFF1F2',
-    bgWarm: '#FFE4E6',
-    surface: '#FFF8F8',
-    borderTint: 'rgba(244, 63, 94, 0.08)',
-    surfaceHover: '#FFF1F2',
-    surfaceActive: 'rgba(244, 63, 94, 0.06)',
-    headerBg: 'rgba(255, 241, 242, 0.88)',
-    swatch: ['#FFE4E6', '#FFF8F8'],
+    bg: '#FCE4EC',
+    bgWarm: '#F8BBD0',
+    surface: '#FDF0F4',
+    borderTint: 'rgba(194, 24, 91, 0.10)',
+    surfaceHover: '#F9DEE7',
+    surfaceActive: 'rgba(194, 24, 91, 0.06)',
+    headerBg: 'rgba(252, 228, 236, 0.90)',
+    navBg: 'rgba(253, 240, 244, 0.92)',
+    choiceBg: '#FDF0F4',
+    choiceBorder: 'rgba(194, 24, 91, 0.15)',
+    swatch: ['#F48FB1', '#FCE4EC', '#AD1457'],
   },
 ]
 
@@ -121,30 +151,33 @@ export function deriveTeamSurface(hex: string): SurfacePreset {
   const g = parseInt(hex.slice(3, 5), 16)
   const b = parseInt(hex.slice(5, 7), 16)
 
-  // Very light tints (~95% white mix)
   const mix = (c: number, pct: number) => Math.round(c + (255 - c) * pct)
-  const bg = `rgb(${mix(r, 0.92)}, ${mix(g, 0.92)}, ${mix(b, 0.92)})`
-  const bgWarm = `rgb(${mix(r, 0.88)}, ${mix(g, 0.88)}, ${mix(b, 0.88)})`
-  const surface = `rgb(${mix(r, 0.96)}, ${mix(g, 0.96)}, ${mix(b, 0.96)})`
-  const surfaceHover = `rgb(${mix(r, 0.92)}, ${mix(g, 0.92)}, ${mix(b, 0.92)})`
+  const bg = `rgb(${mix(r, 0.88)}, ${mix(g, 0.88)}, ${mix(b, 0.88)})`
+  const bgWarm = `rgb(${mix(r, 0.82)}, ${mix(g, 0.82)}, ${mix(b, 0.82)})`
+  const surface = `rgb(${mix(r, 0.94)}, ${mix(g, 0.94)}, ${mix(b, 0.94)})`
+  const surfaceHover = `rgb(${mix(r, 0.88)}, ${mix(g, 0.88)}, ${mix(b, 0.88)})`
 
   return {
     id: 'team',
     bg,
     bgWarm,
     surface,
-    borderTint: `rgba(${r}, ${g}, ${b}, 0.08)`,
+    borderTint: `rgba(${r}, ${g}, ${b}, 0.12)`,
     surfaceHover,
-    surfaceActive: `rgba(${r}, ${g}, ${b}, 0.06)`,
-    headerBg: `rgba(${mix(r, 0.92)}, ${mix(g, 0.92)}, ${mix(b, 0.92)}, 0.88)`,
-    swatch: [bgWarm, surface],
+    surfaceActive: `rgba(${r}, ${g}, ${b}, 0.08)`,
+    headerBg: `rgba(${mix(r, 0.90)}, ${mix(g, 0.90)}, ${mix(b, 0.90)}, 0.90)`,
+    navBg: `rgba(${mix(r, 0.94)}, ${mix(g, 0.94)}, ${mix(b, 0.94)}, 0.92)`,
+    choiceBg: surface,
+    choiceBorder: `rgba(${r}, ${g}, ${b}, 0.18)`,
+    swatch: [bgWarm, bg, hex],
   }
 }
 
 const SURFACE_VARS = [
   '--color-bg', '--color-bg-warm', '--color-game-surface',
   '--color-glass', '--color-glass-border', '--color-glass-hover',
-  '--color-glass-active', '--surface-header-bg',
+  '--color-glass-active', '--surface-header-bg', '--surface-nav-bg',
+  '--surface-choice-bg', '--surface-choice-border',
 ] as const
 
 /** Apply surface theme CSS variables to document root */
@@ -175,6 +208,9 @@ export function applySurfaceTheme(presetId: string, teamHex?: string): void {
   root.style.setProperty('--color-glass-hover', preset.surfaceHover)
   root.style.setProperty('--color-glass-active', preset.surfaceActive)
   root.style.setProperty('--surface-header-bg', preset.headerBg)
+  root.style.setProperty('--surface-nav-bg', preset.navBg)
+  root.style.setProperty('--surface-choice-bg', preset.choiceBg)
+  root.style.setProperty('--surface-choice-border', preset.choiceBorder)
 }
 
 const STORAGE_KEY = 'golazo-surface-theme'
