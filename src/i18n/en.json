@@ -178,6 +178,7 @@
   "common.save": "Save",
   "common.cancel": "Cancel",
   "common.back": "Back",
+  "common.close": "Close",
   "common.date": "Date",
   "common.today": "Today",
   "common.loading": "Loading...",
@@ -231,7 +232,6 @@
   "ex.know.offside.desc": "Draw 3 situations: offside, no offside, borderline. Explain each one.",
   "ex.know.nutrition": "Football Nutrition",
   "ex.know.nutrition.desc": "Write what to eat 3h before, during, and after a match. Water, carbs, protein.",
-
   "login.tagline": "Your football journey starts here",
   "login.asPlayer": "I'm a Player",
   "login.playerDesc": "Track your training, log matches and level up",
@@ -239,7 +239,6 @@
   "login.mentorDesc": "Follow progress and support your player's development",
   "login.googleNote": "Sign in with Google to save your progress",
   "login.skip": "Continue without account",
-
   "onboarding.welcome": "Welcome to Golazo! ⚽",
   "onboarding.whoAreYou": "Let's set up your profile so we can personalize your experience.",
   "onboarding.iAmPlayer": "I'm a Player",
@@ -288,10 +287,8 @@
   "onboarding.finish": "Let's Go! 🚀",
   "onboarding.allSet": "You're All Set!",
   "onboarding.doneMsg": "Your profile is ready. Start training, log matches, and level up!",
-
   "challenges.start": "Start",
   "challenges.loggedToday": "Logged today",
-
   "schedule.mon": "Mon",
   "schedule.tue": "Tue",
   "schedule.wed": "Wed",
@@ -335,7 +332,6 @@
   "schedule.eventNotes": "Notes (optional)",
   "schedule.trainingTypeLabel": "Training type",
   "mentor.schedule.event": "Event",
-
   "profile.physical": "Physical Stats",
   "profile.jump": "jump",
   "profile.beepTest": "beep test",
@@ -347,7 +343,6 @@
   "profile.logout": "Sign Out",
   "profile.reset": "Reset All Data",
   "profile.resetConfirm": "This will delete all your data. Are you sure?",
-
   "physical.height": "Height",
   "physical.weight": "Weight",
   "physical.sittingHeight": "Sitting Height",
@@ -389,7 +384,6 @@
   "physical.recommended": "recommended",
   "physical.required": "required",
   "physical.resetDefaults": "Reset to defaults",
-
   "progress.title": "Progress",
   "progress.xpTrend": "XP Trend (30 days)",
   "progress.matchResults": "Match Results",
@@ -417,7 +411,6 @@
   "progress.totalMatches": "Total Matches",
   "progress.totalGoals": "Total Goals",
   "progress.totalXp": "Total XP",
-
   "coach.title": "AI Coach",
   "coach.hint": "Get personalized training advice based on your stats",
   "coach.getAdvice": "Get Advice",
@@ -458,7 +451,6 @@
   "coach.insight.knowStart": "Start learning the basics: the offside rule, when fouls are given, what positions do what. Understanding the game makes you a smarter player.",
   "coach.insight.knowLearn": "Watch full matches (not just highlights) and study formations. Notice how teams shift shape when attacking vs defending — this knowledge gives you an edge.",
   "coach.insight.knowDeepen": "Dive deeper: learn about nutrition for athletes, proper warm-up routines, and injury prevention. Taking care of your body is part of being a complete footballer.",
-
   "leaderboard.title": "Leaderboard",
   "leaderboard.inviteFriends": "Invite Friends",
   "leaderboard.generateCode": "Generate Invite Code",
@@ -470,7 +462,6 @@
   "leaderboard.linked": "Successfully linked!",
   "leaderboard.invalidCode": "Invalid or expired code",
   "leaderboard.offlineError": "Offline — connect to the internet to use this feature",
-
   "exercises.watchVideo": "Watch Video",
   "exercises.search": "Search exercises...",
   "exercises.sortBy": "Sort by",
@@ -490,11 +481,9 @@
   "methodology.danAbrahams": "Dan Abrahams 4C",
   "methodology.talentCode": "Talent Code",
   "methodology.uefa": "UEFA Guidelines",
-
   "profile.uploadPhoto": "Add Photo",
   "profile.changePhoto": "Change",
   "profile.removePhoto": "Remove photo",
-
   "ach.train10": "10 Trainings",
   "ach.train10Desc": "Complete 10 training sessions",
   "ach.train50": "50 Trainings",
@@ -529,7 +518,6 @@
   "ach.level10Desc": "Reach level 10",
   "ach.level25": "Level 25",
   "ach.level25Desc": "Reach level 25",
-
   "import.title": "Add Tournament",
   "import.addTournament": "Add Tournament",
   "import.addTournamentHint": "Import fixtures from a tournament page or add manually",
@@ -553,7 +541,6 @@
   "import.teamSetup": "Team",
   "import.tournamentTeamName": "Team name in tournament",
   "import.tournamentTeamHint": "How your team is listed in this tournament",
-
   "teams.title": "My Teams",
   "teams.manage": "Manage",
   "teams.primary": "Main club",
@@ -580,13 +567,11 @@
   "teams.useThis": "Use this team",
   "teams.addAnyway": "Add anyway",
   "teams.duplicateError": "A team with this name already exists",
-
   "onboarding.jerseyNumber": "Jersey number",
   "onboarding.country": "Country",
   "onboarding.city": "City",
   "onboarding.cityPlaceholder": "e.g. Riga",
   "match.playingFor": "Playing for",
-
   "empty.matches.title": "No matches yet",
   "empty.matches.text": "Log your first match to start tracking your progress!",
   "empty.matches.action": "Log a match",
@@ -600,7 +585,6 @@
   "toast.saved": "Saved!",
   "toast.xpEarned": "+{{xp}} XP earned!",
   "toast.error": "Something went wrong",
-
   "portal.title": "My Football",
   "portal.active": "Active",
   "portal.tournaments": "My Tournaments",
@@ -610,7 +594,6 @@
   "portal.noClubs": "No clubs with {{age}} teams found",
   "portal.emptyTitle": "No football activity yet",
   "portal.emptyText": "Add a tournament or log your first match to get started",
-
   "checkin.title": "How are you feeling?",
   "checkin.mood": "Mood",
   "checkin.energy": "Energy",
@@ -619,13 +602,11 @@
   "checkin.addNote": "Add a note",
   "checkin.notePlaceholder": "Anything on your mind?",
   "checkin.streak": "{{days}}-day check-in streak",
-
   "quiz.title": "Quiz of the Day",
   "quiz.correct": "Correct! +5 XP",
   "quiz.wrong": "Not this time — you'll get it tomorrow!",
   "quiz.alreadyCorrect": "Quiz done — nice one!",
   "quiz.alreadyWrong": "Quiz done — better luck tomorrow!",
-
   "routine.title": "Morning Routine",
   "routine.cta": "Start morning routine",
   "routine.ctaSub": "Check-in · Challenge · Quiz — 2 min",
@@ -637,7 +618,6 @@
   "routine.complete": "Routine complete!",
   "routine.bonus": "bonus",
   "routine.backHome": "Back to home",
-
   "learn.articles": "Articles",
   "learn.programs": "Programs",
   "learn.exercises": "Exercises",
@@ -650,7 +630,6 @@
   "learn.loggedToday": "Logged today",
   "learn.logDay": "Log today's session",
   "learn.programComplete": "Program completed!",
-
   "diary.guidedTitle": "Guided reflection",
   "diary.promptTitle": "4C Framework",
   "diary.moodContext": "What is this about?",
@@ -664,7 +643,6 @@
   "diary.context.school": "School",
   "diary.context.friends": "Friends",
   "diary.context.family": "Family",
-
   "mentor.dashboard.title": "Parent Dashboard",
   "mentor.dashboard.subtitle": "{{name}}'s wellbeing & activity",
   "mentor.dashboard.privacy": "You see trends only — diary content stays private.",
@@ -677,35 +655,27 @@
   "mentor.dashboard.moodTrend": "Mood & Energy (30 days)",
   "mentor.dashboard.activity": "Weekly Activity",
   "mentor.dashboard.noData": "No check-in data yet. Encourage daily check-ins!",
-
   "levelUp.title": "Level Up!",
   "levelUp.continue": "Awesome!",
-
   "progress.moodTrend": "Mood & Energy",
   "progress.moodPerformance": "Mood vs Performance",
   "progress.burnoutHigh": "Rest day recommended",
   "progress.burnoutMedium": "Watch your energy",
   "progress.burnoutDetail": "Avg energy {{energy}}/5 · Avg mood {{mood}}/5 · {{sessions}} sessions this week",
-
   "profile.mentorDashboard": "Parent Dashboard",
-
   "common.moreDetails": "▼ More details",
   "common.lessDetails": "▲ Less details",
-
   "weeklySummary.title": "Your Week",
   "weeklySummary.trainings": "{{count}} trainings",
   "weeklySummary.matches": "{{count}} matches",
   "weeklySummary.avgMood": "Avg mood: {{mood}}/5",
   "weeklySummary.focus": "Focus this week: {{area}}",
-
   "dashboard.welcomeTitle": "Welcome to Golazo!",
   "dashboard.welcomeText": "Start your journey! Here's what to do:",
   "dashboard.welcomeStep1": "Complete your morning routine (2 min)",
   "dashboard.welcomeStep2": "Log your first training session",
   "dashboard.welcomeStep3": "Explore exercises in the Learn tab",
-
   "mentor.subtitle": "{{name}}'s wellbeing & activity",
-
   "theme.title": "App Theme",
   "theme.classic": "Classic",
   "theme.team": "My Club",
@@ -716,7 +686,6 @@
   "theme.sand": "Sand",
   "theme.rose": "Rose",
   "theme.noTeamHint": "Add a team in profile to unlock club colors",
-
   "learn.cat.tactics": "Tactics",
   "learn.cat.nutrition": "Nutrition",
   "learn.cat.mental": "Mental",
@@ -724,7 +693,6 @@
   "learn.cat.stories": "Player Stories",
   "learn.cat.technical": "Technical",
   "learn.cat.physical": "Physical",
-
   "prog.ballMastery.title": "Ball Mastery",
   "prog.ballMastery.desc": "4 weeks of daily ball control drills. Build your first touch, dribbling confidence, and weak foot skills using Coerver methodology.",
   "prog.speedAgility.title": "Speed & Agility",
@@ -735,7 +703,6 @@
   "prog.mentalStrength.desc": "3 weeks of mental conditioning using Dan Abrahams' 4C framework: Commitment, Concentration, Confidence, Control.",
   "prog.shooting.title": "Finishing School",
   "prog.shooting.desc": "4 weeks focused on shooting technique, placement, and composure in front of goal. For forwards and attacking midfielders.",
-
   "art.tac01.title": "What is \"Pressing\" and Why Do Coaches Love It?",
   "art.tac01.body": "Pressing means closing down the opponent quickly when they have the ball. The idea is simple: win the ball back as high up the pitch as possible. Modern coaches like Guardiola and Klopp built their teams around pressing. For young players, pressing starts with discipline — the moment you lose the ball, sprint toward it. Start with 3-second pressing: after losing possession, you have 3 seconds to win it back or get into a press position. This develops the habit without exhausting you.",
   "art.tac02.title": "Understanding Your Position: What Does a Midfielder Really Do?",
@@ -783,5 +750,11 @@
   "art.story07.title": "Alexia Putellas: The Path That Did Not Exist",
   "art.story07.body": "Alexia Putellas won back-to-back Ballon d'Or awards in 2021 and 2022 — the best female footballer in the world. She grew up in Mollet del Vallès, a working-class suburb of Barcelona. As a girl in Spain in the 2000s, there was almost no pathway for women in football. She played on boys' teams until they stopped letting her. She joined Barcelona's women's team at 17 and spent a decade building it into the best in the world. She tore her ACL right before the 2022 Euros. Came back stronger. The lesson: the path does not exist — you create it.",
   "art.story08.title": "Football in the Baltics: Small Countries, Big Dreams",
-  "art.story08.body": "Latvia, Estonia, and Lithuania have a combined population smaller than London — but their football ambitions are growing fast. Latvia produced Vitalijs Astafjevs (record 167 caps), Estonia has Ragnar Klavan (the first Estonian to play in the Premier League), and Lithuania's national team keeps improving every cycle. Youth academies across the Baltics are investing in modern training methodology. The advantage of being small: every talented player gets noticed. The clubs know you, the coaches track you. In a big country, you can get lost — in the Baltics, talent rises fast."
+  "art.story08.body": "Latvia, Estonia, and Lithuania have a combined population smaller than London — but their football ambitions are growing fast. Latvia produced Vitalijs Astafjevs (record 167 caps), Estonia has Ragnar Klavan (the first Estonian to play in the Premier League), and Lithuania's national team keeps improving every cycle. Youth academies across the Baltics are investing in modern training methodology. The advantage of being small: every talented player gets noticed. The clubs know you, the coaches track you. In a big country, you can get lost — in the Baltics, talent rises fast.",
+  "art.tac06.title": "Transitions: The 3 Seconds That Win Games",
+  "art.tac06.body": "The moment the ball changes possession is when most goals are created. In the 3 seconds after winning the ball, the opposing team is disorganized — defenders are out of position, midfielders haven't recovered. This is your window. When your team wins the ball, look forward IMMEDIATELY. Can you play a fast pass into space? If yes — do it. If no — keep possession and wait for the next chance. The best counter-attacking teams (Real Madrid, Liverpool) train this moment obsessively. Practice it: the instant you win the ball in training, sprint forward with purpose.",
+  "art.nut06.title": "5 Snacks Every Young Player Should Know",
+  "art.nut06.body": "Not every snack is created equal. Here are 5 that actually help your game: (1) Banana — nature's energy bar. Eat one 30 min before training for quick fuel. (2) Peanut butter on toast — carbs + protein, perfect 2 hours before a match. (3) Greek yogurt with honey — great post-training recovery snack, packed with protein. (4) Trail mix (nuts + dried fruit) — portable energy for tournament days. (5) Chocolate milk — sounds weird, but scientists proved it's one of the best recovery drinks. The perfect ratio of carbs to protein. Avoid: energy drinks, chips, candy before training — they crash your energy when you need it most.",
+  "art.men05.title": "The 1% Rule: Small Gains Make Champions",
+  "art.men05.body": "The British cycling team went from mediocre to dominant by improving 1% in hundreds of small areas: nutrition, sleep, seat height, hand washing technique. The same principle applies to football. You don't need a dramatic transformation — you need small, consistent improvements. This week, pick ONE micro-skill: maybe it's always checking your shoulder before receiving, or striking the ball with your laces instead of your toe, or sprinting back after losing possession. Master that one thing for 7 days. Next week, pick another. After a year of 1% improvements, you'll be unrecognizable from where you started. Champions are not made in one moment — they are built in thousands of small ones."
 }

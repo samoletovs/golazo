@@ -11,7 +11,6 @@
   "nav.progress": "Progresas",
   "nav.education": "Patarimai",
   "nav.settings": "Nustatymai",
-
   "dashboard.quote": "Dienos citata",
   "dashboard.level": "Lygis {{level}}",
   "dashboard.xp": "{{current}} / {{next}} XP",
@@ -38,7 +37,6 @@
   "dashboard.upcoming": "Kitas renginys",
   "dashboard.skills": "Mano įgūdžiai",
   "dashboard.activity": "Aktyvumas",
-
   "log.training": "Treniruotė",
   "log.match": "Rungtynės",
   "log.tournament": "Turnyras",
@@ -53,7 +51,6 @@
   "log.yesterday": "Vakar",
   "log.orLogManually": "Arba įrašyti rankiniu būdu",
   "log.date": "Data",
-
   "training.title": "Įrašyti treniruotę",
   "training.type.team": "Komanda ⚽",
   "training.type.individual": "Individualiai 🏃",
@@ -76,7 +73,6 @@
   "training.save": "Įrašyti treniruotę",
   "training.saved": "Treniruotė įrašyta! +{{xp}} XP",
   "training.fromSchedule": "Iš tvarkaraščio",
-
   "match.title": "Įrašyti rungtynes",
   "match.opponent": "Varžovas",
   "match.competition": "Varžybos",
@@ -98,7 +94,6 @@
   "match.toImprove": "Ką tobulinti",
   "match.save": "Įrašyti rungtynes",
   "match.saved": "Rungtynės įrašytos! +{{xp}} XP",
-
   "tournament.title": "Turnyras",
   "tournament.name": "Turnyro pavadinimas",
   "tournament.dates": "Datos",
@@ -110,7 +105,6 @@
   "tournament.mvp": "Turnyro momentas",
   "tournament.complete": "Užbaigti turnyrą",
   "tournament.completed": "Turnyras baigtas! +{{xp}} XP",
-
   "diary.title": "Dienoraštis",
   "diary.write": "Rašyti įrašą",
   "diary.prompt.commitment": "Dėl ko šiandien labiausiai stengiausi?",
@@ -122,7 +116,6 @@
   "diary.save": "Išsaugoti įrašą",
   "diary.saved": "Įrašas išsaugotas! +{{xp}} XP",
   "diary.private": "🔒 Tik tau",
-
   "exercises.title": "Pratimai",
   "exercises.filter": "Filtruoti",
   "exercises.all": "Visi",
@@ -130,13 +123,11 @@
   "exercises.markDone": "Pažymėti kaip atliktą",
   "exercises.recommended": "Rekomenduojami tau",
   "exercises.methodology": "Metodologija",
-
   "equipment.ballOnly": "Kamuolys",
   "equipment.cones": "Kūgiai",
   "equipment.wall": "Siena",
   "equipment.partner": "Partneris",
   "equipment.none": "Be įrangos",
-
   "challenges.title": "Iššūkiai",
   "challenges.daily": "Dienos",
   "challenges.weekly": "Savaitės",
@@ -155,27 +146,23 @@
   "challenges.weakFootDesc": "30 dienų programa silpnai kojai",
   "challenges.mentalChampDesc": "Vizualizacija ir pozityvus vidinis dialogas",
   "challenges.deepPracticeDesc": "7 dienos intensyvios praktikos",
-
   "skills.technical": "Techniniai ⚽",
   "skills.physical": "Fiziniai 🏃",
   "skills.tactical": "Taktiniai 🧠",
   "skills.mental": "Psichologiniai 💪",
   "skills.matchPlay": "Žaidimas 🎯",
   "skills.knowledge": "Žinios 📚",
-
   "rank.rookie": "Mėgėjas",
   "rank.player": "Pusiau prof.",
   "rank.talent": "Prof.",
   "rank.star": "Žvaigždė",
   "rank.pro": "Elitas",
-
   "profile.title": "Profilis",
   "profile.card": "Mano kortelė",
   "profile.achievements": "Pasiekimai",
   "profile.language": "Kalba",
   "profile.stats": "Sezono statistika",
   "profile.export": "Atsisiųsti kortelę",
-
   "mentor.schedule.title": "Tvarkaraštis",
   "mentor.schedule.add": "Pridėti renginį",
   "mentor.schedule.training": "Treniruotė",
@@ -186,16 +173,15 @@
   "mentor.education.title": "Patarimai mentoriams",
   "mentor.education.rideHome": "Kelionė namo po žaidimo",
   "mentor.education.sixWords": "6 svarbūs žodžiai",
-  "mentor.education.sixWordsText": "\u201EMan patinka \u017ei\u016br\u0117ti kaip tu \u017eaidi\u201C",
+  "mentor.education.sixWordsText": "„Man patinka žiūrėti kaip tu žaidi“",
   "mentor.education.letThemOwn": "Leisk jiems turėti savo kelionę",
-
   "common.save": "Išsaugoti",
   "common.cancel": "Atšaukti",
   "common.back": "Atgal",
+  "common.close": "Uždaryti",
   "common.date": "Data",
   "common.today": "Šiandien",
   "common.loading": "Kraunama...",
-
   "ex.tech.juggling": "Kamuolio žongliras",
   "ex.tech.juggling.desc": "Žongliruok abiem kojom. Pradėk nuo 10, tada didink. Skaičiuok rekordą!",
   "ex.tech.insideOutside": "Vidinė-išorinė driblingo technika",
@@ -229,7 +215,7 @@
   "ex.ment.visualization": "Vizualizacija",
   "ex.ment.visualization.desc": "Užmerk akis 5 minutėms. Įsivaizduok tobulas rungtynes: priėmimas, perdavimas, įvartis.",
   "ex.ment.selfTalk": "Pozityvus vidinis dialogas",
-  "ex.ment.selfTalk.desc": "Para\u0161yk 3 frazes sunkioms akimirkoms: \u201EA\u0161 pasiruo\u0161\u0119s\u201C, \u201EA\u0161 galiu\u201C, \u201EKit\u0105 kart\u0105 geriau\u201C.",
+  "ex.ment.selfTalk.desc": "Parašyk 3 frazes sunkioms akimirkoms: „Aš pasiruošęs“, „Aš galiu“, „Kitą kartą geriau“.",
   "ex.ment.breatheFocus": "Kvėpavimo dėmesys",
   "ex.ment.breatheFocus.desc": "4-4-4: įkvėpk 4 sek, laikyk 4 sek, iškvėpk 4 sek. 5 ciklai. Ramina prieš rungtynes.",
   "ex.ment.confidenceList": "Pasitikėjimo sąrašas",
@@ -246,7 +232,6 @@
   "ex.know.offside.desc": "Nubraižyk 3 situacijas: nuošalė, ne nuošalė, ribinis atvejis. Paaiškink kiekvieną.",
   "ex.know.nutrition": "Futbolininko mityba",
   "ex.know.nutrition.desc": "Užrašyk ką valgyti 3h prieš rungtynes, jų metu ir po. Vanduo, angliavandeniai, baltymai.",
-
   "login.tagline": "Tavo futbolo kelionė prasideda čia",
   "login.asPlayer": "Aš — Žaidėjas",
   "login.playerDesc": "Sekk treniruotes, įrašyk rungtynes ir tobulėk",
@@ -254,7 +239,6 @@
   "login.mentorDesc": "Sek progresą ir palaikyk žaidėjo tobulėjimą",
   "login.googleNote": "Prisijunk per Google kad išsaugotum progresą",
   "login.skip": "Tęsti be paskyros",
-
   "onboarding.welcome": "Sveiki atvykę į Golazo! ⚽",
   "onboarding.whoAreYou": "Sukurkime profilį, kad galėtume pritaikyti patirtį.",
   "onboarding.iAmPlayer": "Aš — Žaidėjas",
@@ -303,10 +287,8 @@
   "onboarding.finish": "Pirmyn! 🚀",
   "onboarding.allSet": "Viskas paruošta!",
   "onboarding.doneMsg": "Profilis sukurtas. Treniruokis, įrašyk rungtynes ir tobulėk!",
-
   "challenges.start": "Pradėti",
   "challenges.loggedToday": "Įrašyta šiandien",
-
   "schedule.mon": "Pr",
   "schedule.tue": "An",
   "schedule.wed": "Tr",
@@ -350,7 +332,6 @@
   "schedule.eventNotes": "Pastabos (neprivaloma)",
   "schedule.trainingTypeLabel": "Treniruotės tipas",
   "mentor.schedule.event": "Įvykis",
-
   "profile.physical": "Fiziniai rodikliai",
   "profile.jump": "šuolis",
   "profile.beepTest": "pypsėjimo t.",
@@ -362,7 +343,6 @@
   "profile.logout": "Atsijungti",
   "profile.reset": "Ištrinti visus duomenis",
   "profile.resetConfirm": "Tai ištrins visus duomenis. Ar tikrai?",
-
   "physical.height": "Ūgis",
   "physical.weight": "Svoris",
   "physical.sittingHeight": "Ūgis sėdint",
@@ -404,7 +384,6 @@
   "physical.recommended": "rekomenduojama",
   "physical.required": "privaloma",
   "physical.resetDefaults": "Atkurti numatytuosius",
-
   "progress.title": "Progresas",
   "progress.xpTrend": "XP tendencija (30 d.)",
   "progress.matchResults": "Rungtynių rezultatai",
@@ -432,7 +411,6 @@
   "progress.totalMatches": "Iš viso rungtynių",
   "progress.totalGoals": "Iš viso įvarčių",
   "progress.totalXp": "Iš viso XP",
-
   "coach.title": "AI treneris",
   "coach.hint": "Gauk asmenines patarimus pagal savo statistiką",
   "coach.getAdvice": "Gauti patarimą",
@@ -473,7 +451,6 @@
   "coach.insight.knowStart": "Išmok pagrindus: nuošalės taisyklę, kada skiriami pražangimai, ką daro kiekviena pozicija.",
   "coach.insight.knowLearn": "Žiūrėk pilnas rungtynes ir studijuok formacijas. Stebėk, kaip komandos keičia formą puolime ir gynyboje.",
   "coach.insight.knowDeepen": "Gilink žinias: sužinok apie sportininkų mitybą, tinkamą apšilimą ir traumų prevenciją.",
-
   "leaderboard.title": "Lyderių lentelė",
   "leaderboard.inviteFriends": "Pakviesti draugus",
   "leaderboard.generateCode": "Generuoti kvietimo kodą",
@@ -485,7 +462,6 @@
   "leaderboard.linked": "Sėkmingai susietas!",
   "leaderboard.invalidCode": "Neteisingas arba pasibaigęs kodas",
   "leaderboard.offlineError": "Neprisijungta — prisijunk prie interneto",
-
   "exercises.watchVideo": "Žiūrėti video",
   "exercises.search": "Ieškoti pratimų...",
   "exercises.sortBy": "Rūšiuoti pagal",
@@ -505,11 +481,9 @@
   "methodology.danAbrahams": "Dan Abrahams 4C",
   "methodology.talentCode": "Talent Code",
   "methodology.uefa": "UEFA gairės",
-
   "profile.uploadPhoto": "Pridėti nuotrauką",
   "profile.changePhoto": "Keisti",
   "profile.removePhoto": "Pašalinti nuotrauką",
-
   "ach.train10": "10 treniruočių",
   "ach.train10Desc": "Atlik 10 treniruočių",
   "ach.train50": "50 treniruočių",
@@ -544,7 +518,6 @@
   "ach.level10Desc": "Pasiek 10 lygį",
   "ach.level25": "Lygis 25",
   "ach.level25Desc": "Pasiek 25 lygį",
-
   "import.title": "Pridėti turnyrą",
   "import.addTournament": "Pridėti turnyrą",
   "import.addTournamentHint": "Importuoti varžybių grafiką iš turnyro puslapio arba pridėti rankiniu būdu",
@@ -556,7 +529,7 @@
   "import.fetch": "Rasti rungtynes",
   "import.loading": "Kraunama...",
   "import.fetchError": "Nepavyko įkelti puslapio. Patikrink URL ir bandyk dar kartą.",
-  "import.noGamesForTeam": "Nerasta rungtynių komandai \u201E{{team}}\u201C",
+  "import.noGamesForTeam": "Nerasta rungtynių komandai „{{team}}“",
   "import.teamsFound": "Komandos šiame puslapyje",
   "import.foundGames": "{{count}} rungtynių tavo komandai ({{total}} iš viso)",
   "import.addToSchedule": "Pridėti į tvarkaraštį",
@@ -568,7 +541,6 @@
   "import.teamSetup": "Komanda",
   "import.tournamentTeamName": "Komandos pavadinimas turnyre",
   "import.tournamentTeamHint": "Kaip tavo komanda įrašyta šiame turnyre",
-
   "teams.title": "Mano komandos",
   "teams.manage": "Tvarkyti",
   "teams.primary": "Pagrindinis klubas",
@@ -595,13 +567,11 @@
   "teams.addAnyway": "Pridėti vis tiek",
   "teams.duplicateError": "Komanda tokiu pavadinimu jau egzistuoja",
   "teams.knownAs": "Taip pat žinoma kaip",
-
   "onboarding.jerseyNumber": "Marškinėlių numeris",
   "onboarding.country": "Šalis",
   "onboarding.city": "Miestas",
   "onboarding.cityPlaceholder": "pvz. Vilnius",
   "match.playingFor": "Žaidžiu už",
-
   "empty.matches.title": "Rungtynių dar nėra",
   "empty.matches.text": "Įrašyk pirmąsias rungtynes ir pradėk sekti progresą!",
   "empty.matches.action": "Įrašyti rungtynes",
@@ -615,7 +585,6 @@
   "toast.saved": "Išsaugota!",
   "toast.xpEarned": "+{{xp}} XP gauta!",
   "toast.error": "Kažkas nepavyko",
-
   "portal.title": "Mano futbolas",
   "portal.active": "Aktyvus",
   "portal.tournaments": "Mano turnyrai",
@@ -625,7 +594,6 @@
   "portal.noClubs": "Nerasta klubų su {{age}} komandomis",
   "portal.emptyTitle": "Dar nėra futbolo veiklos",
   "portal.emptyText": "Pridėkite turnyrą arba užregistruokite pirmąsias rungtynes",
-
   "checkin.title": "How are you feeling?",
   "checkin.mood": "Mood",
   "checkin.energy": "Energy",
@@ -634,13 +602,11 @@
   "checkin.addNote": "Add a note",
   "checkin.notePlaceholder": "Anything on your mind?",
   "checkin.streak": "{{days}}-day check-in streak",
-
   "quiz.title": "Quiz of the Day",
   "quiz.correct": "Correct! +5 XP",
   "quiz.wrong": "Not this time — you'll get it tomorrow!",
   "quiz.alreadyCorrect": "Quiz done — nice one!",
   "quiz.alreadyWrong": "Quiz done — better luck tomorrow!",
-
   "routine.title": "Morning Routine",
   "routine.cta": "Start morning routine",
   "routine.ctaSub": "Check-in · Challenge · Quiz — 2 min",
@@ -652,7 +618,6 @@
   "routine.complete": "Routine complete!",
   "routine.bonus": "bonus",
   "routine.backHome": "Back to home",
-
   "learn.articles": "Articles",
   "learn.programs": "Programs",
   "learn.exercises": "Exercises",
@@ -665,7 +630,6 @@
   "learn.loggedToday": "Logged today",
   "learn.logDay": "Log today's session",
   "learn.programComplete": "Program completed!",
-
   "diary.guidedTitle": "Guided reflection",
   "diary.promptTitle": "4C Framework",
   "diary.moodContext": "What is this about?",
@@ -679,7 +643,6 @@
   "diary.context.school": "School",
   "diary.context.friends": "Friends",
   "diary.context.family": "Family",
-
   "mentor.dashboard.title": "Parent Dashboard",
   "mentor.dashboard.subtitle": "{{name}}'s wellbeing & activity",
   "mentor.dashboard.privacy": "You see trends only — diary content stays private.",
@@ -692,107 +655,16 @@
   "mentor.dashboard.moodTrend": "Mood & Energy (30 days)",
   "mentor.dashboard.activity": "Weekly Activity",
   "mentor.dashboard.noData": "No check-in data yet. Encourage daily check-ins!",
-
   "levelUp.title": "Level Up!",
   "levelUp.continue": "Awesome!",
-
   "progress.moodTrend": "Mood & Energy",
   "progress.moodPerformance": "Mood vs Performance",
   "progress.burnoutHigh": "Rest day recommended",
   "progress.burnoutMedium": "Watch your energy",
   "progress.burnoutDetail": "Avg energy {{energy}}/5 · Avg mood {{mood}}/5 · {{sessions}} sessions this week",
-
   "profile.mentorDashboard": "Parent Dashboard",
-
   "common.moreDetails": "▼ More details",
   "common.lessDetails": "▲ Less details",
-
-  "weeklySummary.title": "Your Week",
-  "weeklySummary.trainings": "{{count}} trainings",
-  "weeklySummary.matches": "{{count}} matches",
-  "weeklySummary.avgMood": "Avg mood: {{mood}}/5",
-
-  "checkin.title": "How are you feeling?",
-  "checkin.mood": "Mood",
-  "checkin.energy": "Energy",
-  "checkin.done": "Checked in today!",
-  "checkin.save": "Check in",
-  "checkin.addNote": "Add a note",
-  "checkin.notePlaceholder": "Anything on your mind?",
-  "checkin.streak": "{{days}}-day check-in streak",
-
-  "quiz.title": "Quiz of the Day",
-  "quiz.correct": "Correct! +5 XP",
-  "quiz.wrong": "Not this time — you'll get it tomorrow!",
-  "quiz.alreadyCorrect": "Quiz done — nice one!",
-  "quiz.alreadyWrong": "Quiz done — better luck tomorrow!",
-
-  "routine.title": "Morning Routine",
-  "routine.cta": "Start morning routine",
-  "routine.ctaSub": "Check-in · Challenge · Quiz — 2 min",
-  "routine.go": "Go",
-  "routine.step": "Step {{step}} of {{total}}",
-  "routine.challengeTitle": "Daily Challenge",
-  "routine.challengeComplete": "Done!",
-  "routine.markDone": "Mark as done",
-  "routine.complete": "Routine complete!",
-  "routine.bonus": "bonus",
-  "routine.backHome": "Back to home",
-
-  "learn.articles": "Articles",
-  "learn.programs": "Programs",
-  "learn.exercises": "Exercises",
-  "learn.markRead": "Mark as read",
-  "learn.noArticles": "No articles in this category yet.",
-  "learn.readProgress": "Articles read",
-  "learn.weeks": "weeks",
-  "learn.days": "days",
-  "learn.startProgram": "Start program",
-  "learn.loggedToday": "Logged today",
-  "learn.logDay": "Log today's session",
-  "learn.programComplete": "Program completed!",
-
-  "diary.guidedTitle": "Guided reflection",
-  "diary.promptTitle": "4C Framework",
-  "diary.moodContext": "What is this about?",
-  "diary.aiConsent": "Let AI Coach read this entry for better advice",
-  "diary.guided.whatWentWell": "What went well today?",
-  "diary.guided.whatWasHard": "What was hard?",
-  "diary.guided.oneThing": "One thing I learned",
-  "diary.guided.grateful": "What am I grateful for?",
-  "diary.context.training": "Training",
-  "diary.context.match": "Match",
-  "diary.context.school": "School",
-  "diary.context.friends": "Friends",
-  "diary.context.family": "Family",
-
-  "mentor.dashboard.title": "Parent Dashboard",
-  "mentor.dashboard.subtitle": "{{name}}'s wellbeing & activity",
-  "mentor.dashboard.privacy": "You see trends only — diary content stays private.",
-  "mentor.dashboard.alertLowMood": "{{name}} has had low mood for 3+ consecutive days. Consider a conversation.",
-  "mentor.dashboard.alertBurnout": "Possible overtraining: low energy with high training frequency.",
-  "mentor.dashboard.alertInactive": "No check-ins for {{days}} days. Engagement may be dropping.",
-  "mentor.dashboard.avgMood": "Avg Mood",
-  "mentor.dashboard.avgEnergy": "Avg Energy",
-  "mentor.dashboard.streak": "Streak",
-  "mentor.dashboard.moodTrend": "Mood & Energy (30 days)",
-  "mentor.dashboard.activity": "Weekly Activity",
-  "mentor.dashboard.noData": "No check-in data yet. Encourage daily check-ins!",
-
-  "levelUp.title": "Level Up!",
-  "levelUp.continue": "Awesome!",
-
-  "progress.moodTrend": "Mood & Energy",
-  "progress.moodPerformance": "Mood vs Performance",
-  "progress.burnoutHigh": "Rest day recommended",
-  "progress.burnoutMedium": "Watch your energy",
-  "progress.burnoutDetail": "Avg energy {{energy}}/5 · Avg mood {{mood}}/5 · {{sessions}} sessions this week",
-
-  "profile.mentorDashboard": "Parent Dashboard",
-
-  "common.moreDetails": "▼ More details",
-  "common.lessDetails": "▲ Less details",
-
   "weeklySummary.title": "Your Week",
   "weeklySummary.trainings": "{{count}} trainings",
   "weeklySummary.matches": "{{count}} matches",
@@ -802,17 +674,7 @@
   "dashboard.welcomeStep1": "Complete your morning routine (2 min)",
   "dashboard.welcomeStep2": "Log your first training session",
   "dashboard.welcomeStep3": "Explore exercises in the Learn tab",
-
   "mentor.subtitle": "{{name}}'s wellbeing & activity",
-
-  "dashboard.welcomeTitle": "Welcome to Golazo!",
-  "dashboard.welcomeText": "Start your journey! Here's what to do:",
-  "dashboard.welcomeStep1": "Complete your morning routine (2 min)",
-  "dashboard.welcomeStep2": "Log your first training session",
-  "dashboard.welcomeStep3": "Explore exercises in the Learn tab",
-
-  "mentor.subtitle": "{{name}}'s wellbeing & activity",
-
   "theme.title": "Programos tema",
   "theme.classic": "Klasika",
   "theme.team": "Mano klubas",
@@ -822,5 +684,11 @@
   "theme.lavender": "Levanda",
   "theme.sand": "Smėlis",
   "theme.rose": "Rožė",
-  "theme.noTeamHint": "Pridėk komandą profilyje, kad matytum klubo spalvas"
+  "theme.noTeamHint": "Pridėk komandą profilyje, kad matytum klubo spalvas",
+  "art.tac06.title": "Perėjimai: 3 sekundės, kurios laimi rungtynes",
+  "art.tac06.body": "Akimirka, kai kamuolys keičia savininką, yra laikas, kai sukuriama daugiausia įvarčių. Per 3 sekundes po kamuolio atkovojimo priešininkas yra dezorganizuotas — gynėjai nėra pozicijose, saugai nespėjo grįžti. Tai tavo langas. Kai tavo komanda atkovoja kamuolį, IŠKART žiūrėk į priekį. Ar gali greitai perduoti į laisvą erdvę? Taip — daryk tai. Ne — išlaikyk kamuolį ir lauk kito momento. Geriausios kontratakų komandos (Real Madrid, Liverpool) treniruoja šį momentą obsesyviai. Praktikuok: kai tik atkovoji kamuolį treniruotėje, iškart pagreitink su tikslu.",
+  "art.nut06.title": "5 užkandžiai, kuriuos turėtų žinoti kiekvienas jaunas futbolininkas",
+  "art.nut06.body": "Ne visi užkandžiai yra vienodi. Štai 5, kurie tikrai padeda tavo žaidimui: (1) Bananas — gamtos energijos batonėlis. Suvalgyk vieną 30 min prieš treniruotę greitai energijai. (2) Skrudinta duona su žemės riešutų sviestu — angliavandeniai + baltymai, puiku 2 val. prieš rungtynes. (3) Graikiškas jogurtas su medumi — puikus atsigavimo užkandis po treniruotės, pilnas baltymų. (4) Riešutų ir džiovintų vaisių mišinys — nešiojama energija turnyro dienomis. (5) Šokoladinis pienas — skamba keistai, bet mokslininkai įrodė, kad tai vienas geriausių atsigavimo gėrimų. Tobulas angliavandenių ir baltymų santykis. Vengk: energinių gėrimų, traškučių, saldainių prieš treniruotę — jie numuš tavo energiją kaip tik tada, kai jos labiausiai reikia.",
+  "art.men05.title": "1% taisyklė: maži patobulinimai kuria čempionus",
+  "art.men05.body": "Britų dviračių komanda iš vidutinybių tapo dominuojančia jėga, pagerindama 1% šimtuose mažų sričių: mityba, miegas, sėdynės aukštis, rankų plovimo technika. Tas pats principas taikomas futbolui. Tau nereikia dramatiškos transformacijos — reikia mažų, nuoseklių patobulinimų. Šią savaitę pasirink VIENĄ mikro-įgūdį: gal visada žvilgtelėti per petį prieš priimant kamuolį, arba smūgiuoti keliu o ne pirštais, arba sprintuoti atgal praradus kamuolį. Įvaldyk tą vieną dalyką per 7 dienas. Kitą savaitę pasirink kitą. Po metų 1% patobulinimų būsi neatpažįstamas. Čempionai nesukuriami vienu momentu — jie sukuriami tūkstančiuose mažų."
 }

@@ -1,0 +1,114 @@
+[
+  {
+    "id": "art-tac-06",
+    "category": "tactics",
+    "ageTiers": [
+      "u12",
+      "u14",
+      "u16"
+    ],
+    "readingTimeMin": 2,
+    "emoji": "🔄",
+    "status": "published",
+    "en": {
+      "title": "Transitions: The 3 Seconds That Win Games",
+      "body": "The moment the ball changes possession is when most goals are created. In the 3 seconds after winning the ball, the opposing team is disorganized — defenders are out of position, midfielders haven't recovered. This is your window. When your team wins the ball, look forward IMMEDIATELY. Can you play a fast pass into space? If yes — do it. If no — keep possession and wait for the next chance. The best counter-attacking teams (Real Madrid, Liverpool) train this moment obsessively. Practice it: the instant you win the ball in training, sprint forward with purpose."
+    },
+    "ru": {
+      "title": "Переходы: 3 секунды, которые решают матчи",
+      "body": "Момент смены владения мячом — это время, когда создаётся большинство голов. В первые 3 секунды после отбора соперник дезорганизован — защитники не на позициях, полузащитники не успели вернуться. Это твоё окно. Когда твоя команда отбирает мяч, СРАЗУ смотри вперёд. Можно отдать быстрый пас в свободную зону? Да — отдавай. Нет — сохрани мяч и жди следующий момент. Лучшие контратакующие команды (Реал Мадрид, Ливерпуль) отрабатывают этот момент до автоматизма. Тренируй это: как только отобрал мяч, сразу ускоряйся вперёд с целью."
+    },
+    "lv": {
+      "title": "Pārejas: 3 sekundes, kas izšķir spēles",
+      "body": "Brīdis, kad bumba maina īpašnieku, ir laiks, kad rodas visvairāk vārtu. Pirmajās 3 sekundēs pēc bumbu atgūšanas pretinieks ir dezorganizēts — aizsargi nav pozīcijās, pussargi nav atgriezušies. Tas ir tavs logs. Kad tava komanda atgūst bumbu, UZREIZ skaties uz priekšu. Vai vari ātri piespēlēt brīvajā zonā? Jā — dari to. Nē — saglabā bumbu un gaidi nākamo momentu. Labākās kontruzbrukuma komandas (Real Madrid, Liverpool) trenē šo momentu līdz pilnībai. Trenē to: tiklīdz atgūsti bumbu treniņā, uzreiz paātrini ar mērķi."
+    },
+    "es": {
+      "title": "Transiciones: los 3 segundos que ganan partidos",
+      "body": "El momento en que el balón cambia de posesión es cuando se crean la mayoría de los goles. En los 3 segundos después de recuperar el balón, el equipo rival está desorganizado — los defensas están fuera de posición, los mediocampistas no han recuperado. Esta es tu ventana. Cuando tu equipo recupera el balón, mira hacia adelante INMEDIATAMENTE. ¿Puedes hacer un pase rápido al espacio? Si sí — hazlo. Si no — mantén la posesión y espera la siguiente oportunidad. Los mejores equipos de contraataque (Real Madrid, Liverpool) entrenan este momento obsesivamente. Practícalo: en el instante que recuperas el balón en entrenamiento, acelera hacia adelante con propósito."
+    },
+    "et": {
+      "title": "Üleminekud: 3 sekundit, mis võidavad mänge",
+      "body": "Hetk, mil pall vahetab omanikku, on aeg, mil luuakse enim väravaid. 3 sekundi jooksul pärast palli võitmist on vastane segaduses — kaitsjad on positsioonidest väljas, poolkaitsjad pole jõudnud tagasi. See on sinu aken. Kui su meeskond võidab palli, vaata KOHE ette. Kas saad kiire söödu vabasse ruumi teha? Jah — tee see. Ei — hoia palli ja oota järgmist hetke. Parimad kontrarünnaku meeskonnad (Real Madrid, Liverpool) treenivad seda hetke obsessiivselt. Harjuta: hetkel, mil treeningul palli võidad, kiirenda kohe eesmärgipäraselt ette."
+    },
+    "lt": {
+      "title": "Perėjimai: 3 sekundės, kurios laimi rungtynes",
+      "body": "Akimirka, kai kamuolys keičia savininką, yra laikas, kai sukuriama daugiausia įvarčių. Per 3 sekundes po kamuolio atkovojimo priešininkas yra dezorganizuotas — gynėjai nėra pozicijose, saugai nespėjo grįžti. Tai tavo langas. Kai tavo komanda atkovoja kamuolį, IŠKART žiūrėk į priekį. Ar gali greitai perduoti į laisvą erdvę? Taip — daryk tai. Ne — išlaikyk kamuolį ir lauk kito momento. Geriausios kontratakų komandos (Real Madrid, Liverpool) treniruoja šį momentą obsesyviai. Praktikuok: kai tik atkovoji kamuolį treniruotėje, iškart pagreitink su tikslu."
+    },
+    "publishedAt": "2026-03-31T19:39:39.659Z"
+  },
+  {
+    "id": "art-nut-06",
+    "category": "nutrition",
+    "ageTiers": [
+      "u10",
+      "u12",
+      "u14",
+      "u16"
+    ],
+    "readingTimeMin": 2,
+    "emoji": "🍌",
+    "status": "published",
+    "en": {
+      "title": "5 Snacks Every Young Player Should Know",
+      "body": "Not every snack is created equal. Here are 5 that actually help your game: (1) Banana — nature's energy bar. Eat one 30 min before training for quick fuel. (2) Peanut butter on toast — carbs + protein, perfect 2 hours before a match. (3) Greek yogurt with honey — great post-training recovery snack, packed with protein. (4) Trail mix (nuts + dried fruit) — portable energy for tournament days. (5) Chocolate milk — sounds weird, but scientists proved it's one of the best recovery drinks. The perfect ratio of carbs to protein. Avoid: energy drinks, chips, candy before training — they crash your energy when you need it most."
+    },
+    "ru": {
+      "title": "5 перекусов, которые должен знать каждый юный футболист",
+      "body": "Не все перекусы одинаково полезны. Вот 5, которые реально помогают на поле: (1) Банан — природный энергетический батончик. Съешь за 30 минут до тренировки для быстрой энергии. (2) Тост с арахисовой пастой — углеводы + белок, идеально за 2 часа до матча. (3) Греческий йогурт с мёдом — отличный перекус после тренировки, много белка. (4) Смесь орехов и сухофруктов — портативная энергия для турнирных дней. (5) Шоколадное молоко — звучит странно, но учёные доказали, что это один из лучших напитков для восстановления. Идеальное соотношение углеводов и белка. Избегай: энергетиков, чипсов, конфет перед тренировкой — они обрушат энергию, когда она нужна больше всего."
+    },
+    "lv": {
+      "title": "5 uzkodas, kas jāzina katram jaunajam futbolistam",
+      "body": "Ne visas uzkodas ir vienādi noderīgas. Šeit ir 5, kas tiešām palīdz tavai spēlei: (1) Banāns — dabas enerģijas batoniņš. Apēd vienu 30 min pirms treniņa ātrai enerģijai. (2) Grauzdiņš ar zemesriekstu sviestu — ogļhidrāti + olbaltumvielas, ideāli 2 stundas pirms spēles. (3) Grieķu jogurts ar medu — lielisks atjaunošanās uzkoda pēc treniņa, pilns ar olbaltumvielām. (4) Riekstu un žāvētu augļu maisījums — pārnēsājama enerģija turnīru dienām. (5) Šokolādes piens — izklausās dīvaini, bet zinātnieki pierādīja, ka tas ir viens no labākajiem atjaunošanās dzērieniem. Ideāla ogļhidrātu un olbaltumvielu attiecība. Izvairies no: enerģijas dzērieniem, čipsiem, konfektēm pirms treniņa — tie sagraus tavu enerģiju tieši tad, kad tā visvairāk vajadzīga."
+    },
+    "es": {
+      "title": "5 snacks que todo joven futbolista debería conocer",
+      "body": "No todos los snacks son iguales. Aquí van 5 que realmente ayudan a tu juego: (1) Plátano — la barra energética de la naturaleza. Come uno 30 min antes del entrenamiento para energía rápida. (2) Tostada con mantequilla de cacahuete — carbos + proteína, perfecto 2 horas antes del partido. (3) Yogur griego con miel — gran snack de recuperación post-entrenamiento, lleno de proteínas. (4) Mix de frutos secos — energía portátil para días de torneo. (5) Leche con chocolate — suena raro, pero los científicos demostraron que es una de las mejores bebidas de recuperación. La proporción perfecta de carbos y proteína. Evita: bebidas energéticas, patatas fritas, dulces antes de entrenar — te dejan sin energía justo cuando más la necesitas."
+    },
+    "et": {
+      "title": "5 snäkki, mida iga noor mängija peaks teadma",
+      "body": "Mitte kõik snäkid pole võrdsed. Siin on 5, mis tõesti aitavad su mängu: (1) Banaan — looduse energiabatoon. Söö üks 30 min enne treeningut kiireks kütuseks. (2) Maapähklivõileib — süsivesikud + valk, ideaalne 2 tundi enne mängu. (3) Kreeka jogurt meega — suurepärane taastumissnäkk pärast treeningut, täis valku. (4) Pähklite ja kuivatatud puuviljade segu — kaasaskantav energia turniiri päevadel. (5) Šokolaadipiim — kõlab veidralt, aga teadlased tõestasid, et see on üks parimaid taastumijooke. Ideaalne süsivesikute ja valgu suhe. Väldi: energiajooke, krõpse, komme enne treeningut — need kukutavad su energia just siis, kui seda kõige rohkem vajad."
+    },
+    "lt": {
+      "title": "5 užkandžiai, kuriuos turėtų žinoti kiekvienas jaunas futbolininkas",
+      "body": "Ne visi užkandžiai yra vienodi. Štai 5, kurie tikrai padeda tavo žaidimui: (1) Bananas — gamtos energijos batonėlis. Suvalgyk vieną 30 min prieš treniruotę greitai energijai. (2) Skrudinta duona su žemės riešutų sviestu — angliavandeniai + baltymai, puiku 2 val. prieš rungtynes. (3) Graikiškas jogurtas su medumi — puikus atsigavimo užkandis po treniruotės, pilnas baltymų. (4) Riešutų ir džiovintų vaisių mišinys — nešiojama energija turnyro dienomis. (5) Šokoladinis pienas — skamba keistai, bet mokslininkai įrodė, kad tai vienas geriausių atsigavimo gėrimų. Tobulas angliavandenių ir baltymų santykis. Vengk: energinių gėrimų, traškučių, saldainių prieš treniruotę — jie numuš tavo energiją kaip tik tada, kai jos labiausiai reikia."
+    },
+    "publishedAt": "2026-03-31T19:39:39.659Z"
+  },
+  {
+    "id": "art-men-05",
+    "category": "mental",
+    "ageTiers": [
+      "u12",
+      "u14",
+      "u16"
+    ],
+    "readingTimeMin": 2,
+    "emoji": "🎯",
+    "status": "published",
+    "en": {
+      "title": "The 1% Rule: Small Gains Make Champions",
+      "body": "The British cycling team went from mediocre to dominant by improving 1% in hundreds of small areas: nutrition, sleep, seat height, hand washing technique. The same principle applies to football. You don't need a dramatic transformation — you need small, consistent improvements. This week, pick ONE micro-skill: maybe it's always checking your shoulder before receiving, or striking the ball with your laces instead of your toe, or sprinting back after losing possession. Master that one thing for 7 days. Next week, pick another. After a year of 1% improvements, you'll be unrecognizable from where you started. Champions are not made in one moment — they are built in thousands of small ones."
+    },
+    "ru": {
+      "title": "Правило 1%: маленькие улучшения создают чемпионов",
+      "body": "Британская велокоманда превратилась из середняков в доминирующую силу, улучшившись на 1% в сотнях мелочей: питание, сон, высота сиденья, техника мытья рук. Тот же принцип работает в футболе. Тебе не нужна драматическая трансформация — нужны маленькие, последовательные улучшения. На этой неделе выбери ОДИН микро-навык: может, это всегда проверять плечо перед приёмом мяча, или бить подъёмом вместо носка, или спринт назад после потери мяча. Отработай эту одну вещь 7 дней. На следующей неделе — выбери другую. Через год улучшений по 1% ты будешь неузнаваем. Чемпионов не делают за один момент — их строят тысячи маленьких."
+    },
+    "lv": {
+      "title": "1% likums: mazi uzlabojumi rada čempionus",
+      "body": "Lielbritānijas riteņbraukšanas komanda no viduvējiem kļuva par dominējošu spēku, uzlabojot 1% simtiem sīkumu: uzturs, miegs, sēdekļa augstums, roku mazgāšanas tehnika. Tas pats princips darbojas futbolā. Tev nav vajadzīgas dramatiskas pārmaiņas — vajadzīgi mazi, konsekventi uzlabojumi. Šonedēl izvēlies VIENU mikro-prasmi: varbūt vienmēr pārbaudīt plecu pirms bumbu saņemšanas, vai sist ar pēdas virsu nevis ar pirkstiem, vai sprints atpakaļ pēc bumbas zaudēšanas. Apgūsti šo vienu lietu 7 dienas. Nākamnedēļ — izvēlies citu. Pēc gada 1% uzlabojumu tu būsi neatpazīstams. Čempionus nerada vienā mirklī — tos ceļ tūkstošiem mazu soļu."
+    },
+    "es": {
+      "title": "La regla del 1%: las pequeñas mejoras crean campeones",
+      "body": "El equipo de ciclismo británico pasó de mediocre a dominante mejorando un 1% en cientos de pequeñas áreas: nutrición, sueño, altura del asiento, técnica de lavado de manos. El mismo principio se aplica al fútbol. No necesitas una transformación dramática — necesitas pequeñas mejoras constantes. Esta semana, elige UNA micro-habilidad: quizás siempre mirar por encima del hombro antes de recibir, o golpear con el empeine en vez de la punta, o esprintar de vuelta tras perder el balón. Domina esa cosa durante 7 días. La siguiente semana, elige otra. Después de un año de mejoras del 1%, serás irreconocible. Los campeones no se hacen en un momento — se construyen en miles de pequeños momentos."
+    },
+    "et": {
+      "title": "1% reegel: väikesed sammud loovad tšempione",
+      "body": "Briti rattameeskond muutus keskmisest domineerivaks, parandades 1% sadades väikestes asjades: toitumine, uni, istme kõrgus, kätepesu tehnika. Sama põhimõte kehtib jalgpallis. Sa ei vaja dramaatilist muutust — vajad väikeseid, järjekindlaid parandusi. Sel nädalal vali ÜKS mikro-oskus: võib-olla alati üle õla kontrollimine enne palli vastuvõttu, või löömine pöiaga mitte varbaga, või sprint tagasi pärast palli kaotust. Valda see üks asi 7 päevaga. Järgmisel nädalal vali teine. Aasta pärast 1% parandusi oled äratundmatu. Tšempione ei tehta ühel hetkel — neid ehitatakse tuhandetes väikestes."
+    },
+    "lt": {
+      "title": "1% taisyklė: maži patobulinimai kuria čempionus",
+      "body": "Britų dviračių komanda iš vidutinybių tapo dominuojančia jėga, pagerindama 1% šimtuose mažų sričių: mityba, miegas, sėdynės aukštis, rankų plovimo technika. Tas pats principas taikomas futbolui. Tau nereikia dramatiškos transformacijos — reikia mažų, nuoseklių patobulinimų. Šią savaitę pasirink VIENĄ mikro-įgūdį: gal visada žvilgtelėti per petį prieš priimant kamuolį, arba smūgiuoti keliu o ne pirštais, arba sprintuoti atgal praradus kamuolį. Įvaldyk tą vieną dalyką per 7 dienas. Kitą savaitę pasirink kitą. Po metų 1% patobulinimų būsi neatpažįstamas. Čempionai nesukuriami vienu momentu — jie sukuriami tūkstančiuose mažų."
+    },
+    "publishedAt": "2026-03-31T19:39:39.659Z"
+  }
+]

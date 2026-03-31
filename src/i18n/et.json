@@ -11,7 +11,6 @@
   "nav.progress": "Edasijõudmine",
   "nav.education": "Nõuanded",
   "nav.settings": "Seaded",
-
   "dashboard.quote": "Päeva tsitaat",
   "dashboard.level": "Tase {{level}}",
   "dashboard.xp": "{{current}} / {{next}} XP",
@@ -38,7 +37,6 @@
   "dashboard.upcoming": "Järgmine sündmus",
   "dashboard.skills": "Minu oskused",
   "dashboard.activity": "Aktiivsus",
-
   "log.training": "Treening",
   "log.match": "Mäng",
   "log.tournament": "Turniir",
@@ -53,7 +51,6 @@
   "log.yesterday": "Eile",
   "log.orLogManually": "Või logi käsitsi",
   "log.date": "Kuupäev",
-
   "training.title": "Logi treening",
   "training.type.team": "Meeskond ⚽",
   "training.type.individual": "Individuaalne 🏃",
@@ -76,7 +73,6 @@
   "training.save": "Logi treening",
   "training.saved": "Treening logitud! +{{xp}} XP",
   "training.fromSchedule": "Ajakavast",
-
   "match.title": "Logi mäng",
   "match.opponent": "Vastane",
   "match.competition": "Võistlus",
@@ -98,7 +94,6 @@
   "match.toImprove": "Mida parandada",
   "match.save": "Logi mäng",
   "match.saved": "Mäng logitud! +{{xp}} XP",
-
   "tournament.title": "Turniir",
   "tournament.name": "Turniiri nimi",
   "tournament.dates": "Kuupäevad",
@@ -110,7 +105,6 @@
   "tournament.mvp": "Turniiri hetk",
   "tournament.complete": "Lõpeta turniir",
   "tournament.completed": "Turniir lõppenud! +{{xp}} XP",
-
   "diary.title": "Päevik",
   "diary.write": "Kirjuta sissekanne",
   "diary.prompt.commitment": "Mille nimel andsin täna kõige rohkem?",
@@ -122,7 +116,6 @@
   "diary.save": "Salvesta sissekanne",
   "diary.saved": "Sissekanne salvestatud! +{{xp}} XP",
   "diary.private": "🔒 Ainult sulle",
-
   "exercises.title": "Harjutused",
   "exercises.filter": "Filtreeri",
   "exercises.all": "Kõik",
@@ -130,13 +123,11 @@
   "exercises.markDone": "Märgi tehtuks",
   "exercises.recommended": "Soovitatud sulle",
   "exercises.methodology": "Metoodika",
-
   "equipment.ballOnly": "Pall",
   "equipment.cones": "Koonused",
   "equipment.wall": "Sein",
   "equipment.partner": "Partner",
   "equipment.none": "Varustust pole vaja",
-
   "challenges.title": "Väljakutsed",
   "challenges.daily": "Päeva",
   "challenges.weekly": "Nädala",
@@ -155,27 +146,23 @@
   "challenges.weakFootDesc": "30-päevane nõrgema jala programm",
   "challenges.mentalChampDesc": "Visualiseerimine ja positiivne sisekõne",
   "challenges.deepPracticeDesc": "7 päeva süvatreeningut",
-
   "skills.technical": "Tehniline ⚽",
   "skills.physical": "Füüsiline 🏃",
   "skills.tactical": "Taktikaline 🧠",
   "skills.mental": "Vaimne 💪",
   "skills.matchPlay": "Mängupraktika 🎯",
   "skills.knowledge": "Teadmised 📚",
-
   "rank.rookie": "Harrastaja",
   "rank.player": "Poolproff",
   "rank.talent": "Proff",
   "rank.star": "Staar",
   "rank.pro": "Eliit",
-
   "profile.title": "Profiil",
   "profile.card": "Minu kaart",
   "profile.achievements": "Saavutused",
   "profile.language": "Keel",
   "profile.stats": "Hooaja statistika",
   "profile.export": "Laadi kaart alla",
-
   "mentor.schedule.title": "Ajakava",
   "mentor.schedule.add": "Lisa sündmus",
   "mentor.schedule.training": "Treening",
@@ -186,16 +173,15 @@
   "mentor.education.title": "Nõuanded mentoritele",
   "mentor.education.rideHome": "Kodusõit pärast mängu",
   "mentor.education.sixWords": "6 olulist sõna",
-  "mentor.education.sixWordsText": "\u201EMulle meeldib sind m\u00e4ngimas vaadata\u201C",
+  "mentor.education.sixWordsText": "„Mulle meeldib sind mängimas vaadata“",
   "mentor.education.letThemOwn": "Lase neil oma teed minna",
-
   "common.save": "Salvesta",
   "common.cancel": "Tühista",
   "common.back": "Tagasi",
+  "common.close": "Sulge",
   "common.date": "Kuupäev",
   "common.today": "Täna",
   "common.loading": "Laadimine...",
-
   "ex.tech.juggling": "Palli žongleerimine",
   "ex.tech.juggling.desc": "Žongleeri mõlema jalaga. Alusta 10-st, seejärel suurenda. Loe oma rekordit!",
   "ex.tech.insideOutside": "Sise-välistehnika",
@@ -229,7 +215,7 @@
   "ex.ment.visualization": "Visualiseerimine",
   "ex.ment.visualization.desc": "Sulge silmad 5 minutiks. Kujuta ette ideaalset mängu: vastuvõtt, sööt, värav.",
   "ex.ment.selfTalk": "Positiivne sisekõne",
-  "ex.ment.selfTalk.desc": "Kirjuta 3 fraasi rasketeks hetkedeks: \u201EOlen valmis\u201C, \u201EMa suudan\u201C, \u201EJ\u00e4rgmine kord paremini\u201C.",
+  "ex.ment.selfTalk.desc": "Kirjuta 3 fraasi rasketeks hetkedeks: „Olen valmis“, „Ma suudan“, „Järgmine kord paremini“.",
   "ex.ment.breatheFocus": "Hingamisfookus",
   "ex.ment.breatheFocus.desc": "4-4-4: sisse 4 sek, hoia 4 sek, välja 4 sek. 5 tsüklit. Rahustab enne mänge.",
   "ex.ment.confidenceList": "Enesekindluse nimekiri",
@@ -246,7 +232,6 @@
   "ex.know.offside.desc": "Joonista 3 olukorda: suluseis, mitte suluseis, piiripealne. Selgita igaüht.",
   "ex.know.nutrition": "Jalgpalluri toitumine",
   "ex.know.nutrition.desc": "Kirjuta üles, mida süüa 3h enne mängu, mängu ajal ja pärast. Vesi, süsivesikud, valgud.",
-
   "login.tagline": "Sinu jalgpalliteekond algab siit",
   "login.asPlayer": "Olen Mängija",
   "login.playerDesc": "Jälgi treeninguid, logi mänge ja arene",
@@ -254,7 +239,6 @@
   "login.mentorDesc": "Jälgi edasijõudmist ja toeta mängija arengut",
   "login.googleNote": "Logi sisse Google'iga, et salvestada edasijõudmist",
   "login.skip": "Jätka ilma kontota",
-
   "onboarding.welcome": "Tere tulemast Golazosse! ⚽",
   "onboarding.whoAreYou": "Seadistame profiili, et kohandada kogemust.",
   "onboarding.iAmPlayer": "Olen Mängija",
@@ -301,10 +285,8 @@
   "onboarding.finish": "Lähme! 🚀",
   "onboarding.allSet": "Kõik valmis!",
   "onboarding.doneMsg": "Profiil on valmis. Treeni, logi mänge ja arene!",
-
   "challenges.start": "Alusta",
   "challenges.loggedToday": "Logitud täna",
-
   "schedule.mon": "E",
   "schedule.tue": "T",
   "schedule.wed": "K",
@@ -337,7 +319,6 @@
   "schedule.matchPlayoff": "Playoff",
   "schedule.matchFutsal": "Saalipall",
   "mentor.schedule.event": "Sündmus",
-
   "profile.physical": "Füüsilised näitajad",
   "profile.jump": "hüpe",
   "profile.beepTest": "piiksutest",
@@ -349,7 +330,6 @@
   "profile.logout": "Logi välja",
   "profile.reset": "Kustuta kõik andmed",
   "profile.resetConfirm": "See kustutab kõik andmed. Kas oled kindel?",
-
   "physical.height": "Pikkus",
   "physical.weight": "Kaal",
   "physical.sittingHeight": "Istukõrgus",
@@ -391,7 +371,6 @@
   "physical.recommended": "soovituslik",
   "physical.required": "kohustuslik",
   "physical.resetDefaults": "Taasta vaikeväärtused",
-
   "progress.title": "Edasijõudmine",
   "progress.xpTrend": "XP trend (30 p.)",
   "progress.matchResults": "Mängude tulemused",
@@ -419,7 +398,6 @@
   "progress.totalMatches": "Kokku mänge",
   "progress.totalGoals": "Kokku väravaid",
   "progress.totalXp": "Kokku XP",
-
   "coach.title": "AI treener",
   "coach.hint": "Saa isikupärastatud nõuandeid oma statistika põhjal",
   "coach.getAdvice": "Saa nõuannet",
@@ -460,7 +438,6 @@
   "coach.insight.knowStart": "Õpi põhitõed: suluseisu reegel, millal fikseeritakse vead, mida iga positsioon teeb.",
   "coach.insight.knowLearn": "Vaata terveid mänge ja uuri formatsioone. Jälgi, kuidas meeskonnad muudavad kuju ründes ja kaitses.",
   "coach.insight.knowDeepen": "Mine sügavamale: õpi sportlase toitumisest, korralikust soojendusest ja vigastuste ennetamisest.",
-
   "leaderboard.title": "Edetabel",
   "leaderboard.inviteFriends": "Kutsu sõpru",
   "leaderboard.generateCode": "Genereeri kutsekood",
@@ -472,7 +449,6 @@
   "leaderboard.linked": "Edukalt seotud!",
   "leaderboard.invalidCode": "Vigane või aegunud kood",
   "leaderboard.offlineError": "Võrguühenduseta — ühendage internetiga",
-
   "exercises.watchVideo": "Vaata videot",
   "exercises.search": "Otsi harjutusi...",
   "exercises.sortBy": "Sorteeri",
@@ -492,11 +468,9 @@
   "methodology.danAbrahams": "Dan Abrahams 4C",
   "methodology.talentCode": "Talent Code",
   "methodology.uefa": "UEFA juhised",
-
   "profile.uploadPhoto": "Lisa foto",
   "profile.changePhoto": "Muuda",
   "profile.removePhoto": "Eemalda foto",
-
   "ach.train10": "10 treeningut",
   "ach.train10Desc": "Läbi 10 treeningut",
   "ach.train50": "50 treeningut",
@@ -531,10 +505,9 @@
   "ach.level10Desc": "Jõua tasemele 10",
   "ach.level25": "Tase 25",
   "ach.level25Desc": "Jõua tasemele 25",
-
   "import.title": "Lisa turniir",
   "import.addTournament": "Lisa turniir",
-  "import.addTournamentHint": "Impordi m\u00e4ngukava turniiri lehelt v\u00f5i lisa k\u00e4sitsi",
+  "import.addTournamentHint": "Impordi mängukava turniiri lehelt või lisa käsitsi",
   "import.url": "Turniiri lehe URL",
   "import.urlHint": "Kleebi link mängukava lehele (turniir.ee, sportdata.org jne.)",
   "import.teamName": "Sinu meeskonna nimi",
@@ -543,7 +516,7 @@
   "import.fetch": "Otsi mänge",
   "import.loading": "Laadimine...",
   "import.fetchError": "Lehe laadimine ebaõnnestus. Kontrolli URL-i ja proovi uuesti.",
-  "import.noGamesForTeam": "Ei leitud m\u00e4nge \u201E{{team}}\u201C jaoks",
+  "import.noGamesForTeam": "Ei leitud mänge „{{team}}“ jaoks",
   "import.teamsFound": "Meeskonnad sellel lehel",
   "import.foundGames": "{{count}} mängu sinu meeskonnale ({{total}} kokku)",
   "import.addToSchedule": "Lisa ajakavasse",
@@ -555,7 +528,6 @@
   "import.teamSetup": "Meeskond",
   "import.tournamentTeamName": "Meeskonna nimi turniiril",
   "import.tournamentTeamHint": "Kuidas sinu meeskond on sellel turniiril kirjas",
-
   "teams.title": "Minu meeskonnad",
   "teams.manage": "Halda",
   "teams.primary": "Põhiklubi",
@@ -581,13 +553,11 @@
   "teams.addAnyway": "Lisa ikkagi",
   "teams.duplicateError": "Selle nimega meeskond on juba olemas",
   "teams.knownAs": "Tuntud ka nimega",
-
   "onboarding.jerseyNumber": "Mängunumber",
   "onboarding.country": "Riik",
   "onboarding.city": "Linn",
   "onboarding.cityPlaceholder": "nt. Tallinn",
   "match.playingFor": "Mängin meeskonnas",
-
   "empty.matches.title": "Mänge pole veel",
   "empty.matches.text": "Logi esimene mäng, et alustada progressi jälgimist!",
   "empty.matches.action": "Logi mäng",
@@ -601,7 +571,6 @@
   "toast.saved": "Salvestatud!",
   "toast.xpEarned": "+{{xp}} XP teenitud!",
   "toast.error": "Midagi läks valesti",
-
   "portal.title": "Minu jalgpall",
   "portal.active": "Aktiivne",
   "portal.tournaments": "Minu turniirid",
@@ -611,7 +580,6 @@
   "portal.noClubs": "{{age}} meeskondadega klubisid ei leitud",
   "portal.emptyTitle": "Jalgpalliaktiivsust pole veel",
   "portal.emptyText": "Lisa turniir või logi oma esimene mäng",
-
   "checkin.title": "How are you feeling?",
   "checkin.mood": "Mood",
   "checkin.energy": "Energy",
@@ -620,13 +588,11 @@
   "checkin.addNote": "Add a note",
   "checkin.notePlaceholder": "Anything on your mind?",
   "checkin.streak": "{{days}}-day check-in streak",
-
   "quiz.title": "Quiz of the Day",
   "quiz.correct": "Correct! +5 XP",
   "quiz.wrong": "Not this time — you'll get it tomorrow!",
   "quiz.alreadyCorrect": "Quiz done — nice one!",
   "quiz.alreadyWrong": "Quiz done — better luck tomorrow!",
-
   "routine.title": "Morning Routine",
   "routine.cta": "Start morning routine",
   "routine.ctaSub": "Check-in · Challenge · Quiz — 2 min",
@@ -638,7 +604,6 @@
   "routine.complete": "Routine complete!",
   "routine.bonus": "bonus",
   "routine.backHome": "Back to home",
-
   "learn.articles": "Articles",
   "learn.programs": "Programs",
   "learn.exercises": "Exercises",
@@ -651,7 +616,6 @@
   "learn.loggedToday": "Logged today",
   "learn.logDay": "Log today's session",
   "learn.programComplete": "Program completed!",
-
   "diary.guidedTitle": "Guided reflection",
   "diary.promptTitle": "4C Framework",
   "diary.moodContext": "What is this about?",
@@ -665,7 +629,6 @@
   "diary.context.school": "School",
   "diary.context.friends": "Friends",
   "diary.context.family": "Family",
-
   "mentor.dashboard.title": "Parent Dashboard",
   "mentor.dashboard.subtitle": "{{name}}'s wellbeing & activity",
   "mentor.dashboard.privacy": "You see trends only — diary content stays private.",
@@ -678,107 +641,16 @@
   "mentor.dashboard.moodTrend": "Mood & Energy (30 days)",
   "mentor.dashboard.activity": "Weekly Activity",
   "mentor.dashboard.noData": "No check-in data yet. Encourage daily check-ins!",
-
   "levelUp.title": "Level Up!",
   "levelUp.continue": "Awesome!",
-
   "progress.moodTrend": "Mood & Energy",
   "progress.moodPerformance": "Mood vs Performance",
   "progress.burnoutHigh": "Rest day recommended",
   "progress.burnoutMedium": "Watch your energy",
   "progress.burnoutDetail": "Avg energy {{energy}}/5 · Avg mood {{mood}}/5 · {{sessions}} sessions this week",
-
   "profile.mentorDashboard": "Parent Dashboard",
-
   "common.moreDetails": "▼ More details",
   "common.lessDetails": "▲ Less details",
-
-  "weeklySummary.title": "Your Week",
-  "weeklySummary.trainings": "{{count}} trainings",
-  "weeklySummary.matches": "{{count}} matches",
-  "weeklySummary.avgMood": "Avg mood: {{mood}}/5",
-
-  "checkin.title": "How are you feeling?",
-  "checkin.mood": "Mood",
-  "checkin.energy": "Energy",
-  "checkin.done": "Checked in today!",
-  "checkin.save": "Check in",
-  "checkin.addNote": "Add a note",
-  "checkin.notePlaceholder": "Anything on your mind?",
-  "checkin.streak": "{{days}}-day check-in streak",
-
-  "quiz.title": "Quiz of the Day",
-  "quiz.correct": "Correct! +5 XP",
-  "quiz.wrong": "Not this time — you'll get it tomorrow!",
-  "quiz.alreadyCorrect": "Quiz done — nice one!",
-  "quiz.alreadyWrong": "Quiz done — better luck tomorrow!",
-
-  "routine.title": "Morning Routine",
-  "routine.cta": "Start morning routine",
-  "routine.ctaSub": "Check-in · Challenge · Quiz — 2 min",
-  "routine.go": "Go",
-  "routine.step": "Step {{step}} of {{total}}",
-  "routine.challengeTitle": "Daily Challenge",
-  "routine.challengeComplete": "Done!",
-  "routine.markDone": "Mark as done",
-  "routine.complete": "Routine complete!",
-  "routine.bonus": "bonus",
-  "routine.backHome": "Back to home",
-
-  "learn.articles": "Articles",
-  "learn.programs": "Programs",
-  "learn.exercises": "Exercises",
-  "learn.markRead": "Mark as read",
-  "learn.noArticles": "No articles in this category yet.",
-  "learn.readProgress": "Articles read",
-  "learn.weeks": "weeks",
-  "learn.days": "days",
-  "learn.startProgram": "Start program",
-  "learn.loggedToday": "Logged today",
-  "learn.logDay": "Log today's session",
-  "learn.programComplete": "Program completed!",
-
-  "diary.guidedTitle": "Guided reflection",
-  "diary.promptTitle": "4C Framework",
-  "diary.moodContext": "What is this about?",
-  "diary.aiConsent": "Let AI Coach read this entry for better advice",
-  "diary.guided.whatWentWell": "What went well today?",
-  "diary.guided.whatWasHard": "What was hard?",
-  "diary.guided.oneThing": "One thing I learned",
-  "diary.guided.grateful": "What am I grateful for?",
-  "diary.context.training": "Training",
-  "diary.context.match": "Match",
-  "diary.context.school": "School",
-  "diary.context.friends": "Friends",
-  "diary.context.family": "Family",
-
-  "mentor.dashboard.title": "Parent Dashboard",
-  "mentor.dashboard.subtitle": "{{name}}'s wellbeing & activity",
-  "mentor.dashboard.privacy": "You see trends only — diary content stays private.",
-  "mentor.dashboard.alertLowMood": "{{name}} has had low mood for 3+ consecutive days. Consider a conversation.",
-  "mentor.dashboard.alertBurnout": "Possible overtraining: low energy with high training frequency.",
-  "mentor.dashboard.alertInactive": "No check-ins for {{days}} days. Engagement may be dropping.",
-  "mentor.dashboard.avgMood": "Avg Mood",
-  "mentor.dashboard.avgEnergy": "Avg Energy",
-  "mentor.dashboard.streak": "Streak",
-  "mentor.dashboard.moodTrend": "Mood & Energy (30 days)",
-  "mentor.dashboard.activity": "Weekly Activity",
-  "mentor.dashboard.noData": "No check-in data yet. Encourage daily check-ins!",
-
-  "levelUp.title": "Level Up!",
-  "levelUp.continue": "Awesome!",
-
-  "progress.moodTrend": "Mood & Energy",
-  "progress.moodPerformance": "Mood vs Performance",
-  "progress.burnoutHigh": "Rest day recommended",
-  "progress.burnoutMedium": "Watch your energy",
-  "progress.burnoutDetail": "Avg energy {{energy}}/5 · Avg mood {{mood}}/5 · {{sessions}} sessions this week",
-
-  "profile.mentorDashboard": "Parent Dashboard",
-
-  "common.moreDetails": "▼ More details",
-  "common.lessDetails": "▲ Less details",
-
   "weeklySummary.title": "Your Week",
   "weeklySummary.trainings": "{{count}} trainings",
   "weeklySummary.matches": "{{count}} matches",
@@ -788,17 +660,7 @@
   "dashboard.welcomeStep1": "Complete your morning routine (2 min)",
   "dashboard.welcomeStep2": "Log your first training session",
   "dashboard.welcomeStep3": "Explore exercises in the Learn tab",
-
   "mentor.subtitle": "{{name}}'s wellbeing & activity",
-
-  "dashboard.welcomeTitle": "Welcome to Golazo!",
-  "dashboard.welcomeText": "Start your journey! Here's what to do:",
-  "dashboard.welcomeStep1": "Complete your morning routine (2 min)",
-  "dashboard.welcomeStep2": "Log your first training session",
-  "dashboard.welcomeStep3": "Explore exercises in the Learn tab",
-
-  "mentor.subtitle": "{{name}}'s wellbeing & activity",
-
   "theme.title": "Äpi teema",
   "theme.classic": "Klassika",
   "theme.team": "Minu klubi",
@@ -808,5 +670,11 @@
   "theme.lavender": "Lavendel",
   "theme.sand": "Liiv",
   "theme.rose": "Roos",
-  "theme.noTeamHint": "Lisa meeskond profiilis, et näha klubi värve"
+  "theme.noTeamHint": "Lisa meeskond profiilis, et näha klubi värve",
+  "art.tac06.title": "Üleminekud: 3 sekundit, mis võidavad mänge",
+  "art.tac06.body": "Hetk, mil pall vahetab omanikku, on aeg, mil luuakse enim väravaid. 3 sekundi jooksul pärast palli võitmist on vastane segaduses — kaitsjad on positsioonidest väljas, poolkaitsjad pole jõudnud tagasi. See on sinu aken. Kui su meeskond võidab palli, vaata KOHE ette. Kas saad kiire söödu vabasse ruumi teha? Jah — tee see. Ei — hoia palli ja oota järgmist hetke. Parimad kontrarünnaku meeskonnad (Real Madrid, Liverpool) treenivad seda hetke obsessiivselt. Harjuta: hetkel, mil treeningul palli võidad, kiirenda kohe eesmärgipäraselt ette.",
+  "art.nut06.title": "5 snäkki, mida iga noor mängija peaks teadma",
+  "art.nut06.body": "Mitte kõik snäkid pole võrdsed. Siin on 5, mis tõesti aitavad su mängu: (1) Banaan — looduse energiabatoon. Söö üks 30 min enne treeningut kiireks kütuseks. (2) Maapähklivõileib — süsivesikud + valk, ideaalne 2 tundi enne mängu. (3) Kreeka jogurt meega — suurepärane taastumissnäkk pärast treeningut, täis valku. (4) Pähklite ja kuivatatud puuviljade segu — kaasaskantav energia turniiri päevadel. (5) Šokolaadipiim — kõlab veidralt, aga teadlased tõestasid, et see on üks parimaid taastumijooke. Ideaalne süsivesikute ja valgu suhe. Väldi: energiajooke, krõpse, komme enne treeningut — need kukutavad su energia just siis, kui seda kõige rohkem vajad.",
+  "art.men05.title": "1% reegel: väikesed sammud loovad tšempione",
+  "art.men05.body": "Briti rattameeskond muutus keskmisest domineerivaks, parandades 1% sadades väikestes asjades: toitumine, uni, istme kõrgus, kätepesu tehnika. Sama põhimõte kehtib jalgpallis. Sa ei vaja dramaatilist muutust — vajad väikeseid, järjekindlaid parandusi. Sel nädalal vali ÜKS mikro-oskus: võib-olla alati üle õla kontrollimine enne palli vastuvõttu, või löömine pöiaga mitte varbaga, või sprint tagasi pärast palli kaotust. Valda see üks asi 7 päevaga. Järgmisel nädalal vali teine. Aasta pärast 1% parandusi oled äratundmatu. Tšempione ei tehta ühel hetkel — neid ehitatakse tuhandetes väikestes."
 }

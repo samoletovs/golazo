@@ -2,7 +2,7 @@
   "app.name": "Golazo ⚽",
   "nav.dashboard": "Inicio",
   "nav.log": "Registrar",
-  "nav.portal": "Mi F\u00fatbol",
+  "nav.portal": "Mi Fútbol",
   "nav.exercises": "Ejercicios",
   "nav.learn": "Aprender",
   "nav.challenges": "Desafíos",
@@ -178,10 +178,10 @@
   "common.save": "Guardar",
   "common.cancel": "Cancelar",
   "common.back": "Atrás",
+  "common.close": "Cerrar",
   "common.date": "Fecha",
   "common.today": "Hoy",
   "common.loading": "Cargando...",
-
   "login.tagline": "Tu camino futbolístico empieza aquí",
   "login.asPlayer": "Soy Jugador",
   "login.playerDesc": "Registra entrenamientos, partidos y sube de nivel",
@@ -189,7 +189,6 @@
   "login.mentorDesc": "Sigue el progreso y apoya el desarrollo del jugador",
   "login.googleNote": "Inicia sesión con Google para guardar tu progreso",
   "login.skip": "Continuar sin cuenta",
-
   "onboarding.welcome": "¡Bienvenido a Golazo! ⚽",
   "onboarding.whoAreYou": "Configuremos tu perfil para personalizar tu experiencia.",
   "onboarding.iAmPlayer": "Soy Jugador",
@@ -238,10 +237,8 @@
   "onboarding.finish": "¡Vamos! 🚀",
   "onboarding.allSet": "¡Todo listo!",
   "onboarding.doneMsg": "Tu perfil está listo. ¡Entrena, registra partidos y sube de nivel!",
-
   "challenges.start": "Empezar",
   "challenges.loggedToday": "Registrado hoy",
-
   "schedule.mon": "Lun",
   "schedule.tue": "Mar",
   "schedule.wed": "Mié",
@@ -285,7 +282,6 @@
   "schedule.eventNotes": "Notas (opcional)",
   "schedule.trainingTypeLabel": "Tipo de entrenamiento",
   "mentor.schedule.event": "Evento",
-
   "profile.physical": "Datos Físicos",
   "profile.jump": "salto",
   "profile.beepTest": "test pitidos",
@@ -297,7 +293,6 @@
   "profile.logout": "Cerrar sesión",
   "profile.reset": "Borrar todos los datos",
   "profile.resetConfirm": "¿Esto borrará todos tus datos. ¿Estás seguro?",
-
   "physical.height": "Altura",
   "physical.weight": "Peso",
   "physical.sittingHeight": "Altura sentado",
@@ -339,7 +334,6 @@
   "physical.recommended": "recomendado",
   "physical.required": "obligatorio",
   "physical.resetDefaults": "Restaurar predeterminados",
-
   "progress.title": "Progreso",
   "progress.xpTrend": "Tendencia XP (30 días)",
   "progress.matchResults": "Resultados de partidos",
@@ -367,7 +361,6 @@
   "progress.totalMatches": "Total partidos",
   "progress.totalGoals": "Total goles",
   "progress.totalXp": "Total XP",
-
   "coach.title": "Coach IA",
   "coach.hint": "Recibe consejos personalizados de entrenamiento",
   "coach.getAdvice": "Obtener consejo",
@@ -408,7 +401,6 @@
   "coach.insight.knowStart": "Aprende lo básico: la regla del fuera de juego, cuándo se marcan faltas, qué hace cada posición.",
   "coach.insight.knowLearn": "Mira partidos completos y estudia las formaciones. Observa cómo los equipos cambian forma en ataque y defensa.",
   "coach.insight.knowDeepen": "Profundiza: aprende sobre nutrición deportiva, calentamiento correcto y prevención de lesiones.",
-
   "leaderboard.title": "Clasificación",
   "leaderboard.inviteFriends": "Invitar amigos",
   "leaderboard.generateCode": "Generar código de invitación",
@@ -420,7 +412,6 @@
   "leaderboard.linked": "¡Conectado con éxito!",
   "leaderboard.invalidCode": "Código inválido o expirado",
   "leaderboard.offlineError": "Sin conexión — conéctate a internet",
-
   "exercises.watchVideo": "Ver video",
   "exercises.search": "Buscar ejercicios...",
   "exercises.sortBy": "Ordenar por",
@@ -440,11 +431,9 @@
   "methodology.danAbrahams": "Dan Abrahams 4C",
   "methodology.talentCode": "Talent Code",
   "methodology.uefa": "Directrices UEFA",
-
   "profile.uploadPhoto": "Añadir foto",
   "profile.changePhoto": "Cambiar",
   "profile.removePhoto": "Eliminar foto",
-
   "ach.train10": "10 entrenos",
   "ach.train10Desc": "Completa 10 entrenamientos",
   "ach.train50": "50 entrenos",
@@ -479,7 +468,6 @@
   "ach.level10Desc": "Alcanza el nivel 10",
   "ach.level25": "Nivel 25",
   "ach.level25Desc": "Alcanza el nivel 25",
-
   "import.title": "Añadir torneo",
   "import.addTournament": "Añadir torneo",
   "import.addTournamentHint": "Importar partidos desde una página de torneo o añadir manualmente",
@@ -503,7 +491,6 @@
   "import.teamSetup": "Equipo",
   "import.tournamentTeamName": "Nombre del equipo en el torneo",
   "import.tournamentTeamHint": "Cómo aparece tu equipo en este torneo",
-
   "teams.title": "Mis equipos",
   "teams.manage": "Gestionar",
   "teams.primary": "Club principal",
@@ -530,13 +517,11 @@
   "teams.addAnyway": "Añadir de todos modos",
   "teams.duplicateError": "Ya existe un equipo con este nombre",
   "teams.knownAs": "También conocido como",
-
   "onboarding.jerseyNumber": "Número de camiseta",
   "onboarding.country": "País",
   "onboarding.city": "Ciudad",
   "onboarding.cityPlaceholder": "ej. Riga",
   "match.playingFor": "Juego para",
-
   "empty.matches.title": "Aún no hay partidos",
   "empty.matches.text": "¡Registra tu primer partido y empieza a seguir tu progreso!",
   "empty.matches.action": "Registrar partido",
@@ -550,7 +535,6 @@
   "toast.saved": "¡Guardado!",
   "toast.xpEarned": "+{{xp}} XP ganados!",
   "toast.error": "Algo salió mal",
-
   "ex.tech.juggling": "Malabarismo con balón",
   "ex.tech.juggling.desc": "Haz malabarismo con ambos pies. Empieza con 10, luego aumenta. ¡Cuenta tu récord!",
   "ex.tech.insideOutside": "Regate interior-exterior",
@@ -601,7 +585,6 @@
   "ex.know.offside.desc": "Dibuja 3 situaciones: fuera de juego, no fuera de juego, límite. Explica cada una.",
   "ex.know.nutrition": "Nutrición futbolística",
   "ex.know.nutrition.desc": "Escribe qué comer 3h antes, durante y después de un partido. Agua, carbohidratos, proteína.",
-
   "portal.title": "Mi Fútbol",
   "portal.active": "Activo",
   "portal.tournaments": "Mis Torneos",
@@ -611,7 +594,6 @@
   "portal.noClubs": "No se encontraron clubes con equipos {{age}}",
   "portal.emptyTitle": "Sin actividad futbolística aún",
   "portal.emptyText": "Añade un torneo o registra tu primer partido",
-
   "checkin.title": "How are you feeling?",
   "checkin.mood": "Mood",
   "checkin.energy": "Energy",
@@ -620,13 +602,11 @@
   "checkin.addNote": "Add a note",
   "checkin.notePlaceholder": "Anything on your mind?",
   "checkin.streak": "{{days}}-day check-in streak",
-
   "quiz.title": "Quiz of the Day",
   "quiz.correct": "Correct! +5 XP",
   "quiz.wrong": "Not this time — you'll get it tomorrow!",
   "quiz.alreadyCorrect": "Quiz done — nice one!",
   "quiz.alreadyWrong": "Quiz done — better luck tomorrow!",
-
   "routine.title": "Morning Routine",
   "routine.cta": "Start morning routine",
   "routine.ctaSub": "Check-in · Challenge · Quiz — 2 min",
@@ -638,7 +618,6 @@
   "routine.complete": "Routine complete!",
   "routine.bonus": "bonus",
   "routine.backHome": "Back to home",
-
   "learn.articles": "Articles",
   "learn.programs": "Programs",
   "learn.exercises": "Exercises",
@@ -651,7 +630,6 @@
   "learn.loggedToday": "Logged today",
   "learn.logDay": "Log today's session",
   "learn.programComplete": "Program completed!",
-
   "diary.guidedTitle": "Guided reflection",
   "diary.promptTitle": "4C Framework",
   "diary.moodContext": "What is this about?",
@@ -665,7 +643,6 @@
   "diary.context.school": "School",
   "diary.context.friends": "Friends",
   "diary.context.family": "Family",
-
   "mentor.dashboard.title": "Parent Dashboard",
   "mentor.dashboard.subtitle": "{{name}}'s wellbeing & activity",
   "mentor.dashboard.privacy": "You see trends only — diary content stays private.",
@@ -678,107 +655,16 @@
   "mentor.dashboard.moodTrend": "Mood & Energy (30 days)",
   "mentor.dashboard.activity": "Weekly Activity",
   "mentor.dashboard.noData": "No check-in data yet. Encourage daily check-ins!",
-
   "levelUp.title": "Level Up!",
   "levelUp.continue": "Awesome!",
-
   "progress.moodTrend": "Mood & Energy",
   "progress.moodPerformance": "Mood vs Performance",
   "progress.burnoutHigh": "Rest day recommended",
   "progress.burnoutMedium": "Watch your energy",
   "progress.burnoutDetail": "Avg energy {{energy}}/5 · Avg mood {{mood}}/5 · {{sessions}} sessions this week",
-
   "profile.mentorDashboard": "Parent Dashboard",
-
   "common.moreDetails": "▼ More details",
   "common.lessDetails": "▲ Less details",
-
-  "weeklySummary.title": "Your Week",
-  "weeklySummary.trainings": "{{count}} trainings",
-  "weeklySummary.matches": "{{count}} matches",
-  "weeklySummary.avgMood": "Avg mood: {{mood}}/5",
-
-  "checkin.title": "How are you feeling?",
-  "checkin.mood": "Mood",
-  "checkin.energy": "Energy",
-  "checkin.done": "Checked in today!",
-  "checkin.save": "Check in",
-  "checkin.addNote": "Add a note",
-  "checkin.notePlaceholder": "Anything on your mind?",
-  "checkin.streak": "{{days}}-day check-in streak",
-
-  "quiz.title": "Quiz of the Day",
-  "quiz.correct": "Correct! +5 XP",
-  "quiz.wrong": "Not this time — you'll get it tomorrow!",
-  "quiz.alreadyCorrect": "Quiz done — nice one!",
-  "quiz.alreadyWrong": "Quiz done — better luck tomorrow!",
-
-  "routine.title": "Morning Routine",
-  "routine.cta": "Start morning routine",
-  "routine.ctaSub": "Check-in · Challenge · Quiz — 2 min",
-  "routine.go": "Go",
-  "routine.step": "Step {{step}} of {{total}}",
-  "routine.challengeTitle": "Daily Challenge",
-  "routine.challengeComplete": "Done!",
-  "routine.markDone": "Mark as done",
-  "routine.complete": "Routine complete!",
-  "routine.bonus": "bonus",
-  "routine.backHome": "Back to home",
-
-  "learn.articles": "Articles",
-  "learn.programs": "Programs",
-  "learn.exercises": "Exercises",
-  "learn.markRead": "Mark as read",
-  "learn.noArticles": "No articles in this category yet.",
-  "learn.readProgress": "Articles read",
-  "learn.weeks": "weeks",
-  "learn.days": "days",
-  "learn.startProgram": "Start program",
-  "learn.loggedToday": "Logged today",
-  "learn.logDay": "Log today's session",
-  "learn.programComplete": "Program completed!",
-
-  "diary.guidedTitle": "Guided reflection",
-  "diary.promptTitle": "4C Framework",
-  "diary.moodContext": "What is this about?",
-  "diary.aiConsent": "Let AI Coach read this entry for better advice",
-  "diary.guided.whatWentWell": "What went well today?",
-  "diary.guided.whatWasHard": "What was hard?",
-  "diary.guided.oneThing": "One thing I learned",
-  "diary.guided.grateful": "What am I grateful for?",
-  "diary.context.training": "Training",
-  "diary.context.match": "Match",
-  "diary.context.school": "School",
-  "diary.context.friends": "Friends",
-  "diary.context.family": "Family",
-
-  "mentor.dashboard.title": "Parent Dashboard",
-  "mentor.dashboard.subtitle": "{{name}}'s wellbeing & activity",
-  "mentor.dashboard.privacy": "You see trends only — diary content stays private.",
-  "mentor.dashboard.alertLowMood": "{{name}} has had low mood for 3+ consecutive days. Consider a conversation.",
-  "mentor.dashboard.alertBurnout": "Possible overtraining: low energy with high training frequency.",
-  "mentor.dashboard.alertInactive": "No check-ins for {{days}} days. Engagement may be dropping.",
-  "mentor.dashboard.avgMood": "Avg Mood",
-  "mentor.dashboard.avgEnergy": "Avg Energy",
-  "mentor.dashboard.streak": "Streak",
-  "mentor.dashboard.moodTrend": "Mood & Energy (30 days)",
-  "mentor.dashboard.activity": "Weekly Activity",
-  "mentor.dashboard.noData": "No check-in data yet. Encourage daily check-ins!",
-
-  "levelUp.title": "Level Up!",
-  "levelUp.continue": "Awesome!",
-
-  "progress.moodTrend": "Mood & Energy",
-  "progress.moodPerformance": "Mood vs Performance",
-  "progress.burnoutHigh": "Rest day recommended",
-  "progress.burnoutMedium": "Watch your energy",
-  "progress.burnoutDetail": "Avg energy {{energy}}/5 · Avg mood {{mood}}/5 · {{sessions}} sessions this week",
-
-  "profile.mentorDashboard": "Parent Dashboard",
-
-  "common.moreDetails": "▼ More details",
-  "common.lessDetails": "▲ Less details",
-
   "weeklySummary.title": "Your Week",
   "weeklySummary.trainings": "{{count}} trainings",
   "weeklySummary.matches": "{{count}} matches",
@@ -788,17 +674,7 @@
   "dashboard.welcomeStep1": "Complete your morning routine (2 min)",
   "dashboard.welcomeStep2": "Log your first training session",
   "dashboard.welcomeStep3": "Explore exercises in the Learn tab",
-
   "mentor.subtitle": "{{name}}'s wellbeing & activity",
-
-  "dashboard.welcomeTitle": "Welcome to Golazo!",
-  "dashboard.welcomeText": "Start your journey! Here's what to do:",
-  "dashboard.welcomeStep1": "Complete your morning routine (2 min)",
-  "dashboard.welcomeStep2": "Log your first training session",
-  "dashboard.welcomeStep3": "Explore exercises in the Learn tab",
-
-  "mentor.subtitle": "{{name}}'s wellbeing & activity",
-
   "theme.title": "Tema de la app",
   "theme.classic": "Clásico",
   "theme.team": "Mi club",
@@ -808,5 +684,11 @@
   "theme.lavender": "Lavanda",
   "theme.sand": "Arena",
   "theme.rose": "Rosa",
-  "theme.noTeamHint": "Añade un equipo en tu perfil para usar los colores del club"
+  "theme.noTeamHint": "Añade un equipo en tu perfil para usar los colores del club",
+  "art.tac06.title": "Transiciones: los 3 segundos que ganan partidos",
+  "art.tac06.body": "El momento en que el balón cambia de posesión es cuando se crean la mayoría de los goles. En los 3 segundos después de recuperar el balón, el equipo rival está desorganizado — los defensas están fuera de posición, los mediocampistas no han recuperado. Esta es tu ventana. Cuando tu equipo recupera el balón, mira hacia adelante INMEDIATAMENTE. ¿Puedes hacer un pase rápido al espacio? Si sí — hazlo. Si no — mantén la posesión y espera la siguiente oportunidad. Los mejores equipos de contraataque (Real Madrid, Liverpool) entrenan este momento obsesivamente. Practícalo: en el instante que recuperas el balón en entrenamiento, acelera hacia adelante con propósito.",
+  "art.nut06.title": "5 snacks que todo joven futbolista debería conocer",
+  "art.nut06.body": "No todos los snacks son iguales. Aquí van 5 que realmente ayudan a tu juego: (1) Plátano — la barra energética de la naturaleza. Come uno 30 min antes del entrenamiento para energía rápida. (2) Tostada con mantequilla de cacahuete — carbos + proteína, perfecto 2 horas antes del partido. (3) Yogur griego con miel — gran snack de recuperación post-entrenamiento, lleno de proteínas. (4) Mix de frutos secos — energía portátil para días de torneo. (5) Leche con chocolate — suena raro, pero los científicos demostraron que es una de las mejores bebidas de recuperación. La proporción perfecta de carbos y proteína. Evita: bebidas energéticas, patatas fritas, dulces antes de entrenar — te dejan sin energía justo cuando más la necesitas.",
+  "art.men05.title": "La regla del 1%: las pequeñas mejoras crean campeones",
+  "art.men05.body": "El equipo de ciclismo británico pasó de mediocre a dominante mejorando un 1% en cientos de pequeñas áreas: nutrición, sueño, altura del asiento, técnica de lavado de manos. El mismo principio se aplica al fútbol. No necesitas una transformación dramática — necesitas pequeñas mejoras constantes. Esta semana, elige UNA micro-habilidad: quizás siempre mirar por encima del hombro antes de recibir, o golpear con el empeine en vez de la punta, o esprintar de vuelta tras perder el balón. Domina esa cosa durante 7 días. La siguiente semana, elige otra. Después de un año de mejoras del 1%, serás irreconocible. Los campeones no se hacen en un momento — se construyen en miles de pequeños momentos."
 }

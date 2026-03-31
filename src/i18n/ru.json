@@ -11,7 +11,6 @@
   "nav.progress": "Прогресс",
   "nav.education": "Советы",
   "nav.settings": "Настройки",
-
   "dashboard.quote": "Цитата дня",
   "dashboard.level": "Уровень {{level}}",
   "dashboard.xp": "{{current}} / {{next}} XP",
@@ -38,7 +37,6 @@
   "dashboard.upcoming": "Следующее событие",
   "dashboard.skills": "Мои навыки",
   "dashboard.activity": "Активность",
-
   "log.training": "Тренировка",
   "log.match": "Матч",
   "log.tournament": "Турнир",
@@ -53,7 +51,6 @@
   "log.yesterday": "Вчера",
   "log.orLogManually": "Или добавить вручную",
   "log.date": "Дата",
-
   "training.title": "Запись тренировки",
   "training.type.team": "Команда ⚽",
   "training.type.individual": "Индивид. 🏃",
@@ -76,7 +73,6 @@
   "training.save": "Записать тренировку",
   "training.saved": "Тренировка записана! +{{xp}} XP",
   "training.fromSchedule": "Из расписания",
-
   "match.title": "Запись матча",
   "match.opponent": "Соперник",
   "match.competition": "Соревнование",
@@ -98,7 +94,6 @@
   "match.toImprove": "Что улучшить",
   "match.save": "Записать матч",
   "match.saved": "Матч записан! +{{xp}} XP",
-
   "tournament.title": "Турнир",
   "tournament.name": "Название турнира",
   "tournament.dates": "Даты",
@@ -110,7 +105,6 @@
   "tournament.mvp": "Момент турнира",
   "tournament.complete": "Завершить турнир",
   "tournament.completed": "Турнир завершён! +{{xp}} XP",
-
   "diary.title": "Дневник",
   "diary.write": "Написать запись",
   "diary.prompt.commitment": "Над чем я сегодня работал больше всего?",
@@ -122,7 +116,6 @@
   "diary.save": "Сохранить запись",
   "diary.saved": "Запись сохранена! +{{xp}} XP",
   "diary.private": "🔒 Только для тебя",
-
   "exercises.title": "Упражнения",
   "exercises.filter": "Фильтр",
   "exercises.all": "Все",
@@ -135,7 +128,6 @@
   "equipment.wall": "Стена",
   "equipment.partner": "Партнёр",
   "equipment.none": "Без инвентаря",
-
   "challenges.title": "Вызовы",
   "challenges.daily": "Ежедневные",
   "challenges.weekly": "Еженедельные",
@@ -154,27 +146,23 @@
   "challenges.weakFootDesc": "30-дневная программа левой ноги",
   "challenges.mentalChampDesc": "Визуализация и позитивный диалог",
   "challenges.deepPracticeDesc": "7 дней глубокой практики",
-
   "skills.technical": "Техника ⚽",
   "skills.physical": "Физика 🏃",
   "skills.tactical": "Тактика 🧠",
   "skills.mental": "Ментал 💪",
   "skills.performance": "Результаты 📊",
   "skills.knowledge": "Знания 📚",
-
   "rank.rookie": "Любитель",
   "rank.player": "Полупро",
   "rank.talent": "Профи",
   "rank.star": "Звезда",
   "rank.pro": "Элита",
-
   "profile.title": "Профиль",
   "profile.card": "Моя карточка",
   "profile.achievements": "Достижения",
   "profile.language": "Язык",
   "profile.stats": "Статистика сезона",
   "profile.export": "Скачать карточку",
-
   "mentor.schedule.title": "Расписание",
   "mentor.schedule.add": "Добавить событие",
   "mentor.schedule.training": "Тренировка",
@@ -187,14 +175,13 @@
   "mentor.education.sixWords": "6 важных слов",
   "mentor.education.sixWordsText": "«Мне нравится смотреть, как ты играешь»",
   "mentor.education.letThemOwn": "Пусть это будет его путь",
-
   "common.save": "Сохранить",
   "common.cancel": "Отмена",
   "common.back": "Назад",
+  "common.close": "Закрыть",
   "common.date": "Дата",
   "common.today": "Сегодня",
   "common.loading": "Загрузка...",
-
   "ex.tech.juggling": "Жонглирование мячом",
   "ex.tech.juggling.desc": "Чеканка мяча обеими ногами. Начни с 10 раз, затем увеличивай. Считай свой рекорд!",
   "ex.tech.insideOutside": "Внутренняя-внешняя сторона",
@@ -245,7 +232,6 @@
   "ex.know.offside.desc": "Нарисуй 3 ситуации: офсайд, нет офсайда, спорный момент. Объясни каждую.",
   "ex.know.nutrition": "Питание футболиста",
   "ex.know.nutrition.desc": "Запиши, что есть за 3 часа до матча, во время и после. Вода, углеводы, белок.",
-
   "login.tagline": "Твой футбольный путь начинается здесь",
   "login.asPlayer": "Я — Игрок",
   "login.playerDesc": "Записывай тренировки, матчи и развивайся",
@@ -253,7 +239,6 @@
   "login.mentorDesc": "Следи за прогрессом и поддерживай развитие игрока",
   "login.googleNote": "Войдите через Google для сохранения данных",
   "login.skip": "Продолжить без аккаунта",
-
   "onboarding.welcome": "Добро пожаловать в Golazo! ⚽",
   "onboarding.whoAreYou": "Давай настроим профиль, чтобы подобрать тебе упражнения.",
   "onboarding.iAmPlayer": "Я — Игрок",
@@ -302,10 +287,8 @@
   "onboarding.finish": "Поехали! 🚀",
   "onboarding.allSet": "Всё готово!",
   "onboarding.doneMsg": "Профиль настроен. Тренируйся, записывай матчи и развивайся!",
-
   "challenges.start": "Начать",
   "challenges.loggedToday": "Записано сегодня",
-
   "schedule.mon": "Пн",
   "schedule.tue": "Вт",
   "schedule.wed": "Ср",
@@ -349,7 +332,6 @@
   "schedule.eventNotes": "Заметки (необязательно)",
   "schedule.trainingTypeLabel": "Тип тренировки",
   "mentor.schedule.event": "Событие",
-
   "profile.physical": "Физические параметры",
   "profile.jump": "прыжок",
   "profile.beepTest": "бип-тест",
@@ -361,7 +343,6 @@
   "profile.logout": "Выйти",
   "profile.reset": "Сбросить все данные",
   "profile.resetConfirm": "Это удалит все ваши данные. Вы уверены?",
-
   "physical.height": "Рост",
   "physical.weight": "Вес",
   "physical.sittingHeight": "Рост сидя",
@@ -403,7 +384,6 @@
   "physical.recommended": "рекомендуется",
   "physical.required": "обязательно",
   "physical.resetDefaults": "Сбросить на стандартные",
-
   "progress.title": "Прогресс",
   "progress.xpTrend": "Тренд XP (30 дней)",
   "progress.matchResults": "Результаты матчей",
@@ -431,7 +411,6 @@
   "progress.totalMatches": "Всего матчей",
   "progress.totalGoals": "Всего голов",
   "progress.totalXp": "Всего XP",
-
   "coach.title": "AI Тренер",
   "coach.hint": "Получи персональный совет по тренировкам",
   "coach.getAdvice": "Получить совет",
@@ -472,7 +451,6 @@
   "coach.insight.knowStart": "Изучи базу: правило офсайда, когда назначают фолы, что делают разные позиции. Понимание игры делает тебя умнее на поле.",
   "coach.insight.knowLearn": "Смотри полные матчи (не только хайлайты) и изучай построения. Замечай, как команды меняют схему в атаке и обороне — это даёт преимущество.",
   "coach.insight.knowDeepen": "Углубляйся: узнай о питании для спортсменов, правильной разминке и профилактике травм. Забота о теле — часть полноценного футболиста.",
-
   "leaderboard.title": "Рейтинг",
   "leaderboard.inviteFriends": "Пригласи друзей",
   "leaderboard.generateCode": "Создать код приглашения",
@@ -484,7 +462,6 @@
   "leaderboard.linked": "Успешно подключено!",
   "leaderboard.invalidCode": "Неверный или истёкший код",
   "leaderboard.offlineError": "Офлайн — подключись к интернету",
-
   "exercises.watchVideo": "Смотреть видео",
   "exercises.search": "Поиск упражнений...",
   "exercises.sortBy": "Сортировка",
@@ -504,11 +481,9 @@
   "methodology.danAbrahams": "Дэн Абрахамс 4C",
   "methodology.talentCode": "Talent Code",
   "methodology.uefa": "Рекомендации УЕФА",
-
   "profile.uploadPhoto": "Добавить фото",
   "profile.changePhoto": "Изменить",
   "profile.removePhoto": "Удалить фото",
-
   "ach.train10": "10 тренировок",
   "ach.train10Desc": "Пройди 10 тренировок",
   "ach.train50": "50 тренировок",
@@ -543,7 +518,6 @@
   "ach.level10Desc": "Достигни уровня 10",
   "ach.level25": "Уровень 25",
   "ach.level25Desc": "Достигни уровня 25",
-
   "import.title": "Добавить турнир",
   "import.addTournament": "Добавить турнир",
   "import.addTournamentHint": "Импорт расписания со страницы турнира или вручную",
@@ -567,7 +541,6 @@
   "import.teamSetup": "Команда",
   "import.tournamentTeamName": "Название команды в турнире",
   "import.tournamentTeamHint": "Как ваша команда указана в этом турнире",
-
   "teams.title": "Мои команды",
   "teams.manage": "Управление",
   "teams.primary": "Основной клуб",
@@ -594,13 +567,11 @@
   "teams.useThis": "Использовать эту",
   "teams.addAnyway": "Добавить всё равно",
   "teams.duplicateError": "Команда с таким названием уже существует",
-
   "onboarding.jerseyNumber": "Номер футболки",
   "onboarding.country": "Страна",
   "onboarding.city": "Город",
   "onboarding.cityPlaceholder": "напр. Рига",
   "match.playingFor": "Играю за",
-
   "empty.matches.title": "Матчей пока нет",
   "empty.matches.text": "Запиши свой первый матч и начни отслеживать прогресс!",
   "empty.matches.action": "Записать матч",
@@ -614,7 +585,6 @@
   "toast.saved": "Сохранено!",
   "toast.xpEarned": "+{{xp}} XP получено!",
   "toast.error": "Что-то пошло не так",
-
   "portal.title": "Мой футбол",
   "portal.active": "Активный",
   "portal.tournaments": "Мои турниры",
@@ -624,7 +594,6 @@
   "portal.noClubs": "Клубы с командами {{age}} не найдены",
   "portal.emptyTitle": "Нет футбольной активности",
   "portal.emptyText": "Добавьте турнир или запишите первый матч",
-
   "checkin.title": "Как ты себя чувствуешь?",
   "checkin.mood": "Настроение",
   "checkin.energy": "Энергия",
@@ -633,13 +602,11 @@
   "checkin.addNote": "Добавить заметку",
   "checkin.notePlaceholder": "Что-то на уме?",
   "checkin.streak": "{{days}} дней подряд ✅",
-
   "quiz.title": "Вопрос дня",
   "quiz.correct": "Правильно! +5 XP",
   "quiz.wrong": "Не в этот раз — попробуй завтра!",
   "quiz.alreadyCorrect": "Вопрос дня пройден — молодец!",
   "quiz.alreadyWrong": "Вопрос дня пройден — завтра повезёт!",
-
   "routine.title": "Утренняя рутина",
   "routine.cta": "Начать утреннюю рутину",
   "routine.ctaSub": "Отметка · Челлендж · Вопрос — 2 мин",
@@ -651,7 +618,6 @@
   "routine.complete": "Рутина завершена!",
   "routine.bonus": "бонус",
   "routine.backHome": "На главную",
-
   "learn.articles": "Статьи",
   "learn.programs": "Программы",
   "learn.exercises": "Упражнения",
@@ -664,7 +630,6 @@
   "learn.loggedToday": "Сегодня отмечено",
   "learn.logDay": "Записать сегодняшнее занятие",
   "learn.programComplete": "Программа завершена!",
-
   "diary.guidedTitle": "Направленная рефлексия",
   "diary.promptTitle": "Метод 4С",
   "diary.moodContext": "О чём это?",
@@ -678,7 +643,6 @@
   "diary.context.school": "Школа",
   "diary.context.friends": "Друзья",
   "diary.context.family": "Семья",
-
   "mentor.dashboard.title": "Панель для родителей",
   "mentor.dashboard.subtitle": "Самочувствие и активность: {{name}}",
   "mentor.dashboard.privacy": "Вы видите только тренды — содержание дневника приватно.",
@@ -691,35 +655,27 @@
   "mentor.dashboard.moodTrend": "Настроение и энергия (30 дней)",
   "mentor.dashboard.activity": "Активность за неделю",
   "mentor.dashboard.noData": "Нет данных. Поощряйте ежедневные отметки!",
-
   "levelUp.title": "Новый уровень!",
   "levelUp.continue": "Круто!",
-
   "progress.moodTrend": "Настроение и энергия",
   "progress.moodPerformance": "Настроение vs результат",
   "progress.burnoutHigh": "Рекомендуем день отдыха",
   "progress.burnoutMedium": "Следи за энергией",
   "progress.burnoutDetail": "Ср. энергия {{energy}}/5 · Ср. настр. {{mood}}/5 · {{sessions}} тренировок",
-
   "profile.mentorDashboard": "Панель для родителей",
-
   "common.moreDetails": "▼ Подробнее",
   "common.lessDetails": "▲ Свернуть",
-
   "weeklySummary.title": "Твоя неделя",
   "weeklySummary.trainings": "{{count}} тренировок",
   "weeklySummary.matches": "{{count}} матчей",
   "weeklySummary.avgMood": "Ср. настроение: {{mood}}/5",
   "weeklySummary.focus": "Фокус на неделю: {{area}}",
-
   "dashboard.welcomeTitle": "Добро пожаловать в Golazo!",
   "dashboard.welcomeText": "Начни свой путь! Вот что делать:",
   "dashboard.welcomeStep1": "Пройди утреннюю рутину (2 мин)",
   "dashboard.welcomeStep2": "Запиши первую тренировку",
   "dashboard.welcomeStep3": "Открой упражнения на вкладке Учиться",
-
   "mentor.subtitle": "Самочувствие и активность: {{name}}",
-
   "theme.title": "Тема приложения",
   "theme.classic": "Классика",
   "theme.team": "Мой клуб",
@@ -729,5 +685,11 @@
   "theme.lavender": "Лаванда",
   "theme.sand": "Песок",
   "theme.rose": "Роза",
-  "theme.noTeamHint": "Добавьте команду в профиле для цветов клуба"
+  "theme.noTeamHint": "Добавьте команду в профиле для цветов клуба",
+  "art.tac06.title": "Переходы: 3 секунды, которые решают матчи",
+  "art.tac06.body": "Момент смены владения мячом — это время, когда создаётся большинство голов. В первые 3 секунды после отбора соперник дезорганизован — защитники не на позициях, полузащитники не успели вернуться. Это твоё окно. Когда твоя команда отбирает мяч, СРАЗУ смотри вперёд. Можно отдать быстрый пас в свободную зону? Да — отдавай. Нет — сохрани мяч и жди следующий момент. Лучшие контратакующие команды (Реал Мадрид, Ливерпуль) отрабатывают этот момент до автоматизма. Тренируй это: как только отобрал мяч, сразу ускоряйся вперёд с целью.",
+  "art.nut06.title": "5 перекусов, которые должен знать каждый юный футболист",
+  "art.nut06.body": "Не все перекусы одинаково полезны. Вот 5, которые реально помогают на поле: (1) Банан — природный энергетический батончик. Съешь за 30 минут до тренировки для быстрой энергии. (2) Тост с арахисовой пастой — углеводы + белок, идеально за 2 часа до матча. (3) Греческий йогурт с мёдом — отличный перекус после тренировки, много белка. (4) Смесь орехов и сухофруктов — портативная энергия для турнирных дней. (5) Шоколадное молоко — звучит странно, но учёные доказали, что это один из лучших напитков для восстановления. Идеальное соотношение углеводов и белка. Избегай: энергетиков, чипсов, конфет перед тренировкой — они обрушат энергию, когда она нужна больше всего.",
+  "art.men05.title": "Правило 1%: маленькие улучшения создают чемпионов",
+  "art.men05.body": "Британская велокоманда превратилась из середняков в доминирующую силу, улучшившись на 1% в сотнях мелочей: питание, сон, высота сиденья, техника мытья рук. Тот же принцип работает в футболе. Тебе не нужна драматическая трансформация — нужны маленькие, последовательные улучшения. На этой неделе выбери ОДИН микро-навык: может, это всегда проверять плечо перед приёмом мяча, или бить подъёмом вместо носка, или спринт назад после потери мяча. Отработай эту одну вещь 7 дней. На следующей неделе — выбери другую. Через год улучшений по 1% ты будешь неузнаваем. Чемпионов не делают за один момент — их строят тысячи маленьких."
 }
