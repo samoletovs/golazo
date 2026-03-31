@@ -5,13 +5,13 @@ import { fifaCardRatings, overallRating } from './skills'
 const CARD_W = 440
 const CARD_H = 620
 
-/** Each rank has: [bg dark, bg light, accent, text contrast] */
+/** Each tier has: [bg dark, bg light, accent, shine] — based on overall rating like FUT */
 const RANK_PALETTES: Record<string, { bg: [string, string]; accent: string; shine: string }> = {
-  bronze: { bg: ['#1a1410', '#2d2218'], accent: '#cd7f32', shine: 'rgba(205,127,50,0.35)' },
-  silver: { bg: ['#141820', '#1e2530'], accent: '#94a3b8', shine: 'rgba(148,163,184,0.3)' },
-  gold:   { bg: ['#1a1408', '#2d2410'], accent: '#f59e0b', shine: 'rgba(245,158,11,0.35)' },
-  diamond:{ bg: ['#0c1424', '#142038'], accent: '#3b82f6', shine: 'rgba(59,130,246,0.3)' },
-  platinum:{ bg: ['#18102a', '#241840'], accent: '#8b5cf6', shine: 'rgba(139,92,246,0.3)' },
+  bronze:  { bg: ['#1a1410', '#2d2218'], accent: '#d97706', shine: 'rgba(217,119,6,0.35)' },
+  silver:  { bg: ['#141820', '#1e2530'], accent: '#94a3b8', shine: 'rgba(148,163,184,0.3)' },
+  gold:    { bg: ['#1a1408', '#2d2410'], accent: '#f59e0b', shine: 'rgba(245,158,11,0.35)' },
+  diamond: { bg: ['#0c1424', '#142038'], accent: '#3b82f6', shine: 'rgba(59,130,246,0.3)' },
+  elite:   { bg: ['#18102a', '#241840'], accent: '#8b5cf6', shine: 'rgba(139,92,246,0.3)' },
 }
 
 const FIFA_LABELS: Record<string, string> = {
@@ -38,9 +38,12 @@ export async function renderFifaCard(
   if (!ctx) throw new Error('Canvas not supported')
 
   const rank = getRank(xp.level)
-  const palette = RANK_PALETTES[rank.color] ?? RANK_PALETTES.bronze
   const ratings = fifaCardRatings(skillTree)
   const overall = Math.round(overallRating(skillTree) * 10)
+
+  // FUT-style card tier based on overall skill rating
+  const tier = overall >= 90 ? 'elite' : overall >= 85 ? 'diamond' : overall >= 75 ? 'gold' : overall >= 65 ? 'silver' : 'bronze'
+  const palette = RANK_PALETTES[tier] ?? RANK_PALETTES.bronze
 
   // ── 1. Dark card background with subtle gradient ──
   const bg = ctx.createLinearGradient(0, 0, 0, CARD_H)

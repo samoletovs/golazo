@@ -8,7 +8,7 @@ import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, BarChart, 
 
 export function ProgressPage() {
   const { t } = useTranslation()
-  const { matches, trainings, xp, physicalProfile, checkIns } = useApp()
+  const { matches, trainings, physicalProfile, checkIns } = useApp()
 
   /* ── XP trend (last 30 days) ── */
   const xpTrend = useMemo(() => {
@@ -149,30 +149,6 @@ export function ProgressPage() {
         />
       )}
 
-      {/* ── XP Trend (gradient area) ── */}
-      <div className="card animate-fade-up">
-        <h2 className="text-sm font-bold mb-3">{t('progress.xpTrend')}</h2>
-        <ResponsiveContainer width="100%" height={180}>
-          <AreaChart data={xpTrend}>
-            <defs>
-              <linearGradient id="xpGradient" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="var(--color-primary)" stopOpacity={0.3} />
-                <stop offset="95%" stopColor="var(--color-primary)" stopOpacity={0.02} />
-              </linearGradient>
-            </defs>
-            <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
-            <XAxis dataKey="date" tick={{ fontSize: 10, fill: '#94a3b8' }} axisLine={false} tickLine={false} interval="preserveStartEnd" />
-            <YAxis tick={{ fontSize: 10, fill: '#94a3b8' }} width={35} axisLine={false} tickLine={false} />
-            <Tooltip
-              contentStyle={{ fontSize: 12, borderRadius: 12, border: 'none', boxShadow: '0 4px 16px rgba(0,0,0,0.1)', fontFamily: 'var(--font-data)' }}
-              cursor={{ stroke: 'var(--color-primary)', strokeWidth: 1, strokeDasharray: '4 4' }}
-            />
-            <Area type="monotone" dataKey="xp" stroke="var(--color-primary)" strokeWidth={2.5} fill="url(#xpGradient)" dot={false} activeDot={{ r: 5, fill: 'var(--color-primary)', stroke: '#fff', strokeWidth: 2 }} />
-          </AreaChart>
-        </ResponsiveContainer>
-      </div>
-
-      {/* ── Match Results Timeline ── */}
       {/* ── Match Results (card row) ── */}
       {matches.length > 0 && (
         <div className="animate-fade-up">
@@ -210,6 +186,47 @@ export function ProgressPage() {
         </div>
       )}
 
+      {/* ── Goals & Assists Trend ── */}
+      {goalsTrend.length > 0 && (
+        <div className="card animate-fade-up">
+          <h2 className="text-sm font-bold mb-3">{t('progress.goalsTrend')}</h2>
+          <ResponsiveContainer width="100%" height={160}>
+            <LineChart data={goalsTrend}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
+              <XAxis dataKey="match" tick={{ fontSize: 9, fill: '#94a3b8' }} axisLine={false} tickLine={false} />
+              <YAxis tick={{ fontSize: 10, fill: '#94a3b8' }} width={20} allowDecimals={false} axisLine={false} tickLine={false} />
+              <Tooltip contentStyle={{ fontSize: 12, borderRadius: 12, border: 'none', boxShadow: '0 4px 16px rgba(0,0,0,0.1)' }} />
+              <Line type="monotone" dataKey="goals" stroke="var(--color-primary)" strokeWidth={2.5} dot={{ r: 3, fill: 'var(--color-primary)', stroke: '#fff', strokeWidth: 2 }} name={t('progress.goals')} />
+              <Line type="monotone" dataKey="assists" stroke="#0ea5e9" strokeWidth={2.5} dot={{ r: 3, fill: '#0ea5e9', stroke: '#fff', strokeWidth: 2 }} name={t('progress.assists')} />
+              <Line type="monotone" dataKey="rating" stroke="#f59e0b" strokeWidth={1.5} strokeDasharray="5 5" dot={false} name={t('progress.selfRating')} />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+      )}
+
+      {/* ── XP Trend (gradient area) ── */}
+      <div className="card animate-fade-up">
+        <h2 className="text-sm font-bold mb-3">{t('progress.xpTrend')}</h2>
+        <ResponsiveContainer width="100%" height={180}>
+          <AreaChart data={xpTrend}>
+            <defs>
+              <linearGradient id="xpGradient" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="var(--color-primary)" stopOpacity={0.3} />
+                <stop offset="95%" stopColor="var(--color-primary)" stopOpacity={0.02} />
+              </linearGradient>
+            </defs>
+            <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
+            <XAxis dataKey="date" tick={{ fontSize: 10, fill: '#94a3b8' }} axisLine={false} tickLine={false} interval="preserveStartEnd" />
+            <YAxis tick={{ fontSize: 10, fill: '#94a3b8' }} width={35} axisLine={false} tickLine={false} />
+            <Tooltip
+              contentStyle={{ fontSize: 12, borderRadius: 12, border: 'none', boxShadow: '0 4px 16px rgba(0,0,0,0.1)', fontFamily: 'var(--font-data)' }}
+              cursor={{ stroke: 'var(--color-primary)', strokeWidth: 1, strokeDasharray: '4 4' }}
+            />
+            <Area type="monotone" dataKey="xp" stroke="var(--color-primary)" strokeWidth={2.5} fill="url(#xpGradient)" dot={false} activeDot={{ r: 5, fill: 'var(--color-primary)', stroke: '#fff', strokeWidth: 2 }} />
+          </AreaChart>
+        </ResponsiveContainer>
+      </div>
+
       {/* ── Training Frequency ── */}
       <div className="card animate-fade-up">
         <h2 className="text-sm font-bold mb-3">{t('progress.trainingFrequency')}</h2>
@@ -229,24 +246,6 @@ export function ProgressPage() {
           </BarChart>
         </ResponsiveContainer>
       </div>
-
-      {/* ── Goals & Assists Trend ── */}
-      {goalsTrend.length > 0 && (
-        <div className="card animate-fade-up">
-          <h2 className="text-sm font-bold mb-3">{t('progress.goalsTrend')}</h2>
-          <ResponsiveContainer width="100%" height={160}>
-            <LineChart data={goalsTrend}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
-              <XAxis dataKey="match" tick={{ fontSize: 9, fill: '#94a3b8' }} axisLine={false} tickLine={false} />
-              <YAxis tick={{ fontSize: 10, fill: '#94a3b8' }} width={20} allowDecimals={false} axisLine={false} tickLine={false} />
-              <Tooltip contentStyle={{ fontSize: 12, borderRadius: 12, border: 'none', boxShadow: '0 4px 16px rgba(0,0,0,0.1)' }} />
-              <Line type="monotone" dataKey="goals" stroke="var(--color-primary)" strokeWidth={2.5} dot={{ r: 3, fill: 'var(--color-primary)', stroke: '#fff', strokeWidth: 2 }} name={t('progress.goals')} />
-              <Line type="monotone" dataKey="assists" stroke="#0ea5e9" strokeWidth={2.5} dot={{ r: 3, fill: '#0ea5e9', stroke: '#fff', strokeWidth: 2 }} name={t('progress.assists')} />
-              <Line type="monotone" dataKey="rating" stroke="#f59e0b" strokeWidth={1.5} strokeDasharray="5 5" dot={false} name={t('progress.selfRating')} />
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
-      )}
 
       {/* ── Skill Radar ── */}
       <div className="card animate-fade-up">
@@ -335,42 +334,6 @@ export function ProgressPage() {
           </ResponsiveContainer>
         </div>
       )}
-
-      {/* ── Streak History (bold number) ── */}
-      <div className="card animate-fade-up">
-        <h2 className="text-sm font-bold mb-3">{t('progress.streakHistory')}</h2>
-        <div className="flex items-center gap-4">
-          <span className="stat-number text-gradient-fire" style={{ fontSize: '3rem' }}>{xp.streakDays}</span>
-          <div>
-            <p className="text-sm font-bold">{t('progress.currentStreak')}</p>
-            <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
-              {t('progress.streakHint')}
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* ── Summary Stats ── */}
-      <div className="grid grid-cols-2 gap-3 animate-fade-up">
-        <div className="stat-card stat-card-green">
-          <p className="stat-number text-gradient-green">{trainings.length}</p>
-          <p className="stat-label">{t('progress.totalTrainings')}</p>
-        </div>
-        <div className="stat-card stat-card-gold">
-          <p className="stat-number text-gradient-gold">{matches.length}</p>
-          <p className="stat-label">{t('progress.totalMatches')}</p>
-        </div>
-        <div className="stat-card stat-card-cyan">
-          <p className="stat-number text-gradient-green">{matches.reduce((s, m) => s + m.goals, 0)}</p>
-          <p className="stat-label">{t('progress.totalGoals')}</p>
-        </div>
-        <div className="stat-card stat-card-green">
-          <p className="stat-number text-gradient-gold">
-            {xp.totalXp.toLocaleString()}
-          </p>
-          <p className="stat-label">{t('progress.totalXp')}</p>
-        </div>
-      </div>
     </div>
   )
 }

@@ -53,6 +53,26 @@ export function Profile({ onNavigate }: { onNavigate?: (page: string) => void })
   const seasonGoals = matches.reduce((s, m) => s + m.goals, 0)
   const seasonAssists = matches.reduce((s, m) => s + m.assists, 0)
 
+  // FUT-style card tier based on overall skill rating (not XP level)
+  // Aligns with EA FC card tiers: Bronze ≤64, Silver 65-74, Gold 75-84, Diamond 85-89, Elite 90+
+  const overallDisplay = Math.round(overall * 10)
+  const cardTier =
+    overallDisplay >= 90 ? 'elite'
+    : overallDisplay >= 85 ? 'diamond'
+    : overallDisplay >= 75 ? 'gold'
+    : overallDisplay >= 65 ? 'silver'
+    : 'bronze'
+
+  // FUT-inspired card tier gradients (premium, not muddy)
+  const CARD_TIER_STYLES: Record<string, { gradient: string; border: string; label: string }> = {
+    bronze:  { gradient: 'linear-gradient(135deg, #92400e, #b45309)', border: 'rgba(180, 83, 9, 0.3)', label: '#d97706' },
+    silver:  { gradient: 'linear-gradient(135deg, #475569, #64748b)', border: 'rgba(100, 116, 139, 0.3)', label: '#94a3b8' },
+    gold:    { gradient: 'linear-gradient(135deg, #b45309, #d97706)', border: 'rgba(217, 119, 6, 0.3)', label: '#fbbf24' },
+    diamond: { gradient: 'linear-gradient(135deg, #1d4ed8, #2563eb)', border: 'rgba(37, 99, 235, 0.3)', label: '#60a5fa' },
+    elite:   { gradient: 'linear-gradient(135deg, #6d28d9, #7c3aed)', border: 'rgba(124, 58, 237, 0.3)', label: '#a78bfa' },
+  }
+  const tierStyle = CARD_TIER_STYLES[cardTier]
+
   function changeLanguage(lang: Language) {
     i18n.changeLanguage(lang)
     localStorage.setItem('golazo-lang', lang)
@@ -90,8 +110,6 @@ export function Profile({ onNavigate }: { onNavigate?: (page: string) => void })
     }
   }
 
-  const accentGradient = 'linear-gradient(135deg, var(--color-primary-darker), var(--color-primary-dark))'
-
   return (
     <div className="flex flex-col gap-4 p-4 pb-32">
       <h2 className="text-xl font-extrabold">{t('profile.title')}</h2>
@@ -102,17 +120,18 @@ export function Profile({ onNavigate }: { onNavigate?: (page: string) => void })
       {/* FIFA-style player card */}
       <div
         className="card-gold relative overflow-hidden animate-fade-up"
+        style={{ borderColor: tierStyle.border }}
       >
         {/* ── Hero: Rating + Identity ── */}
         <div className="flex items-start gap-4">
           {/* Overall rating badge */}
           <div className="flex flex-col items-center pt-1">
-            <span className="text-5xl font-black font-data leading-none" style={{ background: accentGradient, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-              {Math.round(overall * 10)}
+            <span className="text-5xl font-black font-data leading-none" style={{ background: tierStyle.gradient, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+              {overallDisplay}
             </span>
             <span
               className="mt-1 px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider text-white"
-              style={{ background: accentGradient }}
+              style={{ background: tierStyle.gradient }}
             >
               {t(rank.key)}
             </span>

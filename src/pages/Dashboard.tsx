@@ -2,7 +2,6 @@ import { useMemo, useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
 import { QuoteCard } from '../components/QuoteCard'
-import { SkillRadar } from '../components/SkillRadar'
 import { CoachCard } from '../components/CoachCard'
 import { WeeklyGoalRing } from '../components/WeeklyGoalRing'
 import { useCountUp } from '../hooks/useCountUp'
@@ -18,7 +17,6 @@ import { PhysicalUpdateFlow } from '../components/PhysicalUpdateFlow'
 import { MorningRoutine } from '../components/MorningRoutine'
 import { DailyQuiz } from '../components/DailyQuiz'
 import { LevelUpCelebration } from '../components/LevelUpCelebration'
-import { WeeklySummary } from '../components/WeeklySummary'
 
 export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void }) {
   const { t } = useTranslation()
@@ -610,57 +608,6 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
 
       {/* ── Quiz of the Day (only when morning routine not completed) ── */}
       {!routineComplete && <DailyQuiz />}
-
-      {/* ── Weekly Summary (U12+) ── */}
-      {!isYoung && <WeeklySummary />}
-
-      {/* ── Skill radar (U12+) ── */}
-      {!isYoung && <SkillRadar />}
-
-      {/* ── Recent matches (horizontal scroll) ── */}
-      {matches.length > 0 && (
-        <div className="animate-fade-up animate-stagger-4">
-          <div className="flex items-center justify-between mb-2 px-0">
-            <p className="section-label">{t('dashboard.matches')}</p>
-            {onNavigate && (
-              <button
-                className="text-xs font-bold"
-                style={{ color: 'var(--color-primary-dark)' }}
-                onClick={() => onNavigate('progress')}
-              >
-                {t('exercises.all')} →
-              </button>
-            )}
-          </div>
-          <div className="h-scroll">
-            {matches.slice(-8).reverse().map((m) => {
-              const result = getMatchResult(m)
-              return (
-                <div key={m.id} className="match-card-h" data-result={result}>
-                  <p className="text-xs font-bold" style={{ color: 'var(--color-text-muted)' }}>
-                    {new Date(m.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
-                  </p>
-                  <p className="text-sm font-bold mt-1" style={{ fontFamily: 'var(--font-display)' }}>
-                    {m.opponent}
-                  </p>
-                  <div className="flex items-baseline gap-2 mt-2">
-                    <span className="stat-number" style={{
-                      fontSize: '1.5rem',
-                      color: result === 'win' ? 'var(--color-primary-dark)' : result === 'loss' ? '#dc2626' : '#d97706'
-                    }}>
-                      {m.scoreUs} : {m.scoreThem}
-                    </span>
-                  </div>
-                  <div className="flex gap-2 mt-2">
-                    {m.goals > 0 && <span className="stat-pill stat-pill-green text-[10px]">⚽ {m.goals}</span>}
-                    {m.assists > 0 && <span className="stat-pill stat-pill-cyan text-[10px]">🎯 {m.assists}</span>}
-                  </div>
-                </div>
-              )
-            })}
-          </div>
-        </div>
-      )}
 
       {/* ── Quote of the day (sign-off) ── */}
       <QuoteCard />
