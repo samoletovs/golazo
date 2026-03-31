@@ -430,7 +430,11 @@ export function SchedulePage() {
     setRecurringTrainings(recurringTrainings.filter((r) => r.id !== id))
   }
 
-  const selectedEvents = selectedDate ? (eventsByDate.get(selectedDate) ?? []) : []
+  const selectedEvents = selectedDate
+    ? (activeTab === 'week'
+      ? weekEventsByDate.get(selectedDate) ?? []
+      : eventsByDate.get(selectedDate) ?? [])
+    : []
   const monthName = new Date(viewYear, viewMonth).toLocaleDateString(undefined, { month: 'long', year: 'numeric' })
 
   return (
@@ -449,26 +453,23 @@ export function SchedulePage() {
 
       {/* ══════════════════════ WEEK TAB ══════════════════════ */}
       {activeTab === 'week' && (
-        <div style={{ minHeight: 380 }}>
-          {/* Week navigation */}
-          <div className="card">
-            <div className="flex items-center justify-between mb-3">
-              <button className="tap-target text-lg font-bold px-2" onClick={() => setWeekOffset(weekOffset - 1)} aria-label="Previous week">←</button>
-              <div className="text-center">
-                <p className="section-label mb-0">{t('schedule.weeklyTitle')}</p>
-                <p className="text-[0.65rem]" style={{ color: 'var(--color-text-muted)' }}>
-                  {weekLabel}
-                  {!isCurrentWeek && (
-                    <button className="ml-2 underline" style={{ color: 'var(--color-primary-dark)' }} onClick={() => setWeekOffset(0)}>
-                      {t('schedule.thisWeek')}
-                    </button>
-                  )}
-                </p>
-              </div>
-              <button className="tap-target text-lg font-bold px-2" onClick={() => setWeekOffset(weekOffset + 1)} aria-label="Next week">→</button>
+        <div style={{ minHeight: 380 }} className="flex flex-col gap-4">
+          {/* Week navigation — outside card, like month */}
+          <div className="flex items-center justify-between">
+            <button className="tap-target text-lg font-bold px-2" onClick={() => setWeekOffset(weekOffset - 1)} aria-label="Previous week">←</button>
+            <div className="text-center">
+              <span className="text-sm font-bold">{weekLabel}</span>
+              {!isCurrentWeek && (
+                <button className="ml-2 text-xs underline" style={{ color: 'var(--color-primary-dark)' }} onClick={() => setWeekOffset(0)}>
+                  {t('schedule.thisWeek')}
+                </button>
+              )}
             </div>
+            <button className="tap-target text-lg font-bold px-2" onClick={() => setWeekOffset(weekOffset + 1)} aria-label="Next week">→</button>
+          </div>
 
-            {/* Week day rows — smart collapsing */}
+          {/* Week day rows */}
+          <div className="card p-3">
             <div className="flex flex-col">
               {weekDates.map((dk, idx) => {
                 const dayEvents = weekEventsByDate.get(dk) ?? []
@@ -617,22 +618,12 @@ export function SchedulePage() {
         </p>
       )}
 
-      {/* Selected date events (month view) */}
-      {activeTab === 'month' && selectedDate && (
+      {/* Selected date events (both views) */}
+      {selectedDate && (
             <div className="flex flex-col gap-2 animate-fade-up">
-              <div className="flex items-center justify-between">
-                <p className="section-label">
-                  {new Date(selectedDate + 'T00:00:00').toLocaleDateString(undefined, { weekday: 'long', month: 'short', day: 'numeric' })}
-                </p>
-                <button
-                  className="text-xs font-bold px-3 py-1.5 rounded-lg"
-                  style={{ background: 'var(--color-primary-bg)', color: 'var(--color-primary-dark)' }}
-                  onClick={() => openAddForm(selectedDate)}
-                  aria-label={t('mentor.schedule.add')}
-                >
-                  + {t('mentor.schedule.add')}
-                </button>
-              </div>
+              <p className="section-label">
+                {new Date(selectedDate + 'T00:00:00').toLocaleDateString(undefined, { weekday: 'long', month: 'short', day: 'numeric' })}
+              </p>
 
               {selectedEvents.length === 0 && (
                 <p className="text-xs text-center py-6" style={{ color: 'var(--color-text-muted)' }}>
