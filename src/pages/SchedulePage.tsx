@@ -346,6 +346,13 @@ export function SchedulePage() {
 
   function tryOpenAdd(nextType: ScheduleType) {
     if (!selectedDate) {
+      // On week view, auto-select today; on month view, hint to select a date
+      if (activeTab === 'week') {
+        const todayDate = new Date().toISOString().split('T')[0]
+        setSelectedDate(todayDate)
+        openAddForm(todayDate, nextType)
+        return
+      }
       setSelectDateHint(true)
       setTimeout(() => setSelectDateHint(false), 2500)
       return
@@ -442,7 +449,7 @@ export function SchedulePage() {
 
       {/* ══════════════════════ WEEK TAB ══════════════════════ */}
       {activeTab === 'week' && (
-        <>
+        <div style={{ minHeight: 380 }}>
           {/* Week navigation */}
           <div className="card">
             <div className="flex items-center justify-between mb-3">
@@ -519,12 +526,12 @@ export function SchedulePage() {
               })}
             </div>
           </div>
-        </>
+        </div>
       )}
 
       {/* ══════════════════════ MONTH TAB ══════════════════════ */}
       {activeTab === 'month' && (
-        <>
+        <div style={{ minHeight: 380 }} className="flex flex-col gap-4">
           {/* Month navigation */}
           <div className="flex items-center justify-between">
             <button className="tap-target text-lg font-bold px-2" onClick={prevMonth} aria-label="Previous month">←</button>
@@ -579,36 +586,38 @@ export function SchedulePage() {
               })}
             </div>
           </div>
+        </div>
+      )}
 
-          {/* Add buttons — always visible */}
-          <div className="grid grid-cols-4 gap-2">
-            {([
-              { type: 'training' as ScheduleType, emoji: '⚽', labelKey: 'schedule.addTraining', color: 'var(--color-primary-dark)' },
-              { type: 'match' as ScheduleType, emoji: '🏟️', labelKey: 'schedule.addMatch', color: 'var(--color-cat-physical)' },
-              { type: 'tournament' as ScheduleType, emoji: '🏆', labelKey: 'schedule.addTournament', color: 'var(--color-gold-500)' },
-              { type: 'event' as ScheduleType, emoji: '📅', labelKey: 'schedule.addEvent', color: 'var(--color-text-secondary)' },
-            ]).map((btn) => (
-              <button
-                key={btn.type}
-                className="card flex flex-col items-center gap-1 py-2.5"
-                style={{ cursor: 'pointer' }}
-                onClick={() => btn.type === 'tournament' ? setShowImport(true) : tryOpenAdd(btn.type)}
-              >
-                <span className="text-base">{btn.emoji}</span>
-                <span className="text-[0.6rem] font-bold leading-tight text-center" style={{ color: btn.color }}>{t(btn.labelKey)}</span>
-              </button>
-            ))}
-          </div>
+      {/* ── Add event buttons (visible on both week & month) ── */}
+      <div className="grid grid-cols-4 gap-2">
+        {([
+          { type: 'training' as ScheduleType, emoji: '⚽', labelKey: 'schedule.addTraining', color: 'var(--color-primary-dark)' },
+          { type: 'match' as ScheduleType, emoji: '🏟️', labelKey: 'schedule.addMatch', color: 'var(--color-cat-physical)' },
+          { type: 'tournament' as ScheduleType, emoji: '🏆', labelKey: 'schedule.addTournament', color: 'var(--color-gold-500)' },
+          { type: 'event' as ScheduleType, emoji: '📅', labelKey: 'schedule.addEvent', color: 'var(--color-text-secondary)' },
+        ]).map((btn) => (
+          <button
+            key={btn.type}
+            className="card flex flex-col items-center gap-1 py-2.5"
+            style={{ cursor: 'pointer' }}
+            onClick={() => btn.type === 'tournament' ? setShowImport(true) : tryOpenAdd(btn.type)}
+          >
+            <span className="text-base">{btn.emoji}</span>
+            <span className="text-[0.6rem] font-bold leading-tight text-center" style={{ color: btn.color }}>{t(btn.labelKey)}</span>
+          </button>
+        ))}
+      </div>
 
-          {/* Select date hint */}
-          {selectDateHint && (
-            <p className="text-xs text-center animate-fade-up" style={{ color: 'var(--color-danger)' }}>
-              ☝️ {t('schedule.selectDate')}
-            </p>
-          )}
+      {/* Select date hint */}
+      {selectDateHint && (
+        <p className="text-xs text-center animate-fade-up" style={{ color: 'var(--color-danger)' }}>
+          ☝️ {t('schedule.selectDate')}
+        </p>
+      )}
 
-          {/* Selected date events */}
-          {selectedDate && (
+      {/* Selected date events (month view) */}
+      {activeTab === 'month' && selectedDate && (
             <div className="flex flex-col gap-2 animate-fade-up">
               <div className="flex items-center justify-between">
                 <p className="section-label">
@@ -684,9 +693,6 @@ export function SchedulePage() {
               })}
             </div>
           )}
-
-        </>
-      )}
 
       {/* ── Recurring trainings (visible on both week & month) ── */}
       <div className="card">
