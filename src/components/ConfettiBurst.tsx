@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-const CONFETTI_COLORS = ['#16a34a', '#fbbf24', '#0ea5e9', '#ef4444', '#8b5cf6', '#ec4899']
+const CONFETTI_COLORS = ['var(--color-primary)', '#fbbf24', 'var(--color-primary-light)', '#ef4444', '#8b5cf6', '#ec4899']
 const PARTICLE_COUNT = 24
 
 interface Particle {

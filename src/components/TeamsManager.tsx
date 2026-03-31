@@ -216,7 +216,7 @@ export function TeamsManager({ onClose }: { onClose: () => void }) {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="block text-[0.6rem] truncate"
-                        style={{ color: 'var(--color-cyan)' }}
+                        style={{ color: 'var(--color-primary-light)' }}
                       >
                         🔗 {team.website.replace(/^https?:\/\/(www\.)?/, '').split('/')[0]}
                       </a>
@@ -269,7 +269,7 @@ export function TeamsManager({ onClose }: { onClose: () => void }) {
                       />
                       <button
                         className="text-xs px-2 py-1 rounded"
-                        style={{ background: 'var(--color-glass-active)', color: 'var(--color-cyan)' }}
+                        style={{ background: 'var(--color-glass-active)', color: 'var(--color-primary-dark)' }}
                         onClick={() => {
                           if (websiteInput.startsWith('https://')) {
                             setTeamWebsite(team.id, websiteInput)

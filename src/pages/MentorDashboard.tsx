@@ -164,7 +164,7 @@ export function MentorDashboard({ onBack }: { onBack?: () => void }) {
           <p className="stat-label">{t('mentor.avgMood')}</p>
         </div>
         <div className="stat-card stat-card-cyan">
-          <p className="stat-number" style={{ fontSize: '1.75rem', color: '#0284c7' }}>{avgEnergy7}</p>
+            <p className="stat-number" style={{ fontSize: '1.75rem', color: 'var(--color-primary-light)' }}>{avgEnergy7}</p>
           <p className="stat-label">{t('mentor.avgEnergy')}</p>
         </div>
         <div className="stat-card stat-card-green">
@@ -184,7 +184,7 @@ export function MentorDashboard({ onBack }: { onBack?: () => void }) {
               <YAxis domain={[1, 5]} ticks={[1, 2, 3, 4, 5]} tick={{ fontSize: 10, fill: '#94a3b8' }} width={20} axisLine={false} tickLine={false} />
               <Tooltip contentStyle={{ fontSize: 12, borderRadius: 12, border: 'none', boxShadow: '0 4px 16px rgba(0,0,0,0.1)' }} />
               <Line type="monotone" dataKey="mood" stroke="#f59e0b" strokeWidth={2.5} dot={{ r: 3, fill: '#f59e0b', stroke: '#fff', strokeWidth: 2 }} name="Mood" />
-              <Line type="monotone" dataKey="energy" stroke="#3b82f6" strokeWidth={2.5} dot={{ r: 3, fill: '#3b82f6', stroke: '#fff', strokeWidth: 2 }} name="Energy" />
+              <Line type="monotone" dataKey="energy" stroke="var(--color-primary-light)" strokeWidth={2.5} dot={{ r: 3, fill: 'var(--color-primary-light)', stroke: '#fff', strokeWidth: 2 }} name="Energy" />
             </LineChart>
           </ResponsiveContainer>
         </div>
@@ -204,7 +204,7 @@ export function MentorDashboard({ onBack }: { onBack?: () => void }) {
                     className="h-6 rounded"
                     style={{
                       width: 24,
-                      background: i < w.trainings ? 'var(--color-primary)' : '#3b82f6',
+                      background: i < w.trainings ? 'var(--color-primary)' : 'var(--color-primary-light)',
                     }}
                   />
                 ))}
@@ -220,7 +220,7 @@ export function MentorDashboard({ onBack }: { onBack?: () => void }) {
         </div>
         <div className="flex gap-4 mt-2">
           <span className="text-xs flex items-center gap-1"><span className="inline-block w-2 h-2 rounded" style={{ background: 'var(--color-primary)' }} /> {t('log.training')}</span>
-          <span className="text-xs flex items-center gap-1"><span className="inline-block w-2 h-2 rounded" style={{ background: '#3b82f6' }} /> {t('log.match')}</span>
+            <span className="text-xs flex items-center gap-1"><span className="inline-block w-2 h-2 rounded" style={{ background: 'var(--color-primary-light)' }} /> {t('log.match')}</span>
         </div>
       </div>
 

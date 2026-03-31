@@ -156,7 +156,7 @@ function RecentResultCard({ match }: { match: MatchEntry }) {
       <p className="text-xl font-black font-data" style={{ color }}>{match.scoreUs}:{match.scoreThem}</p>
       <div className="flex gap-1">
         {match.goals > 0 && <span className="text-[9px] font-data font-bold px-1.5 py-0.5 rounded-full" style={{ background: 'rgba(5,150,105,0.1)', color: 'var(--color-primary-dark)' }}>⚽{match.goals}</span>}
-        {match.assists > 0 && <span className="text-[9px] font-data font-bold px-1.5 py-0.5 rounded-full" style={{ background: 'rgba(14,165,233,0.1)', color: '#0284c7' }}>🎯{match.assists}</span>}
+        {match.assists > 0 && <span className="text-[9px] font-data font-bold px-1.5 py-0.5 rounded-full" style={{ background: 'rgba(var(--color-primary-rgb), 0.08)', color: 'var(--color-primary-light)' }}>🎯{match.assists}</span>}
       </div>
     </div>
   )

@@ -37,7 +37,7 @@ export function WeeklyGoalRing() {
             <defs>
               <linearGradient id="ringGradient" x1="0" y1="0" x2="1" y2="1">
                 <stop offset="0%" stopColor="var(--color-primary-dark)" />
-                <stop offset="100%" stopColor="#0ea5e9" />
+                <stop offset="100%" stopColor="var(--color-primary-light)" />
               </linearGradient>
             </defs>
             {/* Track */}

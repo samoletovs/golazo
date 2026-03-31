@@ -123,10 +123,19 @@ function publishArticles(items, config, result) {
 
   for (const item of items) {
     const i18nKey = item.id.replace(/-/g, '').replace('art', 'art.')
-    source = source.replace(
-      /\n\]\s*$/,
-      `\n  {\n    id: '${item.id}',\n    titleKey: '${i18nKey}.title',\n    bodyKey: '${i18nKey}.body',\n    category: '${item.category}',\n    ageTiers: ${JSON.stringify(item.ageTiers)},\n    readingTimeMin: ${item.readingTimeMin || 2},\n    imageEmoji: '${item.emoji || '📄'}',\n  },\n]\n`
-    )
+    const entry = `  {\n    id: '${item.id}',\n    titleKey: '${i18nKey}.title',\n    bodyKey: '${i18nKey}.body',\n    category: '${item.category}',\n    ageTiers: ${JSON.stringify(item.ageTiers)},\n    readingTimeMin: ${item.readingTimeMin || 2},\n    imageEmoji: '${item.emoji || '📄'}',\n  },`
+
+    // Find the last standalone ] in the file (closes the articles array)
+    const lines = source.split('\n')
+    let insertIdx = -1
+    for (let i = lines.length - 1; i >= 0; i--) {
+      if (lines[i].trim() === ']') { insertIdx = i; break }
+    }
+    if (insertIdx !== -1) {
+      lines.splice(insertIdx, 0, entry)
+      source = lines.join('\n')
+    }
+
     addI18nKeys(config, i18nKey, item, ['title', 'body'])
     console.log(`  ✓ article: ${item.id}`)
   }

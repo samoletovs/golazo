@@ -137,7 +137,7 @@ body {
 
 /* ── Gradient text (game signature) ──────────────────────── */
 .text-gradient-green {
-  background: linear-gradient(135deg, var(--color-primary), var(--color-cyan));
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -225,12 +225,12 @@ body {
 
 /* ── Hero Card (dashboard level showcase — gradient bg) ──── */
 .card-hero {
-  background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 40%, var(--color-cyan) 100%);
+  background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 40%, var(--color-primary-light) 100%);
   border-radius: var(--radius-lg);
   padding: 18px;
   box-shadow:
     0 4px 16px rgba(var(--color-primary-rgb), 0.25),
-    0 8px 32px rgba(14, 165, 233, 0.15);
+    0 8px 32px rgba(var(--color-primary-rgb), 0.15);
 }
 
 /* ── Hero Stat Card (big numbers — Nike-bold) ───────────── */
@@ -254,7 +254,7 @@ body {
 }
 .stat-card-green::before { background: linear-gradient(90deg, var(--color-primary-dark), var(--color-primary)); }
 .stat-card-gold::before { background: linear-gradient(90deg, #d97706, #fbbf24); }
-.stat-card-cyan::before { background: linear-gradient(90deg, #0284c7, #0ea5e9); }
+.stat-card-cyan::before { background: linear-gradient(90deg, var(--color-primary-dark), var(--color-primary-light)); }
 
 /* Nike-style oversized stat number */
 .stat-number {
@@ -297,8 +297,8 @@ body {
   border: none;
 }
 .stat-pill-cyan {
-  background: #e0f2fe;
-  color: #0369a1;
+  background: var(--color-primary-bg);
+  color: var(--color-primary-dark);
   border: none;
 }
 
@@ -310,7 +310,7 @@ body {
   overflow: hidden;
 }
 .xp-bar-fill {
-  background: linear-gradient(90deg, var(--color-primary-darker) 0%, var(--color-primary) 60%, var(--color-cyan) 100%);
+  background: linear-gradient(90deg, var(--color-primary-darker) 0%, var(--color-primary) 60%, var(--color-primary-light) 100%);
   height: 100%;
   border-radius: 999px;
   transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
@@ -370,7 +370,7 @@ body {
 
 /* ── Primary Button (premium CTA) ──────────────────────────── */
 .btn-primary {
-  background: linear-gradient(135deg, var(--color-primary-darker) 0%, var(--color-primary-dark) 50%, var(--color-cyan) 100%);
+  background: linear-gradient(135deg, var(--color-primary-darker) 0%, var(--color-primary-dark) 50%, var(--color-primary-light) 100%);
   color: #fff;
   font-weight: 700;
   font-family: var(--font-display);
@@ -599,7 +599,7 @@ input[type="range"]::-webkit-slider-thumb {
   width: 26px;
   height: 26px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--color-primary-dark), var(--color-cyan));
+  background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary-light));
   cursor: pointer;
   box-shadow: 0 2px 8px rgba(var(--color-primary-rgb), 0.3);
 }

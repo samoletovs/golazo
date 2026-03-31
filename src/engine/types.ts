@@ -343,6 +343,7 @@ export const EQUIPMENT = {
   ballOnly: 'ballOnly',
   cones: 'cones',
   wall: 'wall',
+  partner: 'partner',
   none: 'none',
 } as const
 export type Equipment = (typeof EQUIPMENT)[keyof typeof EQUIPMENT]

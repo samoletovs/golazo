@@ -13,7 +13,7 @@ const DAILY_CHALLENGES = [
 
 const SPECIAL_TRACKS = [
   { id: 'weakFoot', titleKey: 'challenges.weakFoot', descKey: 'challenges.weakFootDesc', days: 30, color: 'var(--color-primary)' },
-  { id: 'mentalChamp', titleKey: 'challenges.mentalChamp', descKey: 'challenges.mentalChampDesc', days: 21, color: 'var(--color-cyan)' },
+  { id: 'mentalChamp', titleKey: 'challenges.mentalChamp', descKey: 'challenges.mentalChampDesc', days: 21, color: 'var(--color-primary-light)' },
   { id: 'deepPractice', titleKey: 'challenges.deepPractice', descKey: 'challenges.deepPracticeDesc', days: 7, color: 'var(--color-gold-400)' },
 ]
 

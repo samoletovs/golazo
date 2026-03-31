@@ -200,7 +200,7 @@ export function Profile({ onNavigate }: { onNavigate?: (page: string) => void })
             <p className="text-[10px] font-semibold uppercase tracking-wider mt-1" style={{ color: 'var(--color-text-muted)' }}>{t('dashboard.goals')}</p>
           </div>
           <div className="text-center py-2 rounded-lg" style={{ background: 'var(--color-bg-warm)' }}>
-            <p className="text-xl font-black font-data leading-none" style={{ color: 'var(--color-cyan)' }}>{seasonAssists}</p>
+            <p className="text-xl font-black font-data leading-none" style={{ color: 'var(--color-primary-light)' }}>{seasonAssists}</p>
             <p className="text-[10px] font-semibold uppercase tracking-wider mt-1" style={{ color: 'var(--color-text-muted)' }}>{t('dashboard.assists')}</p>
           </div>
           <div className="text-center py-2 rounded-lg" style={{ background: 'var(--color-bg-warm)' }}>
