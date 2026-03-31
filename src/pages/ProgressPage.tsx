@@ -66,7 +66,7 @@ export function ProgressPage() {
     }))
   }, [physicalProfile])
 
-  const hasPhysicalField = (key: string) => physicalData.some((d) => (d as Record<string, unknown>)[key] != null)
+  const hasPhysicalField = (key: string) => physicalData.some((d) => (d as Record<string, unknown>)[key] !== null && (d as Record<string, unknown>)[key] !== undefined)
 
   /* ── Goals per match trend ── */
   const goalsTrend = useMemo(() => {
