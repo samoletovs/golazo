@@ -25,6 +25,7 @@
   "dashboard.wins": "Victorias",
   "dashboard.today": "Hoy",
   "dashboard.todayEmpty": "Nada registrado aún — ¡empieza!",
+  "dashboard.todayDone": "¡Buen trabajo hoy!",
   "dashboard.todayAction": "Registrar",
   "dashboard.todaySummary": "{{matches}} partidos, {{trainings}} entrenamientos, {{goals}} goles",
   "dashboard.greetingMorning": "Buenos días",

@@ -25,6 +25,7 @@
   "dashboard.wins": "Wins",
   "dashboard.today": "Today",
   "dashboard.todayEmpty": "Nothing logged yet — get started!",
+  "dashboard.todayDone": "Nice work today!",
   "dashboard.todayAction": "Log now",
   "dashboard.todaySummary": "{{matches}} matches, {{trainings}} trainings, {{goals}} goals",
   "dashboard.greetingMorning": "Good morning",

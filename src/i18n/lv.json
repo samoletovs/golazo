@@ -25,6 +25,7 @@
   "dashboard.wins": "Uzvaras",
   "dashboard.today": "Šodien",
   "dashboard.todayEmpty": "Vēl nekas nav pierakstīts — sāc!",
+  "dashboard.todayDone": "Labi pastrādāts šodien!",
   "dashboard.todayAction": "Pierakstīt",
   "dashboard.todaySummary": "{{matches}} spēles, {{trainings}} treniņi, {{goals}} vārti",
   "dashboard.greetingMorning": "Labrīt",

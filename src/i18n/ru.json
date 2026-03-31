@@ -26,6 +26,7 @@
   "dashboard.wins": "Победы",
   "dashboard.today": "Сегодня",
   "dashboard.todayEmpty": "Ничего не записано — начни!",
+  "dashboard.todayDone": "Молодец, сегодня поработал!",
   "dashboard.todayAction": "Записать",
   "dashboard.todaySummary": "{{matches}} матчей, {{trainings}} тренировок, {{goals}} голов",
   "dashboard.greetingMorning": "Доброе утро",

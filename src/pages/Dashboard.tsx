@@ -411,9 +411,24 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
 
       {/* ── Today's Plan — Inline Logging Hub ── */}
       <div className="card animate-fade-up animate-stagger-2">
-        <div className="flex items-center gap-2 mb-3">
-          <span className="text-lg">📅</span>
-          <p className="section-label">{t('dashboard.today')}</p>
+        <div className="flex items-center justify-between mb-3">
+          <div className="flex items-center gap-2">
+            <span className="text-lg">📅</span>
+            <p className="section-label">{t('dashboard.today')}</p>
+          </div>
+          {(todayMatches > 0 || todayTrainings > 0) && todayEvents.length === 0 && (
+            <div className="flex items-center gap-2">
+              {todayTrainings > 0 && (
+                <span className="stat-pill stat-pill-green text-[10px]">⚽ {todayTrainings}</span>
+              )}
+              {todayMatches > 0 && (
+                <span className="stat-pill stat-pill-cyan text-[10px]">🏟️ {todayMatches}</span>
+              )}
+              {todayGoals > 0 && (
+                <span className="stat-pill stat-pill-gold text-[10px]">🥅 {todayGoals}</span>
+              )}
+            </div>
+          )}
         </div>
 
         {/* Scheduled events */}
@@ -483,12 +498,21 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
             })}
           </div>
         ) : (
-          <p className="text-xs mb-3" style={{ color: 'var(--color-text-muted)' }}>
-            {todayMatches > 0 || todayTrainings > 0
-              ? t('dashboard.todaySummary', { matches: todayMatches, trainings: todayTrainings, goals: todayGoals })
-              : t('dashboard.todayEmpty')
-            }
-          </p>
+          todayMatches > 0 || todayTrainings > 0 ? (
+            <div className="flex items-center gap-3 py-2">
+              <span className="text-xl">✅</span>
+              <p className="text-xs font-bold" style={{ color: 'var(--color-primary-dark)' }}>
+                {t('dashboard.todayDone')}
+              </p>
+            </div>
+          ) : (
+            <div className="flex items-center gap-3 py-2">
+              <span className="text-xl">💤</span>
+              <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
+                {t('dashboard.todayEmpty')}
+              </p>
+            </div>
+          )
         )}
       </div>
 

@@ -26,6 +26,7 @@
   "dashboard.wins": "Pergalės",
   "dashboard.today": "Šiandien",
   "dashboard.todayEmpty": "Nieko neįrašyta — pradėk!",
+  "dashboard.todayDone": "Puikus darbas šiandien!",
   "dashboard.todayAction": "Įrašyti",
   "dashboard.todaySummary": "{{matches}} rungtynės, {{trainings}} treniruotės, {{goals}} įvarčių",
   "dashboard.greetingMorning": "Labas rytas",

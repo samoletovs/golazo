@@ -26,6 +26,7 @@
   "dashboard.wins": "Võidud",
   "dashboard.today": "Täna",
   "dashboard.todayEmpty": "Midagi pole logitud — alusta!",
+  "dashboard.todayDone": "Tubli töö täna!",
   "dashboard.todayAction": "Logi",
   "dashboard.todaySummary": "{{matches}} mängu, {{trainings}} treeningut, {{goals}} väravat",
   "dashboard.greetingMorning": "Tere hommikust",
