@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { SURFACE_PRESETS, applySurfaceTheme, saveSurfaceTheme, loadSurfaceTheme } from '../utils/surfaceTheme'
+import { SURFACE_PRESETS, applySurfaceTheme, saveSurfaceTheme, loadSurfaceTheme, deriveTeamSurface } from '../utils/surfaceTheme'
 import { getPrimaryTeamColor } from '../utils/teamTheme'
 import { useApp } from '../contexts/AppContext'
 
@@ -14,6 +14,14 @@ export function ThemePicker() {
     setSelected(id)
     saveSurfaceTheme(id)
     applySurfaceTheme(id, teamColor)
+  }
+
+  // For "My Club" preset, compute the real swatch from actual team color
+  function getSwatchForPreset(preset: typeof SURFACE_PRESETS[0]): [string, string, string] {
+    if (preset.id === 'team' && teamColor) {
+      return deriveTeamSurface(teamColor).swatch
+    }
+    return preset.swatch
   }
 
   return (
@@ -35,17 +43,19 @@ export function ThemePicker() {
               aria-label={t(`theme.${preset.id}`)}
             >
               {/* Color swatch — 3-layer circular preview */}
-              <div
-                className="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 relative"
-                style={{ boxShadow: '0 1px 4px rgba(0,0,0,0.12)', border: '2px solid rgba(255,255,255,0.8)' }}
-              >
-                {/* Vivid accent stripe */}
-                <div className="w-full" style={{ height: '35%', background: preset.swatch[0] }} />
-                {/* Mid tint */}
-                <div className="w-full" style={{ height: '30%', background: preset.swatch[1] }} />
-                {/* Light surface preview */}
-                <div className="w-full" style={{ height: '35%', background: preset.swatch[2] }} />
-              </div>
+              {(() => {
+                const sw = getSwatchForPreset(preset)
+                return (
+                  <div
+                    className="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 relative"
+                    style={{ boxShadow: '0 1px 4px rgba(0,0,0,0.12)', border: '2px solid rgba(255,255,255,0.8)' }}
+                  >
+                    <div className="w-full" style={{ height: '35%', background: sw[0] }} />
+                    <div className="w-full" style={{ height: '30%', background: sw[1] }} />
+                    <div className="w-full" style={{ height: '35%', background: sw[2] }} />
+                  </div>
+                )
+              })()}
               <span
                 className="text-[10px] font-bold leading-tight text-center"
                 style={{ color: isActive ? 'var(--color-primary-dark)' : 'var(--color-text-muted)' }}

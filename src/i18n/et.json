@@ -556,6 +556,9 @@
   "import.tournamentTeamHint": "Kuidas sinu meeskond on sellel turniiril kirjas",
 
   "teams.title": "Minu meeskonnad",
+  "teams.manage": "Halda",
+  "teams.primary": "Põhiklubi",
+  "teams.addFirst": "Lisa meeskond",
   "teams.newTeam": "Lisa meeskonna nimi...",
   "teams.empty": "Meeskondi pole veel",
   "teams.search": "Otsi meeskondi...",

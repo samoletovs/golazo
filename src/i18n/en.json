@@ -554,6 +554,9 @@
   "import.tournamentTeamHint": "How your team is listed in this tournament",
 
   "teams.title": "My Teams",
+  "teams.manage": "Manage",
+  "teams.primary": "Main club",
+  "teams.addFirst": "Add your team",
   "teams.newTeam": "Add team name...",
   "teams.empty": "No teams yet",
   "teams.search": "Search teams...",

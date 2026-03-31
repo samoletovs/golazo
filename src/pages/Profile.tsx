@@ -221,22 +221,78 @@ export function Profile({ onNavigate }: { onNavigate?: (page: string) => void })
         {exporting ? t('common.loading') : t('profile.export')}
       </button>
 
-      {/* My Teams */}
-      <button
-        className="card w-full text-left flex items-center gap-3 animate-fade-up"
-        onClick={() => setShowTeams(true)}
-      >
-        <span className="text-xl">⚽</span>
-        <div className="flex-1">
-          <p className="text-sm font-bold">{t('teams.title')}</p>
-          <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
-            {(profile?.teams?.length ?? 0) > 0
-              ? profile!.teams!.filter((t) => t.active).map((t) => t.name).join(', ')
-              : t('teams.empty')}
-          </p>
+      {/* My Teams — inline display */}
+      <div className="card animate-fade-up">
+        <div className="flex items-center justify-between mb-2">
+          <p className="section-label">{t('teams.title')}</p>
+          <button
+            className="text-xs font-bold tap-target"
+            style={{ color: 'var(--color-primary-dark)' }}
+            onClick={() => setShowTeams(true)}
+          >
+            {t('teams.manage')}
+          </button>
         </div>
-        <span style={{ color: 'var(--color-text-muted)' }}>→</span>
-      </button>
+        {(profile?.teams?.length ?? 0) > 0 ? (
+          <div className="flex flex-col gap-2">
+            {profile!.teams!.filter((t) => t.active).map((team, i) => (
+              <div
+                key={team.id}
+                className="flex items-center gap-3 px-3 py-2.5 rounded-xl"
+                style={{
+                  background: i === 0
+                    ? 'rgba(var(--color-primary-rgb), 0.08)'
+                    : 'var(--color-glass-hover)',
+                  border: i === 0
+                    ? '1.5px solid rgba(var(--color-primary-rgb), 0.15)'
+                    : '1.5px solid transparent',
+                }}
+              >
+                {team.logoUrl ? (
+                  <img
+                    src={team.logoUrl}
+                    alt=""
+                    className="w-8 h-8 rounded-lg object-contain shrink-0"
+                    style={{ background: 'rgba(255,255,255,0.5)' }}
+                    onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
+                  />
+                ) : (
+                  <div className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0" style={{ background: 'rgba(255,255,255,0.5)' }}>
+                    <span className="text-lg">⚽</span>
+                  </div>
+                )}
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-bold truncate">{team.name}</p>
+                  {i === 0 && (
+                    <p className="text-[10px] font-bold" style={{ color: 'var(--color-primary-dark)' }}>
+                      ★ {t('teams.primary')}
+                    </p>
+                  )}
+                </div>
+                {team.colors && team.colors.length > 0 && (
+                  <div className="flex gap-1">
+                    {team.colors.slice(0, 3).map((color, ci) => (
+                      <div
+                        key={ci}
+                        className="w-4 h-4 rounded-full shrink-0"
+                        style={{ background: color, border: '1px solid rgba(0,0,0,0.08)' }}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        ) : (
+          <button
+            className="w-full text-center py-3 rounded-xl text-sm"
+            style={{ background: 'var(--color-glass-hover)', color: 'var(--color-text-muted)' }}
+            onClick={() => setShowTeams(true)}
+          >
+            + {t('teams.addFirst')}
+          </button>
+        )}
+      </div>
 
       {/* Achievements */}
       <div className="card animate-fade-up">

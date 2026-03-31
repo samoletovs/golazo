@@ -569,6 +569,9 @@
   "import.tournamentTeamHint": "Kaip tavo komanda įrašyta šiame turnyre",
 
   "teams.title": "Mano komandos",
+  "teams.manage": "Tvarkyti",
+  "teams.primary": "Pagrindinis klubas",
+  "teams.addFirst": "Pridėk komandą",
   "teams.newTeam": "Pridėti komandos pavadinimą...",
   "teams.empty": "Komandų dar nėra",
   "teams.search": "Ieškoti komandų...",

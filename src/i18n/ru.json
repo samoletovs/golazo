@@ -568,6 +568,9 @@
   "import.tournamentTeamHint": "Как ваша команда указана в этом турнире",
 
   "teams.title": "Мои команды",
+  "teams.manage": "Управление",
+  "teams.primary": "Основной клуб",
+  "teams.addFirst": "Добавить команду",
   "teams.newTeam": "Добавить команду...",
   "teams.empty": "Команд пока нет",
   "teams.search": "Поиск команд...",
