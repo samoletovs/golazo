@@ -45,32 +45,28 @@ export function ProgressPage() {
     return weeks
   }, [trainings])
 
-  /* ── Physical growth ── */
+  /* ── Physical growth — grouped data ── */
   const physicalData = useMemo(() => {
     if (!physicalProfile?.measurements.length) return []
     return physicalProfile.measurements.map((m) => ({
-      date: m.measuredAt.slice(0, 7),
-      height: m.heightCm,
-      weight: m.weightKg,
-      sittingHeight: m.sittingHeightCm,
-      shoeSize: m.shoeSize,
-      sprint10: m.sprintTime10m,
-      sprint20: m.sprintTime20m,
-      sprint30: m.sprintTime30m,
-      jump: m.standingJumpCm,
-      cmj: m.cmjCm,
-      verticalJump: m.verticalJumpCm,
-      yoyo: m.yoyoIR1Level,
-      agility: m.agilityCourseTime,
-      plank: m.plankTimeSec,
-      sitAndReach: m.sitAndReachCm,
-      pushUps: m.pushUps1min,
-      hr: m.restingHeartRate,
-      bodyFat: m.bodyFatPct,
-      armSpan: m.armSpanCm,
-      juggles: m.juggleRecord,
+      date: new Date(m.measuredAt).toLocaleDateString(undefined, { month: 'short', year: '2-digit' }),
+      height: m.heightCm || null,
+      weight: m.weightKg || null,
+      bmi: m.heightCm && m.weightKg ? Math.round((m.weightKg / ((m.heightCm / 100) ** 2)) * 10) / 10 : null,
+      sprint10: m.sprintTime10m || null,
+      sprint20: m.sprintTime20m || null,
+      sprint30: m.sprintTime30m || null,
+      jump: m.standingJumpCm || null,
+      cmj: m.cmjCm || null,
+      verticalJump: m.verticalJumpCm || null,
+      yoyo: m.yoyoIR1Level || null,
+      agility: m.agilityCourseTime || null,
+      plank: m.plankTimeSec || null,
+      juggles: m.juggleRecord || null,
     }))
   }, [physicalProfile])
+
+  const hasPhysicalField = (key: string) => physicalData.some((d) => (d as Record<string, unknown>)[key] != null)
 
   /* ── Goals per match trend ── */
   const goalsTrend = useMemo(() => {
@@ -318,18 +314,86 @@ export function ProgressPage() {
         </div>
       )}
 
-      {/* ── Physical Growth ── */}
-      {physicalData.length > 0 && (
+      {/* ── Physical: Body Growth (Height + Weight + BMI) ── */}
+      {physicalData.length > 0 && (hasPhysicalField('height') || hasPhysicalField('weight')) && (
         <div className="card animate-fade-up">
-          <h2 className="text-sm font-bold mb-3">{t('progress.physicalGrowth')}</h2>
+          <h2 className="text-sm font-bold mb-3">📏 {t('progress.bodyGrowth')}</h2>
           <ResponsiveContainer width="100%" height={160}>
+            <LineChart data={physicalData}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
+              <XAxis dataKey="date" tick={{ fontSize: 10, fill: '#94a3b8' }} axisLine={false} tickLine={false} />
+              <YAxis yAxisId="left" tick={{ fontSize: 10, fill: '#94a3b8' }} width={30} axisLine={false} tickLine={false} domain={['dataMin - 5', 'dataMax + 5']} />
+              <YAxis yAxisId="right" orientation="right" tick={{ fontSize: 10, fill: '#94a3b8' }} width={30} axisLine={false} tickLine={false} domain={['dataMin - 5', 'dataMax + 5']} />
+              <Tooltip contentStyle={{ fontSize: 12, borderRadius: 12, border: 'none', boxShadow: '0 4px 16px rgba(0,0,0,0.1)' }} />
+              {hasPhysicalField('height') && <Line yAxisId="left" type="monotone" dataKey="height" stroke="#8b5cf6" strokeWidth={2.5} dot={{ r: 3, fill: '#8b5cf6', stroke: '#fff', strokeWidth: 2 }} name={t('progress.height')} connectNulls />}
+              {hasPhysicalField('weight') && <Line yAxisId="right" type="monotone" dataKey="weight" stroke="#f59e0b" strokeWidth={2.5} dot={{ r: 3, fill: '#f59e0b', stroke: '#fff', strokeWidth: 2 }} name={t('progress.weight')} connectNulls />}
+            </LineChart>
+          </ResponsiveContainer>
+          <div className="flex justify-center gap-4 mt-2">
+            {hasPhysicalField('height') && <span className="text-xs flex items-center gap-1"><span className="inline-block w-2 h-2 rounded-full" style={{ background: '#8b5cf6' }} /> {t('progress.height')}</span>}
+            {hasPhysicalField('weight') && <span className="text-xs flex items-center gap-1"><span className="inline-block w-2 h-2 rounded-full" style={{ background: '#f59e0b' }} /> {t('progress.weight')}</span>}
+          </div>
+          {/* BMI derived stat */}
+          {hasPhysicalField('bmi') && (() => {
+            const latest = physicalData[physicalData.length - 1]
+            return latest?.bmi ? (
+              <div className="flex items-center justify-center gap-2 mt-2 pt-2" style={{ borderTop: '1px solid var(--color-glass-border)' }}>
+                <span className="text-[10px] font-bold uppercase tracking-wider" style={{ color: 'var(--color-text-muted)' }}>BMI</span>
+                <span className="text-sm font-black font-data">{latest.bmi}</span>
+              </div>
+            ) : null
+          })()}
+        </div>
+      )}
+
+      {/* ── Physical: Speed & Power ── */}
+      {physicalData.length > 0 && (hasPhysicalField('sprint10') || hasPhysicalField('sprint20') || hasPhysicalField('cmj') || hasPhysicalField('jump')) && (
+        <div className="card animate-fade-up">
+          <h2 className="text-sm font-bold mb-3">⚡ {t('progress.speedPower')}</h2>
+          <ResponsiveContainer width="100%" height={140}>
+            <LineChart data={physicalData}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
+              <XAxis dataKey="date" tick={{ fontSize: 10, fill: '#94a3b8' }} axisLine={false} tickLine={false} />
+              <YAxis tick={{ fontSize: 10, fill: '#94a3b8' }} width={30} axisLine={false} tickLine={false} />
+              <Tooltip contentStyle={{ fontSize: 12, borderRadius: 12, border: 'none', boxShadow: '0 4px 16px rgba(0,0,0,0.1)' }} />
+              {hasPhysicalField('sprint10') && <Line type="monotone" dataKey="sprint10" stroke="#ef4444" strokeWidth={2} dot={{ r: 3, fill: '#ef4444', stroke: '#fff', strokeWidth: 2 }} name={t('physical.sprint10m')} connectNulls />}
+              {hasPhysicalField('sprint20') && <Line type="monotone" dataKey="sprint20" stroke="#f97316" strokeWidth={2} dot={{ r: 3, fill: '#f97316', stroke: '#fff', strokeWidth: 2 }} name={t('physical.sprint20m')} connectNulls />}
+              {hasPhysicalField('cmj') && <Line type="monotone" dataKey="cmj" stroke="#3b82f6" strokeWidth={2} dot={{ r: 3, fill: '#3b82f6', stroke: '#fff', strokeWidth: 2 }} name={t('physical.cmj')} connectNulls />}
+              {hasPhysicalField('jump') && <Line type="monotone" dataKey="jump" stroke="#0ea5e9" strokeWidth={2} dot={{ r: 3, fill: '#0ea5e9', stroke: '#fff', strokeWidth: 2 }} name={t('physical.standingJump')} connectNulls />}
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+      )}
+
+      {/* ── Physical: Endurance ── */}
+      {physicalData.length > 0 && (hasPhysicalField('yoyo') || hasPhysicalField('agility')) && (
+        <div className="card animate-fade-up">
+          <h2 className="text-sm font-bold mb-3">🫁 {t('progress.endurance')}</h2>
+          <ResponsiveContainer width="100%" height={140}>
+            <LineChart data={physicalData}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
+              <XAxis dataKey="date" tick={{ fontSize: 10, fill: '#94a3b8' }} axisLine={false} tickLine={false} />
+              <YAxis tick={{ fontSize: 10, fill: '#94a3b8' }} width={30} axisLine={false} tickLine={false} />
+              <Tooltip contentStyle={{ fontSize: 12, borderRadius: 12, border: 'none', boxShadow: '0 4px 16px rgba(0,0,0,0.1)' }} />
+              {hasPhysicalField('yoyo') && <Line type="monotone" dataKey="yoyo" stroke="var(--color-primary)" strokeWidth={2.5} dot={{ r: 3, fill: 'var(--color-primary)', stroke: '#fff', strokeWidth: 2 }} name={t('progress.yoyo')} connectNulls />}
+              {hasPhysicalField('agility') && <Line type="monotone" dataKey="agility" stroke="#f59e0b" strokeWidth={2.5} dot={{ r: 3, fill: '#f59e0b', stroke: '#fff', strokeWidth: 2 }} name={t('progress.agility')} connectNulls />}
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+      )}
+
+      {/* ── Physical: Strength & Skill ── */}
+      {physicalData.length > 0 && (hasPhysicalField('plank') || hasPhysicalField('juggles')) && (
+        <div className="card animate-fade-up">
+          <h2 className="text-sm font-bold mb-3">💪 {t('progress.strengthSkill')}</h2>
+          <ResponsiveContainer width="100%" height={140}>
             <LineChart data={physicalData}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
               <XAxis dataKey="date" tick={{ fontSize: 10, fill: '#94a3b8' }} axisLine={false} tickLine={false} />
               <YAxis tick={{ fontSize: 10, fill: '#94a3b8' }} width={35} axisLine={false} tickLine={false} />
               <Tooltip contentStyle={{ fontSize: 12, borderRadius: 12, border: 'none', boxShadow: '0 4px 16px rgba(0,0,0,0.1)' }} />
-              <Line type="monotone" dataKey="height" stroke="#8b5cf6" strokeWidth={2.5} dot={{ r: 3, fill: '#8b5cf6', stroke: '#fff', strokeWidth: 2 }} name={t('progress.height')} />
-              <Line type="monotone" dataKey="juggles" stroke="var(--color-primary)" strokeWidth={2.5} dot={{ r: 3, fill: 'var(--color-primary)', stroke: '#fff', strokeWidth: 2 }} name={t('progress.juggles')} />
+              {hasPhysicalField('plank') && <Line type="monotone" dataKey="plank" stroke="#ef4444" strokeWidth={2.5} dot={{ r: 3, fill: '#ef4444', stroke: '#fff', strokeWidth: 2 }} name={t('progress.plank')} connectNulls />}
+              {hasPhysicalField('juggles') && <Line type="monotone" dataKey="juggles" stroke="var(--color-primary)" strokeWidth={2.5} dot={{ r: 3, fill: 'var(--color-primary)', stroke: '#fff', strokeWidth: 2 }} name={t('progress.juggles')} connectNulls />}
             </LineChart>
           </ResponsiveContainer>
         </div>
