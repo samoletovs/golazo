@@ -21,6 +21,8 @@ export interface SurfacePreset {
   navBg: string
   choiceBg: string
   choiceBorder: string
+  /** Accent color hex — overrides --color-primary-*. null = keep team color */
+  accent: string | null
   /** Swatch: [vivid accent, medium tint, light card preview] */
   swatch: [string, string, string]
 }
@@ -39,6 +41,7 @@ export const SURFACE_PRESETS: SurfacePreset[] = [
     navBg: 'rgba(255, 255, 255, 0.92)',
     choiceBg: '#ffffff',
     choiceBorder: 'rgba(0, 0, 0, 0.08)',
+    accent: null,
     swatch: ['#C8C8D0', '#E8E8EC', '#F8F8FA'],
   },
   {
@@ -54,6 +57,7 @@ export const SURFACE_PRESETS: SurfacePreset[] = [
     navBg: 'rgba(247, 252, 248, 0.93)',
     choiceBg: '#F7FCF8',
     choiceBorder: 'rgba(5, 150, 105, 0.12)',
+    accent: null,
     swatch: ['#059669', '#A7F3D0', '#F0FAF2'],
   },
   {
@@ -69,6 +73,7 @@ export const SURFACE_PRESETS: SurfacePreset[] = [
     navBg: 'rgba(247, 251, 247, 0.93)',
     choiceBg: '#F7FBF7',
     choiceBorder: 'rgba(34, 197, 94, 0.12)',
+    accent: '#16A34A',
     swatch: ['#22C55E', '#86EFAC', '#E4F3E6'],
   },
   {
@@ -84,6 +89,7 @@ export const SURFACE_PRESETS: SurfacePreset[] = [
     navBg: 'rgba(245, 248, 252, 0.93)',
     choiceBg: '#F5F8FC',
     choiceBorder: 'rgba(37, 99, 235, 0.12)',
+    accent: '#2563EB',
     swatch: ['#2563EB', '#93C5FD', '#E1ECF8'],
   },
   {
@@ -99,6 +105,7 @@ export const SURFACE_PRESETS: SurfacePreset[] = [
     navBg: 'rgba(253, 249, 245, 0.93)',
     choiceBg: '#FDF9F5',
     choiceBorder: 'rgba(217, 119, 6, 0.12)',
+    accent: '#D97706',
     swatch: ['#D97706', '#FCD34D', '#F7EDE0'],
   },
   {
@@ -114,6 +121,7 @@ export const SURFACE_PRESETS: SurfacePreset[] = [
     navBg: 'rgba(248, 246, 252, 0.93)',
     choiceBg: '#F8F6FC',
     choiceBorder: 'rgba(124, 58, 237, 0.12)',
+    accent: '#7C3AED',
     swatch: ['#7C3AED', '#C4B5FD', '#EAE4F6'],
   },
   {
@@ -129,6 +137,7 @@ export const SURFACE_PRESETS: SurfacePreset[] = [
     navBg: 'rgba(252, 250, 247, 0.93)',
     choiceBg: '#FCFAF7',
     choiceBorder: 'rgba(180, 130, 60, 0.12)',
+    accent: '#B4823C',
     swatch: ['#B4823C', '#E8D5B0', '#F5F0E6'],
   },
   {
@@ -144,6 +153,7 @@ export const SURFACE_PRESETS: SurfacePreset[] = [
     navBg: 'rgba(253, 246, 248, 0.93)',
     choiceBg: '#FDF6F8',
     choiceBorder: 'rgba(219, 39, 119, 0.10)',
+    accent: '#DB2777',
     swatch: ['#DB2777', '#F9A8D4', '#F7E3E9'],
   },
 ]
@@ -174,9 +184,12 @@ export function deriveTeamSurface(hex: string): SurfacePreset {
     navBg: `rgba(${mix(r, 0.97)}, ${mix(g, 0.97)}, ${mix(b, 0.97)}, 0.93)`,
     choiceBg: surface,
     choiceBorder: `rgba(${r}, ${g}, ${b}, 0.12)`,
+    accent: null,
     swatch: [hex, midTint, bg],
   }
 }
+
+import { applyTeamTheme } from './teamTheme'
 
 const SURFACE_VARS = [
   '--color-bg', '--color-bg-warm', '--color-game-surface',
@@ -190,8 +203,10 @@ export function applySurfaceTheme(presetId: string, teamHex?: string): void {
   const root = document.documentElement
 
   if (presetId === 'classic') {
-    // Remove overrides — let index.css defaults apply
+    // Remove surface overrides — let index.css defaults apply
     SURFACE_VARS.forEach((v) => root.style.removeProperty(v))
+    // Restore team accent (or default green)
+    applyTeamTheme(teamHex)
     return
   }
 
@@ -205,6 +220,7 @@ export function applySurfaceTheme(presetId: string, teamHex?: string): void {
     preset = SURFACE_PRESETS.find((p) => p.id === presetId) ?? SURFACE_PRESETS[0]
   }
 
+  // Apply surface variables
   root.style.setProperty('--color-bg', preset.bg)
   root.style.setProperty('--color-bg-warm', preset.bgWarm)
   root.style.setProperty('--color-game-surface', preset.surface)
@@ -216,6 +232,14 @@ export function applySurfaceTheme(presetId: string, teamHex?: string): void {
   root.style.setProperty('--surface-nav-bg', preset.navBg)
   root.style.setProperty('--surface-choice-bg', preset.choiceBg)
   root.style.setProperty('--surface-choice-border', preset.choiceBorder)
+
+  // Apply accent color — overrides --color-primary-* for buttons, XP bar, etc.
+  if (preset.accent) {
+    applyTeamTheme(preset.accent)
+  } else {
+    // null accent = keep team color (classic/team presets)
+    applyTeamTheme(teamHex)
+  }
 }
 
 const STORAGE_KEY = 'golazo-surface-theme'

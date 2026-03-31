@@ -20,12 +20,31 @@ export function CoachCard() {
   const [aiAdvice, setAiAdvice] = useState<CoachAdvice | null>(null)
   const [loading, setLoading] = useState(false)
   const [aiAvailable, setAiAvailable] = useState<boolean | null>(null)
-  const [expanded, setExpanded] = useState(false)
 
   const localAdvice = useMemo(
     () => generateLocalAdvice(skillTree, matches, trainings, t, diary, tournaments, checkIns),
     [skillTree, matches, trainings, t, diary, tournaments, checkIns],
   )
+
+  // Rotate: show 1 skill focus per day (deterministic from date)
+  const dailyAdvice = useMemo(() => {
+    const advice = aiAdvice ?? localAdvice
+    // Always keep wellbeing insight if present
+    const wellbeingInsight = advice.insights.find((i) => i.category === 'wellbeing')
+    const skillInsights = advice.insights.filter((i) => i.category !== 'wellbeing')
+
+    if (skillInsights.length <= 1) return advice
+
+    // Pick one skill category per day based on date
+    const dayIndex = Math.floor(Date.now() / (24 * 60 * 60 * 1000))
+    const todayInsight = skillInsights[dayIndex % skillInsights.length]
+
+    const focused: typeof advice.insights = []
+    if (wellbeingInsight) focused.push(wellbeingInsight)
+    if (todayInsight) focused.push(todayInsight)
+
+    return { ...advice, insights: focused }
+  }, [aiAdvice, localAdvice])
 
   useEffect(() => {
     const cached = localStorage.getItem('golazo-coach')
@@ -73,9 +92,9 @@ export function CoachCard() {
     }
   }
 
-  const advice = aiAdvice ?? localAdvice
-  const visibleInsights = expanded ? advice.insights : advice.insights.slice(0, 2)
-  const hasMore = advice.insights.length > 2
+  const advice = dailyAdvice
+  const visibleInsights = advice.insights
+  const hasMore = false // No expand needed — we show at most 2 insights now
 
   return (
     <div className="card-glow animate-fade-up">

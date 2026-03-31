@@ -519,6 +519,9 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
         </div>
       )}
 
+      {/* ── AI Coach ── */}
+      <CoachCard />
+
       {/* ── Tournament Discovery — teammate shared tournaments ── */}
       {discoveredTournaments.length > 0 && (
         <div className="card animate-fade-up animate-stagger-2" style={{ border: '2px solid var(--color-primary-light, #22c55e)', background: 'rgba(34, 197, 94, 0.04)' }}>
@@ -548,7 +551,8 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
         </div>
       )}
 
-      {/* ── Drill of the day ── */}
+      {/* ── Drill of the day (only when morning routine not completed) ── */}
+      {!routineComplete && (
       <div className="card-glow animate-fade-up animate-stagger-3">
         <div className="flex items-center gap-2 mb-2">
           <span className="text-lg">🎯</span>
@@ -578,36 +582,10 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
           )}
         </div>
       </div>
+      )}
 
-      {/* ── Quiz of the Day ── */}
-      <DailyQuiz />
-
-      {/* ── Training counter (vs last week) ── */}
-      <div className="card animate-fade-up animate-stagger-4 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <span className="text-2xl">🏃</span>
-          <div>
-            <p className="text-sm font-bold" style={{ fontFamily: 'var(--font-display)' }}>{t('dashboard.season')}</p>
-            <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
-              {t('log.training')}
-              {vsLastWeek.trainings !== 0 && (
-                <span className="ml-1 font-data font-bold" style={{ color: vsLastWeek.trainings > 0 ? 'var(--color-primary-dark)' : 'var(--color-danger)' }}>
-                  {vsLastWeek.trainings > 0 ? '↑' : '↓'}{Math.abs(vsLastWeek.trainings)} {t('dashboard.vsLastWeek')}
-                </span>
-              )}
-            </p>
-          </div>
-        </div>
-        <span className="stat-pill stat-pill-green text-base font-black">
-          {trainings.length}
-        </span>
-      </div>
-
-      {/* ── Quote of the day ── */}
-      <QuoteCard />
-
-      {/* ── AI Coach ── */}
-      <CoachCard />
+      {/* ── Quiz of the Day (only when morning routine not completed) ── */}
+      {!routineComplete && <DailyQuiz />}
 
       {/* ── Weekly Summary (U12+) ── */}
       {!isYoung && <WeeklySummary />}
@@ -659,6 +637,9 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
           </div>
         </div>
       )}
+
+      {/* ── Quote of the day (sign-off) ── */}
+      <QuoteCard />
 
     </div>
   )
