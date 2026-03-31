@@ -188,12 +188,12 @@ export function LogPage() {
                       {t('log.logNow')}
                     </button>
                     <button
-                      className="text-xs font-bold px-3 py-1.5 rounded-full tap-target"
-                      style={{ background: 'var(--color-glass-active)', color: 'var(--color-danger, #dc2626)' }}
+                      className="w-8 h-8 flex items-center justify-center rounded-full tap-target text-base"
+                      style={{ background: 'var(--color-glass-hover)', color: 'var(--color-text-muted)' }}
                       onClick={(e) => { e.stopPropagation(); setSkipConfirmId(isSkipping ? null : ev.id) }}
                       aria-label={t('log.skip')}
                     >
-                      {t('log.skip')}
+                      ×
                     </button>
                   </div>
                 </div>
