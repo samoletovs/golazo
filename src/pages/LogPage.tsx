@@ -21,6 +21,29 @@ export function LogPage() {
   const [logType, setLogType] = useState<LogType>('select')
   const [showImport, setShowImport] = useState(false)
   const [prefillData, setPrefillData] = useState<Record<string, string | number | undefined>>({})
+  const [skipConfirmId, setSkipConfirmId] = useState<string | null>(null)
+
+  // Skipped event IDs persisted in localStorage
+  const [skippedIds, setSkippedIds] = useState<Set<string>>(() => {
+    try {
+      const stored = localStorage.getItem('golazo-skipped-events')
+      return stored ? new Set(JSON.parse(stored)) : new Set()
+    } catch { return new Set() }
+  })
+
+  function skipEvent(eventId: string, reason: string) {
+    const next = new Set(skippedIds)
+    next.add(eventId)
+    setSkippedIds(next)
+    setSkipConfirmId(null)
+    localStorage.setItem('golazo-skipped-events', JSON.stringify([...next]))
+    // Also store the reason for reference
+    try {
+      const reasons = JSON.parse(localStorage.getItem('golazo-skip-reasons') ?? '{}')
+      reasons[eventId] = { reason, date: new Date().toISOString() }
+      localStorage.setItem('golazo-skip-reasons', JSON.stringify(reasons))
+    } catch { /* best-effort */ }
+  }
 
   const today = new Date().toISOString().split('T')[0]
 
@@ -69,7 +92,7 @@ export function LogPage() {
           ? matches.some((m) => m.date === dk && m.opponent === ev.opponent)
           : trainings.some((tr) => tr.date === dk && tr.fromSchedule === ev.id)
 
-        if (!isLogged) {
+        if (!isLogged && !skippedIds.has(ev.id)) {
           const dayLabel = isToday
             ? t('log.today')
             : daysBack === 1
@@ -82,7 +105,7 @@ export function LogPage() {
     }
 
     return result
-  }, [schedule, recurringTrainings, matches, trainings, profile, t, today])
+  }, [schedule, recurringTrainings, matches, trainings, profile, t, today, skippedIds])
 
   function openFromPending(pe: PendingEvent) {
     const ev = pe.event
@@ -128,40 +151,69 @@ export function LogPage() {
             const ev = pe.event
             const isMatch = ev.type === 'match' || ev.type === 'tournament'
             const emoji = isMatch ? '🏟️' : '⚽'
+            const isSkipping = skipConfirmId === ev.id
             return (
-              <button
+              <div
                 key={ev.id}
-                className="card tap-target flex items-center gap-3 text-left"
+                className="card"
                 style={{
                   borderLeft: pe.isToday
                     ? '3px solid var(--color-primary-dark)'
                     : '3px solid var(--color-gold-500)',
                 }}
-                onClick={() => openFromPending(pe)}
               >
-                <span className="text-2xl">{emoji}</span>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2">
-                    <p className="text-sm font-bold truncate">
-                      {ev.title}{ev.opponent ? ` vs ${ev.opponent}` : ''}
+                <div className="flex items-center gap-3">
+                  <span className="text-2xl">{emoji}</span>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2">
+                      <p className="text-sm font-bold truncate">
+                        {ev.title}{ev.opponent ? ` vs ${ev.opponent}` : ''}
+                      </p>
+                      {!pe.isToday && (
+                        <span className="text-[10px] px-1.5 py-0.5 rounded-full shrink-0 font-bold" style={{ background: '#fef3c7', color: '#b45309' }}>
+                          {t('log.missed')}
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
+                      {pe.dayLabel} · {ev.startTime}{ev.location ? ` · ${ev.location}` : ''}
                     </p>
-                    {!pe.isToday && (
-                      <span className="text-[10px] px-1.5 py-0.5 rounded-full shrink-0 font-bold" style={{ background: '#fef3c7', color: '#b45309' }}>
-                        {t('log.missed')}
-                      </span>
-                    )}
                   </div>
-                  <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
-                    {pe.dayLabel} · {ev.startTime}{ev.location ? ` · ${ev.location}` : ''}
-                  </p>
+                  <div className="flex items-center gap-1.5 shrink-0">
+                    <button
+                      className="text-xs font-bold px-2.5 py-1 rounded-full tap-target"
+                      style={{ background: 'rgba(var(--color-primary-rgb), 0.12)', color: 'var(--color-primary-dark)' }}
+                      onClick={() => openFromPending(pe)}
+                    >
+                      {t('log.logNow')}
+                    </button>
+                    <button
+                      className="text-xs px-2 py-1 rounded-full tap-target"
+                      style={{ background: 'var(--color-glass-active)', color: 'var(--color-text-muted)' }}
+                      onClick={() => setSkipConfirmId(isSkipping ? null : ev.id)}
+                      aria-label={t('log.skip')}
+                    >
+                      ✕
+                    </button>
+                  </div>
                 </div>
-                <span className="text-xs font-bold px-2.5 py-1 rounded-full shrink-0" style={{
-                  background: 'rgba(var(--color-primary-rgb), 0.12)',
-                  color: 'var(--color-primary-dark)',
-                }}>
-                  {t('log.logNow')}
-                </span>
-              </button>
+                {/* Skip reason picker */}
+                {isSkipping && (
+                  <div className="mt-2 pt-2 flex flex-wrap gap-1.5" style={{ borderTop: '1px solid var(--color-glass-border)' }}>
+                    <p className="text-[10px] w-full mb-0.5" style={{ color: 'var(--color-text-muted)' }}>{t('log.skipReason')}</p>
+                    {(['sick', 'notAttending', 'cancelled', 'other'] as const).map((reason) => (
+                      <button
+                        key={reason}
+                        className="text-[11px] font-bold px-2.5 py-1 rounded-full tap-target"
+                        style={{ background: 'var(--color-glass-hover)', color: 'var(--color-text-secondary)' }}
+                        onClick={() => skipEvent(ev.id, reason)}
+                      >
+                        {t(`log.reason.${reason}`)}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
             )
           })}
         </div>

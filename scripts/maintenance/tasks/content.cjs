@@ -148,8 +148,8 @@ function publishQuizzes(items, config, result) {
 
     // Insert before the closing bracket of the quizQuestions array
     source = source.replace(
-      /\n\]\s*\n\n\/\*\* Get today/,
-      `\n${entry}\n]\n\n/** Get today`
+      /^\]\s*$/m,
+      `${entry}\n]`
     )
     console.log(`  ✓ quiz: ${item.id}`)
   }
@@ -173,17 +173,19 @@ function publishQuotes(items, config, result) {
 
     const entry = `  {\n    id: '${item.id}',\n    player: '${escapeTs(item.player)}',\n    themes: ${themes},\n    text: {\n${textObj}\n    },\n  },`
 
-    // Insert before the closing bracket
-    source = source.replace(
-      /\n\]\s*\n\n\/\*\*/,
-      `\n${entry}\n]\n\n/**`
-    )
-    // Fallback: try simpler pattern
-    if (!source.includes(item.id)) {
-      source = source.replace(
-        /\n\]\s*$/,
-        `\n${entry}\n]\n`
-      )
+    // Insert before the array closing ] line
+    const lines = source.split('\n')
+    // Find the first standalone ] after array content
+    let insertIdx = -1
+    for (let i = lines.length - 1; i >= 0; i--) {
+      if (lines[i].trim() === ']') {
+        insertIdx = i
+        break
+      }
+    }
+    if (insertIdx !== -1) {
+      lines.splice(insertIdx, 0, entry)
+      source = lines.join('\n')
     }
     console.log(`  ✓ quote: ${item.id} (${item.player})`)
   }
@@ -207,10 +209,16 @@ function publishExercises(items, config, result) {
     const entry = `  {\n    id: '${item.id}', nameKey: '${nameKey}', descriptionKey: '${descKey}',\n    category: '${item.category}', subSkill: '${item.subSkill || 'ballControl'}', difficulty: ${item.difficulty || 2}, durationMinutes: ${item.durationMinutes || 10},\n    equipment: ${equip}, positions: ${positions}, methodology: '${item.methodology || 'coerver'}',\n  },`
 
     // Insert before the closing bracket of curatedExercises
-    source = source.replace(
-      /\n\]\s*\n\n\/\*\* All exercises/,
-      `\n${entry}\n]\n\n/** All exercises`
-    )
+    // Find the ] that closes curatedExercises array
+    const marker = '/** All exercises'
+    const markerIdx = source.indexOf(marker)
+    if (markerIdx !== -1) {
+      // Find the ] before the marker
+      const beforeMarker = source.lastIndexOf(']', markerIdx)
+      if (beforeMarker !== -1) {
+        source = source.slice(0, beforeMarker) + entry + '\n' + source.slice(beforeMarker)
+      }
+    }
 
     // Add i18n keys: exercise name + description
     for (const lang of LANGUAGES) {

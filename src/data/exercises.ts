@@ -138,6 +138,101 @@ const curatedExercises: Exercise[] = [
     category: 'knowledge', subSkill: 'nutrition', difficulty: 1, durationMinutes: 5,
     equipment: ['none'], positions: [], methodology: 'uefa',
   },
+  {
+    id: 'tech-06', nameKey: 'ex.tech.06', descriptionKey: 'ex.tech.06.desc',
+    category: 'technical', subSkill: 'heading', difficulty: 2, durationMinutes: 10,
+    equipment: ["ballOnly","partner"], positions: ["ST","CB"], methodology: 'coerver',
+  },
+  {
+    id: 'phys-06', nameKey: 'ex.phys.06', descriptionKey: 'ex.phys.06.desc',
+    category: 'physical', subSkill: 'strength', difficulty: 2, durationMinutes: 15,
+    equipment: ["none"], positions: [], methodology: 'uefa',
+  },
+  {
+    id: 'tech-07', nameKey: 'ex.tech.07', descriptionKey: 'ex.tech.07.desc',
+    category: 'technical', subSkill: 'crossing', difficulty: 3, durationMinutes: 15,
+    equipment: ["ballOnly","cones"], positions: ["LW","RW","LB","RB"], methodology: 'coerver',
+  },
+  {
+    id: 'tech-08', nameKey: 'ex.tech.08', descriptionKey: 'ex.tech.08.desc',
+    category: 'technical', subSkill: 'longPass', difficulty: 3, durationMinutes: 15,
+    equipment: ["ballOnly","cones"], positions: ["CM","CDM","CB"], methodology: 'coerver',
+  },
+  {
+    id: 'tech-09', nameKey: 'ex.tech.09', descriptionKey: 'ex.tech.09.desc',
+    category: 'technical', subSkill: 'dribbling', difficulty: 2, durationMinutes: 10,
+    equipment: ["ballOnly","cones"], positions: [], methodology: 'coerver',
+  },
+  {
+    id: 'tech-10', nameKey: 'ex.tech.10', descriptionKey: 'ex.tech.10.desc',
+    category: 'technical', subSkill: 'shooting', difficulty: 3, durationMinutes: 15,
+    equipment: ["ballOnly","cones"], positions: ["ST","CAM","LW","RW"], methodology: 'coerver',
+  },
+  {
+    id: 'phys-07', nameKey: 'ex.phys.07', descriptionKey: 'ex.phys.07.desc',
+    category: 'physical', subSkill: 'speed', difficulty: 3, durationMinutes: 15,
+    equipment: ["cones"], positions: [], methodology: 'uefa',
+  },
+  {
+    id: 'phys-08', nameKey: 'ex.phys.08', descriptionKey: 'ex.phys.08.desc',
+    category: 'physical', subSkill: 'stamina', difficulty: 3, durationMinutes: 20,
+    equipment: ["cones"], positions: [], methodology: 'uefa',
+  },
+  {
+    id: 'phys-09', nameKey: 'ex.phys.09', descriptionKey: 'ex.phys.09.desc',
+    category: 'physical', subSkill: 'agility', difficulty: 2, durationMinutes: 10,
+    equipment: ["cones"], positions: [], methodology: 'uefa',
+  },
+  {
+    id: 'phys-10', nameKey: 'ex.phys.10', descriptionKey: 'ex.phys.10.desc',
+    category: 'physical', subSkill: 'jumping', difficulty: 2, durationMinutes: 10,
+    equipment: ["none"], positions: [], methodology: 'uefa',
+  },
+  {
+    id: 'tact-06', nameKey: 'ex.tact.06', descriptionKey: 'ex.tact.06.desc',
+    category: 'tactical', subSkill: 'offTheBall', difficulty: 2, durationMinutes: 10,
+    equipment: ["cones"], positions: ["ST","CAM","LW","RW"], methodology: 'horstWein',
+  },
+  {
+    id: 'tact-07', nameKey: 'ex.tact.07', descriptionKey: 'ex.tact.07.desc',
+    category: 'tactical', subSkill: 'transitions', difficulty: 3, durationMinutes: 15,
+    equipment: ["ballOnly","cones"], positions: ["CM","CDM","CAM"], methodology: 'horstWein',
+  },
+  {
+    id: 'tact-08', nameKey: 'ex.tact.08', descriptionKey: 'ex.tact.08.desc',
+    category: 'tactical', subSkill: 'setPlays', difficulty: 2, durationMinutes: 10,
+    equipment: ["ballOnly","cones","wall"], positions: [], methodology: 'uefa',
+  },
+  {
+    id: 'ment-06', nameKey: 'ex.ment.06', descriptionKey: 'ex.ment.06.desc',
+    category: 'mental', subSkill: 'leadership', difficulty: 2, durationMinutes: 10,
+    equipment: ["none"], positions: [], methodology: 'danAbrahams',
+  },
+  {
+    id: 'ment-07', nameKey: 'ex.ment.07', descriptionKey: 'ex.ment.07.desc',
+    category: 'mental', subSkill: 'motivation', difficulty: 1, durationMinutes: 5,
+    equipment: ["none"], positions: [], methodology: 'danAbrahams',
+  },
+  {
+    id: 'know-03', nameKey: 'ex.know.03', descriptionKey: 'ex.know.03.desc',
+    category: 'knowledge', subSkill: 'warmUp', difficulty: 1, durationMinutes: 10,
+    equipment: ["none"], positions: [], methodology: 'uefa',
+  },
+  {
+    id: 'know-03b', nameKey: 'ex.know.03b', descriptionKey: 'ex.know.03b.desc',
+    category: 'knowledge', subSkill: 'injuryPrevention', difficulty: 2, durationMinutes: 10,
+    equipment: ["none"], positions: [], methodology: 'uefa',
+  },
+  {
+    id: 'know-04', nameKey: 'ex.know.04', descriptionKey: 'ex.know.04.desc',
+    category: 'knowledge', subSkill: 'formations', difficulty: 2, durationMinutes: 10,
+    equipment: ["none"], positions: [], methodology: 'uefa',
+  },
+  {
+    id: 'know-05', nameKey: 'ex.know.05', descriptionKey: 'ex.know.05.desc',
+    category: 'knowledge', subSkill: 'videoAnalysis', difficulty: 3, durationMinutes: 15,
+    equipment: ["none"], positions: [], methodology: 'horstWein',
+  },
 ]
 
 /** All exercises — curated (+ generated in future), enriched with video data */
