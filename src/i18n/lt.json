@@ -45,6 +45,13 @@
   "log.selectType": "Ką įrašyti?",
   "log.tipTitle": "Patarimas",
   "log.tipText": "Reguliarumas — raktas į progresą. Net 10 minučių susikaupusios treniruotės svarbu!",
+  "log.pending": "Laukia tavo atsiliepimo",
+  "log.missed": "Praleista",
+  "log.logNow": "Įrašyti",
+  "log.today": "Šiandien",
+  "log.yesterday": "Vakar",
+  "log.orLogManually": "Arba įrašyti rankiniu būdu",
+  "log.date": "Data",
 
   "training.title": "Įrašyti treniruotę",
   "training.type.team": "Komanda ⚽",

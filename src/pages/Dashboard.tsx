@@ -12,7 +12,6 @@ import { getRank } from '../engine/xp'
 import { exercises } from '../data/exercises'
 import { MatchLog } from './MatchLog'
 import { TrainingLog } from './TrainingLog'
-import { DiaryPage } from './DiaryPage'
 import type { ScheduleEvent } from '../engine/types'
 import { isPhysicalUpdateDue, daysSinceLastMeasurement } from '../engine/physical'
 import { PhysicalUpdateFlow } from '../components/PhysicalUpdateFlow'
@@ -146,7 +145,6 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
 
   // Inline logging state
   const [expandedEventId, setExpandedEventId] = useState<string | null>(null)
-  const [addingType, setAddingType] = useState<'training' | 'match' | 'diary' | null>(null)
   const [loggedEventIds, setLoggedEventIds] = useState<Set<string>>(new Set())
 
   // Physical update reminder
@@ -438,7 +436,6 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
                     onClick={() => {
                       if (isLogged) return
                       setExpandedEventId(isExpanded ? null : ev.id)
-                      setAddingType(null)
                     }}
                   >
                     <span className="text-xl">{isLogged ? '✅' : emoji}</span>
@@ -492,58 +489,6 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
               : t('dashboard.todayEmpty')
             }
           </p>
-        )}
-
-        {/* Add unplanned activity */}
-        {addingType ? (
-          <div className="mt-3 rounded-2xl p-3" style={{ background: 'var(--color-bg-field)' }}>
-            <div className="flex items-center justify-between mb-3">
-              <p className="text-sm font-bold">
-                {addingType === 'match' ? '🏟️' : addingType === 'training' ? '⚽' : '📝'}{' '}
-                {t(`log.${addingType}`)}
-              </p>
-              <button
-                className="text-xs font-bold px-2 py-1 rounded-full tap-target"
-                style={{ background: 'rgba(0,0,0,0.05)' }}
-                onClick={() => setAddingType(null)}
-              >
-                ✕
-              </button>
-            </div>
-            {addingType === 'match' && (
-              <MatchLog inline onSaved={() => setAddingType(null)} />
-            )}
-            {addingType === 'training' && (
-              <TrainingLog inline onSaved={() => setAddingType(null)} />
-            )}
-            {addingType === 'diary' && (
-              <DiaryPage inline onSaved={() => setAddingType(null)} />
-            )}
-          </div>
-        ) : (
-          <div className="flex gap-2 mt-3">
-            <button
-              className="flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-xs font-bold tap-target"
-              style={{ background: 'rgba(var(--color-primary-rgb), 0.08)', color: 'var(--color-primary-dark)' }}
-              onClick={() => { setAddingType('training'); setExpandedEventId(null) }}
-            >
-              ⚽ {t('log.training')}
-            </button>
-            <button
-              className="flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-xs font-bold tap-target"
-              style={{ background: 'rgba(var(--color-primary-rgb), 0.08)', color: 'var(--color-primary-dark)' }}
-              onClick={() => { setAddingType('match'); setExpandedEventId(null) }}
-            >
-              🏟️ {t('log.match')}
-            </button>
-            <button
-              className="flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-xs font-bold tap-target"
-              style={{ background: 'rgba(var(--color-primary-rgb), 0.08)', color: 'var(--color-primary-dark)' }}
-              onClick={() => { setAddingType('diary'); setExpandedEventId(null) }}
-            >
-              📝 {t('log.diary')}
-            </button>
-          </div>
         )}
       </div>
 

@@ -19,7 +19,7 @@ const ENERGY_EMOJIS = ['😴', '😐', '🙂', '😄', '🔥']
 export interface MatchLogProps {
   onBack?: () => void
   inline?: boolean
-  prefill?: { opponent?: string; competition?: string; tournamentId?: string }
+  prefill?: { date?: string; opponent?: string; competition?: string; tournamentId?: string; matchType?: string; playingFor?: string; fromSchedule?: string }
   onSaved?: () => void
 }
 
@@ -33,9 +33,10 @@ export function MatchLog({ onBack, inline, prefill, onSaved }: MatchLogProps) {
   const [showDetails, setShowDetails] = useState(false)
 
   const today = new Date().toISOString().split('T')[0]
+  const [date, setDate] = useState(prefill?.date ?? today)
   const [opponent, setOpponent] = useState(prefill?.opponent ?? '')
   const [competition, setCompetition] = useState(prefill?.competition ?? '')
-  const [playingFor, setPlayingFor] = useState(profile?.team || '')
+  const [playingFor, setPlayingFor] = useState(prefill?.playingFor ?? (profile?.team || ''))
   const [scoreUs, setScoreUs] = useState(0)
   const [scoreThem, setScoreThem] = useState(0)
   const [positions, setPositions] = useState<Position[]>(profile?.positions?.length ? [profile.positions[0]] : ['CM'])
@@ -68,7 +69,7 @@ export function MatchLog({ onBack, inline, prefill, onSaved }: MatchLogProps) {
       id: crypto.randomUUID(),
       playerId: 'default',
       playingFor: playingFor || undefined,
-      date: today,
+      date,
       opponent,
       competition,
       scoreUs,
@@ -89,7 +90,7 @@ export function MatchLog({ onBack, inline, prefill, onSaved }: MatchLogProps) {
     if (selfRating <= 4 && toImprove.length > 0) {
       totalXp += XP_AWARDS.growthXp
     }
-    setXp(awardXp(xp, totalXp, today, ageTier))
+    setXp(awardXp(xp, totalXp, date, ageTier))
     setSaved(true)
     onSaved?.()
     if (!inline) setTimeout(() => { setSaved(false); onBack?.() }, 2000)
@@ -127,6 +128,19 @@ export function MatchLog({ onBack, inline, prefill, onSaved }: MatchLogProps) {
           <h2 className="text-lg font-bold">{t('match.title')}</h2>
         </div>
       )}
+
+      {/* Date */}
+      <div>
+        <p className="section-label mb-2">{t('log.date')}</p>
+        <input
+          type="date"
+          value={date}
+          max={today}
+          onChange={(e) => setDate(e.target.value)}
+          className="w-full text-sm p-2.5 rounded-lg border"
+          style={{ background: 'var(--color-bg-field, #f8fafc)' }}
+        />
+      </div>
 
       {/* Playing for (team selector) */}
       {playerTeams.length > 1 && (

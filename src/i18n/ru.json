@@ -45,6 +45,13 @@
   "log.selectType": "Что записать?",
   "log.tipTitle": "Совет про",
   "log.tipText": "Регулярность — ключ к прогрессу. Даже 10 минут сосредоточенной тренировки важны!",
+  "log.pending": "Ждут твоего отзыва",
+  "log.missed": "Пропущено",
+  "log.logNow": "Записать",
+  "log.today": "Сегодня",
+  "log.yesterday": "Вчера",
+  "log.orLogManually": "Или добавить вручную",
+  "log.date": "Дата",
 
   "training.title": "Запись тренировки",
   "training.type.team": "Команда ⚽",

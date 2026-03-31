@@ -29,10 +29,11 @@ const ENERGY_EMOJIS = ['😴', '😐', '🙂', '😄', '🔥']
 export interface TrainingLogProps {
   onBack?: () => void
   inline?: boolean
+  prefill?: { date?: string; type?: TrainingType; durationMinutes?: number; location?: string; fromSchedule?: string }
   onSaved?: () => void
 }
 
-export function TrainingLog({ onBack, inline, onSaved }: TrainingLogProps) {
+export function TrainingLog({ onBack, inline, prefill, onSaved }: TrainingLogProps) {
   const { t } = useTranslation()
   const { xp, setXp, addTraining, profile } = useApp()
   const ageTier = profile?.birthDate ? getAgeTier(profile.birthDate) : undefined
@@ -41,8 +42,9 @@ export function TrainingLog({ onBack, inline, onSaved }: TrainingLogProps) {
   const [showDetails, setShowDetails] = useState(false)
 
   const today = new Date().toISOString().split('T')[0]
-  const [type, setType] = useState<TrainingType>('team')
-  const [duration, setDuration] = useState(90)
+  const [date, setDate] = useState(prefill?.date ?? today)
+  const [type, setType] = useState<TrainingType>(prefill?.type ?? 'team')
+  const [duration, setDuration] = useState(prefill?.durationMinutes ?? 90)
   const [focus, setFocus] = useState<FocusArea[]>([])
   const [energy, setEnergy] = useState<EnergyLevel>(3)
   const [mood, setMood] = useState<EnergyLevel>(3)
@@ -56,7 +58,7 @@ export function TrainingLog({ onBack, inline, onSaved }: TrainingLogProps) {
     const entry: TrainingEntry = {
       id: crypto.randomUUID(),
       playerId: 'default',
-      date: today,
+      date,
       type,
       durationMinutes: duration,
       focusAreas: focus,
@@ -64,10 +66,11 @@ export function TrainingLog({ onBack, inline, onSaved }: TrainingLogProps) {
       mood,
       notes,
       exerciseIds: [],
+      fromSchedule: prefill?.fromSchedule,
       createdAt: new Date().toISOString(),
     }
     addTraining(entry)
-    setXp(awardXp(xp, XP_AWARDS.logTraining, today, ageTier))
+    setXp(awardXp(xp, XP_AWARDS.logTraining, date, ageTier))
     setSaved(true)
     onSaved?.()
     if (!inline) setTimeout(() => { setSaved(false); onBack?.() }, 2000)
@@ -105,6 +108,19 @@ export function TrainingLog({ onBack, inline, onSaved }: TrainingLogProps) {
           <h2 className="text-lg font-bold">{t('training.title')}</h2>
         </div>
       )}
+
+      {/* Date */}
+      <div>
+        <p className="section-label mb-2">{t('log.date')}</p>
+        <input
+          type="date"
+          value={date}
+          max={today}
+          onChange={(e) => setDate(e.target.value)}
+          className="w-full text-sm p-2.5 rounded-lg border"
+          style={{ background: 'var(--color-bg-field, #f8fafc)' }}
+        />
+      </div>
 
       {/* Type selector */}
       <div>

@@ -45,6 +45,13 @@
   "log.selectType": "Mida logida?",
   "log.tipTitle": "Nõuanne",
   "log.tipText": "Järjepidevus on progressi võti. Isegi 10 minutit keskendunud treeningut loeb!",
+  "log.pending": "Ootavad sinu tagasisidet",
+  "log.missed": "Puudu",
+  "log.logNow": "Logi",
+  "log.today": "Täna",
+  "log.yesterday": "Eile",
+  "log.orLogManually": "Või logi käsitsi",
+  "log.date": "Kuupäev",
 
   "training.title": "Logi treening",
   "training.type.team": "Meeskond ⚽",
