@@ -703,5 +703,16 @@
   "dashboard.welcomeStep2": "Запиши первую тренировку",
   "dashboard.welcomeStep3": "Открой упражнения на вкладке Учиться",
 
-  "mentor.subtitle": "Самочувствие и активность: {{name}}"
+  "mentor.subtitle": "Самочувствие и активность: {{name}}",
+
+  "theme.title": "Тема приложения",
+  "theme.classic": "Классика",
+  "theme.team": "Мой клуб",
+  "theme.pitch": "Поле",
+  "theme.ocean": "Океан",
+  "theme.sunset": "Закат",
+  "theme.lavender": "Лаванда",
+  "theme.sand": "Песок",
+  "theme.rose": "Роза",
+  "theme.noTeamHint": "Добавьте команду в профиле для цветов клуба"
 }

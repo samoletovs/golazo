@@ -782,5 +782,16 @@
   "dashboard.welcomeStep2": "Log your first training session",
   "dashboard.welcomeStep3": "Explore exercises in the Learn tab",
 
-  "mentor.subtitle": "{{name}}'s wellbeing & activity"
+  "mentor.subtitle": "{{name}}'s wellbeing & activity",
+
+  "theme.title": "Tema de la app",
+  "theme.classic": "Clásico",
+  "theme.team": "Mi club",
+  "theme.pitch": "Cancha",
+  "theme.ocean": "Océano",
+  "theme.sunset": "Atardecer",
+  "theme.lavender": "Lavanda",
+  "theme.sand": "Arena",
+  "theme.rose": "Rosa",
+  "theme.noTeamHint": "Añade un equipo en tu perfil para usar los colores del club"
 }

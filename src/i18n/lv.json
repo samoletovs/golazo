@@ -780,5 +780,16 @@
   "dashboard.welcomeStep2": "Log your first training session",
   "dashboard.welcomeStep3": "Explore exercises in the Learn tab",
 
-  "mentor.subtitle": "{{name}}'s wellbeing & activity"
+  "mentor.subtitle": "{{name}}'s wellbeing & activity",
+
+  "theme.title": "Lietotnes tēma",
+  "theme.classic": "Klasika",
+  "theme.team": "Mans klubs",
+  "theme.pitch": "Laukums",
+  "theme.ocean": "Okeāns",
+  "theme.sunset": "Saulriets",
+  "theme.lavender": "Lavanda",
+  "theme.sand": "Smiltis",
+  "theme.rose": "Roze",
+  "theme.noTeamHint": "Pievieno komandu profilā, lai redzētu kluba krāsas"
 }

@@ -782,5 +782,16 @@
   "dashboard.welcomeStep2": "Log your first training session",
   "dashboard.welcomeStep3": "Explore exercises in the Learn tab",
 
-  "mentor.subtitle": "{{name}}'s wellbeing & activity"
+  "mentor.subtitle": "{{name}}'s wellbeing & activity",
+
+  "theme.title": "Äpi teema",
+  "theme.classic": "Klassika",
+  "theme.team": "Minu klubi",
+  "theme.pitch": "Väljak",
+  "theme.ocean": "Ookean",
+  "theme.sunset": "Loojang",
+  "theme.lavender": "Lavendel",
+  "theme.sand": "Liiv",
+  "theme.rose": "Roos",
+  "theme.noTeamHint": "Lisa meeskond profiilis, et näha klubi värve"
 }

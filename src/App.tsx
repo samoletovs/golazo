@@ -10,6 +10,7 @@ import { LogPage } from './pages/LogPage'
 import { LoginPage } from './pages/LoginPage'
 import { OnboardingPage } from './pages/OnboardingPage'
 import { applyTeamTheme, getPrimaryTeamColor } from './utils/teamTheme'
+import { applySurfaceTheme, loadSurfaceTheme } from './utils/surfaceTheme'
 import { ErrorBoundary } from './components/ErrorBoundary'
 
 // Lazy-load heavier pages to reduce initial bundle
@@ -32,10 +33,11 @@ function AppContent() {
   const { onboardingComplete, profile } = useApp()
   const [skippedLogin, setSkippedLogin] = useState(false)
 
-  // Apply team-based color theme
+  // Apply team-based color theme + surface theme
   useEffect(() => {
     const teamColor = getPrimaryTeamColor(profile?.teams)
     applyTeamTheme(teamColor)
+    applySurfaceTheme(loadSurfaceTheme(), teamColor)
   }, [profile?.teams])
 
   // Page transition — re-key the content wrapper to trigger animation

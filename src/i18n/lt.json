@@ -796,5 +796,16 @@
   "dashboard.welcomeStep2": "Log your first training session",
   "dashboard.welcomeStep3": "Explore exercises in the Learn tab",
 
-  "mentor.subtitle": "{{name}}'s wellbeing & activity"
+  "mentor.subtitle": "{{name}}'s wellbeing & activity",
+
+  "theme.title": "Programos tema",
+  "theme.classic": "Klasika",
+  "theme.team": "Mano klubas",
+  "theme.pitch": "Aikštė",
+  "theme.ocean": "Vandenynas",
+  "theme.sunset": "Saulėlydis",
+  "theme.lavender": "Levanda",
+  "theme.sand": "Smėlis",
+  "theme.rose": "Rožė",
+  "theme.noTeamHint": "Pridėk komandą profilyje, kad matytum klubo spalvas"
 }

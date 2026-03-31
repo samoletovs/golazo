@@ -166,7 +166,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 40;
-  background: rgba(250, 250, 250, 0.88);
+  background: var(--surface-header-bg, rgba(250, 250, 250, 0.88));
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
@@ -195,7 +195,7 @@ body {
 
 /* ── Card (primary container — premium layered shadows) ──── */
 .card {
-  background: #ffffff;
+  background: var(--color-glass);
   border-radius: var(--radius-md);
   padding: 18px;
   transition: all 0.2s var(--ease-out, ease);
@@ -207,7 +207,7 @@ body {
 
 /* ── Glow Card (special/highlighted) ─────────────────────── */
 .card-glow {
-  background: #ffffff;
+  background: var(--color-glass);
   border: 1px solid rgba(var(--color-primary-rgb), 0.12);
   border-radius: var(--radius-md);
   padding: 18px;
@@ -216,7 +216,7 @@ body {
 
 /* ── Gold Card (reward/profile card) ─────────────────────── */
 .card-gold {
-  background: #ffffff;
+  background: var(--color-glass);
   border: 1.5px solid rgba(251, 191, 36, 0.25);
   border-radius: var(--radius-md);
   padding: 18px;
@@ -235,7 +235,7 @@ body {
 
 /* ── Hero Stat Card (big numbers — Nike-bold) ───────────── */
 .stat-card {
-  background: #ffffff;
+  background: var(--color-glass);
   border-radius: var(--radius-md);
   padding: 16px 8px 14px;
   text-align: center;

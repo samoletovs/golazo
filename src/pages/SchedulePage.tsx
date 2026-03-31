@@ -685,56 +685,57 @@ export function SchedulePage() {
             </div>
           )}
 
-          {/* ── Recurring trainings ── */}
-          <div className="card">
-            <div className="flex items-center justify-between mb-2">
-              <p className="section-label">{t('schedule.recurringTitle')}</p>
-              <button
-                className="text-xs font-bold px-3 py-1.5 rounded-lg"
-                style={{ background: 'var(--color-primary-bg)', color: 'var(--color-primary-dark)' }}
-                onClick={() => setShowWeeklySetup(true)}
-              >
-                + {t('schedule.addRecurring')}
-              </button>
-            </div>
-            {recurringTrainings.length === 0 ? (
-              <p className="text-xs text-center py-3" style={{ color: 'var(--color-text-muted)' }}>
-                {t('schedule.noRecurring')}
-              </p>
-            ) : (
-              <div className="flex flex-col gap-1.5">
-                {[1, 2, 3, 4, 5, 6, 0].map((dow) => {
-                  const dayTrainings = recurringTrainings.filter((r) => r.dayOfWeek === dow && r.active)
-                  if (dayTrainings.length === 0) return null
-                  return (
-                    <div key={dow} className="flex items-start gap-2">
-                      <span className="text-xs font-bold w-8 pt-1 shrink-0" style={{ color: 'var(--color-text-muted)' }}>
-                        {t(WEEKDAY_NAMES[dow])}
-                      </span>
-                      <div className="flex flex-wrap gap-1 flex-1">
-                        {dayTrainings.map((rt) => {
-                          const ttType = TRAINING_TYPES_UI.find((tt) => tt.key === rt.trainingType)
-                          return (
-                            <span key={rt.id} className="inline-flex items-center gap-1 text-[0.65rem] px-2 py-1 rounded-lg" style={{ background: 'var(--color-glass-active, #f1f5f9)' }}>
-                              {ttType?.emoji} {rt.startTime}–{rt.endTime}
-                              {rt.location && <span style={{ color: 'var(--color-text-muted)' }}>· {rt.location}</span>}
-                              <button
-                                className="ml-0.5 opacity-40 hover:opacity-100"
-                                onClick={() => removeRecurring(rt.id)}
-                                aria-label="Remove"
-                              >✕</button>
-                            </span>
-                          )
-                        })}
-                      </div>
-                    </div>
-                  )
-                })}
-              </div>
-            )}
-          </div>
         </>
       )}
+
+      {/* ── Recurring trainings (visible on both week & month) ── */}
+      <div className="card">
+        <div className="flex items-center justify-between mb-2">
+          <p className="section-label">{t('schedule.recurringTitle')}</p>
+          <button
+            className="text-xs font-bold px-3 py-1.5 rounded-lg"
+            style={{ background: 'var(--color-primary-bg)', color: 'var(--color-primary-dark)' }}
+            onClick={() => setShowWeeklySetup(true)}
+          >
+            + {t('schedule.addRecurring')}
+          </button>
+        </div>
+        {recurringTrainings.length === 0 ? (
+          <p className="text-xs text-center py-3" style={{ color: 'var(--color-text-muted)' }}>
+            {t('schedule.noRecurring')}
+          </p>
+        ) : (
+          <div className="flex flex-col gap-1.5">
+            {[1, 2, 3, 4, 5, 6, 0].map((dow) => {
+              const dayTrainings = recurringTrainings.filter((r) => r.dayOfWeek === dow && r.active)
+              if (dayTrainings.length === 0) return null
+              return (
+                <div key={dow} className="flex items-start gap-2">
+                  <span className="text-xs font-bold w-8 pt-1 shrink-0" style={{ color: 'var(--color-text-muted)' }}>
+                    {t(WEEKDAY_NAMES[dow])}
+                  </span>
+                  <div className="flex flex-wrap gap-1 flex-1">
+                    {dayTrainings.map((rt) => {
+                      const ttType = TRAINING_TYPES_UI.find((tt) => tt.key === rt.trainingType)
+                      return (
+                        <span key={rt.id} className="inline-flex items-center gap-1 text-[0.65rem] px-2 py-1 rounded-lg" style={{ background: 'var(--color-glass-active, #f1f5f9)' }}>
+                          {ttType?.emoji} {rt.startTime}–{rt.endTime}
+                          {rt.location && <span style={{ color: 'var(--color-text-muted)' }}>· {rt.location}</span>}
+                          <button
+                            className="ml-0.5 opacity-40 hover:opacity-100"
+                            onClick={() => removeRecurring(rt.id)}
+                            aria-label="Remove"
+                          >✕</button>
+                        </span>
+                      )
+                    })}
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        )}
+      </div>
 
       {/* ══════════════════════ ADD EVENT FORM (overlay) ══════════════════════ */}
       {showForm && (
