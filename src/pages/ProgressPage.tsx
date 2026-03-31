@@ -3,12 +3,20 @@ import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
 import { SkillRadar } from '../components/SkillRadar'
 import { EmptyState } from '../components/EmptyState'
-import { getMatchResult } from '../engine/types'
+import { getMatchResult, getAgeTier } from '../engine/types'
+import { getTrackedFieldConfigs } from '../engine/physical'
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, BarChart, Bar, Area, AreaChart, CartesianGrid } from 'recharts'
 
 export function ProgressPage() {
   const { t } = useTranslation()
-  const { matches, trainings, physicalProfile, checkIns } = useApp()
+  const { matches, trainings, physicalProfile, checkIns, profile } = useApp()
+
+  // Which physical fields are being tracked (respects player customization)
+  const trackedKeys = useMemo(() => {
+    const tier = profile?.birthDate ? getAgeTier(profile.birthDate) : 'u12'
+    const fields = getTrackedFieldConfigs(physicalProfile, tier)
+    return new Set(fields.map((f) => f.key as string))
+  }, [physicalProfile, profile])
 
   /* ── XP trend (last 30 days) ── */
   const xpTrend = useMemo(() => {
@@ -66,7 +74,23 @@ export function ProgressPage() {
     }))
   }, [physicalProfile])
 
-  const hasPhysicalField = (key: string) => physicalData.some((d) => (d as Record<string, unknown>)[key] !== null && (d as Record<string, unknown>)[key] !== undefined)
+  // Map chart data keys back to PhysicalMeasurement field keys
+  const chartKeyToFieldKey: Record<string, string> = {
+    height: 'heightCm', weight: 'weightKg', bmi: 'heightCm',
+    sprint10: 'sprintTime10m', sprint20: 'sprintTime20m', sprint30: 'sprintTime30m',
+    jump: 'standingJumpCm', cmj: 'cmjCm', verticalJump: 'verticalJumpCm',
+    yoyo: 'yoyoIR1Level', agility: 'agilityCourseTime',
+    plank: 'plankTimeSec', juggles: 'juggleRecord',
+  }
+
+  const hasPhysicalField = (key: string) => {
+    const fieldKey = chartKeyToFieldKey[key]
+    if (fieldKey && !trackedKeys.has(fieldKey)) return false // not tracked → hide
+    return physicalData.some((d) => (d as Record<string, unknown>)[key] !== null && (d as Record<string, unknown>)[key] !== undefined)
+  }
+
+  // Check if any field in a group is tracked (show chart section if at least one field is tracked)
+  const isGroupTracked = (keys: string[]) => keys.some((k) => trackedKeys.has(chartKeyToFieldKey[k] ?? k))
 
   /* ── Goals per match trend ── */
   const goalsTrend = useMemo(() => {
@@ -347,7 +371,7 @@ export function ProgressPage() {
       )}
 
       {/* ── Physical: Speed & Power ── */}
-      {physicalData.length > 0 && (
+      {physicalData.length > 0 && isGroupTracked(['sprint10', 'sprint20', 'sprint30', 'jump', 'cmj', 'verticalJump']) && (
         <div className="card animate-fade-up">
           <h2 className="text-sm font-bold mb-3">⚡ {t('progress.speedPower')}</h2>
           {hasPhysicalField('sprint10') || hasPhysicalField('sprint20') || hasPhysicalField('cmj') || hasPhysicalField('jump') ? (
@@ -370,7 +394,7 @@ export function ProgressPage() {
       )}
 
       {/* ── Physical: Endurance ── */}
-      {physicalData.length > 0 && (
+      {physicalData.length > 0 && isGroupTracked(['yoyo', 'agility']) && (
         <div className="card animate-fade-up">
           <h2 className="text-sm font-bold mb-3">🫁 {t('progress.endurance')}</h2>
           {hasPhysicalField('yoyo') || hasPhysicalField('agility') ? (
@@ -391,7 +415,7 @@ export function ProgressPage() {
       )}
 
       {/* ── Physical: Strength & Skill ── */}
-      {physicalData.length > 0 && (
+      {physicalData.length > 0 && isGroupTracked(['plank', 'juggles']) && (
         <div className="card animate-fade-up">
           <h2 className="text-sm font-bold mb-3">💪 {t('progress.strengthSkill')}</h2>
           {hasPhysicalField('plank') || hasPhysicalField('juggles') ? (
