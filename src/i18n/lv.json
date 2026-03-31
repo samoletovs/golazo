@@ -497,6 +497,7 @@
   "import.addedGames": "{{count}} mači pievienoti no {{tournament}}",
   "import.button": "Pievienot turnīru",
   "import.playingFor": "Spēlēju par",
+  "import.teamSetup": "Komanda",
   "import.tournamentTeamName": "Komandas nosaukums turnīrā",
   "import.tournamentTeamHint": "Kā tava komanda ir norādīta šajā turnīrā",
 

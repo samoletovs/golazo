@@ -499,6 +499,7 @@
   "import.addedGames": "{{count}} partidos agregados de {{tournament}}",
   "import.button": "Añadir torneo",
   "import.playingFor": "Juego para",
+  "import.teamSetup": "Equipo",
   "import.tournamentTeamName": "Nombre del equipo en el torneo",
   "import.tournamentTeamHint": "Cómo aparece tu equipo en este torneo",
 

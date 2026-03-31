@@ -549,6 +549,7 @@
   "import.addedGames": "{{count}} matches added from {{tournament}}",
   "import.button": "Add Tournament",
   "import.playingFor": "Playing for",
+  "import.teamSetup": "Team",
   "import.tournamentTeamName": "Team name in tournament",
   "import.tournamentTeamHint": "How your team is listed in this tournament",
 

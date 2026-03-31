@@ -564,6 +564,7 @@
   "import.addedGames": "{{count}} rungtynių pridėta iš {{tournament}}",
   "import.button": "Pridėti turnyrą",
   "import.playingFor": "Žaidžiu už",
+  "import.teamSetup": "Komanda",
   "import.tournamentTeamName": "Komandos pavadinimas turnyre",
   "import.tournamentTeamHint": "Kaip tavo komanda įrašyta šiame turnyre",
 

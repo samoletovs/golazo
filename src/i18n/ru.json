@@ -563,6 +563,7 @@
   "import.addedGames": "{{count}} матчей добавлено из {{tournament}}",
   "import.button": "Добавить турнир",
   "import.playingFor": "Играю за",
+  "import.teamSetup": "Команда",
   "import.tournamentTeamName": "Название команды в турнире",
   "import.tournamentTeamHint": "Как ваша команда указана в этом турнире",
 

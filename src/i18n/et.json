@@ -551,6 +551,7 @@
   "import.addedGames": "{{count}} mängu lisatud turniirilt {{tournament}}",
   "import.button": "Lisa turniir",
   "import.playingFor": "Mängin meeskonnas",
+  "import.teamSetup": "Meeskond",
   "import.tournamentTeamName": "Meeskonna nimi turniiril",
   "import.tournamentTeamHint": "Kuidas sinu meeskond on sellel turniiril kirjas",
 
