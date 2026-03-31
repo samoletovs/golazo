@@ -389,6 +389,7 @@
   "progress.speedPower": "Kiirus ja jõud",
   "progress.endurance": "Vastupidavus",
   "progress.strengthSkill": "Jõud ja tehnika",
+  "progress.noDataHint": "Uuenda füüsilisi näitajaid Profiilis, et jälgida progressi",
   "progress.height": "Pikkus (cm)",
   "progress.jump": "Kaugushüpe (cm)",
   "progress.yoyo": "Yo-Yo IR1",

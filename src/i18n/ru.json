@@ -402,6 +402,7 @@
   "progress.speedPower": "Скорость и сила",
   "progress.endurance": "Выносливость",
   "progress.strengthSkill": "Сила и техника",
+  "progress.noDataHint": "Обнови физические данные в Профиле, чтобы видеть прогресс",
   "progress.height": "Рост (см)",
   "progress.jump": "Прыжок (см)",
   "progress.yoyo": "Yo-Yo IR1",

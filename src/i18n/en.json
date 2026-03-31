@@ -402,6 +402,7 @@
   "progress.speedPower": "Speed & Power",
   "progress.endurance": "Endurance",
   "progress.strengthSkill": "Strength & Skill",
+  "progress.noDataHint": "Update physical stats in Profile to track progress",
   "progress.height": "Height (cm)",
   "progress.jump": "Standing Jump (cm)",
   "progress.yoyo": "Yo-Yo IR1",

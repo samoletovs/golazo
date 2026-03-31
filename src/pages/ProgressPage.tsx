@@ -347,9 +347,10 @@ export function ProgressPage() {
       )}
 
       {/* ── Physical: Speed & Power ── */}
-      {physicalData.length > 0 && (hasPhysicalField('sprint10') || hasPhysicalField('sprint20') || hasPhysicalField('cmj') || hasPhysicalField('jump')) && (
+      {physicalData.length > 0 && (
         <div className="card animate-fade-up">
           <h2 className="text-sm font-bold mb-3">⚡ {t('progress.speedPower')}</h2>
+          {hasPhysicalField('sprint10') || hasPhysicalField('sprint20') || hasPhysicalField('cmj') || hasPhysicalField('jump') ? (
           <ResponsiveContainer width="100%" height={140}>
             <LineChart data={physicalData}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
@@ -362,13 +363,17 @@ export function ProgressPage() {
               {hasPhysicalField('jump') && <Line type="monotone" dataKey="jump" stroke="#0ea5e9" strokeWidth={2} dot={{ r: 3, fill: '#0ea5e9', stroke: '#fff', strokeWidth: 2 }} name={t('physical.standingJump')} connectNulls />}
             </LineChart>
           </ResponsiveContainer>
+          ) : (
+            <p className="text-xs text-center py-4" style={{ color: 'var(--color-text-muted)' }}>{t('progress.noDataHint')}</p>
+          )}
         </div>
       )}
 
       {/* ── Physical: Endurance ── */}
-      {physicalData.length > 0 && (hasPhysicalField('yoyo') || hasPhysicalField('agility')) && (
+      {physicalData.length > 0 && (
         <div className="card animate-fade-up">
           <h2 className="text-sm font-bold mb-3">🫁 {t('progress.endurance')}</h2>
+          {hasPhysicalField('yoyo') || hasPhysicalField('agility') ? (
           <ResponsiveContainer width="100%" height={140}>
             <LineChart data={physicalData}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
@@ -379,13 +384,17 @@ export function ProgressPage() {
               {hasPhysicalField('agility') && <Line type="monotone" dataKey="agility" stroke="#f59e0b" strokeWidth={2.5} dot={{ r: 3, fill: '#f59e0b', stroke: '#fff', strokeWidth: 2 }} name={t('progress.agility')} connectNulls />}
             </LineChart>
           </ResponsiveContainer>
+          ) : (
+            <p className="text-xs text-center py-4" style={{ color: 'var(--color-text-muted)' }}>{t('progress.noDataHint')}</p>
+          )}
         </div>
       )}
 
       {/* ── Physical: Strength & Skill ── */}
-      {physicalData.length > 0 && (hasPhysicalField('plank') || hasPhysicalField('juggles')) && (
+      {physicalData.length > 0 && (
         <div className="card animate-fade-up">
           <h2 className="text-sm font-bold mb-3">💪 {t('progress.strengthSkill')}</h2>
+          {hasPhysicalField('plank') || hasPhysicalField('juggles') ? (
           <ResponsiveContainer width="100%" height={140}>
             <LineChart data={physicalData}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
@@ -396,6 +405,9 @@ export function ProgressPage() {
               {hasPhysicalField('juggles') && <Line type="monotone" dataKey="juggles" stroke="var(--color-primary)" strokeWidth={2.5} dot={{ r: 3, fill: 'var(--color-primary)', stroke: '#fff', strokeWidth: 2 }} name={t('progress.juggles')} connectNulls />}
             </LineChart>
           </ResponsiveContainer>
+          ) : (
+            <p className="text-xs text-center py-4" style={{ color: 'var(--color-text-muted)' }}>{t('progress.noDataHint')}</p>
+          )}
         </div>
       )}
     </div>
