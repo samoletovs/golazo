@@ -77,7 +77,7 @@ export function WeeklyGoalRing() {
 
         {/* Text */}
         <div className="flex-1">
-          <p className="text-sm font-bold heading-display">
+          <p className="text-base font-bold heading-display">
             {t('dashboard.weeklyGoal')}
           </p>
           <p className="text-xs mt-1 leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>

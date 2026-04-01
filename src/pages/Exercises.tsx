@@ -135,8 +135,8 @@ function ExerciseDetailModal({
           <button
             className="flex-1 tap-target text-sm font-bold py-3 rounded-full"
             style={{
-              background: isSaved ? 'var(--color-gold-300)' : '#f3f4f6',
-              color: isSaved ? '#92400e' : 'var(--color-text-secondary)',
+              background: isSaved ? 'var(--color-gold-300)' : 'var(--color-bg-warm)',
+              color: isSaved ? 'var(--color-amber-text)' : 'var(--color-text-secondary)',
             }}
             onClick={onToggleSave}
           >
@@ -297,7 +297,7 @@ export function Exercises({ embedded }: { embedded?: boolean }) {
             >
               {/* Thumbnail (if video) */}
               {thumbnail && (
-                <div className="w-full h-24 rounded-lg overflow-hidden mb-3 relative" style={{ background: '#f3f4f6' }}>
+                <div className="w-full h-24 rounded-lg overflow-hidden mb-3 relative" style={{ background: 'var(--color-bg-warm)' }}>
                   <img src={thumbnail} alt="" className="w-full h-full object-cover" loading="lazy" />
                   <div className="absolute inset-0 flex items-center justify-center">
                     <span className="text-white text-xl drop-shadow-lg">▶</span>
@@ -308,24 +308,24 @@ export function Exercises({ embedded }: { embedded?: boolean }) {
               {/* Category emoji badge (when no thumbnail) */}
               {!thumbnail && (
                 <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-2 text-lg"
-                  style={{ background: '#f8fafc' }}>
+                  style={{ background: 'var(--color-field-input)' }}>
                   {CAT_EMOJI[ex.category] ?? '⚽'}
                 </div>
               )}
 
               {/* Title */}
-              <p className="text-sm font-bold heading-display" style={{ color: 'var(--color-text)' }}>
+              <p className="text-base font-bold heading-display" style={{ color: 'var(--color-text)' }}>
                 {t(ex.nameKey)}
               </p>
 
               {/* Description (truncated) */}
-              <p className="text-xs mt-1 leading-relaxed line-clamp-2" style={{ color: 'var(--color-text-secondary)' }}>
+              <p className="text-sm mt-1 leading-relaxed line-clamp-2" style={{ color: 'var(--color-text-secondary)' }}>
                 {t(ex.descriptionKey)}
               </p>
 
               {/* Metadata row */}
               <div className="flex items-center gap-2 mt-3 flex-wrap">
-                <span className="text-xs px-2 py-0.5 rounded-full font-data font-bold" style={{ background: '#f3f4f6', color: '#6b7280' }}>
+                <span className="text-xs px-2 py-0.5 rounded-full font-data font-bold" style={{ background: 'var(--color-bg-warm)', color: 'var(--color-text-muted)' }}>
                   {ex.durationMinutes} min
                 </span>
                 <DifficultyDots level={ex.difficulty} />

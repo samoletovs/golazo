@@ -100,9 +100,9 @@ export function CoachCard() {
       {/* Header */}
       <div className="flex items-center gap-2 mb-2">
         <span className="text-xl">🧠</span>
-        <p className="text-sm font-bold heading-display">{t('coach.title')}</p>
+        <p className="text-base font-bold heading-display">{t('coach.title')}</p>
         {aiAdvice && (
-          <span className="text-xs px-1.5 py-0.5 rounded-full font-bold" style={{ background: 'var(--color-primary-light, #dcfce7)', color: 'var(--color-primary-dark, #166534)' }}>
+          <span className="text-xs px-1.5 py-0.5 rounded-full font-bold" style={{ background: 'var(--color-primary-bg)', color: 'var(--color-primary-dark)' }}>
             AI
           </span>
         )}
@@ -128,7 +128,7 @@ export function CoachCard() {
 
         {/* Insights */}
         {visibleInsights.length > 0 && (
-          <div className="flex flex-col mt-1" style={{ borderTop: '1px solid var(--color-pitch-line, #e5e7eb)', paddingTop: '8px' }}>
+          <div className="flex flex-col mt-1" style={{ borderTop: '1px solid var(--color-glass-border)', paddingTop: '8px' }}>
             {visibleInsights.map((insight, i) => (
               <InsightRow key={i} insight={insight} />
             ))}

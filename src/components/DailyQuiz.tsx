@@ -81,7 +81,7 @@ export function DailyQuiz({ onComplete, compact }: DailyQuizProps) {
         </div>
       )}
 
-      <p className="text-sm font-bold heading-display">
+      <p className="text-base font-bold heading-display">
         {question.questionKey}
       </p>
 

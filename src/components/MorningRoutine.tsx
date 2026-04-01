@@ -67,7 +67,7 @@ export function MorningRoutine({ onClose }: MorningRoutineProps) {
       <div className="app-header flex items-center justify-between px-4 py-3">
         <div className="flex items-center gap-2">
           <span className="text-lg">☀️</span>
-          <p className="text-sm font-bold heading-display">
+          <p className="text-base font-bold heading-display">
             {t('routine.title')}
           </p>
         </div>

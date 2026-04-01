@@ -120,12 +120,12 @@ export function Challenges() {
                   <div className="flex-1 mr-3">
                     <p className="text-sm">{t(ch.textKey)}</p>
                     <div className="flex items-center gap-2 mt-1">
-                      <span className="text-xs px-1.5 py-0.5 rounded-full" style={{ background: '#f3f4f6', color: '#6b7280' }}>
+                      <span className="text-xs px-1.5 py-0.5 rounded-full" style={{ background: 'var(--color-bg-warm)', color: 'var(--color-text-muted)' }}>
                         {ch.target} {ch.unit}
                       </span>
                       <button
                         className="text-xs px-1.5 py-0.5 rounded-full"
-                        style={{ background: '#eff6ff', color: '#1d4ed8' }}
+                        style={{ background: 'rgba(var(--color-info-rgb, 59, 130, 246), 0.06)', color: 'var(--color-info)' }}
                         onClick={() => setShowReason(showReason === ch.templateId ? null : ch.templateId)}
                       >
                         {t('challenges.why')}

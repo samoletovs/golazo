@@ -45,8 +45,6 @@ export function LogPage() {
     } catch { /* best-effort */ }
   }
 
-  const today = new Date().toISOString().split('T')[0]
-
   // Find pending events: today's planned + past 7 days without feedback
   const pendingEvents = useMemo(() => {
     const now = new Date()
@@ -105,7 +103,7 @@ export function LogPage() {
     }
 
     return result
-  }, [schedule, recurringTrainings, matches, trainings, profile, t, today, skippedIds])
+  }, [schedule, recurringTrainings, matches, trainings, profile, t, skippedIds])
 
   function openFromPending(pe: PendingEvent) {
     const ev = pe.event
@@ -282,7 +280,7 @@ export function LogPage() {
       <div className="tip-card animate-fade-up" style={{ marginTop: 8 }}>
         <span className="tip-card-icon">💡</span>
         <div>
-          <p className="text-sm font-bold heading-display">{t('log.tipTitle')}</p>
+          <p className="text-base font-bold heading-display">{t('log.tipTitle')}</p>
           <p className="text-xs mt-1 leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
             {t('log.tipText')}
           </p>

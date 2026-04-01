@@ -122,4 +122,68 @@ export const programs: TrainingProgram[] = [
       makeWeek(4, 'prog.week.mastery', ['tech-05', 'tech-01', 'tech-03'], 25, 'prog.sh'),
     ],
   },
+  // ═══════════════════════════════════════════════════════════
+  //  DEFENDING FUNDAMENTALS — 3 weeks, Tactical, UEFA
+  // ═══════════════════════════════════════════════════════════
+  {
+    id: 'prog-defending',
+    titleKey: 'prog.defending.title',
+    descriptionKey: 'prog.defending.desc',
+    category: 'tactical',
+    durationWeeks: 3,
+    ageTiers: ['u12', 'u14', 'u16'],
+    exerciseIds: ['tact-03', 'tact-02', 'tact-01', 'phys-01', 'phys-03'],
+    imageEmoji: '🛡️',
+    difficulty: 'intermediate',
+    methodology: 'uefa',
+    skillImpact: { tactical: 1.5, physical: 1.0 },
+    weeks: [
+      makeWeek(1, 'prog.week.foundation', ['tact-03', 'tact-02', 'phys-01', 'tact-01', 'phys-03'], 20, 'prog.df'),
+      makeWeek(2, 'prog.week.build', ['tact-03', 'tact-02', 'phys-01', 'tact-01', 'phys-03'], 25, 'prog.df'),
+      makeWeek(3, 'prog.week.mastery', ['tact-03', 'tact-02', 'phys-01', 'tact-01', 'phys-03'], 25, 'prog.df'),
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════
+  //  PASSING MASTER — 3 weeks, Technical, Horst Wein
+  // ═══════════════════════════════════════════════════════════
+  {
+    id: 'prog-passing',
+    titleKey: 'prog.passing.title',
+    descriptionKey: 'prog.passing.desc',
+    category: 'technical',
+    durationWeeks: 3,
+    ageTiers: ['u10', 'u12', 'u14', 'u16'],
+    exerciseIds: ['tech-03', 'tact-04', 'deep-02', 'tech-02', 'tech-01'],
+    imageEmoji: '🎯',
+    difficulty: 'beginner',
+    methodology: 'horst-wein',
+    skillImpact: { technical: 1.5, tactical: 1.0 },
+    weeks: [
+      makeWeek(1, 'prog.week.foundation', ['tech-03', 'tact-04', 'deep-02', 'tech-02', 'tech-01'], 20, 'prog.pm', COOLDOWN_STRETCH, WARMUP_BALL),
+      makeWeek(2, 'prog.week.build', ['tech-03', 'tact-04', 'deep-02', 'tech-02', 'tech-01'], 25, 'prog.pm', COOLDOWN_STRETCH, WARMUP_BALL),
+      makeWeek(3, 'prog.week.mastery', ['tech-03', 'tact-04', 'deep-02', 'tech-02', 'tech-01'], 25, 'prog.pm', COOLDOWN_STRETCH, WARMUP_BALL),
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════
+  //  GOALKEEPER ACADEMY — 4 weeks, Technical, Specialist
+  // ═══════════════════════════════════════════════════════════
+  {
+    id: 'prog-goalkeeper',
+    titleKey: 'prog.goalkeeper.title',
+    descriptionKey: 'prog.goalkeeper.desc',
+    category: 'technical',
+    durationWeeks: 4,
+    ageTiers: ['u10', 'u12', 'u14', 'u16'],
+    exerciseIds: ['phys-01', 'phys-04', 'phys-03', 'tech-03', 'ment-01'],
+    imageEmoji: '🧤',
+    difficulty: 'intermediate',
+    methodology: 'specialist',
+    skillImpact: { technical: 2.0, physical: 1.0, mental: 0.5 },
+    weeks: [
+      makeWeek(1, 'prog.week.foundation', ['phys-01', 'phys-04', 'phys-03', 'tech-03', 'ment-01'], 25, 'prog.gk'),
+      makeWeek(2, 'prog.week.build', ['phys-01', 'phys-04', 'phys-03', 'tech-03', 'ment-01'], 30, 'prog.gk'),
+      makeWeek(3, 'prog.week.challenge', ['phys-01', 'phys-04', 'phys-03', 'tech-03', 'ment-01'], 30, 'prog.gk'),
+      makeWeek(4, 'prog.week.mastery', ['phys-01', 'phys-04', 'phys-03', 'tech-03', 'ment-01'], 25, 'prog.gk'),
+    ],
+  },
 ]

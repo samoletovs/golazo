@@ -54,7 +54,7 @@ export function WorkoutView({ weekNumber, weekFocusKey, day, onComplete, isCompl
         </span>
       </div>
 
-      <h3 className="text-sm font-bold heading-display">
+      <h3 className="text-base font-bold heading-display">
         {weekFocusKey ? t(weekFocusKey) : ''} — {t('prog.dayLabel', { n: day.dayNumber })}
       </h3>
 
@@ -74,7 +74,7 @@ export function WorkoutView({ weekNumber, weekFocusKey, day, onComplete, isCompl
 
       {/* Cooldown */}
       {day.cooldown && (
-        <div className="card flex items-center gap-3" style={{ background: '#f0fdf4' }}>
+        <div className="card flex items-center gap-3" style={{ background: 'var(--color-success-bg)' }}>
           <span className="text-lg">🧊</span>
           <div className="flex-1">
             <p className="text-xs font-bold">{t('prog.cooldown')} · {day.cooldown.durationMin} {t('learn.minutes')}</p>

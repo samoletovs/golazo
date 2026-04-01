@@ -260,11 +260,11 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
         <div className="card-glow animate-fade-up flex flex-col gap-3">
           <div className="flex items-center gap-2">
             <span className="text-2xl">🎉</span>
-            <p className="text-sm font-bold heading-display">
+            <p className="text-base font-bold heading-display">
               {t('dashboard.welcomeTitle')}
             </p>
           </div>
-          <p className="text-xs leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
+          <p className="text-sm leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
             {t('dashboard.welcomeText')}
           </p>
           <div className="flex flex-col gap-2">
@@ -292,7 +292,7 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
         >
           <span className="text-2xl">☀️</span>
           <div className="flex-1 text-left">
-            <p className="text-sm font-bold heading-display">
+            <p className="text-base font-bold heading-display">
               {t('routine.cta')}
             </p>
             <p className="text-xs mt-0.5" style={{ color: 'var(--color-text-muted)' }}>
@@ -470,7 +470,7 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
 
                   {/* Expanded inline form */}
                   {isExpanded && !isLogged && (
-                    <div className="px-3 pb-4 pt-1" style={{ borderTop: '1px solid #e5e7eb' }}>
+                    <div className="px-3 pb-4 pt-1" style={{ borderTop: '1px solid var(--color-border-default)' }}>
                       {isMatch ? (
                         <MatchLog
                           inline
@@ -580,10 +580,10 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
           <span className="text-lg">🎯</span>
           <p className="section-label">{t('dashboard.drillOfDay')}</p>
         </div>
-        <p className="text-sm font-bold heading-display">
+        <p className="text-base font-bold heading-display">
           {t(drillOfDay.nameKey)}
         </p>
-        <p className="text-xs mt-1 leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
+        <p className="text-sm mt-1 leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
           {t(drillOfDay.descriptionKey)}
         </p>
         <div className="flex items-center gap-3 mt-2">
