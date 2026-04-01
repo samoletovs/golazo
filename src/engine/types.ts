@@ -705,17 +705,27 @@ export interface ProgramProgress {
 
 /* ── Challenge Templates (for dynamic engine) ─────────────── */
 
+export type ChallengeDifficulty = 'easy' | 'medium' | 'hard'
+export type ChallengeLocation = 'anywhere' | 'outdoor' | 'indoor' | 'pitch'
+
 export interface ChallengeTemplate {
   id: string
-  textKey: string       // i18n key
+  textKey: string       // i18n key for title
+  descKey: string       // i18n key for description/instructions
+  tipsKey?: string      // i18n key for pro tips
+  emoji: string         // challenge icon
   category: SkillCategory
+  difficulty: ChallengeDifficulty
+  location: ChallengeLocation
+  estimateMin: number   // estimated time to complete
   positions?: Position[] // position-specific (empty = all)
   ageTiers: QuizDifficulty[]
   targets: Partial<Record<QuizDifficulty, { value: number; unit: string }>>
   period: 'daily' | 'weekly'
   xpReward: number
   skillImpact: SkillCategory
-  tags?: string[]       // 'indoor', 'no-partner', 'needs-goal'
+  tags?: string[]       // 'no-partner', 'needs-goal', 'partner', 'video'
+  shareCode?: string    // short code for sharing (future: invite friend to same challenge)
 }
 
 export type ChallengeReason = 'weakest-skill' | 'second-weakest' | 'position' | 'wildcard' | 'weekly'
@@ -733,4 +743,11 @@ export interface ActiveChallenge {
   category: SkillCategory
   xpReward: number
   textKey: string
+  descKey: string
+  tipsKey?: string
+  emoji: string
+  difficulty: ChallengeDifficulty
+  location: ChallengeLocation
+  estimateMin: number
+  shareCode?: string    // for multiplayer challenges
 }

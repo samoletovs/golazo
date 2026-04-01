@@ -154,6 +154,13 @@ export function generateDailyChallenges(
       category: p.template.category,
       xpReward: p.template.xpReward,
       textKey: p.template.textKey,
+      descKey: p.template.descKey,
+      tipsKey: p.template.tipsKey,
+      emoji: p.template.emoji,
+      difficulty: p.template.difficulty,
+      location: p.template.location,
+      estimateMin: p.template.estimateMin,
+      shareCode: p.template.shareCode,
     }
   })
 }

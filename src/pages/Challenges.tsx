@@ -5,7 +5,7 @@ import { awardXp, XP_AWARDS } from '../engine/xp'
 import { getAgeTier } from '../engine/types'
 import { generateDailyChallenges, getChallengeReasonKey } from '../engine/challenges'
 import { createInitialSkillTree } from '../engine/skills'
-import type { SpecialChallengeProgress, ActiveChallenge, QuizDifficulty } from '../engine/types'
+import type { SpecialChallengeProgress, ActiveChallenge, QuizDifficulty, ChallengeDifficulty } from '../engine/types'
 
 function tierToDifficulty(tier: string): QuizDifficulty {
   if (tier === 'u8') return 'u10'
@@ -14,10 +14,28 @@ function tierToDifficulty(tier: string): QuizDifficulty {
   return 'u16'
 }
 
+const CATEGORY_COLORS: Record<string, { bg: string; text: string }> = {
+  technical: { bg: '#dbeafe', text: '#1d4ed8' },
+  physical: { bg: '#dcfce7', text: '#166534' },
+  tactical: { bg: '#fef9c3', text: '#854d0e' },
+  mental: { bg: '#f3e8ff', text: '#7c3aed' },
+  knowledge: { bg: '#fff7ed', text: '#c2410c' },
+}
+
+const DIFFICULTY_CONFIG: Record<ChallengeDifficulty, { label: string; color: string; dots: number }> = {
+  easy: { label: '⚡', color: '#22c55e', dots: 1 },
+  medium: { label: '⚡⚡', color: '#f59e0b', dots: 2 },
+  hard: { label: '⚡⚡⚡', color: '#ef4444', dots: 3 },
+}
+
+const LOCATION_EMOJI: Record<string, string> = {
+  anywhere: '🌍', outdoor: '🏟️', indoor: '🏠', pitch: '⚽',
+}
+
 const SPECIAL_TRACKS = [
-  { id: 'weakFoot', titleKey: 'challenges.weakFoot', descKey: 'challenges.weakFootDesc', days: 30, color: 'var(--color-primary)' },
-  { id: 'mentalChamp', titleKey: 'challenges.mentalChamp', descKey: 'challenges.mentalChampDesc', days: 21, color: 'var(--color-primary-light)' },
-  { id: 'deepPractice', titleKey: 'challenges.deepPractice', descKey: 'challenges.deepPracticeDesc', days: 7, color: 'var(--color-gold-400)' },
+  { id: 'weakFoot', titleKey: 'challenges.weakFoot', descKey: 'challenges.weakFootDesc', emoji: '🦶', days: 30, color: 'var(--color-primary)' },
+  { id: 'mentalChamp', titleKey: 'challenges.mentalChamp', descKey: 'challenges.mentalChampDesc', emoji: '🧠', days: 21, color: 'var(--color-primary-light)' },
+  { id: 'deepPractice', titleKey: 'challenges.deepPractice', descKey: 'challenges.deepPracticeDesc', emoji: '⚡', days: 7, color: 'var(--color-gold-400)' },
 ]
 
 export function Challenges() {
@@ -29,7 +47,6 @@ export function Challenges() {
   const todayKey = new Date().toISOString().split('T')[0]
   const userId = profile?.id || 'anonymous'
 
-  // Generate personalized challenges using the engine
   const challenges = useMemo(() => {
     const tree = skillTree || createInitialSkillTree(userId)
     const positions = profile?.positions || []
@@ -39,7 +56,6 @@ export function Challenges() {
   const dailyChallenges = challenges.filter((c) => c.reason !== 'weekly')
   const weeklyChallenge = challenges.find((c) => c.reason === 'weekly')
 
-  // Track completed challenges per day in localStorage
   const [completedIds, setCompletedIds] = useState<Set<string>>(() => {
     try {
       const stored = localStorage.getItem(`golazo-challenges-${todayKey}`)
@@ -47,7 +63,6 @@ export function Challenges() {
     } catch { return new Set() }
   })
 
-  // Weekly challenge progress from localStorage
   const [weeklyProgress, setWeeklyProgress] = useState<number>(() => {
     try {
       const stored = localStorage.getItem(`golazo-weekly-${weeklyChallenge?.templateId || 'none'}`)
@@ -55,7 +70,9 @@ export function Challenges() {
     } catch { return 0 }
   })
 
-  const [showReason, setShowReason] = useState<string | null>(null)
+  const [expandedId, setExpandedId] = useState<string | null>(null)
+
+  const completedCount = dailyChallenges.filter((c) => completedIds.has(c.templateId)).length
 
   function completeDaily(challenge: ActiveChallenge) {
     if (completedIds.has(challenge.templateId)) return
@@ -82,162 +99,221 @@ export function Challenges() {
   function startOrLogSpecial(trackId: string, daysTarget: number) {
     const today = todayKey
     const existing = getSpecialProgress(trackId)
-
     if (existing) {
       if (existing.lastLogDate === today) return
       const isNowComplete = existing.daysCompleted + 1 >= daysTarget
       const updated = specialChallenges.map((sc) =>
-        sc.id === trackId
-          ? { ...sc, daysCompleted: sc.daysCompleted + 1, lastLogDate: today }
-          : sc,
+        sc.id === trackId ? { ...sc, daysCompleted: sc.daysCompleted + 1, lastLogDate: today } : sc,
       )
       setSpecialChallenges(updated)
-      const xpAmount = isNowComplete ? XP_AWARDS.specialTrackComplete : XP_AWARDS.specialTrackDay
-      setXp(awardXp(xp, xpAmount, today, ageTier))
+      setXp(awardXp(xp, isNowComplete ? XP_AWARDS.specialTrackComplete : XP_AWARDS.specialTrackDay, today, ageTier))
     } else {
-      const newChallenge: SpecialChallengeProgress = {
-        id: trackId, daysCompleted: 1, daysTarget, lastLogDate: today, startedAt: today,
-      }
-      setSpecialChallenges([...specialChallenges, newChallenge])
+      setSpecialChallenges([...specialChallenges, { id: trackId, daysCompleted: 1, daysTarget, lastLogDate: today, startedAt: today }])
       setXp(awardXp(xp, XP_AWARDS.specialTrackDay, today, ageTier))
     }
   }
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-5">
 
-      {/* Daily — Dynamic personalized challenges */}
-      <div>
-        <p className="section-label mb-2">
-          {t('challenges.daily')}
-        </p>
-        <div className="flex flex-col gap-2">
-          {dailyChallenges.map((ch) => {
-            const isDone = completedIds.has(ch.templateId)
-            return (
-              <div key={ch.templateId} className="card">
-                <div className="flex items-center justify-between">
-                  <div className="flex-1 mr-3">
-                    <p className="text-sm">{t(ch.textKey)}</p>
-                    <div className="flex items-center gap-2 mt-1">
-                      <span className="text-xs px-1.5 py-0.5 rounded-full" style={{ background: 'var(--color-bg-warm)', color: 'var(--color-text-muted)' }}>
-                        {ch.target} {ch.unit}
-                      </span>
-                      <button
-                        className="text-xs px-1.5 py-0.5 rounded-full"
-                        style={{ background: 'rgba(var(--color-info-rgb, 59, 130, 246), 0.06)', color: 'var(--color-info)' }}
-                        onClick={() => setShowReason(showReason === ch.templateId ? null : ch.templateId)}
-                      >
-                        {t('challenges.why')}
-                      </button>
-                    </div>
-                    {showReason === ch.templateId && (
-                      <p className="text-xs mt-1 italic animate-fade-up" style={{ color: 'var(--color-primary-dark)' }}>
-                        💡 {t(getChallengeReasonKey(ch.reason), { category: t(`learn.cat.${ch.category}`) })}
-                      </p>
-                    )}
-                  </div>
-                  <button
-                    className="tap-target rounded-xl px-3 py-2 text-xs font-bold whitespace-nowrap"
-                    style={{
-                      background: isDone ? 'var(--color-primary)' : 'var(--color-amber-bg)',
-                      color: isDone ? '#fff' : 'var(--color-amber-text)',
-                      border: 'none',
-                    }}
-                    onClick={() => completeDaily(ch)}
-                    disabled={isDone}
-                  >
-                    {isDone ? '✓' : `+${ch.xpReward} XP`}
-                  </button>
-                </div>
-              </div>
-            )
-          })}
+      {/* ── Daily streak banner ── */}
+      <div className="flex items-center justify-between">
+        <p className="section-label">{t('challenges.daily')}</p>
+        <div className="flex items-center gap-1.5">
+          {dailyChallenges.map((c) => (
+            <div
+              key={c.templateId}
+              className="w-3 h-3 rounded-full"
+              style={{ background: completedIds.has(c.templateId) ? 'var(--color-primary)' : '#e5e7eb' }}
+            />
+          ))}
+          <span className="text-xs font-bold ml-1" style={{ color: completedCount === dailyChallenges.length ? 'var(--color-primary-dark)' : 'var(--color-text-muted)' }}>
+            {completedCount}/{dailyChallenges.length}
+          </span>
         </div>
       </div>
 
-      {/* Weekly */}
-      {weeklyChallenge && (
-        <div>
-          <p className="section-label mb-2">
-            {t('challenges.weekly')}
-          </p>
-          <div className="card">
-            <div className="flex items-center justify-between mb-2">
-              <p className="text-sm font-bold">{t(weeklyChallenge.textKey)}</p>
-              <span className="text-xs font-data font-bold" style={{ color: weeklyProgress >= weeklyChallenge.target ? 'var(--color-primary-dark)' : 'var(--color-text-muted)' }}>
-                {weeklyProgress >= weeklyChallenge.target ? '✓' : `${weeklyProgress}/${weeklyChallenge.target}`}
-              </span>
-            </div>
-            <div className="progress-track">
-              <div className="progress-fill" style={{ width: `${Math.min((weeklyProgress / weeklyChallenge.target) * 100, 100)}%`, background: 'var(--color-primary)' }} />
-            </div>
-            {weeklyProgress < weeklyChallenge.target && (
+      {/* ── Daily challenge cards ── */}
+      <div className="flex flex-col gap-3">
+        {dailyChallenges.map((ch) => {
+          const isDone = completedIds.has(ch.templateId)
+          const isExpanded = expandedId === ch.templateId
+          const catColor = CATEGORY_COLORS[ch.category] || CATEGORY_COLORS.technical
+          const diff = DIFFICULTY_CONFIG[ch.difficulty]
+
+          return (
+            <div
+              key={ch.templateId}
+              className="card"
+              style={{ opacity: isDone ? 0.65 : 1, borderLeft: `3px solid ${catColor.text}` }}
+            >
+              {/* Header row */}
               <button
-                className="btn-primary tap-target w-full mt-2 text-xs"
-                onClick={incrementWeekly}
+                className="w-full text-left tap-target flex items-start gap-3"
+                onClick={() => setExpandedId(isExpanded ? null : ch.templateId)}
               >
-                {t('challenges.logProgress')} (+{weeklyChallenge.xpReward} XP {t('challenges.onComplete')})
+                <span className="text-2xl mt-0.5">{ch.emoji}</span>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2">
+                    <p className="text-sm font-bold flex-1">{isDone ? '✅ ' : ''}{t(ch.textKey)}</p>
+                    {!isDone && (
+                      <button
+                        className="tap-target rounded-xl px-3 py-1.5 text-xs font-bold whitespace-nowrap shrink-0"
+                        style={{ background: 'var(--color-amber-bg)', color: 'var(--color-amber-text)', border: 'none' }}
+                        onClick={(e) => { e.stopPropagation(); completeDaily(ch) }}
+                      >
+                        +{ch.xpReward} XP
+                      </button>
+                    )}
+                    {isDone && (
+                      <span className="text-xs font-bold px-2 py-1 rounded-full" style={{ background: 'var(--color-primary-bg)', color: 'var(--color-primary-dark)' }}>
+                        ✓ {t('challenges.done')}
+                      </span>
+                    )}
+                  </div>
+                  {/* Meta row: target, difficulty, time, location */}
+                  <div className="flex items-center gap-1.5 mt-1.5 flex-wrap">
+                    <span className="text-xs px-1.5 py-0.5 rounded-full font-bold" style={{ background: catColor.bg, color: catColor.text }}>
+                      {ch.target} {ch.unit}
+                    </span>
+                    <span className="text-[10px]" title={ch.difficulty}>{diff.label}</span>
+                    {ch.estimateMin > 0 && (
+                      <span className="text-[10px]" style={{ color: 'var(--color-text-muted)' }}>
+                        ⏱ {ch.estimateMin}{t('learn.minutes')}
+                      </span>
+                    )}
+                    <span className="text-[10px]">{LOCATION_EMOJI[ch.location]}</span>
+                  </div>
+                </div>
               </button>
-            )}
+
+              {/* Expanded details */}
+              {isExpanded && (
+                <div className="mt-3 pt-3 animate-fade-up" style={{ borderTop: '1px solid #e5e7eb' }}>
+                  {/* Description / instructions */}
+                  <p className="text-sm leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
+                    {t(ch.descKey)}
+                  </p>
+
+                  {/* Pro tips */}
+                  {ch.tipsKey && (
+                    <div className="mt-2 p-2.5 rounded-lg" style={{ background: '#fffbeb' }}>
+                      <p className="text-xs font-bold" style={{ color: '#92400e' }}>💡 {t('challenges.proTip')}</p>
+                      <p className="text-xs mt-0.5" style={{ color: '#78350f' }}>{t(ch.tipsKey)}</p>
+                    </div>
+                  )}
+
+                  {/* Why this challenge? */}
+                  <p className="text-xs mt-2 italic" style={{ color: 'var(--color-text-muted)' }}>
+                    {t(getChallengeReasonKey(ch.reason), { category: t(`learn.cat.${ch.category}`) })}
+                  </p>
+
+                  {/* Complete button (if not done) */}
+                  {!isDone && (
+                    <button
+                      className="btn-primary tap-target w-full mt-3 text-sm"
+                      onClick={() => completeDaily(ch)}
+                    >
+                      {t('challenges.markDone')} (+{ch.xpReward} XP)
+                    </button>
+                  )}
+                </div>
+              )}
+            </div>
+          )
+        })}
+      </div>
+
+      {/* ── All done celebration ── */}
+      {completedCount === dailyChallenges.length && dailyChallenges.length > 0 && (
+        <div className="card flex items-center gap-3 animate-fade-up" style={{ background: 'var(--color-primary-bg-subtle)' }}>
+          <span className="text-2xl">🎉</span>
+          <div>
+            <p className="text-sm font-bold" style={{ color: 'var(--color-primary-dark)' }}>{t('challenges.allDone')}</p>
+            <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{t('challenges.comeBackTomorrow')}</p>
           </div>
         </div>
       )}
 
-      {/* Special tracks */}
-      <div>
-        <p className="section-label mb-2">
-          {t('challenges.special')}
-        </p>
-        <div className="flex flex-col gap-2">
-          {SPECIAL_TRACKS.map((track) => {
-            const progress = getSpecialProgress(track.id)
-            const pct = progress ? Math.min((progress.daysCompleted / track.days) * 100, 100) : 0
-            const loggedToday = progress?.lastLogDate === todayKey
-            const isComplete = progress ? progress.daysCompleted >= track.days : false
-
-            return (
-              <button
-                key={track.id}
-                className="card-glow text-left w-full special-challenge-card"
-                onClick={() => !isComplete && startOrLogSpecial(track.id, track.days)}
-                disabled={loggedToday || isComplete}
-                aria-label={`${t(track.titleKey)} - ${progress ? `${progress.daysCompleted}/${track.days}` : t('challenges.start')}`}
-              >
+      {/* ── Weekly challenge ── */}
+      {weeklyChallenge && (
+        <>
+          <p className="section-label">{t('challenges.weekly')}</p>
+          <div className="card" style={{ borderLeft: `3px solid var(--color-primary)` }}>
+            <div className="flex items-start gap-3">
+              <span className="text-2xl">{weeklyChallenge.emoji}</span>
+              <div className="flex-1">
                 <div className="flex items-center justify-between">
-                  <p className="text-sm font-bold">{t(track.titleKey)}</p>
-                  {progress && (
-                    <span className="text-xs font-data font-bold" style={{ color: isComplete ? 'var(--color-primary-dark)' : 'var(--color-text-muted)' }}>
-                      {isComplete ? '🏆' : `${progress.daysCompleted}/${track.days}`}
-                    </span>
-                  )}
-                  {!progress && (
-                    <span className="text-xs font-bold px-2 py-0.5 rounded-full" style={{ background: 'var(--color-primary-bg)', color: 'var(--color-primary-dark)' }}>
-                      {t('challenges.start')}
-                    </span>
-                  )}
+                  <p className="text-sm font-bold">{t(weeklyChallenge.textKey)}</p>
+                  <span className="text-xs font-data font-bold" style={{ color: weeklyProgress >= weeklyChallenge.target ? 'var(--color-primary-dark)' : 'var(--color-text-muted)' }}>
+                    {weeklyProgress >= weeklyChallenge.target ? '🏆' : `${weeklyProgress}/${weeklyChallenge.target}`}
+                  </span>
                 </div>
-                <p className="text-xs mt-1" style={{ color: 'var(--color-text-muted)' }}>
-                  {t(track.descKey)}
-                </p>
+                <p className="text-xs mt-1" style={{ color: 'var(--color-text-muted)' }}>{t(weeklyChallenge.descKey)}</p>
                 <div className="progress-track mt-2">
-                  <div className="progress-fill" style={{ width: `${pct}%`, background: track.color }} />
+                  <div className="progress-fill" style={{ width: `${Math.min((weeklyProgress / weeklyChallenge.target) * 100, 100)}%`, background: 'var(--color-primary)' }} />
                 </div>
-                {loggedToday && !isComplete && (
-                  <p className="text-xs mt-1 font-bold" style={{ color: 'var(--color-primary-dark)' }}>
-                    ✓ {t('challenges.loggedToday')}
-                  </p>
+                {weeklyProgress < weeklyChallenge.target && (
+                  <button className="btn-primary tap-target w-full mt-2 text-xs" onClick={incrementWeekly}>
+                    {t('challenges.logProgress')} (+{weeklyChallenge.xpReward} XP {t('challenges.onComplete')})
+                  </button>
                 )}
-                {isComplete && (
-                  <p className="text-xs mt-1 font-bold" style={{ color: 'var(--color-primary-dark)' }}>
-                    🏆 {t('challenges.trackComplete')}
-                  </p>
-                )}
-              </button>
-            )
-          })}
-        </div>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
+
+      {/* ── Special tracks ── */}
+      <p className="section-label">{t('challenges.special')}</p>
+      <div className="flex flex-col gap-3">
+        {SPECIAL_TRACKS.map((track) => {
+          const progress = getSpecialProgress(track.id)
+          const pct = progress ? Math.min((progress.daysCompleted / track.days) * 100, 100) : 0
+          const loggedToday = progress?.lastLogDate === todayKey
+          const isComplete = progress ? progress.daysCompleted >= track.days : false
+
+          return (
+            <button
+              key={track.id}
+              className="card text-left w-full"
+              style={{ borderLeft: `3px solid ${track.color}` }}
+              onClick={() => !isComplete && startOrLogSpecial(track.id, track.days)}
+              disabled={loggedToday || isComplete}
+            >
+              <div className="flex items-start gap-3">
+                <span className="text-2xl">{track.emoji}</span>
+                <div className="flex-1">
+                  <div className="flex items-center justify-between">
+                    <p className="text-sm font-bold">{t(track.titleKey)}</p>
+                    {progress && (
+                      <span className="text-xs font-data font-bold" style={{ color: isComplete ? 'var(--color-primary-dark)' : 'var(--color-text-muted)' }}>
+                        {isComplete ? '🏆' : `${progress.daysCompleted}/${track.days}`}
+                      </span>
+                    )}
+                    {!progress && (
+                      <span className="text-xs font-bold px-2 py-0.5 rounded-full" style={{ background: 'var(--color-primary-bg)', color: 'var(--color-primary-dark)' }}>
+                        {t('challenges.start')}
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-xs mt-1" style={{ color: 'var(--color-text-muted)' }}>{t(track.descKey)}</p>
+                  <div className="progress-track mt-2">
+                    <div className="progress-fill" style={{ width: `${pct}%`, background: track.color }} />
+                  </div>
+                  {loggedToday && !isComplete && (
+                    <p className="text-xs mt-1 font-bold" style={{ color: 'var(--color-primary-dark)' }}>✓ {t('challenges.loggedToday')}</p>
+                  )}
+                  {isComplete && (
+                    <p className="text-xs mt-1 font-bold" style={{ color: 'var(--color-primary-dark)' }}>🏆 {t('challenges.trackComplete')}</p>
+                  )}
+                </div>
+              </div>
+            </button>
+          )
+        })}
       </div>
     </div>
   )
 }
+

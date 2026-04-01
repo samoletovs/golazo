@@ -1,10 +1,56 @@
-import type { TrainingProgram, ProgramWeek } from '../engine/types'
+import type { TrainingProgram, ProgramWeek, ProgramExercise } from '../engine/types'
+import { exercises as exerciseLibrary } from './exercises'
 
 /** Shared warmup/cooldown patterns */
 const WARMUP_DYNAMIC = { durationMin: 5, descriptionKey: 'prog.warmup.dynamic' }
 const WARMUP_BALL = { durationMin: 5, descriptionKey: 'prog.warmup.ballwork' }
 const COOLDOWN_STRETCH = { durationMin: 5, descriptionKey: 'prog.cooldown.stretch' }
 const WARMUP_BREATHING = { durationMin: 3, descriptionKey: 'prog.warmup.breathing' }
+
+/** Look up exercise category from the library */
+function getExerciseCategory(id: string): string {
+  return exerciseLibrary.find(e => e.id === id)?.category ?? 'technical'
+}
+
+/** Look up exercise base duration from the library */
+function getExerciseDuration(id: string): number {
+  return exerciseLibrary.find(e => e.id === id)?.durationMinutes ?? 10
+}
+
+/**
+ * Generate exercise parameters based on category and week progression.
+ * - Technical: sets × reps (increasing with weeks)
+ * - Physical: duration-based (increasing with weeks)
+ * - Mental: duration-based (shorter, steady)
+ * - Tactical: duration-based (moderate)
+ */
+function makeExerciseParams(exerciseId: string, weekNum: number): ProgramExercise {
+  const cat = getExerciseCategory(exerciseId)
+  const baseDur = getExerciseDuration(exerciseId)
+
+  switch (cat) {
+    case 'physical':
+      return { exerciseId, durationMin: baseDur + (weekNum - 1) * 2 }
+    case 'mental':
+      return { exerciseId, durationMin: Math.min(baseDur + weekNum, 15) }
+    case 'tactical':
+      return { exerciseId, durationMin: baseDur + (weekNum - 1) * 2 }
+    case 'knowledge':
+      return { exerciseId, durationMin: baseDur }
+    case 'technical':
+    default: {
+      // Vary sets/reps based on difficulty & week progression
+      const difficulty = exerciseLibrary.find(e => e.id === exerciseId)?.difficulty ?? 2
+      const baseSets = difficulty <= 1 ? 2 : difficulty <= 2 ? 3 : 2
+      const baseReps = difficulty <= 1 ? 15 : difficulty <= 2 ? 10 : 8
+      return {
+        exerciseId,
+        sets: baseSets + Math.floor(weekNum / 2),
+        reps: baseReps + (weekNum - 1) * 2,
+      }
+    }
+  }
+}
 
 /** Helper: generate a standard 5-day training week from exercise patterns */
 function makeWeek(weekNum: number, focusKey: string, exercises: string[], durMin: number, prefix: string, cooldown = COOLDOWN_STRETCH, warmup = WARMUP_DYNAMIC): ProgramWeek {
@@ -19,7 +65,7 @@ function makeWeek(weekNum: number, focusKey: string, exercises: string[], durMin
       exercises: exercises.map((_eid, i) => {
         // Rotate exercises so each day starts from a different one
         const idx = (i + d - 1) % exercises.length
-        return { exerciseId: exercises[idx], sets: 3 + Math.floor(weekNum / 2), reps: 8 + weekNum * 2 }
+        return makeExerciseParams(exercises[idx], weekNum)
       }),
       cooldown,
     })),
