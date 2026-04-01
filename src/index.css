@@ -16,19 +16,9 @@
   --color-primary-bg-subtle: #ECFDF5;
   --color-primary-rgb: 5, 150, 105;
 
-  /* ── Game Identity Tokens ── */
-  --color-game-primary: var(--color-primary);
-  --color-game-secondary: #0ea5e9;
-  --color-game-accent: #f59e0b;
-  --color-game-bg: #FAFAFA;
-  --color-game-surface: #ffffff;
-  --color-game-text: #111827;
-  --color-game-text-muted: #6b7280;
-
   /* ── Background (neutral — no green tint) ── */
   --color-bg: #FAFAFA;
   --color-bg-warm: #F5F5F5;
-  --color-bg-field: #F0F0F0;
 
   /* ── Gold (XP, rewards) ── */
   --color-gold-500: #f59e0b;
@@ -56,6 +46,21 @@
   --color-warn: #f97316;
   --color-success: #059669;
   --color-info: #3b82f6;
+
+  /* ── Semantic Backgrounds ── */
+  --color-error-bg: #FEE2E2;
+  --color-warning-bg: #FFF7ED;
+  --color-success-bg: #F0FDF4;
+  --color-amber-bg: #FEF3C7;
+  --color-amber-text: #B45309;
+
+  /* ── Form / Surface ── */
+  --color-field-input: #F8FAFC;
+  --color-border-subtle: #E2E8F0;
+  --color-border-default: #E5E7EB;
+
+  /* ── Gold RGB (for rgba() usage) ── */
+  --color-gold-rgb: 245, 158, 11;
 
   /* ── Card Surface (premium layering) ── */
   --color-glass: #ffffff;
@@ -253,7 +258,7 @@ body {
   border-radius: 20px 20px 0 0;
 }
 .stat-card-green::before { background: linear-gradient(90deg, var(--color-primary-dark), var(--color-primary)); }
-.stat-card-gold::before { background: linear-gradient(90deg, #d97706, #fbbf24); }
+.stat-card-gold::before { background: linear-gradient(90deg, var(--color-amber-text), var(--color-gold-400)); }
 .stat-card-cyan::before { background: linear-gradient(90deg, var(--color-primary-dark), var(--color-primary-light)); }
 
 /* Nike-style oversized stat number */
@@ -292,8 +297,8 @@ body {
   border: none;
 }
 .stat-pill-gold {
-  background: #fef3c7;
-  color: #b45309;
+  background: var(--color-amber-bg);
+  color: var(--color-amber-text);
   border: none;
 }
 .stat-pill-cyan {
@@ -304,7 +309,7 @@ body {
 
 /* ── XP Bar (with shimmer highlight) ────────────────────── */
 .xp-bar-track {
-  background: #e5e7eb;
+  background: var(--color-border-default);
   border-radius: 999px;
   height: 8px;
   overflow: hidden;
@@ -336,7 +341,7 @@ body {
 
 /* ── Progress Bar (generic) ──────────────────────────────── */
 .progress-track {
-  background: #e5e7eb;
+  background: var(--color-border-default);
   border-radius: 6px;
   height: 6px;
   overflow: hidden;
@@ -559,7 +564,7 @@ body {
 
 /* ── Skeleton loader ─────────────────────────────────────── */
 .skeleton {
-  background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
+  background: linear-gradient(90deg, var(--color-border-subtle) 25%, var(--color-field-input) 50%, var(--color-border-subtle) 75%);
   background-size: 200% 100%;
   animation: shimmer 1.4s ease-in-out infinite;
   border-radius: 10px;
@@ -568,7 +573,7 @@ body {
 /* ── Input ───────────────────────────────────────────────── */
 input[type="text"], input[type="number"], textarea {
   background: var(--color-glass);
-  border: 2px solid var(--color-glass-border, #e5e7eb);
+  border: 2px solid var(--color-glass-border, var(--color-border-default));
   border-radius: 12px;
   padding: 14px 16px;
   color: var(--color-text);
@@ -645,6 +650,14 @@ input[type="range"]::-webkit-slider-thumb {
 }
 .animate-achievement {
   animation: achievement-enter 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* ── Locked achievement hover ────────────────────────────── */
+.achievement-locked {
+  transition: transform 0.15s var(--ease-out);
+}
+.achievement-locked:hover {
+  transform: scale(1.05);
 }
 
 /* ── Game Button (active press feel) ─────────────────────── */
@@ -819,7 +832,7 @@ h1, h2, h3, h4 {
   width: 100%;
   padding: 10px 36px 10px 36px;
   border-radius: 12px;
-  border: 1.5px solid #e5e7eb;
+  border: 1.5px solid var(--color-border-default);
   background: var(--color-glass);
   font-size: 0.85rem;
   color: var(--color-text);
@@ -831,7 +844,7 @@ h1, h2, h3, h4 {
   box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb), 0.12);
 }
 .exercise-search::placeholder {
-  color: #9ca3af;
+  color: var(--color-text-muted);
 }
 .exercise-search-clear {
   position: absolute;
@@ -839,10 +852,10 @@ h1, h2, h3, h4 {
   width: 24px;
   height: 24px;
   border: none;
-  background: #f3f4f6;
+  background: var(--color-bg-warm);
   border-radius: 50%;
   font-size: 0.9rem;
-  color: #6b7280;
+  color: var(--color-text-muted);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -853,7 +866,7 @@ h1, h2, h3, h4 {
 .exercise-sort {
   padding: 6px 10px;
   border-radius: 10px;
-  border: 1.5px solid #e5e7eb;
+  border: 1.5px solid var(--color-border-default);
   background: var(--color-glass);
   font-size: 0.72rem;
   font-weight: 600;
@@ -876,11 +889,11 @@ h1, h2, h3, h4 {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #e5e7eb;
+  background: var(--color-border-default);
   transition: background 0.15s ease;
 }
 .difficulty-dot.active {
-  background: #f59e0b;
+  background: var(--color-gold-500);
 }
 
 /* ── Exercise Detail Modal ───────────────────────────────── */
@@ -925,10 +938,10 @@ h1, h2, h3, h4 {
   width: 32px;
   height: 32px;
   border: none;
-  background: #f3f4f6;
+  background: var(--color-bg-warm);
   border-radius: 50%;
   font-size: 1.2rem;
-  color: #6b7280;
+  color: var(--color-text-muted);
   cursor: pointer;
   z-index: 1;
   display: flex;
@@ -955,7 +968,7 @@ h1, h2, h3, h4 {
   width: 56px;
   height: 56px;
   border-radius: 16px;
-  background: #f8fafc;
+  background: var(--color-field-input);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -981,7 +994,7 @@ h1, h2, h3, h4 {
   gap: 10px;
   margin-bottom: 20px;
   padding: 14px;
-  background: #f9fafb;
+  background: var(--color-field-input);
   border-radius: 14px;
 }
 .meta-item {
@@ -991,7 +1004,7 @@ h1, h2, h3, h4 {
 }
 .meta-label {
   font-size: 0.75rem;
-  color: #9ca3af;
+  color: var(--color-text-muted);
   font-weight: 600;
 }
 .meta-value {

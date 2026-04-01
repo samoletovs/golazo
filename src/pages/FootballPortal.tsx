@@ -100,11 +100,11 @@ function TournamentStandingsCard({ summary }: { summary: TournamentSummary }) {
           <p className="text-[10px]" style={{ color: 'var(--color-text-muted)' }}>{t('progress.win')}</p>
         </div>
         <div className="flex-1">
-          <p className="text-lg font-black font-data" style={{ color: '#d97706' }}>{draws}</p>
+          <p className="text-lg font-black font-data" style={{ color: 'var(--color-amber-text)' }}>{draws}</p>
           <p className="text-[10px]" style={{ color: 'var(--color-text-muted)' }}>{t('progress.draw')}</p>
         </div>
         <div className="flex-1">
-          <p className="text-lg font-black font-data" style={{ color: '#dc2626' }}>{losses}</p>
+          <p className="text-lg font-black font-data" style={{ color: 'var(--color-danger)' }}>{losses}</p>
           <p className="text-[10px]" style={{ color: 'var(--color-text-muted)' }}>{t('progress.loss')}</p>
         </div>
         <div className="flex-1">
@@ -119,13 +119,13 @@ function TournamentStandingsCard({ summary }: { summary: TournamentSummary }) {
 
       {/* Match list (last 5) */}
       {matches.length > 0 && (
-        <div className="flex flex-col gap-1 mt-3 pt-3" style={{ borderTop: '1px solid #f1f5f9' }}>
+        <div className="flex flex-col gap-1 mt-3 pt-3" style={{ borderTop: '1px solid var(--color-field-input)' }}>
           {matches.slice(-5).reverse().map((m) => {
             const result = getMatchResult(m)
             return (
               <div key={m.id} className="flex items-center gap-2 py-1.5">
                 <span className="w-5 text-center text-xs font-bold" style={{
-                  color: result === 'win' ? 'var(--color-primary-dark)' : result === 'loss' ? '#dc2626' : '#d97706',
+                  color: result === 'win' ? 'var(--color-primary-dark)' : result === 'loss' ? 'var(--color-danger)' : 'var(--color-amber-text)',
                 }}>
                   {result === 'win' ? 'W' : result === 'loss' ? 'L' : 'D'}
                 </span>
@@ -145,8 +145,8 @@ function TournamentStandingsCard({ summary }: { summary: TournamentSummary }) {
 
 function RecentResultCard({ match }: { match: MatchEntry }) {
   const result = getMatchResult(match)
-  const bg = result === 'win' ? '#f0fdf4' : result === 'loss' ? '#fef2f2' : '#fffbeb'
-  const color = result === 'win' ? 'var(--color-primary-dark)' : result === 'loss' ? '#dc2626' : '#d97706'
+  const bg = result === 'win' ? 'var(--color-success-bg)' : result === 'loss' ? 'var(--color-error-bg)' : 'var(--color-amber-bg)'
+  const color = result === 'win' ? 'var(--color-primary-dark)' : result === 'loss' ? 'var(--color-danger)' : 'var(--color-amber-text)'
   return (
     <div className="flex-shrink-0 rounded-2xl p-3 flex flex-col gap-1" style={{ background: bg, width: 140 }}>
       <p className="text-[10px] font-bold" style={{ color: 'var(--color-text-muted)' }}>
@@ -234,7 +234,7 @@ function ClubsBrowser({ country, birthDate }: { country?: string; birthDate?: st
 
   return (
     <div>
-      <p className="section-label mb-3">{t('portal.clubs')}</p>
+      <p className="section-label mb-2">{t('portal.clubs')}</p>
 
       {/* Age group selector — swipeable pills */}
       <div className="flex items-center gap-2 mb-3">
@@ -385,7 +385,7 @@ export function FootballPortal() {
   }, [schedule, today])
 
   return (
-    <div className="flex flex-col gap-5 p-4 pb-32">
+    <div className="flex flex-col gap-4 p-4 pb-32">
       {/* Header */}
       <div className="flex items-center justify-between">
         <h2 className="text-xl font-extrabold" style={{ fontFamily: 'var(--font-display)' }}>{t('portal.title')}</h2>
@@ -428,7 +428,7 @@ export function FootballPortal() {
       {/* Tournament Standings */}
       {tournamentSummaries.length > 0 && (
         <div>
-          <p className="section-label mb-3">{t('portal.tournaments')}</p>
+          <p className="section-label mb-2">{t('portal.tournaments')}</p>
           <div className="flex flex-col gap-3">
             {tournamentSummaries.map((s) => (
               <TournamentStandingsCard key={s.tournament.id} summary={s} />
@@ -440,7 +440,7 @@ export function FootballPortal() {
       {/* Recent Results */}
       {recentResults.length > 0 && (
         <div>
-          <p className="section-label mb-3">{t('portal.recentResults')}</p>
+          <p className="section-label mb-2">{t('portal.recentResults')}</p>
           <div className="h-scroll gap-3">
             {recentResults.map((m: MatchEntry) => (
               <RecentResultCard key={m.id} match={m} />

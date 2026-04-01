@@ -120,7 +120,7 @@ export function MentorDashboard({ onBack }: { onBack?: () => void }) {
       {/* Header */}
       <div className="flex items-center gap-3">
         {onBack && (
-          <button onClick={onBack} className="tap-target text-xl" aria-label="Back">←</button>
+          <button onClick={onBack} className="tap-target text-xl" aria-label={t('common.back')}>←</button>
         )}
         <div>
           <h2 className="text-lg font-bold" style={{ fontFamily: 'var(--font-display)' }}>
@@ -133,9 +133,9 @@ export function MentorDashboard({ onBack }: { onBack?: () => void }) {
       </div>
 
       {/* Privacy notice */}
-      <div className="flex items-center gap-2 px-3 py-2 rounded-xl" style={{ background: '#f0f9ff', border: '1px solid #bae6fd' }}>
+      <div className="flex items-center gap-2 px-3 py-2 rounded-xl" style={{ background: 'rgba(var(--color-info-rgb, 59, 130, 246), 0.06)', border: '1px solid rgba(var(--color-info-rgb, 59, 130, 246), 0.2)' }}>
         <span className="text-sm">🔒</span>
-        <p className="text-xs" style={{ color: '#0369a1' }}>
+        <p className="text-xs" style={{ color: 'var(--color-info)' }}>
           {t('mentor.privacy')}
         </p>
       </div>
@@ -146,12 +146,12 @@ export function MentorDashboard({ onBack }: { onBack?: () => void }) {
           key={i}
           className="card flex items-start gap-3 animate-fade-up"
           style={{
-            background: alert.type === 'warning' ? '#fef2f2' : '#f0f9ff',
-            border: `1px solid ${alert.type === 'warning' ? '#fecaca' : '#bae6fd'}`,
+            background: alert.type === 'warning' ? 'var(--color-error-bg)' : 'rgba(var(--color-info-rgb, 59, 130, 246), 0.06)',
+            border: `1px solid ${alert.type === 'warning' ? 'rgba(239, 68, 68, 0.2)' : 'rgba(59, 130, 246, 0.2)'}`,
           }}
         >
           <span className="text-xl">{alert.icon}</span>
-          <p className="text-sm" style={{ color: alert.type === 'warning' ? '#991b1b' : '#0c4a6e' }}>
+          <p className="text-sm" style={{ color: alert.type === 'warning' ? 'var(--color-danger)' : 'var(--color-info)' }}>
             {alert.message}
           </p>
         </div>
@@ -160,7 +160,7 @@ export function MentorDashboard({ onBack }: { onBack?: () => void }) {
       {/* Weekly summary cards */}
       <div className="grid grid-cols-3 gap-3">
         <div className="stat-card stat-card-gold">
-          <p className="stat-number" style={{ fontSize: '1.75rem', color: '#d97706' }}>{avgMood7}</p>
+          <p className="stat-number" style={{ fontSize: '1.75rem', color: 'var(--color-amber-text)' }}>{avgMood7}</p>
           <p className="stat-label">{t('mentor.avgMood')}</p>
         </div>
         <div className="stat-card stat-card-cyan">
@@ -179,11 +179,11 @@ export function MentorDashboard({ onBack }: { onBack?: () => void }) {
           <h3 className="text-sm font-bold mb-3">{t('mentor.moodTrend')}</h3>
           <ResponsiveContainer width="100%" height={160}>
             <LineChart data={moodTrend}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
-              <XAxis dataKey="date" tick={{ fontSize: 9, fill: '#94a3b8' }} axisLine={false} tickLine={false} />
-              <YAxis domain={[1, 5]} ticks={[1, 2, 3, 4, 5]} tick={{ fontSize: 10, fill: '#94a3b8' }} width={20} axisLine={false} tickLine={false} />
+              <CartesianGrid strokeDasharray="3 3" stroke="var(--color-field-input)" vertical={false} />
+              <XAxis dataKey="date" tick={{ fontSize: 9, fill: 'var(--color-text-muted)' }} axisLine={false} tickLine={false} />
+              <YAxis domain={[1, 5]} ticks={[1, 2, 3, 4, 5]} tick={{ fontSize: 10, fill: 'var(--color-text-muted)' }} width={20} axisLine={false} tickLine={false} />
               <Tooltip contentStyle={{ fontSize: 12, borderRadius: 12, border: 'none', boxShadow: '0 4px 16px rgba(0,0,0,0.1)' }} />
-              <Line type="monotone" dataKey="mood" stroke="#f59e0b" strokeWidth={2.5} dot={{ r: 3, fill: '#f59e0b', stroke: '#fff', strokeWidth: 2 }} name="Mood" />
+              <Line type="monotone" dataKey="mood" stroke="var(--color-gold-500)" strokeWidth={2.5} dot={{ r: 3, fill: 'var(--color-gold-500)', stroke: '#fff', strokeWidth: 2 }} name="Mood" />
               <Line type="monotone" dataKey="energy" stroke="var(--color-primary-light)" strokeWidth={2.5} dot={{ r: 3, fill: 'var(--color-primary-light)', stroke: '#fff', strokeWidth: 2 }} name="Energy" />
             </LineChart>
           </ResponsiveContainer>

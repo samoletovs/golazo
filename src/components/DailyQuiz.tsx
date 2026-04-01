@@ -95,7 +95,7 @@ export function DailyQuiz({ onComplete, compact }: DailyQuizProps) {
               style = { background: 'var(--color-primary-bg)', borderColor: 'var(--color-primary)', color: 'var(--color-primary-dark)' }
               className += ' correct-answer'
             } else if (i === selected) {
-              style = { background: '#FEE2E2', borderColor: '#EF4444', color: '#DC2626' }
+              style = { background: 'var(--color-error-bg)', borderColor: 'var(--color-danger)', color: 'var(--color-danger)' }
               className += ' wrong-answer'
             }
           }

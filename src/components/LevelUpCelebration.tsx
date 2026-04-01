@@ -25,6 +25,8 @@ export function LevelUpCelebration({ level, onClose }: LevelUpCelebrationProps) 
       className="fixed inset-0 z-[70] flex items-center justify-center"
       style={{ background: 'rgba(0,0,0,0.5)', opacity: visible ? 1 : 0, transition: 'opacity 0.3s ease' }}
       onClick={onClose}
+      role="dialog"
+      aria-modal="true"
     >
       <div
         className="flex flex-col items-center gap-4 p-8 rounded-3xl text-center"

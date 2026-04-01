@@ -26,8 +26,8 @@ const TARGETS: Record<string, { current: (ctx: { trainings: number; matches: num
 
 /* Tier gradient backgrounds for unlocked badges */
 const TIER_GRADIENTS = [
-  'linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%)', // green (training)
-  'linear-gradient(135deg, #fef3c7 0%, #fde68a 100%)', // gold (goals/xp)
+  'linear-gradient(135deg, var(--color-primary-bg) 0%, var(--color-primary-bg-subtle) 100%)', // green (training)
+  'linear-gradient(135deg, var(--color-amber-bg) 0%, var(--color-gold-300) 100%)', // gold (goals/xp)
   'linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%)', // cyan (assists)
   'linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%)', // purple (streaks/levels)
 ]
@@ -84,6 +84,7 @@ export function AchievementsList() {
                 boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
               }}
               title={t(a.descriptionKey)}
+              aria-label={`${t(a.nameKey)}: ${t(a.descriptionKey)}`}
             >
               <span className="text-2xl" style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.1))' }}>{a.icon}</span>
               <span className="text-[10px] font-bold text-center leading-tight" style={{ color: 'var(--color-text-secondary)' }}>
@@ -106,9 +107,10 @@ export function AchievementsList() {
             return (
               <div
                 key={a.id}
-                className="flex flex-col items-center gap-1 p-2.5 rounded-xl"
-                style={{ background: '#f8fafc', border: '1px dashed #e2e8f0' }}
+                className="flex flex-col items-center gap-1 p-2.5 rounded-xl achievement-locked"
+                style={{ background: 'var(--color-field-input)', border: '1px dashed var(--color-border-subtle)' }}
                 title={t(a.descriptionKey)}
+                aria-label={`${t(a.nameKey)}: ${t(a.descriptionKey)}`}
               >
                 <span className="text-xl grayscale opacity-40">{a.icon}</span>
                 <span className="text-[9px] font-bold text-center leading-tight" style={{ color: 'var(--color-text-muted)' }}>
@@ -117,8 +119,8 @@ export function AchievementsList() {
                 {/* Mini progress bar */}
                 {target && (
                   <>
-                    <div className="w-full h-1 rounded-full overflow-hidden mt-0.5" style={{ background: '#e5e7eb' }}>
-                      <div className="h-full rounded-full" style={{ width: `${pct * 100}%`, background: '#94a3b8', transition: 'width 0.5s ease' }} />
+                    <div className="w-full h-1 rounded-full overflow-hidden mt-0.5" style={{ background: 'var(--color-border-default)' }}>
+                      <div className="h-full rounded-full" style={{ width: `${pct * 100}%`, background: 'var(--color-silver)', transition: 'width 0.5s ease' }} />
                     </div>
                     <span className="text-[8px] font-data" style={{ color: 'var(--color-text-muted)' }}>
                       {remaining > 0 ? `${remaining} more` : ''}

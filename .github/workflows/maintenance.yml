@@ -1,0 +1,84 @@
+name: Maintenance
+
+on:
+  schedule:
+    # Weekly: Sunday 06:00 UTC
+    - cron: '0 6 * * 0'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  maintain:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run maintenance pipeline
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        run: node scripts/maintenance/maintain.cjs --verbose
+
+      - name: Check for changes
+        id: changes
+        run: |
+          git diff --quiet && echo "changed=false" >> $GITHUB_OUTPUT || echo "changed=true" >> $GITHUB_OUTPUT
+
+      - name: Create PR with discoveries
+        if: steps.changes.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'chore: maintenance run — team discoveries + content updates'
+          title: '⚽ Weekly maintenance: team discoveries & data updates'
+          body: |
+            Automated maintenance run. Changes may include:
+            - New team discoveries from federation scanners
+            - Exercise video enrichments
+            - Content queue status updates
+            - Maintenance report
+
+            Review `data/federation-discoveries.json` for new teams.
+            Set `status: "approved"` on entries you want to merge into the registry.
+          branch: maintenance/weekly-run
+          delete-branch: true
+          labels: maintenance,automated
+
+      - name: Build summary
+        id: summary
+        if: always()
+        run: |
+          if [ -f data/maintenance-report.json ]; then
+            ADDED=$(jq '.summary.totalAdded' data/maintenance-report.json)
+            ERRORS=$(jq '.summary.totalErrors' data/maintenance-report.json)
+            DISCOVERIES=$(jq 'length // 0' data/federation-discoveries.json 2>/dev/null || echo "0")
+            echo "message=⚽ golazo maintenance: ${ADDED} added, ${ERRORS} errors, ${DISCOVERIES} total discoveries" >> $GITHUB_OUTPUT
+          else
+            echo "message=⚽ golazo maintenance completed (no report generated)" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Notify Telegram (success)
+        if: success()
+        run: |
+          curl -sf -X POST "${{ secrets.TELEGRAM_NOTIFY_URL }}" \
+            -H "Content-Type: application/json" \
+            -d "{\"message\": \"${{ steps.summary.outputs.message }}\"}" \
+            || echo "::warning::Telegram notification failed"
+
+      - name: Notify Telegram (failure)
+        if: failure()
+        run: |
+          curl -sf -X POST "${{ secrets.TELEGRAM_NOTIFY_URL }}" \
+            -H "Content-Type: application/json" \
+            -d "{\"message\": \"❌ golazo maintenance FAILED\\n\\nCheck: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}\"}" \
+            || echo "::warning::Telegram notification failed"

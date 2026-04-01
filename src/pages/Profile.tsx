@@ -320,7 +320,7 @@ export function Profile({ onNavigate }: { onNavigate?: (page: string) => void })
 
       {/* Language selector */}
       <div className="card">
-        <p className="section-label mb-3">
+        <p className="section-label mb-2">
           {t('profile.language')}
         </p>
         <div className="grid grid-cols-2 gap-2">
@@ -447,7 +447,7 @@ export function Profile({ onNavigate }: { onNavigate?: (page: string) => void })
 
       {/* Account section */}
       <div className="card">
-        <p className="section-label mb-3">{t('profile.account')}</p>
+        <p className="section-label mb-2">{t('profile.account')}</p>
         {user && (
           <p className="text-xs mb-3" style={{ color: 'var(--color-text-muted)' }}>
             {user.userDetails}

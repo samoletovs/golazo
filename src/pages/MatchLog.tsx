@@ -7,12 +7,7 @@ import { getMatchDurationRecommendation } from '../engine/footballStandards'
 import { getAgeTier } from '../engine/types'
 import type { Position, EnergyLevel, MatchEntry } from '../engine/types'
 
-const POSITIONS: { key: Position; label: string }[] = [
-  { key: 'CM', label: 'CM' }, { key: 'LW', label: 'LW' }, { key: 'RW', label: 'RW' },
-  { key: 'LM', label: 'LM' }, { key: 'RM', label: 'RM' }, { key: 'CAM', label: 'CAM' },
-  { key: 'CDM', label: 'CDM' }, { key: 'LB', label: 'LB' }, { key: 'RB', label: 'RB' },
-  { key: 'ST', label: 'ST' }, { key: 'CB', label: 'CB' }, { key: 'GK', label: 'GK' },
-]
+const POSITIONS: Position[] = ['CM', 'LW', 'RW', 'LM', 'RM', 'CAM', 'CDM', 'LB', 'RB', 'ST', 'CB', 'GK']
 
 const ENERGY_EMOJIS = ['😴', '😐', '🙂', '😄', '🔥']
 
@@ -260,14 +255,14 @@ export function MatchLog({ onBack, inline, prefill, onSaved }: MatchLogProps) {
           <div>
             <p className="section-label mb-2">{t('match.position')}</p>
             <div className="flex flex-wrap gap-2">
-              {POSITIONS.map((p) => (
+              {POSITIONS.map((pos) => (
                 <button
-                  key={p.key}
+                  key={pos}
                   className="btn-choice tap-target text-xs px-3 py-2"
-                  onClick={() => togglePosition(p.key)}
-                  aria-pressed={positions.includes(p.key)}
+                  onClick={() => togglePosition(pos)}
+                  aria-pressed={positions.includes(pos)}
                 >
-                  {p.label}
+                  {t(`position.${pos}`)}
                 </button>
               ))}
             </div>
@@ -275,7 +270,7 @@ export function MatchLog({ onBack, inline, prefill, onSaved }: MatchLogProps) {
 
           {/* Stats — Tap counters */}
           <div className="card">
-            <p className="section-label mb-3">{t('match.stats')}</p>
+            <p className="section-label mb-2">{t('match.stats')}</p>
             {([
               { label: t('match.goals'), icon: '⚽', value: goals, set: setGoals },
               { label: t('match.assists'), icon: '🅰️', value: assists, set: setAssists },

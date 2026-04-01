@@ -85,7 +85,7 @@ export function AddTeamDialog({ initialName, defaultCountry, onAdd, onCancel }: 
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: 'rgba(0,0,0,0.4)' }}>
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: 'rgba(0,0,0,0.4)' }} role="dialog" aria-modal="true">
       <div
         className="w-full bg-white rounded-2xl p-4 animate-fade-up"
         style={{ maxWidth: '400px' }}
@@ -115,7 +115,7 @@ export function AddTeamDialog({ initialName, defaultCountry, onAdd, onCancel }: 
             <div className="flex gap-2">
               <button
                 className="flex-1 text-xs font-bold py-2 rounded-lg"
-                style={{ background: 'var(--color-primary-dark, #166534)', color: '#fff' }}
+                style={{ background: 'var(--color-primary-dark)', color: '#fff' }}
                 onClick={useDuplicate}
               >
                 {t('teams.useThis')}
@@ -193,7 +193,7 @@ export function AddTeamDialog({ initialName, defaultCountry, onAdd, onCancel }: 
               </button>
               <button
                 className="flex-1 text-sm font-bold py-2.5 rounded-xl"
-                style={{ background: 'var(--color-primary-dark, #166534)', color: '#fff' }}
+                style={{ background: 'var(--color-primary-dark)', color: '#fff' }}
                 onClick={handleSave}
                 disabled={saving || !name.trim()}
               >

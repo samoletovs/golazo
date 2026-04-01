@@ -78,7 +78,7 @@ export function SkillRadar() {
         <defs>
           <linearGradient id="radarFill" x1="0" y1="0" x2="1" y2="1">
             <stop offset="0%" stopColor="var(--color-primary)" stopOpacity="0.25" />
-            <stop offset="100%" stopColor="#f59e0b" stopOpacity="0.12" />
+            <stop offset="100%" stopColor="var(--color-gold-500)" stopOpacity="0.12" />
           </linearGradient>
         </defs>
         <polygon

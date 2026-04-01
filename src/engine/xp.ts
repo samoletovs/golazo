@@ -52,9 +52,14 @@ export const XP_AWARDS = {
   logTournamentMatch: 35,
   completeTournament: 50,
   diaryEntry: 15,
-  dailyChallenge: 25,
-  weeklyChallenge: 100,
+  dailyChallenge: 15,       // 3 × 15 = 45 total per day
+  weeklyChallenge: 75,
   completeExercise: 10,
+  programDay: 20,            // completing a structured program workout
+  programComplete: 100,      // full program completion bonus
+  workoutRating: 5,          // rating a workout adds bonus
+  specialTrackDay: 20,       // special challenge track daily log
+  specialTrackComplete: 150, // completing a special track
   quizCorrect: 5,
   growthXp: 10, // logging bad match + writing improvement
   streakBonus: 5, // per consecutive day, capped

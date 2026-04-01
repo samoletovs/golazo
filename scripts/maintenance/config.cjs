@@ -52,6 +52,30 @@ const config = {
   cosmosEndpoint: process.env.COSMOS_ENDPOINT || '',
   cosmosDatabase: process.env.COSMOS_DATABASE || 'golazo',
 
+  // ── Federation Scanner ──
+  federationDelay: 1000, // ms between HTTP requests to federation sites
+
+  federationSources: {
+    // Estonia — jalgpall.ee league pages
+    EE: [
+      { id: 52, name: 'Premium Liiga', slug: 'premium-liiga' },
+      { id: 53, name: 'Esiliiga', slug: 'esiliiga' },
+      { id: 186, name: 'Esiliiga B', slug: 'esiliiga-b' },
+      { id: 89, name: 'U-19 Eliitliiga', slug: 'u-19-eliitliiga' },
+    ],
+    // Latvia — data.gov.lv NGO registry CSV (NACE 93.1 / "futbols")
+    LV_GOV: process.env.LV_GOV_REGISTRY_URL || '',
+    // Lithuania — toplyga.lt team listings
+    LT: [
+      { name: 'A Lyga', url: 'https://www.toplyga.lt' },
+    ],
+  },
+
+  // ── Team Health Checker ──
+  healthTimeout: 10000, // ms per URL check
+  healthDelay: 500,     // ms between URL checks
+  healthStalenessThresholdDays: 180,
+
   // ── Flags ──
   dryRun: process.argv.includes('--dry-run'),
   verbose: process.argv.includes('--verbose'),

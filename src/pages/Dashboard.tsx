@@ -190,7 +190,7 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
   }, [profile?.teams, tournaments])
 
   return (
-    <div className="flex flex-col gap-5 p-4 pb-32">
+    <div className="flex flex-col gap-4 p-4 pb-32">
       <ConfettiBurst trigger={isStreakMilestone} />
       {/* ── Level Up Celebration ── */}
       {showLevelUp && (
@@ -208,7 +208,7 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
 
       {/* ── Physical update reminder (U12+ only — too advanced for Foundation age) ── */}
       {physicalUpdateDue && !isYoung && (
-        <div className="card animate-fade-up flex items-center gap-3" style={{ background: 'var(--color-primary-light, #dcfce7)', border: '1px solid var(--color-primary, #22c55e)' }}>
+        <div className="card animate-fade-up flex items-center gap-3" style={{ background: 'var(--color-primary-bg)', border: '1px solid var(--color-primary)' }}>
           <span className="text-2xl">📏</span>
           <div className="flex-1">
             <p className="text-sm font-bold">{t('physical.reminderTitle')}</p>
@@ -546,7 +546,7 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
 
       {/* ── Tournament Discovery — teammate shared tournaments ── */}
       {discoveredTournaments.length > 0 && (
-        <div className="card animate-fade-up animate-stagger-2" style={{ border: '2px solid var(--color-primary-light, #22c55e)', background: 'rgba(34, 197, 94, 0.04)' }}>
+        <div className="card animate-fade-up animate-stagger-2" style={{ border: '2px solid var(--color-primary-light)', background: 'rgba(var(--color-primary-rgb), 0.04)' }}>
           <div className="flex items-center gap-2 mb-3">
             <span className="text-lg">🏆</span>
             <p className="section-label">{t('dashboard.tournamentDiscovery')}</p>
@@ -587,10 +587,10 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
           {t(drillOfDay.descriptionKey)}
         </p>
         <div className="flex items-center gap-3 mt-2">
-          <span className="text-xs px-2 py-0.5 rounded-full font-data" style={{ background: '#f3f4f6', color: '#6b7280' }}>
+          <span className="text-xs px-2 py-0.5 rounded-full font-data" style={{ background: 'var(--color-bg-warm)', color: 'var(--color-text-muted)' }}>
             {drillOfDay.durationMinutes} min
           </span>
-          <span className="text-xs px-2 py-0.5 rounded-full" style={{ background: '#fef3c7', color: '#b45309' }}>
+          <span className="text-xs px-2 py-0.5 rounded-full" style={{ background: 'var(--color-amber-bg)', color: 'var(--color-amber-text)' }}>
             {'⭐'.repeat(drillOfDay.difficulty)}
           </span>
           {onNavigate && (

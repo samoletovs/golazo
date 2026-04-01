@@ -14,8 +14,12 @@
     "preview": "vite preview",
     "maintain": "node scripts/maintenance/maintain.cjs",
     "maintain:dry": "node scripts/maintenance/maintain.cjs --dry-run --verbose",
+    "maintain:full": "node scripts/maintenance/maintain.cjs --full --verbose",
+    "maintain:scan": "node scripts/maintenance/maintain.cjs --task federation --verbose",
+    "maintain:health": "node scripts/maintenance/maintain.cjs --task health --verbose",
+    "maintain:i18n": "node scripts/maintenance/maintain.cjs --task i18n --verbose",
     "maintain:exercises": "node scripts/maintenance/maintain.cjs --task exercise --verbose",
-    "maintain:teams": "node scripts/maintenance/maintain.cjs --task team --verbose"
+    "maintain:teams": "node scripts/maintenance/maintain.cjs --task team-registry --verbose"
   },
   "dependencies": {
     "framer-motion": "^12.38.0",

@@ -82,7 +82,7 @@ function ExerciseDetailModal({
   const thumbnail = exercise.thumbnailUrl || (exercise.videoUrl ? getThumbnailUrl(exercise.videoUrl) : null)
 
   return (
-    <div className="modal-overlay" onClick={onClose}>
+    <div className="modal-overlay" onClick={onClose} role="dialog" aria-modal="true">
       <div className="exercise-modal" onClick={(e) => e.stopPropagation()}>
         {/* Close button */}
         <button className="modal-close" onClick={onClose} aria-label={t('exercises.detail.close')}>×</button>

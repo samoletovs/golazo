@@ -79,7 +79,7 @@ export function DiaryPage({ onBack, inline, onSaved }: DiaryPageProps) {
 
   if (saved && !inline) {
     return (
-      <div className="flex flex-col items-center justify-center gap-4 p-8 pb-32 animate-fade-up">
+      <div className="flex flex-col items-center justify-center gap-4 p-4 pb-32 animate-fade-up">
         <span className="text-5xl animate-float">📝</span>
         <p className="text-lg font-bold" style={{ color: 'var(--color-primary-dark)' }}>
           {t('diary.saved', { xp: scaledDiaryXp })}

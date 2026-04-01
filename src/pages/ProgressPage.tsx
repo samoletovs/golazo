@@ -172,15 +172,15 @@ export function ProgressPage() {
       {/* ── Match Results (card row) ── */}
       {matches.length > 0 && (
         <div className="animate-fade-up">
-          <p className="section-label mb-3">{t('progress.matchResults')}</p>
+          <p className="section-label mb-2">{t('progress.matchResults')}</p>
           <div className="h-scroll">
             {matches.slice(-12).reverse().map((m) => {
               const result = getMatchResult(m)
-              const bg = result === 'win' ? '#f0fdf4' : result === 'loss' ? '#fef2f2' : '#fffbeb'
-              const color = result === 'win' ? 'var(--color-primary-dark)' : result === 'loss' ? '#dc2626' : '#d97706'
+              const bg = result === 'win' ? 'var(--color-success-bg)' : result === 'loss' ? 'var(--color-error-bg)' : 'var(--color-amber-bg)'
+              const color = result === 'win' ? 'var(--color-primary-dark)' : result === 'loss' ? 'var(--color-danger)' : 'var(--color-amber-text)'
               return (
                 <div key={m.id} className="match-card-h" style={{ background: bg, width: 180 }} data-result={result}>
-                  <p className="text-[10px] font-bold" style={{ color: '#94a3b8' }}>
+                  <p className="text-[10px] font-bold" style={{ color: 'var(--color-text-muted)' }}>
                     {new Date(m.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
                   </p>
                   <p className="text-xs font-bold mt-1" style={{ fontFamily: 'var(--font-display)' }}>
@@ -192,7 +192,7 @@ export function ProgressPage() {
                   <div className="flex gap-1.5 mt-1.5">
                     {m.goals > 0 && <span className="text-[9px] font-data font-bold px-1.5 py-0.5 rounded-full" style={{ background: 'rgba(var(--color-primary-rgb), 0.1)', color: 'var(--color-primary-dark)' }}>⚽{m.goals}</span>}
                     {m.assists > 0 && <span className="text-[9px] font-data font-bold px-1.5 py-0.5 rounded-full" style={{ background: 'rgba(var(--color-primary-rgb), 0.08)', color: 'var(--color-primary-light)' }}>🎯{m.assists}</span>}
-                    {m.selfRating > 0 && <span className="text-[9px] font-data font-bold px-1.5 py-0.5 rounded-full" style={{ background: 'rgba(245,158,11,0.1)', color: '#b45309' }}>★{m.selfRating}</span>}
+                    {m.selfRating > 0 && <span className="text-[9px] font-data font-bold px-1.5 py-0.5 rounded-full" style={{ background: 'rgba(var(--color-gold-rgb), 0.1)', color: 'var(--color-amber-text)' }}>★{m.selfRating}</span>}
                   </div>
                 </div>
               )
@@ -209,7 +209,7 @@ export function ProgressPage() {
       {/* ── Goals & Assists Trend ── */}
       {goalsTrend.length > 0 && (
         <div className="card animate-fade-up">
-          <p className="section-label mb-3">{t('progress.goalsTrend')}</p>
+          <p className="section-label mb-2">{t('progress.goalsTrend')}</p>
           <ResponsiveContainer width="100%" height={160}>
             <LineChart data={goalsTrend}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
@@ -226,7 +226,7 @@ export function ProgressPage() {
 
       {/* ── XP Trend (gradient area) ── */}
       <div className="card animate-fade-up">
-        <p className="section-label mb-3">{t('progress.xpTrend')}</p>
+        <p className="section-label mb-2">{t('progress.xpTrend')}</p>
         <ResponsiveContainer width="100%" height={180}>
           <AreaChart data={xpTrend}>
             <defs>
@@ -249,7 +249,7 @@ export function ProgressPage() {
 
       {/* ── Training Frequency ── */}
       <div className="card animate-fade-up">
-        <p className="section-label mb-3">{t('progress.trainingFrequency')}</p>
+        <p className="section-label mb-2">{t('progress.trainingFrequency')}</p>
         <ResponsiveContainer width="100%" height={120}>
           <BarChart data={trainingFrequency} barCategoryGap="25%">
             <defs>
@@ -269,7 +269,7 @@ export function ProgressPage() {
 
       {/* ── Skill Radar ── */}
       <div className="card animate-fade-up">
-        <p className="section-label mb-3">{t('progress.skillRadar')}</p>
+        <p className="section-label mb-2">{t('progress.skillRadar')}</p>
         <SkillRadar />
       </div>
 
@@ -303,7 +303,7 @@ export function ProgressPage() {
       {/* ── Mood & Energy Trend ── */}
       {moodTrend.length > 2 && (
         <div className="card animate-fade-up">
-          <p className="section-label mb-3">{t('progress.moodTrend')}</p>
+          <p className="section-label mb-2">{t('progress.moodTrend')}</p>
           <ResponsiveContainer width="100%" height={160}>
             <LineChart data={moodTrend}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
@@ -324,7 +324,7 @@ export function ProgressPage() {
       {/* ── Mood vs Performance ── */}
       {moodPerformance.length > 2 && (
         <div className="card animate-fade-up">
-          <p className="section-label mb-3">{t('progress.moodPerformance')}</p>
+          <p className="section-label mb-2">{t('progress.moodPerformance')}</p>
           <ResponsiveContainer width="100%" height={160}>
             <LineChart data={moodPerformance}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
@@ -341,7 +341,7 @@ export function ProgressPage() {
       {/* ── Physical: Body Growth (Height + Weight + BMI) ── */}
       {physicalData.length > 0 && (hasPhysicalField('height') || hasPhysicalField('weight')) && (
         <div className="card animate-fade-up">
-          <p className="section-label mb-3">📏 {t('progress.bodyGrowth')}</p>
+          <p className="section-label mb-2">📏 {t('progress.bodyGrowth')}</p>
           <ResponsiveContainer width="100%" height={160}>
             <LineChart data={physicalData}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
@@ -373,7 +373,7 @@ export function ProgressPage() {
       {/* ── Physical: Speed & Power ── */}
       {physicalData.length > 0 && isGroupTracked(['sprint10', 'sprint20', 'sprint30', 'jump', 'cmj', 'verticalJump']) && (
         <div className="card animate-fade-up">
-          <p className="section-label mb-3">⚡ {t('progress.speedPower')}</p>
+          <p className="section-label mb-2">⚡ {t('progress.speedPower')}</p>
           {hasPhysicalField('sprint10') || hasPhysicalField('sprint20') || hasPhysicalField('cmj') || hasPhysicalField('jump') ? (
           <ResponsiveContainer width="100%" height={140}>
             <LineChart data={physicalData}>
@@ -396,7 +396,7 @@ export function ProgressPage() {
       {/* ── Physical: Endurance ── */}
       {physicalData.length > 0 && isGroupTracked(['yoyo', 'agility']) && (
         <div className="card animate-fade-up">
-          <p className="section-label mb-3">🫁 {t('progress.endurance')}</p>
+          <p className="section-label mb-2">🫁 {t('progress.endurance')}</p>
           {hasPhysicalField('yoyo') || hasPhysicalField('agility') ? (
           <ResponsiveContainer width="100%" height={140}>
             <LineChart data={physicalData}>
@@ -417,7 +417,7 @@ export function ProgressPage() {
       {/* ── Physical: Strength & Skill ── */}
       {physicalData.length > 0 && isGroupTracked(['plank', 'juggles']) && (
         <div className="card animate-fade-up">
-          <p className="section-label mb-3">💪 {t('progress.strengthSkill')}</p>
+          <p className="section-label mb-2">💪 {t('progress.strengthSkill')}</p>
           {hasPhysicalField('plank') || hasPhysicalField('juggles') ? (
           <ResponsiveContainer width="100%" height={140}>
             <LineChart data={physicalData}>

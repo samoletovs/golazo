@@ -639,6 +639,31 @@ export interface ReadArticle {
 
 /* ── Training Programs ────────────────────────────────────── */
 
+export interface ProgramExercise {
+  exerciseId: string
+  sets?: number
+  reps?: number
+  durationMin?: number
+  coachNoteKey?: string // i18n key for form tips
+}
+
+export interface ProgramDay {
+  dayNumber: number     // 1-5 within the week
+  titleKey: string      // i18n: "First Touch Foundation"
+  totalDurationMin: number
+  warmup: { durationMin: number; descriptionKey: string }
+  exercises: ProgramExercise[]
+  cooldown?: { durationMin: number; descriptionKey: string }
+}
+
+export interface ProgramWeek {
+  weekNumber: number
+  focusKey: string  // i18n: "Foundation", "Build", "Challenge", "Mastery"
+  days: ProgramDay[]
+}
+
+export type ProgramDifficulty = 'beginner' | 'intermediate' | 'advanced'
+
 export interface TrainingProgram {
   id: string
   titleKey: string
@@ -646,14 +671,66 @@ export interface TrainingProgram {
   category: SkillCategory
   durationWeeks: number
   ageTiers: QuizDifficulty[]
-  exerciseIds: string[] // exercises per week (repeat pattern)
+  exerciseIds: string[] // legacy — kept for backward compat
   imageEmoji?: string
+  difficulty?: ProgramDifficulty
+  methodology?: string
+  skillImpact?: Partial<Record<SkillCategory, number>> // skill radar boost on full completion
+  weeks?: ProgramWeek[] // structured daily workouts
 }
+
+export interface DayCompletion {
+  week: number
+  day: number
+  completedAt: string
+  rating?: 1 | 2 | 3 | 4 | 5
+}
+
+export type ProgramStatus = 'active' | 'paused' | 'completed' | 'abandoned'
 
 export interface ProgramProgress {
   programId: string
   startedAt: string
-  completedDays: number
-  totalDays: number
+  completedDays: number // legacy counter
+  totalDays: number     // legacy counter
   lastActivityDate: string
+  // New structured tracking
+  currentWeek?: number
+  currentDay?: number
+  dayLog?: DayCompletion[]
+  status?: ProgramStatus
+  completedAt?: string
+  skillsGained?: Partial<Record<SkillCategory, number>>
+}
+
+/* ── Challenge Templates (for dynamic engine) ─────────────── */
+
+export interface ChallengeTemplate {
+  id: string
+  textKey: string       // i18n key
+  category: SkillCategory
+  positions?: Position[] // position-specific (empty = all)
+  ageTiers: QuizDifficulty[]
+  targets: Partial<Record<QuizDifficulty, { value: number; unit: string }>>
+  period: 'daily' | 'weekly'
+  xpReward: number
+  skillImpact: SkillCategory
+  tags?: string[]       // 'indoor', 'no-partner', 'needs-goal'
+}
+
+export type ChallengeReason = 'weakest-skill' | 'second-weakest' | 'position' | 'wildcard' | 'weekly'
+
+export interface ActiveChallenge {
+  templateId: string
+  generatedAt: string
+  expiresAt: string
+  target: number
+  unit: string
+  progress: number
+  status: 'active' | 'completed' | 'expired'
+  completedAt?: string
+  reason: ChallengeReason
+  category: SkillCategory
+  xpReward: number
+  textKey: string
 }

@@ -5,6 +5,7 @@ import { awardXp, XP_AWARDS } from '../engine/xp'
 import { articles } from '../data/articles'
 import { programs } from '../data/programs'
 import { getAgeTier } from '../engine/types'
+import { WorkoutView } from '../components/WorkoutView'
 import type { Article, ArticleCategory, TrainingProgram, QuizDifficulty, ReadArticle, ProgramProgress } from '../engine/types'
 
 const Exercises = lazy(() => import('./Exercises').then(m => ({ default: m.Exercises })))
@@ -68,24 +69,46 @@ export function LearnContent() {
       programId: program.id,
       startedAt: new Date().toISOString(),
       completedDays: 0,
-      totalDays: program.durationWeeks * 5, // 5 days/week
+      totalDays: program.durationWeeks * 5,
       lastActivityDate: '',
+      currentWeek: 1,
+      currentDay: 1,
+      dayLog: [],
+      status: 'active',
     }
     updateProgramProgress(progress)
   }
 
-  function handleLogProgramDay(programId: string) {
+  function handleCompleteWorkout(programId: string, week: number, day: number, rating?: 1 | 2 | 3 | 4 | 5) {
     const existing = programProgress.find((p) => p.programId === programId)
     if (!existing) return
     const today = new Date().toISOString().slice(0, 10)
-    if (existing.lastActivityDate === today) return // already logged today
+    if (existing.lastActivityDate === today) return
+
+    const program = programs.find((p) => p.id === programId)
+    const totalWeeks = program?.durationWeeks ?? 4
+    const dayLog = [...(existing.dayLog || []), { week, day, completedAt: new Date().toISOString(), rating }]
+
+    // Calculate next day/week
+    let nextDay = day + 1
+    let nextWeek = week
+    if (nextDay > 5) { nextDay = 1; nextWeek = week + 1 }
+    const isComplete = nextWeek > totalWeeks
+
     const updated: ProgramProgress = {
       ...existing,
       completedDays: existing.completedDays + 1,
       lastActivityDate: today,
+      currentWeek: isComplete ? week : nextWeek,
+      currentDay: isComplete ? day : nextDay,
+      dayLog,
+      status: isComplete ? 'completed' : 'active',
+      completedAt: isComplete ? new Date().toISOString() : undefined,
     }
     updateProgramProgress(updated)
-    setXp(awardXp(xp, XP_AWARDS.completeExercise, today, ageTier))
+    // 20 XP for completing a workout day (+5 if rated)
+    const xpAmount = rating ? XP_AWARDS.programDay + XP_AWARDS.workoutRating : XP_AWARDS.programDay
+    setXp(awardXp(xp, xpAmount, today, ageTier))
   }
 
   // Filter programs by age tier
@@ -135,7 +158,7 @@ export function LearnContent() {
             {ARTICLE_CATEGORIES.map((cat) => (
               <button
                 key={cat.key}
-                className="btn-choice tap-target text-xs px-3 py-1.5 whitespace-nowrap"
+                className="btn-choice tap-target text-xs px-3 py-1.5 whitespace-nowrap shrink-0"
                 aria-pressed={categoryFilter === cat.key}
                 onClick={() => setCategoryFilter(cat.key)}
               >
@@ -228,7 +251,10 @@ export function LearnContent() {
             const isExpanded = expandedProgram === program.id
             const today = new Date().toISOString().slice(0, 10)
             const loggedToday = progress?.lastActivityDate === today
-            const isComplete = progress && progress.completedDays >= progress.totalDays
+            const isComplete = progress?.status === 'completed' || (progress && progress.completedDays >= progress.totalDays)
+            const hasWeeks = program.weeks && program.weeks.length > 0
+            const currentWeek = progress?.currentWeek ?? 1
+            const currentDay = progress?.currentDay ?? 1
 
             return (
               <div key={program.id} className="card">
@@ -243,6 +269,7 @@ export function LearnContent() {
                     </p>
                     <p className="text-xs mt-0.5" style={{ color: 'var(--color-text-muted)' }}>
                       {program.durationWeeks} {t('learn.weeks')} · {t(`learn.cat.${program.category}`)}
+                      {isStarted && !isComplete && ` · ${t('prog.weekLabel', { n: currentWeek })} ${t('prog.dayLabel', { n: currentDay })}`}
                     </p>
                     {isStarted && progress && (
                       <div className="mt-2">
@@ -265,34 +292,98 @@ export function LearnContent() {
 
                 {isExpanded && (
                   <div className="mt-3 pt-3 animate-fade-up" style={{ borderTop: '1px solid #e5e7eb' }}>
-                    <p className="text-sm leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
+                    <p className="text-sm leading-relaxed mb-3" style={{ color: 'var(--color-text-secondary)' }}>
                       {t(program.descriptionKey)}
                     </p>
+
+                    {/* Not started → Start button */}
                     {!isStarted && (
                       <button
-                        className="btn-primary tap-target w-full mt-3 text-sm"
+                        className="btn-primary tap-target w-full text-sm"
                         onClick={() => handleStartProgram(program)}
                       >
                         {t('learn.startProgram')}
                       </button>
                     )}
-                    {isStarted && !isComplete && (
-                      <button
-                        className="btn-primary tap-target w-full mt-3 text-sm"
-                        onClick={() => handleLogProgramDay(program.id)}
-                        disabled={loggedToday}
-                      >
-                        {loggedToday
-                          ? `✅ ${t('learn.loggedToday')}`
-                          : `${t('learn.logDay')} (+${XP_AWARDS.completeExercise} XP)`}
-                      </button>
+
+                    {/* Started + has weeks → Show week/day nav + WorkoutView */}
+                    {isStarted && !isComplete && hasWeeks && (
+                      <>
+                        {/* Week selector */}
+                        <div className="flex gap-1 mb-3 overflow-x-auto" style={{ scrollbarWidth: 'none' }}>
+                          {program.weeks!.map((w) => {
+                            const isCurrent = w.weekNumber === currentWeek
+                            const isPast = w.weekNumber < currentWeek
+                            return (
+                              <div
+                                key={w.weekNumber}
+                                className="text-[10px] px-2 py-1 rounded-full whitespace-nowrap font-bold"
+                                style={{
+                                  background: isCurrent ? 'var(--color-primary)' : isPast ? 'var(--color-primary-bg)' : '#f3f4f6',
+                                  color: isCurrent ? '#fff' : isPast ? 'var(--color-primary-dark)' : 'var(--color-text-muted)',
+                                }}
+                              >
+                                {t('prog.weekLabel', { n: w.weekNumber })} {isPast ? '✓' : ''}
+                              </div>
+                            )
+                          })}
+                        </div>
+
+                        {/* Day grid */}
+                        <div className="flex gap-1 mb-3">
+                          {[1, 2, 3, 4, 5].map((d) => {
+                            const isToday = d === currentDay && !loggedToday
+                            const isDone = (progress.dayLog || []).some((dl) => dl.week === currentWeek && dl.day === d)
+                            const isFuture = d > currentDay
+                            return (
+                              <div
+                                key={d}
+                                className="flex-1 text-center text-[10px] py-1.5 rounded-lg font-bold"
+                                style={{
+                                  background: isDone ? 'var(--color-primary-bg)' : isToday ? 'var(--color-primary)' : '#f9fafb',
+                                  color: isDone ? 'var(--color-primary-dark)' : isToday ? '#fff' : isFuture ? '#d1d5db' : 'var(--color-text-muted)',
+                                }}
+                              >
+                                {isDone ? '✓' : `D${d}`}
+                              </div>
+                            )
+                          })}
+                        </div>
+
+                        {/* Today's workout */}
+                        {(() => {
+                          const weekData = program.weeks!.find((w) => w.weekNumber === currentWeek)
+                          const dayData = weekData?.days.find((d) => d.dayNumber === currentDay)
+                          if (!dayData) return null
+                          return (
+                            <WorkoutView
+                              weekNumber={currentWeek}
+                              day={dayData}
+                              isCompleted={isComplete ?? false}
+                              alreadyLoggedToday={loggedToday ?? false}
+                              onComplete={(rating) => handleCompleteWorkout(program.id, currentWeek, currentDay, rating)}
+                            />
+                          )
+                        })()}
+                      </>
                     )}
+
+                    {/* Completed → celebration */}
                     {isComplete && (
-                      <div className="flex items-center gap-2 mt-3 p-3 rounded-xl" style={{ background: 'var(--color-primary-bg-subtle)' }}>
-                        <span className="text-lg">🏆</span>
+                      <div className="flex flex-col items-center gap-2 p-4 rounded-xl" style={{ background: 'var(--color-primary-bg-subtle)' }}>
+                        <span className="text-3xl">🏆</span>
                         <p className="text-sm font-bold" style={{ color: 'var(--color-primary-dark)' }}>
                           {t('learn.programComplete')}
                         </p>
+                        {program.skillImpact && (
+                          <div className="flex gap-2 flex-wrap justify-center">
+                            {Object.entries(program.skillImpact).map(([cat, val]) => (
+                              <span key={cat} className="text-[10px] px-2 py-0.5 rounded-full font-bold" style={{ background: '#dcfce7', color: '#166534' }}>
+                                {t(`learn.cat.${cat}`)} ↑ +{val}
+                              </span>
+                            ))}
+                          </div>
+                        )}
                       </div>
                     )}
                   </div>
