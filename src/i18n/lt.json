@@ -809,6 +809,15 @@
   "art.rul03.body": "VAR (Vaizdo teisėjo asistentas) buvo įvestas padėti teisėjams keturiose situacijose: (1) Įvarčiai — ar buvo nuošalė, pražanga ar rankos? (2) Baudiniai — ar buvo pražanga? Ar ji buvo baudos aikštėje? (3) Raudonos kortelės — ar teisėjas prarado šiurkštų veiksmą? (4) Identifikacijos klaida. VAR NETIKRINA: geltonų kortelių, įmetimų, kampinių. Procesas: vaizdo teisėjų komanda žiūri kiekvieną kampą. Jei mato \"aiškią ir akivaizdžią klaidą,\" praneša aikštės teisėjui, kuris gali peržiūrėti monitoriuje. VAR nėra tobulas — užtrunka ir kelia diskusijas. Bet padarė futbolą žymiai teisingesniu.",
   "art.rul04.title": "Geltonos ir raudonos kortelės: kam jos tikrai skirtos?",
   "art.rul04.body": "Geltonos yra PERSPĖJIMAI. Jas gauni už: neapgalvotus pažeidimus, laiko vilkinimą, ginčus su teisėju, tyčinį rankos žaidimą. Dvi geltonos = raudona = pašalinimas. Raudonos už SUNKIUS pažeidimus: smurtinį elgesį, aiškios galimybės pelnyti atėmimą, pavojingą žaidimą ar įžeidžiančią kalbą. Su raudona komanda žaidžia vienu mažiau — didžiulis trūkumas. Pamoka: kontroliuok emocijas. Frustracija momentas gali pakenkti visai komandai. Jei pyksti — kvėpuok, atsitolk, susitelk. Geriausieji lieka ramūs — tai disciplina.",
+  "learn.cat.tactics": "Taktika",
+  "learn.cat.nutrition": "Mityba",
+  "learn.cat.mental": "Mentalinis",
+  "learn.cat.rules": "Taisyklės",
+  "learn.cat.stories": "Žaidėjų istorijos",
+  "learn.cat.technical": "Technika",
+  "learn.cat.physical": "Fizinis",
+  "learn.cat.tactical": "Taktinis",
+  "learn.cat.knowledge": "Žinios",
   "prog.ballMastery.title": "Kamuolio valdymas",
   "prog.ballMastery.desc": "4 savaitės kasdienių kamuolio kontrolės pratimų. Tobulink pirmą prisilietimą, driblingo pasitikėjimą ir silpnąją koją pagal Coerver metodiką.",
   "prog.speedAgility.title": "Greitis ir vikrumas",
@@ -851,5 +860,10 @@
   "ch.reason.secondWeakest": "Gerina tavo {{category}} — antra tobulėjimo kryptis",
   "ch.reason.position": "Pritaikyta tavo pozicijai",
   "ch.reason.wildcard": "Smagus iššūkis įvairovei",
-  "ch.reason.weekly": "Savaitės tikslas nuosekliam progresui"
+  "ch.reason.weekly": "Savaitės tikslas nuosekliam progresui",
+  "challenges.done": "Atlikta",
+  "challenges.proTip": "Patarimas",
+  "challenges.markDone": "Pažymėti kaip atliktą",
+  "challenges.allDone": "Visi iššūkiai įvykdyti!",
+  "challenges.comeBackTomorrow": "Nauji iššūkiai atsirakina rytoj"
 }

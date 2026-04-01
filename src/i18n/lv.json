@@ -810,6 +810,15 @@
   "art.rul03.body": "VAR (Video asistenta tiesnesis) tika ieviests, lai palīdzētu tiesnešiem pieņemt pareizus lēmumus četros situāciju veidos: (1) Vārti — vai bija ofsaids, pārkāpums vai roka? (2) Pendelsitienu lēmumi — vai bija pārkāpums? Vai tas bija laukumā? (3) Tiešas sarkanās kartes — vai tiesnesis palaida garām rupju spēli? (4) Kļūda personas identificēšanā. VAR NEPĀRBAUDA: dzeltenās kartes, iemešanas, stūra sitienus. Process: video tiesnešu komanda skatās katru leņķi. Ja atrod \"acīmredzamu kļūdu\" — informē laukuma tiesnesi, kurš var apskatīt atkārtojumu monitorā. VAR nav ideāls — prasa laiku un rada diskusijas. Bet tas ir padarījis futbolu ievērojami godīgāku.",
   "art.rul04.title": "Dzeltenās un sarkanās kartes: kāpēc tās tiešām ir",
   "art.rul04.body": "Dzeltenās kartes ir BRĪDINĀJUMI. Tās saņem par: bezatbildīgiem tīšiem pārkāpumiem, laika vilcināšanu, strīdēšanos ar tiesnesi, apzinātu bumbu turēšanu rokā vai ieiet/iziet no laukuma bez atļaujas. Divas dzeltenās vienā spēlē = sarkanā = izraidīšana. Sarkanās ir par NOPIETNIEM pārkāpumiem: vardarbīga rīcība, acīmredzamas gūšanas iespējas liegšana, bīstama spēle vai aizvainojoši izteicieni. Ar sarkanu karti komanda spēlē ar vienu spēlētāju mazāk — milzīgs trūkums. Mācība: kontrolē emocijas. Frustrācijas mirklis var kaitēt visai komandai. Ja esi dusmīgs — ieelpo, ej prom, fokusējies. Labākie spēlētāji paliek mierīgi — tā ir disciplīna.",
+  "learn.cat.tactics": "Taktika",
+  "learn.cat.nutrition": "Uzturvērtības",
+  "learn.cat.mental": "Mentālais",
+  "learn.cat.rules": "Noteikumi",
+  "learn.cat.stories": "Spēlētāju stāsti",
+  "learn.cat.technical": "Tehnika",
+  "learn.cat.physical": "Fiziskais",
+  "learn.cat.tactical": "Taktiskais",
+  "learn.cat.knowledge": "Zināšanas",
   "prog.ballMastery.title": "Bumbu meistarība",
   "prog.ballMastery.desc": "4 nedēļas ikdienas bumbu kontroles vingrinājumu. Uzlabo pirmo pieskārienu, driblinga pārliecību un vājo kāju pēc Koervera metodes.",
   "prog.speedAgility.title": "Ātrums un veiklība",
@@ -852,5 +861,10 @@
   "ch.reason.secondWeakest": "Uzlabo {{category}} — otro izaugsmes virzienu",
   "ch.reason.position": "Pielāgots tavai pozīcijai",
   "ch.reason.wildcard": "Izklaidējošs uzdevums daudzveidībai",
-  "ch.reason.weekly": "Nedēļas mērķis stabilam progresam"
+  "ch.reason.weekly": "Nedēļas mērķis stabilam progresam",
+  "challenges.done": "Izdarīts",
+  "challenges.proTip": "Padoms",
+  "challenges.markDone": "Atzīmēt kā izdarītu",
+  "challenges.allDone": "Visi uzdevumi izpildīti!",
+  "challenges.comeBackTomorrow": "Jauni uzdevumi atvērsies rīt"
 }

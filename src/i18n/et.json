@@ -795,6 +795,15 @@
   "art.rul03.body": "VAR (Videokohtuniku abi) toodi sisse nelja tüüpi juhtumite jaoks: (1) Väravad — kas oli suluseis, viga või käemäng? (2) Penaltiotsused — kas oli viga? Kas see oli karistusalas? (3) Punased kaardid — kas kohtunik jättis jõhkra teo märkamata? (4) Ekslik tuvastus. VAR EI kontrolli: kollaseid kaarte, aute, nurgalööke. Protsess: videokohturkike meeskond vaatab iga nurga alt. Kui nad näevad \"selget ja ilmset viga,\" teavitavad väljakukohtunikku, kes saab ekraanil üle vaadata. VAR pole täiuslik — võtab aega ja tekitab vaidlusi. Aga see on teinud jalgpalli märkimisväärselt õiglasemaks.",
   "art.rul04.title": "Kollased ja punased kaardid: milleks need tegelikult on?",
   "art.rul04.body": "Kollased kaardid on HOIATUSED. Saad neid: hoolimatute reeglirikkumiste, ajaviitmise, kohtunikuga vaidlemise, tahtliku käemängu või loata väljakule tuleku/lahkumise eest. Kaks kollast ühes mängus = punane = väljakult saatmine. Punane on TÕSISTE tegude eest: vägivaldne käitumine, ilmse väravalöömise võimaluse ärahoidmine, ohtlik mäng või solvav keel. Punase kaardi korral mängib meeskond ühe mängijaga vähem — tohutu puudus. Õppetund: kontrolli emotsioone. Hetk frustratsiooni võib kahjustada kogu meeskonda. Kui oled vihane, hinga, kõnni eemale, fokusseeru.",
+  "learn.cat.tactics": "Taktika",
+  "learn.cat.nutrition": "Toitumine",
+  "learn.cat.mental": "Vaimne",
+  "learn.cat.rules": "Reeglid",
+  "learn.cat.stories": "Mängijate lood",
+  "learn.cat.technical": "Tehniline",
+  "learn.cat.physical": "Füüsiline",
+  "learn.cat.tactical": "Taktiline",
+  "learn.cat.knowledge": "Teadmised",
   "prog.ballMastery.title": "Pallimeisterlikkus",
   "prog.ballMastery.desc": "4 nädalat igapäevaseid pallikontrolli harjutusi. Arenda esimest puudet, triblamisjulgust ja nõrgemat jalga Coerveri meetodil.",
   "prog.speedAgility.title": "Kiirus ja osavus",
@@ -837,5 +846,10 @@
   "ch.reason.secondWeakest": "Parandab sinu {{category}} — teine arengusuund",
   "ch.reason.position": "Kohandatud sinu positsioonile",
   "ch.reason.wildcard": "Lõbus ülesanne vahelduseks",
-  "ch.reason.weekly": "Nädala eesmärk püsivaks arenguks"
+  "ch.reason.weekly": "Nädala eesmärk püsivaks arenguks",
+  "challenges.done": "Tehtud",
+  "challenges.proTip": "Nõuanne",
+  "challenges.markDone": "Märgi tehtuks",
+  "challenges.allDone": "Kõik ülesanded täidetud!",
+  "challenges.comeBackTomorrow": "Uued ülesanded avanevad homme"
 }

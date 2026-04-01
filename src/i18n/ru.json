@@ -679,6 +679,8 @@
   "learn.cat.stories": "Истории",
   "learn.cat.technical": "Техника",
   "learn.cat.physical": "Физическое",
+  "learn.cat.tactical": "Тактика",
+  "learn.cat.knowledge": "Знания",
   "diary.guidedTitle": "Направленная рефлексия",
   "diary.promptTitle": "Метод 4С",
   "diary.moodContext": "О чём это?",
@@ -907,5 +909,10 @@
   "ch.reason.secondWeakest": "Прокачивает {{category}} — второе направление для роста",
   "ch.reason.position": "Подобрано для твоей позиции",
   "ch.reason.wildcard": "Разнообразное задание для свежести",
-  "ch.reason.weekly": "Недельная цель для стабильного прогресса"
+  "ch.reason.weekly": "Недельная цель для стабильного прогресса",
+  "challenges.done": "Готово",
+  "challenges.proTip": "Совет про",
+  "challenges.markDone": "Отметить как выполненное",
+  "challenges.allDone": "Все задания выполнены!",
+  "challenges.comeBackTomorrow": "Новые задания откроются завтра"
 }

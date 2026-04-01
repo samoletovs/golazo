@@ -55,6 +55,7 @@ export function Challenges() {
 
   const dailyChallenges = challenges.filter((c) => c.reason !== 'weekly')
   const weeklyChallenge = challenges.find((c) => c.reason === 'weekly')
+  const weeklyStorageKey = weeklyChallenge ? `golazo-weekly-${weeklyChallenge.templateId}` : null
 
   const [completedIds, setCompletedIds] = useState<Set<string>>(() => {
     try {
@@ -64,8 +65,9 @@ export function Challenges() {
   })
 
   const [weeklyProgress, setWeeklyProgress] = useState<number>(() => {
+    if (!weeklyStorageKey) return 0
     try {
-      const stored = localStorage.getItem(`golazo-weekly-${weeklyChallenge?.templateId || 'none'}`)
+      const stored = localStorage.getItem(weeklyStorageKey)
       return stored ? parseInt(stored, 10) : 0
     } catch { return 0 }
   })
@@ -83,10 +85,11 @@ export function Challenges() {
   }
 
   function incrementWeekly() {
-    if (!weeklyChallenge) return
+    if (!weeklyChallenge || !weeklyStorageKey) return
+    if (weeklyProgress >= weeklyChallenge.target) return
     const newProgress = weeklyProgress + 1
     setWeeklyProgress(newProgress)
-    localStorage.setItem(`golazo-weekly-${weeklyChallenge.templateId}`, String(newProgress))
+    localStorage.setItem(weeklyStorageKey, String(newProgress))
     if (newProgress >= weeklyChallenge.target) {
       setXp(awardXp(xp, XP_AWARDS.weeklyChallenge, todayKey, ageTier))
     }

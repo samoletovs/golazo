@@ -809,6 +809,15 @@
   "art.rul03.body": "El VAR (Árbitro Asistente de Video) se introdujo para ayudar en cuatro tipos de incidentes: (1) Goles — ¿hubo fuera de juego, falta o mano? (2) Penaltis — ¿fue falta? ¿Fue dentro del área? (3) Tarjetas rojas directas — ¿el árbitro se perdió una agresión? (4) Error de identidad. El VAR NO revisa: amarillas, saques de banda, córners o faltas generales. El proceso: un equipo de árbitros de video mira cada ángulo. Si ven un \"error claro y obvio,\" avisan al árbitro de campo, que puede revisarlo en un monitor. El VAR no es perfecto — toma tiempo y genera controversia. Pero ha hecho el fútbol significativamente más justo.",
   "art.rul04.title": "Tarjetas amarillas y rojas: ¿para qué sirven realmente?",
   "art.rul04.body": "Las amarillas son ADVERTENCIAS. Las recibes por: entradas imprudentes, perder tiempo, protestar al árbitro, tocar el balón deliberadamente con la mano o entrar/salir de la cancha sin permiso. Dos amarillas = roja = expulsión. Las rojas son por ofensas GRAVES: conducta violenta, negar una clara oportunidad de gol, juego peligroso o lenguaje ofensivo. Con roja, tu equipo juega con uno menos — una gran desventaja. La lección: controla tus emociones. Un momento de frustración puede perjudicar a todo tu equipo. Si estás enfadado, respira, aléjate, reenfócate. Los mejores se mantienen calmados — eso es disciplina.",
+  "learn.cat.tactics": "Táctica",
+  "learn.cat.nutrition": "Nutrición",
+  "learn.cat.mental": "Mental",
+  "learn.cat.rules": "Reglas",
+  "learn.cat.stories": "Historias",
+  "learn.cat.technical": "Técnica",
+  "learn.cat.physical": "Físico",
+  "learn.cat.tactical": "Táctico",
+  "learn.cat.knowledge": "Conocimiento",
   "prog.ballMastery.title": "Dominio del balón",
   "prog.ballMastery.desc": "4 semanas de ejercicios diarios de control. Mejora tu primer toque, confianza en el regate y pie débil con la metodología Coerver.",
   "prog.speedAgility.title": "Velocidad y agilidad",
@@ -851,5 +860,10 @@
   "ch.reason.secondWeakest": "Mejora tu {{category}} — tu segunda área de mejora",
   "ch.reason.position": "Adaptado a tu posición",
   "ch.reason.wildcard": "Reto divertido para variar",
-  "ch.reason.weekly": "Meta semanal para progreso constante"
+  "ch.reason.weekly": "Meta semanal para progreso constante",
+  "challenges.done": "Hecho",
+  "challenges.proTip": "Consejo pro",
+  "challenges.markDone": "Marcar como hecho",
+  "challenges.allDone": "¡Todos los retos completados!",
+  "challenges.comeBackTomorrow": "Nuevos retos mañana"
 }
