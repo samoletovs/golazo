@@ -14,7 +14,7 @@ export function QuoteCard() {
       <p className="section-label mb-3">
         {t('dashboard.quote')}
       </p>
-      <p className="text-lg italic leading-relaxed font-medium" style={{ color: 'var(--color-text)', fontFamily: 'var(--font-display)' }}>
+      <p className="text-lg italic leading-relaxed font-medium heading-display" style={{ color: 'var(--color-text)' }}>
         &ldquo;{quote.text[lang] ?? quote.text.en}&rdquo;
       </p>
       <p className="text-sm mt-3 font-bold" style={{ color: 'var(--color-primary-dark)' }}>

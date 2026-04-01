@@ -226,7 +226,7 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
               {t('physical.update')}
             </button>
             <button
-              className="text-[10px] tap-target"
+              className="text-xs tap-target"
               style={{ color: 'var(--color-text-muted)' }}
               onClick={() => setPhysicalDismissed(true)}
             >
@@ -238,7 +238,7 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
 
       {/* ── Welcome greeting ── */}
       <div className="animate-fade-up">
-        <p className="text-lg font-extrabold" style={{ fontFamily: 'var(--font-display)' }}>
+        <p className="text-lg font-extrabold heading-display">
           {greeting}{playerName ? `, ${playerName}` : ''} 👋
         </p>
         <div className="flex items-center gap-3 mt-0.5">
@@ -260,7 +260,7 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
         <div className="card-glow animate-fade-up flex flex-col gap-3">
           <div className="flex items-center gap-2">
             <span className="text-2xl">🎉</span>
-            <p className="text-sm font-bold" style={{ fontFamily: 'var(--font-display)' }}>
+            <p className="text-sm font-bold heading-display">
               {t('dashboard.welcomeTitle')}
             </p>
           </div>
@@ -292,7 +292,7 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
         >
           <span className="text-2xl">☀️</span>
           <div className="flex-1 text-left">
-            <p className="text-sm font-bold" style={{ fontFamily: 'var(--font-display)' }}>
+            <p className="text-sm font-bold heading-display">
               {t('routine.cta')}
             </p>
             <p className="text-xs mt-0.5" style={{ color: 'var(--color-text-muted)' }}>
@@ -360,13 +360,13 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
         /* U8-U10: Simple 2-column layout — just matches + goals, big and fun */
         <div className="grid grid-cols-2 gap-3 animate-fade-up animate-stagger-1">
           <div className="stat-card stat-card-green">
-            <p className="stat-number text-gradient-green animate-number-pop" style={{ fontSize: '2.5rem' }}>
+            <p className="stat-number stat-number-lg text-gradient-green animate-number-pop">
               {animMatches}
             </p>
             <p className="stat-label">{t('dashboard.matches')} ⚽</p>
           </div>
           <div className="stat-card stat-card-gold">
-            <p className="stat-number text-gradient-gold animate-number-pop" style={{ fontSize: '2.5rem', animationDelay: '0.1s' }}>
+            <p className="stat-number stat-number-lg text-gradient-gold animate-number-pop" style={{ animationDelay: '0.1s' }}>
               {animGoals}
             </p>
             <p className="stat-label">{t('dashboard.goals')} 🥅</p>
@@ -417,13 +417,13 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
           {(todayMatches > 0 || todayTrainings > 0) && todayEvents.length === 0 && (
             <div className="flex items-center gap-2">
               {todayTrainings > 0 && (
-                <span className="stat-pill stat-pill-green text-[10px]">⚽ {todayTrainings}</span>
+                <span className="stat-pill stat-pill-green text-xs">⚽ {todayTrainings}</span>
               )}
               {todayMatches > 0 && (
-                <span className="stat-pill stat-pill-cyan text-[10px]">🏟️ {todayMatches}</span>
+                <span className="stat-pill stat-pill-cyan text-xs">🏟️ {todayMatches}</span>
               )}
               {todayGoals > 0 && (
-                <span className="stat-pill stat-pill-gold text-[10px]">🥅 {todayGoals}</span>
+                <span className="stat-pill stat-pill-gold text-xs">🥅 {todayGoals}</span>
               )}
             </div>
           )}
@@ -522,21 +522,21 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
             onClick={() => onNavigate('schedule')}
           >
             <span className="text-xl">📅</span>
-            <span className="text-[11px] font-bold" style={{ color: 'var(--color-text-secondary)' }}>{t('nav.schedule')}</span>
+            <span className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>{t('nav.schedule')}</span>
           </button>
           <button
             className="card tap-target flex flex-col items-center gap-1.5 py-3"
             onClick={() => onNavigate('challenges')}
           >
             <span className="text-xl">🏆</span>
-            <span className="text-[11px] font-bold" style={{ color: 'var(--color-text-secondary)' }}>{t('nav.challenges')}</span>
+            <span className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>{t('nav.challenges')}</span>
           </button>
           <button
             className="card tap-target flex flex-col items-center gap-1.5 py-3"
             onClick={() => onNavigate('portal')}
           >
             <span className="text-xl">🏟️</span>
-            <span className="text-[11px] font-bold" style={{ color: 'var(--color-text-secondary)' }}>{t('nav.portal')}</span>
+            <span className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>{t('nav.portal')}</span>
           </button>
         </div>
       )}
@@ -580,7 +580,7 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
           <span className="text-lg">🎯</span>
           <p className="section-label">{t('dashboard.drillOfDay')}</p>
         </div>
-        <p className="text-sm font-bold" style={{ fontFamily: 'var(--font-display)' }}>
+        <p className="text-sm font-bold heading-display">
           {t(drillOfDay.nameKey)}
         </p>
         <p className="text-xs mt-1 leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>

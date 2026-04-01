@@ -100,9 +100,9 @@ export function CoachCard() {
       {/* Header */}
       <div className="flex items-center gap-2 mb-2">
         <span className="text-xl">🧠</span>
-        <p className="text-sm font-bold" style={{ fontFamily: 'var(--font-display)' }}>{t('coach.title')}</p>
+        <p className="text-sm font-bold heading-display">{t('coach.title')}</p>
         {aiAdvice && (
-          <span className="text-[0.55rem] px-1.5 py-0.5 rounded-full font-bold" style={{ background: 'var(--color-primary-light, #dcfce7)', color: 'var(--color-primary-dark, #166534)' }}>
+          <span className="text-xs px-1.5 py-0.5 rounded-full font-bold" style={{ background: 'var(--color-primary-light, #dcfce7)', color: 'var(--color-primary-dark, #166534)' }}>
             AI
           </span>
         )}

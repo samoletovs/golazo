@@ -67,7 +67,7 @@ export function MorningRoutine({ onClose }: MorningRoutineProps) {
       <div className="app-header flex items-center justify-between px-4 py-3">
         <div className="flex items-center gap-2">
           <span className="text-lg">☀️</span>
-          <p className="text-sm font-bold" style={{ fontFamily: 'var(--font-display)' }}>
+          <p className="text-sm font-bold heading-display">
             {t('routine.title')}
           </p>
         </div>
@@ -103,7 +103,7 @@ export function MorningRoutine({ onClose }: MorningRoutineProps) {
         <div className="app-shell">
           {step === 'checkin' && (
             <div className="animate-fade-up">
-              <p className="text-lg font-bold mb-4" style={{ fontFamily: 'var(--font-display)' }}>
+              <p className="text-lg font-bold mb-4 heading-display">
                 🌤️ {t('checkin.title')}
               </p>
               <DailyCheckIn
@@ -115,7 +115,7 @@ export function MorningRoutine({ onClose }: MorningRoutineProps) {
 
           {step === 'challenge' && (
             <div className="animate-fade-up">
-              <p className="text-lg font-bold mb-4" style={{ fontFamily: 'var(--font-display)' }}>
+              <p className="text-lg font-bold mb-4 heading-display">
                 🎯 {t('routine.challengeTitle')}
               </p>
               <div className="card flex flex-col gap-3">
@@ -146,7 +146,7 @@ export function MorningRoutine({ onClose }: MorningRoutineProps) {
 
           {step === 'quiz' && (
             <div className="animate-fade-up">
-              <p className="text-lg font-bold mb-4" style={{ fontFamily: 'var(--font-display)' }}>
+              <p className="text-lg font-bold mb-4 heading-display">
                 🧠 {t('quiz.title')}
               </p>
               <DailyQuiz compact onComplete={() => setTimeout(() => finishRoutine(), 500)} />
@@ -156,7 +156,7 @@ export function MorningRoutine({ onClose }: MorningRoutineProps) {
           {step === 'done' && (
             <div className="flex flex-col items-center justify-center gap-4 py-16 animate-fade-up">
               <span className="text-6xl animate-float">🎉</span>
-              <p className="text-xl font-bold" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-primary-dark)' }}>
+              <p className="text-xl font-bold heading-display" style={{ color: 'var(--color-primary-dark)' }}>
                 {t('routine.complete')}
               </p>
               <p className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>

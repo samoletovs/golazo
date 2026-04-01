@@ -39,10 +39,10 @@ export function LevelUpCelebration({ level, onClose }: LevelUpCelebrationProps) 
         onClick={(e) => e.stopPropagation()}
       >
         <span className="text-5xl animate-float">🎉</span>
-        <p className="text-2xl font-black" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-primary-dark)' }}>
+        <p className="text-2xl font-black heading-display" style={{ color: 'var(--color-primary-dark)' }}>
           {t('levelUp.title')}
         </p>
-        <p className="stat-number text-gradient-green" style={{ fontSize: '3rem' }}>
+        <p className="stat-number stat-number-lg text-gradient-green">
           {level}
         </p>
         <p className="text-sm font-bold" style={{ color: 'var(--color-text-secondary)' }}>

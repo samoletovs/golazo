@@ -1,9 +1,18 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import type { ProgramDay, ProgramExercise } from '../engine/types'
+import { exercises as exerciseLibrary } from '../data/exercises'
+
+/** Look up exercise name from the curated exercise library */
+function getExerciseName(exerciseId: string, t: ReturnType<typeof import('react-i18next').useTranslation>['t']): string {
+  const ex = exerciseLibrary.find((e) => e.id === exerciseId)
+  if (ex) return t(ex.nameKey, { defaultValue: ex.nameKey })
+  return exerciseId
+}
 
 interface WorkoutViewProps {
   weekNumber: number
+  weekFocusKey?: string
   day: ProgramDay
   onComplete: (rating?: 1 | 2 | 3 | 4 | 5) => void
   isCompleted: boolean
@@ -11,7 +20,7 @@ interface WorkoutViewProps {
 }
 
 /** Full daily workout view — shows warmup, exercises, cooldown, and complete button */
-export function WorkoutView({ weekNumber, day, onComplete, isCompleted, alreadyLoggedToday }: WorkoutViewProps) {
+export function WorkoutView({ weekNumber, weekFocusKey, day, onComplete, isCompleted, alreadyLoggedToday }: WorkoutViewProps) {
   const { t } = useTranslation()
   const [showRating, setShowRating] = useState(false)
   const [rating, setRating] = useState<1 | 2 | 3 | 4 | 5 | null>(null)
@@ -45,8 +54,8 @@ export function WorkoutView({ weekNumber, day, onComplete, isCompleted, alreadyL
         </span>
       </div>
 
-      <h3 className="text-sm font-bold" style={{ fontFamily: 'var(--font-display)' }}>
-        {t(day.titleKey)}
+      <h3 className="text-sm font-bold heading-display">
+        {weekFocusKey ? t(weekFocusKey) : ''} — {t('prog.dayLabel', { n: day.dayNumber })}
       </h3>
 
       {/* Warmup */}
@@ -54,7 +63,7 @@ export function WorkoutView({ weekNumber, day, onComplete, isCompleted, alreadyL
         <span className="text-lg">🔥</span>
         <div className="flex-1">
           <p className="text-xs font-bold">{t('prog.warmup')} · {day.warmup.durationMin} {t('learn.minutes')}</p>
-          <p className="text-[11px]" style={{ color: 'var(--color-text-muted)' }}>{t(day.warmup.descriptionKey)}</p>
+          <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{t(day.warmup.descriptionKey)}</p>
         </div>
       </div>
 
@@ -69,7 +78,7 @@ export function WorkoutView({ weekNumber, day, onComplete, isCompleted, alreadyL
           <span className="text-lg">🧊</span>
           <div className="flex-1">
             <p className="text-xs font-bold">{t('prog.cooldown')} · {day.cooldown.durationMin} {t('learn.minutes')}</p>
-            <p className="text-[11px]" style={{ color: 'var(--color-text-muted)' }}>{t(day.cooldown.descriptionKey)}</p>
+            <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{t(day.cooldown.descriptionKey)}</p>
           </div>
         </div>
       )}
@@ -97,7 +106,7 @@ export function WorkoutView({ weekNumber, day, onComplete, isCompleted, alreadyL
               </button>
             ))}
           </div>
-          <button className="text-[11px] mt-1" style={{ color: 'var(--color-text-muted)' }} onClick={handleSkipRating}>
+          <button className="text-xs mt-1" style={{ color: 'var(--color-text-muted)' }} onClick={handleSkipRating}>
             {t('prog.skipRating')}
           </button>
         </div>
@@ -125,12 +134,12 @@ function ExerciseCard({ exercise, index }: { exercise: ProgramExercise; index: n
         {index}
       </span>
       <div className="flex-1 min-w-0">
-        <p className="text-sm font-bold">{t(`ex.${exercise.exerciseId}`, exercise.exerciseId)}</p>
+        <p className="text-sm font-bold">{getExerciseName(exercise.exerciseId, t)}</p>
         {detail && (
           <p className="text-xs mt-0.5" style={{ color: 'var(--color-text-muted)' }}>{detail}</p>
         )}
         {exercise.coachNoteKey && (
-          <p className="text-[11px] mt-1 italic" style={{ color: 'var(--color-primary-dark)' }}>
+          <p className="text-xs mt-1 italic" style={{ color: 'var(--color-primary-dark)' }}>
             💡 {t(exercise.coachNoteKey)}
           </p>
         )}

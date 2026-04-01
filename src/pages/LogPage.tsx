@@ -170,7 +170,7 @@ export function LogPage() {
                         {ev.title}{ev.opponent ? ` vs ${ev.opponent}` : ''}
                       </p>
                       {!pe.isToday && (
-                        <span className="text-[10px] px-1.5 py-0.5 rounded-full shrink-0 font-bold" style={{ background: '#fef3c7', color: '#b45309' }}>
+                        <span className="text-xs px-1.5 py-0.5 rounded-full shrink-0 font-bold" style={{ background: '#fef3c7', color: '#b45309' }}>
                           {t('log.missed')}
                         </span>
                       )}
@@ -200,13 +200,13 @@ export function LogPage() {
                 {/* Skip reason picker */}
                 {isSkipping && (
                   <div className="mt-2 pt-2 flex flex-wrap gap-1.5" style={{ borderTop: '1px solid var(--color-glass-border)' }}>
-                    <p className="text-[10px] w-full mb-0.5" style={{ color: 'var(--color-text-muted)' }}>{t('log.skipReason')}</p>
+                    <p className="text-xs w-full mb-0.5" style={{ color: 'var(--color-text-muted)' }}>{t('log.skipReason')}</p>
                     {(isMatch ? MATCH_SKIP_REASONS : TRAINING_SKIP_REASONS)
                       .filter((r) => !r.minAge || (profile?.birthDate && getAge(profile.birthDate) >= r.minAge))
                       .map((r) => (
                       <button
                         key={r.key}
-                        className="text-[11px] font-bold px-2.5 py-1 rounded-full tap-target"
+                        className="text-xs font-bold px-2.5 py-1 rounded-full tap-target"
                         style={{ background: 'var(--color-glass-hover)', color: 'var(--color-text-secondary)' }}
                         onClick={() => skipEvent(ev.id, r.key)}
                       >
@@ -282,7 +282,7 @@ export function LogPage() {
       <div className="tip-card animate-fade-up" style={{ marginTop: 8 }}>
         <span className="tip-card-icon">💡</span>
         <div>
-          <p className="text-sm font-bold" style={{ fontFamily: 'var(--font-display)' }}>{t('log.tipTitle')}</p>
+          <p className="text-sm font-bold heading-display">{t('log.tipTitle')}</p>
           <p className="text-xs mt-1 leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
             {t('log.tipText')}
           </p>

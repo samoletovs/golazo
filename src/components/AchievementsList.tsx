@@ -87,7 +87,7 @@ export function AchievementsList() {
               aria-label={`${t(a.nameKey)}: ${t(a.descriptionKey)}`}
             >
               <span className="text-2xl" style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.1))' }}>{a.icon}</span>
-              <span className="text-[10px] font-bold text-center leading-tight" style={{ color: 'var(--color-text-secondary)' }}>
+              <span className="text-xs font-bold text-center leading-tight" style={{ color: 'var(--color-text-secondary)' }}>
                 {t(a.nameKey)}
               </span>
             </div>
@@ -113,7 +113,7 @@ export function AchievementsList() {
                 aria-label={`${t(a.nameKey)}: ${t(a.descriptionKey)}`}
               >
                 <span className="text-xl grayscale opacity-40">{a.icon}</span>
-                <span className="text-[9px] font-bold text-center leading-tight" style={{ color: 'var(--color-text-muted)' }}>
+                <span className="text-[10px] font-bold text-center leading-tight" style={{ color: 'var(--color-text-muted)' }}>
                   {t(a.nameKey)}
                 </span>
                 {/* Mini progress bar */}
@@ -122,7 +122,7 @@ export function AchievementsList() {
                     <div className="w-full h-1 rounded-full overflow-hidden mt-0.5" style={{ background: 'var(--color-border-default)' }}>
                       <div className="h-full rounded-full" style={{ width: `${pct * 100}%`, background: 'var(--color-silver)', transition: 'width 0.5s ease' }} />
                     </div>
-                    <span className="text-[8px] font-data" style={{ color: 'var(--color-text-muted)' }}>
+                    <span className="text-xs font-data" style={{ color: 'var(--color-text-muted)' }}>
                       {remaining > 0 ? `${remaining} more` : ''}
                     </span>
                   </>

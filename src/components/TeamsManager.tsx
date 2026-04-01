@@ -123,7 +123,7 @@ export function TeamsManager({ onClose }: { onClose: () => void }) {
     <div className="flex flex-col gap-4 p-4 pb-32">
       <div className="flex items-center gap-3">
         <button onClick={onClose} className="tap-target text-xl" aria-label={t('common.back')}>←</button>
-        <h2 className="text-lg font-extrabold" style={{ fontFamily: 'var(--font-display)' }}>⚽ {t('teams.title')}</h2>
+        <h2 className="text-lg font-extrabold heading-display">⚽ {t('teams.title')}</h2>
       </div>
 
         {/* Selected teams as chips */}
@@ -215,7 +215,7 @@ export function TeamsManager({ onClose }: { onClose: () => void }) {
                         href={team.website}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="block text-[0.6rem] truncate"
+                        className="block text-xs truncate"
                         style={{ color: 'var(--color-primary-light)' }}
                       >
                         🔗 {team.website.replace(/^https?:\/\/(www\.)?/, '').split('/')[0]}
@@ -240,12 +240,12 @@ export function TeamsManager({ onClose }: { onClose: () => void }) {
                     {team.aliases.map((alias) => (
                       <span
                         key={alias}
-                        className="text-[0.65rem] px-2 py-0.5 rounded-full flex items-center gap-1"
+                        className="text-xs px-2 py-0.5 rounded-full flex items-center gap-1"
                         style={{ background: 'var(--color-glass-active)', color: 'var(--color-text-secondary)' }}
                       >
                         {alias}
                         <button
-                          className="text-[0.6rem]"
+                          className="text-xs"
                           onClick={() => removeAlias(team.id, alias)}
                           style={{ color: 'var(--color-danger)' }}
                         >
@@ -361,7 +361,7 @@ export function TeamsManager({ onClose }: { onClose: () => void }) {
                       {unknownOpponents.slice(0, 20).map((opp) => (
                         <button
                           key={opp}
-                          className="text-[0.7rem] px-2.5 py-1 rounded-full"
+                          className="text-xs px-2.5 py-1 rounded-full"
                           style={{ background: 'var(--color-glass-hover)', color: 'var(--color-text-secondary)' }}
                           onClick={() => addTeamFromPicker(opp)}
                         >

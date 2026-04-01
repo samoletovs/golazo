@@ -64,7 +64,7 @@ export function TrackedFieldsEditor({ onClose }: Props) {
           {/* Header */}
           <div>
             <div className="flex items-center justify-between">
-              <h2 className="text-lg font-extrabold" style={{ fontFamily: 'var(--font-display)' }}>{t('physical.customizeTitle')}</h2>
+              <h2 className="text-lg font-extrabold heading-display">{t('physical.customizeTitle')}</h2>
               <button
                 className="tap-target w-8 h-8 rounded-full flex items-center justify-center"
                 style={{ background: 'var(--color-glass-active)', color: 'var(--color-text-muted)' }}
@@ -85,7 +85,7 @@ export function TrackedFieldsEditor({ onClose }: Props) {
             const groupInfo = PHYSICAL_GROUPS[group]
             return (
               <div key={group}>
-                <p className="text-[10px] font-bold uppercase tracking-wider mb-2" style={{ color: 'var(--color-text-muted)' }}>
+                <p className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: 'var(--color-text-muted)' }}>
                   {groupInfo.emoji} {t(groupInfo.labelKey)}
                 </p>
                 <div className="card p-0 overflow-hidden">
@@ -114,17 +114,17 @@ export function TrackedFieldsEditor({ onClose }: Props) {
                             border: isOn ? 'none' : '1.5px solid var(--color-glass-border, #cbd5e1)',
                           }}
                         >
-                          {isOn && <span className="text-white text-[10px] font-bold">✓</span>}
+                          {isOn && <span className="text-white text-xs font-bold">✓</span>}
                         </div>
 
                         <div className="flex-1 min-w-0">
                           <p className="text-sm font-bold">{t(field.labelKey)}</p>
-                          <p className="text-[10px]" style={{ color: 'var(--color-text-muted)' }}>
+                          <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
                             {field.unit}{isDefault ? ` · ${t('physical.recommended')}` : ''}
                           </p>
                         </div>
                         {isRequired && (
-                          <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full shrink-0" style={{ background: 'var(--color-glass-active, #e2e8f0)', color: 'var(--color-text-muted)' }}>
+                          <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full shrink-0" style={{ background: 'var(--color-glass-active, #e2e8f0)', color: 'var(--color-text-muted)' }}>
                             {t('physical.required')}
                           </span>
                         )}

@@ -57,7 +57,7 @@ export function PhysicalUpdateFlow({ onClose }: Props) {
     const lowerIsBetter = key === 'sprintTime10m' || key === 'sprintTime20m' || key === 'sprintTime30m' || key === 'agilityCourseTime' || key === 'restingHeartRate'
     const isGood = lowerIsBetter ? !isPositive : isPositive
     return (
-      <span className="text-[10px] font-bold font-data ml-1" style={{ color: isGood ? 'var(--color-primary-dark)' : 'var(--color-danger)' }}>
+      <span className="text-xs font-bold font-data ml-1" style={{ color: isGood ? 'var(--color-primary-dark)' : 'var(--color-danger)' }}>
         {isPositive ? '+' : ''}{diff.toFixed(1)}
       </span>
     )
@@ -96,7 +96,7 @@ export function PhysicalUpdateFlow({ onClose }: Props) {
             const groupInfo = PHYSICAL_GROUPS[group]
             return (
               <div key={group}>
-                <p className="text-[10px] font-bold uppercase tracking-wider mb-2" style={{ color: 'var(--color-text-muted)' }}>
+                <p className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: 'var(--color-text-muted)' }}>
                   {groupInfo.emoji} {t(groupInfo.labelKey)}
                 </p>
                 <div className="grid grid-cols-2 gap-3">

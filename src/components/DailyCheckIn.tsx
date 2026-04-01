@@ -60,7 +60,7 @@ export function DailyCheckIn({ onComplete, compact }: DailyCheckInProps) {
       {!compact && (
         <div className="flex items-center gap-2">
           <span className="text-lg">🌤️</span>
-          <p className="text-sm font-bold" style={{ fontFamily: 'var(--font-display)' }}>
+          <p className="text-sm font-bold heading-display">
             {t('checkin.title')}
           </p>
         </div>

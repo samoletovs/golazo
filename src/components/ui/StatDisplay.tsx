@@ -6,7 +6,7 @@ interface StatDisplayProps {
 }
 
 const sizeMap = {
-  sm: { number: 'text-lg', label: 'text-[9px]' },
+  sm: { number: 'text-lg', label: 'text-xs' },
   md: { number: 'text-2xl', label: 'stat-label' },
   lg: { number: 'text-4xl', label: 'stat-label' },
 }

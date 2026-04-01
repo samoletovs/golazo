@@ -228,7 +228,7 @@ export function TournamentImport({ onClose }: { onClose: () => void }) {
         <div className="app-shell w-full rounded-t-2xl p-5 pb-8 animate-fade-up" style={{ maxHeight: '80dvh', overflowY: 'auto', background: 'var(--color-bg, #fafafa)' }}>
           <div className="text-center py-8">
             <div className="text-5xl mb-3 animate-float">🏆</div>
-            <h3 className="text-xl font-extrabold" style={{ fontFamily: 'var(--font-display)' }}>{t('import.success')}</h3>
+            <h3 className="text-xl font-extrabold heading-display">{t('import.success')}</h3>
             <p className="text-sm mt-2" style={{ color: 'var(--color-text-secondary)' }}>
               {t('import.addedGames', { count: result.games.length, tournament: result.tournament })}
             </p>
@@ -248,7 +248,7 @@ export function TournamentImport({ onClose }: { onClose: () => void }) {
         <div className="flex items-center justify-between mb-5">
           <div className="flex items-center gap-2.5">
             <span className="text-2xl">🏆</span>
-            <h3 className="text-lg font-extrabold" style={{ fontFamily: 'var(--font-display)' }}>{t('import.title')}</h3>
+            <h3 className="text-lg font-extrabold heading-display">{t('import.title')}</h3>
           </div>
           <button className="tap-target w-8 h-8 rounded-full flex items-center justify-center" style={{ background: 'var(--color-glass-active)' }} onClick={onClose} aria-label={t('common.cancel')}>✕</button>
         </div>
@@ -258,7 +258,7 @@ export function TournamentImport({ onClose }: { onClose: () => void }) {
           <div className="flex flex-col gap-4">
             {/* URL field */}
             <div className="card p-4">
-              <label className="text-[10px] font-bold uppercase tracking-wider" style={{ color: 'var(--color-text-muted)' }}>
+              <label className="text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--color-text-muted)' }}>
                 {t('import.url')}
               </label>
               <input
@@ -269,14 +269,14 @@ export function TournamentImport({ onClose }: { onClose: () => void }) {
                 className="w-full mt-1.5 text-sm p-2.5 rounded-lg"
                 style={{ background: 'var(--color-bg-field, #f8fafc)', border: '1px solid var(--color-glass-border)' }}
               />
-              <p className="text-[0.6rem] mt-1.5" style={{ color: 'var(--color-text-muted)' }}>
+              <p className="text-xs mt-1.5" style={{ color: 'var(--color-text-muted)' }}>
                 {t('import.urlHint')}
               </p>
             </div>
 
             {/* Team selection card */}
             <div className="card p-4">
-              <label className="text-[10px] font-bold uppercase tracking-wider" style={{ color: 'var(--color-text-muted)' }}>
+              <label className="text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--color-text-muted)' }}>
                 {t('import.teamSetup')}
               </label>
 
@@ -310,7 +310,7 @@ export function TournamentImport({ onClose }: { onClose: () => void }) {
                   placeholder={t('import.teamNameHint')}
                   className="w-full mt-1"
                 />
-                <p className="text-[0.6rem] mt-1" style={{ color: 'var(--color-text-muted)' }}>
+                <p className="text-xs mt-1" style={{ color: 'var(--color-text-muted)' }}>
                   {t('import.tournamentTeamHint')}
                 </p>
               </div>
@@ -325,7 +325,7 @@ export function TournamentImport({ onClose }: { onClose: () => void }) {
                     {fetchedTeams.map((team) => (
                       <button
                         key={team}
-                        className="text-[0.7rem] px-2.5 py-1.5 rounded-full font-bold transition-all"
+                        className="text-xs px-2.5 py-1.5 rounded-full font-bold transition-all"
                         style={{
                           background: teamName === team ? 'rgba(var(--color-primary-rgb), 0.12)' : 'var(--color-glass-hover)',
                           color: teamName === team ? 'var(--color-primary-dark)' : 'var(--color-text-secondary)',
@@ -343,7 +343,7 @@ export function TournamentImport({ onClose }: { onClose: () => void }) {
 
             {/* Match duration */}
             <div className="card p-4">
-              <label className="text-[10px] font-bold uppercase tracking-wider" style={{ color: 'var(--color-text-muted)' }}>
+              <label className="text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--color-text-muted)' }}>
                 {t('import.duration')}
               </label>
               <div className="flex items-center gap-3 mt-2">
@@ -358,7 +358,7 @@ export function TournamentImport({ onClose }: { onClose: () => void }) {
                   </button>
                 ))}
               </div>
-              <p className="text-[0.6rem] text-center mt-1.5" style={{ color: 'var(--color-text-muted)' }}>
+              <p className="text-xs text-center mt-1.5" style={{ color: 'var(--color-text-muted)' }}>
                 {t('training.minutes', { min: durationMin })}
               </p>
             </div>
@@ -388,7 +388,7 @@ export function TournamentImport({ onClose }: { onClose: () => void }) {
                   <p className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>
                     {result.tournament}
                   </p>
-                  <p className="text-base font-extrabold" style={{ color: 'var(--color-primary-dark)', fontFamily: 'var(--font-display)' }}>
+                  <p className="text-base font-extrabold heading-display" style={{ color: 'var(--color-primary-dark)' }}>
                     {t('import.foundGames', { count: result.matchedGames, total: result.totalGames })}
                   </p>
                 </div>
@@ -406,13 +406,13 @@ export function TournamentImport({ onClose }: { onClose: () => void }) {
               const unmatched = Object.entries(result.registryMatches).filter(([, v]) => v === null)
               return (matched.length > 0 || unmatched.length > 0) ? (
                 <div className="card p-4">
-                  <p className="text-[10px] font-bold uppercase tracking-wider mb-2" style={{ color: 'var(--color-text-muted)' }}>
+                  <p className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: 'var(--color-text-muted)' }}>
                     {t('import.registryStatus')}
                   </p>
                   {matched.length > 0 && (
                     <div className="flex flex-wrap gap-1 mb-2">
                       {matched.map(([name, team]) => (
-                        <span key={name} className="inline-flex items-center gap-1 text-[0.6rem] px-2 py-0.5 rounded-full"
+                        <span key={name} className="inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded-full"
                           style={{ background: 'var(--color-glass-active)', color: 'var(--color-primary-darker)' }}>
                           {team?.logoUrl && <img src={team.logoUrl} alt="" className="w-3 h-3 rounded object-contain" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }} />}
                           ✓ {team?.name ?? name}
@@ -423,7 +423,7 @@ export function TournamentImport({ onClose }: { onClose: () => void }) {
                   {unmatched.length > 0 && (
                     <div className="flex flex-wrap gap-1">
                       {unmatched.map(([name]) => (
-                        <span key={name} className="text-[0.6rem] px-2 py-0.5 rounded-full"
+                        <span key={name} className="text-xs px-2 py-0.5 rounded-full"
                           style={{ background: '#fef9c3', color: '#92400e' }}>
                           ? {name}
                         </span>
@@ -447,7 +447,7 @@ export function TournamentImport({ onClose }: { onClose: () => void }) {
                       borderBottom: i < result.games.length - 1 ? '1px solid var(--color-glass-border)' : undefined,
                     }}
                   >
-                    <span className="font-data text-[0.65rem] shrink-0 w-[70px]" style={{ color: 'var(--color-text-muted)' }}>
+                    <span className="font-data text-xs shrink-0 w-[70px]" style={{ color: 'var(--color-text-muted)' }}>
                       {game.date} {game.time}
                     </span>
                     <span className="flex-1 font-bold truncate">
@@ -458,7 +458,7 @@ export function TournamentImport({ onClose }: { onClose: () => void }) {
                       {game.away}
                     </span>
                     {game.venue && (
-                      <span className="text-[0.6rem] shrink-0" style={{ color: 'var(--color-text-muted)' }}>
+                      <span className="text-xs shrink-0" style={{ color: 'var(--color-text-muted)' }}>
                         📍
                       </span>
                     )}

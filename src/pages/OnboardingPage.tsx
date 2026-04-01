@@ -329,7 +329,7 @@ export function OnboardingPage() {
                 <label className="text-xs font-bold mt-2" style={{ color: 'var(--color-text-secondary)' }}>
                   {t('onboarding.teams')}
                 </label>
-                <p className="text-[0.65rem] mb-1" style={{ color: 'var(--color-text-muted)' }}>
+                <p className="text-xs mb-1" style={{ color: 'var(--color-text-muted)' }}>
                   {t('onboarding.teamsHint')}
                 </p>
 
@@ -501,7 +501,7 @@ export function OnboardingPage() {
 
               {/* Field picker — choose what to track */}
               <div className="card" style={{ background: 'var(--color-glass, #f8fafc)', padding: '12px' }}>
-                <p className="text-[10px] font-bold uppercase tracking-wider mb-2" style={{ color: 'var(--color-text-muted)' }}>
+                <p className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: 'var(--color-text-muted)' }}>
                   {t('physical.chooseFields')}
                 </p>
                 {allGroups.map((group) => {
@@ -509,7 +509,7 @@ export function OnboardingPage() {
                   const groupInfo = PHYSICAL_GROUPS[group]
                   return (
                     <div key={group} className="mb-2">
-                      <p className="text-[9px] font-bold uppercase mb-1" style={{ color: 'var(--color-text-muted)' }}>
+                      <p className="text-[10px] font-bold uppercase mb-1" style={{ color: 'var(--color-text-muted)' }}>
                         {groupInfo.emoji} {t(groupInfo.labelKey)}
                       </p>
                       <div className="flex flex-wrap gap-1.5">
@@ -520,7 +520,7 @@ export function OnboardingPage() {
                             <button
                               key={field.key}
                               type="button"
-                              className="text-[11px] px-2.5 py-1 rounded-full font-bold transition-colors"
+                              className="text-xs px-2.5 py-1 rounded-full font-bold transition-colors"
                               style={{
                                 background: isOn ? 'var(--color-primary-light, #dcfce7)' : 'var(--color-glass-active, #e2e8f0)',
                                 color: isOn ? 'var(--color-primary-dark, #166534)' : 'var(--color-text-muted)',
@@ -548,7 +548,7 @@ export function OnboardingPage() {
                 return (
                   <div key={group}>
                     {!isBody && (
-                      <p className="text-[10px] font-bold uppercase tracking-wider mt-2 mb-2" style={{ color: 'var(--color-text-muted)' }}>
+                      <p className="text-xs font-bold uppercase tracking-wider mt-2 mb-2" style={{ color: 'var(--color-text-muted)' }}>
                         {groupInfo.emoji} {t(groupInfo.labelKey)} <span className="normal-case font-normal">({t('onboarding.optional')})</span>
                       </p>
                     )}
@@ -615,7 +615,7 @@ export function OnboardingPage() {
                           aria-pressed={form.assessment[skill.cat] === level}
                         >
                           <span className="block text-lg font-bold font-data">{level}</span>
-                          <span className="block text-[0.6rem] leading-tight" style={{ color: 'var(--color-text-muted)' }}>
+                          <span className="block text-xs leading-tight" style={{ color: 'var(--color-text-muted)' }}>
                             {t(ASSESS_LABELS[level - 1])}
                           </span>
                         </button>

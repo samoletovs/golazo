@@ -57,7 +57,7 @@ export function ThemePicker() {
                 )
               })()}
               <span
-                className="text-[10px] font-bold leading-tight text-center"
+                className="text-xs font-bold leading-tight text-center"
                 style={{ color: isActive ? 'var(--color-primary-dark)' : 'var(--color-text-muted)' }}
               >
                 {t(`theme.${preset.id}`)}
@@ -67,7 +67,7 @@ export function ThemePicker() {
         })}
       </div>
       {selected === 'team' && !teamColor && (
-        <p className="text-[10px] mt-2" style={{ color: 'var(--color-text-muted)' }}>
+        <p className="text-xs mt-2" style={{ color: 'var(--color-text-muted)' }}>
           {t('theme.noTeamHint')}
         </p>
       )}

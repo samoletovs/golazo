@@ -72,7 +72,7 @@ export default function FeedbackButton() {
           <button
             key={k}
             onClick={() => setType(k)}
-            className="flex-1 py-1.5 rounded-lg text-[11px] font-medium border-none cursor-pointer"
+            className="flex-1 py-1.5 rounded-lg text-xs font-medium border-none cursor-pointer"
             style={{
               background: type === k ? 'var(--color-primary)' : 'var(--color-field-input)',
               color: type === k ? '#fff' : 'var(--color-text-secondary)',

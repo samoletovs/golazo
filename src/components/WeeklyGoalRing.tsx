@@ -66,10 +66,10 @@ export function WeeklyGoalRing() {
           </svg>
           {/* Center number */}
           <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <span className="stat-number text-gradient-green" style={{ fontSize: '1.75rem' }}>
+            <span className="stat-number stat-number-sm text-gradient-green">
               {done}
             </span>
-            <span className="text-[10px] font-bold" style={{ color: 'var(--color-text-muted)' }}>
+            <span className="text-xs font-bold" style={{ color: 'var(--color-text-muted)' }}>
               / {WEEKLY_GOAL}
             </span>
           </div>
@@ -77,7 +77,7 @@ export function WeeklyGoalRing() {
 
         {/* Text */}
         <div className="flex-1">
-          <p className="text-sm font-bold" style={{ fontFamily: 'var(--font-display)' }}>
+          <p className="text-sm font-bold heading-display">
             {t('dashboard.weeklyGoal')}
           </p>
           <p className="text-xs mt-1 leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>

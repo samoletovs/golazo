@@ -107,7 +107,7 @@ export function AddTeamDialog({ initialName, defaultCountry, onAdd, onCancel }: 
               )}
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-bold">{duplicate.name}</p>
-                <p className="text-[0.65rem]" style={{ color: 'var(--color-text-muted)' }}>
+                <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
                   {[duplicate.city, duplicate.league, duplicate.country].filter(Boolean).join(' · ')}
                 </p>
               </div>

@@ -492,11 +492,11 @@ export function SchedulePage() {
                       <span className="text-xs font-bold block" style={{ color: isToday ? 'var(--color-primary-dark)' : isWeekend ? 'var(--color-text-muted)' : 'var(--color-text-secondary)' }}>
                         {t(WEEKDAY_NAMES[jsDow])}
                       </span>
-                      <span className="text-[0.65rem] font-data" style={{ color: 'var(--color-text-muted)' }}>{dayNum}</span>
+                      <span className="text-xs font-data" style={{ color: 'var(--color-text-muted)' }}>{dayNum}</span>
                     </div>
                     <div className="flex-1 min-w-0">
                       {dayEvents.length === 0 ? (
-                        <span className="text-[0.65rem] py-0.5" style={{ color: 'var(--color-text-muted)', opacity: 0.5 }}>—</span>
+                        <span className="text-xs py-0.5" style={{ color: 'var(--color-text-muted)', opacity: 0.5 }}>—</span>
                       ) : (
                         <div className="flex flex-col gap-1">
                           {dayEvents.map((ev) => {
@@ -505,13 +505,13 @@ export function SchedulePage() {
                             return (
                               <div key={ev.id} className="flex items-center gap-1.5 group">
                                 <div className="w-2 h-2 rounded-full shrink-0" style={{ background: evType?.color ?? 'var(--color-primary-dark)' }} />
-                                <span className="text-[0.65rem] font-bold shrink-0" style={{ color: 'var(--color-text-secondary)' }}>{ev.startTime}</span>
-                                <span className="text-[0.65rem] truncate flex-1" style={{ color: 'var(--color-text-primary)' }}>{ev.title}</span>
+                                <span className="text-xs font-bold shrink-0" style={{ color: 'var(--color-text-secondary)' }}>{ev.startTime}</span>
+                                <span className="text-xs truncate flex-1" style={{ color: 'var(--color-text-primary)' }}>{ev.title}</span>
                                 {ev.id.startsWith('rt-') && <span className="text-[0.5rem]">🔁</span>}
                                 {ev.id.startsWith('shared-') && <span className="text-[0.5rem]" style={{ color: 'var(--color-primary-dark)' }}>👥</span>}
                                 {isRemovable && (
                                   <button
-                                    className="text-[0.6rem] px-1 opacity-30 group-hover:opacity-100 shrink-0"
+                                    className="text-xs px-1 opacity-30 group-hover:opacity-100 shrink-0"
                                     style={{ color: 'var(--color-danger)' }}
                                     onClick={() => removeScheduleEvent(ev.id)}
                                     aria-label="Remove"
@@ -545,7 +545,7 @@ export function SchedulePage() {
           <div className="card p-3">
             <div className="grid grid-cols-7 gap-1 mb-2">
               {WEEKDAYS_KEYS.map((k) => (
-                <div key={k} className="text-center text-[0.6rem] font-bold" style={{ color: 'var(--color-text-muted)' }}>
+                <div key={k} className="text-center text-xs font-bold" style={{ color: 'var(--color-text-muted)' }}>
                   {t(k)}
                 </div>
               ))}
@@ -606,7 +606,7 @@ export function SchedulePage() {
             onClick={() => btn.type === 'tournament' ? setShowImport(true) : tryOpenAdd(btn.type)}
           >
             <span className="text-base">{btn.emoji}</span>
-            <span className="text-[0.6rem] font-bold leading-tight text-center" style={{ color: btn.color }}>{t(btn.labelKey)}</span>
+            <span className="text-xs font-bold leading-tight text-center" style={{ color: btn.color }}>{t(btn.labelKey)}</span>
           </button>
         ))}
       </div>
@@ -640,7 +640,7 @@ export function SchedulePage() {
                       <div className="flex items-center gap-1.5">
                         <p className="text-sm font-bold truncate">{ev.title}</p>
                         {ev.matchType && (
-                          <span className="text-[0.55rem] px-1.5 py-0.5 rounded-full shrink-0" style={{ background: 'var(--color-glass-active)', color: 'var(--color-text-secondary)' }}>
+                          <span className="text-xs px-1.5 py-0.5 rounded-full shrink-0" style={{ background: 'var(--color-glass-active)', color: 'var(--color-text-secondary)' }}>
                             {MATCH_TYPES.find((m) => m.key === ev.matchType)?.emoji} {t(`schedule.matchType.${ev.matchType}`, ev.matchType)}
                           </span>
                         )}
@@ -671,12 +671,12 @@ export function SchedulePage() {
                       </button>
                     )}
                     {ev.id.startsWith('rt-') && (
-                      <span className="text-[0.55rem] px-1.5 py-0.5 rounded-full" style={{ background: 'var(--color-glass-active)', color: 'var(--color-text-muted)' }}>
+                      <span className="text-xs px-1.5 py-0.5 rounded-full" style={{ background: 'var(--color-glass-active)', color: 'var(--color-text-muted)' }}>
                         🔁
                       </span>
                     )}
                     {ev.id.startsWith('shared-') && (
-                      <span className="text-[0.55rem] px-1.5 py-0.5 rounded-full" style={{ background: 'var(--color-primary-bg, #dcfce7)', color: 'var(--color-primary-dark, #166534)' }}>
+                      <span className="text-xs px-1.5 py-0.5 rounded-full" style={{ background: 'var(--color-primary-bg, #dcfce7)', color: 'var(--color-primary-dark, #166534)' }}>
                         👥 {t('schedule.teamShared')}
                       </span>
                     )}
@@ -716,7 +716,7 @@ export function SchedulePage() {
                     {dayTrainings.map((rt) => {
                       const ttType = TRAINING_TYPES_UI.find((tt) => tt.key === rt.trainingType)
                       return (
-                        <span key={rt.id} className="inline-flex items-center gap-1 text-[0.65rem] px-2 py-1 rounded-lg" style={{ background: 'var(--color-glass-active, #f1f5f9)' }}>
+                        <span key={rt.id} className="inline-flex items-center gap-1 text-xs px-2 py-1 rounded-lg" style={{ background: 'var(--color-glass-active, #f1f5f9)' }}>
                           {ttType?.emoji} {rt.startTime}–{rt.endTime}
                           {rt.location && <span style={{ color: 'var(--color-text-muted)' }}>· {rt.location}</span>}
                           <button
@@ -784,12 +784,12 @@ export function SchedulePage() {
                     {TRAINING_TYPES_UI.map((tt) => (
                       <button
                         key={tt.key}
-                        className="btn-choice tap-target text-center text-[0.6rem] py-1.5"
+                        className="btn-choice tap-target text-center text-xs py-1.5"
                         aria-pressed={formTrainingType === tt.key}
                         onClick={() => setFormTrainingType(tt.key)}
                       >
                         {tt.emoji}
-                        <span className="block text-[0.55rem] mt-0.5">{t(tt.labelKey).split(/\s/)[0]}</span>
+                        <span className="block text-xs mt-0.5">{t(tt.labelKey).split(/\s/)[0]}</span>
                       </button>
                     ))}
                   </div>
@@ -826,7 +826,7 @@ export function SchedulePage() {
                       {MATCH_TYPES.map((mt) => (
                         <button
                           key={mt.key}
-                          className="btn-choice tap-target text-center text-[0.6rem] py-1.5"
+                          className="btn-choice tap-target text-center text-xs py-1.5"
                           aria-pressed={formMatchType === mt.key}
                           onClick={() => setFormMatchType(mt.key)}
                         >
@@ -893,12 +893,12 @@ export function SchedulePage() {
                   {TRAINING_TYPES_UI.map((tt) => (
                     <button
                       key={tt.key}
-                      className="btn-choice tap-target text-center text-[0.6rem] py-1.5"
+                      className="btn-choice tap-target text-center text-xs py-1.5"
                       aria-pressed={rtType === tt.key}
                       onClick={() => setRtType(tt.key)}
                     >
                       {tt.emoji}
-                      <span className="block text-[0.55rem] mt-0.5">{t(tt.labelKey).split(/\s/)[0]}</span>
+                      <span className="block text-xs mt-0.5">{t(tt.labelKey).split(/\s/)[0]}</span>
                     </button>
                   ))}
                 </div>

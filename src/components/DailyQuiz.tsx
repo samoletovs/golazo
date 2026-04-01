@@ -81,7 +81,7 @@ export function DailyQuiz({ onComplete, compact }: DailyQuizProps) {
         </div>
       )}
 
-      <p className="text-sm font-bold" style={{ fontFamily: 'var(--font-display)' }}>
+      <p className="text-sm font-bold heading-display">
         {question.questionKey}
       </p>
 

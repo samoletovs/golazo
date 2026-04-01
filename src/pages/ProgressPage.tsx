@@ -159,7 +159,7 @@ export function ProgressPage() {
 
   return (
     <div className="flex flex-col gap-5 p-4 pb-32">
-      <h2 className="text-xl font-extrabold" style={{ fontFamily: 'var(--font-display)' }}>{t('progress.title')}</h2>
+      <h2 className="text-xl font-extrabold heading-display">{t('progress.title')}</h2>
 
       {matches.length === 0 && trainings.length === 0 && (
         <EmptyState
@@ -180,19 +180,19 @@ export function ProgressPage() {
               const color = result === 'win' ? 'var(--color-primary-dark)' : result === 'loss' ? 'var(--color-danger)' : 'var(--color-amber-text)'
               return (
                 <div key={m.id} className="match-card-h" style={{ background: bg, width: 180 }} data-result={result}>
-                  <p className="text-[10px] font-bold" style={{ color: 'var(--color-text-muted)' }}>
+                  <p className="text-xs font-bold" style={{ color: 'var(--color-text-muted)' }}>
                     {new Date(m.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
                   </p>
-                  <p className="text-xs font-bold mt-1" style={{ fontFamily: 'var(--font-display)' }}>
+                  <p className="text-xs font-bold mt-1 heading-display">
                     {m.opponent}
                   </p>
-                  <p className="stat-number mt-1" style={{ fontSize: '1.25rem', color }}>
+                  <p className="stat-number stat-number-sm mt-1" style={{ color }}>
                     {m.scoreUs} : {m.scoreThem}
                   </p>
                   <div className="flex gap-1.5 mt-1.5">
-                    {m.goals > 0 && <span className="text-[9px] font-data font-bold px-1.5 py-0.5 rounded-full" style={{ background: 'rgba(var(--color-primary-rgb), 0.1)', color: 'var(--color-primary-dark)' }}>⚽{m.goals}</span>}
-                    {m.assists > 0 && <span className="text-[9px] font-data font-bold px-1.5 py-0.5 rounded-full" style={{ background: 'rgba(var(--color-primary-rgb), 0.08)', color: 'var(--color-primary-light)' }}>🎯{m.assists}</span>}
-                    {m.selfRating > 0 && <span className="text-[9px] font-data font-bold px-1.5 py-0.5 rounded-full" style={{ background: 'rgba(var(--color-gold-rgb), 0.1)', color: 'var(--color-amber-text)' }}>★{m.selfRating}</span>}
+                    {m.goals > 0 && <span className="text-[10px] font-data font-bold px-1.5 py-0.5 rounded-full" style={{ background: 'rgba(var(--color-primary-rgb), 0.1)', color: 'var(--color-primary-dark)' }}>⚽{m.goals}</span>}
+                    {m.assists > 0 && <span className="text-[10px] font-data font-bold px-1.5 py-0.5 rounded-full" style={{ background: 'rgba(var(--color-primary-rgb), 0.08)', color: 'var(--color-primary-light)' }}>🎯{m.assists}</span>}
+                    {m.selfRating > 0 && <span className="text-[10px] font-data font-bold px-1.5 py-0.5 rounded-full" style={{ background: 'rgba(var(--color-gold-rgb), 0.1)', color: 'var(--color-amber-text)' }}>★{m.selfRating}</span>}
                   </div>
                 </div>
               )
@@ -362,7 +362,7 @@ export function ProgressPage() {
             const latest = physicalData[physicalData.length - 1]
             return latest?.bmi ? (
               <div className="flex items-center justify-center gap-2 mt-2 pt-2" style={{ borderTop: '1px solid var(--color-glass-border)' }}>
-                <span className="text-[10px] font-bold uppercase tracking-wider" style={{ color: 'var(--color-text-muted)' }}>BMI</span>
+                <span className="text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--color-text-muted)' }}>BMI</span>
                 <span className="text-sm font-black font-data">{latest.bmi}</span>
               </div>
             ) : null

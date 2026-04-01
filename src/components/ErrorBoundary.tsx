@@ -45,7 +45,7 @@ export class ErrorBoundary extends Component<Props, State> {
             {t('error.refresh')}
           </button>
           {this.state.error && (
-            <p className="text-[11px] mt-4 max-w-xs break-words" style={{ color: 'var(--color-text-muted)' }}>
+            <p className="text-xs mt-4 max-w-xs break-words" style={{ color: 'var(--color-text-muted)' }}>
               {this.state.error.message}
             </p>
           )}

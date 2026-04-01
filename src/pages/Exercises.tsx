@@ -314,7 +314,7 @@ export function Exercises({ embedded }: { embedded?: boolean }) {
               )}
 
               {/* Title */}
-              <p className="text-sm font-bold" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-text)' }}>
+              <p className="text-sm font-bold heading-display" style={{ color: 'var(--color-text)' }}>
                 {t(ex.nameKey)}
               </p>
 
@@ -325,13 +325,13 @@ export function Exercises({ embedded }: { embedded?: boolean }) {
 
               {/* Metadata row */}
               <div className="flex items-center gap-2 mt-3 flex-wrap">
-                <span className="text-[10px] px-2 py-0.5 rounded-full font-data font-bold" style={{ background: '#f3f4f6', color: '#6b7280' }}>
+                <span className="text-xs px-2 py-0.5 rounded-full font-data font-bold" style={{ background: '#f3f4f6', color: '#6b7280' }}>
                   {ex.durationMinutes} min
                 </span>
                 <DifficultyDots level={ex.difficulty} />
                 {/* XP button */}
                 <button
-                  className="ml-auto rounded-full px-2.5 py-1 text-[10px] font-bold whitespace-nowrap"
+                  className="ml-auto rounded-full px-2.5 py-1 text-xs font-bold whitespace-nowrap"
                   style={{
                     background: isDone ? 'var(--color-primary)' : 'var(--color-primary-bg)',
                     color: isDone ? '#fff' : 'var(--color-primary-dark)',

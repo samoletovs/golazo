@@ -48,7 +48,7 @@ function CalendarStrip({ selected, onSelect, eventDates }: {
             }}
             onClick={() => onSelect(d.date)}
           >
-            <span className="text-[10px] font-bold uppercase" style={{ opacity: 0.7 }}>{d.weekday}</span>
+            <span className="text-xs font-bold uppercase" style={{ opacity: 0.7 }}>{d.weekday}</span>
             <span className="text-base font-black font-data">{d.day}</span>
             {hasEvents && (
               <div className="w-1.5 h-1.5 rounded-full" style={{ background: isActive ? '#fff' : 'var(--color-primary)' }} />
@@ -72,13 +72,13 @@ function TournamentStandingsCard({ summary }: { summary: TournamentSummary }) {
       <div className="flex items-center gap-2 mb-3">
         <span className="text-lg">🏆</span>
         <div className="flex-1 min-w-0">
-          <p className="text-sm font-bold truncate" style={{ fontFamily: 'var(--font-display)' }}>{trn.name}</p>
-          <p className="text-[10px]" style={{ color: 'var(--color-text-muted)' }}>
+          <p className="text-sm font-bold truncate heading-display">{trn.name}</p>
+          <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
             {trn.location}{trn.className ? ` · ${trn.className}` : ''}
           </p>
         </div>
         {!trn.completed && (
-          <span className="text-[10px] font-bold px-2 py-0.5 rounded-full" style={{ background: 'var(--color-primary-bg)', color: 'var(--color-primary-dark)' }}>
+          <span className="text-xs font-bold px-2 py-0.5 rounded-full" style={{ background: 'var(--color-primary-bg)', color: 'var(--color-primary-dark)' }}>
             {t('portal.active')}
           </span>
         )}
@@ -97,23 +97,23 @@ function TournamentStandingsCard({ summary }: { summary: TournamentSummary }) {
       <div className="flex gap-4 text-center">
         <div className="flex-1">
           <p className="text-lg font-black font-data" style={{ color: 'var(--color-primary-dark)' }}>{wins}</p>
-          <p className="text-[10px]" style={{ color: 'var(--color-text-muted)' }}>{t('progress.win')}</p>
+          <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{t('progress.win')}</p>
         </div>
         <div className="flex-1">
           <p className="text-lg font-black font-data" style={{ color: 'var(--color-amber-text)' }}>{draws}</p>
-          <p className="text-[10px]" style={{ color: 'var(--color-text-muted)' }}>{t('progress.draw')}</p>
+          <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{t('progress.draw')}</p>
         </div>
         <div className="flex-1">
           <p className="text-lg font-black font-data" style={{ color: 'var(--color-danger)' }}>{losses}</p>
-          <p className="text-[10px]" style={{ color: 'var(--color-text-muted)' }}>{t('progress.loss')}</p>
+          <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{t('progress.loss')}</p>
         </div>
         <div className="flex-1">
           <p className="text-lg font-black font-data">{totalGoals}</p>
-          <p className="text-[10px]" style={{ color: 'var(--color-text-muted)' }}>⚽</p>
+          <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>⚽</p>
         </div>
         <div className="flex-1">
           <p className="text-lg font-black font-data">{totalAssists}</p>
-          <p className="text-[10px]" style={{ color: 'var(--color-text-muted)' }}>🎯</p>
+          <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>🎯</p>
         </div>
       </div>
 
@@ -131,7 +131,7 @@ function TournamentStandingsCard({ summary }: { summary: TournamentSummary }) {
                 </span>
                 <span className="text-xs flex-1 truncate">{m.opponent}</span>
                 <span className="text-xs font-bold font-data">{m.scoreUs}:{m.scoreThem}</span>
-                {m.goals > 0 && <span className="text-[10px]">⚽{m.goals}</span>}
+                {m.goals > 0 && <span className="text-xs">⚽{m.goals}</span>}
               </div>
             )
           })}
@@ -149,14 +149,14 @@ function RecentResultCard({ match }: { match: MatchEntry }) {
   const color = result === 'win' ? 'var(--color-primary-dark)' : result === 'loss' ? 'var(--color-danger)' : 'var(--color-amber-text)'
   return (
     <div className="flex-shrink-0 rounded-2xl p-3 flex flex-col gap-1" style={{ background: bg, width: 140 }}>
-      <p className="text-[10px] font-bold" style={{ color: 'var(--color-text-muted)' }}>
+      <p className="text-xs font-bold" style={{ color: 'var(--color-text-muted)' }}>
         {new Date(match.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
       </p>
-      <p className="text-xs font-bold truncate" style={{ fontFamily: 'var(--font-display)' }}>{match.opponent}</p>
+      <p className="text-xs font-bold truncate heading-display">{match.opponent}</p>
       <p className="text-xl font-black font-data" style={{ color }}>{match.scoreUs}:{match.scoreThem}</p>
       <div className="flex gap-1">
-        {match.goals > 0 && <span className="text-[9px] font-data font-bold px-1.5 py-0.5 rounded-full" style={{ background: 'rgba(5,150,105,0.1)', color: 'var(--color-primary-dark)' }}>⚽{match.goals}</span>}
-        {match.assists > 0 && <span className="text-[9px] font-data font-bold px-1.5 py-0.5 rounded-full" style={{ background: 'rgba(var(--color-primary-rgb), 0.08)', color: 'var(--color-primary-light)' }}>🎯{match.assists}</span>}
+        {match.goals > 0 && <span className="text-[10px] font-data font-bold px-1.5 py-0.5 rounded-full" style={{ background: 'rgba(5,150,105,0.1)', color: 'var(--color-primary-dark)' }}>⚽{match.goals}</span>}
+        {match.assists > 0 && <span className="text-[10px] font-data font-bold px-1.5 py-0.5 rounded-full" style={{ background: 'rgba(var(--color-primary-rgb), 0.08)', color: 'var(--color-primary-light)' }}>🎯{match.assists}</span>}
       </div>
     </div>
   )
@@ -303,11 +303,11 @@ function ClubsBrowser({ country, birthDate }: { country?: string; birthDate?: st
               <div className="flex-1 min-w-0">
                 <p className="text-xs font-bold truncate">{team.name}</p>
                 {team.city && (
-                  <p className="text-[10px] truncate" style={{ color: 'var(--color-text-muted)' }}>{team.city}</p>
+                  <p className="text-xs truncate" style={{ color: 'var(--color-text-muted)' }}>{team.city}</p>
                 )}
               </div>
               {team.verified && (
-                <span className="text-[10px] shrink-0" style={{ color: 'var(--color-primary)' }}>✓</span>
+                <span className="text-xs shrink-0" style={{ color: 'var(--color-primary)' }}>✓</span>
               )}
             </button>
           ))}
@@ -388,7 +388,7 @@ export function FootballPortal() {
     <div className="flex flex-col gap-4 p-4 pb-32">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <h2 className="text-xl font-extrabold" style={{ fontFamily: 'var(--font-display)' }}>{t('portal.title')}</h2>
+        <h2 className="text-xl font-extrabold heading-display">{t('portal.title')}</h2>
         <button
           className="text-xs font-bold px-3 py-1.5 rounded-lg tap-target"
           style={{ background: 'var(--color-gold-glow)', color: 'var(--color-gold-500)' }}

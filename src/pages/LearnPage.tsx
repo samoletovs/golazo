@@ -181,14 +181,14 @@ export function LearnContent() {
                   >
                     <span className="text-2xl">{article.imageEmoji || '📄'}</span>
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-bold" style={{ fontFamily: 'var(--font-display)' }}>
+                      <p className="text-sm font-bold heading-display">
                         {isRead && '✅ '}{t(article.titleKey)}
                       </p>
                       <div className="flex items-center gap-2 mt-1">
-                        <span className="text-[10px] px-2 py-0.5 rounded-full" style={{ background: '#f3f4f6', color: '#6b7280' }}>
+                        <span className="text-xs px-2 py-0.5 rounded-full" style={{ background: '#f3f4f6', color: '#6b7280' }}>
                           {article.readingTimeMin} min
                         </span>
-                        <span className="text-[10px] px-2 py-0.5 rounded-full" style={{ background: '#fef3c7', color: '#b45309' }}>
+                        <span className="text-xs px-2 py-0.5 rounded-full" style={{ background: '#fef3c7', color: '#b45309' }}>
                           {article.category}
                         </span>
                       </div>
@@ -264,7 +264,7 @@ export function LearnContent() {
                 >
                   <span className="text-2xl">{program.imageEmoji || '📋'}</span>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-bold" style={{ fontFamily: 'var(--font-display)' }}>
+                    <p className="text-sm font-bold heading-display">
                       {isComplete ? '🏆 ' : ''}{t(program.titleKey)}
                     </p>
                     <p className="text-xs mt-0.5" style={{ color: 'var(--color-text-muted)' }}>
@@ -282,7 +282,7 @@ export function LearnContent() {
                             }}
                           />
                         </div>
-                        <p className="text-[10px] mt-1 font-data" style={{ color: 'var(--color-text-muted)' }}>
+                        <p className="text-xs mt-1 font-data" style={{ color: 'var(--color-text-muted)' }}>
                           {progress.completedDays} / {progress.totalDays} {t('learn.days')}
                         </p>
                       </div>
@@ -317,7 +317,7 @@ export function LearnContent() {
                             return (
                               <div
                                 key={w.weekNumber}
-                                className="text-[10px] px-2 py-1 rounded-full whitespace-nowrap font-bold"
+                                className="text-xs px-2 py-1 rounded-full whitespace-nowrap font-bold"
                                 style={{
                                   background: isCurrent ? 'var(--color-primary)' : isPast ? 'var(--color-primary-bg)' : '#f3f4f6',
                                   color: isCurrent ? '#fff' : isPast ? 'var(--color-primary-dark)' : 'var(--color-text-muted)',
@@ -338,7 +338,7 @@ export function LearnContent() {
                             return (
                               <div
                                 key={d}
-                                className="flex-1 text-center text-[10px] py-1.5 rounded-lg font-bold"
+                                className="flex-1 text-center text-xs py-1.5 rounded-lg font-bold"
                                 style={{
                                   background: isDone ? 'var(--color-primary-bg)' : isToday ? 'var(--color-primary)' : '#f9fafb',
                                   color: isDone ? 'var(--color-primary-dark)' : isToday ? '#fff' : isFuture ? '#d1d5db' : 'var(--color-text-muted)',
@@ -358,6 +358,7 @@ export function LearnContent() {
                           return (
                             <WorkoutView
                               weekNumber={currentWeek}
+                              weekFocusKey={weekData?.focusKey}
                               day={dayData}
                               isCompleted={isComplete ?? false}
                               alreadyLoggedToday={loggedToday ?? false}
@@ -378,7 +379,7 @@ export function LearnContent() {
                         {program.skillImpact && (
                           <div className="flex gap-2 flex-wrap justify-center">
                             {Object.entries(program.skillImpact).map(([cat, val]) => (
-                              <span key={cat} className="text-[10px] px-2 py-0.5 rounded-full font-bold" style={{ background: '#dcfce7', color: '#166534' }}>
+                              <span key={cat} className="text-xs px-2 py-0.5 rounded-full font-bold" style={{ background: '#dcfce7', color: '#166534' }}>
                                 {t(`learn.cat.${cat}`)} ↑ +{val}
                               </span>
                             ))}

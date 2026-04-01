@@ -270,8 +270,14 @@ body {
   letter-spacing: -0.04em;
   font-feature-settings: "tnum";
 }
+.stat-number-sm {
+  font-size: 1.5rem;
+}
+.stat-number-lg {
+  font-size: 3rem;
+}
 .stat-label {
-  font-size: 0.625rem;
+  font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -670,6 +676,12 @@ input[type="range"]::-webkit-slider-thumb {
 
 /* ── Display Font (headings — Outfit for sporty impact) ─── */
 h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+/* Utility: display font for non-heading elements */
+.heading-display {
   font-family: var(--font-display);
   letter-spacing: -0.02em;
 }

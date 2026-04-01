@@ -120,11 +120,11 @@ export function Challenges() {
                   <div className="flex-1 mr-3">
                     <p className="text-sm">{t(ch.textKey)}</p>
                     <div className="flex items-center gap-2 mt-1">
-                      <span className="text-[10px] px-1.5 py-0.5 rounded-full" style={{ background: '#f3f4f6', color: '#6b7280' }}>
+                      <span className="text-xs px-1.5 py-0.5 rounded-full" style={{ background: '#f3f4f6', color: '#6b7280' }}>
                         {ch.target} {ch.unit}
                       </span>
                       <button
-                        className="text-[10px] px-1.5 py-0.5 rounded-full"
+                        className="text-xs px-1.5 py-0.5 rounded-full"
                         style={{ background: '#eff6ff', color: '#1d4ed8' }}
                         onClick={() => setShowReason(showReason === ch.templateId ? null : ch.templateId)}
                       >
@@ -132,7 +132,7 @@ export function Challenges() {
                       </button>
                     </div>
                     {showReason === ch.templateId && (
-                      <p className="text-[10px] mt-1 italic animate-fade-up" style={{ color: 'var(--color-primary-dark)' }}>
+                      <p className="text-xs mt-1 italic animate-fade-up" style={{ color: 'var(--color-primary-dark)' }}>
                         💡 {t(getChallengeReasonKey(ch.reason), { category: t(`learn.cat.${ch.category}`) })}
                       </p>
                     )}
@@ -224,12 +224,12 @@ export function Challenges() {
                   <div className="progress-fill" style={{ width: `${pct}%`, background: track.color }} />
                 </div>
                 {loggedToday && !isComplete && (
-                  <p className="text-[0.65rem] mt-1 font-bold" style={{ color: 'var(--color-primary-dark)' }}>
+                  <p className="text-xs mt-1 font-bold" style={{ color: 'var(--color-primary-dark)' }}>
                     ✓ {t('challenges.loggedToday')}
                   </p>
                 )}
                 {isComplete && (
-                  <p className="text-[0.65rem] mt-1 font-bold" style={{ color: 'var(--color-primary-dark)' }}>
+                  <p className="text-xs mt-1 font-bold" style={{ color: 'var(--color-primary-dark)' }}>
                     🏆 {t('challenges.trackComplete')}
                   </p>
                 )}

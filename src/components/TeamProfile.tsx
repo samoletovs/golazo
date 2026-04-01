@@ -71,7 +71,7 @@ export function TeamProfile({ team, onClose }: TeamProfileProps) {
                   {[team.city, team.country].filter(Boolean).join(', ')}
                 </p>
                 {team.verified && (
-                  <span className="text-[10px] px-1.5 py-0.5 rounded-full font-bold"
+                  <span className="text-xs px-1.5 py-0.5 rounded-full font-bold"
                     style={{ background: 'rgba(255,255,255,0.2)', color: '#fff' }}>
                     ✓
                   </span>
@@ -95,7 +95,7 @@ export function TeamProfile({ team, onClose }: TeamProfileProps) {
               {team.foundedYear && (
                 <div className="flex-1 text-center py-3 rounded-xl" style={{ background: 'var(--color-glass-hover)' }}>
                   <p className="text-xl font-black font-data">{team.foundedYear}</p>
-                  <p className="text-[10px] font-bold uppercase tracking-wider mt-0.5" style={{ color: 'var(--color-text-muted)' }}>
+                  <p className="text-xs font-bold uppercase tracking-wider mt-0.5" style={{ color: 'var(--color-text-muted)' }}>
                     {t('teams.founded')}
                   </p>
                 </div>
@@ -103,7 +103,7 @@ export function TeamProfile({ team, onClose }: TeamProfileProps) {
               {team.stadium && (
                 <div className="flex-1 text-center py-3 rounded-xl" style={{ background: 'var(--color-glass-hover)' }}>
                   <p className="text-sm font-bold">🏟️</p>
-                  <p className="text-[10px] mt-0.5" style={{ color: 'var(--color-text-muted)' }}>
+                  <p className="text-xs mt-0.5" style={{ color: 'var(--color-text-muted)' }}>
                     {team.stadium}
                   </p>
                 </div>
@@ -114,7 +114,7 @@ export function TeamProfile({ team, onClose }: TeamProfileProps) {
           {/* Age groups */}
           {team.ageGroups && team.ageGroups.length > 0 && (
             <div>
-              <p className="text-[10px] font-bold uppercase tracking-wider mb-2" style={{ color: 'var(--color-text-muted)' }}>
+              <p className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: 'var(--color-text-muted)' }}>
                 {t('teams.ageGroups')}
               </p>
               <div className="flex flex-wrap gap-1.5">
@@ -160,7 +160,7 @@ export function TeamProfile({ team, onClose }: TeamProfileProps) {
           {/* Aliases */}
           {team.aliases.length > 0 && (
             <div>
-              <p className="text-[10px] font-bold uppercase tracking-wider mb-1" style={{ color: 'var(--color-text-muted)' }}>
+              <p className="text-xs font-bold uppercase tracking-wider mb-1" style={{ color: 'var(--color-text-muted)' }}>
                 {t('teams.knownAs')}
               </p>
               <p className="text-xs leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>

@@ -135,7 +135,7 @@ export function Profile({ onNavigate }: { onNavigate?: (page: string) => void })
               {overallDisplay}
             </span>
             <span
-              className="mt-1 px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider text-white"
+              className="mt-1 px-2.5 py-0.5 rounded-full text-xs font-extrabold uppercase tracking-wider text-white"
               style={{ background: tierStyle.gradient }}
             >
               {t(rank.key)}
@@ -180,7 +180,7 @@ export function Profile({ onNavigate }: { onNavigate?: (page: string) => void })
               />
               <p className="text-lg font-black font-data leading-none">{r.rating * 10}</p>
               <p
-                className="text-[10px] font-bold uppercase tracking-wider mt-1"
+                className="text-xs font-bold uppercase tracking-wider mt-1"
                 style={{ color: CATEGORY_COLORS[r.category] }}
               >
                 {FIFA_LABELS[r.category]}
@@ -193,19 +193,19 @@ export function Profile({ onNavigate }: { onNavigate?: (page: string) => void })
         <div className="grid grid-cols-4 gap-2 mt-4">
           <div className="text-center py-2 rounded-lg" style={{ background: 'var(--color-bg-warm)' }}>
             <p className="text-xl font-black font-data leading-none">{matches.length}</p>
-            <p className="text-[10px] font-bold uppercase tracking-wider mt-1" style={{ color: 'var(--color-text-muted)' }}>{t('dashboard.matches')}</p>
+            <p className="text-xs font-bold uppercase tracking-wider mt-1" style={{ color: 'var(--color-text-muted)' }}>{t('dashboard.matches')}</p>
           </div>
           <div className="text-center py-2 rounded-lg" style={{ background: 'var(--color-bg-warm)' }}>
             <p className="text-xl font-black font-data leading-none" style={{ color: 'var(--color-gold-500)' }}>{seasonGoals}</p>
-            <p className="text-[10px] font-bold uppercase tracking-wider mt-1" style={{ color: 'var(--color-text-muted)' }}>{t('dashboard.goals')}</p>
+            <p className="text-xs font-bold uppercase tracking-wider mt-1" style={{ color: 'var(--color-text-muted)' }}>{t('dashboard.goals')}</p>
           </div>
           <div className="text-center py-2 rounded-lg" style={{ background: 'var(--color-bg-warm)' }}>
             <p className="text-xl font-black font-data leading-none" style={{ color: 'var(--color-primary-light)' }}>{seasonAssists}</p>
-            <p className="text-[10px] font-bold uppercase tracking-wider mt-1" style={{ color: 'var(--color-text-muted)' }}>{t('dashboard.assists')}</p>
+            <p className="text-xs font-bold uppercase tracking-wider mt-1" style={{ color: 'var(--color-text-muted)' }}>{t('dashboard.assists')}</p>
           </div>
           <div className="text-center py-2 rounded-lg" style={{ background: 'var(--color-bg-warm)' }}>
             <p className="text-xl font-black font-data leading-none">{trainings.length}</p>
-            <p className="text-[10px] font-bold uppercase tracking-wider mt-1" style={{ color: 'var(--color-text-muted)' }}>{t('log.training')}</p>
+            <p className="text-xs font-bold uppercase tracking-wider mt-1" style={{ color: 'var(--color-text-muted)' }}>{t('log.training')}</p>
           </div>
         </div>
 
@@ -216,14 +216,14 @@ export function Profile({ onNavigate }: { onNavigate?: (page: string) => void })
               <div className="flex-1 flex items-center gap-2 px-3 py-2 rounded-full" style={{ background: '#fef3c7' }}>
                 <span>🔥</span>
                 <span className="text-sm font-bold">{xp.streakDays}</span>
-                <span className="text-[10px] truncate" style={{ color: 'var(--color-text-muted)' }}>{t('dashboard.streak', { days: xp.streakDays })}</span>
+                <span className="text-xs truncate" style={{ color: 'var(--color-text-muted)' }}>{t('dashboard.streak', { days: xp.streakDays })}</span>
               </div>
             )}
             {xp.checkInStreakDays > 0 && (
               <div className="flex-1 flex items-center gap-2 px-3 py-2 rounded-full" style={{ background: '#dcfce7' }}>
                 <span>✅</span>
                 <span className="text-sm font-bold">{xp.checkInStreakDays}</span>
-                <span className="text-[10px] truncate" style={{ color: 'var(--color-text-muted)' }}>{t('checkin.streak', { days: xp.checkInStreakDays })}</span>
+                <span className="text-xs truncate" style={{ color: 'var(--color-text-muted)' }}>{t('checkin.streak', { days: xp.checkInStreakDays })}</span>
               </div>
             )}
           </div>
@@ -283,7 +283,7 @@ export function Profile({ onNavigate }: { onNavigate?: (page: string) => void })
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-bold truncate">{team.name}</p>
                   {i === 0 && (
-                    <p className="text-[10px] font-bold" style={{ color: 'var(--color-primary-dark)' }}>
+                    <p className="text-xs font-bold" style={{ color: 'var(--color-primary-dark)' }}>
                       ★ {t('teams.primary')}
                     </p>
                   )}
@@ -377,7 +377,7 @@ export function Profile({ onNavigate }: { onNavigate?: (page: string) => void })
               <div className="flex items-center gap-2">
                 <p className="section-label">{t('profile.physical')}</p>
                 {totalMeasurements > 1 && (
-                  <span className="text-[10px] px-1.5 py-0.5 rounded-full font-bold" style={{ background: 'var(--color-glass-active)', color: 'var(--color-text-muted)' }}>
+                  <span className="text-xs px-1.5 py-0.5 rounded-full font-bold" style={{ background: 'var(--color-glass-active)', color: 'var(--color-text-muted)' }}>
                     {t('physical.measurementCount', { count: totalMeasurements })}
                   </span>
                 )}
@@ -400,7 +400,7 @@ export function Profile({ onNavigate }: { onNavigate?: (page: string) => void })
                 </button>
               </div>
             </div>
-            <p className="text-[10px] mb-3" style={{ color: 'var(--color-text-muted)' }}>
+            <p className="text-xs mb-3" style={{ color: 'var(--color-text-muted)' }}>
               {t('physical.lastUpdated', { date: new Date(m.measuredAt).toLocaleDateString() })}
             </p>
             {groups.map((group) => {
@@ -413,7 +413,7 @@ export function Profile({ onNavigate }: { onNavigate?: (page: string) => void })
               if (visibleFields.length === 0) return null
               return (
                 <div key={group} className="mb-3 last:mb-0">
-                  <p className="text-[10px] font-bold uppercase tracking-wider mb-1.5" style={{ color: 'var(--color-text-muted)' }}>
+                  <p className="text-xs font-bold uppercase tracking-wider mb-1.5" style={{ color: 'var(--color-text-muted)' }}>
                     {groupInfo.emoji} {t(groupInfo.labelKey)}
                   </p>
                   <div className="grid grid-cols-2 gap-2">
@@ -423,14 +423,14 @@ export function Profile({ onNavigate }: { onNavigate?: (page: string) => void })
                       return (
                         <div key={f.key} className="flex items-center justify-between px-3 py-2 rounded-lg" style={{ background: 'var(--color-bg-warm)' }}>
                           <div className="min-w-0">
-                            <p className="text-[10px] truncate" style={{ color: 'var(--color-text-muted)' }}>{t(f.labelKey)}</p>
+                            <p className="text-xs truncate" style={{ color: 'var(--color-text-muted)' }}>{t(f.labelKey)}</p>
                             <div className="flex items-baseline gap-1">
                               <span className="text-base font-black font-data">{String(val ?? '')}</span>
-                              <span className="text-[10px]" style={{ color: 'var(--color-text-muted)' }}>{f.unit}</span>
+                              <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{f.unit}</span>
                             </div>
                           </div>
                           {diff && (
-                            <span className="text-[10px] font-bold font-data shrink-0 ml-1" style={{ color: diff.improved ? 'var(--color-primary-dark)' : 'var(--color-danger)' }}>
+                            <span className="text-xs font-bold font-data shrink-0 ml-1" style={{ color: diff.improved ? 'var(--color-primary-dark)' : 'var(--color-danger)' }}>
                               {diff.improved ? '↑' : '↓'}{Math.abs(diff.value).toFixed(f.unit === 'sec' ? 2 : f.unit === '%' || f.unit === 'kg' ? 1 : 0)}
                             </span>
                           )}

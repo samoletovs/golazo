@@ -163,7 +163,7 @@ export function TeamPicker({ value, onChange, country, placeholder, className, s
             )}
             <div className="flex-1 min-w-0">
               <p className="text-sm font-bold truncate">{team.name}</p>
-              <p className="text-[0.6rem] truncate" style={{ color: 'var(--color-text-muted)' }}>
+              <p className="text-xs truncate" style={{ color: 'var(--color-text-muted)' }}>
                 {alias
                   ? `"${alias}" · ${[team.city, team.country].filter(Boolean).join(' · ')}`
                   : [team.city, team.league, team.country].filter(Boolean).join(' · ')
@@ -171,7 +171,7 @@ export function TeamPicker({ value, onChange, country, placeholder, className, s
               </p>
             </div>
             {team.verified && (
-              <span className="text-[0.6rem] shrink-0" title="Verified">✓</span>
+              <span className="text-xs shrink-0" title="Verified">✓</span>
             )}
           </button>
         )

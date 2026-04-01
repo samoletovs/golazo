@@ -123,7 +123,7 @@ export function MentorDashboard({ onBack }: { onBack?: () => void }) {
           <button onClick={onBack} className="tap-target text-xl" aria-label={t('common.back')}>←</button>
         )}
         <div>
-          <h2 className="text-lg font-bold" style={{ fontFamily: 'var(--font-display)' }}>
+          <h2 className="text-lg font-bold heading-display">
             {t('mentor.title')}
           </h2>
           <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
@@ -160,15 +160,15 @@ export function MentorDashboard({ onBack }: { onBack?: () => void }) {
       {/* Weekly summary cards */}
       <div className="grid grid-cols-3 gap-3">
         <div className="stat-card stat-card-gold">
-          <p className="stat-number" style={{ fontSize: '1.75rem', color: 'var(--color-amber-text)' }}>{avgMood7}</p>
+          <p className="stat-number stat-number-sm" style={{ color: 'var(--color-amber-text)' }}>{avgMood7}</p>
           <p className="stat-label">{t('mentor.avgMood')}</p>
         </div>
         <div className="stat-card stat-card-cyan">
-            <p className="stat-number" style={{ fontSize: '1.75rem', color: 'var(--color-primary-light)' }}>{avgEnergy7}</p>
+            <p className="stat-number stat-number-sm" style={{ color: 'var(--color-primary-light)' }}>{avgEnergy7}</p>
           <p className="stat-label">{t('mentor.avgEnergy')}</p>
         </div>
         <div className="stat-card stat-card-green">
-          <p className="stat-number" style={{ fontSize: '1.75rem', color: 'var(--color-primary-dark)' }}>{xp.streakDays}</p>
+          <p className="stat-number stat-number-sm" style={{ color: 'var(--color-primary-dark)' }}>{xp.streakDays}</p>
           <p className="stat-label">{t('mentor.streak')}</p>
         </div>
       </div>
