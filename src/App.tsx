@@ -1,4 +1,5 @@
 import { useState, useEffect, lazy, Suspense } from 'react'
+import { useTranslation } from 'react-i18next'
 import { AppProvider, useApp } from './contexts/AppContext'
 import { AuthProvider, useAuth } from './contexts/AuthContext'
 import { ToastProvider } from './contexts/ToastContext'
@@ -31,9 +32,10 @@ const EvaluationPage = lazy(() => import('./pages/EvaluationPage').then(m => ({ 
 const AttendanceGrid = lazy(() => import('./components/AttendanceGrid').then(m => ({ default: m.AttendanceGrid })))
 const CoachSquadPicker = lazy(() => import('./components/CoachSquadPicker').then(m => ({ default: m.CoachSquadPicker })))
 
-type Page = 'dashboard' | 'log' | 'learn' | 'exercises' | 'profile' | 'schedule' | 'progress' | 'leaderboard' | 'challenges' | 'portal' | 'mentor' | 'coach' | 'squads' | 'coach-roster' | 'coach-training' | 'coach-announce' | 'coach-evaluate' | 'coach-attendance'
+type Page = 'dashboard' | 'log' | 'learn' | 'exercises' | 'profile' | 'schedule' | 'progress' | 'leaderboard' | 'challenges' | 'portal' | 'mentor' | 'coach' | 'squads' | 'stats' | 'coach-roster' | 'coach-training' | 'coach-announce' | 'coach-evaluate' | 'coach-attendance'
 
 function AppContent() {
+  const { t } = useTranslation()
   const [page, setPage] = useState<Page>('dashboard')
   const [pageKey, setPageKey] = useState(0)
   const [coachSquadId, setCoachSquadId] = useState('')
@@ -50,11 +52,6 @@ function AppContent() {
 
   // Page transition — re-key the content wrapper to trigger animation
   const handleNavigate = (p: string) => {
-    // Coach: "squads" tab opens the squad picker modal instead of a page
-    if (p === 'squads') {
-      setShowSquadPicker(true)
-      return
-    }
     if (p !== page) {
       setPage(p as Page)
       setPageKey(k => k + 1)
@@ -133,6 +130,40 @@ function AppContent() {
               {page === 'progress' && <ProgressPage />}
               {page === 'leaderboard' && <LeaderboardPage />}
               {page === 'portal' && <FootballPortal />}
+              {page === 'stats' && isCoach && (
+                <div className="flex flex-col gap-4 p-4 pb-32">
+                  <h2 className="text-xl font-extrabold heading-display">📊 {t('nav.stats')}</h2>
+                  {(profile?.managedSquads ?? []).length > 0 ? (
+                    <div className="flex flex-col gap-3">
+                      {(profile?.managedSquads ?? []).map((sq) => (
+                        <div key={sq.squadId} className="card animate-fade-up">
+                          <p className="text-sm font-bold mb-1">{sq.squadName}</p>
+                          <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{t(`coach.role.${sq.role}`)}</p>
+                          <div className="grid grid-cols-3 gap-2 mt-3 text-center">
+                            <div className="py-2 rounded-xl" style={{ background: 'var(--color-glass-hover)' }}>
+                              <p className="text-lg font-black font-data">0</p>
+                              <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{t('coach.dashboard.players')}</p>
+                            </div>
+                            <div className="py-2 rounded-xl" style={{ background: 'var(--color-glass-hover)' }}>
+                              <p className="text-lg font-black font-data">—</p>
+                              <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{t('coach.dashboard.attendance')}</p>
+                            </div>
+                            <div className="py-2 rounded-xl" style={{ background: 'var(--color-glass-hover)' }}>
+                              <p className="text-lg font-black font-data">—</p>
+                              <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{t('coach.dashboard.avgMood')}</p>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="card text-center py-8">
+                      <span className="text-5xl mb-3 block">📊</span>
+                      <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{t('coach.dashboard.noSquads')}</p>
+                    </div>
+                  )}
+                </div>
+              )}
               {page === 'mentor' && <MentorDashboard onBack={() => handleNavigate('profile')} />}
               {page === 'coach-roster' && (
                 <SquadRoster

@@ -75,6 +75,14 @@ function NavIcon({ name, active }: { name: string; active: boolean }) {
           <line x1="3" y1="10" x2="21" y2="10" />
         </svg>
       )
+    case 'stats':
+      return (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round">
+          <line x1="18" y1="20" x2="18" y2="10" />
+          <line x1="12" y1="20" x2="12" y2="4" />
+          <line x1="6" y1="20" x2="6" y2="14" />
+        </svg>
+      )
     default:
       return null
   }
@@ -90,8 +98,8 @@ const PLAYER_NAV = [
 
 const COACH_NAV = [
   { key: 'dashboard', labelKey: 'nav.dashboard' },
-  { key: 'squads', labelKey: 'nav.squads' },
   { key: 'schedule', labelKey: 'nav.schedule' },
+  { key: 'stats', labelKey: 'nav.stats' },
   { key: 'profile', labelKey: 'nav.profile' },
 ]
 

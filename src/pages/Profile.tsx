@@ -14,6 +14,7 @@ import { getAgeTier } from '../engine/types'
 import { getTrackedFieldConfigs, PHYSICAL_GROUPS } from '../engine/physical'
 import { PhysicalUpdateFlow } from '../components/PhysicalUpdateFlow'
 import { TrackedFieldsEditor } from '../components/TrackedFieldsEditor'
+import { CoachSquadPicker } from '../components/CoachSquadPicker'
 
 const LANG_OPTIONS: { key: Language; label: string }[] = [
   { key: 'en', label: '🇬🇧 English' },
@@ -49,6 +50,7 @@ export function Profile({ onNavigate }: { onNavigate?: (page: string) => void })
   const [showTeams, setShowTeams] = useState(false)
   const [showPhysicalUpdate, setShowPhysicalUpdate] = useState(false)
   const [showFieldsEditor, setShowFieldsEditor] = useState(false)
+  const [showCoachSquads, setShowCoachSquads] = useState(false)
 
   const seasonGoals = matches.reduce((s, m) => s + m.goals, 0)
   const seasonAssists = matches.reduce((s, m) => s + m.assists, 0)
@@ -245,10 +247,10 @@ export function Profile({ onNavigate }: { onNavigate?: (page: string) => void })
       </>
       )}
 
-      {/* Coach info header */}
+      {/* Coach info header + squad management */}
       {profile?.role === 'coach' && (
         <div className="card animate-fade-up">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 mb-3">
             {profile?.photoUrl && (
               <div className="w-14 h-14 rounded-full overflow-hidden flex-shrink-0 ring-2 ring-white" style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.12)' }}>
                 <img src={profile.photoUrl} alt={profile.name} className="w-full h-full object-cover" />
@@ -260,12 +262,37 @@ export function Profile({ onNavigate }: { onNavigate?: (page: string) => void })
                 📋 {t('coach.role')}
                 {(profile?.city || profile?.country) ? ` • 📍 ${[profile?.city, profile?.country].filter(Boolean).join(', ')}` : ''}
               </p>
-              <p className="text-xs font-bold mt-1" style={{ color: 'var(--color-primary-dark)' }}>
-                {(profile?.managedSquads?.length ?? 0)} {t('teams.squads').toLowerCase()}
-              </p>
             </div>
           </div>
+
+          {/* Managed squads summary */}
+          {(profile?.managedSquads?.length ?? 0) > 0 ? (
+            <div className="flex flex-wrap gap-1.5 mb-3">
+              {profile!.managedSquads!.map((sq) => (
+                <span key={sq.squadId} className="text-xs font-bold px-2.5 py-1 rounded-lg"
+                  style={{ background: 'var(--color-primary-bg)', color: 'var(--color-primary-dark)' }}>
+                  {sq.birthYear ? `${sq.clubName} ${sq.birthYear} ${sq.squadLabel ?? ''}`.trim() : sq.squadName}
+                </span>
+              ))}
+            </div>
+          ) : (
+            <p className="text-xs mb-3" style={{ color: 'var(--color-text-muted)' }}>
+              {t('coach.dashboard.noSquads')}
+            </p>
+          )}
+
+          <button
+            className="w-full text-center py-2.5 rounded-xl text-xs font-bold tap-target"
+            style={{ background: 'var(--color-glass-hover)', color: 'var(--color-primary-dark)' }}
+            onClick={() => setShowCoachSquads(true)}
+          >
+            ⚽ {t('coach.onboarding.selectSquads')}
+          </button>
         </div>
+      )}
+
+      {showCoachSquads && (
+        <CoachSquadPicker onClose={() => setShowCoachSquads(false)} />
       )}
 
       {/* My Teams — inline display */}
