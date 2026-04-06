@@ -330,7 +330,7 @@ export function CoachSquadPicker({ onClose }: CoachSquadPickerProps) {
 
               {/* Add squad form */}
               <div className="card p-4">
-                <p className="section-label mb-3">{t('coach.training.new')}</p>
+                <p className="section-label mb-3">{t('coach.squad.addSquad')}</p>
 
                 {/* Birth year */}
                 <div className="mb-3">

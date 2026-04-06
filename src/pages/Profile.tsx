@@ -295,7 +295,8 @@ export function Profile({ onNavigate }: { onNavigate?: (page: string) => void })
         <CoachSquadPicker onClose={() => setShowCoachSquads(false)} />
       )}
 
-      {/* My Teams — inline display */}
+      {/* My Teams — player/mentor only (coaches use squad management above) */}
+      {profile?.role !== 'coach' && (
       <div className="card animate-fade-up">
         <div className="flex items-center justify-between mb-2">
           <p className="section-label">{t('teams.title')}</p>
@@ -367,6 +368,7 @@ export function Profile({ onNavigate }: { onNavigate?: (page: string) => void })
           </button>
         )}
       </div>
+      )}
 
       {/* Achievements — player only */}
       {profile?.role !== 'coach' && (
