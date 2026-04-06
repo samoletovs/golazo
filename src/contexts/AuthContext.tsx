@@ -44,6 +44,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   function logout() {
+    // Clear all app data so stale state doesn't persist after logout
+    localStorage.removeItem('golazo-state')
+    localStorage.removeItem('golazo-lang')
+    localStorage.removeItem('golazo-surface')
     window.location.href = '/.auth/logout?post_logout_redirect_uri=/'
   }
 

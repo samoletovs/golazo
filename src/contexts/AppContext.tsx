@@ -84,6 +84,7 @@ async function syncToApi(state: AppState): Promise<void> {
         tournaments: state.tournaments,
         diary: state.diary,
         schedule: state.schedule,
+        recurringTrainings: state.recurringTrainings,
         specialChallenges: state.specialChallenges,
         physicalProfile: state.physicalProfile,
         checkIns: state.checkIns,
