@@ -46,6 +46,19 @@ export function CoachSquadPicker({ onClose }: CoachSquadPickerProps) {
 
   const squads = profile?.managedSquads ?? []
 
+  // Migrate old-format squads that are missing clubName
+  useEffect(() => {
+    if (!profile?.managedSquads?.length) return
+    const needsMigration = profile.managedSquads.some((s) => !s.clubName)
+    if (!needsMigration) return
+    setProfile({
+      ...profile,
+      managedSquads: profile.managedSquads.map((s) =>
+        s.clubName ? s : { ...s, clubName: s.squadName }
+      ),
+    })
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
   // Group squads by club
   const squadsByClub = useMemo(() => {
     const map = new Map<string, ManagedSquad[]>()
