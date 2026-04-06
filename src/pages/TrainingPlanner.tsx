@@ -4,8 +4,8 @@ import { useToast } from '../contexts/ToastContext'
 import type { TrainingDrill, TrainingPlan } from '../engine/types'
 
 interface TrainingPlannerProps {
-  squadId: string
-  squadName: string
+  teamId: string
+  teamName: string
   coachId: string
   onBack: () => void
 }
@@ -50,7 +50,7 @@ function DrillForm({ drill, onChange, onRemove }: {
   )
 }
 
-export function TrainingPlanner({ squadId, squadName, coachId, onBack }: TrainingPlannerProps) {
+export function TrainingPlanner({ teamId, teamName, coachId, onBack }: TrainingPlannerProps) {
   const { t } = useTranslation()
   const { showToast } = useToast()
 
@@ -88,7 +88,7 @@ export function TrainingPlanner({ squadId, squadName, coachId, onBack }: Trainin
     setSaving(true)
     try {
       const plan: Omit<TrainingPlan, 'id' | 'createdAt'> = {
-        squadId,
+        teamId,
         coachId,
         title: title.trim(),
         date,
@@ -118,7 +118,7 @@ export function TrainingPlanner({ squadId, squadName, coachId, onBack }: Trainin
         <button onClick={onBack} className="tap-target text-xl" aria-label={t('common.back')}>←</button>
         <div className="flex-1 min-w-0">
           <h2 className="text-lg font-extrabold heading-display">{t('coach.training.new')}</h2>
-          <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{squadName}</p>
+          <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{teamName}</p>
         </div>
       </div>
 

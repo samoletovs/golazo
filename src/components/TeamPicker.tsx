@@ -2,14 +2,14 @@ import { useState, useEffect, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
 import { AddTeamDialog } from './AddTeamDialog'
-import type { SharedTeam, ManagedSquad, PlayerTeam, CoachRole, Position } from '../engine/types'
+import type { SharedTeam, ManagedTeam, PlayerTeam, CoachRole, Position } from '../engine/types'
 
 /**
- * Unified squad picker used by ALL roles:
- * - player/mentor: pick squads to play for (with position)
- * - coach: pick squads to manage (with coach role)
+ * Unified team picker used by ALL roles:
+ * - player/mentor: pick teams to play for (with position)
+ * - coach: pick teams to manage (with coach role)
  * 
- * 3-step wizard: My Squads → Select Club → Add Squads
+ * 3-step wizard: My Teams → Select Club → Add Teams
  */
 
 type TeamPickerMode = 'player' | 'coach'
@@ -25,7 +25,7 @@ interface TeamPickerProps {
   country?: string
 }
 
-type View = 'my-squads' | 'select-club' | 'add-squads'
+type View = 'my-teams' | 'select-club' | 'add-teams'
 
 const COACH_ROLES: { key: CoachRole; emoji: string }[] = [
   { key: 'head', emoji: '👔' },
@@ -59,14 +59,14 @@ function norm(s: string): string {
     .replace(/[šś]/g, 's').replace(/[ūùûü]/g, 'u').replace(/[žź]/g, 'z')
 }
 
-/** Unified squad entry — works for both player teams and coach managed squads */
-interface SquadEntry {
+/** Unified team entry — works for both player teams and coach managed teams */
+interface TeamEntry {
   id: string
   name: string          // "RFS 2014 A"
   clubName: string      // "Rigas Futbola Skola"
   clubId?: string
   birthYear?: number
-  squadLabel?: string
+  teamLabel?: string
   // Player-specific
   positions?: Position[]
   // Coach-specific
@@ -81,7 +81,7 @@ export function TeamPicker({ mode, onClose, externalTeams, onTeamsChange, countr
   const standalone = externalTeams !== undefined && onTeamsChange !== undefined
   const resolvedCountry = countryProp ?? profile?.country
 
-  const [view, setView] = useState<View>('my-squads')
+  const [view, setView] = useState<View>('my-teams')
   const [allTeams, setAllTeams] = useState<SharedTeam[]>([])
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState('')
@@ -90,7 +90,7 @@ export function TeamPicker({ mode, onClose, externalTeams, onTeamsChange, countr
   // Add-squad form state
   const [selectedClub, setSelectedClub] = useState<{ id?: string; name: string } | null>(null)
   const [birthYear, setBirthYear] = useState(2014)
-  const [squadLabel, setSquadLabel] = useState('A')
+  const [teamLabel, setTeamLabel] = useState('A')
   const [coachRole, setCoachRole] = useState<CoachRole>('head')
   const [positions, setPositions] = useState<Position[]>(() => {
     // Default from profile positions
@@ -100,15 +100,15 @@ export function TeamPicker({ mode, onClose, externalTeams, onTeamsChange, countr
 
   // Get current squads based on mode
   const playerTeamSource = standalone ? externalTeams : (profile?.teams ?? [])
-  const squads: SquadEntry[] = useMemo(() => {
+  const squads: TeamEntry[] = useMemo(() => {
     if (mode === 'coach') {
-      return (profile?.managedSquads ?? []).map((s) => ({
-        id: s.squadId,
-        name: s.squadName,
-        clubName: s.clubName || s.squadName,
+      return (profile?.managedTeams ?? []).map((s) => ({
+        id: s.teamId,
+        name: s.teamName,
+        clubName: s.clubName || s.teamName,
         clubId: s.clubId,
         birthYear: s.birthYear,
-        squadLabel: s.squadLabel,
+        teamLabel: s.teamLabel,
         coachRole: s.role,
       }))
     }
@@ -121,15 +121,15 @@ export function TeamPicker({ mode, onClose, externalTeams, onTeamsChange, countr
         clubName: t.clubName || t.name,
         clubId: t.clubId,
         birthYear: t.birthYear,
-        squadLabel: t.squadLabel,
+        teamLabel: t.teamLabel || (t as unknown as Record<string, unknown>).squadLabel as string | undefined,
         positions: pos,
       }
     })
-  }, [playerTeamSource, profile?.managedSquads, mode])
+  }, [playerTeamSource, profile?.managedTeams, mode])
 
   // Group by club
   const squadsByClub = useMemo(() => {
-    const map = new Map<string, SquadEntry[]>()
+    const map = new Map<string, TeamEntry[]>()
     for (const sq of squads) {
       const key = sq.clubName
       const arr = map.get(key) ?? []
@@ -144,10 +144,10 @@ export function TeamPicker({ mode, onClose, externalTeams, onTeamsChange, countr
   // Migrate old data
   useEffect(() => {
     if (!profile) return
-    if (mode === 'coach' && profile.managedSquads?.some((s) => !s.clubName)) {
+    if (mode === 'coach' && profile.managedTeams?.some((s) => !s.clubName)) {
       setProfile({
         ...profile,
-        managedSquads: profile.managedSquads!.map((s) => s.clubName ? s : { ...s, clubName: s.squadName }),
+        managedTeams: profile.managedTeams!.map((s) => s.clubName ? s : { ...s, clubName: s.teamName }),
       })
     }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
@@ -178,43 +178,43 @@ export function TeamPicker({ mode, onClose, externalTeams, onTeamsChange, countr
     )
   }, [allTeams, search])
 
-  function removeSquad(id: string) {
+  function removeTeam(id: string) {
     if (standalone) {
       onTeamsChange(externalTeams.filter((t) => t.id !== id))
       return
     }
     if (!profile) return
     if (mode === 'coach') {
-      setProfile({ ...profile, managedSquads: (profile.managedSquads ?? []).filter((s) => s.squadId !== id) })
+      setProfile({ ...profile, managedTeams: (profile.managedTeams ?? []).filter((s) => s.teamId !== id) })
     } else {
       setProfile({ ...profile, teams: (profile.teams ?? []).filter((t) => t.id !== id) })
     }
   }
 
-  function addSquad() {
+  function addTeam() {
     if (!selectedClub) return
     if (!standalone && !profile) return
-    const fullName = `${selectedClub.name} ${birthYear} ${squadLabel}`.trim()
+    const fullName = `${selectedClub.name} ${birthYear} ${teamLabel}`.trim()
 
     if (mode === 'coach') {
       if (!profile) return
-      const current = profile.managedSquads ?? []
-      if (current.some((s) => s.clubName === selectedClub.name && s.birthYear === birthYear && s.squadLabel === squadLabel)) return
-      const entry: ManagedSquad = {
-        squadId: crypto.randomUUID(),
-        squadName: fullName,
+      const current = profile.managedTeams ?? []
+      if (current.some((s) => s.clubName === selectedClub.name && s.birthYear === birthYear && s.teamLabel === teamLabel)) return
+      const entry: ManagedTeam = {
+        teamId: crypto.randomUUID(),
+        teamName: fullName,
         clubName: selectedClub.name,
         clubId: selectedClub.id,
         birthYear,
-        squadLabel,
+        teamLabel,
         role: coachRole,
         claimedAt: new Date().toISOString(),
         verified: false,
       }
-      setProfile({ ...profile, managedSquads: [...current, entry] })
+      setProfile({ ...profile, managedTeams: [...current, entry] })
     } else if (standalone) {
       const current = externalTeams
-      if (current.some((t) => t.clubName === selectedClub.name && t.birthYear === birthYear && t.squadLabel === squadLabel)) return
+      if (current.some((t) => t.clubName === selectedClub.name && t.birthYear === birthYear && t.teamLabel === teamLabel)) return
       const entry: PlayerTeam = {
         id: crypto.randomUUID(),
         name: fullName,
@@ -223,7 +223,7 @@ export function TeamPicker({ mode, onClose, externalTeams, onTeamsChange, countr
         clubId: selectedClub.id,
         registryId: selectedClub.id,
         birthYear,
-        squadLabel,
+        teamLabel,
         position: positions,
         isPrimary: current.length === 0,
         active: true,
@@ -233,7 +233,7 @@ export function TeamPicker({ mode, onClose, externalTeams, onTeamsChange, countr
     } else {
       if (!profile) return
       const current = profile.teams ?? []
-      if (current.some((t) => t.clubName === selectedClub.name && t.birthYear === birthYear && t.squadLabel === squadLabel)) return
+      if (current.some((t) => t.clubName === selectedClub.name && t.birthYear === birthYear && t.teamLabel === teamLabel)) return
       const entry: PlayerTeam = {
         id: crypto.randomUUID(),
         name: fullName,
@@ -242,7 +242,7 @@ export function TeamPicker({ mode, onClose, externalTeams, onTeamsChange, countr
         clubId: selectedClub.id,
         registryId: selectedClub.id,
         birthYear,
-        squadLabel,
+        teamLabel,
         position: positions,
         isPrimary: current.length === 0,
         active: true,
@@ -255,23 +255,23 @@ export function TeamPicker({ mode, onClose, externalTeams, onTeamsChange, countr
   function selectClub(team: SharedTeam) {
     setSelectedClub({ id: team.id, name: team.name })
     setSearch('')
-    setView('add-squads')
+    setView('add-teams')
   }
 
   function handleNewTeamAdded(_name: string, sharedTeam?: SharedTeam) {
     if (sharedTeam) {
       setAllTeams((prev) => prev.some((t) => t.id === sharedTeam.id) ? prev : [...prev, sharedTeam])
       setSelectedClub({ id: sharedTeam.id, name: sharedTeam.name })
-      setView('add-squads')
+      setView('add-teams')
     } else if (_name.trim()) {
       setSelectedClub({ name: _name.trim() })
-      setView('add-squads')
+      setView('add-teams')
     }
     setAddTeamName(null)
     setSearch('')
   }
 
-  const clubSquads = useMemo(() => {
+  const clubTeams = useMemo(() => {
     if (!selectedClub) return []
     return squads.filter((s) => s.clubName === selectedClub.name)
   }, [squads, selectedClub])
@@ -285,8 +285,8 @@ export function TeamPicker({ mode, onClose, externalTeams, onTeamsChange, countr
       <div className="app-shell w-full rounded-t-2xl sm:rounded-2xl animate-fade-up"
         style={{ maxHeight: '90dvh', overflowY: 'auto', background: 'var(--color-glass, #fff)' }}>
 
-        {/* ═══ VIEW 1: My Squads ═══ */}
-        {view === 'my-squads' && (
+        {/* ═══ VIEW 1: My Teams ═══ */}
+        {view === 'my-teams' && (
           <>
             <div className="sticky top-0 z-10 px-5 pt-5 pb-3" style={{ background: 'var(--color-glass, #fff)' }}>
               <div className="flex items-center justify-between mb-1">
@@ -308,7 +308,7 @@ export function TeamPicker({ mode, onClose, externalTeams, onTeamsChange, countr
                         <button
                           className="text-xs font-bold px-2 py-1 rounded-lg tap-target"
                           style={{ color: 'var(--color-primary-dark)' }}
-                          onClick={() => { setSelectedClub({ name: group.clubName }); setView('add-squads') }}
+                          onClick={() => { setSelectedClub({ name: group.clubName }); setView('add-teams') }}
                         >
                           + Add
                         </button>
@@ -318,7 +318,7 @@ export function TeamPicker({ mode, onClose, externalTeams, onTeamsChange, countr
                           <div key={sq.id} className="card flex items-center gap-3 p-3">
                             <div className="flex-1 min-w-0">
                               <p className="text-sm font-bold truncate">
-                                {sq.birthYear ? `${sq.birthYear} ${sq.squadLabel ?? ''}`.trim() : sq.name}
+                                {sq.birthYear ? `${sq.birthYear} ${sq.teamLabel ?? ''}`.trim() : sq.name}
                               </p>
                               <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
                                 {mode === 'coach'
@@ -329,7 +329,7 @@ export function TeamPicker({ mode, onClose, externalTeams, onTeamsChange, countr
                             <button
                               className="tap-target text-xs px-2 py-1 rounded-lg"
                               style={{ color: 'var(--color-danger)', background: 'var(--color-error-bg)' }}
-                              onClick={() => removeSquad(sq.id)}
+                              onClick={() => removeTeam(sq.id)}
                               aria-label={`Remove ${sq.name}`}
                             >
                               ✕
@@ -372,7 +372,7 @@ export function TeamPicker({ mode, onClose, externalTeams, onTeamsChange, countr
           <>
             <div className="sticky top-0 z-10 px-5 pt-5 pb-3" style={{ background: 'var(--color-glass, #fff)' }}>
               <div className="flex items-center gap-3 mb-3">
-                <button onClick={() => setView('my-squads')} className="tap-target text-xl">←</button>
+                <button onClick={() => setView('my-teams')} className="tap-target text-xl">←</button>
                 <h3 className="text-lg font-extrabold heading-display">{t('teams.search')}</h3>
               </div>
               <div className="flex gap-2">
@@ -426,12 +426,12 @@ export function TeamPicker({ mode, onClose, externalTeams, onTeamsChange, countr
           </>
         )}
 
-        {/* ═══ VIEW 3: Add Squads to Club ═══ */}
-        {view === 'add-squads' && selectedClub && (
+        {/* ═══ VIEW 3: Add Teams to Club ═══ */}
+        {view === 'add-teams' && selectedClub && (
           <>
             <div className="sticky top-0 z-10 px-5 pt-5 pb-3" style={{ background: 'var(--color-glass, #fff)' }}>
               <div className="flex items-center gap-3 mb-1">
-                <button onClick={() => setView('my-squads')} className="tap-target text-xl">←</button>
+                <button onClick={() => setView('my-teams')} className="tap-target text-xl">←</button>
                 <div className="flex-1 min-w-0">
                   <h3 className="text-base font-extrabold heading-display truncate">{selectedClub.name}</h3>
                   <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{t('teams.squads')}</p>
@@ -440,24 +440,24 @@ export function TeamPicker({ mode, onClose, externalTeams, onTeamsChange, countr
             </div>
             <div className="px-5 pb-5 flex flex-col gap-4">
               {/* Existing squads for this club */}
-              {clubSquads.length > 0 && (
+              {clubTeams.length > 0 && (
                 <div>
                   <p className="section-label mb-2">{t('teams.squads')}</p>
                   <div className="flex flex-wrap gap-2">
-                    {clubSquads.map((sq) => (
+                    {clubTeams.map((sq) => (
                       <span key={sq.id}
                         className="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-xl"
                         style={{ background: 'var(--color-primary-bg)', color: 'var(--color-primary-dark)' }}>
-                        {sq.birthYear ? `${sq.birthYear} ${sq.squadLabel ?? ''}`.trim() : sq.name}
+                        {sq.birthYear ? `${sq.birthYear} ${sq.teamLabel ?? ''}`.trim() : sq.name}
                         {sq.positions?.length ? ` · ${sq.positions.join('/')}` : ''}
-                        <button onClick={() => removeSquad(sq.id)} className="text-xs" style={{ color: 'var(--color-danger)' }}>✕</button>
+                        <button onClick={() => removeTeam(sq.id)} className="text-xs" style={{ color: 'var(--color-danger)' }}>✕</button>
                       </span>
                     ))}
                   </div>
                 </div>
               )}
 
-              {/* Add squad form */}
+              {/* Add team form */}
               <div className="card p-4">
                 <p className="section-label mb-3">{t('coach.squad.addSquad')}</p>
 
@@ -478,7 +478,7 @@ export function TeamPicker({ mode, onClose, externalTeams, onTeamsChange, countr
                   </div>
                 </div>
 
-                {/* Squad label */}
+                {/* Team label */}
                 <div className="mb-3">
                   <p className="text-xs font-bold mb-1.5" style={{ color: 'var(--color-text-secondary)' }}>
                     {t('teams.squadLabel')}
@@ -487,17 +487,17 @@ export function TeamPicker({ mode, onClose, externalTeams, onTeamsChange, countr
                     {['A', 'B', 'C', 'D'].map((lbl) => (
                       <button key={lbl} className="flex-1 text-sm font-bold py-2 rounded-xl tap-target text-center"
                         style={{
-                          background: lbl === squadLabel ? 'var(--color-primary-dark)' : 'var(--color-glass-hover)',
-                          color: lbl === squadLabel ? '#fff' : 'var(--color-text-muted)',
+                          background: lbl === teamLabel ? 'var(--color-primary-dark)' : 'var(--color-glass-hover)',
+                          color: lbl === teamLabel ? '#fff' : 'var(--color-text-muted)',
                         }}
-                        onClick={() => setSquadLabel(lbl)}>{lbl}</button>
+                        onClick={() => setTeamLabel(lbl)}>{lbl}</button>
                     ))}
                     <input type="text"
-                      value={!['A', 'B', 'C', 'D'].includes(squadLabel) ? squadLabel : ''}
-                      onChange={(e) => setSquadLabel(e.target.value)}
+                      value={!['A', 'B', 'C', 'D'].includes(teamLabel) ? teamLabel : ''}
+                      onChange={(e) => setTeamLabel(e.target.value)}
                       placeholder="Other"
                       className="flex-1 text-xs px-2 py-2 rounded-xl text-center"
-                      style={{ background: !['A', 'B', 'C', 'D'].includes(squadLabel) && squadLabel ? 'var(--color-primary-bg)' : 'var(--color-glass-hover)' }} />
+                      style={{ background: !['A', 'B', 'C', 'D'].includes(teamLabel) && teamLabel ? 'var(--color-primary-bg)' : 'var(--color-glass-hover)' }} />
                   </div>
                 </div>
 
@@ -555,19 +555,19 @@ export function TeamPicker({ mode, onClose, externalTeams, onTeamsChange, countr
                 {/* Preview + Add */}
                 <div className="flex items-center gap-3 pt-3" style={{ borderTop: '1px solid var(--color-glass-border)' }}>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-bold truncate">{selectedClub.name} {birthYear} {squadLabel}</p>
+                    <p className="text-sm font-bold truncate">{selectedClub.name} {birthYear} {teamLabel}</p>
                     <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
                       {mode === 'coach' ? t(`coach.role.${coachRole}`) : positions.join(' / ')}
                     </p>
                   </div>
-                  <button className="btn-primary text-sm px-4 py-2 rounded-xl tap-target" onClick={addSquad}>
+                  <button className="btn-primary text-sm px-4 py-2 rounded-xl tap-target" onClick={addTeam}>
                     + {t('teams.addBtn')}
                   </button>
                 </div>
               </div>
 
               <button className="btn-primary w-full text-sm py-3 rounded-xl tap-target"
-                onClick={() => setView('my-squads')}>
+                onClick={() => setView('my-teams')}>
                 ✓ {t('common.done')}
               </button>
             </div>

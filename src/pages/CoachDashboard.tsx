@@ -1,30 +1,30 @@
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { CoachSquadFilter } from '../components/CoachSquadFilter'
-import type { ManagedSquad } from '../engine/types'
+import type { ManagedTeam } from '../engine/types'
 
 interface CoachDashboardProps {
-  squads: ManagedSquad[]
-  selectedSquadIds: string[]
-  onToggleSquad: (id: string) => void
+  teams: ManagedTeam[]
+  selectedTeamIds: string[]
+  onToggleTeam: (id: string) => void
   onNavigate: (page: 'roster' | 'training' | 'announce' | 'evaluate' | 'attendance', squadId: string) => void
-  onManageSquads: () => void
+  onManageTeams: () => void
 }
 
-export function CoachDashboard({ squads, selectedSquadIds, onToggleSquad, onNavigate, onManageSquads }: CoachDashboardProps) {
+export function CoachDashboard({ teams, selectedTeamIds, onToggleTeam, onNavigate, onManageTeams }: CoachDashboardProps) {
   const { t } = useTranslation()
 
-  // Filter squads by selection
-  const filteredSquads = useMemo(() => {
-    if (selectedSquadIds.length === 0) return squads
-    return squads.filter((s) => selectedSquadIds.includes(s.squadId))
-  }, [squads, selectedSquadIds])
+  // Filter teams by selection
+  const filteredTeams = useMemo(() => {
+    if (selectedTeamIds.length === 0) return teams
+    return teams.filter((s) => selectedTeamIds.includes(s.teamId))
+  }, [teams, selectedTeamIds])
 
-  // Group filtered squads by club
-  const squadsByClub = useMemo(() => {
-    const map = new Map<string, ManagedSquad[]>()
-    for (const sq of filteredSquads) {
-      const key = sq.clubName || sq.squadName
+  // Group filtered teams by club
+  const teamsByClub = useMemo(() => {
+    const map = new Map<string, ManagedTeam[]>()
+    for (const sq of filteredTeams) {
+      const key = sq.clubName || sq.teamName
       const arr = map.get(key) ?? []
       arr.push(sq)
       map.set(key, arr)
@@ -32,11 +32,11 @@ export function CoachDashboard({ squads, selectedSquadIds, onToggleSquad, onNavi
     return [...map.entries()]
       .map(([clubName, items]) => ({ clubName, squads: items }))
       .sort((a, b) => a.clubName.localeCompare(b.clubName))
-  }, [squads])
+  }, [teams])
 
-  const totalSquads = squads.length
+  const totalTeams = teams.length
 
-  if (squads.length === 0) {
+  if (teams.length === 0) {
     return (
       <div className="flex flex-col gap-4 p-4 pb-32">
         <h2 className="text-xl font-extrabold heading-display">📋 {t('coach.dashboard.title')}</h2>
@@ -48,7 +48,7 @@ export function CoachDashboard({ squads, selectedSquadIds, onToggleSquad, onNavi
           </p>
           <button
             className="btn-primary text-sm px-4 py-2 rounded-xl tap-target"
-            onClick={onManageSquads}
+            onClick={onManageTeams}
           >
             {t('coach.onboarding.selectSquads')}
           </button>
@@ -64,24 +64,24 @@ export function CoachDashboard({ squads, selectedSquadIds, onToggleSquad, onNavi
         <h2 className="text-xl font-extrabold heading-display">📋 {t('coach.dashboard.title')}</h2>
         <span className="text-xs font-bold px-2.5 py-1 rounded-full"
           style={{ background: 'var(--color-primary-bg)', color: 'var(--color-primary-dark)' }}>
-          {totalSquads} {t('teams.squads').toLowerCase()}
+          {totalTeams} {t('teams.squads').toLowerCase()}
         </span>
       </div>
 
       {/* Squad filter */}
-      <CoachSquadFilter squads={squads} selectedIds={selectedSquadIds} onToggle={onToggleSquad} />
+      <CoachSquadFilter teams={teams} selectedIds={selectedTeamIds} onToggle={onToggleTeam} />
 
       {/* Squad cards grouped by club */}
-      {squadsByClub.map(({ clubName, squads: clubSquads }) => (
+      {teamsByClub.map(({ clubName, squads: clubTeams }) => (
         <div key={clubName}>
           <p className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: 'var(--color-text-muted)' }}>
             {clubName}
           </p>
           <div className="flex flex-col gap-2">
-            {clubSquads.map((sq) => {
-              const label = sq.birthYear ? `${sq.birthYear} ${sq.squadLabel ?? ''}`.trim() : sq.squadName
+            {clubTeams.map((sq) => {
+              const label = sq.birthYear ? `${sq.birthYear} ${sq.teamLabel ?? ''}`.trim() : sq.teamName
               return (
-                <div key={sq.squadId} className="card animate-fade-up">
+                <div key={sq.teamId} className="card animate-fade-up">
                   <div className="flex items-center gap-3 mb-3">
                     <span className="text-lg">⚽</span>
                     <div className="flex-1 min-w-0">
@@ -97,7 +97,7 @@ export function CoachDashboard({ squads, selectedSquadIds, onToggleSquad, onNavi
                     <button
                       className="flex flex-col items-center gap-1 py-2 rounded-xl tap-target"
                       style={{ background: 'var(--color-glass-hover)' }}
-                      onClick={() => onNavigate('roster', sq.squadId)}
+                      onClick={() => onNavigate('roster', sq.teamId)}
                     >
                       <span className="text-sm">👥</span>
                       <span className="text-[10px] font-bold" style={{ color: 'var(--color-text-muted)' }}>
@@ -107,7 +107,7 @@ export function CoachDashboard({ squads, selectedSquadIds, onToggleSquad, onNavi
                     <button
                       className="flex flex-col items-center gap-1 py-2 rounded-xl tap-target"
                       style={{ background: 'var(--color-glass-hover)' }}
-                      onClick={() => onNavigate('training', sq.squadId)}
+                      onClick={() => onNavigate('training', sq.teamId)}
                     >
                       <span className="text-sm">📝</span>
                       <span className="text-[10px] font-bold" style={{ color: 'var(--color-text-muted)' }}>
@@ -117,7 +117,7 @@ export function CoachDashboard({ squads, selectedSquadIds, onToggleSquad, onNavi
                     <button
                       className="flex flex-col items-center gap-1 py-2 rounded-xl tap-target"
                       style={{ background: 'var(--color-glass-hover)' }}
-                      onClick={() => onNavigate('announce', sq.squadId)}
+                      onClick={() => onNavigate('announce', sq.teamId)}
                     >
                       <span className="text-sm">📢</span>
                       <span className="text-[10px] font-bold" style={{ color: 'var(--color-text-muted)' }}>
@@ -127,7 +127,7 @@ export function CoachDashboard({ squads, selectedSquadIds, onToggleSquad, onNavi
                     <button
                       className="flex flex-col items-center gap-1 py-2 rounded-xl tap-target"
                       style={{ background: 'var(--color-glass-hover)' }}
-                      onClick={() => onNavigate('attendance', sq.squadId)}
+                      onClick={() => onNavigate('attendance', sq.teamId)}
                     >
                       <span className="text-sm">✅</span>
                       <span className="text-[10px] font-bold" style={{ color: 'var(--color-text-muted)' }}>
@@ -148,14 +148,14 @@ export function CoachDashboard({ squads, selectedSquadIds, onToggleSquad, onNavi
         <div className="grid grid-cols-2 gap-2">
           <button
             className="card tap-target flex flex-col items-center gap-2 py-4"
-            onClick={() => onNavigate('evaluate', squads[0].squadId)}
+            onClick={() => onNavigate('evaluate', teams[0].teamId)}
           >
             <span className="text-2xl">📊</span>
             <span className="text-xs font-bold">{t('coach.dashboard.evaluate')}</span>
           </button>
           <button
             className="card tap-target flex flex-col items-center gap-2 py-4"
-            onClick={() => onNavigate('training', squads[0].squadId)}
+            onClick={() => onNavigate('training', teams[0].teamId)}
           >
             <span className="text-2xl">📝</span>
             <span className="text-xs font-bold">{t('coach.dashboard.planTraining')}</span>

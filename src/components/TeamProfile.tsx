@@ -40,16 +40,16 @@ export function TeamProfile({ team, onClose, allTeams, onNavigate }: TeamProfile
       .sort((a, b) => {
         // Sort by birth year desc, then by squad label
         if (a.birthYear && b.birthYear && a.birthYear !== b.birthYear) return b.birthYear - a.birthYear
-        return (a.squadLabel ?? a.name).localeCompare(b.squadLabel ?? b.name)
+        return (a.teamLabel ?? a.name).localeCompare(b.teamLabel ?? b.name)
       })
   }, [allTeams, team.id])
 
   const siblingSquads = useMemo(() => {
-    if (!allTeams || !team.parentClubId || team.type !== 'squad') return []
+    if (!allTeams || !team.parentClubId || team.type !== 'team') return []
     return allTeams
-      .filter((t) => t.parentClubId === team.parentClubId && t.id !== team.id && t.type === 'squad')
+      .filter((t) => t.parentClubId === team.parentClubId && t.id !== team.id && t.type === 'team')
       .filter((t) => t.birthYear === team.birthYear) // Same age group
-      .sort((a, b) => (a.squadLabel ?? a.name).localeCompare(b.squadLabel ?? b.name))
+      .sort((a, b) => (a.teamLabel ?? a.name).localeCompare(b.teamLabel ?? b.name))
   }, [allTeams, team])
 
   // Type badge text
@@ -131,7 +131,7 @@ export function TeamProfile({ team, onClose, allTeams, onNavigate }: TeamProfile
                   style={{ background: 'rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.9)' }}>
                   {typeEmoji} {typeLabel}
                   {team.birthYear ? ` · ${team.birthYear}` : ''}
-                  {team.squadLabel ? ` ${team.squadLabel}` : ''}
+                  {team.teamLabel ? ` ${team.teamLabel}` : ''}
                 </span>
               )}
             </div>
@@ -267,7 +267,7 @@ export function TeamProfile({ team, onClose, allTeams, onNavigate }: TeamProfile
                     style={{ background: 'var(--color-glass-hover)', color: 'var(--color-text)' }}
                     onClick={() => handleNavigate(sibling)}
                   >
-                    {sibling.squadLabel ? `${sibling.birthYear ?? ''} ${sibling.squadLabel}`.trim() : sibling.name}
+                    {sibling.teamLabel ? `${sibling.birthYear ?? ''} ${sibling.teamLabel}`.trim() : sibling.name}
                   </button>
                 ))}
               </div>
@@ -291,8 +291,8 @@ export function TeamProfile({ team, onClose, allTeams, onNavigate }: TeamProfile
                     <span className="text-sm shrink-0">{TYPE_EMOJI[child.type ?? ''] ?? '⚽'}</span>
                     <div className="flex-1 min-w-0">
                       <p className="text-xs font-bold truncate">
-                        {child.type === 'squad' && child.squadLabel
-                          ? `${child.birthYear ?? ''} ${child.squadLabel}`.trim()
+                        {child.type === 'team' && child.teamLabel
+                          ? `${child.birthYear ?? ''} ${child.teamLabel}`.trim()
                           : child.name}
                       </p>
                       {child.type === 'academy' && (

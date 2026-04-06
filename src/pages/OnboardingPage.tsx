@@ -103,7 +103,7 @@ export function OnboardingPage() {
   const { user } = useAuth()
 
   const [step, setStep] = useState<Step>('role')
-  const [showSquadPicker, setShowSquadPicker] = useState(false)
+  const [showTeamPicker, setShowTeamPicker] = useState(false)
   const [form, setForm] = useState<OnboardingForm>({
     role: 'player',
     name: '',
@@ -376,7 +376,7 @@ export function OnboardingPage() {
                     color: form.teams.length === 0 ? 'var(--color-text-muted)' : 'var(--color-primary-dark)',
                     border: '1.5px dashed var(--color-glass-border, #e2e8f0)',
                   }}
-                  onClick={() => setShowSquadPicker(true)}
+                  onClick={() => setShowTeamPicker(true)}
                 >
                   {form.teams.length === 0
                     ? `+ ${form.role === 'coach' ? t('coach.onboarding.selectSquads') : t('onboarding.teamPlaceholder')}`
@@ -675,10 +675,10 @@ export function OnboardingPage() {
       </div>
 
       {/* Team picker modal */}
-      {showSquadPicker && (
+      {showTeamPicker && (
         <TeamPicker
           mode={form.role === 'coach' ? 'coach' : 'player'}
-          onClose={() => setShowSquadPicker(false)}
+          onClose={() => setShowTeamPicker(false)}
           externalTeams={form.teams}
           onTeamsChange={(teams) => setForm((f) => ({ ...f, teams }))}
           country={form.country}

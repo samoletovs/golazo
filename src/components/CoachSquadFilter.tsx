@@ -1,17 +1,17 @@
 import { useTranslation } from 'react-i18next'
-import type { ManagedSquad } from '../engine/types'
+import type { ManagedTeam } from '../engine/types'
 
 interface CoachSquadFilterProps {
-  squads: ManagedSquad[]
+  teams: ManagedTeam[]
   selectedIds: string[]
-  onToggle: (squadId: string) => void
+  onToggle: (teamId: string) => void
 }
 
-export function CoachSquadFilter({ squads, selectedIds, onToggle }: CoachSquadFilterProps) {
+export function CoachSquadFilter({ teams, selectedIds, onToggle }: CoachSquadFilterProps) {
   const { t } = useTranslation()
-  if (squads.length <= 1) return null
+  if (teams.length <= 1) return null
 
-  const allSelected = selectedIds.length === 0 || selectedIds.length === squads.length
+  const allSelected = selectedIds.length === 0 || selectedIds.length === teams.length
 
   return (
     <div className="h-scroll gap-1.5 pb-1" style={{ scrollSnapType: 'x mandatory' }}>
@@ -25,8 +25,8 @@ export function CoachSquadFilter({ squads, selectedIds, onToggle }: CoachSquadFi
         }}
         onClick={() => {
           // Deselect all = show all
-          for (const sq of squads) {
-            if (selectedIds.includes(sq.squadId)) onToggle(sq.squadId)
+          for (const sq of teams) {
+            if (selectedIds.includes(sq.teamId)) onToggle(sq.teamId)
           }
         }}
       >
@@ -34,18 +34,18 @@ export function CoachSquadFilter({ squads, selectedIds, onToggle }: CoachSquadFi
       </button>
 
       {/* Per-squad chips */}
-      {squads.map((sq) => {
-        const isSelected = selectedIds.includes(sq.squadId)
+      {teams.map((sq) => {
+        const isSelected = selectedIds.includes(sq.teamId)
         const label = sq.birthYear
-          ? `${sq.clubName} ${sq.birthYear} ${sq.squadLabel ?? ''}`.trim()
-          : sq.squadName
+          ? `${sq.clubName} ${sq.birthYear} ${sq.teamLabel ?? ''}`.trim()
+          : sq.teamName
         // Shorten label for chip display
         const shortLabel = sq.birthYear
-          ? `${sq.birthYear} ${sq.squadLabel ?? ''}`.trim()
-          : sq.squadName
+          ? `${sq.birthYear} ${sq.teamLabel ?? ''}`.trim()
+          : sq.teamName
         return (
           <button
-            key={sq.squadId}
+            key={sq.teamId}
             className="text-xs font-bold px-3 py-1.5 rounded-full shrink-0 tap-target transition-all"
             style={{
               scrollSnapAlign: 'center',
@@ -53,7 +53,7 @@ export function CoachSquadFilter({ squads, selectedIds, onToggle }: CoachSquadFi
               color: isSelected && !allSelected ? '#fff' : 'var(--color-text-muted)',
             }}
             title={label}
-            onClick={() => onToggle(sq.squadId)}
+            onClick={() => onToggle(sq.teamId)}
             aria-pressed={isSelected}
           >
             {shortLabel}

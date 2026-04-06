@@ -4,14 +4,14 @@ import { useToast } from '../contexts/ToastContext'
 import type { Announcement, AnnouncementPriority, AnnouncementAudience } from '../engine/types'
 
 interface AnnouncementsPageProps {
-  squadId: string
-  squadName: string
+  teamId: string
+  teamName: string
   coachId: string
   coachName: string
   onBack: () => void
 }
 
-export function AnnouncementsPage({ squadId, squadName, coachId, coachName, onBack }: AnnouncementsPageProps) {
+export function AnnouncementsPage({ teamId, teamName, coachId, coachName, onBack }: AnnouncementsPageProps) {
   const { t } = useTranslation()
   const { showToast } = useToast()
   const [announcements, setAnnouncements] = useState<Announcement[]>([])
@@ -30,7 +30,7 @@ export function AnnouncementsPage({ squadId, squadName, coachId, coachName, onBa
     let cancelled = false
     async function load() {
       try {
-        const res = await fetch(`/api/coach/squad/${encodeURIComponent(squadId)}/announcements`)
+        const res = await fetch(`/api/coach/squad/${encodeURIComponent(teamId)}/announcements`)
         if (res.ok && !cancelled) {
           const data = await res.json()
           setAnnouncements(data.announcements ?? [])
@@ -40,13 +40,13 @@ export function AnnouncementsPage({ squadId, squadName, coachId, coachName, onBa
     }
     load()
     return () => { cancelled = true }
-  }, [squadId])
+  }, [teamId])
 
   async function send() {
     if (!title.trim() || !body.trim()) return
     setSaving(true)
     try {
-      const res = await fetch(`/api/coach/squad/${encodeURIComponent(squadId)}/announce`, {
+      const res = await fetch(`/api/coach/squad/${encodeURIComponent(teamId)}/announce`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -166,7 +166,7 @@ export function AnnouncementsPage({ squadId, squadName, coachId, coachName, onBa
           <button onClick={onBack} className="tap-target text-xl" aria-label={t('common.back')}>←</button>
           <div>
             <h2 className="text-lg font-extrabold heading-display">{t('coach.announce.title')}</h2>
-            <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{squadName}</p>
+            <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{teamName}</p>
           </div>
         </div>
         <button

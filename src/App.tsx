@@ -37,9 +37,9 @@ type Page = 'dashboard' | 'log' | 'learn' | 'exercises' | 'profile' | 'schedule'
 function AppContent() {
   const [page, setPage] = useState<Page>('dashboard')
   const [pageKey, setPageKey] = useState(0)
-  const [coachSquadId, setCoachSquadId] = useState('')
-  const [showSquadPicker, setShowSquadPicker] = useState(false)
-  const [selectedSquadIds, setSelectedSquadIds] = useState<string[]>([])
+  const [coachTeamId, setCoachTeamId] = useState('')
+  const [showTeamPicker, setShowTeamPicker] = useState(false)
+  const [selectedTeamIds, setSelectedTeamIds] = useState<string[]>([])
   const { user, loading: authLoading } = useAuth()
   const { onboardingComplete, profile, syncing } = useApp()
   const [skippedLogin, setSkippedLogin] = useState(false)
@@ -50,10 +50,15 @@ function AppContent() {
     applySurfaceTheme(loadSurfaceTheme(), teamColor)
   }, [profile?.teams])
 
+  // Reset to dashboard when role changes
+  useEffect(() => {
+    setPage('dashboard')
+  }, [profile?.role])
+
   // Toggle squad in filter
-  const toggleSquadFilter = (squadId: string) => {
-    setSelectedSquadIds((prev) =>
-      prev.includes(squadId) ? prev.filter((id) => id !== squadId) : [...prev, squadId]
+  const toggleTeamFilter = (teamId: string) => {
+    setSelectedTeamIds((prev) =>
+      prev.includes(teamId) ? prev.filter((id) => id !== teamId) : [...prev, teamId]
     )
   }
 
@@ -125,14 +130,14 @@ function AppContent() {
             {page === 'dashboard' && isCoach && (
               <Suspense fallback={<div className="flex items-center justify-center p-8"><span className="text-3xl">⚽</span></div>}>
                 <CoachDashboard
-                  squads={profile?.managedSquads ?? []}
-                  selectedSquadIds={selectedSquadIds}
-                  onToggleSquad={toggleSquadFilter}
+                  teams={profile?.managedTeams ?? []}
+                  selectedTeamIds={selectedTeamIds}
+                  onToggleTeam={toggleTeamFilter}
                   onNavigate={(sub, squadId) => {
-                    setCoachSquadId(squadId)
+                    setCoachTeamId(squadId)
                     handleNavigate(`coach-${sub}` as Page)
                   }}
-                  onManageSquads={() => setShowSquadPicker(true)}
+                  onManageTeams={() => setShowTeamPicker(true)}
                 />
               </Suspense>
             )}
@@ -148,16 +153,16 @@ function AppContent() {
               {page === 'portal' && <FootballPortal />}
               {page === 'stats' && isCoach && (
                 <CoachStatsPage
-                  squads={profile?.managedSquads ?? []}
-                  selectedIds={selectedSquadIds}
-                  onToggleSquad={toggleSquadFilter}
+                  squads={profile?.managedTeams ?? []}
+                  selectedIds={selectedTeamIds}
+                  onToggleSquad={toggleTeamFilter}
                 />
               )}
               {page === 'mentor' && <MentorDashboard />}
               {page === 'coach-roster' && (
                 <SquadRoster
-                  squadId={coachSquadId}
-                  squadName={coachSquadId}
+                  teamId={coachTeamId}
+                  teamName={coachTeamId}
                   onBack={() => handleNavigate('dashboard')}
                   onEvaluate={() => {
                     handleNavigate('coach-evaluate')
@@ -166,16 +171,16 @@ function AppContent() {
               )}
               {page === 'coach-training' && (
                 <TrainingPlanner
-                  squadId={coachSquadId}
-                  squadName={coachSquadId}
+                  teamId={coachTeamId}
+                  teamName={coachTeamId}
                   coachId={profile?.id ?? ''}
                   onBack={() => handleNavigate('dashboard')}
                 />
               )}
               {page === 'coach-announce' && (
                 <AnnouncementsPage
-                  squadId={coachSquadId}
-                  squadName={coachSquadId}
+                  teamId={coachTeamId}
+                  teamName={coachTeamId}
                   coachId={profile?.id ?? ''}
                   coachName={profile?.name ?? ''}
                   onBack={() => handleNavigate('dashboard')}
@@ -183,8 +188,8 @@ function AppContent() {
               )}
               {page === 'coach-evaluate' && (
                 <EvaluationPage
-                  squadId={coachSquadId}
-                  squadName={coachSquadId}
+                  teamId={coachTeamId}
+                  teamName={coachTeamId}
                   coachId={profile?.id ?? ''}
                   coachName={profile?.name ?? ''}
                   onBack={() => handleNavigate('dashboard')}
@@ -192,8 +197,8 @@ function AppContent() {
               )}
               {page === 'coach-attendance' && (
                 <AttendanceGrid
-                  squadId={coachSquadId}
-                  squadName={coachSquadId}
+                  teamId={coachTeamId}
+                  teamName={coachTeamId}
                   coachId={profile?.id ?? ''}
                   onBack={() => handleNavigate('dashboard')}
                 />
@@ -211,9 +216,9 @@ function AppContent() {
       <FeedbackButton />
 
       {/* Coach squad picker modal */}
-      {showSquadPicker && (
+      {showTeamPicker && (
         <Suspense fallback={null}>
-          <TeamPickerLazy mode="coach" onClose={() => setShowSquadPicker(false)} />
+          <TeamPickerLazy mode="coach" onClose={() => setShowTeamPicker(false)} />
         </Suspense>
       )}
     </div>

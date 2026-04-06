@@ -266,12 +266,12 @@ export function Profile() {
           </div>
 
           {/* Managed squads summary */}
-          {(profile?.managedSquads?.length ?? 0) > 0 ? (
+          {(profile?.managedTeams?.length ?? 0) > 0 ? (
             <div className="flex flex-wrap gap-1.5 mb-3">
-              {profile!.managedSquads!.map((sq) => (
-                <span key={sq.squadId} className="text-xs font-bold px-2.5 py-1 rounded-lg"
+              {profile!.managedTeams!.map((sq) => (
+                <span key={sq.teamId} className="text-xs font-bold px-2.5 py-1 rounded-lg"
                   style={{ background: 'var(--color-primary-bg)', color: 'var(--color-primary-dark)' }}>
-                  {sq.birthYear ? `${sq.clubName} ${sq.birthYear} ${sq.squadLabel ?? ''}`.trim() : sq.squadName}
+                  {sq.birthYear ? `${sq.clubName} ${sq.birthYear} ${sq.teamLabel ?? ''}`.trim() : sq.teamName}
                 </span>
               ))}
             </div>
@@ -523,7 +523,6 @@ export function Profile() {
                     onClick={() => {
                       if (profile.role !== role) {
                         setProfile({ ...profile, role })
-                        window.location.reload()
                       }
                     }}
                     aria-pressed={profile.role === role}

@@ -39,7 +39,7 @@ export interface PlayerProfile {
   dominantFoot: DominantFoot
   language: Language
   photoUrl?: string
-  managedSquads?: ManagedSquad[] // Coach-only: squads this user manages
+  managedTeams?: ManagedTeam[] // Coach-only: teams this user manages
   createdAt: string
 }
 
@@ -59,14 +59,14 @@ export interface PlayerTeam {
   clubName?: string  // Parent club name (e.g., "Rigas Futbola Skola")
   clubId?: string    // SharedTeam.id of the club
   birthYear?: number // e.g. 2014
-  squadLabel?: string // e.g. "A", "B", "Main"
-  position?: Position | Position[] // player's position(s) in this squad
+  teamLabel?: string // e.g. "A", "B", "Main"
+  position?: Position | Position[] // player's position(s) in this team
   createdAt: string
 }
 
 /* ── Shared Team Registry ─────────────────────────────────── */
 
-export type TeamType = 'club' | 'academy' | 'squad'
+export type TeamType = 'club' | 'academy' | 'team'
 
 export interface SharedTeam {
   id: string
@@ -74,7 +74,7 @@ export interface SharedTeam {
   name: string                 // Official club name
   abbreviation?: string        // "RFS", "MNSS", etc.
   aliases: string[]            // Tournament names, historical names
-  type?: TeamType              // 'club' (pro), 'academy' (youth school), 'squad' (year/team)
+  type?: TeamType              // 'club' (legal entity), 'academy' (youth school), 'team' (competitive unit)
   city?: string
   website?: string
   logoUrl?: string
@@ -84,9 +84,9 @@ export interface SharedTeam {
   ageGroups?: string[]         // "U7","U9",..."U19","Senior","Women"
   socialMedia?: { platform: string; url: string }[]
   stadium?: string
-  parentClubId?: string        // Academy → parent club, Squad → parent academy
-  birthYear?: number           // Squad birth year (e.g. 2014)
-  squadLabel?: string          // Squad label: "A", "B", "1", "2"
+  parentClubId?: string        // Team → parent club, Academy → parent club
+  birthYear?: number           // Team birth year (e.g. 2014)
+  teamLabel?: string           // Team label: "A", "B", "1", "2"
   regCode?: string             // Government registry code
   verified: boolean
   verifiedAt?: string
@@ -790,13 +790,13 @@ export const COACH_SPECIALIZATIONS = {
 } as const
 export type CoachSpecialization = (typeof COACH_SPECIALIZATIONS)[keyof typeof COACH_SPECIALIZATIONS]
 
-export interface ManagedSquad {
-  squadId: string          // Generated UUID or SharedTeam.id
-  squadName: string        // Full display: "RFS 2015 A"
+export interface ManagedTeam {
+  teamId: string           // Generated UUID or SharedTeam.id
+  teamName: string         // Full display: "RFS 2015 A"
   clubName: string         // Parent club: "Rigas Futbola Skola"
   clubId?: string          // SharedTeam.id of the club (if from registry)
   birthYear?: number       // e.g. 2015
-  squadLabel?: string      // e.g. "A", "B", "Main", "Second"
+  teamLabel?: string       // e.g. "A", "B", "Main", "Second"
   role: CoachRole
   claimedAt: string
   verified: boolean
@@ -809,7 +809,7 @@ export interface CoachProfile {
   country?: string
   city?: string
   language: Language
-  managedSquads: ManagedSquad[]
+  managedTeams: ManagedTeam[]
   licenseLevel: LicenseLevel
   specializations: CoachSpecialization[]
   photoUrl?: string
@@ -818,8 +818,48 @@ export interface CoachProfile {
   createdAt: string
 }
 
-/* ── Squad Roster ─────────────────────────────────────────── */
+/* ── Squad (FIFA Tier 3 — season-bound roster) ─────────────── */
 
+export const SQUAD_PLAYER_STATUS = {
+  active: 'active',
+  injured: 'injured',
+  suspended: 'suspended',
+  released: 'released',
+} as const
+export type SquadPlayerStatus = (typeof SQUAD_PLAYER_STATUS)[keyof typeof SQUAD_PLAYER_STATUS]
+
+export interface SquadPlayer {
+  playerId: string
+  playerName: string
+  jerseyNumber?: number
+  positions: Position[]
+  birthDate: string
+  photoUrl?: string
+  joinedAt: string          // When player joined this squad
+  leftAt?: string           // When player left (if released/transferred)
+  status: SquadPlayerStatus
+}
+
+/** Season-bound roster for a team (FIFA Tier 3) */
+export interface Squad {
+  id: string
+  teamId: string             // SharedTeam.id (type='team')
+  teamName: string           // Denormalized: "RFS 2014 A"
+  clubId?: string            // SharedTeam.id of parent club
+  clubName?: string          // Denormalized: "FK RFS"
+  season: string             // User-defined: "2025/26", "2025", "2025-spring"
+  players: SquadPlayer[]
+  maxSize: number            // FIFA: 25 for senior, varies for youth
+  coachId?: string           // userId of managing coach
+  coachName?: string         // Denormalized
+  registeredAt?: string      // When submitted to federation
+  createdAt: string
+  updatedAt: string
+}
+
+/* ── Legacy types (backward compat) ───────────────────────── */
+
+/** @deprecated Use SquadPlayer instead */
 export interface RosterPlayer {
   playerId: string
   playerName: string
@@ -827,10 +867,11 @@ export interface RosterPlayer {
   positions: Position[]
   birthDate: string
   photoUrl?: string
-  joinedAt: string         // When player linked to this squad
+  joinedAt: string
   active: boolean
 }
 
+/** @deprecated Use Squad instead */
 export interface SquadRoster {
   squadId: string
   squadName: string
@@ -855,7 +896,7 @@ export type AnnouncementAudience = (typeof ANNOUNCEMENT_AUDIENCE)[keyof typeof A
 
 export interface Announcement {
   id: string
-  squadId: string
+  teamId: string
   authorId: string
   authorName: string
   title: string
@@ -879,7 +920,7 @@ export interface TrainingDrill {
 
 export interface TrainingPlan {
   id: string
-  squadId: string
+  teamId: string
   coachId: string
   title: string
   date: string             // ISO date
@@ -898,7 +939,7 @@ export interface TrainingPlan {
 
 export interface PlayerEvaluation {
   id: string
-  squadId: string
+  teamId: string
   playerId: string
   coachId: string
   coachName: string
@@ -930,7 +971,7 @@ export type AttendanceStatus = (typeof ATTENDANCE_STATUS)[keyof typeof ATTENDANC
 
 export interface AttendanceRecord {
   id: string
-  squadId: string
+  teamId: string
   eventId: string          // ScheduleEvent or TrainingPlan id
   eventDate: string
   eventType: 'training' | 'match'
@@ -952,7 +993,7 @@ export interface CampDay {
 
 export interface Camp {
   id: string
-  squadIds: string[]       // Can span multiple squads
+  teamIds: string[]        // Can span multiple teams
   coachId: string
   name: string
   startDate: string

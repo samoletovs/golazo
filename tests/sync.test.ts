@@ -268,19 +268,19 @@ describe('Timer cleanup', () => {
 })
 
 describe('No dead code', () => {
-  it('CoachSquadPicker.tsx should not exist (replaced by SquadPicker)', async () => {
+  it('CoachSquadPicker.tsx should not exist (replaced by TeamPicker)', async () => {
     const fs = await import('fs')
     expect(
       fs.existsSync('src/components/CoachSquadPicker.tsx'),
-      'CoachSquadPicker is dead code — SquadPicker replaces it'
+      'CoachSquadPicker is dead code — TeamPicker replaces it'
     ).toBe(false)
   })
 
-  it('TeamsManager.tsx should not exist (replaced by SquadPicker)', async () => {
+  it('Old SquadPicker.tsx should not exist (renamed to TeamPicker)', async () => {
     const fs = await import('fs')
     expect(
-      fs.existsSync('src/components/TeamsManager.tsx'),
-      'TeamsManager is dead code — SquadPicker replaces it'
+      fs.existsSync('src/components/SquadPicker.tsx'),
+      'SquadPicker.tsx was renamed to TeamPicker.tsx'
     ).toBe(false)
   })
 })

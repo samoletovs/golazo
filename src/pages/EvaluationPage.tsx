@@ -4,8 +4,8 @@ import { useToast } from '../contexts/ToastContext'
 import type { RosterPlayer, PlayerEvaluation } from '../engine/types'
 
 interface EvaluationPageProps {
-  squadId: string
-  squadName: string
+  teamId: string
+  teamName: string
   coachId: string
   coachName: string
   initialPlayerId?: string
@@ -21,7 +21,7 @@ const EVAL_CATEGORIES: { key: string; field: keyof Pick<PlayerEvaluation, 'techn
   { key: 'knowledge', field: 'knowledgeRating' },
 ]
 
-export function EvaluationPage({ squadId, squadName, coachId, coachName, initialPlayerId, onBack }: EvaluationPageProps) {
+export function EvaluationPage({ teamId, teamName, coachId, coachName, initialPlayerId, onBack }: EvaluationPageProps) {
   const { t } = useTranslation()
   const { showToast } = useToast()
 
@@ -49,7 +49,7 @@ export function EvaluationPage({ squadId, squadName, coachId, coachName, initial
     let cancelled = false
     async function load() {
       try {
-        const res = await fetch(`/api/coach/squad/${encodeURIComponent(squadId)}/roster`)
+        const res = await fetch(`/api/coach/squad/${encodeURIComponent(teamId)}/roster`)
         if (res.ok && !cancelled) {
           const data = await res.json()
           setPlayers(data.players ?? [])
@@ -59,7 +59,7 @@ export function EvaluationPage({ squadId, squadName, coachId, coachName, initial
     }
     load()
     return () => { cancelled = true }
-  }, [squadId])
+  }, [teamId])
 
   function addItem(list: string[], setter: (v: string[]) => void, input: string, inputSetter: (v: string) => void) {
     if (!input.trim()) return
@@ -72,7 +72,7 @@ export function EvaluationPage({ squadId, squadName, coachId, coachName, initial
     setSaving(true)
     try {
       const evaluation = {
-        squadId,
+        teamId,
         playerId: selectedPlayerId,
         coachId,
         coachName,
@@ -85,7 +85,7 @@ export function EvaluationPage({ squadId, squadName, coachId, coachName, initial
         coachNotes: coachNotes.trim() || undefined,
         goalsForNextPeriod: goals,
       }
-      const res = await fetch(`/api/coach/squad/${encodeURIComponent(squadId)}/evaluation`, {
+      const res = await fetch(`/api/coach/squad/${encodeURIComponent(teamId)}/evaluation`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(evaluation),
@@ -104,7 +104,7 @@ export function EvaluationPage({ squadId, squadName, coachId, coachName, initial
         <button onClick={onBack} className="tap-target text-xl" aria-label={t('common.back')}>←</button>
         <div>
           <h2 className="text-lg font-extrabold heading-display">{t('coach.eval.title')}</h2>
-          <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{squadName}</p>
+          <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{teamName}</p>
         </div>
       </div>
 

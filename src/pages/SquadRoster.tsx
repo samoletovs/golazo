@@ -3,13 +3,13 @@ import { useTranslation } from 'react-i18next'
 import type { RosterPlayer } from '../engine/types'
 
 interface SquadRosterProps {
-  squadId: string
-  squadName: string
+  teamId: string
+  teamName: string
   onBack: () => void
   onEvaluate: (playerId: string) => void
 }
 
-export function SquadRoster({ squadId, squadName, onBack, onEvaluate }: SquadRosterProps) {
+export function SquadRoster({ teamId, teamName, onBack, onEvaluate }: SquadRosterProps) {
   const { t } = useTranslation()
   const [players, setPlayers] = useState<RosterPlayer[]>([])
   const [loading, setLoading] = useState(true)
@@ -20,7 +20,7 @@ export function SquadRoster({ squadId, squadName, onBack, onEvaluate }: SquadRos
     async function load() {
       setLoading(true)
       try {
-        const res = await fetch(`/api/coach/squad/${encodeURIComponent(squadId)}/roster`)
+        const res = await fetch(`/api/coach/squad/${encodeURIComponent(teamId)}/roster`)
         if (res.ok && !cancelled) {
           const data = await res.json()
           setPlayers(data.players ?? [])
@@ -30,7 +30,7 @@ export function SquadRoster({ squadId, squadName, onBack, onEvaluate }: SquadRos
     }
     load()
     return () => { cancelled = true }
-  }, [squadId])
+  }, [teamId])
 
   if (selectedPlayer) {
     return (
@@ -104,7 +104,7 @@ export function SquadRoster({ squadId, squadName, onBack, onEvaluate }: SquadRos
         <button onClick={onBack} className="tap-target text-xl" aria-label={t('common.back')}>←</button>
         <div className="flex-1 min-w-0">
           <h2 className="text-lg font-extrabold heading-display">{t('coach.roster.title')}</h2>
-          <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{squadName}</p>
+          <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{teamName}</p>
         </div>
       </div>
 

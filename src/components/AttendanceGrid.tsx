@@ -3,8 +3,8 @@ import { useTranslation } from 'react-i18next'
 import type { RosterPlayer, AttendanceStatus } from '../engine/types'
 
 interface AttendanceGridProps {
-  squadId: string
-  squadName: string
+  teamId: string
+  teamName: string
   coachId: string
   onBack: () => void
 }
@@ -21,7 +21,7 @@ const STATUS_ICONS: Record<AttendanceStatus, string> = {
   late: '⏰',
 }
 
-export function AttendanceGrid({ squadId, squadName, coachId, onBack }: AttendanceGridProps) {
+export function AttendanceGrid({ teamId, teamName, coachId, onBack }: AttendanceGridProps) {
   const { t } = useTranslation()
   const [players, setPlayers] = useState<RosterPlayer[]>([])
   const [loading, setLoading] = useState(true)
@@ -34,7 +34,7 @@ export function AttendanceGrid({ squadId, squadName, coachId, onBack }: Attendan
     async function load() {
       setLoading(true)
       try {
-        const res = await fetch(`/api/coach/squad/${encodeURIComponent(squadId)}/roster`)
+        const res = await fetch(`/api/coach/squad/${encodeURIComponent(teamId)}/roster`)
         if (res.ok && !cancelled) {
           const data = await res.json()
           const roster: RosterPlayer[] = data.players ?? []
@@ -51,7 +51,7 @@ export function AttendanceGrid({ squadId, squadName, coachId, onBack }: Attendan
     }
     load()
     return () => { cancelled = true }
-  }, [squadId])
+  }, [teamId])
 
   function cycleStatus(playerId: string) {
     const order: AttendanceStatus[] = ['present', 'absent', 'excused', 'late']
@@ -75,7 +75,7 @@ export function AttendanceGrid({ squadId, squadName, coachId, onBack }: Attendan
         playerId: p.playerId,
         status: attendance.get(p.playerId) ?? 'present',
       }))
-      await fetch(`/api/coach/squad/${encodeURIComponent(squadId)}/attendance`, {
+      await fetch(`/api/coach/squad/${encodeURIComponent(teamId)}/attendance`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ date, coachId, records }),
@@ -94,7 +94,7 @@ export function AttendanceGrid({ squadId, squadName, coachId, onBack }: Attendan
         <button onClick={onBack} className="tap-target text-xl" aria-label={t('common.back')}>←</button>
         <div className="flex-1 min-w-0">
           <h2 className="text-lg font-extrabold heading-display">{t('coach.attendance.title')}</h2>
-          <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{squadName}</p>
+          <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{teamName}</p>
         </div>
       </div>
 

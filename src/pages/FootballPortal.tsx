@@ -199,7 +199,7 @@ interface ClubNode {
 function buildClubTree(allTeams: SharedTeam[]): ClubNode[] {
   const clubs = allTeams.filter((t) => t.type === 'club' || (!t.type && !t.parentClubId))
   const academies = allTeams.filter((t) => t.type === 'academy')
-  const squads = allTeams.filter((t) => t.type === 'squad')
+  const squads = allTeams.filter((t) => t.type === 'team')
 
   function groupByYear(items: SharedTeam[]): { year: string; squads: SharedTeam[] }[] {
     const map = new Map<string, SharedTeam[]>()
@@ -218,7 +218,7 @@ function buildClubTree(allTeams: SharedTeam[]): ClubNode[] {
       })
       .map(([year, items]) => ({
         year,
-        squads: items.sort((a, b) => (a.squadLabel ?? a.name).localeCompare(b.squadLabel ?? b.name)),
+        squads: items.sort((a, b) => (a.teamLabel ?? a.name).localeCompare(b.teamLabel ?? b.name)),
       }))
   }
 
@@ -326,7 +326,7 @@ function ClubCard({ node, onViewTeam }: { node: ClubNode; onViewTeam: (t: Shared
                         style={{ background: 'var(--color-glass-hover)', color: 'var(--color-text)' }}
                         onClick={() => onViewTeam(squad)}
                       >
-                        {squad.squadLabel ?? squad.name}
+                        {squad.teamLabel ?? squad.name}
                       </button>
                     ))}
                   </div>
@@ -361,7 +361,7 @@ function ClubCard({ node, onViewTeam }: { node: ClubNode; onViewTeam: (t: Shared
                         style={{ background: 'var(--color-glass-hover)', color: 'var(--color-text)' }}
                         onClick={() => onViewTeam(squad)}
                       >
-                        {squad.squadLabel ? `${squad.birthYear ?? ''} ${squad.squadLabel}`.trim() : squad.name}
+                        {squad.teamLabel ? `${squad.birthYear ?? ''} ${squad.teamLabel}`.trim() : squad.name}
                       </button>
                     ))}
                   </div>

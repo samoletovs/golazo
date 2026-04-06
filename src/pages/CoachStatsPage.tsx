@@ -1,24 +1,24 @@
 import { useTranslation } from 'react-i18next'
 import { CoachSquadFilter } from '../components/CoachSquadFilter'
-import type { ManagedSquad } from '../engine/types'
+import type { ManagedTeam } from '../engine/types'
 
 interface CoachStatsPageProps {
-  squads: ManagedSquad[]
+  squads: ManagedTeam[]
   selectedIds: string[]
   onToggleSquad: (id: string) => void
 }
 
 export function CoachStatsPage({ squads, selectedIds, onToggleSquad }: CoachStatsPageProps) {
   const { t } = useTranslation()
-  const filtered = selectedIds.length > 0 ? squads.filter((s) => selectedIds.includes(s.squadId)) : squads
-  const squadCount = filtered.length
+  const filtered = selectedIds.length > 0 ? squads.filter((s) => selectedIds.includes(s.teamId)) : squads
+  const teamCount = filtered.length
 
   return (
     <div className="flex flex-col gap-4 p-4 pb-32">
       <h2 className="text-xl font-extrabold heading-display">📊 {t('nav.stats')}</h2>
 
       {/* Squad filter */}
-      <CoachSquadFilter squads={squads} selectedIds={selectedIds} onToggle={onToggleSquad} />
+      <CoachSquadFilter teams={squads} selectedIds={selectedIds} onToggle={onToggleSquad} />
 
       {squads.length === 0 ? (
         <div className="card text-center py-8">
@@ -157,15 +157,15 @@ export function CoachStatsPage({ squads, selectedIds, onToggleSquad }: CoachStat
           </div>
 
           {/* Per-squad breakdown */}
-          {squadCount > 1 && (
+          {teamCount > 1 && (
             <div>
               <p className="section-label mb-2">{t('coach.stats.perSquad')}</p>
               <div className="flex flex-col gap-2">
                 {filtered.map((sq) => (
-                  <div key={sq.squadId} className="card flex items-center gap-3 p-3">
+                  <div key={sq.teamId} className="card flex items-center gap-3 p-3">
                     <span className="text-lg">⚽</span>
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-bold truncate">{sq.squadName}</p>
+                      <p className="text-sm font-bold truncate">{sq.teamName}</p>
                       <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{t(`coach.role.${sq.role}`)}</p>
                     </div>
                     <div className="text-right">

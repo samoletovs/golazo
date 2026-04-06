@@ -82,7 +82,7 @@ async function handleCreate(req) {
     return jsonResponse({ error: 'Invalid JSON' }, 400);
   }
 
-  const { name, country, city, website, logoUrl, abbreviation, league, aliases, colors, type, parentClubId, birthYear, squadLabel } = body;
+  const { name, country, city, website, logoUrl, abbreviation, league, aliases, colors, type, parentClubId, birthYear, teamLabel } = body;
   if (!name || typeof name !== 'string' || name.length > 100) {
     return jsonResponse({ error: 'Name is required (max 100 chars)' }, 400);
   }
@@ -115,11 +115,11 @@ async function handleCreate(req) {
     website: website?.trim() || undefined,
     logoUrl: logoUrl?.trim() || undefined,
     colors: Array.isArray(colors) ? colors.filter((c) => typeof c === 'string' && /^#[0-9A-Fa-f]{6}$/.test(c)).slice(0, 5) : undefined,
-    type: ['club', 'academy', 'squad'].includes(type) ? type : 'club',
+    type: ['club', 'academy', 'team'].includes(type) ? type : 'club',
     league: league?.trim() || undefined,
     parentClubId: parentClubId?.trim() || undefined,
     birthYear: Number.isInteger(birthYear) && birthYear >= 2000 && birthYear <= 2030 ? birthYear : undefined,
-    squadLabel: squadLabel?.trim()?.substring(0, 3) || undefined,
+    teamLabel: teamLabel?.trim()?.substring(0, 3) || undefined,
     verified,
     verifiedAt: verified ? now : undefined,
     addedBy: 'user',

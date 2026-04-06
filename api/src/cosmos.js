@@ -5,6 +5,7 @@ let _container = null;
 let _teamsContainer = null;
 let _tournamentsContainer = null;
 let _coachContainer = null;
+let _squadsContainer = null;
 
 /**
  * Get or create Cosmos client singleton.
@@ -92,6 +93,22 @@ async function getCoachContainer() {
 }
 
 /**
+ * Singleton Cosmos DB container for squads (season rosters).
+ * Partition key: /teamId.
+ */
+async function getSquadsContainer() {
+  if (_squadsContainer) return _squadsContainer;
+
+  const client = getClient();
+  if (!client) return null;
+
+  const database = process.env.COSMOS_DATABASE || 'golazo';
+  const db = client.database(database);
+  _squadsContainer = db.container('squads');
+  return _squadsContainer;
+}
+
+/**
  * Extract authenticated user from SWA client principal header.
  * @param {import('@azure/functions').HttpRequest} req
  * @returns {{ userId: string, email: string } | null}
@@ -123,4 +140,4 @@ function jsonResponse(body, status = 200) {
   };
 }
 
-module.exports = { getClient, getContainer, getTeamsContainer, getTournamentsContainer, getCoachContainer, getUser, jsonResponse };
+module.exports = { getClient, getContainer, getTeamsContainer, getTournamentsContainer, getCoachContainer, getSquadsContainer, getUser, jsonResponse };

@@ -5,8 +5,8 @@ const { randomUUID } = require('crypto');
 /**
  * Coach management API.
  *
- * GET  /api/coach/squad/{squadId}/roster        — list players linked to squad
- * GET  /api/coach/squad/{squadId}/stats          — aggregated squad stats
+ * GET  /api/coach/squad/{squadId}/roster        — list players linked to team
+ * GET  /api/coach/squad/{squadId}/stats          — aggregated team stats
  * GET  /api/coach/squad/{squadId}/announcements  — list announcements
  * POST /api/coach/squad/{squadId}/announce        — create announcement
  * GET  /api/coach/squad/{squadId}/evaluations    — list evaluations
@@ -14,9 +14,11 @@ const { randomUUID } = require('crypto');
  * POST /api/coach/training-plan                  — create training plan
  * GET  /api/coach/squad/{squadId}/plans           — list training plans
  * POST /api/coach/squad/{squadId}/attendance     — save attendance
+ *
+ * NOTE: Routes still use "squad" in the URL path — rename after full migration.
  */
 
-/* ── Squad Roster ─────────────────────────────────────────── */
+/* ── Team Roster ──────────────────────────────────────────── */
 
 app.http('coach-roster', {
   methods: ['GET'],
@@ -26,12 +28,12 @@ app.http('coach-roster', {
     const user = getUser(req);
     if (!user) return jsonResponse({ error: 'Unauthorized' }, 401);
 
-    const squadId = req.params.squadId;
+    const teamId = req.params.squadId; // TODO: rename route param after migration
     const container = await getContainer();
     if (!container) return jsonResponse({ error: 'Database not configured' }, 503);
 
     try {
-      // Find all players who have this squad in their teams (via registryId)
+      // Find all players who have this team in their teams (via registryId)
       // Note: sync.js stores profile as { docType: 'profile', data: { name, role, teams, ... } }
       const query = `SELECT c.data.id AS id, c.data.name AS name, c.data.jerseyNumber AS jerseyNumber,
                             c.data.positions AS positions, c.data.birthDate AS birthDate,
@@ -42,7 +44,7 @@ app.http('coach-roster', {
                        AND EXISTS(SELECT VALUE t FROM t IN c.data.teams WHERE t.registryId = @squadId AND t.active = true)`;
       const { resources } = await container.items.query({
         query,
-        parameters: [{ name: '@squadId', value: squadId }],
+        parameters: [{ name: '@squadId', value: teamId }],
       }).fetchAll();
 
       const players = resources.map((p) => ({
@@ -63,7 +65,7 @@ app.http('coach-roster', {
   },
 });
 
-/* ── Squad Stats ──────────────────────────────────────────── */
+/* ── Team Stats ───────────────────────────────────────────── */
 
 app.http('coach-stats', {
   methods: ['GET'],
@@ -73,7 +75,7 @@ app.http('coach-stats', {
     const user = getUser(req);
     if (!user) return jsonResponse({ error: 'Unauthorized' }, 401);
 
-    const squadId = req.params.squadId;
+    const teamId = req.params.squadId; // TODO: rename route param after migration
 
     // Return placeholder stats — real aggregation will be built incrementally
     return jsonResponse({
@@ -119,11 +121,11 @@ async function handleGetAnnouncements(req) {
   const container = await getCoachContainer();
   if (!container) return jsonResponse({ announcements: [] });
 
-  const squadId = req.params.squadId;
+  const teamId = req.params.squadId; // TODO: rename route param after migration
   try {
     const { resources } = await container.items.query({
       query: 'SELECT * FROM c WHERE c.squadId = @squadId AND c.docType = "announcement" ORDER BY c.createdAt DESC',
-      parameters: [{ name: '@squadId', value: squadId }],
+      parameters: [{ name: '@squadId', value: teamId }],
     }).fetchAll();
     return jsonResponse({ announcements: resources });
   } catch {
@@ -135,13 +137,13 @@ async function handleCreateAnnouncement(req) {
   const container = await getCoachContainer();
   if (!container) return jsonResponse({ error: 'Database not configured' }, 503);
 
-  const squadId = req.params.squadId;
+  const teamId = req.params.squadId; // TODO: rename route param after migration
   const body = await req.json();
   const now = new Date().toISOString();
 
   const announcement = {
     id: randomUUID(),
-    squadId,
+    squadId: teamId, // TODO: rename field after Cosmos migration
     docType: 'announcement',
     authorId: body.authorId,
     authorName: body.authorName,
@@ -175,11 +177,11 @@ app.http('coach-evaluations', {
     const container = await getCoachContainer();
     if (!container) return jsonResponse({ evaluations: [] });
 
-    const squadId = req.params.squadId;
+    const teamId = req.params.squadId; // TODO: rename route param after migration
     try {
       const { resources } = await container.items.query({
         query: 'SELECT * FROM c WHERE c.squadId = @squadId AND c.docType = "evaluation" ORDER BY c.createdAt DESC',
-        parameters: [{ name: '@squadId', value: squadId }],
+        parameters: [{ name: '@squadId', value: teamId }],
       }).fetchAll();
       return jsonResponse({ evaluations: resources });
     } catch {
@@ -199,13 +201,13 @@ app.http('coach-evaluation-create', {
     const container = await getCoachContainer();
     if (!container) return jsonResponse({ error: 'Database not configured' }, 503);
 
-    const squadId = req.params.squadId;
+    const teamId = req.params.squadId; // TODO: rename route param after migration
     const body = await req.json();
     const now = new Date().toISOString();
 
     const evaluation = {
       id: randomUUID(),
-      squadId,
+      squadId: teamId, // TODO: rename field after Cosmos migration
       docType: 'evaluation',
       playerId: body.playerId,
       coachId: body.coachId,
@@ -253,7 +255,7 @@ app.http('coach-training-plan', {
 
     const plan = {
       id: randomUUID(),
-      squadId: body.squadId,
+      squadId: body.teamId, // TODO: rename field after Cosmos migration
       docType: 'trainingPlan',
       coachId: body.coachId,
       title: body.title,
@@ -289,11 +291,11 @@ app.http('coach-plans', {
     const container = await getCoachContainer();
     if (!container) return jsonResponse({ plans: [] });
 
-    const squadId = req.params.squadId;
+    const teamId = req.params.squadId; // TODO: rename route param after migration
     try {
       const { resources } = await container.items.query({
         query: 'SELECT * FROM c WHERE c.squadId = @squadId AND c.docType = "trainingPlan" ORDER BY c.date DESC',
-        parameters: [{ name: '@squadId', value: squadId }],
+        parameters: [{ name: '@squadId', value: teamId }],
       }).fetchAll();
       return jsonResponse({ plans: resources });
     } catch {
@@ -315,14 +317,14 @@ app.http('coach-attendance', {
     const container = await getCoachContainer();
     if (!container) return jsonResponse({ error: 'Database not configured' }, 503);
 
-    const squadId = req.params.squadId;
+    const teamId = req.params.squadId; // TODO: rename route param after migration
     const body = await req.json();
     const now = new Date().toISOString();
 
-    // Store attendance as a single doc per date+squad
+    // Store attendance as a single doc per date+team
     const doc = {
-      id: `${squadId}-${body.date}`,
-      squadId,
+      id: `${teamId}-${body.date}`,
+      squadId: teamId, // TODO: rename field after Cosmos migration
       docType: 'attendance',
       date: body.date,
       coachId: body.coachId,
