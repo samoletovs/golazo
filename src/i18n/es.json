@@ -223,6 +223,8 @@
   "login.playerDesc": "Registra entrenamientos, partidos y sube de nivel",
   "login.asMentor": "Soy Mentor",
   "login.mentorDesc": "Sigue el progreso y apoya el desarrollo del jugador",
+  "login.asCoach": "Soy entrenador",
+  "login.coachDesc": "Gestiona tu equipo, planifica entrenamientos y evalúa jugadores",
   "login.googleNote": "Inicia sesión con Google para guardar tu progreso",
   "login.skip": "Continuar sin cuenta",
   "onboarding.welcome": "¡Bienvenido a Golazo! ⚽",

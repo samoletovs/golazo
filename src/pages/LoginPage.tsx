@@ -48,6 +48,21 @@ export function LoginPage() {
             </div>
             <span className="text-lg" style={{ color: 'var(--color-text-muted)' }}>→</span>
           </button>
+
+          <button
+            className="login-card tap-target"
+            onClick={login}
+            aria-label={t('coach.role')}
+          >
+            <span className="text-3xl">📋</span>
+            <div className="flex-1 text-left">
+              <p className="text-sm font-bold">{t('coach.role')}</p>
+              <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
+                {t('login.coachDesc')}
+              </p>
+            </div>
+            <span className="text-lg" style={{ color: 'var(--color-text-muted)' }}>→</span>
+          </button>
         </div>
 
         {/* Google sign-in info */}

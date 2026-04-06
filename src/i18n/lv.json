@@ -223,6 +223,8 @@
   "login.playerDesc": "Reģistrē treniņus, spēles un attīsties",
   "login.asMentor": "Es esmu Mentors",
   "login.mentorDesc": "Seko progresam un atbalsti spēlētāja attīstību",
+  "login.asCoach": "Es esmu treneris",
+  "login.coachDesc": "Pārvaldi komandu, plāno treniņus un novērtē spēlētājus",
   "login.googleNote": "Pieslēdzies ar Google, lai saglabātu datus",
   "login.skip": "Turpināt bez konta",
   "onboarding.welcome": "Laipni lūgti Golazo! ⚽",

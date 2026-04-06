@@ -273,6 +273,8 @@
   "login.playerDesc": "Track your training, log matches and level up",
   "login.asMentor": "I'm a Mentor",
   "login.mentorDesc": "Follow progress and support your player's development",
+  "login.asCoach": "I'm a Coach",
+  "login.coachDesc": "Manage your team, plan training and evaluate players",
   "login.googleNote": "Sign in with Google to save your progress",
   "login.skip": "Continue without account",
   "onboarding.welcome": "Welcome to Golazo! ⚽",
