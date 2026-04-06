@@ -8,6 +8,8 @@ interface CoachSquadPickerProps {
   onClose: () => void
 }
 
+type View = 'my-squads' | 'select-club' | 'add-squads'
+
 const ROLE_OPTIONS: { key: CoachRole; emoji: string }[] = [
   { key: 'head', emoji: '👔' },
   { key: 'assistant', emoji: '🤝' },
@@ -15,22 +17,48 @@ const ROLE_OPTIONS: { key: CoachRole; emoji: string }[] = [
   { key: 'fitness', emoji: '🏋️' },
 ]
 
+const YEAR_OPTIONS = Array.from({ length: 15 }, (_, i) => new Date().getFullYear() - 6 - i)
+
+/** Strip accents for search */
+function norm(s: string): string {
+  return s.toLowerCase()
+    .replace(/[āàâä]/g, 'a').replace(/[čć]/g, 'c').replace(/[ēėèêë]/g, 'e')
+    .replace(/[ģ]/g, 'g').replace(/[īìîï]/g, 'i').replace(/[ķ]/g, 'k')
+    .replace(/[ļ]/g, 'l').replace(/[ņ]/g, 'n').replace(/[ōõöò]/g, 'o')
+    .replace(/[šś]/g, 's').replace(/[ūùûü]/g, 'u').replace(/[žź]/g, 'z')
+}
+
 export function CoachSquadPicker({ onClose }: CoachSquadPickerProps) {
   const { t } = useTranslation()
   const { profile, setProfile } = useApp()
 
+  const [view, setView] = useState<View>('my-squads')
   const [allTeams, setAllTeams] = useState<SharedTeam[]>([])
   const [loading, setLoading] = useState(true)
-  const [expandedClub, setExpandedClub] = useState<string | null>(null)
-  const [selectedRole, setSelectedRole] = useState<CoachRole>('head')
   const [search, setSearch] = useState('')
   const [addTeamName, setAddTeamName] = useState<string | null>(null)
 
-  // Current managed squad IDs for quick lookup
-  const managedIds = useMemo(
-    () => new Set((profile?.managedSquads ?? []).map((s) => s.squadId)),
-    [profile?.managedSquads]
-  )
+  // View 3 state
+  const [selectedClub, setSelectedClub] = useState<{ id?: string; name: string; logoUrl?: string } | null>(null)
+  const [birthYear, setBirthYear] = useState(2014)
+  const [squadLabel, setSquadLabel] = useState('A')
+  const [coachRole, setCoachRole] = useState<CoachRole>('head')
+
+  const squads = profile?.managedSquads ?? []
+
+  // Group squads by club
+  const squadsByClub = useMemo(() => {
+    const map = new Map<string, ManagedSquad[]>()
+    for (const sq of squads) {
+      const key = sq.clubName || sq.squadName
+      const arr = map.get(key) ?? []
+      arr.push(sq)
+      map.set(key, arr)
+    }
+    return [...map.entries()]
+      .map(([clubName, items]) => ({ clubName, clubId: items[0].clubId, squads: items }))
+      .sort((a, b) => a.clubName.localeCompare(b.clubName))
+  }, [squads])
 
   useEffect(() => {
     let cancelled = false
@@ -50,367 +78,334 @@ export function CoachSquadPicker({ onClose }: CoachSquadPickerProps) {
     return () => { cancelled = true }
   }, [profile?.country])
 
-  // Build club → squads hierarchy + standalone teams
-  const { clubTree, standaloneTeams } = useMemo(() => {
-    const clubs = allTeams.filter((t) => t.type === 'club')
-    const academies = allTeams.filter((t) => t.type === 'academy')
-    const squads = allTeams.filter((t) => t.type === 'squad')
+  const filteredTeams = useMemo(() => {
+    if (!search) return allTeams
+    const q = norm(search)
+    return allTeams.filter((t) =>
+      norm(t.name).includes(q)
+      || (t.abbreviation && norm(t.abbreviation).includes(q))
+      || t.aliases?.some((a) => norm(a).includes(q))
+      || (t.city && norm(t.city).includes(q))
+    )
+  }, [allTeams, search])
 
-    const tree = clubs
-      .sort((a, b) => a.name.localeCompare(b.name))
-      .map((club) => {
-        const clubAcademies = academies.filter((a) => a.parentClubId === club.id)
-        const allSquads = [
-          ...squads.filter((s) => s.parentClubId === club.id),
-          ...clubAcademies.flatMap((a) => squads.filter((s) => s.parentClubId === a.id)),
-        ].sort((a, b) => {
-          if (a.birthYear && b.birthYear && a.birthYear !== b.birthYear) return b.birthYear - a.birthYear
-          return (a.squadLabel ?? a.name).localeCompare(b.squadLabel ?? b.name)
-        })
-        return { club, squads: allSquads }
-      })
-      .filter((n) => n.squads.length > 0)
-
-    // Standalone: teams without type or not part of any hierarchy
-    const usedInTree = new Set<string>()
-    for (const node of tree) {
-      usedInTree.add(node.club.id)
-      for (const s of node.squads) usedInTree.add(s.id)
-    }
-    for (const a of academies) usedInTree.add(a.id)
-
-    const standalone = allTeams
-      .filter((t) => !usedInTree.has(t.id))
-      .sort((a, b) => a.name.localeCompare(b.name))
-
-    return { clubTree: tree, standaloneTeams: standalone }
-  }, [allTeams])
-
-  /** Normalize for search (strip accents) */
-  function norm(s: string): string {
-    return s.toLowerCase()
-      .replace(/[āàâä]/g, 'a').replace(/[čć]/g, 'c').replace(/[ēėèêë]/g, 'e')
-      .replace(/[ģ]/g, 'g').replace(/[īìîï]/g, 'i').replace(/[ķ]/g, 'k')
-      .replace(/[ļ]/g, 'l').replace(/[ņ]/g, 'n').replace(/[ōõöò]/g, 'o')
-      .replace(/[šś]/g, 's').replace(/[ūùûü]/g, 'u').replace(/[žź]/g, 'z')
-  }
-
-  function teamMatchesSearch(team: SharedTeam, q: string): boolean {
-    if (!q) return true
-    const nq = norm(q)
-    return norm(team.name).includes(nq)
-      || (team.abbreviation && norm(team.abbreviation).includes(nq))
-      || team.aliases?.some((a) => norm(a).includes(nq))
-      || (team.city && norm(team.city).includes(nq))
-      || false
-  }
-
-  // Filtered results
-  const filteredStandaloneTeams = useMemo(
-    () => standaloneTeams.filter((t) => teamMatchesSearch(t, search)),
-    [standaloneTeams, search]
-  )
-
-  const filteredClubTree = useMemo(
-    () => search
-      ? clubTree.filter(({ club, squads }) =>
-          teamMatchesSearch(club, search) || squads.some((s) => teamMatchesSearch(s, search))
-        )
-      : clubTree,
-    [clubTree, search]
-  )
-
-  const hasResults = filteredClubTree.length > 0 || filteredStandaloneTeams.length > 0
-
-  function toggleSquad(squad: SharedTeam) {
+  function removeSquad(squadId: string) {
     if (!profile) return
-    const current = profile.managedSquads ?? []
-
-    if (managedIds.has(squad.id)) {
-      // Remove
-      setProfile({
-        ...profile,
-        managedSquads: current.filter((s) => s.squadId !== squad.id),
-      })
-    } else {
-      // Add
-      const entry: ManagedSquad = {
-        squadId: squad.id,
-        squadName: squad.squadLabel
-          ? `${squad.name || ''} ${squad.birthYear ?? ''} ${squad.squadLabel}`.trim()
-          : squad.name,
-        role: selectedRole,
-        claimedAt: new Date().toISOString(),
-        verified: false,
-      }
-      // Use parent club name if squad name is just a label
-      const parent = allTeams.find((t) => t.id === squad.parentClubId)
-      if (parent) {
-        const grandparent = allTeams.find((t) => t.id === parent.parentClubId)
-        const clubName = grandparent?.name ?? parent.name
-        entry.squadName = `${clubName} ${squad.birthYear ?? ''} ${squad.squadLabel ?? ''}`.trim()
-      }
-      setProfile({
-        ...profile,
-        managedSquads: [...current, entry],
-      })
-    }
+    setProfile({ ...profile, managedSquads: squads.filter((s) => s.squadId !== squadId) })
   }
 
-  const managedCount = profile?.managedSquads?.length ?? 0
+  function addSquad() {
+    if (!profile || !selectedClub) return
+    const name = `${selectedClub.name} ${birthYear} ${squadLabel}`.trim()
+    const current = profile.managedSquads ?? []
+    if (current.some((s) => s.clubName === selectedClub.name && s.birthYear === birthYear && s.squadLabel === squadLabel)) return
+
+    const entry: ManagedSquad = {
+      squadId: crypto.randomUUID(),
+      squadName: name,
+      clubName: selectedClub.name,
+      clubId: selectedClub.id,
+      birthYear,
+      squadLabel,
+      role: coachRole,
+      claimedAt: new Date().toISOString(),
+      verified: false,
+    }
+    setProfile({ ...profile, managedSquads: [...current, entry] })
+  }
+
+  function selectClub(team: SharedTeam) {
+    setSelectedClub({ id: team.id, name: team.name, logoUrl: team.logoUrl })
+    setSearch('')
+    setView('add-squads')
+  }
 
   function handleNewTeamAdded(_name: string, sharedTeam?: SharedTeam) {
-    if (!profile) { setAddTeamName(null); return }
-
     if (sharedTeam) {
-      // Add to allTeams so it shows in the list (deduplicate)
-      setAllTeams((prev) => {
-        if (prev.some((t) => t.id === sharedTeam.id)) return prev
-        return [...prev, sharedTeam]
-      })
-
-      // Directly add to managed squads (don't go through toggleSquad — avoids stale state)
-      const current = profile.managedSquads ?? []
-      if (!current.some((s) => s.squadId === sharedTeam.id)) {
-        const entry: ManagedSquad = {
-          squadId: sharedTeam.id,
-          squadName: sharedTeam.name,
-          role: selectedRole,
-          claimedAt: new Date().toISOString(),
-          verified: false,
-        }
-        setProfile({
-          ...profile,
-          managedSquads: [...current, entry],
-        })
-      }
+      setAllTeams((prev) => prev.some((t) => t.id === sharedTeam.id) ? prev : [...prev, sharedTeam])
+      setSelectedClub({ id: sharedTeam.id, name: sharedTeam.name, logoUrl: sharedTeam.logoUrl })
+      setView('add-squads')
+    } else if (_name.trim()) {
+      setSelectedClub({ name: _name.trim() })
+      setView('add-squads')
     }
     setAddTeamName(null)
     setSearch('')
   }
 
+  const clubSquads = useMemo(() => {
+    if (!selectedClub) return []
+    return squads.filter((s) => s.clubName === selectedClub.name)
+  }, [squads, selectedClub])
+
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center"
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center"
       style={{ background: 'rgba(0,0,0,0.5)' }}
-      onClick={(e) => { if (e.target === e.currentTarget) onClose() }}
-    >
-      <div
-        className="app-shell w-full rounded-t-2xl sm:rounded-2xl animate-fade-up"
-        style={{ maxHeight: '90dvh', overflowY: 'auto', background: 'var(--color-glass, #fff)' }}
-      >
-        {/* Header */}
-        <div className="sticky top-0 z-10 px-5 pt-5 pb-3" style={{ background: 'var(--color-glass, #fff)' }}>
-          <div className="flex items-center justify-between mb-3">
-            <h3 className="text-lg font-extrabold heading-display">
-              📋 {t('coach.onboarding.selectSquads')}
-            </h3>
-            <button onClick={onClose} className="tap-target text-xl" aria-label={t('common.close')}>✕</button>
-          </div>
+      onClick={(e) => { if (e.target === e.currentTarget) onClose() }}>
+      <div className="app-shell w-full rounded-t-2xl sm:rounded-2xl animate-fade-up"
+        style={{ maxHeight: '90dvh', overflowY: 'auto', background: 'var(--color-glass, #fff)' }}>
 
-          {/* Coach role selector */}
-          <div className="flex gap-2 mb-2">
-            {ROLE_OPTIONS.map(({ key, emoji }) => (
-              <button
-                key={key}
-                className="flex-1 text-xs font-bold py-2 rounded-xl tap-target text-center"
-                style={{
-                  background: selectedRole === key ? 'var(--color-primary-bg)' : 'var(--color-glass-hover)',
-                  color: selectedRole === key ? 'var(--color-primary-dark)' : 'var(--color-text-muted)',
-                }}
-                onClick={() => setSelectedRole(key)}
-              >
-                {emoji} {t(`coach.role.${key}`)}
-              </button>
-            ))}
-          </div>
-
-          {managedCount > 0 && (
-            <p className="text-xs font-bold" style={{ color: 'var(--color-primary-dark)' }}>
-              ✓ {managedCount} {managedCount === 1 ? 'squad' : 'squads'} selected
-            </p>
-          )}
-
-          {/* Search + Add new */}
-          <div className="flex gap-2 mt-2">
-            <input
-              type="text"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder={t('teams.search')}
-              className="flex-1 text-sm px-3 py-2 rounded-xl"
-              style={{ background: 'var(--color-glass-hover)' }}
-            />
-            <button
-              className="text-xs font-bold px-3 py-2 rounded-xl tap-target shrink-0"
-              style={{ background: 'var(--color-primary-bg)', color: 'var(--color-primary-dark)' }}
-              onClick={() => setAddTeamName(search || '')}
-            >
-              + {t('teams.addNewTitle')}
-            </button>
-          </div>
-        </div>
-
-        {/* Team list */}
-        <div className="px-5 pb-5">
-          {loading ? (
-            <div className="text-center py-8">
-              <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>...</span>
+        {/* ═══ VIEW 1: My Squads ═══ */}
+        {view === 'my-squads' && (
+          <>
+            <div className="sticky top-0 z-10 px-5 pt-5 pb-3" style={{ background: 'var(--color-glass, #fff)' }}>
+              <div className="flex items-center justify-between mb-1">
+                <h3 className="text-lg font-extrabold heading-display">📋 {t('coach.onboarding.selectSquads')}</h3>
+                <button onClick={onClose} className="tap-target text-xl" aria-label={t('common.close')}>✕</button>
+              </div>
             </div>
-          ) : hasResults ? (
-            <div className="flex flex-col gap-2">
-              {/* Clubs with squad hierarchy */}
-              {filteredClubTree.map(({ club, squads }) => {
-                const isExpanded = expandedClub === club.id
-                const hasSelected = squads.some((s) => managedIds.has(s.id))
-                return (
-                  <div key={club.id} className="card overflow-hidden">
-                    {/* Club header */}
-                    <button
-                      className="w-full flex items-center gap-3 p-3 tap-target text-left"
-                      onClick={() => setExpandedClub(isExpanded ? null : club.id)}
-                    >
-                      {club.logoUrl ? (
-                        <img src={club.logoUrl} alt="" className="w-8 h-8 rounded-lg object-contain shrink-0"
+            <div className="px-5 pb-5">
+              {squadsByClub.length > 0 ? (
+                <div className="flex flex-col gap-4">
+                  {squadsByClub.map((group) => (
+                    <div key={group.clubName}>
+                      <div className="flex items-center justify-between mb-2">
+                        <p className="text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--color-text-muted)' }}>
+                          {group.clubName}
+                        </p>
+                        <button
+                          className="text-xs font-bold px-2 py-1 rounded-lg tap-target"
+                          style={{ color: 'var(--color-primary-dark)' }}
+                          onClick={() => {
+                            setSelectedClub({ id: group.clubId, name: group.clubName })
+                            setView('add-squads')
+                          }}
+                        >
+                          + Add
+                        </button>
+                      </div>
+                      <div className="flex flex-col gap-1.5">
+                        {group.squads.map((sq) => (
+                          <div key={sq.squadId} className="card flex items-center gap-3 p-3">
+                            <div className="flex-1 min-w-0">
+                              <p className="text-sm font-bold truncate">
+                                {sq.birthYear ? `${sq.birthYear} ${sq.squadLabel ?? ''}`.trim() : sq.squadName}
+                              </p>
+                              <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
+                                {t(`coach.role.${sq.role}`)}
+                              </p>
+                            </div>
+                            <button
+                              className="tap-target text-xs px-2 py-1 rounded-lg"
+                              style={{ color: 'var(--color-danger)', background: 'var(--color-error-bg)' }}
+                              onClick={() => removeSquad(sq.squadId)}
+                              aria-label={`Remove ${sq.squadName}`}
+                            >
+                              ✕
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="card text-center py-8">
+                  <span className="text-5xl mb-3 block">🏟️</span>
+                  <p className="text-sm font-bold mb-1">{t('coach.dashboard.noSquads')}</p>
+                </div>
+              )}
+              <button
+                className="btn-primary w-full text-sm py-3 rounded-xl tap-target mt-4"
+                onClick={() => { setSearch(''); setView('select-club') }}
+              >
+                + {t('teams.addNewTitle')}
+              </button>
+            </div>
+            {squads.length > 0 && (
+              <div className="sticky bottom-0 p-5 pt-3" style={{ background: 'var(--color-glass, #fff)' }}>
+                <button className="btn-primary w-full text-sm py-3 rounded-xl tap-target" onClick={onClose}>
+                  ✓ {t('common.done')}
+                </button>
+              </div>
+            )}
+          </>
+        )}
+
+        {/* ═══ VIEW 2: Select Club ═══ */}
+        {view === 'select-club' && (
+          <>
+            <div className="sticky top-0 z-10 px-5 pt-5 pb-3" style={{ background: 'var(--color-glass, #fff)' }}>
+              <div className="flex items-center gap-3 mb-3">
+                <button onClick={() => setView('my-squads')} className="tap-target text-xl" aria-label={t('common.back')}>←</button>
+                <h3 className="text-lg font-extrabold heading-display">{t('teams.search')}</h3>
+              </div>
+              <div className="flex gap-2">
+                <input type="text" value={search} onChange={(e) => setSearch(e.target.value)}
+                  placeholder={t('teams.search')}
+                  className="flex-1 text-sm px-3 py-2 rounded-xl"
+                  style={{ background: 'var(--color-glass-hover)' }} autoFocus />
+                <button
+                  className="text-xs font-bold px-3 py-2 rounded-xl tap-target shrink-0"
+                  style={{ background: 'var(--color-primary-bg)', color: 'var(--color-primary-dark)' }}
+                  onClick={() => setAddTeamName(search || '')}
+                >
+                  + New
+                </button>
+              </div>
+            </div>
+            <div className="px-5 pb-5">
+              {loading ? (
+                <div className="text-center py-8">
+                  <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>...</span>
+                </div>
+              ) : filteredTeams.length > 0 ? (
+                <div className="flex flex-col gap-1.5">
+                  {filteredTeams.slice(0, 30).map((team) => (
+                    <button key={team.id} className="card tap-target flex items-center gap-3 p-3 text-left"
+                      onClick={() => selectClub(team)}>
+                      {team.logoUrl ? (
+                        <img src={team.logoUrl} alt="" className="w-8 h-8 rounded-lg object-contain shrink-0"
                           style={{ background: 'rgba(255,255,255,0.5)' }}
                           onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }} />
                       ) : (
                         <div className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
                           style={{ background: 'var(--color-glass-hover)' }}>
-                          <span className="text-sm">🏟️</span>
+                          <span className="text-sm">⚽</span>
                         </div>
                       )}
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm font-bold truncate">{club.name}</p>
-                        <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
-                          {squads.length} {squads.length === 1 ? 'squad' : 'squads'}
-                        </p>
+                        <p className="text-sm font-bold truncate">{team.name}</p>
+                        {team.city && <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{team.city}</p>}
                       </div>
-                      {hasSelected && (
-                        <span className="text-xs shrink-0" style={{ color: 'var(--color-primary)' }}>✓</span>
-                      )}
-                      <span className="text-xs transition-transform shrink-0" style={{
-                        color: 'var(--color-text-muted)',
-                        transform: isExpanded ? 'rotate(90deg)' : 'rotate(0deg)',
-                      }}>›</span>
+                      <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>→</span>
                     </button>
+                  ))}
+                </div>
+              ) : search ? (
+                <div className="card text-center py-8">
+                  <p className="text-sm font-bold mb-3">{t('portal.noClubs', { age: search })}</p>
+                  <button className="btn-primary text-xs px-4 py-2 rounded-xl tap-target"
+                    onClick={() => setAddTeamName(search)}>
+                    + {t('teams.addCustom', { name: search })}
+                  </button>
+                </div>
+              ) : null}
+            </div>
+          </>
+        )}
 
-                    {/* Squads list */}
-                    {isExpanded && (
-                      <div className="px-3 pb-3 flex flex-wrap gap-2" style={{ borderTop: '1px solid var(--color-glass-border)' }}>
-                        <div className="w-full pt-2" />
-                        {squads.map((squad) => {
-                          const isSelected = managedIds.has(squad.id)
-                          const label = squad.squadLabel
-                            ? `${squad.birthYear ?? ''} ${squad.squadLabel}`.trim()
-                            : squad.name
-                          return (
-                            <button
-                              key={squad.id}
-                              className="text-xs font-bold px-3 py-2 rounded-xl tap-target transition-all"
-                              style={{
-                                background: isSelected ? 'var(--color-primary-bg)' : 'var(--color-glass-hover)',
-                                color: isSelected ? 'var(--color-primary-dark)' : 'var(--color-text)',
-                                border: isSelected ? '2px solid var(--color-primary)' : '2px solid transparent',
-                              }}
-                              onClick={() => toggleSquad(squad)}
-                              aria-pressed={isSelected}
-                            >
-                              {isSelected ? '✓ ' : ''}{label}
-                            </button>
-                          )
-                        })}
-                      </div>
-                    )}
+        {/* ═══ VIEW 3: Add Squads to Club ═══ */}
+        {view === 'add-squads' && selectedClub && (
+          <>
+            <div className="sticky top-0 z-10 px-5 pt-5 pb-3" style={{ background: 'var(--color-glass, #fff)' }}>
+              <div className="flex items-center gap-3 mb-1">
+                <button onClick={() => setView('my-squads')} className="tap-target text-xl" aria-label={t('common.back')}>←</button>
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-base font-extrabold heading-display truncate">{selectedClub.name}</h3>
+                  <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{t('teams.squads')}</p>
+                </div>
+              </div>
+            </div>
+            <div className="px-5 pb-5 flex flex-col gap-4">
+              {/* Existing squads for this club */}
+              {clubSquads.length > 0 && (
+                <div>
+                  <p className="section-label mb-2">{t('teams.squads')}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {clubSquads.map((sq) => (
+                      <span key={sq.squadId}
+                        className="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-xl"
+                        style={{ background: 'var(--color-primary-bg)', color: 'var(--color-primary-dark)' }}>
+                        {sq.birthYear ? `${sq.birthYear} ${sq.squadLabel ?? ''}`.trim() : sq.squadName}
+                        <button onClick={() => removeSquad(sq.squadId)} className="text-xs" style={{ color: 'var(--color-danger)' }}>✕</button>
+                      </span>
+                    ))}
                   </div>
-                )
-              })}
-
-              {/* Standalone teams (no hierarchy) */}
-              {filteredStandaloneTeams.length > 0 && (
-                <div className="flex flex-col gap-1.5">
-                  {filteredClubTree.length > 0 && (
-                    <p className="text-xs font-bold uppercase tracking-wider mt-2 mb-1" style={{ color: 'var(--color-text-muted)' }}>
-                      {t('portal.clubs')}
-                    </p>
-                  )}
-                  {filteredStandaloneTeams.map((team) => {
-                    const isSelected = managedIds.has(team.id)
-                    return (
-                      <button
-                        key={team.id}
-                        className="card tap-target flex items-center gap-3 p-3 text-left transition-all"
-                        style={{
-                          border: isSelected ? '2px solid var(--color-primary)' : '2px solid transparent',
-                          background: isSelected ? 'var(--color-primary-bg)' : undefined,
-                        }}
-                        onClick={() => toggleSquad(team)}
-                        aria-pressed={isSelected}
-                      >
-                        {team.logoUrl ? (
-                          <img src={team.logoUrl} alt="" className="w-8 h-8 rounded-lg object-contain shrink-0"
-                            style={{ background: 'rgba(255,255,255,0.5)' }}
-                            onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }} />
-                        ) : (
-                          <div className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
-                            style={{ background: 'var(--color-glass-hover)' }}>
-                            <span className="text-sm">⚽</span>
-                          </div>
-                        )}
-                        <div className="flex-1 min-w-0">
-                          <p className="text-sm font-bold truncate">{team.name}</p>
-                          {team.city && (
-                            <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{team.city}</p>
-                          )}
-                        </div>
-                        {isSelected && (
-                          <span className="text-xs font-bold shrink-0" style={{ color: 'var(--color-primary-dark)' }}>✓</span>
-                        )}
-                      </button>
-                    )
-                  })}
                 </div>
               )}
-            </div>
-          ) : (
-            <div className="card text-center py-8">
-              <span className="text-5xl mb-3 block">🏟️</span>
-              <p className="text-sm font-bold mb-1">
-                {search ? t('portal.noClubs', { age: search }) : t('coach.dashboard.noSquads')}
-              </p>
-              {search && (
-                <button
-                  className="btn-primary text-xs px-4 py-2 rounded-xl tap-target mt-3"
-                  onClick={() => setAddTeamName(search)}
-                >
-                  + {t('teams.addCustom', { name: search })}
-                </button>
-              )}
-            </div>
-          )}
-        </div>
 
-        {/* Done button */}
-        {managedCount > 0 && (
-          <div className="sticky bottom-0 p-5 pt-3" style={{ background: 'var(--color-glass, #fff)' }}>
-            <button
-              className="btn-primary w-full text-sm py-3 rounded-xl tap-target"
-              onClick={onClose}
-            >
-              ✓ {t('common.done')}
-            </button>
-          </div>
+              {/* Add squad form */}
+              <div className="card p-4">
+                <p className="section-label mb-3">{t('coach.training.new')}</p>
+
+                {/* Birth year */}
+                <div className="mb-3">
+                  <p className="text-xs font-bold mb-1.5" style={{ color: 'var(--color-text-secondary)' }}>
+                    {t('teams.birthYear')}
+                  </p>
+                  <div className="h-scroll gap-1.5">
+                    {YEAR_OPTIONS.map((y) => (
+                      <button key={y} className="text-xs font-bold px-3 py-1.5 rounded-full shrink-0 tap-target"
+                        style={{
+                          background: y === birthYear ? 'var(--color-primary-dark)' : 'var(--color-glass-hover)',
+                          color: y === birthYear ? '#fff' : 'var(--color-text-muted)',
+                        }}
+                        onClick={() => setBirthYear(y)}>
+                        {y}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Squad label */}
+                <div className="mb-3">
+                  <p className="text-xs font-bold mb-1.5" style={{ color: 'var(--color-text-secondary)' }}>
+                    {t('teams.squadLabel')}
+                  </p>
+                  <div className="flex gap-2">
+                    {['A', 'B', 'C', 'D'].map((lbl) => (
+                      <button key={lbl} className="flex-1 text-sm font-bold py-2 rounded-xl tap-target text-center"
+                        style={{
+                          background: lbl === squadLabel ? 'var(--color-primary-dark)' : 'var(--color-glass-hover)',
+                          color: lbl === squadLabel ? '#fff' : 'var(--color-text-muted)',
+                        }}
+                        onClick={() => setSquadLabel(lbl)}>
+                        {lbl}
+                      </button>
+                    ))}
+                    <input type="text"
+                      value={!['A', 'B', 'C', 'D'].includes(squadLabel) ? squadLabel : ''}
+                      onChange={(e) => setSquadLabel(e.target.value)}
+                      placeholder="Other"
+                      className="flex-1 text-xs px-2 py-2 rounded-xl text-center"
+                      style={{ background: !['A', 'B', 'C', 'D'].includes(squadLabel) && squadLabel ? 'var(--color-primary-bg)' : 'var(--color-glass-hover)' }} />
+                  </div>
+                </div>
+
+                {/* Coach role */}
+                <div className="mb-3">
+                  <p className="text-xs font-bold mb-1.5" style={{ color: 'var(--color-text-secondary)' }}>
+                    {t('coach.role')}
+                  </p>
+                  <div className="flex gap-2">
+                    {ROLE_OPTIONS.map(({ key, emoji }) => (
+                      <button key={key} className="flex-1 text-xs font-bold py-2 rounded-xl tap-target text-center"
+                        style={{
+                          background: coachRole === key ? 'var(--color-primary-bg)' : 'var(--color-glass-hover)',
+                          color: coachRole === key ? 'var(--color-primary-dark)' : 'var(--color-text-muted)',
+                        }}
+                        onClick={() => setCoachRole(key)}>
+                        {emoji} {t(`coach.role.${key}`)}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Preview + Add */}
+                <div className="flex items-center gap-3 pt-3" style={{ borderTop: '1px solid var(--color-glass-border)' }}>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-bold truncate">{selectedClub.name} {birthYear} {squadLabel}</p>
+                    <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{t(`coach.role.${coachRole}`)}</p>
+                  </div>
+                  <button className="btn-primary text-sm px-4 py-2 rounded-xl tap-target" onClick={addSquad}>
+                    + {t('teams.addBtn')}
+                  </button>
+                </div>
+              </div>
+
+              <button className="btn-primary w-full text-sm py-3 rounded-xl tap-target"
+                onClick={() => setView('my-squads')}>
+                ✓ {t('common.done')}
+              </button>
+            </div>
+          </>
         )}
       </div>
 
-      {/* Add new team dialog */}
       {addTeamName !== null && (
-        <AddTeamDialog
-          initialName={addTeamName}
-          defaultCountry={profile?.country}
-          onAdd={handleNewTeamAdded}
-          onCancel={() => setAddTeamName(null)}
-        />
+        <AddTeamDialog initialName={addTeamName} defaultCountry={profile?.country}
+          onAdd={handleNewTeamAdded} onCancel={() => setAddTeamName(null)} />
       )}
     </div>
   )

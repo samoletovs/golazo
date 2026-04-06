@@ -784,8 +784,12 @@ export const COACH_SPECIALIZATIONS = {
 export type CoachSpecialization = (typeof COACH_SPECIALIZATIONS)[keyof typeof COACH_SPECIALIZATIONS]
 
 export interface ManagedSquad {
-  squadId: string          // SharedTeam.id (type: 'squad')
-  squadName: string        // Cached name for display
+  squadId: string          // Generated UUID or SharedTeam.id
+  squadName: string        // Full display: "RFS 2015 A"
+  clubName: string         // Parent club: "Rigas Futbola Skola"
+  clubId?: string          // SharedTeam.id of the club (if from registry)
+  birthYear?: number       // e.g. 2015
+  squadLabel?: string      // e.g. "A", "B", "Main", "Second"
   role: CoachRole
   claimedAt: string
   verified: boolean
