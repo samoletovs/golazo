@@ -261,6 +261,19 @@ export function OnboardingPage() {
                     </p>
                   </div>
                 </button>
+                <button
+                  className="login-card tap-target"
+                  onClick={() => { setForm((f) => ({ ...f, role: 'coach' })); next() }}
+                  aria-label={t('coach.role')}
+                >
+                  <span className="text-3xl">📋</span>
+                  <div className="flex-1 text-left">
+                    <p className="text-sm font-bold">{t('coach.role')}</p>
+                    <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
+                      {t('coach.onboarding.selectSquads')}
+                    </p>
+                  </div>
+                </button>
               </div>
             </div>
           )}
@@ -268,7 +281,7 @@ export function OnboardingPage() {
           {step === 'basics' && (
             <div className="flex flex-col gap-4 animate-fade-up">
               <h2 className="text-xl font-extrabold">
-                {form.role === 'mentor' ? t('onboarding.aboutPlayer') : t('onboarding.aboutYou')}
+                {form.role === 'coach' ? t('coach.onboarding.welcome') : form.role === 'mentor' ? t('onboarding.aboutPlayer') : t('onboarding.aboutYou')}
               </h2>
               <div className="flex flex-col gap-3">
                 <label className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>

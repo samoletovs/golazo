@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
 import { TournamentImport } from '../components/TournamentImport'
 import { TeamProfile } from '../components/TeamProfile'
-import { getMatchResult, getAgeTier } from '../engine/types'
+import { getMatchResult } from '../engine/types'
 import type { ScheduleEvent, TournamentSummary, MatchEntry, SharedTeam } from '../engine/types'
 
 /* ── Calendar Strip ─────────────────────────────────────── */
@@ -184,25 +184,201 @@ function UpcomingEventRow({ event }: { event: ScheduleEvent }) {
 
 /* ── Clubs & Teams Browser ───────────────────────────────── */
 
-const AGE_GROUPS = ['U7', 'U8', 'U9', 'U10', 'U11', 'U12', 'U13', 'U14', 'U15', 'U16', 'U17', 'U19', 'Senior', 'Women']
-
-function getPlayerAgeGroup(birthDate?: string): string {
-  if (!birthDate) return 'U12'
-  const tier = getAgeTier(birthDate)
-  switch (tier) {
-    case 'u8': return 'U9'
-    case 'u12': return 'U11'
-    case 'u16': return 'U15'
-    case 'u19plus': return 'U19'
-    default: return 'U12'
-  }
+/** Club node with resolved children: academies → squads grouped by birth year */
+interface ClubNode {
+  club: SharedTeam
+  academies: {
+    academy: SharedTeam
+    /** Squads grouped by birth year, sorted newest first. Key = birthYear or 'other' */
+    byYear: { year: string; squads: SharedTeam[] }[]
+  }[]
+  /** Direct squads (no academy intermediary) */
+  directSquads: { year: string; squads: SharedTeam[] }[]
 }
 
-function ClubsBrowser({ country, birthDate }: { country?: string; birthDate?: string }) {
+function buildClubTree(allTeams: SharedTeam[]): ClubNode[] {
+  const clubs = allTeams.filter((t) => t.type === 'club' || (!t.type && !t.parentClubId))
+  const academies = allTeams.filter((t) => t.type === 'academy')
+  const squads = allTeams.filter((t) => t.type === 'squad')
+
+  function groupByYear(items: SharedTeam[]): { year: string; squads: SharedTeam[] }[] {
+    const map = new Map<string, SharedTeam[]>()
+    for (const s of items) {
+      const key = s.birthYear ? String(s.birthYear) : 'other'
+      const arr = map.get(key) ?? []
+      arr.push(s)
+      map.set(key, arr)
+    }
+    // Sort years newest first, 'other' last
+    return [...map.entries()]
+      .sort(([a], [b]) => {
+        if (a === 'other') return 1
+        if (b === 'other') return -1
+        return Number(b) - Number(a)
+      })
+      .map(([year, items]) => ({
+        year,
+        squads: items.sort((a, b) => (a.squadLabel ?? a.name).localeCompare(b.squadLabel ?? b.name)),
+      }))
+  }
+
+  return clubs
+    .sort((a, b) => a.name.localeCompare(b.name))
+    .map((club) => {
+      const clubAcademies = academies.filter((a) => a.parentClubId === club.id)
+      const directSquadList = squads.filter((s) => s.parentClubId === club.id)
+
+      return {
+        club,
+        academies: clubAcademies
+          .sort((a, b) => a.name.localeCompare(b.name))
+          .map((academy) => ({
+            academy,
+            byYear: groupByYear(squads.filter((s) => s.parentClubId === academy.id)),
+          })),
+        directSquads: groupByYear(directSquadList),
+      }
+    })
+    // Only show clubs that have some structure (academies or squads) or are standalone
+    .filter((n) => n.academies.length > 0 || n.directSquads.length > 0 || true)
+}
+
+function ClubCard({ node, onViewTeam }: { node: ClubNode; onViewTeam: (t: SharedTeam) => void }) {
+  const { t } = useTranslation()
+  const [expanded, setExpanded] = useState(false)
+  const { club, academies, directSquads } = node
+  const primaryColor = club.colors?.[0] ?? 'var(--color-primary)'
+  const hasChildren = academies.length > 0 || directSquads.length > 0
+
+  return (
+    <div className="card overflow-hidden">
+      {/* Club header */}
+      <button
+        className="w-full flex items-center gap-3 p-3 tap-target text-left"
+        onClick={() => hasChildren ? setExpanded(!expanded) : onViewTeam(club)}
+        aria-expanded={hasChildren ? expanded : undefined}
+      >
+        {club.logoUrl ? (
+          <div className="w-10 h-10 rounded-xl overflow-hidden shrink-0 flex items-center justify-center"
+            style={{ background: 'rgba(255,255,255,0.9)', boxShadow: '0 2px 6px rgba(0,0,0,0.08)' }}>
+            <img src={club.logoUrl} alt="" className="w-7 h-7 object-contain"
+              onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }} />
+          </div>
+        ) : (
+          <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
+            style={{ background: `${primaryColor}15` }}>
+            <span className="text-lg">🏟️</span>
+          </div>
+        )}
+        <div className="flex-1 min-w-0">
+          <p className="text-sm font-bold truncate">{club.name}</p>
+          <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
+            {[club.city, club.league].filter(Boolean).join(' · ')}
+          </p>
+        </div>
+        <div className="flex items-center gap-1.5 shrink-0">
+          {club.verified && (
+            <span className="text-xs" style={{ color: 'var(--color-primary)' }}>✓</span>
+          )}
+          {hasChildren && (
+            <span className="text-xs transition-transform" style={{
+              color: 'var(--color-text-muted)',
+              transform: expanded ? 'rotate(90deg)' : 'rotate(0deg)',
+            }}>›</span>
+          )}
+        </div>
+      </button>
+
+      {/* Expanded: show academies + squads */}
+      {expanded && (
+        <div className="px-3 pb-3" style={{ borderTop: '1px solid var(--color-glass-border)' }}>
+          {/* View club profile link */}
+          <button
+            className="w-full text-xs font-bold py-2 text-center"
+            style={{ color: 'var(--color-primary-dark)' }}
+            onClick={() => onViewTeam(club)}
+          >
+            {t('teams.viewClub')} →
+          </button>
+
+          {/* Academies with their squads */}
+          {academies.map(({ academy, byYear }) => (
+            <div key={academy.id} className="mt-2">
+              <button
+                className="flex items-center gap-2 w-full text-left py-1 tap-target"
+                onClick={() => onViewTeam(academy)}
+              >
+                <span className="text-xs">🎓</span>
+                <span className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>
+                  {academy.name}
+                </span>
+              </button>
+              {byYear.map(({ year, squads }) => (
+                <div key={year} className="ml-5 mt-1">
+                  <p className="text-xs font-bold mb-1" style={{ color: 'var(--color-text-muted)' }}>
+                    {year === 'other' ? t('teams.squads') : year}
+                  </p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {squads.map((squad) => (
+                      <button
+                        key={squad.id}
+                        className="text-xs font-bold px-2.5 py-1.5 rounded-lg tap-target transition-all"
+                        style={{ background: 'var(--color-glass-hover)', color: 'var(--color-text)' }}
+                        onClick={() => onViewTeam(squad)}
+                      >
+                        {squad.squadLabel ?? squad.name}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              ))}
+              {byYear.length === 0 && (
+                <p className="ml-5 text-xs py-1" style={{ color: 'var(--color-text-muted)' }}>
+                  {t('teams.noSquads')}
+                </p>
+              )}
+            </div>
+          ))}
+
+          {/* Direct squads (no academy) */}
+          {directSquads.length > 0 && (
+            <div className="mt-2">
+              {academies.length > 0 && (
+                <p className="text-xs font-bold mb-1" style={{ color: 'var(--color-text-muted)' }}>
+                  {t('teams.squads')}
+                </p>
+              )}
+              {directSquads.map(({ year, squads }) => (
+                <div key={year} className="ml-2 mt-1">
+                  <p className="text-xs font-bold mb-1" style={{ color: 'var(--color-text-muted)' }}>
+                    {year === 'other' ? '' : year}
+                  </p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {squads.map((squad) => (
+                      <button
+                        key={squad.id}
+                        className="text-xs font-bold px-2.5 py-1.5 rounded-lg tap-target transition-all"
+                        style={{ background: 'var(--color-glass-hover)', color: 'var(--color-text)' }}
+                        onClick={() => onViewTeam(squad)}
+                      >
+                        {squad.squadLabel ? `${squad.birthYear ?? ''} ${squad.squadLabel}`.trim() : squad.name}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  )
+}
+
+function ClubsBrowser({ country }: { country?: string }) {
   const { t } = useTranslation()
   const [allTeams, setAllTeams] = useState<SharedTeam[]>([])
   const [loading, setLoading] = useState(false)
-  const [selectedAge, setSelectedAge] = useState(getPlayerAgeGroup(birthDate))
   const [viewTeam, setViewTeam] = useState<SharedTeam | null>(null)
 
   useEffect(() => {
@@ -210,7 +386,7 @@ function ClubsBrowser({ country, birthDate }: { country?: string; birthDate?: st
     async function load() {
       setLoading(true)
       try {
-        const params = new URLSearchParams({ limit: '100' })
+        const params = new URLSearchParams({ limit: '500' })
         if (country) params.set('country', country)
         const res = await fetch(`/api/teams?${params}`)
         if (res.ok && !cancelled) {
@@ -224,103 +400,38 @@ function ClubsBrowser({ country, birthDate }: { country?: string; birthDate?: st
     return () => { cancelled = true }
   }, [country])
 
-  const filteredTeams = useMemo(() => {
-    return allTeams
-      .filter((t) => t.ageGroups?.includes(selectedAge))
-      .sort((a, b) => a.name.localeCompare(b.name))
-  }, [allTeams, selectedAge])
-
-  const ageIdx = AGE_GROUPS.indexOf(selectedAge)
+  const clubTree = useMemo(() => buildClubTree(allTeams), [allTeams])
 
   return (
     <div>
       <p className="section-label mb-2">{t('portal.clubs')}</p>
 
-      {/* Age group selector — swipeable pills */}
-      <div className="flex items-center gap-2 mb-3">
-        <button
-          className="tap-target text-lg shrink-0"
-          style={{ color: ageIdx > 0 ? 'var(--color-primary-dark)' : 'var(--color-text-muted)', opacity: ageIdx > 0 ? 1 : 0.3 }}
-          onClick={() => ageIdx > 0 && setSelectedAge(AGE_GROUPS[ageIdx - 1])}
-          disabled={ageIdx <= 0}
-          aria-label="Previous age group"
-        >
-          ‹
-        </button>
-        <div className="h-scroll gap-1.5 flex-1" style={{ scrollSnapType: 'x mandatory' }}>
-          {AGE_GROUPS.map((ag) => (
-            <button
-              key={ag}
-              className="text-xs font-bold px-3 py-1.5 rounded-full shrink-0 tap-target transition-all"
-              style={{
-                scrollSnapAlign: 'center',
-                background: ag === selectedAge ? 'var(--color-primary-dark)' : 'var(--color-glass-hover)',
-                color: ag === selectedAge ? '#fff' : 'var(--color-text-muted)',
-              }}
-              onClick={() => setSelectedAge(ag)}
-            >
-              {ag}
-            </button>
-          ))}
-        </div>
-        <button
-          className="tap-target text-lg shrink-0"
-          style={{ color: ageIdx < AGE_GROUPS.length - 1 ? 'var(--color-primary-dark)' : 'var(--color-text-muted)', opacity: ageIdx < AGE_GROUPS.length - 1 ? 1 : 0.3 }}
-          onClick={() => ageIdx < AGE_GROUPS.length - 1 && setSelectedAge(AGE_GROUPS[ageIdx + 1])}
-          disabled={ageIdx >= AGE_GROUPS.length - 1}
-          aria-label="Next age group"
-        >
-          ›
-        </button>
-      </div>
-
-      {/* Teams grid */}
       {loading ? (
         <div className="text-center py-4">
           <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>...</span>
         </div>
-      ) : filteredTeams.length > 0 ? (
-        <div className="grid grid-cols-2 gap-2">
-          {filteredTeams.map((team) => (
-            <button
-              key={team.id}
-              className="card tap-target flex items-center gap-2 p-3 text-left"
-              onClick={() => setViewTeam(team)}
-            >
-              {team.logoUrl ? (
-                <img
-                  src={team.logoUrl}
-                  alt=""
-                  className="w-8 h-8 rounded-lg object-contain shrink-0"
-                  style={{ background: 'rgba(255,255,255,0.5)' }}
-                  onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
-                />
-              ) : (
-                <div className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0" style={{ background: 'var(--color-glass-hover)' }}>
-                  <span className="text-sm">⚽</span>
-                </div>
-              )}
-              <div className="flex-1 min-w-0">
-                <p className="text-xs font-bold truncate">{team.name}</p>
-                {team.city && (
-                  <p className="text-xs truncate" style={{ color: 'var(--color-text-muted)' }}>{team.city}</p>
-                )}
-              </div>
-              {team.verified && (
-                <span className="text-xs shrink-0" style={{ color: 'var(--color-primary)' }}>✓</span>
-              )}
-            </button>
+      ) : clubTree.length > 0 ? (
+        <div className="flex flex-col gap-2">
+          {clubTree.map((node) => (
+            <ClubCard key={node.club.id} node={node} onViewTeam={setViewTeam} />
           ))}
         </div>
       ) : (
         <div className="card text-center py-4">
           <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
-            {t('portal.noClubs', { age: selectedAge })}
+            {t('portal.noClubs', { age: '' })}
           </p>
         </div>
       )}
 
-      {viewTeam && <TeamProfile team={viewTeam} onClose={() => setViewTeam(null)} />}
+      {viewTeam && (
+        <TeamProfile
+          team={viewTeam}
+          allTeams={allTeams}
+          onClose={() => setViewTeam(null)}
+          onNavigate={setViewTeam}
+        />
+      )}
     </div>
   )
 }
@@ -462,7 +573,7 @@ export function FootballPortal() {
       )}
 
       {/* Clubs & Teams Browser */}
-      <ClubsBrowser country={profile?.country} birthDate={profile?.birthDate} />
+      <ClubsBrowser country={profile?.country} />
 
       {/* Empty state if nothing */}
       {tournamentSummaries.length === 0 && recentResults.length === 0 && upcoming.length === 0 && (

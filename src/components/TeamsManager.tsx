@@ -1,9 +1,18 @@
-import { useState } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
 import { TeamPicker } from './TeamPicker'
 import { AddTeamDialog } from './AddTeamDialog'
 import type { PlayerTeam, SharedTeam } from '../engine/types'
+
+/** Resolved hierarchy info for a player team */
+interface TeamWithContext {
+  team: PlayerTeam
+  registry?: SharedTeam
+  parent?: SharedTeam
+  /** Display label: "Club", "Academy", or "2013 A" */
+  hierarchyLabel?: string
+}
 
 export function TeamsManager({ onClose }: { onClose: () => void }) {
   const { t } = useTranslation()
@@ -23,6 +32,70 @@ export function TeamsManager({ onClose }: { onClose: () => void }) {
   const allOpponents = [...new Set(matches.map((m) => m.opponent).filter(Boolean))].sort()
   const teamNames = new Set(teams.map((t) => t.name.toLowerCase()))
   const unknownOpponents = allOpponents.filter((o) => !teamNames.has(o.toLowerCase()) && !teams.some((t) => t.aliases.some((a) => a.toLowerCase() === o.toLowerCase())))
+
+  // Fetch registry data for hierarchy context
+  const [registryTeams, setRegistryTeams] = useState<SharedTeam[]>([])
+  useEffect(() => {
+    let cancelled = false
+    async function load() {
+      try {
+        const params = new URLSearchParams({ limit: '500' })
+        if (profile?.country) params.set('country', profile.country)
+        const res = await fetch(`/api/teams?${params}`)
+        if (res.ok && !cancelled) {
+          const data = await res.json()
+          setRegistryTeams(data.teams || [])
+        }
+      } catch { /* offline — hierarchy context just won't show */ }
+    }
+    if (teams.some((t) => t.registryId)) load()
+    return () => { cancelled = true }
+  }, [profile?.country, teams.length]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Build registry lookup and resolve hierarchy
+  const teamsWithContext = useMemo((): TeamWithContext[] => {
+    const byId = new Map(registryTeams.map((rt) => [rt.id, rt]))
+    return teams.map((team) => {
+      const registry = team.registryId ? byId.get(team.registryId) : undefined
+      const parent = registry?.parentClubId ? byId.get(registry.parentClubId) : undefined
+      let hierarchyLabel: string | undefined
+      if (registry?.type === 'squad') {
+        hierarchyLabel = [registry.birthYear, registry.squadLabel].filter(Boolean).join(' ')
+      } else if (registry?.type === 'academy') {
+        hierarchyLabel = t('teams.academy')
+      } else if (registry?.type === 'club') {
+        hierarchyLabel = t('teams.club')
+      }
+      return { team, registry, parent, hierarchyLabel }
+    })
+  }, [teams, registryTeams, t])
+
+  // Group teams by parent club for display
+  const groupedTeams = useMemo(() => {
+    const groups: { parentName: string; parentLogo?: string; items: TeamWithContext[] }[] = []
+    const grouped = new Set<string>()
+
+    // First, group teams that share a parent
+    for (const tc of teamsWithContext) {
+      if (tc.parent && !grouped.has(tc.team.id)) {
+        const siblings = teamsWithContext.filter((s) => s.parent?.id === tc.parent?.id)
+        groups.push({
+          parentName: tc.parent.name,
+          parentLogo: tc.parent.logoUrl,
+          items: siblings,
+        })
+        for (const s of siblings) grouped.add(s.team.id)
+      }
+    }
+
+    // Then, add ungrouped teams
+    const ungrouped = teamsWithContext.filter((tc) => !grouped.has(tc.team.id))
+    if (ungrouped.length > 0) {
+      groups.push({ parentName: '', items: ungrouped })
+    }
+
+    return groups
+  }, [teamsWithContext])
 
   function updateTeams(updated: PlayerTeam[]) {
     if (!profile) return
@@ -186,10 +259,26 @@ export function TeamsManager({ onClose }: { onClose: () => void }) {
           onAddNew={(name) => setAddTeamName(name)}
         />
 
-        {/* Team details — expandable per team */}
+        {/* Team details — grouped by parent club */}
         {teams.length > 0 && (
-          <div className="flex flex-col gap-2 mt-4">
-            {teams.map((team) => (
+          <div className="flex flex-col gap-3 mt-4">
+            {groupedTeams.map((group) => (
+              <div key={group.parentName || 'ungrouped'}>
+                {/* Parent club header */}
+                {group.parentName && (
+                  <div className="flex items-center gap-2 mb-2">
+                    {group.parentLogo && (
+                      <img src={group.parentLogo} alt="" className="w-5 h-5 rounded object-contain shrink-0"
+                        onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }} />
+                    )}
+                    <p className="text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--color-text-muted)' }}>
+                      {group.parentName}
+                    </p>
+                  </div>
+                )}
+
+                <div className="flex flex-col gap-2">
+                  {group.items.map(({ team, hierarchyLabel }) => (
               <div key={team.id} className="card p-3">
                 <div className="flex items-center gap-2">
                   <button
@@ -209,7 +298,15 @@ export function TeamsManager({ onClose }: { onClose: () => void }) {
                     />
                   )}
                   <div className="flex-1 min-w-0">
-                    <span className="text-sm font-bold">{team.name}</span>
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-sm font-bold">{team.name}</span>
+                      {hierarchyLabel && (
+                        <span className="text-xs px-1.5 py-0.5 rounded-md font-bold"
+                          style={{ background: 'var(--color-glass-active)', color: 'var(--color-text-muted)', fontSize: '0.6rem' }}>
+                          {hierarchyLabel}
+                        </span>
+                      )}
+                    </div>
                     {team.website && (
                       <a
                         href={team.website}
@@ -300,6 +397,9 @@ export function TeamsManager({ onClose }: { onClose: () => void }) {
                     </div>
                   </div>
                 )}
+              </div>
+            ))}
+                </div>
               </div>
             ))}
           </div>

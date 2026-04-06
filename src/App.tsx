@@ -23,12 +23,19 @@ const ProgressPage = lazy(() => import('./pages/ProgressPage').then(m => ({ defa
 const LeaderboardPage = lazy(() => import('./pages/LeaderboardPage').then(m => ({ default: m.LeaderboardPage })))
 const FootballPortal = lazy(() => import('./pages/FootballPortal').then(m => ({ default: m.FootballPortal })))
 const MentorDashboard = lazy(() => import('./pages/MentorDashboard').then(m => ({ default: m.MentorDashboard })))
+const CoachDashboard = lazy(() => import('./pages/CoachDashboard').then(m => ({ default: m.CoachDashboard })))
+const SquadRoster = lazy(() => import('./pages/SquadRoster').then(m => ({ default: m.SquadRoster })))
+const TrainingPlanner = lazy(() => import('./pages/TrainingPlanner').then(m => ({ default: m.TrainingPlanner })))
+const AnnouncementsPage = lazy(() => import('./pages/AnnouncementsPage').then(m => ({ default: m.AnnouncementsPage })))
+const EvaluationPage = lazy(() => import('./pages/EvaluationPage').then(m => ({ default: m.EvaluationPage })))
+const AttendanceGrid = lazy(() => import('./components/AttendanceGrid').then(m => ({ default: m.AttendanceGrid })))
 
-type Page = 'dashboard' | 'log' | 'learn' | 'exercises' | 'profile' | 'schedule' | 'progress' | 'leaderboard' | 'challenges' | 'portal' | 'mentor'
+type Page = 'dashboard' | 'log' | 'learn' | 'exercises' | 'profile' | 'schedule' | 'progress' | 'leaderboard' | 'challenges' | 'portal' | 'mentor' | 'coach' | 'coach-roster' | 'coach-training' | 'coach-announce' | 'coach-evaluate' | 'coach-attendance'
 
 function AppContent() {
   const [page, setPage] = useState<Page>('dashboard')
   const [pageKey, setPageKey] = useState(0)
+  const [coachSquadId, setCoachSquadId] = useState('')
   const { user, loading: authLoading } = useAuth()
   const { onboardingComplete, profile } = useApp()
   const [skippedLogin, setSkippedLogin] = useState(false)
@@ -81,6 +88,9 @@ function AppContent() {
     return <OnboardingPage />
   }
 
+  // Coaches start on the coach dashboard
+  const isCoach = profile?.role === 'coach'
+
   return (
     <div className="flex flex-col min-h-dvh">
       <div className="app-shell flex flex-col min-h-dvh">
@@ -90,7 +100,19 @@ function AppContent() {
 
         <main className="flex-1 overflow-y-auto pb-20">
           <div key={pageKey} className="page-enter">
-            {page === 'dashboard' && <Dashboard onNavigate={handleNavigate} />}
+            {page === 'dashboard' && !isCoach && <Dashboard onNavigate={handleNavigate} />}
+            {page === 'dashboard' && isCoach && (
+              <Suspense fallback={<div className="flex items-center justify-center p-8"><span className="text-3xl">⚽</span></div>}>
+                <CoachDashboard
+                  squads={(profile as unknown as { managedSquads?: import('./engine/types').ManagedSquad[] }).managedSquads ?? []}
+                  onNavigate={(sub, squadId) => {
+                    setCoachSquadId(squadId)
+                    handleNavigate(`coach-${sub}` as Page)
+                  }}
+                  onManageSquads={() => handleNavigate('profile')}
+                />
+              </Suspense>
+            )}
             {page === 'log' && <LogPage />}
             <Suspense fallback={<div className="flex items-center justify-center p-8"><span className="text-3xl">⚽</span></div>}>
               {page === 'learn' && <LearnPage />}
@@ -102,6 +124,60 @@ function AppContent() {
               {page === 'leaderboard' && <LeaderboardPage />}
               {page === 'portal' && <FootballPortal />}
               {page === 'mentor' && <MentorDashboard onBack={() => handleNavigate('profile')} />}
+              {page === 'coach' && profile?.role === 'coach' && (
+                <CoachDashboard
+                  squads={(profile as unknown as { managedSquads?: import('./engine/types').ManagedSquad[] }).managedSquads ?? []}
+                  onNavigate={(sub, squadId) => {
+                    setCoachSquadId(squadId)
+                    handleNavigate(`coach-${sub}` as Page)
+                  }}
+                  onManageSquads={() => handleNavigate('profile')}
+                />
+              )}
+              {page === 'coach-roster' && (
+                <SquadRoster
+                  squadId={coachSquadId}
+                  squadName={coachSquadId}
+                  onBack={() => handleNavigate('coach')}
+                  onEvaluate={() => {
+                    handleNavigate('coach-evaluate')
+                  }}
+                />
+              )}
+              {page === 'coach-training' && (
+                <TrainingPlanner
+                  squadId={coachSquadId}
+                  squadName={coachSquadId}
+                  coachId={profile?.id ?? ''}
+                  onBack={() => handleNavigate('coach')}
+                />
+              )}
+              {page === 'coach-announce' && (
+                <AnnouncementsPage
+                  squadId={coachSquadId}
+                  squadName={coachSquadId}
+                  coachId={profile?.id ?? ''}
+                  coachName={profile?.name ?? ''}
+                  onBack={() => handleNavigate('coach')}
+                />
+              )}
+              {page === 'coach-evaluate' && (
+                <EvaluationPage
+                  squadId={coachSquadId}
+                  squadName={coachSquadId}
+                  coachId={profile?.id ?? ''}
+                  coachName={profile?.name ?? ''}
+                  onBack={() => handleNavigate('coach')}
+                />
+              )}
+              {page === 'coach-attendance' && (
+                <AttendanceGrid
+                  squadId={coachSquadId}
+                  squadName={coachSquadId}
+                  coachId={profile?.id ?? ''}
+                  onBack={() => handleNavigate('coach')}
+                />
+              )}
             </Suspense>
           </div>
         </main>

@@ -1,9 +1,14 @@
+import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import type { SharedTeam } from '../engine/types'
 
 interface TeamProfileProps {
   team: SharedTeam
   onClose: () => void
+  /** Full team list for resolving parent/sibling hierarchy */
+  allTeams?: SharedTeam[]
+  /** Navigate to another team within the modal */
+  onNavigate?: (team: SharedTeam) => void
 }
 
 const SOCIAL_ICONS: Record<string, string> = {
@@ -11,10 +16,49 @@ const SOCIAL_ICONS: Record<string, string> = {
   tiktok: '🎵', linkedin: '💼', website: '🔗',
 }
 
-export function TeamProfile({ team, onClose }: TeamProfileProps) {
+const TYPE_EMOJI: Record<string, string> = {
+  club: '🏟️',
+  academy: '🎓',
+  squad: '⚽',
+}
+
+export function TeamProfile({ team, onClose, allTeams, onNavigate }: TeamProfileProps) {
   const { t } = useTranslation()
   const primaryColor = team.colors?.[0] ?? 'var(--color-primary)'
   const secondaryColor = team.colors?.[1] ?? 'var(--color-primary-light)'
+
+  // Resolve hierarchy from allTeams
+  const parentTeam = useMemo(() => {
+    if (!allTeams || !team.parentClubId) return undefined
+    return allTeams.find((t) => t.id === team.parentClubId)
+  }, [allTeams, team.parentClubId])
+
+  const childTeams = useMemo(() => {
+    if (!allTeams) return []
+    return allTeams
+      .filter((t) => t.parentClubId === team.id)
+      .sort((a, b) => {
+        // Sort by birth year desc, then by squad label
+        if (a.birthYear && b.birthYear && a.birthYear !== b.birthYear) return b.birthYear - a.birthYear
+        return (a.squadLabel ?? a.name).localeCompare(b.squadLabel ?? b.name)
+      })
+  }, [allTeams, team.id])
+
+  const siblingSquads = useMemo(() => {
+    if (!allTeams || !team.parentClubId || team.type !== 'squad') return []
+    return allTeams
+      .filter((t) => t.parentClubId === team.parentClubId && t.id !== team.id && t.type === 'squad')
+      .filter((t) => t.birthYear === team.birthYear) // Same age group
+      .sort((a, b) => (a.squadLabel ?? a.name).localeCompare(b.squadLabel ?? b.name))
+  }, [allTeams, team])
+
+  // Type badge text
+  const typeLabel = team.type ? t(`teams.${team.type}`) : undefined
+  const typeEmoji = TYPE_EMOJI[team.type ?? ''] ?? '⚽'
+
+  function handleNavigate(target: SharedTeam) {
+    if (onNavigate) onNavigate(target)
+  }
 
   return (
     <div
@@ -81,6 +125,14 @@ export function TeamProfile({ team, onClose }: TeamProfileProps) {
                 <p className="text-xs font-bold mt-0.5" style={{ color: 'rgba(255,255,255,0.7)' }}>
                   {team.league}
                 </p>
+              )}
+              {typeLabel && (
+                <span className="inline-flex items-center gap-1 text-xs font-bold mt-1 px-2 py-0.5 rounded-full"
+                  style={{ background: 'rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.9)' }}>
+                  {typeEmoji} {typeLabel}
+                  {team.birthYear ? ` · ${team.birthYear}` : ''}
+                  {team.squadLabel ? ` ${team.squadLabel}` : ''}
+                </span>
               )}
             </div>
           </div>
@@ -166,6 +218,93 @@ export function TeamProfile({ team, onClose }: TeamProfileProps) {
               <p className="text-xs leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
                 {team.aliases.join(' · ')}
               </p>
+            </div>
+          )}
+
+          {/* Parent club navigation */}
+          {parentTeam && onNavigate && (
+            <div>
+              <p className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: 'var(--color-text-muted)' }}>
+                {t('teams.parentClub')}
+              </p>
+              <button
+                className="w-full flex items-center gap-3 p-3 rounded-xl tap-target text-left transition-all"
+                style={{ background: 'var(--color-glass-hover)' }}
+                onClick={() => handleNavigate(parentTeam)}
+              >
+                {parentTeam.logoUrl ? (
+                  <img src={parentTeam.logoUrl} alt="" className="w-8 h-8 rounded-lg object-contain shrink-0"
+                    style={{ background: 'rgba(255,255,255,0.5)' }}
+                    onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }} />
+                ) : (
+                  <div className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
+                    style={{ background: `${parentTeam.colors?.[0] ?? 'var(--color-primary)'}15` }}>
+                    <span className="text-sm">{TYPE_EMOJI[parentTeam.type ?? ''] ?? '🏟️'}</span>
+                  </div>
+                )}
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-bold truncate">{parentTeam.name}</p>
+                  {parentTeam.city && (
+                    <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{parentTeam.city}</p>
+                  )}
+                </div>
+                <span className="text-xs" style={{ color: 'var(--color-primary-dark)' }}>→</span>
+              </button>
+            </div>
+          )}
+
+          {/* Sibling squads (same birth year, different label) */}
+          {siblingSquads.length > 0 && onNavigate && (
+            <div>
+              <p className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: 'var(--color-text-muted)' }}>
+                {t('teams.siblingSquads')} · {team.birthYear}
+              </p>
+              <div className="flex flex-wrap gap-1.5">
+                {siblingSquads.map((sibling) => (
+                  <button
+                    key={sibling.id}
+                    className="text-xs font-bold px-3 py-2 rounded-xl tap-target transition-all"
+                    style={{ background: 'var(--color-glass-hover)', color: 'var(--color-text)' }}
+                    onClick={() => handleNavigate(sibling)}
+                  >
+                    {sibling.squadLabel ? `${sibling.birthYear ?? ''} ${sibling.squadLabel}`.trim() : sibling.name}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Child teams (for clubs and academies) */}
+          {childTeams.length > 0 && onNavigate && (
+            <div>
+              <p className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: 'var(--color-text-muted)' }}>
+                {t('teams.squads')}
+              </p>
+              <div className="flex flex-col gap-1.5">
+                {childTeams.map((child) => (
+                  <button
+                    key={child.id}
+                    className="flex items-center gap-2.5 p-2.5 rounded-xl tap-target text-left transition-all"
+                    style={{ background: 'var(--color-glass-hover)' }}
+                    onClick={() => handleNavigate(child)}
+                  >
+                    <span className="text-sm shrink-0">{TYPE_EMOJI[child.type ?? ''] ?? '⚽'}</span>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs font-bold truncate">
+                        {child.type === 'squad' && child.squadLabel
+                          ? `${child.birthYear ?? ''} ${child.squadLabel}`.trim()
+                          : child.name}
+                      </p>
+                      {child.type === 'academy' && (
+                        <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
+                          {t('teams.academy')}
+                        </p>
+                      )}
+                    </div>
+                    <span className="text-xs" style={{ color: 'var(--color-primary-dark)' }}>→</span>
+                  </button>
+                ))}
+              </div>
             </div>
           )}
 

@@ -22,7 +22,7 @@ export type DominantFoot = (typeof DOMINANT_FOOT)[keyof typeof DOMINANT_FOOT]
 
 export type Language = 'ru' | 'lv' | 'en' | 'es' | 'lt' | 'et'
 
-export type AccountRole = 'player' | 'mentor'
+export type AccountRole = 'player' | 'mentor' | 'coach'
 
 export interface PlayerProfile {
   id: string
@@ -750,4 +750,206 @@ export interface ActiveChallenge {
   location: ChallengeLocation
   estimateMin: number
   shareCode?: string    // for multiplayer challenges
+}
+
+/* ── Coach ─────────────────────────────────────────────────── */
+
+export const COACH_ROLES = {
+  head: 'head',
+  assistant: 'assistant',
+  goalkeeper: 'goalkeeper',
+  fitness: 'fitness',
+} as const
+export type CoachRole = (typeof COACH_ROLES)[keyof typeof COACH_ROLES]
+
+export const LICENSE_LEVELS = {
+  none: 'none',
+  grassroots: 'grassroots',
+  uefaC: 'uefaC',
+  uefaB: 'uefaB',
+  uefaA: 'uefaA',
+  uefaPro: 'uefaPro',
+} as const
+export type LicenseLevel = (typeof LICENSE_LEVELS)[keyof typeof LICENSE_LEVELS]
+
+export const COACH_SPECIALIZATIONS = {
+  goalkeeping: 'goalkeeping',
+  physical: 'physical',
+  tactical: 'tactical',
+  technical: 'technical',
+  mental: 'mental',
+  analytics: 'analytics',
+} as const
+export type CoachSpecialization = (typeof COACH_SPECIALIZATIONS)[keyof typeof COACH_SPECIALIZATIONS]
+
+export interface ManagedSquad {
+  squadId: string          // SharedTeam.id (type: 'squad')
+  squadName: string        // Cached name for display
+  role: CoachRole
+  claimedAt: string
+  verified: boolean
+}
+
+export interface CoachProfile {
+  id: string
+  userId: string           // Auth identity
+  name: string
+  country?: string
+  city?: string
+  language: Language
+  managedSquads: ManagedSquad[]
+  licenseLevel: LicenseLevel
+  specializations: CoachSpecialization[]
+  photoUrl?: string
+  phone?: string
+  email?: string
+  createdAt: string
+}
+
+/* ── Squad Roster ─────────────────────────────────────────── */
+
+export interface RosterPlayer {
+  playerId: string
+  playerName: string
+  jerseyNumber?: number
+  positions: Position[]
+  birthDate: string
+  photoUrl?: string
+  joinedAt: string         // When player linked to this squad
+  active: boolean
+}
+
+export interface SquadRoster {
+  squadId: string
+  squadName: string
+  players: RosterPlayer[]
+  updatedAt: string
+}
+
+/* ── Announcements ────────────────────────────────────────── */
+
+export const ANNOUNCEMENT_PRIORITY = {
+  normal: 'normal',
+  urgent: 'urgent',
+} as const
+export type AnnouncementPriority = (typeof ANNOUNCEMENT_PRIORITY)[keyof typeof ANNOUNCEMENT_PRIORITY]
+
+export const ANNOUNCEMENT_AUDIENCE = {
+  players: 'players',
+  parents: 'parents',
+  all: 'all',
+} as const
+export type AnnouncementAudience = (typeof ANNOUNCEMENT_AUDIENCE)[keyof typeof ANNOUNCEMENT_AUDIENCE]
+
+export interface Announcement {
+  id: string
+  squadId: string
+  authorId: string
+  authorName: string
+  title: string
+  body: string
+  priority: AnnouncementPriority
+  audience: AnnouncementAudience
+  linkUrl?: string
+  readBy: string[]         // playerIds who have seen it
+  createdAt: string
+}
+
+/* ── Training Plan (coach-created session) ────────────────── */
+
+export interface TrainingDrill {
+  exerciseId?: string      // Link to Exercise from library (optional)
+  title: string
+  description?: string
+  durationMinutes: number
+  equipment?: Equipment[]
+}
+
+export interface TrainingPlan {
+  id: string
+  squadId: string
+  coachId: string
+  title: string
+  date: string             // ISO date
+  startTime?: string       // HH:mm
+  location?: string
+  durationMinutes: number
+  objectives: string[]
+  warmUp?: TrainingDrill
+  drills: TrainingDrill[]
+  coolDown?: TrainingDrill
+  notes?: string
+  createdAt: string
+}
+
+/* ── Player Evaluation ────────────────────────────────────── */
+
+export interface PlayerEvaluation {
+  id: string
+  squadId: string
+  playerId: string
+  coachId: string
+  coachName: string
+  date: string
+  period: string           // "2026-Q1", "March 2026", etc.
+  technicalRating: number  // 1-10
+  tacticalRating: number
+  physicalRating: number
+  mentalRating: number
+  performanceRating: number
+  knowledgeRating: number
+  attendance: number       // 0-100 percentage
+  strengths: string[]
+  areasToImprove: string[]
+  coachNotes?: string
+  goalsForNextPeriod: string[]
+  createdAt: string
+}
+
+/* ── Attendance ───────────────────────────────────────────── */
+
+export const ATTENDANCE_STATUS = {
+  present: 'present',
+  absent: 'absent',
+  excused: 'excused',
+  late: 'late',
+} as const
+export type AttendanceStatus = (typeof ATTENDANCE_STATUS)[keyof typeof ATTENDANCE_STATUS]
+
+export interface AttendanceRecord {
+  id: string
+  squadId: string
+  eventId: string          // ScheduleEvent or TrainingPlan id
+  eventDate: string
+  eventType: 'training' | 'match'
+  playerId: string
+  status: AttendanceStatus
+  note?: string
+  autoDetected: boolean    // true = matched from player's own training log
+  markedBy: string         // coachId or 'system'
+  createdAt: string
+}
+
+/* ── Camp ──────────────────────────────────────────────────── */
+
+export interface CampDay {
+  dayNumber: number
+  date: string
+  sessions: TrainingPlan[]
+}
+
+export interface Camp {
+  id: string
+  squadIds: string[]       // Can span multiple squads
+  coachId: string
+  name: string
+  startDate: string
+  endDate: string
+  location: string
+  description?: string
+  program: CampDay[]
+  participantIds: string[]
+  fee?: number
+  currency?: string
+  createdAt: string
 }
