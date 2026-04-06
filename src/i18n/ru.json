@@ -378,6 +378,7 @@
   "profile.heartRate": "уд/мин",
   "profile.juggles": "чеканка",
   "profile.account": "Аккаунт",
+  "profile.switchRole": "Сменить роль",
   "profile.logout": "Выйти",
   "profile.reset": "Сбросить все данные",
   "profile.resetConfirm": "Это удалит все ваши данные. Вы уверены?",

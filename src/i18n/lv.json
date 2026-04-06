@@ -328,6 +328,7 @@
   "profile.heartRate": "sit/min",
   "profile.juggles": "žonglēšana",
   "profile.account": "Konts",
+  "profile.switchRole": "Mainīt lomu",
   "profile.logout": "Iziet",
   "profile.reset": "Dzēst visus datus",
   "profile.resetConfirm": "Tas dzēsīs visus jūsu datus. Vai esat pārliecināts?",

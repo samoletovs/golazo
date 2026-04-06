@@ -523,6 +523,7 @@
   "profile.heartRate": "bpm",
   "profile.juggles": "juggles",
   "profile.account": "Account",
+  "profile.switchRole": "Switch role",
   "profile.logout": "Sign Out",
   "profile.reset": "Reset All Data",
   "profile.resetConfirm": "This will delete all your data. Are you sure?",

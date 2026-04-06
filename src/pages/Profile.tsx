@@ -9,7 +9,7 @@ import { PhotoUpload } from '../components/PhotoUpload'
 import { AchievementsList } from '../components/AchievementsList'
 import { TeamsManager } from '../components/TeamsManager'
 import { ThemePicker } from '../components/ThemePicker'
-import type { Language } from '../engine/types'
+import type { Language, AccountRole } from '../engine/types'
 import { getAgeTier } from '../engine/types'
 import { getTrackedFieldConfigs, PHYSICAL_GROUPS } from '../engine/physical'
 import { PhysicalUpdateFlow } from '../components/PhysicalUpdateFlow'
@@ -40,7 +40,7 @@ const CATEGORY_COLORS: Record<string, string> = {
 
 export function Profile({ onNavigate }: { onNavigate?: (page: string) => void }) {
   const { t, i18n } = useTranslation()
-  const { xp, skillTree, matches, trainings, profile, physicalProfile, resetState } = useApp()
+  const { xp, skillTree, matches, trainings, profile, setProfile, physicalProfile, resetState } = useApp()
   const { user, logout } = useAuth()
   const rank = getRank(xp.level)
   const ratings = fifaCardRatings(skillTree)
@@ -454,6 +454,42 @@ export function Profile({ onNavigate }: { onNavigate?: (page: string) => void })
           </p>
         )}
         <div className="flex flex-col gap-2">
+          {/* Role switcher */}
+          {profile && (
+            <div className="mb-2">
+              <p className="text-xs font-bold mb-1.5" style={{ color: 'var(--color-text-secondary)' }}>
+                {t('profile.switchRole')}
+              </p>
+              <div className="flex gap-2">
+                {([
+                  { role: 'player' as AccountRole, emoji: '🏃', label: t('login.asPlayer') },
+                  { role: 'mentor' as AccountRole, emoji: '🎯', label: t('login.asMentor') },
+                  { role: 'coach' as AccountRole, emoji: '📋', label: t('coach.role') },
+                ] as const).map(({ role, emoji, label }) => (
+                  <button
+                    key={role}
+                    className="flex-1 flex flex-col items-center gap-1 py-2.5 rounded-xl tap-target text-center transition-all"
+                    style={{
+                      background: profile.role === role ? 'var(--color-primary-bg)' : 'var(--color-glass-hover)',
+                      color: profile.role === role ? 'var(--color-primary-dark)' : 'var(--color-text-muted)',
+                      border: profile.role === role ? '2px solid var(--color-primary)' : '2px solid transparent',
+                    }}
+                    onClick={() => {
+                      if (profile.role !== role) {
+                        setProfile({ ...profile, role })
+                        window.location.reload()
+                      }
+                    }}
+                    aria-pressed={profile.role === role}
+                  >
+                    <span className="text-lg">{emoji}</span>
+                    <span className="text-xs font-bold">{label}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Parent/Mentor Dashboard */}
           {onNavigate && (
             <button
