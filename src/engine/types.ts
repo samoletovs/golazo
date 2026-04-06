@@ -56,6 +56,11 @@ export interface PlayerTeam {
   isPrimary?: boolean // main team
   colors?: string[]  // hex codes from SharedTeam (for app theming)
   active: boolean
+  clubName?: string  // Parent club name (e.g., "Rigas Futbola Skola")
+  clubId?: string    // SharedTeam.id of the club
+  birthYear?: number // e.g. 2014
+  squadLabel?: string // e.g. "A", "B", "Main"
+  position?: Position | Position[] // player's position(s) in this squad
   createdAt: string
 }
 

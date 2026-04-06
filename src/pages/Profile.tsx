@@ -7,14 +7,13 @@ import { fifaCardRatings, overallRating } from '../engine/skills'
 import { renderFifaCard } from '../engine/fifaCard'
 import { PhotoUpload } from '../components/PhotoUpload'
 import { AchievementsList } from '../components/AchievementsList'
-import { TeamsManager } from '../components/TeamsManager'
 import { ThemePicker } from '../components/ThemePicker'
+import { SquadPicker } from '../components/SquadPicker'
 import type { Language, AccountRole } from '../engine/types'
 import { getAgeTier } from '../engine/types'
 import { getTrackedFieldConfigs, PHYSICAL_GROUPS } from '../engine/physical'
 import { PhysicalUpdateFlow } from '../components/PhysicalUpdateFlow'
 import { TrackedFieldsEditor } from '../components/TrackedFieldsEditor'
-import { CoachSquadPicker } from '../components/CoachSquadPicker'
 
 const LANG_OPTIONS: { key: Language; label: string }[] = [
   { key: 'en', label: '🇬🇧 English' },
@@ -50,7 +49,6 @@ export function Profile() {
   const [showTeams, setShowTeams] = useState(false)
   const [showPhysicalUpdate, setShowPhysicalUpdate] = useState(false)
   const [showFieldsEditor, setShowFieldsEditor] = useState(false)
-  const [showCoachSquads, setShowCoachSquads] = useState(false)
 
   const seasonGoals = matches.reduce((s, m) => s + m.goals, 0)
   const seasonAssists = matches.reduce((s, m) => s + m.assists, 0)
@@ -114,7 +112,7 @@ export function Profile() {
 
   // Show Teams page when active
   if (showTeams) {
-    return <TeamsManager onClose={() => setShowTeams(false)} />
+    return <SquadPicker mode={profile?.role === 'coach' ? 'coach' : 'player'} onClose={() => setShowTeams(false)} />
   }
 
   return (
@@ -284,15 +282,11 @@ export function Profile() {
           <button
             className="w-full text-center py-2.5 rounded-xl text-xs font-bold tap-target"
             style={{ background: 'var(--color-glass-hover)', color: 'var(--color-primary-dark)' }}
-            onClick={() => setShowCoachSquads(true)}
+            onClick={() => setShowTeams(true)}
           >
             ⚽ {t('coach.onboarding.selectSquads')}
           </button>
         </div>
-      )}
-
-      {showCoachSquads && (
-        <CoachSquadPicker onClose={() => setShowCoachSquads(false)} />
       )}
 
       {/* Mentor info header */}
@@ -315,8 +309,8 @@ export function Profile() {
         </div>
       )}
 
-      {/* My Teams — player/mentor only (coaches use squad management above) */}
-      {profile?.role === 'player' && (
+      {/* My Teams — player and mentor */}
+      {(profile?.role === 'player' || profile?.role === 'mentor') && (
       <div className="card animate-fade-up">
         <div className="flex items-center justify-between mb-2">
           <p className="section-label">{t('teams.title')}</p>
@@ -330,51 +324,18 @@ export function Profile() {
         </div>
         {(profile?.teams?.length ?? 0) > 0 ? (
           <div className="flex flex-col gap-2">
-            {profile!.teams!.filter((t) => t.active).map((team, i) => (
-              <div
-                key={team.id}
-                className="flex items-center gap-3 px-3 py-2.5 rounded-xl"
-                style={{
-                  background: i === 0
-                    ? 'rgba(var(--color-primary-rgb), 0.08)'
-                    : 'var(--color-glass-hover)',
-                  border: i === 0
-                    ? '1.5px solid rgba(var(--color-primary-rgb), 0.15)'
-                    : '1.5px solid transparent',
-                }}
-              >
-                {team.logoUrl ? (
-                  <img
-                    src={team.logoUrl}
-                    alt=""
-                    className="w-8 h-8 rounded-lg object-contain shrink-0"
-                    style={{ background: 'rgba(255,255,255,0.5)' }}
-                    onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
-                  />
-                ) : (
-                  <div className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0" style={{ background: 'rgba(255,255,255,0.5)' }}>
-                    <span className="text-lg">⚽</span>
-                  </div>
-                )}
+            {profile!.teams!.filter((t) => t.active).map((team) => (
+              <div key={team.id} className="flex items-center gap-3 px-3 py-2.5 rounded-xl"
+                style={{ background: 'var(--color-glass-hover)' }}>
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-bold truncate">{team.name}</p>
-                  {i === 0 && (
-                    <p className="text-xs font-bold" style={{ color: 'var(--color-primary-dark)' }}>
-                      ★ {t('teams.primary')}
-                    </p>
-                  )}
+                  <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
+                    {[
+                      team.position ? (Array.isArray(team.position) ? team.position.join(', ') : team.position) : null,
+                      team.isPrimary ? `★ ${t('teams.primary')}` : null,
+                    ].filter(Boolean).join(' · ')}
+                  </p>
                 </div>
-                {team.colors && team.colors.length > 0 && (
-                  <div className="flex gap-1">
-                    {team.colors.slice(0, 3).map((color, ci) => (
-                      <div
-                        key={ci}
-                        className="w-4 h-4 rounded-full shrink-0"
-                        style={{ background: color, border: '1px solid rgba(0,0,0,0.08)' }}
-                      />
-                    ))}
-                  </div>
-                )}
               </div>
             ))}
           </div>

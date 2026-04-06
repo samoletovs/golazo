@@ -29,7 +29,7 @@ const TrainingPlanner = lazy(() => import('./pages/TrainingPlanner').then(m => (
 const AnnouncementsPage = lazy(() => import('./pages/AnnouncementsPage').then(m => ({ default: m.AnnouncementsPage })))
 const EvaluationPage = lazy(() => import('./pages/EvaluationPage').then(m => ({ default: m.EvaluationPage })))
 const AttendanceGrid = lazy(() => import('./components/AttendanceGrid').then(m => ({ default: m.AttendanceGrid })))
-const CoachSquadPicker = lazy(() => import('./components/CoachSquadPicker').then(m => ({ default: m.CoachSquadPicker })))
+const SquadPickerLazy = lazy(() => import('./components/SquadPicker').then(m => ({ default: m.SquadPicker })))
 const CoachStatsPage = lazy(() => import('./pages/CoachStatsPage').then(m => ({ default: m.CoachStatsPage })))
 
 type Page = 'dashboard' | 'log' | 'learn' | 'exercises' | 'profile' | 'schedule' | 'progress' | 'leaderboard' | 'challenges' | 'portal' | 'mentor' | 'coach' | 'squads' | 'stats' | 'coach-roster' | 'coach-training' | 'coach-announce' | 'coach-evaluate' | 'coach-attendance'
@@ -213,7 +213,7 @@ function AppContent() {
       {/* Coach squad picker modal */}
       {showSquadPicker && (
         <Suspense fallback={null}>
-          <CoachSquadPicker onClose={() => setShowSquadPicker(false)} />
+          <SquadPickerLazy mode="coach" onClose={() => setShowSquadPicker(false)} />
         </Suspense>
       )}
     </div>
