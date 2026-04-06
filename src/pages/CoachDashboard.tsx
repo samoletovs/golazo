@@ -1,20 +1,29 @@
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
+import { CoachSquadFilter } from '../components/CoachSquadFilter'
 import type { ManagedSquad } from '../engine/types'
 
 interface CoachDashboardProps {
   squads: ManagedSquad[]
+  selectedSquadIds: string[]
+  onToggleSquad: (id: string) => void
   onNavigate: (page: 'roster' | 'training' | 'announce' | 'evaluate' | 'attendance', squadId: string) => void
   onManageSquads: () => void
 }
 
-export function CoachDashboard({ squads, onNavigate, onManageSquads }: CoachDashboardProps) {
+export function CoachDashboard({ squads, selectedSquadIds, onToggleSquad, onNavigate, onManageSquads }: CoachDashboardProps) {
   const { t } = useTranslation()
 
-  // Group squads by club
+  // Filter squads by selection
+  const filteredSquads = useMemo(() => {
+    if (selectedSquadIds.length === 0) return squads
+    return squads.filter((s) => selectedSquadIds.includes(s.squadId))
+  }, [squads, selectedSquadIds])
+
+  // Group filtered squads by club
   const squadsByClub = useMemo(() => {
     const map = new Map<string, ManagedSquad[]>()
-    for (const sq of squads) {
+    for (const sq of filteredSquads) {
       const key = sq.clubName || sq.squadName
       const arr = map.get(key) ?? []
       arr.push(sq)
@@ -58,6 +67,9 @@ export function CoachDashboard({ squads, onNavigate, onManageSquads }: CoachDash
           {totalSquads} {t('teams.squads').toLowerCase()}
         </span>
       </div>
+
+      {/* Squad filter */}
+      <CoachSquadFilter squads={squads} selectedIds={selectedSquadIds} onToggle={onToggleSquad} />
 
       {/* Squad cards grouped by club */}
       {squadsByClub.map(({ clubName, squads: clubSquads }) => (

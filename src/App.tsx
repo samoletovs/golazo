@@ -1,5 +1,4 @@
 import { useState, useEffect, lazy, Suspense } from 'react'
-import { useTranslation } from 'react-i18next'
 import { AppProvider, useApp } from './contexts/AppContext'
 import { AuthProvider, useAuth } from './contexts/AuthContext'
 import { ToastProvider } from './contexts/ToastContext'
@@ -31,15 +30,16 @@ const AnnouncementsPage = lazy(() => import('./pages/AnnouncementsPage').then(m 
 const EvaluationPage = lazy(() => import('./pages/EvaluationPage').then(m => ({ default: m.EvaluationPage })))
 const AttendanceGrid = lazy(() => import('./components/AttendanceGrid').then(m => ({ default: m.AttendanceGrid })))
 const CoachSquadPicker = lazy(() => import('./components/CoachSquadPicker').then(m => ({ default: m.CoachSquadPicker })))
+const CoachStatsPage = lazy(() => import('./pages/CoachStatsPage').then(m => ({ default: m.CoachStatsPage })))
 
 type Page = 'dashboard' | 'log' | 'learn' | 'exercises' | 'profile' | 'schedule' | 'progress' | 'leaderboard' | 'challenges' | 'portal' | 'mentor' | 'coach' | 'squads' | 'stats' | 'coach-roster' | 'coach-training' | 'coach-announce' | 'coach-evaluate' | 'coach-attendance'
 
 function AppContent() {
-  const { t } = useTranslation()
   const [page, setPage] = useState<Page>('dashboard')
   const [pageKey, setPageKey] = useState(0)
   const [coachSquadId, setCoachSquadId] = useState('')
   const [showSquadPicker, setShowSquadPicker] = useState(false)
+  const [selectedSquadIds, setSelectedSquadIds] = useState<string[]>([])
   const { user, loading: authLoading } = useAuth()
   const { onboardingComplete, profile } = useApp()
   const [skippedLogin, setSkippedLogin] = useState(false)
@@ -49,6 +49,13 @@ function AppContent() {
     const teamColor = getPrimaryTeamColor(profile?.teams)
     applySurfaceTheme(loadSurfaceTheme(), teamColor)
   }, [profile?.teams])
+
+  // Toggle squad in filter
+  const toggleSquadFilter = (squadId: string) => {
+    setSelectedSquadIds((prev) =>
+      prev.includes(squadId) ? prev.filter((id) => id !== squadId) : [...prev, squadId]
+    )
+  }
 
   // Page transition — re-key the content wrapper to trigger animation
   const handleNavigate = (p: string) => {
@@ -112,6 +119,8 @@ function AppContent() {
               <Suspense fallback={<div className="flex items-center justify-center p-8"><span className="text-3xl">⚽</span></div>}>
                 <CoachDashboard
                   squads={profile?.managedSquads ?? []}
+                  selectedSquadIds={selectedSquadIds}
+                  onToggleSquad={toggleSquadFilter}
                   onNavigate={(sub, squadId) => {
                     setCoachSquadId(squadId)
                     handleNavigate(`coach-${sub}` as Page)
@@ -131,38 +140,11 @@ function AppContent() {
               {page === 'leaderboard' && <LeaderboardPage />}
               {page === 'portal' && <FootballPortal />}
               {page === 'stats' && isCoach && (
-                <div className="flex flex-col gap-4 p-4 pb-32">
-                  <h2 className="text-xl font-extrabold heading-display">📊 {t('nav.stats')}</h2>
-                  {(profile?.managedSquads ?? []).length > 0 ? (
-                    <div className="flex flex-col gap-3">
-                      {(profile?.managedSquads ?? []).map((sq) => (
-                        <div key={sq.squadId} className="card animate-fade-up">
-                          <p className="text-sm font-bold mb-1">{sq.squadName}</p>
-                          <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{t(`coach.role.${sq.role}`)}</p>
-                          <div className="grid grid-cols-3 gap-2 mt-3 text-center">
-                            <div className="py-2 rounded-xl" style={{ background: 'var(--color-glass-hover)' }}>
-                              <p className="text-lg font-black font-data">0</p>
-                              <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{t('coach.dashboard.players')}</p>
-                            </div>
-                            <div className="py-2 rounded-xl" style={{ background: 'var(--color-glass-hover)' }}>
-                              <p className="text-lg font-black font-data">—</p>
-                              <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{t('coach.dashboard.attendance')}</p>
-                            </div>
-                            <div className="py-2 rounded-xl" style={{ background: 'var(--color-glass-hover)' }}>
-                              <p className="text-lg font-black font-data">—</p>
-                              <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{t('coach.dashboard.avgMood')}</p>
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  ) : (
-                    <div className="card text-center py-8">
-                      <span className="text-5xl mb-3 block">📊</span>
-                      <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{t('coach.dashboard.noSquads')}</p>
-                    </div>
-                  )}
-                </div>
+                <CoachStatsPage
+                  squads={profile?.managedSquads ?? []}
+                  selectedIds={selectedSquadIds}
+                  onToggleSquad={toggleSquadFilter}
+                />
               )}
               {page === 'mentor' && <MentorDashboard onBack={() => handleNavigate('profile')} />}
               {page === 'coach-roster' && (
