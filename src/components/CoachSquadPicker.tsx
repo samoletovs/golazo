@@ -160,13 +160,33 @@ export function CoachSquadPicker({ onClose }: CoachSquadPickerProps) {
   const managedCount = profile?.managedSquads?.length ?? 0
 
   function handleNewTeamAdded(_name: string, sharedTeam?: SharedTeam) {
+    if (!profile) { setAddTeamName(null); return }
+
     if (sharedTeam) {
-      // Add to allTeams so it shows up immediately
-      setAllTeams((prev) => [...prev, sharedTeam])
-      // Auto-select it
-      toggleSquad(sharedTeam)
+      // Add to allTeams so it shows in the list (deduplicate)
+      setAllTeams((prev) => {
+        if (prev.some((t) => t.id === sharedTeam.id)) return prev
+        return [...prev, sharedTeam]
+      })
+
+      // Directly add to managed squads (don't go through toggleSquad — avoids stale state)
+      const current = profile.managedSquads ?? []
+      if (!current.some((s) => s.squadId === sharedTeam.id)) {
+        const entry: ManagedSquad = {
+          squadId: sharedTeam.id,
+          squadName: sharedTeam.name,
+          role: selectedRole,
+          claimedAt: new Date().toISOString(),
+          verified: false,
+        }
+        setProfile({
+          ...profile,
+          managedSquads: [...current, entry],
+        })
+      }
     }
     setAddTeamName(null)
+    setSearch('')
   }
 
   return (
