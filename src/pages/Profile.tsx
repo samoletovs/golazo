@@ -9,7 +9,7 @@ import { renderFifaCard } from '../engine/fifaCard'
 import { PhotoUpload } from '../components/PhotoUpload'
 import { AchievementsList } from '../components/AchievementsList'
 import { ThemePicker } from '../components/ThemePicker'
-import { SquadPicker } from '../components/SquadPicker'
+import { TeamPicker } from '../components/TeamPicker'
 import type { Language, AccountRole } from '../engine/types'
 import { getAgeTier } from '../engine/types'
 import { getTrackedFieldConfigs, PHYSICAL_GROUPS } from '../engine/physical'
@@ -117,7 +117,7 @@ export function Profile() {
 
       {/* Squad picker modal — portal to body to avoid mobile fixed-position issues */}
       {showTeams && createPortal(
-        <SquadPicker mode={profile?.role === 'coach' ? 'coach' : 'player'} onClose={() => setShowTeams(false)} />,
+        <TeamPicker mode={profile?.role === 'coach' ? 'coach' : 'player'} onClose={() => setShowTeams(false)} />,
         document.body
       )}
 

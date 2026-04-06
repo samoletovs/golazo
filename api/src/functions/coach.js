@@ -17,7 +17,8 @@ app.http('coach', {
   route: 'coach',
   handler: async (req) => {
     const user = getUser(req);
-    const userId = user?.userId || 'anonymous';
+    if (!user) return jsonResponse({ error: 'Unauthorized' }, 401);
+    const userId = user.userId;
 
     // Rate limit check
     const lastRequest = rateLimitMap.get(userId);

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
 import { awardXp, XP_AWARDS, scaleXp } from '../engine/xp'
-import { TeamPicker } from '../components/TeamPicker'
+import { TeamSearch } from '../components/TeamSearch'
 import { getMatchDurationRecommendation } from '../engine/footballStandards'
 import { getAgeTier } from '../engine/types'
 import type { Position, EnergyLevel, MatchEntry } from '../engine/types'
@@ -162,7 +162,7 @@ export function MatchLog({ onBack, inline, prefill, onSaved }: MatchLogProps) {
         <label className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>
           {t('match.opponent')}
         </label>
-        <TeamPicker
+        <TeamSearch
           value={opponent}
           onChange={(name) => setOpponent(name)}
           country={profile?.country}

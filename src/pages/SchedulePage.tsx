@@ -2,7 +2,7 @@ import { useState, useMemo, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
 import { TournamentImport } from '../components/TournamentImport'
-import { TeamPicker } from '../components/TeamPicker'
+import { TeamSearch } from '../components/TeamSearch'
 import { addMinutesToTime, getMatchDurationRecommendation } from '../engine/footballStandards'
 import type { ScheduleType, ScheduleEvent, RecurringTraining, TrainingType, MatchType } from '../engine/types'
 
@@ -838,7 +838,7 @@ export function SchedulePage() {
 
                   <div>
                     <label className="text-xs font-bold mb-1 block" style={{ color: 'var(--color-text-secondary)' }}>{t('schedule.opponent')}</label>
-                    <TeamPicker
+                    <TeamSearch
                       value={formOpponent}
                       onChange={(name) => setFormOpponent(name)}
                       country={profile?.country}

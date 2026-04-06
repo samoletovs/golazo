@@ -32,11 +32,14 @@ app.http('coach-roster', {
 
     try {
       // Find all players who have this squad in their teams (via registryId)
-      const query = `SELECT c.id, c.name, c.jerseyNumber, c.positions, c.birthDate, c.photoUrl, c.createdAt
+      // Note: sync.js stores profile as { docType: 'profile', data: { name, role, teams, ... } }
+      const query = `SELECT c.data.id AS id, c.data.name AS name, c.data.jerseyNumber AS jerseyNumber,
+                            c.data.positions AS positions, c.data.birthDate AS birthDate,
+                            c.data.photoUrl AS photoUrl, c.updatedAt AS createdAt
                      FROM c
-                     WHERE c.type = 'profile'
-                       AND c.role = 'player'
-                       AND EXISTS(SELECT VALUE t FROM t IN c.teams WHERE t.registryId = @squadId AND t.active = true)`;
+                     WHERE c.docType = 'profile'
+                       AND c.data.role = 'player'
+                       AND EXISTS(SELECT VALUE t FROM t IN c.data.teams WHERE t.registryId = @squadId AND t.active = true)`;
       const { resources } = await container.items.query({
         query,
         parameters: [{ name: '@squadId', value: squadId }],

@@ -178,7 +178,24 @@ export function AppProvider({ children }: { children: ReactNode }) {
         })
       }
     }).finally(() => setSyncing(false))
+    return () => window.clearTimeout(syncTimerRef.current)
   }, [])
+
+  // Force sync before page unload (prevents losing the last 2s of changes)
+  useEffect(() => {
+    function handleBeforeUnload() {
+      window.clearTimeout(syncTimerRef.current)
+      // Use sendBeacon for reliable sync on page close
+      const body = JSON.stringify({
+        profile: state.profile,
+        xp: state.xp,
+        onboardingComplete: state.onboardingComplete,
+      })
+      navigator.sendBeacon?.('/api/sync', new Blob([body], { type: 'application/json' }))
+    }
+    window.addEventListener('beforeunload', handleBeforeUnload)
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload)
+  })
 
   function update(partial: Partial<AppState>) {
     setState((prev) => {

@@ -4,8 +4,7 @@ import { useApp } from '../contexts/AppContext'
 import { useAuth } from '../contexts/AuthContext'
 import { createInitialSkillTree, updateSkillRating } from '../engine/skills'
 import { TeamPicker } from '../components/TeamPicker'
-import { AddTeamDialog } from '../components/AddTeamDialog'
-import type { AccountRole, Position, DominantFoot, SkillCategory, Language, SkillTree, SharedTeam, PlayerTeam, AgeTier } from '../engine/types'
+import type { AccountRole, Position, DominantFoot, SkillCategory, Language, SkillTree, PlayerTeam, AgeTier } from '../engine/types'
 import { getAgeTier } from '../engine/types'
 import { getDefaultTrackedFields, PHYSICAL_FIELDS, PHYSICAL_GROUPS, buildMeasurement, type PhysicalFieldKey } from '../engine/physical'
 
@@ -21,6 +20,8 @@ const POSITION_OPTIONS: { key: Position; emoji: string }[] = [
   { key: 'CDM', emoji: '🔒' },
   { key: 'CM', emoji: '⚙️' },
   { key: 'CAM', emoji: '🎯' },
+  { key: 'LM', emoji: '↙️' },
+  { key: 'RM', emoji: '↗️' },
   { key: 'LW', emoji: '💨' },
   { key: 'RW', emoji: '💨' },
   { key: 'ST', emoji: '⚡' },
@@ -48,18 +49,13 @@ const ASSESS_LABELS = [
   'onboarding.assessExpert',
 ]
 
-interface OnboardingTeamEntry {
-  name: string
-  sharedTeam?: SharedTeam
-}
-
 interface OnboardingForm {
   role: AccountRole
   name: string
   birthDate: string
   country: string
   city: string
-  teams: OnboardingTeamEntry[]
+  teams: PlayerTeam[]
   jerseyNumber: string
   positions: Position[]
   dominantFoot: DominantFoot
@@ -106,7 +102,7 @@ export function OnboardingPage() {
   const { user } = useAuth()
 
   const [step, setStep] = useState<Step>('role')
-  const [addTeamName, setAddTeamName] = useState<string | null>(null) // name to show in AddTeamDialog
+  const [showSquadPicker, setShowSquadPicker] = useState(false)
   const [form, setForm] = useState<OnboardingForm>({
     role: 'player',
     name: '',
@@ -157,16 +153,9 @@ export function OnboardingPage() {
     const playerId = user?.userId ?? 'local'
 
     // Build teams array from onboarding entries
-    const playerTeams: PlayerTeam[] = form.teams.map((entry, i) => ({
-      id: crypto.randomUUID(),
-      name: entry.name,
-      aliases: entry.sharedTeam?.aliases ?? [],
-      registryId: entry.sharedTeam?.id,
-      logoUrl: entry.sharedTeam?.logoUrl,
-      colors: entry.sharedTeam?.colors,
+    const playerTeams: PlayerTeam[] = form.teams.map((t, i) => ({
+      ...t,
       isPrimary: i === 0,
-      active: true,
-      createdAt: now,
     }))
     const primaryTeam = form.teams[0]
     setProfile({
@@ -349,24 +338,21 @@ export function OnboardingPage() {
                 {/* Added teams as chips */}
                 {form.teams.length > 0 && (
                   <div className="flex flex-wrap gap-2 mb-2">
-                    {form.teams.map((entry, i) => (
+                    {form.teams.map((team, i) => (
                       <span
-                        key={i}
+                        key={team.id}
                         className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold"
                         style={{
                           background: i === 0 ? 'var(--color-primary-light, #dcfce7)' : 'var(--color-glass-active, #f1f5f9)',
                           color: i === 0 ? 'var(--color-primary-dark, #166534)' : 'var(--color-text)',
                         }}
                       >
-                        {entry.sharedTeam?.logoUrl && (
-                          <img src={entry.sharedTeam.logoUrl} alt="" className="w-4 h-4 rounded object-contain" />
-                        )}
-                        {entry.name}
+                        {team.name}
                         {i === 0 && <span className="text-[0.5rem] opacity-60">★</span>}
                         <button
                           className="ml-0.5 text-xs opacity-50 hover:opacity-100"
-                          onClick={() => setForm((f) => ({ ...f, teams: f.teams.filter((_, j) => j !== i) }))}
-                          aria-label={`Remove ${entry.name}`}
+                          onClick={() => setForm((f) => ({ ...f, teams: f.teams.filter((t) => t.id !== team.id) }))}
+                          aria-label={`Remove ${team.name}`}
                         >
                           ✕
                         </button>
@@ -375,24 +361,22 @@ export function OnboardingPage() {
                   </div>
                 )}
 
-                {/* Team search input */}
-                <TeamPicker
-                  value=""
-                  onChange={(_name, sharedTeam) => {
-                    if (sharedTeam) {
-                      // Registry match — add immediately
-                      const already = form.teams.some((t) => t.name.toLowerCase() === sharedTeam.name.toLowerCase())
-                      if (!already) {
-                        setForm((f) => ({ ...f, teams: [...f.teams, { name: sharedTeam.name, sharedTeam }] }))
-                      }
-                    }
+                {/* Open SquadPicker */}
+                <button
+                  type="button"
+                  className="w-full text-sm px-3 py-2.5 rounded-xl tap-target text-left"
+                  style={{
+                    background: 'var(--color-glass-hover, #f1f5f9)',
+                    color: form.teams.length === 0 ? 'var(--color-text-muted)' : 'var(--color-primary-dark)',
+                    border: '1.5px dashed var(--color-glass-border, #e2e8f0)',
                   }}
-                  country={form.country}
-                  placeholder={form.teams.length === 0 ? t('onboarding.teamPlaceholder') : t('onboarding.addAnotherTeam')}
-                  className="w-full"
-                  showAddNew
-                  onAddNew={(name) => setAddTeamName(name)}
-                />
+                  onClick={() => setShowSquadPicker(true)}
+                >
+                  {form.teams.length === 0
+                    ? `+ ${t('onboarding.teamPlaceholder')}`
+                    : `+ ${t('onboarding.addAnotherTeam')}`
+                  }
+                </button>
 
                 <label className="text-xs font-bold mt-2" style={{ color: 'var(--color-text-secondary)' }}>
                   {t('onboarding.jerseyNumber')}
@@ -671,19 +655,14 @@ export function OnboardingPage() {
         </main>
       </div>
 
-      {/* Add new team dialog */}
-      {addTeamName !== null && (
-        <AddTeamDialog
-          initialName={addTeamName}
-          defaultCountry={form.country}
-          onAdd={(name, sharedTeam) => {
-            const already = form.teams.some((t) => t.name.toLowerCase() === name.toLowerCase())
-            if (!already) {
-              setForm((f) => ({ ...f, teams: [...f.teams, { name, sharedTeam }] }))
-            }
-            setAddTeamName(null)
-          }}
-          onCancel={() => setAddTeamName(null)}
+      {/* Squad picker modal */}
+      {showSquadPicker && (
+        <TeamPicker
+          mode="player"
+          onClose={() => setShowSquadPicker(false)}
+          externalTeams={form.teams}
+          onTeamsChange={(teams) => setForm((f) => ({ ...f, teams }))}
+          country={form.country}
         />
       )}
     </div>

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
-import { TeamPicker } from './TeamPicker'
+import { TeamSearch } from './TeamSearch'
 import { getMatchDurationRecommendation } from '../engine/footballStandards'
 import type { Tournament, ScheduleEvent } from '../engine/types'
 
@@ -304,7 +304,7 @@ export function TournamentImport({ onClose }: { onClose: () => void }) {
                 <label className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>
                   {t('import.tournamentTeamName')}
                 </label>
-                <TeamPicker
+                <TeamSearch
                   value={teamName}
                   onChange={(name) => setTeamName(name)}
                   placeholder={t('import.teamNameHint')}

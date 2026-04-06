@@ -197,3 +197,90 @@ describe('Logout preserves logged-out state', () => {
     expect(source).toContain("getItem('golazo-logged-out'")
   })
 })
+
+describe('API security', () => {
+  it('AI coach endpoint requires authentication', async () => {
+    const fs = await import('fs')
+    const source = fs.readFileSync('api/src/functions/coach.js', 'utf-8')
+    
+    // Must reject unauthenticated requests — no 'anonymous' fallback
+    expect(
+      source.includes("if (!user) return jsonResponse({ error: 'Unauthorized' }, 401)"),
+      'AI coach must reject unauthenticated requests (was allowing anonymous access to OpenAI API)'
+    ).toBe(true)
+    expect(
+      source.includes("|| 'anonymous'"),
+      'AI coach must NOT fall back to anonymous userId'
+    ).toBe(false)
+  })
+
+  it('all coach management endpoints require auth', async () => {
+    const fs = await import('fs')
+    const source = fs.readFileSync('api/src/functions/coach-manage.js', 'utf-8')
+    
+    // Count auth checks — should be one per handler
+    const authChecks = (source.match(/if \(!user\) return jsonResponse/g) || []).length
+    expect(
+      authChecks >= 5,
+      `coach-manage.js should have auth checks on all handlers (found ${authChecks})`
+    ).toBe(true)
+  })
+})
+
+describe('Roster query correctness', () => {
+  it('roster SQL uses correct Cosmos document structure (data. prefix)', async () => {
+    const fs = await import('fs')
+    const source = fs.readFileSync('api/src/functions/coach-manage.js', 'utf-8')
+    
+    // Must use c.data.role not c.role (sync.js wraps in { data: ... })
+    expect(source).toContain('c.data.role')
+    expect(source).toContain('c.data.teams')
+    expect(source).toContain("c.docType = 'profile'")
+    // Must NOT use bare c.type or c.role
+    expect(source).not.toContain("c.type = 'profile'")
+  })
+})
+
+describe('Timer cleanup', () => {
+  it('sync timer is cleaned up on unmount', async () => {
+    const fs = await import('fs')
+    const source = fs.readFileSync('src/contexts/AppContext.tsx', 'utf-8')
+    
+    expect(
+      source.includes('clearTimeout(syncTimerRef.current)'),
+      'Sync timer must be cleared on unmount to prevent stale syncs'
+    ).toBe(true)
+  })
+
+  it('beforeunload handler syncs critical data', async () => {
+    const fs = await import('fs')
+    const source = fs.readFileSync('src/contexts/AppContext.tsx', 'utf-8')
+    
+    expect(
+      source.includes('beforeunload'),
+      'Must sync data before page closes to prevent loss'
+    ).toBe(true)
+    expect(
+      source.includes('sendBeacon'),
+      'Use sendBeacon for reliable sync on page close'
+    ).toBe(true)
+  })
+})
+
+describe('No dead code', () => {
+  it('CoachSquadPicker.tsx should not exist (replaced by SquadPicker)', async () => {
+    const fs = await import('fs')
+    expect(
+      fs.existsSync('src/components/CoachSquadPicker.tsx'),
+      'CoachSquadPicker is dead code — SquadPicker replaces it'
+    ).toBe(false)
+  })
+
+  it('TeamsManager.tsx should not exist (replaced by SquadPicker)', async () => {
+    const fs = await import('fs')
+    expect(
+      fs.existsSync('src/components/TeamsManager.tsx'),
+      'TeamsManager is dead code — SquadPicker replaces it'
+    ).toBe(false)
+  })
+})
