@@ -101,12 +101,14 @@ function AppContent() {
 
   // Coaches start on the coach dashboard
   const isCoach = profile?.role === 'coach'
+  const isMentor = profile?.role === 'mentor'
+  const isPlayer = !isCoach && !isMentor
 
   return (
     <div className="flex flex-col min-h-dvh">
       <div className="app-shell flex flex-col min-h-dvh">
-        {/* Header: XP bar for players, minimal for coaches */}
-        {!isCoach && (
+        {/* Header: XP bar for players only */}
+        {isPlayer && (
           <header className="app-header">
             <XpBar />
           </header>
@@ -114,7 +116,12 @@ function AppContent() {
 
         <main className="flex-1 overflow-y-auto pb-20">
           <div key={pageKey} className="page-enter">
-            {page === 'dashboard' && !isCoach && <Dashboard onNavigate={handleNavigate} />}
+            {page === 'dashboard' && isPlayer && <Dashboard onNavigate={handleNavigate} />}
+            {page === 'dashboard' && isMentor && (
+              <Suspense fallback={<div className="flex items-center justify-center p-8"><span className="text-3xl">⚽</span></div>}>
+                <MentorDashboard />
+              </Suspense>
+            )}
             {page === 'dashboard' && isCoach && (
               <Suspense fallback={<div className="flex items-center justify-center p-8"><span className="text-3xl">⚽</span></div>}>
                 <CoachDashboard
@@ -134,7 +141,7 @@ function AppContent() {
               {page === 'learn' && <LearnPage />}
               {page === 'exercises' && <Exercises />}
               {page === 'challenges' && <Challenges />}
-              {page === 'profile' && <Profile onNavigate={handleNavigate} />}
+              {page === 'profile' && <Profile />}
               {page === 'schedule' && <SchedulePage />}
               {page === 'progress' && <ProgressPage />}
               {page === 'leaderboard' && <LeaderboardPage />}
@@ -146,7 +153,7 @@ function AppContent() {
                   onToggleSquad={toggleSquadFilter}
                 />
               )}
-              {page === 'mentor' && <MentorDashboard onBack={() => handleNavigate('profile')} />}
+              {page === 'mentor' && <MentorDashboard />}
               {page === 'coach-roster' && (
                 <SquadRoster
                   squadId={coachSquadId}

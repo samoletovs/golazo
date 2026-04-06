@@ -1,13 +1,15 @@
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
+import { getMatchResult } from '../engine/types'
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts'
 
 /**
- * Mentor Dashboard — shows child's mood trends + training consistency.
+ * Mentor Dashboard — parent's wellbeing-focused home page.
  * PRIVACY: parents see trends, NOT diary content.
+ * Aligned with UEFA/FA Respect + Dan Abrahams sport psychology.
  */
-export function MentorDashboard({ onBack }: { onBack?: () => void }) {
+export function MentorDashboard() {
   const { t } = useTranslation()
   const { checkIns, trainings, matches, xp, profile } = useApp()
 
@@ -118,19 +120,45 @@ export function MentorDashboard({ onBack }: { onBack?: () => void }) {
   return (
     <div className="flex flex-col gap-4 p-4 pb-32">
       {/* Header */}
-      <div className="flex items-center gap-3">
-        {onBack && (
-          <button onClick={onBack} className="tap-target text-xl" aria-label={t('common.back')}>←</button>
-        )}
-        <div>
-          <h2 className="text-lg font-bold heading-display">
-            {t('mentor.title')}
-          </h2>
-          <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
-            {playerName ? t('mentor.dashboard.subtitle', { name: playerName }) : ''}
+      <div>
+        <h2 className="text-lg font-bold heading-display">
+          {t('mentor.title')}
+        </h2>
+        <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
+          {playerName ? t('mentor.dashboard.subtitle', { name: playerName }) : ''}
+        </p>
+      </div>
+
+      {/* Wellbeing status card */}
+      {recentCheckIns.length > 0 ? (() => {
+        const latest = checkIns[checkIns.length - 1]
+        const moodNum = Number(avgMood7)
+        const statusColor = moodNum >= 3.5 ? 'var(--color-primary-dark)' : moodNum >= 2.5 ? 'var(--color-amber-text)' : 'var(--color-danger)'
+        const statusBg = moodNum >= 3.5 ? 'var(--color-success-bg)' : moodNum >= 2.5 ? 'var(--color-amber-bg)' : 'var(--color-error-bg)'
+        const statusEmoji = moodNum >= 4 ? '🔥' : moodNum >= 3 ? '🙂' : moodNum >= 2 ? '😐' : '😟'
+        return (
+          <div className="card animate-fade-up" style={{ background: statusBg }}>
+            <div className="flex items-center gap-4">
+              <span className="text-4xl">{statusEmoji}</span>
+              <div className="flex-1">
+                <p className="text-sm font-bold" style={{ color: statusColor }}>
+                  {moodNum >= 3.5 ? t('mentor.status.good') : moodNum >= 2.5 ? t('mentor.status.attention') : t('mentor.status.concern')}
+                </p>
+                <p className="text-xs mt-0.5" style={{ color: 'var(--color-text-muted)' }}>
+                  {t('mentor.status.lastCheckin')}: {new Date(latest.date).toLocaleDateString()}
+                </p>
+              </div>
+            </div>
+          </div>
+        )
+      })() : (
+        <div className="card animate-fade-up text-center py-4"
+          style={{ background: 'var(--color-amber-bg)' }}>
+          <p className="text-sm font-bold" style={{ color: 'var(--color-amber-text)' }}>
+            {t('mentor.status.noCheckin')}
           </p>
         </div>
-      </div>
+      )}
 
       {/* Privacy notice */}
       <div className="flex items-center gap-2 px-3 py-2 rounded-xl" style={{ background: 'rgba(var(--color-info-rgb, 59, 130, 246), 0.06)', border: '1px solid rgba(var(--color-info-rgb, 59, 130, 246), 0.2)' }}>
@@ -231,6 +259,35 @@ export function MentorDashboard({ onBack }: { onBack?: () => void }) {
           <p className="text-sm mt-2" style={{ color: 'var(--color-text-muted)' }}>
             {t('mentor.noData')}
           </p>
+        </div>
+      )}
+
+      {/* Recent matches */}
+      {matches.length > 0 && (
+        <div className="card animate-fade-up">
+          <h3 className="text-sm font-bold mb-3">{t('mentor.recentMatches')}</h3>
+          <div className="flex flex-col gap-2">
+            {[...matches].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 3).map((m) => {
+              const result = getMatchResult(m)
+              const resultColor = result === 'win' ? 'var(--color-primary-dark)' : result === 'loss' ? 'var(--color-danger)' : 'var(--color-amber-text)'
+              return (
+                <div key={m.id} className="flex items-center gap-3 py-2">
+                  <span className="w-6 text-center text-sm font-bold" style={{ color: resultColor }}>
+                    {result === 'win' ? 'W' : result === 'loss' ? 'L' : 'D'}
+                  </span>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-xs font-bold truncate">{m.opponent}</p>
+                    <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
+                      {new Date(m.date).toLocaleDateString()}
+                    </p>
+                  </div>
+                  <span className="text-sm font-black font-data">{m.scoreUs}:{m.scoreThem}</span>
+                  {m.goals > 0 && <span className="text-xs">⚽{m.goals}</span>}
+                  {m.assists > 0 && <span className="text-xs">🎯{m.assists}</span>}
+                </div>
+              )
+            })}
+          </div>
         </div>
       )}
     </div>

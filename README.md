@@ -1,4 +1,4 @@
-# Golazo ⚽
+# golazo ⚽
 
 A mobile-first gamified football development app for youth players. Track training sessions, log matches and tournaments, earn XP, level up through football-themed ranks, and improve with curated exercises from the world's best coaching methodologies.
 

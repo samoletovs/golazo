@@ -103,9 +103,16 @@ const COACH_NAV = [
   { key: 'profile', labelKey: 'nav.profile' },
 ]
 
+const MENTOR_NAV = [
+  { key: 'dashboard', labelKey: 'nav.dashboard' },
+  { key: 'schedule', labelKey: 'nav.schedule' },
+  { key: 'progress', labelKey: 'nav.progress' },
+  { key: 'profile', labelKey: 'nav.profile' },
+]
+
 export function BottomNav({ active, onNavigate, role }: BottomNavProps) {
   const { t } = useTranslation()
-  const items = role === 'coach' ? COACH_NAV : PLAYER_NAV
+  const items = role === 'coach' ? COACH_NAV : role === 'mentor' ? MENTOR_NAV : PLAYER_NAV
 
   return (
     <nav className="bottom-nav" aria-label="Main navigation">

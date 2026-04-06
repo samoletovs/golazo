@@ -39,7 +39,7 @@ const CATEGORY_COLORS: Record<string, string> = {
   knowledge: 'var(--color-cat-knowledge)',
 }
 
-export function Profile({ onNavigate }: { onNavigate?: (page: string) => void }) {
+export function Profile() {
   const { t, i18n } = useTranslation()
   const { xp, skillTree, matches, trainings, profile, setProfile, physicalProfile, resetState } = useApp()
   const { user, logout } = useAuth()
@@ -125,7 +125,7 @@ export function Profile({ onNavigate }: { onNavigate?: (page: string) => void })
       <PhotoUpload />
 
       {/* Player-only: FIFA card, stats, achievements */}
-      {profile?.role !== 'coach' && (
+      {profile?.role === 'player' && (
       <>
       {/* FIFA-style player card */}
       <div
@@ -295,8 +295,28 @@ export function Profile({ onNavigate }: { onNavigate?: (page: string) => void })
         <CoachSquadPicker onClose={() => setShowCoachSquads(false)} />
       )}
 
+      {/* Mentor info header */}
+      {profile?.role === 'mentor' && (
+        <div className="card animate-fade-up">
+          <div className="flex items-center gap-4">
+            {profile?.photoUrl && (
+              <div className="w-14 h-14 rounded-full overflow-hidden flex-shrink-0 ring-2 ring-white" style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.12)' }}>
+                <img src={profile.photoUrl} alt={profile.name} className="w-full h-full object-cover" />
+              </div>
+            )}
+            <div className="flex-1 min-w-0">
+              <p className="text-xl font-extrabold leading-tight truncate">{profile?.name ?? 'Mentor'}</p>
+              <p className="text-xs mt-0.5" style={{ color: 'var(--color-text-muted)' }}>
+                🎯 {t('login.asMentor')}
+                {(profile?.city || profile?.country) ? ` • 📍 ${[profile?.city, profile?.country].filter(Boolean).join(', ')}` : ''}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* My Teams — player/mentor only (coaches use squad management above) */}
-      {profile?.role !== 'coach' && (
+      {profile?.role === 'player' && (
       <div className="card animate-fade-up">
         <div className="flex items-center justify-between mb-2">
           <p className="section-label">{t('teams.title')}</p>
@@ -371,7 +391,7 @@ export function Profile({ onNavigate }: { onNavigate?: (page: string) => void })
       )}
 
       {/* Achievements — player only */}
-      {profile?.role !== 'coach' && (
+      {profile?.role === 'player' && (
       <div className="card animate-fade-up">
         <AchievementsList />
       </div>
@@ -400,7 +420,7 @@ export function Profile({ onNavigate }: { onNavigate?: (page: string) => void })
       <ThemePicker />
 
       {/* Physical stats — player only */}
-      {profile?.role !== 'coach' && (
+      {profile?.role === 'player' && (
       <>
       {showPhysicalUpdate && (
         <PhysicalUpdateFlow onClose={() => setShowPhysicalUpdate(false)} />
@@ -551,16 +571,6 @@ export function Profile({ onNavigate }: { onNavigate?: (page: string) => void })
                 ))}
               </div>
             </div>
-          )}
-
-          {/* Parent/Mentor Dashboard */}
-          {onNavigate && (
-            <button
-              className="btn-choice tap-target text-sm text-center w-full flex items-center justify-center gap-2"
-              onClick={() => onNavigate('mentor')}
-            >
-              👨‍👩‍👦 {t('profile.mentorDashboard')}
-            </button>
           )}
 
           {user && (

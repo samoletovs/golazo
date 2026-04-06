@@ -140,6 +140,7 @@ export interface TrainingEntry {
   notes: string
   exerciseIds: string[]
   fromSchedule?: string // schedule ID if pre-filled
+  verifiedBy?: string[] // userIds who confirmed this entry
   createdAt: string
 }
 
@@ -166,6 +167,7 @@ export interface MatchEntry {
   bestMoment: string
   toImprove: string
   mood: EnergyLevel
+  verifiedBy?: string[] // userIds who confirmed this entry
   createdAt: string
 }
 

@@ -11,7 +11,7 @@ export function LoginPage() {
         {/* Logo / branding */}
         <div className="flex flex-col items-center gap-2">
           <span className="text-6xl">⚽</span>
-          <h1 className="text-3xl font-black text-gradient-green">Golazo</h1>
+          <h1 className="text-3xl font-black text-gradient-green">golazo</h1>
           <p className="text-sm text-center" style={{ color: 'var(--color-text-muted)' }}>
             {t('login.tagline')}
           </p>
