@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
 import { getMatchResult } from '../engine/types'
+import { AnnouncementFeed } from '../components/AnnouncementFeed'
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts'
 
 /**
@@ -167,6 +168,9 @@ export function MentorDashboard() {
           {t('mentor.privacy')}
         </p>
       </div>
+
+      {/* Coach announcements (for parents) */}
+      <AnnouncementFeed />
 
       {/* Alerts */}
       {alerts.map((alert, i) => (

@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
 import { QuoteCard } from '../components/QuoteCard'
 import { CoachCard } from '../components/CoachCard'
+import { AnnouncementFeed } from '../components/AnnouncementFeed'
 import { WeeklyGoalRing } from '../components/WeeklyGoalRing'
 import { useCountUp } from '../hooks/useCountUp'
 import { ConfettiBurst } from '../components/ConfettiBurst'
@@ -543,6 +544,9 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
 
       {/* ── AI Coach ── */}
       <CoachCard />
+
+      {/* ── Announcements from coach ── */}
+      <AnnouncementFeed />
 
       {/* ── Tournament Discovery — teammate shared tournaments ── */}
       {discoveredTournaments.length > 0 && (

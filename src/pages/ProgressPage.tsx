@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
 import { SkillRadar } from '../components/SkillRadar'
+import { EvaluationHistory } from '../components/EvaluationHistory'
 import { EmptyState } from '../components/EmptyState'
 import { getMatchResult, getAgeTier } from '../engine/types'
 import { getTrackedFieldConfigs } from '../engine/physical'
@@ -272,6 +273,9 @@ export function ProgressPage() {
         <p className="section-label mb-2">{t('progress.skillRadar')}</p>
         <SkillRadar />
       </div>
+
+      {/* ── Coach Evaluations ── */}
+      <EvaluationHistory />
 
       {/* ── Burnout Risk Indicator ── */}
       {burnoutRisk && burnoutRisk.level !== 'low' && (
