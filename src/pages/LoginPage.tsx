@@ -52,11 +52,11 @@ export function LoginPage() {
           <button
             className="login-card tap-target"
             onClick={login}
-            aria-label={t('coach.role')}
+            aria-label={t('login.asCoach')}
           >
             <span className="text-3xl">📋</span>
             <div className="flex-1 text-left">
-              <p className="text-sm font-bold">{t('coach.role')}</p>
+              <p className="text-sm font-bold">{t('login.asCoach')}</p>
               <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
                 {t('login.coachDesc')}
               </p>

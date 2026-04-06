@@ -23,6 +23,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     async function checkAuth() {
+      // If user explicitly logged out, don't auto-authenticate
+      if (localStorage.getItem('golazo-logged-out') === 'true') {
+        setLoading(false)
+        return
+      }
       try {
         const res = await fetch('/.auth/me')
         if (res.ok) {
@@ -40,14 +45,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, [])
 
   function login() {
+    // Clear the logged-out flag when user explicitly logs in
+    localStorage.removeItem('golazo-logged-out')
     window.location.href = '/.auth/login/google?post_login_redirect_uri=/'
   }
 
   function logout() {
-    // Clear all app data so stale state doesn't persist after logout
-    localStorage.removeItem('golazo-state')
-    localStorage.removeItem('golazo-lang')
-    localStorage.removeItem('golazo-surface')
+    // Set logged-out flag so app shows login page even if Google auto-re-authenticates
+    localStorage.setItem('golazo-logged-out', 'true')
     window.location.href = '/.auth/logout?post_logout_redirect_uri=/'
   }
 
