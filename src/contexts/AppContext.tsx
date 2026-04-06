@@ -93,6 +93,7 @@ async function syncToApi(state: AppState): Promise<void> {
         readArticles: state.readArticles,
         savedExercises: state.savedExercises,
         programProgress: state.programProgress,
+        onboardingComplete: state.onboardingComplete,
       }),
     })
   } catch {
@@ -160,14 +161,18 @@ export function AppProvider({ children }: { children: ReactNode }) {
     syncFromApi().then((remote) => {
       if (remote && remote.profile) {
         setState((prev) => {
-          const merged = { ...prev, ...remote, onboardingComplete: prev.onboardingComplete || !!remote.profile }
-          // Preserve local arrays if remote doesn't have them (avoids data loss)
-          merged.checkIns = merged.checkIns ?? prev.checkIns ?? []
-          merged.quizAnswers = merged.quizAnswers ?? prev.quizAnswers ?? []
-          merged.readArticles = merged.readArticles ?? prev.readArticles ?? []
+          const merged = { ...prev, ...remote, onboardingComplete: prev.onboardingComplete || !!remote.profile || (remote as Record<string, unknown>).onboardingComplete === true }
+          // Preserve local arrays — use remote if available, fall back to local
+          merged.checkIns = (remote.checkIns?.length ? remote.checkIns : null) ?? prev.checkIns ?? []
+          merged.quizAnswers = (remote.quizAnswers?.length ? remote.quizAnswers : null) ?? prev.quizAnswers ?? []
+          merged.readArticles = (remote.readArticles?.length ? remote.readArticles : null) ?? prev.readArticles ?? []
           merged.savedExercises = merged.savedExercises ?? prev.savedExercises ?? []
-          merged.programProgress = merged.programProgress ?? prev.programProgress ?? []
-          merged.recurringTrainings = merged.recurringTrainings ?? prev.recurringTrainings ?? []
+          merged.programProgress = (remote.programProgress?.length ? remote.programProgress : null) ?? prev.programProgress ?? []
+          merged.recurringTrainings = (remote.recurringTrainings?.length ? remote.recurringTrainings : null) ?? prev.recurringTrainings ?? []
+          merged.schedule = (remote.schedule?.length ? remote.schedule : null) ?? prev.schedule ?? []
+          merged.trainings = (remote.trainings?.length ? remote.trainings : null) ?? prev.trainings ?? []
+          merged.matches = (remote.matches?.length ? remote.matches : null) ?? prev.matches ?? []
+          merged.tournaments = (remote.tournaments?.length ? remote.tournaments : null) ?? prev.tournaments ?? []
           saveState(merged)
           return merged
         })

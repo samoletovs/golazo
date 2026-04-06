@@ -42,6 +42,7 @@ async function handleGet(container, userId) {
     tournaments: [],
     diary: [],
     schedule: [],
+    recurringTrainings: [],
     specialChallenges: [],
     physicalProfile: null,
     xp: null,
@@ -51,6 +52,7 @@ async function handleGet(container, userId) {
     readArticles: [],
     savedExercises: [],
     programProgress: [],
+    onboardingComplete: false,
   };
 
   for (const doc of resources) {
@@ -70,6 +72,8 @@ async function handleGet(container, userId) {
       case 'readArticle': state.readArticles.push(doc.data); break;
       case 'savedExercises': state.savedExercises = doc.data; break;
       case 'programProgress': state.programProgress.push(doc.data); break;
+      case 'recurringTraining': state.recurringTrainings.push(doc.data); break;
+      case 'onboardingComplete': state.onboardingComplete = doc.data; break;
     }
   }
 
@@ -109,7 +113,7 @@ async function handlePut(container, userId, req) {
   }
 
   // Validate array fields: each item must have an id string
-  const arrayFieldKeys = ['trainings', 'matches', 'tournaments', 'diary', 'schedule', 'specialChallenges', 'checkIns', 'quizAnswers', 'readArticles', 'programProgress'];
+  const arrayFieldKeys = ['trainings', 'matches', 'tournaments', 'diary', 'schedule', 'recurringTrainings', 'specialChallenges', 'checkIns', 'quizAnswers', 'readArticles', 'programProgress'];
   for (const key of arrayFieldKeys) {
     if (body[key] !== undefined && !Array.isArray(body[key])) {
       return jsonResponse({ error: `${key} must be an array` }, 400);
@@ -190,6 +194,7 @@ async function handlePut(container, userId, req) {
     { key: 'diary', type: 'diary' },
     { key: 'schedule', type: 'schedule' },
     { key: 'specialChallenges', type: 'challenge' },
+    { key: 'recurringTrainings', type: 'recurringTraining' },
     { key: 'checkIns', type: 'checkIn' },
     { key: 'programProgress', type: 'programProgress' },
   ];
@@ -242,6 +247,17 @@ async function handlePut(container, userId, req) {
       userId,
       docType: 'savedExercises',
       data: body.savedExercises,
+      updatedAt: new Date().toISOString(),
+    }));
+  }
+
+  // Upsert onboardingComplete flag
+  if (body.onboardingComplete !== undefined) {
+    operations.push(container.items.upsert({
+      id: `${userId}:onboardingComplete`,
+      userId,
+      docType: 'onboardingComplete',
+      data: body.onboardingComplete,
       updatedAt: new Date().toISOString(),
     }));
   }
