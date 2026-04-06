@@ -27,6 +27,7 @@ interface AppState {
 }
 
 interface AppContextValue extends AppState {
+  syncing: boolean
   setProfile: (p: PlayerProfile) => void
   setXp: (xp: XpState) => void
   setSkillTree: (st: SkillTree) => void
@@ -151,6 +152,7 @@ function saveState(state: AppState) {
 
 export function AppProvider({ children }: { children: ReactNode }) {
   const [state, setState] = useState<AppState>(loadState)
+  const [syncing, setSyncing] = useState(true)
 
   // Try to sync from API on mount (offline-first: localStorage is always the fallback)
   useEffect(() => {
@@ -169,7 +171,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
           return merged
         })
       }
-    })
+    }).finally(() => setSyncing(false))
   }, [])
 
   function update(partial: Partial<AppState>) {
@@ -186,6 +188,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   const value: AppContextValue = {
     ...state,
+    syncing,
     setProfile: (p) => update({ profile: p }),
     setXp: (xp) => update({ xp }),
     setSkillTree: (st) => update({ skillTree: st }),

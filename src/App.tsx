@@ -41,7 +41,7 @@ function AppContent() {
   const [showSquadPicker, setShowSquadPicker] = useState(false)
   const [selectedSquadIds, setSelectedSquadIds] = useState<string[]>([])
   const { user, loading: authLoading } = useAuth()
-  const { onboardingComplete, profile } = useApp()
+  const { onboardingComplete, profile, syncing } = useApp()
   const [skippedLogin, setSkippedLogin] = useState(false)
 
   // Apply color theme — surface preset handles both surfaces AND accent color
@@ -74,8 +74,8 @@ function AppContent() {
     return () => window.removeEventListener('golazo-skip-login', handleSkip)
   }, [])
 
-  // Show loading skeleton while checking auth
-  if (authLoading) {
+  // Show loading skeleton while checking auth OR syncing data from cloud
+  if (authLoading || syncing) {
     return (
       <div className="flex items-center justify-center min-h-dvh" style={{ background: 'var(--color-bg)' }}>
         <div className="flex flex-col items-center gap-3 animate-fade-up">
