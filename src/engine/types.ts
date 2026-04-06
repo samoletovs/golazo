@@ -39,6 +39,7 @@ export interface PlayerProfile {
   dominantFoot: DominantFoot
   language: Language
   photoUrl?: string
+  managedSquads?: ManagedSquad[] // Coach-only: squads this user manages
   createdAt: string
 }
 

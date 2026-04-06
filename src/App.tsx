@@ -29,6 +29,7 @@ const TrainingPlanner = lazy(() => import('./pages/TrainingPlanner').then(m => (
 const AnnouncementsPage = lazy(() => import('./pages/AnnouncementsPage').then(m => ({ default: m.AnnouncementsPage })))
 const EvaluationPage = lazy(() => import('./pages/EvaluationPage').then(m => ({ default: m.EvaluationPage })))
 const AttendanceGrid = lazy(() => import('./components/AttendanceGrid').then(m => ({ default: m.AttendanceGrid })))
+const CoachSquadPicker = lazy(() => import('./components/CoachSquadPicker').then(m => ({ default: m.CoachSquadPicker })))
 
 type Page = 'dashboard' | 'log' | 'learn' | 'exercises' | 'profile' | 'schedule' | 'progress' | 'leaderboard' | 'challenges' | 'portal' | 'mentor' | 'coach' | 'coach-roster' | 'coach-training' | 'coach-announce' | 'coach-evaluate' | 'coach-attendance'
 
@@ -36,6 +37,7 @@ function AppContent() {
   const [page, setPage] = useState<Page>('dashboard')
   const [pageKey, setPageKey] = useState(0)
   const [coachSquadId, setCoachSquadId] = useState('')
+  const [showSquadPicker, setShowSquadPicker] = useState(false)
   const { user, loading: authLoading } = useAuth()
   const { onboardingComplete, profile } = useApp()
   const [skippedLogin, setSkippedLogin] = useState(false)
@@ -104,12 +106,12 @@ function AppContent() {
             {page === 'dashboard' && isCoach && (
               <Suspense fallback={<div className="flex items-center justify-center p-8"><span className="text-3xl">⚽</span></div>}>
                 <CoachDashboard
-                  squads={(profile as unknown as { managedSquads?: import('./engine/types').ManagedSquad[] }).managedSquads ?? []}
+                  squads={profile?.managedSquads ?? []}
                   onNavigate={(sub, squadId) => {
                     setCoachSquadId(squadId)
                     handleNavigate(`coach-${sub}` as Page)
                   }}
-                  onManageSquads={() => handleNavigate('profile')}
+                  onManageSquads={() => setShowSquadPicker(true)}
                 />
               </Suspense>
             )}
@@ -124,16 +126,6 @@ function AppContent() {
               {page === 'leaderboard' && <LeaderboardPage />}
               {page === 'portal' && <FootballPortal />}
               {page === 'mentor' && <MentorDashboard onBack={() => handleNavigate('profile')} />}
-              {page === 'coach' && profile?.role === 'coach' && (
-                <CoachDashboard
-                  squads={(profile as unknown as { managedSquads?: import('./engine/types').ManagedSquad[] }).managedSquads ?? []}
-                  onNavigate={(sub, squadId) => {
-                    setCoachSquadId(squadId)
-                    handleNavigate(`coach-${sub}` as Page)
-                  }}
-                  onManageSquads={() => handleNavigate('profile')}
-                />
-              )}
               {page === 'coach-roster' && (
                 <SquadRoster
                   squadId={coachSquadId}
@@ -189,6 +181,13 @@ function AppContent() {
 
       <BottomNav active={page} onNavigate={handleNavigate} />
       <FeedbackButton />
+
+      {/* Coach squad picker modal */}
+      {showSquadPicker && (
+        <Suspense fallback={null}>
+          <CoachSquadPicker onClose={() => setShowSquadPicker(false)} />
+        </Suspense>
+      )}
     </div>
   )
 }
