@@ -47,13 +47,13 @@ export function CoachSquadPicker({ onClose }: CoachSquadPickerProps) {
     return () => { cancelled = true }
   }, [profile?.country])
 
-  // Build club → squads hierarchy
-  const clubTree = useMemo(() => {
-    const clubs = allTeams.filter((t) => t.type === 'club' || (!t.type && !t.parentClubId))
+  // Build club → squads hierarchy + standalone teams
+  const { clubTree, standaloneTeams } = useMemo(() => {
+    const clubs = allTeams.filter((t) => t.type === 'club')
     const academies = allTeams.filter((t) => t.type === 'academy')
     const squads = allTeams.filter((t) => t.type === 'squad')
 
-    return clubs
+    const tree = clubs
       .sort((a, b) => a.name.localeCompare(b.name))
       .map((club) => {
         const clubAcademies = academies.filter((a) => a.parentClubId === club.id)
@@ -67,6 +67,20 @@ export function CoachSquadPicker({ onClose }: CoachSquadPickerProps) {
         return { club, squads: allSquads }
       })
       .filter((n) => n.squads.length > 0)
+
+    // Standalone: teams without type or not part of any hierarchy
+    const usedInTree = new Set<string>()
+    for (const node of tree) {
+      usedInTree.add(node.club.id)
+      for (const s of node.squads) usedInTree.add(s.id)
+    }
+    for (const a of academies) usedInTree.add(a.id)
+
+    const standalone = allTeams
+      .filter((t) => !usedInTree.has(t.id))
+      .sort((a, b) => a.name.localeCompare(b.name))
+
+    return { clubTree: tree, standaloneTeams: standalone }
   }, [allTeams])
 
   function toggleSquad(squad: SharedTeam) {
@@ -149,14 +163,15 @@ export function CoachSquadPicker({ onClose }: CoachSquadPickerProps) {
           )}
         </div>
 
-        {/* Club list */}
+        {/* Team list */}
         <div className="px-5 pb-5">
           {loading ? (
             <div className="text-center py-8">
               <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>...</span>
             </div>
-          ) : clubTree.length > 0 ? (
+          ) : (clubTree.length > 0 || standaloneTeams.length > 0) ? (
             <div className="flex flex-col gap-2">
+              {/* Clubs with squad hierarchy */}
               {clubTree.map(({ club, squads }) => {
                 const isExpanded = expandedClub === club.id
                 const hasSelected = squads.some((s) => managedIds.has(s.id))
@@ -222,6 +237,52 @@ export function CoachSquadPicker({ onClose }: CoachSquadPickerProps) {
                   </div>
                 )
               })}
+
+              {/* Standalone teams (no hierarchy) */}
+              {standaloneTeams.length > 0 && (
+                <div className="flex flex-col gap-1.5">
+                  {clubTree.length > 0 && (
+                    <p className="text-xs font-bold uppercase tracking-wider mt-2 mb-1" style={{ color: 'var(--color-text-muted)' }}>
+                      {t('portal.clubs')}
+                    </p>
+                  )}
+                  {standaloneTeams.map((team) => {
+                    const isSelected = managedIds.has(team.id)
+                    return (
+                      <button
+                        key={team.id}
+                        className="card tap-target flex items-center gap-3 p-3 text-left transition-all"
+                        style={{
+                          border: isSelected ? '2px solid var(--color-primary)' : '2px solid transparent',
+                          background: isSelected ? 'var(--color-primary-bg)' : undefined,
+                        }}
+                        onClick={() => toggleSquad(team)}
+                        aria-pressed={isSelected}
+                      >
+                        {team.logoUrl ? (
+                          <img src={team.logoUrl} alt="" className="w-8 h-8 rounded-lg object-contain shrink-0"
+                            style={{ background: 'rgba(255,255,255,0.5)' }}
+                            onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }} />
+                        ) : (
+                          <div className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
+                            style={{ background: 'var(--color-glass-hover)' }}>
+                            <span className="text-sm">⚽</span>
+                          </div>
+                        )}
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm font-bold truncate">{team.name}</p>
+                          {team.city && (
+                            <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{team.city}</p>
+                          )}
+                        </div>
+                        {isSelected && (
+                          <span className="text-xs font-bold shrink-0" style={{ color: 'var(--color-primary-dark)' }}>✓</span>
+                        )}
+                      </button>
+                    )
+                  })}
+                </div>
+              )}
             </div>
           ) : (
             <div className="card text-center py-8">
