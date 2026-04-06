@@ -13,42 +13,11 @@
       "statusCode": 404
     },
     {
-      "route": "/api/teams",
-      "methods": ["GET"],
-      "allowedRoles": ["anonymous", "authenticated"]
-    },
-    {
-      "route": "/api/coach",
-      "methods": ["POST"],
-      "allowedRoles": ["anonymous", "authenticated"]
-    },
-    {
-      "route": "/api/team-info",
-      "methods": ["POST"],
-      "allowedRoles": ["anonymous", "authenticated"]
-    },
-    {
-      "route": "/api/tournament-import",
-      "methods": ["POST"],
-      "allowedRoles": ["anonymous", "authenticated"]
-    },
-    {
-      "route": "/api/shared-games",
-      "methods": ["GET", "POST"],
-      "allowedRoles": ["anonymous", "authenticated"]
-    },
-    {
-      "route": "/api/shared-tournaments",
-      "methods": ["GET", "POST"],
-      "allowedRoles": ["anonymous", "authenticated"]
-    },
-    {
-      "route": "/api/shared-tournaments/*",
-      "methods": ["GET", "POST"],
-      "allowedRoles": ["anonymous", "authenticated"]
-    },
-    {
       "route": "/api/*",
+      "allowedRoles": ["authenticated"]
+    },
+    {
+      "route": "/*",
       "allowedRoles": ["authenticated"]
     }
   ],
