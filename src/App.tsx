@@ -130,7 +130,7 @@ function AppContent() {
                 <SquadRoster
                   squadId={coachSquadId}
                   squadName={coachSquadId}
-                  onBack={() => handleNavigate('coach')}
+                  onBack={() => handleNavigate('dashboard')}
                   onEvaluate={() => {
                     handleNavigate('coach-evaluate')
                   }}
@@ -141,7 +141,7 @@ function AppContent() {
                   squadId={coachSquadId}
                   squadName={coachSquadId}
                   coachId={profile?.id ?? ''}
-                  onBack={() => handleNavigate('coach')}
+                  onBack={() => handleNavigate('dashboard')}
                 />
               )}
               {page === 'coach-announce' && (
@@ -150,7 +150,7 @@ function AppContent() {
                   squadName={coachSquadId}
                   coachId={profile?.id ?? ''}
                   coachName={profile?.name ?? ''}
-                  onBack={() => handleNavigate('coach')}
+                  onBack={() => handleNavigate('dashboard')}
                 />
               )}
               {page === 'coach-evaluate' && (
@@ -159,7 +159,7 @@ function AppContent() {
                   squadName={coachSquadId}
                   coachId={profile?.id ?? ''}
                   coachName={profile?.name ?? ''}
-                  onBack={() => handleNavigate('coach')}
+                  onBack={() => handleNavigate('dashboard')}
                 />
               )}
               {page === 'coach-attendance' && (
@@ -167,7 +167,7 @@ function AppContent() {
                   squadId={coachSquadId}
                   squadName={coachSquadId}
                   coachId={profile?.id ?? ''}
-                  onBack={() => handleNavigate('coach')}
+                  onBack={() => handleNavigate('dashboard')}
                 />
               )}
             </Suspense>
