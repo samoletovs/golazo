@@ -5,7 +5,7 @@ import { awardXp, XP_AWARDS, scaleXp } from '../engine/xp'
 import { TeamSearch } from '../components/TeamSearch'
 import { getMatchDurationRecommendation } from '../engine/footballStandards'
 import { getAgeTier } from '../engine/types'
-import type { Position, EnergyLevel, MatchEntry } from '../engine/types'
+import type { Position, EnergyLevel, MatchEntry, PlayerTeam } from '../engine/types'
 
 const POSITIONS: Position[] = ['CM', 'LW', 'RW', 'LM', 'RM', 'CAM', 'CDM', 'LB', 'RB', 'ST', 'CB', 'GK']
 
@@ -31,7 +31,7 @@ export function MatchLog({ onBack, inline, prefill, onSaved }: MatchLogProps) {
   const [date, setDate] = useState(prefill?.date ?? today)
   const [opponent, setOpponent] = useState(prefill?.opponent ?? '')
   const [competition, setCompetition] = useState(prefill?.competition ?? '')
-  const [playingFor, setPlayingFor] = useState(prefill?.playingFor ?? (profile?.team || ''))
+  const [playingFor, setPlayingFor] = useState(prefill?.playingFor ?? (profile?.teams?.find(t => t.isPrimary)?.name || profile?.teams?.[0]?.name || profile?.team || ''))
   const [scoreUs, setScoreUs] = useState(0)
   const [scoreThem, setScoreThem] = useState(0)
   const [positions, setPositions] = useState<Position[]>(profile?.positions?.length ? [profile.positions[0]] : ['CM'])
@@ -46,10 +46,10 @@ export function MatchLog({ onBack, inline, prefill, onSaved }: MatchLogProps) {
   const [toImprove, setToImprove] = useState('')
   const [mood, setMood] = useState<EnergyLevel>(3)
 
-  const teamName = playingFor || profile?.team || '???'
+  const teamName = playingFor || profile?.teams?.find(t => t.isPrimary)?.name || profile?.teams?.[0]?.name || profile?.team || '???'
 
   // Player's teams for "playing for" selector
-  const playerTeams = profile?.teams?.filter(team => team.active) ?? []
+  const playerTeams = (profile?.teams ?? []).filter((team: PlayerTeam) => team.active)
 
   function togglePosition(pos: Position) {
     setPositions((prev) =>
@@ -63,6 +63,7 @@ export function MatchLog({ onBack, inline, prefill, onSaved }: MatchLogProps) {
     const entry: MatchEntry = {
       id: crypto.randomUUID(),
       playerId: 'default',
+      tournamentId: prefill?.tournamentId,
       playingFor: playingFor || undefined,
       date,
       opponent,

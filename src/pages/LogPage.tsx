@@ -114,7 +114,7 @@ export function LogPage() {
         opponent: ev.opponent,
         competition: ev.competition,
         matchType: ev.matchType,
-        playingFor: profile?.team || '',
+        playingFor: profile?.teams?.find(t => t.isPrimary)?.name || profile?.teams?.[0]?.name || profile?.team || '',
         fromSchedule: ev.id,
       })
       setLogType('match')

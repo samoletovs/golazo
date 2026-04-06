@@ -10,7 +10,8 @@ import { getDefaultTrackedFields, PHYSICAL_FIELDS, PHYSICAL_GROUPS, buildMeasure
 
 type Step = 'role' | 'basics' | 'football' | 'physical' | 'assessment' | 'done'
 
-const STEPS: Step[] = ['role', 'basics', 'football', 'physical', 'assessment', 'done']
+const PLAYER_STEPS: Step[] = ['role', 'basics', 'football', 'physical', 'assessment', 'done']
+const COACH_STEPS: Step[] = ['role', 'basics', 'done']
 
 const POSITION_OPTIONS: { key: Position; emoji: string }[] = [
   { key: 'GK', emoji: '🧤' },
@@ -98,7 +99,7 @@ function prefillSkillTree(
 
 export function OnboardingPage() {
   const { t, i18n } = useTranslation()
-  const { setProfile, setSkillTree, setPhysicalProfile, setOnboardingComplete } = useApp()
+  const { setProfile, setSkillTree, setPhysicalProfile, setOnboardingComplete, syncToCloud } = useApp()
   const { user } = useAuth()
 
   const [step, setStep] = useState<Step>('role')
@@ -119,17 +120,18 @@ export function OnboardingPage() {
     assessment: {},
   })
 
-  const stepIndex = STEPS.indexOf(step)
-  const progress = ((stepIndex) / (STEPS.length - 1)) * 100
+  const steps = form.role === 'coach' ? COACH_STEPS : PLAYER_STEPS
+  const stepIndex = steps.indexOf(step)
+  const progress = ((stepIndex) / (steps.length - 1)) * 100
 
   function next() {
-    const idx = STEPS.indexOf(step)
-    if (idx < STEPS.length - 1) setStep(STEPS[idx + 1])
+    const idx = steps.indexOf(step)
+    if (idx < steps.length - 1) setStep(steps[idx + 1])
   }
 
   function back() {
-    const idx = STEPS.indexOf(step)
-    if (idx > 0) setStep(STEPS[idx - 1])
+    const idx = steps.indexOf(step)
+    if (idx > 0) setStep(steps[idx - 1])
   }
 
   function togglePosition(pos: Position) {
@@ -185,6 +187,10 @@ export function OnboardingPage() {
     setSkillTree(tree)
 
     setOnboardingComplete(true)
+
+    // Force immediate cloud sync — don't rely on debounced timer
+    // (browser might close before the 2s timeout fires)
+    syncToCloud()
   }
 
   return (
@@ -200,7 +206,7 @@ export function OnboardingPage() {
           </div>
           <div className="flex justify-between mt-2">
             <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
-              {stepIndex + 1} / {STEPS.length}
+              {stepIndex + 1} / {steps.length}
             </span>
             {stepIndex > 0 && (
               <button
@@ -329,10 +335,10 @@ export function OnboardingPage() {
                 </div>
 
                 <label className="text-xs font-bold mt-2" style={{ color: 'var(--color-text-secondary)' }}>
-                  {t('onboarding.teams')}
+                  {form.role === 'coach' ? t('coach.onboarding.selectSquads') : t('onboarding.teams')}
                 </label>
                 <p className="text-xs mb-1" style={{ color: 'var(--color-text-muted)' }}>
-                  {t('onboarding.teamsHint')}
+                  {form.role === 'coach' ? t('coach.onboarding.squadsHint', 'Select the squads you manage.') : t('onboarding.teamsHint')}
                 </p>
 
                 {/* Added teams as chips */}
@@ -361,7 +367,7 @@ export function OnboardingPage() {
                   </div>
                 )}
 
-                {/* Open SquadPicker */}
+                {/* Open TeamPicker */}
                 <button
                   type="button"
                   className="w-full text-sm px-3 py-2.5 rounded-xl tap-target text-left"
@@ -373,46 +379,56 @@ export function OnboardingPage() {
                   onClick={() => setShowSquadPicker(true)}
                 >
                   {form.teams.length === 0
-                    ? `+ ${t('onboarding.teamPlaceholder')}`
+                    ? `+ ${form.role === 'coach' ? t('coach.onboarding.selectSquads') : t('onboarding.teamPlaceholder')}`
                     : `+ ${t('onboarding.addAnotherTeam')}`
                   }
                 </button>
 
-                <label className="text-xs font-bold mt-2" style={{ color: 'var(--color-text-secondary)' }}>
-                  {t('onboarding.jerseyNumber')}
-                </label>
-                <input
-                  type="number"
-                  value={form.jerseyNumber}
-                  onChange={(e) => setForm((f) => ({ ...f, jerseyNumber: e.target.value }))}
-                  placeholder="10"
-                  min={1}
-                  max={99}
-                  className="w-24"
-                />
+                {/* Player/mentor-only fields */}
+                {form.role !== 'coach' && (
+                  <>
+                    <label className="text-xs font-bold mt-2" style={{ color: 'var(--color-text-secondary)' }}>
+                      {t('onboarding.jerseyNumber')}
+                    </label>
+                    <input
+                      type="number"
+                      value={form.jerseyNumber}
+                      onChange={(e) => setForm((f) => ({ ...f, jerseyNumber: e.target.value }))}
+                      placeholder="10"
+                      min={1}
+                      max={99}
+                      className="w-24"
+                    />
 
-                <label className="text-xs font-bold mt-2" style={{ color: 'var(--color-text-secondary)' }}>
-                  {t('onboarding.yearsPlaying')}
-                </label>
-                <div className="flex items-center gap-3">
-                  <input
-                    type="range"
-                    min={0}
-                    max={15}
-                    value={form.yearsPlaying}
-                    onChange={(e) => setForm((f) => ({ ...f, yearsPlaying: parseInt(e.target.value, 10) }))}
-                    className="flex-1"
-                  />
-                  <span className="text-sm font-bold font-data w-8 text-center">{form.yearsPlaying}</span>
-                </div>
+                    <label className="text-xs font-bold mt-2" style={{ color: 'var(--color-text-secondary)' }}>
+                      {t('onboarding.yearsPlaying')}
+                    </label>
+                    <div className="flex items-center gap-3">
+                      <input
+                        type="range"
+                        min={0}
+                        max={15}
+                        value={form.yearsPlaying}
+                        onChange={(e) => setForm((f) => ({ ...f, yearsPlaying: parseInt(e.target.value, 10) }))}
+                        className="flex-1"
+                      />
+                      <span className="text-sm font-bold font-data w-8 text-center">{form.yearsPlaying}</span>
+                    </div>
+                  </>
+                )}
               </div>
 
               <button
                 className="btn-primary mt-4 w-full"
-                onClick={next}
+                onClick={() => {
+                  if (form.role === 'coach') {
+                    finishOnboarding()
+                  }
+                  next()
+                }}
                 disabled={!form.name}
               >
-                {t('onboarding.continue')}
+                {form.role === 'coach' ? t('onboarding.finish') : t('onboarding.continue')}
               </button>
             </div>
           )}
@@ -642,7 +658,10 @@ export function OnboardingPage() {
               <div className="card-glow text-center mt-4">
                 <p className="text-sm font-bold">{form.name}</p>
                 <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
-                  {form.positions.join(' / ')} • {form.teams.map((t) => t.name).join(', ') || '—'}
+                  {form.role === 'coach'
+                    ? `${t('coach.role')} • ${form.teams.map((t) => t.name).join(', ') || '—'}`
+                    : `${form.positions.join(' / ')} • ${form.teams.map((t) => t.name).join(', ') || '—'}`
+                  }
                 </p>
                 {form.physicalFields?.heightCm && form.physicalFields?.weightKg && (
                   <p className="text-xs mt-1 font-data" style={{ color: 'var(--color-text-muted)' }}>
@@ -655,10 +674,10 @@ export function OnboardingPage() {
         </main>
       </div>
 
-      {/* Squad picker modal */}
+      {/* Team picker modal */}
       {showSquadPicker && (
         <TeamPicker
-          mode="player"
+          mode={form.role === 'coach' ? 'coach' : 'player'}
           onClose={() => setShowSquadPicker(false)}
           externalTeams={form.teams}
           onTeamsChange={(teams) => setForm((f) => ({ ...f, teams }))}

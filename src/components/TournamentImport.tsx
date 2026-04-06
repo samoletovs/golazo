@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
 import { TeamSearch } from './TeamSearch'
 import { getMatchDurationRecommendation } from '../engine/footballStandards'
-import type { Tournament, ScheduleEvent } from '../engine/types'
+import type { Tournament, ScheduleEvent, PlayerTeam } from '../engine/types'
 
 interface ParsedGame {
   date: string  // DD.MM
@@ -40,12 +40,12 @@ export function TournamentImport({ onClose }: { onClose: () => void }) {
   const durationRecommendation = getMatchDurationRecommendation(profile?.birthDate)
 
   // Player's saved teams (from profile)
-  const playerTeams = profile?.teams?.filter((t) => t.active) ?? []
+  const playerTeams = (profile?.teams ?? []).filter((t: PlayerTeam) => t.active)
   const hasTeams = playerTeams.length > 0
 
   const [url, setUrl] = useState('')
   // The name used to search in the tournament fixtures
-  const [teamName, setTeamName] = useState(profile?.team || '')
+  const [teamName, setTeamName] = useState(profile?.teams?.find(t => t.isPrimary)?.name || profile?.teams?.[0]?.name || profile?.team || '')
   // Which of the player's teams this tournament is for
   const [selectedTeamId, setSelectedTeamId] = useState(playerTeams[0]?.id ?? '')
   const [durationMin, setDurationMin] = useState(durationRecommendation.totalMinutes)
