@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { createPortal } from 'react-dom'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
 import { useAuth } from '../contexts/AuthContext'
@@ -114,9 +115,10 @@ export function Profile() {
     <div className="flex flex-col gap-4 p-4 pb-32">
       <h2 className="text-xl font-extrabold">{t('profile.title')}</h2>
 
-      {/* Squad picker modal */}
-      {showTeams && (
-        <SquadPicker mode={profile?.role === 'coach' ? 'coach' : 'player'} onClose={() => setShowTeams(false)} />
+      {/* Squad picker modal — portal to body to avoid mobile fixed-position issues */}
+      {showTeams && createPortal(
+        <SquadPicker mode={profile?.role === 'coach' ? 'coach' : 'player'} onClose={() => setShowTeams(false)} />,
+        document.body
       )}
 
       {/* Photo upload */}
