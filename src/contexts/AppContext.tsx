@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, createContext, useContext } from 'react'
+import { useState, useEffect, useCallback, useRef, createContext, useContext } from 'react'
 import type { ReactNode } from 'react'
 import type { XpState, PlayerProfile, SkillTree, TrainingEntry, MatchEntry, Tournament, DiaryEntry, ScheduleEvent, SpecialChallengeProgress, PhysicalProfile, RecurringTraining, DailyCheckIn, QuizAnswer, ReadArticle, ProgramProgress } from '../engine/types'
 import { createInitialXpState } from '../engine/xp'
@@ -153,6 +153,7 @@ function saveState(state: AppState) {
 export function AppProvider({ children }: { children: ReactNode }) {
   const [state, setState] = useState<AppState>(loadState)
   const [syncing, setSyncing] = useState(true)
+  const syncTimerRef = useRef<number>(0)
 
   // Try to sync from API on mount (offline-first: localStorage is always the fallback)
   useEffect(() => {
@@ -178,6 +179,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setState((prev) => {
       const next = { ...prev, ...partial }
       saveState(next)
+      // Auto-sync to cloud after 2s debounce (non-blocking)
+      window.clearTimeout(syncTimerRef.current)
+      syncTimerRef.current = window.setTimeout(() => syncToApi(next), 2000)
       return next
     })
   }
