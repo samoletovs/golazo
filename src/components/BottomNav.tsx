@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 interface BottomNavProps {
   active: string
   onNavigate: (page: string) => void
+  role?: 'player' | 'mentor' | 'coach'
 }
 
 function NavIcon({ name, active }: { name: string; active: boolean }) {
@@ -56,12 +57,30 @@ function NavIcon({ name, active }: { name: string; active: boolean }) {
           <circle cx="12" cy="7" r="4" />
         </svg>
       )
+    case 'squads':
+      return (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round">
+          <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+          <circle cx="9" cy="7" r="4" />
+          <path d="M23 21v-2a4 4 0 00-3-3.87" />
+          <path d="M16 3.13a4 4 0 010 7.75" />
+        </svg>
+      )
+    case 'schedule':
+      return (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+          <line x1="16" y1="2" x2="16" y2="6" />
+          <line x1="8" y1="2" x2="8" y2="6" />
+          <line x1="3" y1="10" x2="21" y2="10" />
+        </svg>
+      )
     default:
       return null
   }
 }
 
-const NAV_ITEMS = [
+const PLAYER_NAV = [
   { key: 'dashboard', labelKey: 'nav.dashboard' },
   { key: 'log', labelKey: 'nav.log' },
   { key: 'progress', labelKey: 'nav.progress' },
@@ -69,12 +88,20 @@ const NAV_ITEMS = [
   { key: 'profile', labelKey: 'nav.profile' },
 ]
 
-export function BottomNav({ active, onNavigate }: BottomNavProps) {
+const COACH_NAV = [
+  { key: 'dashboard', labelKey: 'nav.dashboard' },
+  { key: 'squads', labelKey: 'nav.squads' },
+  { key: 'schedule', labelKey: 'nav.schedule' },
+  { key: 'profile', labelKey: 'nav.profile' },
+]
+
+export function BottomNav({ active, onNavigate, role }: BottomNavProps) {
   const { t } = useTranslation()
+  const items = role === 'coach' ? COACH_NAV : PLAYER_NAV
 
   return (
     <nav className="bottom-nav" aria-label="Main navigation">
-      {NAV_ITEMS.map((item) => (
+      {items.map((item) => (
         <button
           key={item.key}
           className="bottom-nav-item"

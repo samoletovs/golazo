@@ -122,6 +122,9 @@ export function Profile({ onNavigate }: { onNavigate?: (page: string) => void })
       {/* Photo upload */}
       <PhotoUpload />
 
+      {/* Player-only: FIFA card, stats, achievements */}
+      {profile?.role !== 'coach' && (
+      <>
       {/* FIFA-style player card */}
       <div
         className="card-gold relative overflow-hidden animate-fade-up"
@@ -239,6 +242,31 @@ export function Profile({ onNavigate }: { onNavigate?: (page: string) => void })
       >
         {exporting ? t('common.loading') : t('profile.export')}
       </button>
+      </>
+      )}
+
+      {/* Coach info header */}
+      {profile?.role === 'coach' && (
+        <div className="card animate-fade-up">
+          <div className="flex items-center gap-4">
+            {profile?.photoUrl && (
+              <div className="w-14 h-14 rounded-full overflow-hidden flex-shrink-0 ring-2 ring-white" style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.12)' }}>
+                <img src={profile.photoUrl} alt={profile.name} className="w-full h-full object-cover" />
+              </div>
+            )}
+            <div className="flex-1 min-w-0">
+              <p className="text-xl font-extrabold leading-tight truncate">{profile?.name ?? 'Coach'}</p>
+              <p className="text-xs mt-0.5" style={{ color: 'var(--color-text-muted)' }}>
+                📋 {t('coach.role')}
+                {(profile?.city || profile?.country) ? ` • 📍 ${[profile?.city, profile?.country].filter(Boolean).join(', ')}` : ''}
+              </p>
+              <p className="text-xs font-bold mt-1" style={{ color: 'var(--color-primary-dark)' }}>
+                {(profile?.managedSquads?.length ?? 0)} {t('teams.squads').toLowerCase()}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* My Teams — inline display */}
       <div className="card animate-fade-up">
@@ -313,10 +341,12 @@ export function Profile({ onNavigate }: { onNavigate?: (page: string) => void })
         )}
       </div>
 
-      {/* Achievements */}
+      {/* Achievements — player only */}
+      {profile?.role !== 'coach' && (
       <div className="card animate-fade-up">
         <AchievementsList />
       </div>
+      )}
 
       {/* Language selector */}
       <div className="card">
@@ -340,7 +370,9 @@ export function Profile({ onNavigate }: { onNavigate?: (page: string) => void })
       {/* App Theme */}
       <ThemePicker />
 
-      {/* Physical stats */}
+      {/* Physical stats — player only */}
+      {profile?.role !== 'coach' && (
+      <>
       {showPhysicalUpdate && (
         <PhysicalUpdateFlow onClose={() => setShowPhysicalUpdate(false)} />
       )}
@@ -444,6 +476,8 @@ export function Profile({ onNavigate }: { onNavigate?: (page: string) => void })
           </div>
         )
       })()}
+      </>
+      )}
 
       {/* Account section */}
       <div className="card">

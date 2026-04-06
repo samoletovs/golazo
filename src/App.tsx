@@ -31,7 +31,7 @@ const EvaluationPage = lazy(() => import('./pages/EvaluationPage').then(m => ({ 
 const AttendanceGrid = lazy(() => import('./components/AttendanceGrid').then(m => ({ default: m.AttendanceGrid })))
 const CoachSquadPicker = lazy(() => import('./components/CoachSquadPicker').then(m => ({ default: m.CoachSquadPicker })))
 
-type Page = 'dashboard' | 'log' | 'learn' | 'exercises' | 'profile' | 'schedule' | 'progress' | 'leaderboard' | 'challenges' | 'portal' | 'mentor' | 'coach' | 'coach-roster' | 'coach-training' | 'coach-announce' | 'coach-evaluate' | 'coach-attendance'
+type Page = 'dashboard' | 'log' | 'learn' | 'exercises' | 'profile' | 'schedule' | 'progress' | 'leaderboard' | 'challenges' | 'portal' | 'mentor' | 'coach' | 'squads' | 'coach-roster' | 'coach-training' | 'coach-announce' | 'coach-evaluate' | 'coach-attendance'
 
 function AppContent() {
   const [page, setPage] = useState<Page>('dashboard')
@@ -50,6 +50,11 @@ function AppContent() {
 
   // Page transition — re-key the content wrapper to trigger animation
   const handleNavigate = (p: string) => {
+    // Coach: "squads" tab opens the squad picker modal instead of a page
+    if (p === 'squads') {
+      setShowSquadPicker(true)
+      return
+    }
     if (p !== page) {
       setPage(p as Page)
       setPageKey(k => k + 1)
@@ -96,9 +101,12 @@ function AppContent() {
   return (
     <div className="flex flex-col min-h-dvh">
       <div className="app-shell flex flex-col min-h-dvh">
-        <header className="app-header">
-          <XpBar />
-        </header>
+        {/* Header: XP bar for players, minimal for coaches */}
+        {!isCoach && (
+          <header className="app-header">
+            <XpBar />
+          </header>
+        )}
 
         <main className="flex-1 overflow-y-auto pb-20">
           <div key={pageKey} className="page-enter">
@@ -179,7 +187,7 @@ function AppContent() {
         </footer>
       </div>
 
-      <BottomNav active={page} onNavigate={handleNavigate} />
+      <BottomNav active={page} onNavigate={handleNavigate} role={profile?.role} />
       <FeedbackButton />
 
       {/* Coach squad picker modal */}
