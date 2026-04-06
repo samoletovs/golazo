@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
+import { AddTeamDialog } from './AddTeamDialog'
 import type { SharedTeam, ManagedSquad, CoachRole } from '../engine/types'
 
 interface CoachSquadPickerProps {
@@ -22,6 +23,8 @@ export function CoachSquadPicker({ onClose }: CoachSquadPickerProps) {
   const [loading, setLoading] = useState(true)
   const [expandedClub, setExpandedClub] = useState<string | null>(null)
   const [selectedRole, setSelectedRole] = useState<CoachRole>('head')
+  const [search, setSearch] = useState('')
+  const [addTeamName, setAddTeamName] = useState<string | null>(null)
 
   // Current managed squad IDs for quick lookup
   const managedIds = useMemo(
@@ -83,6 +86,42 @@ export function CoachSquadPicker({ onClose }: CoachSquadPickerProps) {
     return { clubTree: tree, standaloneTeams: standalone }
   }, [allTeams])
 
+  /** Normalize for search (strip accents) */
+  function norm(s: string): string {
+    return s.toLowerCase()
+      .replace(/[āàâä]/g, 'a').replace(/[čć]/g, 'c').replace(/[ēėèêë]/g, 'e')
+      .replace(/[ģ]/g, 'g').replace(/[īìîï]/g, 'i').replace(/[ķ]/g, 'k')
+      .replace(/[ļ]/g, 'l').replace(/[ņ]/g, 'n').replace(/[ōõöò]/g, 'o')
+      .replace(/[šś]/g, 's').replace(/[ūùûü]/g, 'u').replace(/[žź]/g, 'z')
+  }
+
+  function teamMatchesSearch(team: SharedTeam, q: string): boolean {
+    if (!q) return true
+    const nq = norm(q)
+    return norm(team.name).includes(nq)
+      || (team.abbreviation && norm(team.abbreviation).includes(nq))
+      || team.aliases?.some((a) => norm(a).includes(nq))
+      || (team.city && norm(team.city).includes(nq))
+      || false
+  }
+
+  // Filtered results
+  const filteredStandaloneTeams = useMemo(
+    () => standaloneTeams.filter((t) => teamMatchesSearch(t, search)),
+    [standaloneTeams, search]
+  )
+
+  const filteredClubTree = useMemo(
+    () => search
+      ? clubTree.filter(({ club, squads }) =>
+          teamMatchesSearch(club, search) || squads.some((s) => teamMatchesSearch(s, search))
+        )
+      : clubTree,
+    [clubTree, search]
+  )
+
+  const hasResults = filteredClubTree.length > 0 || filteredStandaloneTeams.length > 0
+
   function toggleSquad(squad: SharedTeam) {
     if (!profile) return
     const current = profile.managedSquads ?? []
@@ -119,6 +158,16 @@ export function CoachSquadPicker({ onClose }: CoachSquadPickerProps) {
   }
 
   const managedCount = profile?.managedSquads?.length ?? 0
+
+  function handleNewTeamAdded(_name: string, sharedTeam?: SharedTeam) {
+    if (sharedTeam) {
+      // Add to allTeams so it shows up immediately
+      setAllTeams((prev) => [...prev, sharedTeam])
+      // Auto-select it
+      toggleSquad(sharedTeam)
+    }
+    setAddTeamName(null)
+  }
 
   return (
     <div
@@ -161,6 +210,25 @@ export function CoachSquadPicker({ onClose }: CoachSquadPickerProps) {
               ✓ {managedCount} {managedCount === 1 ? 'squad' : 'squads'} selected
             </p>
           )}
+
+          {/* Search + Add new */}
+          <div className="flex gap-2 mt-2">
+            <input
+              type="text"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder={t('teams.search')}
+              className="flex-1 text-sm px-3 py-2 rounded-xl"
+              style={{ background: 'var(--color-glass-hover)' }}
+            />
+            <button
+              className="text-xs font-bold px-3 py-2 rounded-xl tap-target shrink-0"
+              style={{ background: 'var(--color-primary-bg)', color: 'var(--color-primary-dark)' }}
+              onClick={() => setAddTeamName(search || '')}
+            >
+              + {t('teams.addNewTitle')}
+            </button>
+          </div>
         </div>
 
         {/* Team list */}
@@ -169,10 +237,10 @@ export function CoachSquadPicker({ onClose }: CoachSquadPickerProps) {
             <div className="text-center py-8">
               <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>...</span>
             </div>
-          ) : (clubTree.length > 0 || standaloneTeams.length > 0) ? (
+          ) : hasResults ? (
             <div className="flex flex-col gap-2">
               {/* Clubs with squad hierarchy */}
-              {clubTree.map(({ club, squads }) => {
+              {filteredClubTree.map(({ club, squads }) => {
                 const isExpanded = expandedClub === club.id
                 const hasSelected = squads.some((s) => managedIds.has(s.id))
                 return (
@@ -239,14 +307,14 @@ export function CoachSquadPicker({ onClose }: CoachSquadPickerProps) {
               })}
 
               {/* Standalone teams (no hierarchy) */}
-              {standaloneTeams.length > 0 && (
+              {filteredStandaloneTeams.length > 0 && (
                 <div className="flex flex-col gap-1.5">
-                  {clubTree.length > 0 && (
+                  {filteredClubTree.length > 0 && (
                     <p className="text-xs font-bold uppercase tracking-wider mt-2 mb-1" style={{ color: 'var(--color-text-muted)' }}>
                       {t('portal.clubs')}
                     </p>
                   )}
-                  {standaloneTeams.map((team) => {
+                  {filteredStandaloneTeams.map((team) => {
                     const isSelected = managedIds.has(team.id)
                     return (
                       <button
@@ -287,9 +355,17 @@ export function CoachSquadPicker({ onClose }: CoachSquadPickerProps) {
           ) : (
             <div className="card text-center py-8">
               <span className="text-5xl mb-3 block">🏟️</span>
-              <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
-                {t('coach.dashboard.noSquads')}
+              <p className="text-sm font-bold mb-1">
+                {search ? t('portal.noClubs', { age: search }) : t('coach.dashboard.noSquads')}
               </p>
+              {search && (
+                <button
+                  className="btn-primary text-xs px-4 py-2 rounded-xl tap-target mt-3"
+                  onClick={() => setAddTeamName(search)}
+                >
+                  + {t('teams.addCustom', { name: search })}
+                </button>
+              )}
             </div>
           )}
         </div>
@@ -306,6 +382,16 @@ export function CoachSquadPicker({ onClose }: CoachSquadPickerProps) {
           </div>
         )}
       </div>
+
+      {/* Add new team dialog */}
+      {addTeamName !== null && (
+        <AddTeamDialog
+          initialName={addTeamName}
+          defaultCountry={profile?.country}
+          onAdd={handleNewTeamAdded}
+          onCancel={() => setAddTeamName(null)}
+        />
+      )}
     </div>
   )
 }
