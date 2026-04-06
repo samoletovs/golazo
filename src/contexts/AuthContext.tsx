@@ -28,6 +28,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         if (res.ok) {
           const data = await res.json() as { clientPrincipal: SwaClientPrincipal | null }
           setUser(data.clientPrincipal)
+          if (data.clientPrincipal) fetch('/api/track-login', { method: 'POST' }).catch(() => {})
         }
       } catch {
         // Not running on SWA (local dev) — skip auth
