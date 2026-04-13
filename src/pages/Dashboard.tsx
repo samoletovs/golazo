@@ -322,21 +322,31 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
       )}
 
       {/* ── Hero: Big level + XP showcase — gradient bg ── */}
-      <div className="card-hero animate-fade-up relative overflow-hidden text-center py-8 px-6">
+      <div className="card-hero hero-card-glow animate-fade-up relative overflow-hidden text-center py-8 px-6">
         {/* Decorative floating icons */}
         <div className="absolute top-3 right-4 text-4xl opacity-20 animate-float">⚽</div>
         <div className="absolute bottom-3 left-4 text-3xl opacity-15 animate-float" style={{ animationDelay: '1.5s' }}>🏆</div>
 
-        {/* Level + Rank */}
-        <p className="section-label mb-1" style={{ color: 'rgba(255,255,255,0.7)' }}>{t(rank.key)}</p>
-        <p className="text-6xl font-black font-data animate-number-pop" style={{ color: '#fff' }}>
-          {xp.level}
-        </p>
-        <p className="text-xs mt-2" style={{ color: 'rgba(255,255,255,0.7)' }}>
-          {t('dashboard.level', { level: xp.level })}
-        </p>
+        {/* Rank label */}
+        <p className="text-xs font-extrabold uppercase tracking-widest mb-2" style={{ color: 'rgba(255,255,255,0.6)' }}>{t(rank.key)}</p>
 
-        {/* XP progress */}
+        {/* Level number with ring */}
+        <div className="relative inline-flex items-center justify-center w-28 h-28 mx-auto">
+          {/* Ring behind number */}
+          <div
+            className="absolute inset-0 rounded-full"
+            style={{
+              border: '3px solid rgba(255,255,255,0.25)',
+              background: `conic-gradient(rgba(255,255,255,0.35) ${xp.nextLevelXp > 0 ? (xp.currentLevelXp / xp.nextLevelXp) * 100 : 100}%, transparent 0%)`,
+            }}
+          />
+          <div className="absolute inset-[3px] rounded-full" style={{ background: 'rgba(0,0,0,0.15)' }} />
+          <p className="relative text-6xl font-black font-data animate-number-pop" style={{ color: '#fff', textShadow: '0 2px 16px rgba(0,0,0,0.3)' }}>
+            {xp.level}
+          </p>
+        </div>
+
+        {/* XP progress bar */}
         <div className="mt-4 mx-auto max-w-[240px]">
           <div className="xp-bar-track" style={{ background: 'rgba(255,255,255,0.2)' }}>
             <div className="xp-bar-fill" style={{
@@ -344,14 +354,21 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
               background: 'linear-gradient(90deg, #fbbf24, #fff)',
             }} />
           </div>
-          <p className="text-xs font-data mt-1.5" style={{ color: 'rgba(255,255,255,0.7)' }}>
-            {xp.currentLevelXp} / {xp.nextLevelXp} XP
-          </p>
+          <div className="flex justify-between mt-1.5">
+            <p className="text-xs font-data" style={{ color: 'rgba(255,255,255,0.6)' }}>
+              {xp.currentLevelXp} / {xp.nextLevelXp} XP
+            </p>
+            {xp.streakDays > 0 && (
+              <p className="text-xs font-bold" style={{ color: '#fbbf24' }}>
+                🔥 {xp.streakDays}
+              </p>
+            )}
+          </div>
         </div>
 
         {/* Total XP badge */}
         <div className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold mt-3"
-          style={{ background: 'rgba(255,255,255,0.2)', color: '#fff' }}>
+          style={{ background: 'rgba(255,255,255,0.2)', color: '#fff', backdropFilter: 'blur(8px)' }}>
           ⭐ {xp.totalXp.toLocaleString()} XP
         </div>
       </div>

@@ -130,19 +130,22 @@ export function Profile() {
       <>
       {/* FIFA-style player card */}
       <div
-        className="card-gold relative overflow-hidden animate-fade-up"
-        style={{ borderColor: tierStyle.border }}
+        className="fifa-card animate-fade-up"
+        style={{
+          background: tierStyle.gradient,
+          boxShadow: `0 4px 20px ${tierStyle.border}, 0 8px 40px ${tierStyle.border}`,
+        }}
       >
         {/* ── Hero: Rating + Identity ── */}
         <div className="flex items-start gap-4">
           {/* Overall rating badge */}
           <div className="flex flex-col items-center pt-1">
-            <span className="text-5xl font-black font-data leading-none" style={{ background: tierStyle.gradient, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+            <span className="text-5xl font-black font-data leading-none" style={{ color: '#fff', textShadow: '0 2px 12px rgba(0,0,0,0.3)' }}>
               {overallDisplay}
             </span>
             <span
-              className="mt-1 px-2.5 py-0.5 rounded-full text-xs font-extrabold uppercase tracking-wider text-white"
-              style={{ background: tierStyle.gradient }}
+              className="mt-1 px-2.5 py-0.5 rounded-full text-xs font-extrabold uppercase tracking-wider"
+              style={{ background: 'rgba(255,255,255,0.2)', color: '#fff', backdropFilter: 'blur(8px)' }}
             >
               {t(rank.key)}
             </span>
@@ -150,23 +153,23 @@ export function Profile() {
 
           {/* Player photo */}
           {profile?.photoUrl && (
-            <div className="w-14 h-14 rounded-full overflow-hidden flex-shrink-0 ring-2 ring-white" style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.12)' }}>
+            <div className="w-14 h-14 rounded-full overflow-hidden flex-shrink-0 ring-2 ring-white/30" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.25)' }}>
               <img src={profile.photoUrl} alt={profile.name} className="w-full h-full object-cover" />
             </div>
           )}
 
           {/* Player info */}
           <div className="flex-1 min-w-0">
-            <p className="text-xl font-extrabold leading-tight truncate">{profile?.name ?? 'Player'}</p>
-            <p className="text-xs mt-0.5" style={{ color: 'var(--color-text-secondary)' }}>
+            <p className="text-xl font-extrabold leading-tight truncate" style={{ color: '#fff' }}>{profile?.name ?? 'Player'}</p>
+            <p className="text-xs mt-0.5" style={{ color: 'rgba(255,255,255,0.7)' }}>
               {profile?.jerseyNumber ? `#${profile.jerseyNumber} • ` : ''}{profile?.positions?.join(' / ') ?? 'CM'} • {profile?.team ?? '???'}
             </p>
             {(profile?.city || profile?.country) && (
-              <p className="text-xs mt-0.5" style={{ color: 'var(--color-text-muted)' }}>
+              <p className="text-xs mt-0.5" style={{ color: 'rgba(255,255,255,0.6)' }}>
                 📍 {[profile?.city, profile?.country].filter(Boolean).join(', ')}
               </p>
             )}
-            <p className="text-xs font-data mt-1" style={{ color: 'var(--color-text-muted)' }}>
+            <p className="text-xs font-data mt-1" style={{ color: 'rgba(255,255,255,0.6)' }}>
               Level {xp.level} • {xp.totalXp.toLocaleString()} XP
             </p>
           </div>
@@ -177,17 +180,16 @@ export function Profile() {
           {ratings.map((r) => (
             <div
               key={r.category}
-              className="relative rounded-lg px-3 py-2.5 text-center overflow-hidden"
-              style={{ background: 'var(--color-bg-warm)' }}
+              className="fifa-skill-cell"
+              style={{
+                background: 'rgba(255,255,255,0.12)',
+                ['--cell-accent' as string]: CATEGORY_COLORS[r.category],
+              }}
             >
-              <div
-                className="absolute top-0 left-0 right-0 h-[3px] rounded-t-lg"
-                style={{ background: CATEGORY_COLORS[r.category] }}
-              />
-              <p className="text-lg font-black font-data leading-none">{r.rating * 10}</p>
+              <p className="text-lg font-black font-data leading-none" style={{ color: '#fff' }}>{r.rating * 10}</p>
               <p
                 className="text-xs font-bold uppercase tracking-wider mt-1"
-                style={{ color: CATEGORY_COLORS[r.category] }}
+                style={{ color: 'rgba(255,255,255,0.8)' }}
               >
                 {FIFA_LABELS[r.category]}
               </p>
@@ -197,21 +199,21 @@ export function Profile() {
 
         {/* ── Season Stats ── */}
         <div className="grid grid-cols-4 gap-2 mt-4">
-          <div className="text-center py-2 rounded-lg" style={{ background: 'var(--color-bg-warm)' }}>
-            <p className="text-xl font-black font-data leading-none">{matches.length}</p>
-            <p className="text-xs font-bold uppercase tracking-wider mt-1" style={{ color: 'var(--color-text-muted)' }}>{t('dashboard.matches')}</p>
+          <div className="text-center py-2 rounded-lg" style={{ background: 'rgba(255,255,255,0.1)' }}>
+            <p className="text-xl font-black font-data leading-none" style={{ color: '#fff' }}>{matches.length}</p>
+            <p className="text-xs font-bold uppercase tracking-wider mt-1" style={{ color: 'rgba(255,255,255,0.6)' }}>{t('dashboard.matches')}</p>
           </div>
-          <div className="text-center py-2 rounded-lg" style={{ background: 'var(--color-bg-warm)' }}>
-            <p className="text-xl font-black font-data leading-none" style={{ color: 'var(--color-gold-500)' }}>{seasonGoals}</p>
-            <p className="text-xs font-bold uppercase tracking-wider mt-1" style={{ color: 'var(--color-text-muted)' }}>{t('dashboard.goals')}</p>
+          <div className="text-center py-2 rounded-lg" style={{ background: 'rgba(255,255,255,0.1)' }}>
+            <p className="text-xl font-black font-data leading-none" style={{ color: '#fbbf24' }}>{seasonGoals}</p>
+            <p className="text-xs font-bold uppercase tracking-wider mt-1" style={{ color: 'rgba(255,255,255,0.6)' }}>{t('dashboard.goals')}</p>
           </div>
-          <div className="text-center py-2 rounded-lg" style={{ background: 'var(--color-bg-warm)' }}>
-            <p className="text-xl font-black font-data leading-none" style={{ color: 'var(--color-primary-light)' }}>{seasonAssists}</p>
-            <p className="text-xs font-bold uppercase tracking-wider mt-1" style={{ color: 'var(--color-text-muted)' }}>{t('dashboard.assists')}</p>
+          <div className="text-center py-2 rounded-lg" style={{ background: 'rgba(255,255,255,0.1)' }}>
+            <p className="text-xl font-black font-data leading-none" style={{ color: 'rgba(255,255,255,0.9)' }}>{seasonAssists}</p>
+            <p className="text-xs font-bold uppercase tracking-wider mt-1" style={{ color: 'rgba(255,255,255,0.6)' }}>{t('dashboard.assists')}</p>
           </div>
-          <div className="text-center py-2 rounded-lg" style={{ background: 'var(--color-bg-warm)' }}>
-            <p className="text-xl font-black font-data leading-none">{trainings.length}</p>
-            <p className="text-xs font-bold uppercase tracking-wider mt-1" style={{ color: 'var(--color-text-muted)' }}>{t('log.training')}</p>
+          <div className="text-center py-2 rounded-lg" style={{ background: 'rgba(255,255,255,0.1)' }}>
+            <p className="text-xl font-black font-data leading-none" style={{ color: '#fff' }}>{trainings.length}</p>
+            <p className="text-xs font-bold uppercase tracking-wider mt-1" style={{ color: 'rgba(255,255,255,0.6)' }}>{t('log.training')}</p>
           </div>
         </div>
 
@@ -219,17 +221,17 @@ export function Profile() {
         {(xp.streakDays > 0 || xp.checkInStreakDays > 0) && (
           <div className="flex gap-2 mt-3">
             {xp.streakDays > 0 && (
-              <div className="flex-1 flex items-center gap-2 px-3 py-2 rounded-full" style={{ background: '#fef3c7' }}>
+              <div className="flex-1 flex items-center gap-2 px-3 py-2 rounded-full" style={{ background: 'rgba(255,255,255,0.15)' }}>
                 <span>🔥</span>
-                <span className="text-sm font-bold">{xp.streakDays}</span>
-                <span className="text-xs truncate" style={{ color: 'var(--color-text-muted)' }}>{t('dashboard.streak', { days: xp.streakDays })}</span>
+                <span className="text-sm font-bold" style={{ color: '#fbbf24' }}>{xp.streakDays}</span>
+                <span className="text-xs truncate" style={{ color: 'rgba(255,255,255,0.7)' }}>{t('dashboard.streak', { days: xp.streakDays })}</span>
               </div>
             )}
             {xp.checkInStreakDays > 0 && (
-              <div className="flex-1 flex items-center gap-2 px-3 py-2 rounded-full" style={{ background: '#dcfce7' }}>
+              <div className="flex-1 flex items-center gap-2 px-3 py-2 rounded-full" style={{ background: 'rgba(255,255,255,0.15)' }}>
                 <span>✅</span>
-                <span className="text-sm font-bold">{xp.checkInStreakDays}</span>
-                <span className="text-xs truncate" style={{ color: 'var(--color-text-muted)' }}>{t('checkin.streak', { days: xp.checkInStreakDays })}</span>
+                <span className="text-sm font-bold" style={{ color: '#fff' }}>{xp.checkInStreakDays}</span>
+                <span className="text-xs truncate" style={{ color: 'rgba(255,255,255,0.7)' }}>{t('checkin.streak', { days: xp.checkInStreakDays })}</span>
               </div>
             )}
           </div>
