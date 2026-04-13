@@ -14,12 +14,11 @@ export function CoachSquadFilter({ teams, selectedIds, onToggle }: CoachSquadFil
   const allSelected = selectedIds.length === 0 || selectedIds.length === teams.length
 
   return (
-    <div className="h-scroll gap-1.5 pb-1" style={{ scrollSnapType: 'x mandatory' }}>
+    <div className="flex flex-wrap gap-1.5">
       {/* "All" chip */}
       <button
-        className="text-xs font-bold px-3 py-1.5 rounded-full shrink-0 tap-target transition-all"
+        className="text-xs font-bold px-3 py-1.5 rounded-full tap-target transition-all"
         style={{
-          scrollSnapAlign: 'start',
           background: allSelected ? 'var(--color-primary-dark)' : 'var(--color-glass-hover)',
           color: allSelected ? '#fff' : 'var(--color-text-muted)',
         }}
@@ -49,9 +48,8 @@ export function CoachSquadFilter({ teams, selectedIds, onToggle }: CoachSquadFil
         return (
           <button
             key={sq.teamId}
-            className="text-xs font-bold px-3 py-1.5 rounded-full shrink-0 tap-target transition-all"
+            className="text-xs font-bold px-3 py-1.5 rounded-full tap-target transition-all"
             style={{
-              scrollSnapAlign: 'center',
               background: isSelected && !allSelected ? 'var(--color-primary-dark)' : 'var(--color-glass-hover)',
               color: isSelected && !allSelected ? '#fff' : 'var(--color-text-muted)',
             }}
