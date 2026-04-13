@@ -898,6 +898,7 @@
   "theme.derby": "Derby",
   "theme.noTeamHint": "Add a team in profile to unlock club colors",
   "theme.pickClub": "Use colors from:",
+  "theme.colorsLoading": "Loading your club colors...",
   "learn.cat.tactics": "Tactics",
   "learn.cat.nutrition": "Nutrition",
   "learn.cat.mental": "Mental",

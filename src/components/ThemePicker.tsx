@@ -123,9 +123,14 @@ export function ThemePicker() {
         </div>
       )}
 
-      {selected === 'team' && !teamColor && (
+      {selected === 'team' && !teamColor && !(profile?.teams?.length) && (
         <p className="text-xs mt-2" style={{ color: 'var(--color-text-muted)' }}>
           {t('theme.noTeamHint')}
+        </p>
+      )}
+      {selected === 'team' && !teamColor && (profile?.teams?.length ?? 0) > 0 && (
+        <p className="text-xs mt-2" style={{ color: 'var(--color-text-muted)' }}>
+          {t('theme.colorsLoading')}
         </p>
       )}
     </div>

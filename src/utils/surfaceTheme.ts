@@ -187,8 +187,11 @@ export function applySurfaceTheme(presetId: string, teamHex?: string): void {
   if (resolvedId === 'team' && teamHex) {
     preset = deriveTeamSurface(teamHex)
   } else if (resolvedId === 'team') {
-    // No team color — fall back to pitch
-    preset = SURFACE_PRESETS.find((p) => p.id === 'pitch')!
+    // No team color available — fall back to classic (clean white)
+    SURFACE_VARS.forEach((v) => root.style.removeProperty(v))
+    const classicPreset = SURFACE_PRESETS.find((p) => p.id === 'classic')!
+    applyTeamTheme(classicPreset.accent ?? undefined)
+    return
   } else {
     preset = SURFACE_PRESETS.find((p) => p.id === resolvedId) ?? SURFACE_PRESETS[0]
   }
