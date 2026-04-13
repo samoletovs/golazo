@@ -732,8 +732,18 @@ h1, h2, h3, h4 {
 .fifa-card {
   position: relative;
   overflow: hidden;
-  border-radius: var(--radius-lg);
-  padding: 20px;
+  border-radius: var(--radius-xl);
+  padding: 24px 20px 20px;
+}
+.fifa-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.12) 0%, transparent 60%);
+  pointer-events: none;
 }
 .fifa-card::after {
   content: '';
@@ -744,28 +754,13 @@ h1, h2, h3, h4 {
   height: 200%;
   background: linear-gradient(
     135deg,
-    transparent 40%,
-    rgba(255,255,255,0.06) 45%,
-    rgba(255,255,255,0.12) 50%,
-    rgba(255,255,255,0.06) 55%,
-    transparent 60%
+    transparent 42%,
+    rgba(255,255,255,0.05) 46%,
+    rgba(255,255,255,0.10) 50%,
+    rgba(255,255,255,0.05) 54%,
+    transparent 58%
   );
   pointer-events: none;
-}
-.fifa-skill-cell {
-  position: relative;
-  border-radius: 10px;
-  padding: 10px 8px 8px;
-  text-align: center;
-  overflow: hidden;
-}
-.fifa-skill-cell::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  border-radius: 10px 10px 0 0;
-  background: var(--cell-accent);
 }
 
 /* ── NauroLabs Footer ────────────────────────────────────── */

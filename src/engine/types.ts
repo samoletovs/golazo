@@ -40,6 +40,7 @@ export interface PlayerProfile {
   language: Language
   photoUrl?: string
   managedTeams?: ManagedTeam[] // Coach-only: teams this user manages
+  menteeIds?: string[]         // Mentor-only: linked player profile IDs
   createdAt: string
 }
 

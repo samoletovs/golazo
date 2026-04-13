@@ -1,9 +1,15 @@
-import { useMemo } from 'react'
+import { useMemo, useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
 import { getMatchResult } from '../engine/types'
 import { AnnouncementFeed } from '../components/AnnouncementFeed'
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts'
+
+interface MenteeInfo {
+  id: string
+  name: string
+  photoUrl?: string
+}
 
 /**
  * Mentor Dashboard — parent's wellbeing-focused home page.
@@ -15,6 +21,43 @@ export function MentorDashboard() {
   const { checkIns, trainings, matches, xp, profile } = useApp()
 
   const playerName = profile?.name?.split(' ')[0] ?? ''
+
+  // Mentee management
+  const [mentees, setMentees] = useState<MenteeInfo[]>([])
+  const [activeMenteeId, setActiveMenteeId] = useState<string | null>(null)
+  const [showAddMentee, setShowAddMentee] = useState(false)
+  const [menteeSearchQuery, setMenteeSearchQuery] = useState('')
+  const [searchResults, setSearchResults] = useState<MenteeInfo[]>([])
+  const [searching, setSearching] = useState(false)
+
+  // Load mentee list from profile
+  useEffect(() => {
+    if (!profile?.menteeIds?.length) return
+    async function loadMentees() {
+      try {
+        const res = await fetch(`/api/mentor/mentees?ids=${encodeURIComponent(profile!.menteeIds!.join(','))}`)
+        if (res.ok) {
+          const data = await res.json()
+          setMentees(data.mentees ?? [])
+        }
+      } catch { /* offline */ }
+    }
+    loadMentees()
+  }, [profile?.menteeIds?.join(',')])
+
+  // Search for players to add as mentees
+  async function searchPlayers() {
+    if (!menteeSearchQuery.trim()) return
+    setSearching(true)
+    try {
+      const res = await fetch(`/api/mentor/search-players?q=${encodeURIComponent(menteeSearchQuery.trim())}`)
+      if (res.ok) {
+        const data = await res.json()
+        setSearchResults(data.players ?? [])
+      }
+    } catch { /* offline */ }
+    finally { setSearching(false) }
+  }
 
   /* ── Mood/Energy trend (last 30 days) ── */
   const moodTrend = useMemo(() => {
@@ -120,6 +163,93 @@ export function MentorDashboard() {
 
   return (
     <div className="flex flex-col gap-4 p-4 pb-32">
+      {/* Mentee picker — shown when mentor has linked players */}
+      {mentees.length > 0 && (
+        <div className="flex gap-2 overflow-x-auto h-scroll pb-1">
+          {mentees.map((m: MenteeInfo) => (
+            <button
+              key={m.id}
+              className="flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold shrink-0 tap-target transition-all"
+              style={{
+                background: activeMenteeId === m.id ? 'var(--color-primary-bg)' : 'var(--color-glass-hover)',
+                color: activeMenteeId === m.id ? 'var(--color-primary-dark)' : 'var(--color-text-muted)',
+                border: activeMenteeId === m.id ? '1.5px solid var(--color-primary)' : '1.5px solid transparent',
+              }}
+              onClick={() => setActiveMenteeId(activeMenteeId === m.id ? null : m.id)}
+            >
+              {m.photoUrl ? (
+                <img src={m.photoUrl} alt="" className="w-5 h-5 rounded-full object-cover" />
+              ) : (
+                <span>⚽</span>
+              )}
+              {m.name.split(' ')[0]}
+            </button>
+          ))}
+          <button
+            className="flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-bold shrink-0 tap-target"
+            style={{ background: 'var(--color-glass-hover)', color: 'var(--color-text-muted)' }}
+            onClick={() => setShowAddMentee(true)}
+          >
+            + {t('mentor.addPlayer')}
+          </button>
+        </div>
+      )}
+
+      {/* Add mentee search overlay */}
+      {showAddMentee && (
+        <div className="card animate-fade-up">
+          <div className="flex items-center justify-between mb-2">
+            <p className="text-sm font-bold">{t('mentor.addPlayer')}</p>
+            <button className="tap-target text-xs" onClick={() => { setShowAddMentee(false); setSearchResults([]); setMenteeSearchQuery('') }}>✕</button>
+          </div>
+          <div className="flex gap-2">
+            <input
+              type="text"
+              value={menteeSearchQuery}
+              onChange={(e) => setMenteeSearchQuery(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && searchPlayers()}
+              placeholder={t('mentor.searchPlayer')}
+              className="flex-1 text-sm"
+            />
+            <button className="btn-primary text-xs px-3" onClick={searchPlayers} disabled={searching}>
+              {searching ? '...' : t('common.search')}
+            </button>
+          </div>
+          {searchResults.length > 0 && (
+            <div className="flex flex-col gap-1 mt-2">
+              {searchResults.map((p: MenteeInfo) => (
+                <button
+                  key={p.id}
+                  className="flex items-center gap-2 px-3 py-2 rounded-xl text-left tap-target"
+                  style={{ background: 'var(--color-glass-hover)' }}
+                  onClick={() => {
+                    setMentees((prev: MenteeInfo[]) => [...prev, p])
+                    setShowAddMentee(false)
+                    setSearchResults([])
+                    setMenteeSearchQuery('')
+                  }}
+                >
+                  <span className="text-sm">⚽</span>
+                  <span className="text-sm font-bold">{p.name}</span>
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* No mentees — show add button */}
+      {mentees.length === 0 && !showAddMentee && (
+        <div className="card text-center py-6 animate-fade-up">
+          <span className="text-4xl mb-2 block">👨‍👧‍👦</span>
+          <p className="text-sm font-bold mb-1">{t('mentor.noMentees')}</p>
+          <p className="text-xs mb-3" style={{ color: 'var(--color-text-muted)' }}>{t('mentor.noMenteesHint')}</p>
+          <button className="btn-primary text-sm px-4 py-2 rounded-xl" onClick={() => setShowAddMentee(true)}>
+            + {t('mentor.addPlayer')}
+          </button>
+        </div>
+      )}
+
       {/* Header */}
       <div>
         <h2 className="text-lg font-bold heading-display">

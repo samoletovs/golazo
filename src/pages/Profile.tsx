@@ -136,61 +136,61 @@ export function Profile() {
           boxShadow: `0 4px 20px ${tierStyle.border}, 0 8px 40px ${tierStyle.border}`,
         }}
       >
-        {/* ── Hero: Rating + Identity ── */}
-        <div className="flex items-start gap-4">
-          {/* Overall rating badge */}
-          <div className="flex flex-col items-center pt-1">
+        {/* ── Top: Rating + Photo + Name ── */}
+        <div className="flex items-center gap-4 mb-5">
+          {/* Overall rating — BIG number */}
+          <div className="flex flex-col items-center flex-shrink-0" style={{ minWidth: 56 }}>
             <span className="text-5xl font-black font-data leading-none" style={{ color: '#fff', textShadow: '0 2px 12px rgba(0,0,0,0.3)' }}>
               {overallDisplay}
             </span>
             <span
-              className="mt-1 px-2.5 py-0.5 rounded-full text-xs font-extrabold uppercase tracking-wider"
-              style={{ background: 'rgba(255,255,255,0.2)', color: '#fff', backdropFilter: 'blur(8px)' }}
+              className="mt-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-widest"
+              style={{ background: 'rgba(255,255,255,0.2)', color: '#fff' }}
             >
               {t(rank.key)}
             </span>
           </div>
 
           {/* Player photo */}
-          {profile?.photoUrl && (
-            <div className="w-14 h-14 rounded-full overflow-hidden flex-shrink-0 ring-2 ring-white/30" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.25)' }}>
+          {profile?.photoUrl ? (
+            <div className="w-16 h-16 rounded-2xl overflow-hidden flex-shrink-0" style={{ boxShadow: '0 4px 16px rgba(0,0,0,0.3)', border: '2px solid rgba(255,255,255,0.25)' }}>
               <img src={profile.photoUrl} alt={profile.name} className="w-full h-full object-cover" />
+            </div>
+          ) : (
+            <div className="w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(255,255,255,0.15)', border: '2px solid rgba(255,255,255,0.15)' }}>
+              <span className="text-3xl">⚽</span>
             </div>
           )}
 
-          {/* Player info */}
+          {/* Name + position */}
           <div className="flex-1 min-w-0">
-            <p className="text-xl font-extrabold leading-tight truncate" style={{ color: '#fff' }}>{profile?.name ?? 'Player'}</p>
-            <p className="text-xs mt-0.5" style={{ color: 'rgba(255,255,255,0.7)' }}>
-              {profile?.jerseyNumber ? `#${profile.jerseyNumber} • ` : ''}{profile?.positions?.join(' / ') ?? 'CM'} • {profile?.team ?? '???'}
+            <p className="text-lg font-extrabold leading-tight truncate heading-display" style={{ color: '#fff' }}>
+              {profile?.name ?? 'Player'}
             </p>
-            {(profile?.city || profile?.country) && (
-              <p className="text-xs mt-0.5" style={{ color: 'rgba(255,255,255,0.6)' }}>
-                📍 {[profile?.city, profile?.country].filter(Boolean).join(', ')}
-              </p>
-            )}
-            <p className="text-xs font-data mt-1" style={{ color: 'rgba(255,255,255,0.6)' }}>
-              Level {xp.level} • {xp.totalXp.toLocaleString()} XP
+            <p className="text-sm font-bold mt-0.5" style={{ color: 'rgba(255,255,255,0.8)' }}>
+              {profile?.jerseyNumber ? `#${profile.jerseyNumber} · ` : ''}{profile?.positions?.slice(0, 3).join(' / ') ?? 'CM'}
+            </p>
+            <p className="text-xs mt-0.5 truncate" style={{ color: 'rgba(255,255,255,0.5)' }}>
+              {profile?.team ?? profile?.teams?.find(t => t.isPrimary)?.name ?? ''}
             </p>
           </div>
         </div>
 
-        {/* ── Skill Ratings (3×2 colored grid) ── */}
-        <div className="grid grid-cols-3 gap-2 mt-5">
+        {/* ── Divider ── */}
+        <div style={{ height: 1, background: 'rgba(255,255,255,0.12)', margin: '0 -20px', width: 'calc(100% + 40px)' }} />
+
+        {/* ── Skill Ratings (3×2) ── */}
+        <div className="grid grid-cols-3 gap-2.5 mt-5">
           {ratings.map((r) => (
             <div
               key={r.category}
-              className="fifa-skill-cell"
-              style={{
-                background: 'rgba(255,255,255,0.12)',
-                ['--cell-accent' as string]: CATEGORY_COLORS[r.category],
-              }}
+              className="text-center py-2.5 rounded-xl relative overflow-hidden"
+              style={{ background: 'rgba(255,255,255,0.08)' }}
             >
-              <p className="text-lg font-black font-data leading-none" style={{ color: '#fff' }}>{r.rating * 10}</p>
-              <p
-                className="text-xs font-bold uppercase tracking-wider mt-1"
-                style={{ color: 'rgba(255,255,255,0.8)' }}
-              >
+              {/* Top accent line */}
+              <div className="absolute top-0 left-2 right-2 h-[2px] rounded-full" style={{ background: CATEGORY_COLORS[r.category] }} />
+              <p className="text-2xl font-black font-data leading-none mt-1" style={{ color: '#fff' }}>{r.rating * 10}</p>
+              <p className="text-[10px] font-extrabold uppercase tracking-widest mt-1.5" style={{ color: 'rgba(255,255,255,0.6)' }}>
                 {FIFA_LABELS[r.category]}
               </p>
             </div>
@@ -198,42 +198,25 @@ export function Profile() {
         </div>
 
         {/* ── Season Stats ── */}
-        <div className="grid grid-cols-4 gap-2 mt-4">
-          <div className="text-center py-2 rounded-lg" style={{ background: 'rgba(255,255,255,0.1)' }}>
-            <p className="text-xl font-black font-data leading-none" style={{ color: '#fff' }}>{matches.length}</p>
-            <p className="text-xs font-bold uppercase tracking-wider mt-1" style={{ color: 'rgba(255,255,255,0.6)' }}>{t('dashboard.matches')}</p>
-          </div>
-          <div className="text-center py-2 rounded-lg" style={{ background: 'rgba(255,255,255,0.1)' }}>
-            <p className="text-xl font-black font-data leading-none" style={{ color: '#fbbf24' }}>{seasonGoals}</p>
-            <p className="text-xs font-bold uppercase tracking-wider mt-1" style={{ color: 'rgba(255,255,255,0.6)' }}>{t('dashboard.goals')}</p>
-          </div>
-          <div className="text-center py-2 rounded-lg" style={{ background: 'rgba(255,255,255,0.1)' }}>
-            <p className="text-xl font-black font-data leading-none" style={{ color: 'rgba(255,255,255,0.9)' }}>{seasonAssists}</p>
-            <p className="text-xs font-bold uppercase tracking-wider mt-1" style={{ color: 'rgba(255,255,255,0.6)' }}>{t('dashboard.assists')}</p>
-          </div>
-          <div className="text-center py-2 rounded-lg" style={{ background: 'rgba(255,255,255,0.1)' }}>
-            <p className="text-xl font-black font-data leading-none" style={{ color: '#fff' }}>{trainings.length}</p>
-            <p className="text-xs font-bold uppercase tracking-wider mt-1" style={{ color: 'rgba(255,255,255,0.6)' }}>{t('log.training')}</p>
-          </div>
+        <div className="flex gap-3 mt-4">
+          {[
+            { val: matches.length, label: t('dashboard.matches'), color: '#fff' },
+            { val: seasonGoals, label: t('dashboard.goals'), color: '#fbbf24' },
+            { val: seasonAssists, label: t('dashboard.assists'), color: '#fff' },
+            { val: trainings.length, label: t('log.training'), color: '#fff' },
+          ].map((s, i) => (
+            <div key={i} className="flex-1 text-center">
+              <p className="text-lg font-black font-data leading-none" style={{ color: s.color }}>{s.val}</p>
+              <p className="text-[9px] font-bold uppercase tracking-wider mt-1" style={{ color: 'rgba(255,255,255,0.45)' }}>{s.label}</p>
+            </div>
+          ))}
         </div>
 
-        {/* ── Activity Streaks ── */}
-        {(xp.streakDays > 0 || xp.checkInStreakDays > 0) && (
-          <div className="flex gap-2 mt-3">
-            {xp.streakDays > 0 && (
-              <div className="flex-1 flex items-center gap-2 px-3 py-2 rounded-full" style={{ background: 'rgba(255,255,255,0.15)' }}>
-                <span>🔥</span>
-                <span className="text-sm font-bold" style={{ color: '#fbbf24' }}>{xp.streakDays}</span>
-                <span className="text-xs truncate" style={{ color: 'rgba(255,255,255,0.7)' }}>{t('dashboard.streak', { days: xp.streakDays })}</span>
-              </div>
-            )}
-            {xp.checkInStreakDays > 0 && (
-              <div className="flex-1 flex items-center gap-2 px-3 py-2 rounded-full" style={{ background: 'rgba(255,255,255,0.15)' }}>
-                <span>✅</span>
-                <span className="text-sm font-bold" style={{ color: '#fff' }}>{xp.checkInStreakDays}</span>
-                <span className="text-xs truncate" style={{ color: 'rgba(255,255,255,0.7)' }}>{t('checkin.streak', { days: xp.checkInStreakDays })}</span>
-              </div>
-            )}
+        {/* ── Streak (if any) ── */}
+        {xp.streakDays > 0 && (
+          <div className="flex items-center justify-center gap-2 mt-4 pt-3" style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+            <span>🔥</span>
+            <span className="text-sm font-bold" style={{ color: '#fbbf24' }}>{xp.streakDays} {t('dashboard.streak', { days: xp.streakDays })}</span>
           </div>
         )}
       </div>
