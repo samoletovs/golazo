@@ -27,9 +27,10 @@ export function ThemePicker() {
   return (
     <div className="card">
       <p className="section-label mb-3">{t('theme.title')}</p>
-      <div className="grid grid-cols-4 gap-2">
+      <div className="grid grid-cols-3 gap-2">
         {SURFACE_PRESETS.map((preset) => {
           const isActive = selected === preset.id
+          const sw = getSwatchForPreset(preset)
           return (
             <button
               key={preset.id}
@@ -42,20 +43,26 @@ export function ThemePicker() {
               aria-pressed={isActive}
               aria-label={t(`theme.${preset.id}`)}
             >
-              {/* Color swatch — 3-layer circular preview */}
-              {(() => {
-                const sw = getSwatchForPreset(preset)
-                return (
-                  <div
-                    className="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 relative"
-                    style={{ boxShadow: '0 1px 4px rgba(0,0,0,0.12)', border: '2px solid rgba(255,255,255,0.8)' }}
-                  >
-                    <div className="w-full" style={{ height: '35%', background: sw[0] }} />
-                    <div className="w-full" style={{ height: '30%', background: sw[1] }} />
-                    <div className="w-full" style={{ height: '35%', background: sw[2] }} />
-                  </div>
-                )
-              })()}
+              {/* Mini card preview — shows actual bg + accent color */}
+              <div
+                className="w-14 h-10 rounded-lg overflow-hidden relative flex-shrink-0"
+                style={{
+                  background: sw[2],
+                  boxShadow: '0 1px 4px rgba(0,0,0,0.1)',
+                  border: '1px solid rgba(0,0,0,0.06)',
+                }}
+              >
+                {/* Accent bar at top */}
+                <div
+                  className="absolute top-0 left-0 right-0"
+                  style={{ height: 3, background: sw[0], borderRadius: '6px 6px 0 0' }}
+                />
+                {/* Mini content lines */}
+                <div className="absolute bottom-1.5 left-1.5 right-1.5 flex flex-col gap-1">
+                  <div style={{ height: 2, width: '60%', background: sw[0], borderRadius: 1, opacity: 0.7 }} />
+                  <div style={{ height: 2, width: '40%', background: sw[1], borderRadius: 1, opacity: 0.5 }} />
+                </div>
+              </div>
               <span
                 className="text-xs font-bold leading-tight text-center"
                 style={{ color: isActive ? 'var(--color-primary-dark)' : 'var(--color-text-muted)' }}
