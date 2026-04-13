@@ -520,6 +520,7 @@
   "schedule.selectDate": "Select a date on the calendar first",
   "schedule.eventNotes": "Notes (optional)",
   "schedule.trainingTypeLabel": "Training type",
+  "coach.schedule.squads": "Squads",
   "mentor.schedule.event": "Event",
   "profile.physical": "Physical Stats",
   "profile.jump": "jump",

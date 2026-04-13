@@ -430,6 +430,7 @@ export interface ScheduleEvent {
   matchType?: MatchType
   trainingType?: TrainingType
   notes?: string
+  squadIds?: string[]
   tournamentId?: string
   recurring?: {
     frequency: 'weekly'

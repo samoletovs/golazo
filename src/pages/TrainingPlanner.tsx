@@ -6,6 +6,7 @@ import type { TrainingDrill, TrainingPlan } from '../engine/types'
 interface TrainingPlannerProps {
   teamId: string
   teamName: string
+  teamIds?: string[]
   coachId: string
   onBack: () => void
 }

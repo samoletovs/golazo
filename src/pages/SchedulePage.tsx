@@ -146,6 +146,14 @@ export function SchedulePage() {
   const [rtStart, setRtStart] = useState('19:00')
   const [rtEnd, setRtEnd] = useState('21:00')
   const [rtLocation, setRtLocation] = useState('')
+  const [formSquadIds, setFormSquadIds] = useState<string[]>([])
+
+  const isCoach = profile?.role === 'coach'
+  const managedTeams = profile?.managedTeams ?? []
+
+  function toggleFormSquad(id: string) {
+    setFormSquadIds(prev => prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id])
+  }
 
   const days = getMonthDays(viewYear, viewMonth)
   const todayStr = dateKey(today.getFullYear(), today.getMonth(), today.getDate())
@@ -379,11 +387,13 @@ export function SchedulePage() {
       matchType: isMatch ? formMatchType : undefined,
       trainingType: isTraining ? formTrainingType : undefined,
       notes: formNotes || undefined,
+      squadIds: isCoach && formSquadIds.length > 0 ? formSquadIds : undefined,
       createdBy: profile?.id ?? 'local',
       createdAt: new Date().toISOString(),
     }
     addScheduleEvent(ev)
     setShowForm(false)
+    setFormSquadIds([])
 
     // Auto-share match events for team visibility
     if (isMatch && formOpponent) {
@@ -868,6 +878,36 @@ export function SchedulePage() {
                 />
               )}
             </div>
+
+            {/* Squad picker — coaches only */}
+            {isCoach && managedTeams.length > 0 && (
+              <div className="mt-3">
+                <label className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>
+                  {t('coach.schedule.squads')}
+                </label>
+                <div className="flex flex-wrap gap-1.5 mt-1">
+                  {managedTeams.map(sq => {
+                    const label = sq.birthYear ? `${sq.birthYear} ${sq.teamLabel ?? ''}`.trim() : sq.teamName
+                    const selected = formSquadIds.includes(sq.teamId)
+                    return (
+                      <button
+                        key={sq.teamId}
+                        className="text-xs px-2.5 py-1 rounded-full font-bold tap-target transition-all"
+                        style={{
+                          background: selected ? 'var(--color-primary-bg)' : 'var(--color-glass-hover)',
+                          color: selected ? 'var(--color-primary-dark)' : 'var(--color-text-muted)',
+                          border: selected ? '1.5px solid var(--color-primary)' : '1.5px solid transparent',
+                        }}
+                        onClick={() => toggleFormSquad(sq.teamId)}
+                        aria-pressed={selected}
+                      >
+                        {sq.clubName ? `${sq.clubName} ${label}` : label}
+                      </button>
+                    )
+                  })}
+                </div>
+              </div>
+            )}
 
             <button className="btn-primary mt-4 w-full" onClick={saveEvent}>
               {t('common.save')}

@@ -5,6 +5,7 @@ import type { RosterPlayer, AttendanceStatus } from '../engine/types'
 interface AttendanceGridProps {
   teamId: string
   teamName: string
+  teamIds?: string[]
   coachId: string
   onBack: () => void
 }

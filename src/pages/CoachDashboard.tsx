@@ -8,10 +8,11 @@ interface CoachDashboardProps {
   selectedTeamIds: string[]
   onToggleTeam: (id: string) => void
   onNavigate: (page: 'roster' | 'training' | 'announce' | 'evaluate' | 'attendance', teamId: string) => void
+  onNavigateMulti: (page: 'training' | 'announce' | 'attendance', teamIds: string[]) => void
   onManageTeams: () => void
 }
 
-export function CoachDashboard({ teams, selectedTeamIds, onToggleTeam, onNavigate, onManageTeams }: CoachDashboardProps) {
+export function CoachDashboard({ teams, selectedTeamIds, onToggleTeam, onNavigate, onNavigateMulti, onManageTeams }: CoachDashboardProps) {
   const { t } = useTranslation()
 
   // Filter teams by selection
@@ -142,26 +143,42 @@ export function CoachDashboard({ teams, selectedTeamIds, onToggleTeam, onNavigat
         </div>
       ))}
 
-      {/* Global quick actions */}
-      {filteredTeams.length > 0 && (
+      {/* Multi-squad quick actions — shown when 2+ squads visible */}
+      {filteredTeams.length > 1 && (
         <div>
-          <p className="section-label mb-2">{t('coach.dashboard.quickActions')}</p>
-          <div className="grid grid-cols-2 gap-2">
+          <p className="section-label mb-2">{t('coach.dashboard.multiSquadActions')}</p>
+          <div className="grid grid-cols-3 gap-2">
             <button
-              className="card tap-target flex flex-col items-center gap-2 py-4"
-              onClick={() => onNavigate('evaluate', filteredTeams[0].teamId)}
+              className="card tap-target flex flex-col items-center gap-2 py-3"
+              onClick={() => onNavigateMulti('training', filteredTeams.map(s => s.teamId))}
             >
-              <span className="text-2xl">📊</span>
-              <span className="text-xs font-bold">{t('coach.dashboard.evaluate')}</span>
+              <span className="text-xl">📝</span>
+              <span className="text-[10px] font-bold text-center" style={{ color: 'var(--color-text-muted)' }}>
+                {t('coach.training.title')}
+              </span>
             </button>
             <button
-              className="card tap-target flex flex-col items-center gap-2 py-4"
-              onClick={() => onNavigate('training', filteredTeams[0].teamId)}
+              className="card tap-target flex flex-col items-center gap-2 py-3"
+              onClick={() => onNavigateMulti('announce', filteredTeams.map(s => s.teamId))}
             >
-              <span className="text-2xl">📝</span>
-              <span className="text-xs font-bold">{t('coach.dashboard.planTraining')}</span>
+              <span className="text-xl">📢</span>
+              <span className="text-[10px] font-bold text-center" style={{ color: 'var(--color-text-muted)' }}>
+                {t('coach.dashboard.announce')}
+              </span>
+            </button>
+            <button
+              className="card tap-target flex flex-col items-center gap-2 py-3"
+              onClick={() => onNavigateMulti('attendance', filteredTeams.map(s => s.teamId))}
+            >
+              <span className="text-xl">✅</span>
+              <span className="text-[10px] font-bold text-center" style={{ color: 'var(--color-text-muted)' }}>
+                {t('coach.attendance.title')}
+              </span>
             </button>
           </div>
+          <p className="text-[10px] mt-1 text-center" style={{ color: 'var(--color-text-muted)' }}>
+            {t('coach.dashboard.multiSquadHint', { count: filteredTeams.length })}
+          </p>
         </div>
       )}
     </div>

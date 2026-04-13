@@ -39,6 +39,7 @@ function AppContent() {
   const [pageKey, setPageKey] = useState(0)
   const [coachTeamId, setCoachTeamId] = useState('')
   const [coachTeamName, setCoachTeamName] = useState('')
+  const [coachTeamIds, setCoachTeamIds] = useState<string[]>([])
   const [showTeamPicker, setShowTeamPicker] = useState(false)
   const [selectedTeamIds, setSelectedTeamIds] = useState<string[]>([])
   const { user, loading: authLoading } = useAuth()
@@ -167,8 +168,19 @@ function AppContent() {
                   onToggleTeam={toggleTeamFilter}
                   onNavigate={(sub, teamId) => {
                     setCoachTeamId(teamId)
+                    setCoachTeamIds([teamId])
                     const team = profile?.managedTeams?.find(t => t.teamId === teamId)
                     setCoachTeamName(team?.teamName ?? teamId)
+                    handleNavigate(`coach-${sub}` as Page)
+                  }}
+                  onNavigateMulti={(sub, teamIds) => {
+                    setCoachTeamIds(teamIds)
+                    setCoachTeamId(teamIds[0] ?? '')
+                    const names = teamIds.map(id => {
+                      const team = profile?.managedTeams?.find(t => t.teamId === id)
+                      return team?.teamName ?? id
+                    })
+                    setCoachTeamName(names.join(', '))
                     handleNavigate(`coach-${sub}` as Page)
                   }}
                   onManageTeams={() => setShowTeamPicker(true)}
@@ -207,6 +219,7 @@ function AppContent() {
                 <TrainingPlanner
                   teamId={coachTeamId}
                   teamName={coachTeamName}
+                  teamIds={coachTeamIds}
                   coachId={profile?.id ?? ''}
                   onBack={() => handleNavigate('dashboard')}
                 />
@@ -215,6 +228,7 @@ function AppContent() {
                 <AnnouncementsPage
                   teamId={coachTeamId}
                   teamName={coachTeamName}
+                  teamIds={coachTeamIds}
                   coachId={profile?.id ?? ''}
                   coachName={profile?.name ?? ''}
                   onBack={() => handleNavigate('dashboard')}
@@ -233,6 +247,7 @@ function AppContent() {
                 <AttendanceGrid
                   teamId={coachTeamId}
                   teamName={coachTeamName}
+                  teamIds={coachTeamIds}
                   coachId={profile?.id ?? ''}
                   onBack={() => handleNavigate('dashboard')}
                 />

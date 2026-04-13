@@ -318,10 +318,9 @@ export function Profile() {
             {profile!.teams!.filter((t) => t.active).map((team) => (
               <button
                 key={team.id}
-                className="flex items-center gap-3 px-3 py-3 rounded-xl text-left tap-target transition-all"
+                className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-left tap-target transition-all"
                 style={{
-                  background: team.isPrimary ? 'var(--color-primary-bg-subtle)' : 'var(--color-glass-hover)',
-                  border: team.isPrimary ? '2px solid var(--color-primary)' : '2px solid var(--color-glass-border)',
+                  background: 'var(--color-glass-hover)',
                 }}
                 onClick={() => {
                   if (team.isPrimary) return
@@ -329,18 +328,6 @@ export function Profile() {
                   setProfile({ ...profile!, teams: updated })
                 }}
               >
-                {/* Radio indicator */}
-                <div
-                  className="w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center"
-                  style={{
-                    border: team.isPrimary ? '2px solid var(--color-primary)' : '2px solid var(--color-border-default)',
-                    background: team.isPrimary ? 'var(--color-primary)' : 'transparent',
-                  }}
-                >
-                  {team.isPrimary && (
-                    <div className="w-2 h-2 rounded-full" style={{ background: '#fff' }} />
-                  )}
-                </div>
                 {/* Color dot from club */}
                 {team.colors?.[0] && (
                   <div
@@ -354,7 +341,51 @@ export function Profile() {
                     {team.position ? (Array.isArray(team.position) ? team.position.join(', ') : team.position) : ''}
                   </p>
                 </div>
+                {/* Star indicator for main club */}
+                <span className="text-lg flex-shrink-0" style={{ color: team.isPrimary ? '#F59E0B' : 'var(--color-border-default)' }}>
+                  {team.isPrimary ? '★' : '☆'}
+                </span>
               </button>
+            ))}
+          </div>
+        ) : (
+          <button
+            className="w-full text-center py-3 rounded-xl text-sm"
+            style={{ background: 'var(--color-glass-hover)', color: 'var(--color-text-muted)' }}
+            onClick={() => setShowTeams(true)}
+          >
+            + {t('teams.addFirst')}
+          </button>
+        )}
+      </div>
+      )}
+
+      {/* My Teams — coach */}
+      {profile?.role === 'coach' && (
+      <div className="card animate-fade-up">
+        <div className="flex items-center justify-between mb-2">
+          <p className="section-label">{t('teams.title')}</p>
+          <button
+            className="text-xs font-bold tap-target"
+            style={{ color: 'var(--color-primary-dark)' }}
+            onClick={() => setShowTeams(true)}
+          >
+            {t('teams.manage')}
+          </button>
+        </div>
+        {(profile?.managedTeams?.length ?? 0) > 0 ? (
+          <div className="flex flex-col gap-2">
+            {profile!.managedTeams!.map((team) => (
+              <div key={team.teamId} className="flex items-center gap-3 px-3 py-2.5 rounded-xl"
+                style={{ background: 'var(--color-glass-hover)' }}>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-bold truncate">{team.teamName}</p>
+                  <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
+                    {t(`coach.role.${team.role}`)}
+                    {team.clubName ? ` · ${team.clubName}` : ''}
+                  </p>
+                </div>
+              </div>
             ))}
           </div>
         ) : (

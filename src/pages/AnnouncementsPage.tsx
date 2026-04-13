@@ -6,6 +6,7 @@ import type { Announcement, AnnouncementPriority, AnnouncementAudience } from '.
 interface AnnouncementsPageProps {
   teamId: string
   teamName: string
+  teamIds?: string[]
   coachId: string
   coachName: string
   onBack: () => void
