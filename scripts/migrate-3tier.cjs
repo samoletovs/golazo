@@ -126,15 +126,11 @@ async function main() {
       }
       updated.updatedAt = new Date().toISOString()
 
-      // Coach container partition key is /squadId — we need to delete + recreate
-      // since partition key value changed
+      // Coach container partition key is /teamId
       if (!DRY_RUN) {
         try {
           await coachContainer.item(doc.id, doc.squadId).delete()
         } catch { /* may not exist with old PK */ }
-        // Create with new partition key field
-        // Note: container PK path is still /squadId in Cosmos — need to also update container config
-        // For now, keep the doc with teamId and handle in code
         await coachContainer.items.create(updated)
       }
       coachRenamed++

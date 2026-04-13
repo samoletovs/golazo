@@ -155,6 +155,11 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [state, setState] = useState<AppState>(loadState)
   const [syncing, setSyncing] = useState(true)
   const syncTimerRef = useRef<number>(0)
+  const latestStateRef = useRef(state)
+
+  useEffect(() => {
+    latestStateRef.current = state
+  }, [state])
 
   // Try to sync from API on mount (offline-first: localStorage is always the fallback)
   useEffect(() => {
@@ -185,17 +190,18 @@ export function AppProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     function handleBeforeUnload() {
       window.clearTimeout(syncTimerRef.current)
+      const latestState = latestStateRef.current
       // Use sendBeacon for reliable sync on page close
       const body = JSON.stringify({
-        profile: state.profile,
-        xp: state.xp,
-        onboardingComplete: state.onboardingComplete,
+        profile: latestState.profile,
+        xp: latestState.xp,
+        onboardingComplete: latestState.onboardingComplete,
       })
       navigator.sendBeacon?.('/api/sync', new Blob([body], { type: 'application/json' }))
     }
     window.addEventListener('beforeunload', handleBeforeUnload)
     return () => window.removeEventListener('beforeunload', handleBeforeUnload)
-  })
+  }, [])
 
   function update(partial: Partial<AppState>) {
     setState((prev) => {

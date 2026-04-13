@@ -27,7 +27,7 @@ export function AnnouncementFeed() {
         const allAnnouncements: Announcement[] = []
         for (const teamId of teamIds.slice(0, 5)) {
           try {
-            const res = await fetch(`/api/coach/squad/${encodeURIComponent(teamId)}/announcements`)
+            const res = await fetch(`/api/coach/team/${encodeURIComponent(teamId)}/announcements`)
             if (res.ok) {
               const data = await res.json()
               const items: Announcement[] = data.announcements ?? []

@@ -346,5 +346,26 @@
         "url": "https://www.facebook.com/fkatmosfera/"
       }
     ]
+  },
+  {
+    "name": "FK Akmenės Cementas",
+    "abbreviation": "AKM",
+    "aliases": [
+      "FK AKMENAS",
+      "FK AKMENĖS CEMENTAS",
+      "AKMENĖS CEMENTAS",
+      "AKMENAS"
+    ],
+    "city": "Akmenė",
+    "league": "Youth",
+    "ageGroups": [
+      "U9",
+      "U11",
+      "U13",
+      "U15"
+    ],
+    "colors": [],
+    "logoUrl": "https://turniir.ee/sites/default/files/styles/logo/public/teamimages/fk-akmenes-cementas-logo.png?itok=H5ZRplKb",
+    "type": "club"
   }
 ]

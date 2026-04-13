@@ -34,7 +34,7 @@ export function AttendanceGrid({ teamId, teamName, coachId, onBack }: Attendance
     async function load() {
       setLoading(true)
       try {
-        const res = await fetch(`/api/coach/squad/${encodeURIComponent(teamId)}/roster`)
+        const res = await fetch(`/api/coach/team/${encodeURIComponent(teamId)}/roster`)
         if (res.ok && !cancelled) {
           const data = await res.json()
           const roster: RosterPlayer[] = data.players ?? []
@@ -75,7 +75,7 @@ export function AttendanceGrid({ teamId, teamName, coachId, onBack }: Attendance
         playerId: p.playerId,
         status: attendance.get(p.playerId) ?? 'present',
       }))
-      await fetch(`/api/coach/squad/${encodeURIComponent(teamId)}/attendance`, {
+      await fetch(`/api/coach/team/${encodeURIComponent(teamId)}/attendance`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ date, coachId, records }),

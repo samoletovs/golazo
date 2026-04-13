@@ -871,14 +871,6 @@ export interface RosterPlayer {
   active: boolean
 }
 
-/** @deprecated Use Squad instead */
-export interface SquadRoster {
-  squadId: string
-  squadName: string
-  players: RosterPlayer[]
-  updatedAt: string
-}
-
 /* ── Announcements ────────────────────────────────────────── */
 
 export const ANNOUNCEMENT_PRIORITY = {

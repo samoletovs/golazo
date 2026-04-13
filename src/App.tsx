@@ -38,6 +38,7 @@ function AppContent() {
   const [page, setPage] = useState<Page>('dashboard')
   const [pageKey, setPageKey] = useState(0)
   const [coachTeamId, setCoachTeamId] = useState('')
+  const [coachTeamName, setCoachTeamName] = useState('')
   const [showTeamPicker, setShowTeamPicker] = useState(false)
   const [selectedTeamIds, setSelectedTeamIds] = useState<string[]>([])
   const { user, loading: authLoading } = useAuth()
@@ -133,8 +134,10 @@ function AppContent() {
                   teams={profile?.managedTeams ?? []}
                   selectedTeamIds={selectedTeamIds}
                   onToggleTeam={toggleTeamFilter}
-                  onNavigate={(sub, squadId) => {
-                    setCoachTeamId(squadId)
+                  onNavigate={(sub, teamId) => {
+                    setCoachTeamId(teamId)
+                    const team = profile?.managedTeams?.find(t => t.teamId === teamId)
+                    setCoachTeamName(team?.teamName ?? teamId)
                     handleNavigate(`coach-${sub}` as Page)
                   }}
                   onManageTeams={() => setShowTeamPicker(true)}
@@ -159,46 +162,46 @@ function AppContent() {
                 />
               )}
               {page === 'mentor' && <MentorDashboard />}
-              {page === 'coach-roster' && (
+              {page === 'coach-roster' && coachTeamId && (
                 <SquadRoster
                   teamId={coachTeamId}
-                  teamName={coachTeamId}
+                  teamName={coachTeamName}
                   onBack={() => handleNavigate('dashboard')}
                   onEvaluate={() => {
                     handleNavigate('coach-evaluate')
                   }}
                 />
               )}
-              {page === 'coach-training' && (
+              {page === 'coach-training' && coachTeamId && (
                 <TrainingPlanner
                   teamId={coachTeamId}
-                  teamName={coachTeamId}
+                  teamName={coachTeamName}
                   coachId={profile?.id ?? ''}
                   onBack={() => handleNavigate('dashboard')}
                 />
               )}
-              {page === 'coach-announce' && (
+              {page === 'coach-announce' && coachTeamId && (
                 <AnnouncementsPage
                   teamId={coachTeamId}
-                  teamName={coachTeamId}
+                  teamName={coachTeamName}
                   coachId={profile?.id ?? ''}
                   coachName={profile?.name ?? ''}
                   onBack={() => handleNavigate('dashboard')}
                 />
               )}
-              {page === 'coach-evaluate' && (
+              {page === 'coach-evaluate' && coachTeamId && (
                 <EvaluationPage
                   teamId={coachTeamId}
-                  teamName={coachTeamId}
+                  teamName={coachTeamName}
                   coachId={profile?.id ?? ''}
                   coachName={profile?.name ?? ''}
                   onBack={() => handleNavigate('dashboard')}
                 />
               )}
-              {page === 'coach-attendance' && (
+              {page === 'coach-attendance' && coachTeamId && (
                 <AttendanceGrid
                   teamId={coachTeamId}
-                  teamName={coachTeamId}
+                  teamName={coachTeamName}
                   coachId={profile?.id ?? ''}
                   onBack={() => handleNavigate('dashboard')}
                 />

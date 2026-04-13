@@ -5,30 +5,51 @@ const { randomUUID } = require('crypto');
 /**
  * Coach management API.
  *
- * GET  /api/coach/squad/{squadId}/roster        — list players linked to team
- * GET  /api/coach/squad/{squadId}/stats          — aggregated team stats
- * GET  /api/coach/squad/{squadId}/announcements  — list announcements
- * POST /api/coach/squad/{squadId}/announce        — create announcement
- * GET  /api/coach/squad/{squadId}/evaluations    — list evaluations
- * POST /api/coach/squad/{squadId}/evaluation     — save evaluation
+ * GET  /api/coach/team/{teamId}/roster        — list players linked to team
+ * GET  /api/coach/team/{teamId}/stats          — aggregated team stats
+ * GET  /api/coach/team/{teamId}/announcements  — list announcements
+ * POST /api/coach/team/{teamId}/announce        — create announcement
+ * GET  /api/coach/team/{teamId}/evaluations    — list evaluations
+ * POST /api/coach/team/{teamId}/evaluation     — save evaluation
  * POST /api/coach/training-plan                  — create training plan
- * GET  /api/coach/squad/{squadId}/plans           — list training plans
- * POST /api/coach/squad/{squadId}/attendance     — save attendance
- *
- * NOTE: Routes still use "squad" in the URL path — rename after full migration.
+ * GET  /api/coach/team/{teamId}/plans           — list training plans
+ * POST /api/coach/team/{teamId}/attendance     — save attendance
  */
+
+/* ── Authorization helper ─────────────────────────────────── */
+
+/**
+ * Verify that the authenticated user is a coach of the requested team.
+ * Returns true if the user's profile.managedTeams includes teamId.
+ */
+async function verifyCoachOwnsTeam(userId, teamId) {
+  const container = await getContainer();
+  if (!container) return false;
+  try {
+    const { resources } = await container.items.query({
+      query: 'SELECT c.data.managedTeams FROM c WHERE c.userId = @userId AND c.docType = "profile"',
+      parameters: [{ name: '@userId', value: userId }],
+    }).fetchAll();
+    if (!resources.length || !resources[0]?.managedTeams) return false;
+    return resources[0].managedTeams.some((t) => t.teamId === teamId);
+  } catch {
+    return false;
+  }
+}
 
 /* ── Team Roster ──────────────────────────────────────────── */
 
 app.http('coach-roster', {
   methods: ['GET'],
   authLevel: 'anonymous',
-  route: 'coach/squad/{squadId}/roster',
+  route: 'coach/team/{teamId}/roster',
   handler: async (req) => {
     const user = getUser(req);
     if (!user) return jsonResponse({ error: 'Unauthorized' }, 401);
 
-    const teamId = req.params.squadId; // TODO: rename route param after migration
+    const teamId = req.params.teamId;
+    if (!await verifyCoachOwnsTeam(user.userId, teamId)) return jsonResponse({ error: 'Forbidden' }, 403);
+
     const container = await getContainer();
     if (!container) return jsonResponse({ error: 'Database not configured' }, 503);
 
@@ -41,10 +62,10 @@ app.http('coach-roster', {
                      FROM c
                      WHERE c.docType = 'profile'
                        AND c.data.role = 'player'
-                       AND EXISTS(SELECT VALUE t FROM t IN c.data.teams WHERE t.registryId = @squadId AND t.active = true)`;
+                       AND EXISTS(SELECT VALUE t FROM t IN c.data.teams WHERE t.registryId = @teamId AND t.active = true)`;
       const { resources } = await container.items.query({
         query,
-        parameters: [{ name: '@squadId', value: teamId }],
+        parameters: [{ name: '@teamId', value: teamId }],
       }).fetchAll();
 
       const players = resources.map((p) => ({
@@ -70,12 +91,13 @@ app.http('coach-roster', {
 app.http('coach-stats', {
   methods: ['GET'],
   authLevel: 'anonymous',
-  route: 'coach/squad/{squadId}/stats',
+  route: 'coach/team/{teamId}/stats',
   handler: async (req) => {
     const user = getUser(req);
     if (!user) return jsonResponse({ error: 'Unauthorized' }, 401);
 
-    const teamId = req.params.squadId; // TODO: rename route param after migration
+    const teamId = req.params.teamId;
+    if (!await verifyCoachOwnsTeam(user.userId, teamId)) return jsonResponse({ error: 'Forbidden' }, 403);
 
     // Return placeholder stats — real aggregation will be built incrementally
     return jsonResponse({
@@ -95,10 +117,11 @@ app.http('coach-stats', {
 app.http('coach-announcements', {
   methods: ['GET', 'POST'],
   authLevel: 'anonymous',
-  route: 'coach/squad/{squadId}/announcements',
+  route: 'coach/team/{teamId}/announcements',
   handler: async (req) => {
     const user = getUser(req);
     if (!user) return jsonResponse({ error: 'Unauthorized' }, 401);
+    if (!await verifyCoachOwnsTeam(user.userId, req.params.teamId)) return jsonResponse({ error: 'Forbidden' }, 403);
 
     if (req.method === 'GET') return handleGetAnnouncements(req);
     return handleCreateAnnouncement(req);
@@ -109,10 +132,11 @@ app.http('coach-announcements', {
 app.http('coach-announce', {
   methods: ['POST'],
   authLevel: 'anonymous',
-  route: 'coach/squad/{squadId}/announce',
+  route: 'coach/team/{teamId}/announce',
   handler: async (req) => {
     const user = getUser(req);
     if (!user) return jsonResponse({ error: 'Unauthorized' }, 401);
+    if (!await verifyCoachOwnsTeam(user.userId, req.params.teamId)) return jsonResponse({ error: 'Forbidden' }, 403);
     return handleCreateAnnouncement(req);
   },
 });
@@ -121,11 +145,11 @@ async function handleGetAnnouncements(req) {
   const container = await getCoachContainer();
   if (!container) return jsonResponse({ announcements: [] });
 
-  const teamId = req.params.squadId; // TODO: rename route param after migration
+  const teamId = req.params.teamId;
   try {
     const { resources } = await container.items.query({
-      query: 'SELECT * FROM c WHERE c.squadId = @squadId AND c.docType = "announcement" ORDER BY c.createdAt DESC',
-      parameters: [{ name: '@squadId', value: teamId }],
+      query: 'SELECT * FROM c WHERE c.teamId = @teamId AND c.docType = "announcement" ORDER BY c.createdAt DESC',
+      parameters: [{ name: '@teamId', value: teamId }],
     }).fetchAll();
     return jsonResponse({ announcements: resources });
   } catch {
@@ -137,13 +161,13 @@ async function handleCreateAnnouncement(req) {
   const container = await getCoachContainer();
   if (!container) return jsonResponse({ error: 'Database not configured' }, 503);
 
-  const teamId = req.params.squadId; // TODO: rename route param after migration
+  const teamId = req.params.teamId;
   const body = await req.json();
   const now = new Date().toISOString();
 
   const announcement = {
     id: randomUUID(),
-    squadId: teamId, // TODO: rename field after Cosmos migration
+    teamId,
     docType: 'announcement',
     authorId: body.authorId,
     authorName: body.authorName,
@@ -169,19 +193,20 @@ async function handleCreateAnnouncement(req) {
 app.http('coach-evaluations', {
   methods: ['GET'],
   authLevel: 'anonymous',
-  route: 'coach/squad/{squadId}/evaluations',
+  route: 'coach/team/{teamId}/evaluations',
   handler: async (req) => {
     const user = getUser(req);
     if (!user) return jsonResponse({ error: 'Unauthorized' }, 401);
+    if (!await verifyCoachOwnsTeam(user.userId, req.params.teamId)) return jsonResponse({ error: 'Forbidden' }, 403);
 
     const container = await getCoachContainer();
     if (!container) return jsonResponse({ evaluations: [] });
 
-    const teamId = req.params.squadId; // TODO: rename route param after migration
+    const teamId = req.params.teamId;
     try {
       const { resources } = await container.items.query({
-        query: 'SELECT * FROM c WHERE c.squadId = @squadId AND c.docType = "evaluation" ORDER BY c.createdAt DESC',
-        parameters: [{ name: '@squadId', value: teamId }],
+        query: 'SELECT * FROM c WHERE c.teamId = @teamId AND c.docType = "evaluation" ORDER BY c.createdAt DESC',
+        parameters: [{ name: '@teamId', value: teamId }],
       }).fetchAll();
       return jsonResponse({ evaluations: resources });
     } catch {
@@ -193,21 +218,22 @@ app.http('coach-evaluations', {
 app.http('coach-evaluation-create', {
   methods: ['POST'],
   authLevel: 'anonymous',
-  route: 'coach/squad/{squadId}/evaluation',
+  route: 'coach/team/{teamId}/evaluation',
   handler: async (req) => {
     const user = getUser(req);
     if (!user) return jsonResponse({ error: 'Unauthorized' }, 401);
+    if (!await verifyCoachOwnsTeam(user.userId, req.params.teamId)) return jsonResponse({ error: 'Forbidden' }, 403);
 
     const container = await getCoachContainer();
     if (!container) return jsonResponse({ error: 'Database not configured' }, 503);
 
-    const teamId = req.params.squadId; // TODO: rename route param after migration
+    const teamId = req.params.teamId;
     const body = await req.json();
     const now = new Date().toISOString();
 
     const evaluation = {
       id: randomUUID(),
-      squadId: teamId, // TODO: rename field after Cosmos migration
+      teamId,
       docType: 'evaluation',
       playerId: body.playerId,
       coachId: body.coachId,
@@ -247,15 +273,17 @@ app.http('coach-training-plan', {
     const user = getUser(req);
     if (!user) return jsonResponse({ error: 'Unauthorized' }, 401);
 
+    const body = await req.json();
+    if (!body.teamId || !await verifyCoachOwnsTeam(user.userId, body.teamId)) return jsonResponse({ error: 'Forbidden' }, 403);
+
     const container = await getCoachContainer();
     if (!container) return jsonResponse({ error: 'Database not configured' }, 503);
 
-    const body = await req.json();
     const now = new Date().toISOString();
 
     const plan = {
       id: randomUUID(),
-      squadId: body.teamId, // TODO: rename field after Cosmos migration
+      teamId: body.teamId,
       docType: 'trainingPlan',
       coachId: body.coachId,
       title: body.title,
@@ -283,19 +311,20 @@ app.http('coach-training-plan', {
 app.http('coach-plans', {
   methods: ['GET'],
   authLevel: 'anonymous',
-  route: 'coach/squad/{squadId}/plans',
+  route: 'coach/team/{teamId}/plans',
   handler: async (req) => {
     const user = getUser(req);
     if (!user) return jsonResponse({ error: 'Unauthorized' }, 401);
+    if (!await verifyCoachOwnsTeam(user.userId, req.params.teamId)) return jsonResponse({ error: 'Forbidden' }, 403);
 
     const container = await getCoachContainer();
     if (!container) return jsonResponse({ plans: [] });
 
-    const teamId = req.params.squadId; // TODO: rename route param after migration
+    const teamId = req.params.teamId;
     try {
       const { resources } = await container.items.query({
-        query: 'SELECT * FROM c WHERE c.squadId = @squadId AND c.docType = "trainingPlan" ORDER BY c.date DESC',
-        parameters: [{ name: '@squadId', value: teamId }],
+        query: 'SELECT * FROM c WHERE c.teamId = @teamId AND c.docType = "trainingPlan" ORDER BY c.date DESC',
+        parameters: [{ name: '@teamId', value: teamId }],
       }).fetchAll();
       return jsonResponse({ plans: resources });
     } catch {
@@ -309,22 +338,23 @@ app.http('coach-plans', {
 app.http('coach-attendance', {
   methods: ['POST'],
   authLevel: 'anonymous',
-  route: 'coach/squad/{squadId}/attendance',
+  route: 'coach/team/{teamId}/attendance',
   handler: async (req) => {
     const user = getUser(req);
     if (!user) return jsonResponse({ error: 'Unauthorized' }, 401);
+    if (!await verifyCoachOwnsTeam(user.userId, req.params.teamId)) return jsonResponse({ error: 'Forbidden' }, 403);
 
     const container = await getCoachContainer();
     if (!container) return jsonResponse({ error: 'Database not configured' }, 503);
 
-    const teamId = req.params.squadId; // TODO: rename route param after migration
+    const teamId = req.params.teamId;
     const body = await req.json();
     const now = new Date().toISOString();
 
     // Store attendance as a single doc per date+team
     const doc = {
       id: `${teamId}-${body.date}`,
-      squadId: teamId, // TODO: rename field after Cosmos migration
+      teamId,
       docType: 'attendance',
       date: body.date,
       coachId: body.coachId,

@@ -49,7 +49,7 @@ export function EvaluationPage({ teamId, teamName, coachId, coachName, initialPl
     let cancelled = false
     async function load() {
       try {
-        const res = await fetch(`/api/coach/squad/${encodeURIComponent(teamId)}/roster`)
+        const res = await fetch(`/api/coach/team/${encodeURIComponent(teamId)}/roster`)
         if (res.ok && !cancelled) {
           const data = await res.json()
           setPlayers(data.players ?? [])
@@ -85,7 +85,7 @@ export function EvaluationPage({ teamId, teamName, coachId, coachName, initialPl
         coachNotes: coachNotes.trim() || undefined,
         goalsForNextPeriod: goals,
       }
-      const res = await fetch(`/api/coach/squad/${encodeURIComponent(teamId)}/evaluation`, {
+      const res = await fetch(`/api/coach/team/${encodeURIComponent(teamId)}/evaluation`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(evaluation),

@@ -5,7 +5,8 @@
     "aliases": [
       "RFS",
       "FC RFS",
-      "RFS ACADEMY"
+      "RFS ACADEMY",
+      "RFS KIDS"
     ],
     "city": "Rīga",
     "website": "https://www.fcrfs.lv",
@@ -46,14 +47,16 @@
         "url": "https://twitter.com/rfsdaily"
       }
     ],
-    "type": "club"
+    "type": "club",
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/1/10/FK_RFS_logo.svg/330px-FK_RFS_logo.svg.png"
   },
   {
     "name": "Riga FC",
     "abbreviation": "RFC",
     "aliases": [
       "RIGA FC",
-      "RIGA"
+      "RIGA",
+      "RIGA FC ACADEMY"
     ],
     "city": "Rīga",
     "website": "https://www.rigafc.lv",
@@ -92,7 +95,8 @@
         "url": "https://www.tiktok.com/@rigafc_official"
       }
     ],
-    "type": "club"
+    "type": "club",
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/e/e9/Riga_Football_Club.svg/330px-Riga_Football_Club.svg.png"
   },
   {
     "name": "FK Liepāja",
@@ -135,7 +139,8 @@
         "url": "https://twitter.com/liepajafk"
       }
     ],
-    "type": "club"
+    "type": "club",
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/2/24/FK_Liepaja_logo.svg/330px-FK_Liepaja_logo.svg.png"
   },
   {
     "name": "BFC Daugavpils",
@@ -168,7 +173,8 @@
         "url": "https://www.youtube.com/playlist?list=PLYmXvxTtwp2RvJtgjGQrvOjYVAmrrsFT8"
       }
     ],
-    "type": "club"
+    "type": "club",
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/3/34/BFC_Daugavpils.png"
   },
   {
     "name": "FK Auda",
@@ -210,7 +216,8 @@
         "url": "https://twitter.com/fkauda"
       }
     ],
-    "type": "club"
+    "type": "club",
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/b/be/FK_Auda_logo.png"
   },
   {
     "name": "FS Jelgava",
@@ -236,7 +243,8 @@
     ],
     "website": "https://www.fsjelgava.lv",
     "stadium": "Zemgale Olympic Center",
-    "type": "club"
+    "type": "club",
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/2/2f/FS_Jelgava_logo.png"
   },
   {
     "name": "FK Tukums 2000",
@@ -266,25 +274,31 @@
         "url": "https://www.tiktok.com/@fk.tukums2000"
       }
     ],
-    "type": "club"
+    "type": "club",
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/0/07/FK_Tukums_2000.png"
   },
   {
     "name": "SK Super Nova",
     "abbreviation": "SN",
     "aliases": [
       "SUPER NOVA",
-      "SK SUPER NOVA"
+      "SK SUPER NOVA",
+      "SK SUPERNOVA",
+      "SUPERNOVA"
     ],
     "city": "Rīga",
     "league": "Virslīga",
     "ageGroups": [
+      "U7",
+      "U9",
+      "U11",
       "U13",
       "U15",
       "U17",
       "U19",
       "Senior"
     ],
-    "foundedYear": 2016,
+    "foundedYear": 2000,
     "colors": [
       "#FFD700",
       "#000080"
@@ -301,7 +315,8 @@
         "url": "https://www.instagram.com/sk_super_nova/"
       }
     ],
-    "type": "club"
+    "type": "club",
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/b/b3/SK_Super_Nova_logo_2024.png"
   },
   {
     "name": "Grobiņas SC",
@@ -317,14 +332,16 @@
       "#FF0000",
       "#FFFFFF"
     ],
-    "type": "club"
+    "type": "club",
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/6/64/FK_Grobi%C5%86a_logo.png"
   },
   {
     "name": "Ogre United FC",
     "abbreviation": "OGR",
     "aliases": [
       "OGRE UNITED",
-      "OGRE"
+      "OGRE",
+      "OGRES NSC"
     ],
     "city": "Ogre",
     "league": "Virslīga",
@@ -333,7 +350,8 @@
       "#004D00",
       "#FFFFFF"
     ],
-    "type": "club"
+    "type": "club",
+    "logoUrl": "https://turniir.ee/sites/default/files/styles/logo/public/teamimages/ekr%C4%81nuz%C5%86%C4%93mums%202026-03-28%20173852_0.png?itok=GdHj32al"
   },
   {
     "name": "Valmiera FC",
@@ -367,7 +385,8 @@
         "url": "https://www.instagram.com/valmierafc/"
       }
     ],
-    "type": "club"
+    "type": "club",
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/ValmieraFC-Logo.png/330px-ValmieraFC-Logo.png"
   },
   {
     "name": "FK Smiltene/BJSS",
@@ -384,7 +403,8 @@
       "#006400",
       "#FFFFFF"
     ],
-    "type": "club"
+    "type": "club",
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/f/fb/FK_Smiltene_logo.png/330px-FK_Smiltene_logo.png"
   },
   {
     "name": "JFK Ventspils",
@@ -401,7 +421,8 @@
       "#FFD700",
       "#0000FF"
     ],
-    "type": "club"
+    "type": "club",
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/0/0d/FK_Ventspils_logo.svg/330px-FK_Ventspils_logo.svg.png"
   },
   {
     "name": "FS Metta",
@@ -440,14 +461,17 @@
         "url": "https://www.instagram.com/fs_metta/"
       }
     ],
-    "type": "academy"
+    "type": "academy",
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/FK_METTA.png/330px-FK_METTA.png"
   },
   {
     "name": "JDFS Alberts",
     "abbreviation": "ALB",
     "aliases": [
       "JDFS ALBERTS",
-      "ALBERTS"
+      "ALBERTS",
+      "JDFS ALBERTS / BLACK",
+      "JDFS ALBERTS / ORANGE"
     ],
     "city": "Rīga",
     "league": "LFF Jaunatne",
@@ -465,7 +489,8 @@
       "#0000FF",
       "#FFFFFF"
     ],
-    "type": "academy"
+    "type": "academy",
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/3/35/JDFS_Alberts_logo.png"
   },
   {
     "name": "Mārupes NSS",
@@ -493,7 +518,8 @@
       "#FFD700",
       "#006400"
     ],
-    "type": "academy"
+    "type": "academy",
+    "logoUrl": "https://turniir.ee/sites/default/files/styles/logo/public/teamimages/mss_logo-500_7.png?itok=mW-b4dAX"
   },
   {
     "name": "FK Valor",
@@ -526,7 +552,8 @@
         "url": "https://www.instagram.com/fkvalor/"
       }
     ],
-    "type": "academy"
+    "type": "academy",
+    "logoUrl": "https://turniir.ee/sites/default/files/styles/logo/public/teamimages/5e509a2b2c16e83033066be3_fk-valor-logo-varianti%20%283%29_page-0002_2.jpg?itok=PTMVnpCs"
   },
   {
     "name": "FK Iecava",
@@ -570,7 +597,8 @@
       "#CC0000",
       "#FFFFFF"
     ],
-    "type": "academy"
+    "type": "academy",
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/a/ae/R%C4%93zeknes_FA_logo.png"
   },
   {
     "name": "JFC Corona Borealis",
@@ -696,6 +724,204 @@
         "url": "https://www.instagram.com/rfs_1962/"
       }
     ],
-    "stadium": "Uzvaras bulvāris 18"
+    "stadium": "Uzvaras bulvāris 18",
+    "logoUrl": "https://turniir.ee/sites/default/files/styles/logo/public/teamimages/fk-rigas-futbola-skola-13-football-club-facts-1699622251_0.jpg?itok=VgZPdj0k"
+  },
+  {
+    "name": "RFK",
+    "abbreviation": "RFK",
+    "aliases": [
+      "RFK"
+    ],
+    "city": "Rīga",
+    "league": "Youth",
+    "ageGroups": [
+      "U9",
+      "U11",
+      "U13",
+      "U15"
+    ],
+    "colors": [],
+    "logoUrl": "https://turniir.ee/sites/default/files/styles/logo/public/teamimages/292091619_468339481961252_5636499290188913700_n.jpg?itok=VIKJKsZ1",
+    "type": "academy"
+  },
+  {
+    "name": "FS Leevon",
+    "abbreviation": "LEE",
+    "aliases": [
+      "FS LEEVON",
+      "LEEVON"
+    ],
+    "city": "Rīga",
+    "league": "Youth",
+    "ageGroups": [
+      "U9",
+      "U11",
+      "U13",
+      "U15"
+    ],
+    "colors": [],
+    "logoUrl": "https://turniir.ee/sites/default/files/styles/logo/public/teamimages/278016012_385090773620430_930409628680387260_n.png?itok=817w4D7M",
+    "type": "academy"
+  },
+  {
+    "name": "BJFK Pārdaugava",
+    "abbreviation": "PAR",
+    "aliases": [
+      "BJFK PĀRDAUGAVA",
+      "BJFK PARDAUGAVA",
+      "PĀRDAUGAVA",
+      "PARDAUGAVA"
+    ],
+    "city": "Rīga",
+    "league": "Youth",
+    "ageGroups": [
+      "U9",
+      "U11",
+      "U13",
+      "U15"
+    ],
+    "colors": [],
+    "logoUrl": "https://turniir.ee/sites/default/files/styles/logo/public/teamimages/309860503_519786986821602_4638769688127369149_n%20%281%29_3.jpg?itok=1hsQ3FMs",
+    "type": "academy"
+  },
+  {
+    "name": "Jēkabpils SS",
+    "abbreviation": "JSS",
+    "aliases": [
+      "JĒKABPILS SS",
+      "JEKABPILS SS",
+      "JĒKABPILS"
+    ],
+    "city": "Jēkabpils",
+    "league": "Youth",
+    "ageGroups": [
+      "U9",
+      "U11",
+      "U13",
+      "U15"
+    ],
+    "colors": [],
+    "logoUrl": "https://turniir.ee/sites/default/files/styles/logo/public/teamimages/ekr%C4%81nuz%C5%86%C4%93mums%202026-03-28%20171245_0.png?itok=j5Kwz9AT",
+    "type": "academy"
+  },
+  {
+    "name": "AFA Olaine",
+    "abbreviation": "AFA",
+    "aliases": [
+      "AFA OLAINE",
+      "AFA"
+    ],
+    "city": "Olaine",
+    "league": "2. līga",
+    "ageGroups": [
+      "U9",
+      "U11",
+      "U13",
+      "U15",
+      "Senior"
+    ],
+    "colors": [],
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/0/06/AFA_Olaine_logo.jpg",
+    "type": "club"
+  },
+  {
+    "name": "FK Dinamo Riga",
+    "abbreviation": "DIN",
+    "aliases": [
+      "FK DINAMO RIGA",
+      "FK DINAMO RĪGA",
+      "DINAMO RIGA",
+      "DINAMO RĪGA"
+    ],
+    "city": "Rīga",
+    "league": "Youth",
+    "ageGroups": [
+      "U9",
+      "U11",
+      "U13",
+      "U15"
+    ],
+    "colors": [],
+    "logoUrl": "https://turniir.ee/sites/default/files/styles/logo/public/teamimages/fk-dinamo-riga-logo_2.png?itok=6IZYvrUW",
+    "type": "academy"
+  },
+  {
+    "name": "FK Laos",
+    "abbreviation": "LAO",
+    "aliases": [
+      "FK LAOS",
+      "LAOS"
+    ],
+    "city": "Rīga",
+    "league": "Youth",
+    "ageGroups": [
+      "U9",
+      "U11",
+      "U13",
+      "U15"
+    ],
+    "colors": [],
+    "logoUrl": "https://turniir.ee/sites/default/files/styles/logo/public/teamimages/ekr%C4%81nuz%C5%86%C4%93mums%202026-03-28%20171729_2.png?itok=D8Pck7nm",
+    "type": "academy"
+  },
+  {
+    "name": "FKD Bites",
+    "abbreviation": "BIT",
+    "aliases": [
+      "FKD BITES",
+      "BITES"
+    ],
+    "city": "Rīga",
+    "league": "Youth",
+    "ageGroups": [
+      "U9",
+      "U11",
+      "U13",
+      "U15"
+    ],
+    "colors": [],
+    "logoUrl": "https://turniir.ee/sites/default/files/styles/logo/public/teamimages/482827357_1394794008159768_5240940451357336317_n_1.jpg?itok=be76nRYC",
+    "type": "academy"
+  },
+  {
+    "name": "Saldus SS",
+    "abbreviation": "SAL",
+    "aliases": [
+      "SALDUS SS",
+      "SALDUS SS/BROCĒNU BJSS",
+      "SALDUS",
+      "FK STARTS"
+    ],
+    "city": "Saldus",
+    "league": "3. līga",
+    "ageGroups": [
+      "U9",
+      "U11",
+      "U13",
+      "U15",
+      "Senior"
+    ],
+    "colors": [],
+    "logoUrl": "https://turniir.ee/sites/default/files/styles/logo/public/teamimages/301767141_2964010327231959_8883625874690175365_n%20%281%29.jpg?itok=Y1qMVjy3",
+    "type": "club"
+  },
+  {
+    "name": "Futbola Skola",
+    "abbreviation": "FSK",
+    "aliases": [
+      "FUTBOLA SKOLA"
+    ],
+    "city": "Rīga",
+    "league": "Youth",
+    "ageGroups": [
+      "U9",
+      "U11",
+      "U13",
+      "U15"
+    ],
+    "colors": [],
+    "logoUrl": "https://turniir.ee/sites/default/files/styles/logo/public/teamimages/485793484_122195860772171646_6079132259325493453_n.jpg?itok=jXXsGn6h",
+    "type": "academy"
   }
 ]

@@ -50,6 +50,7 @@ export function Profile() {
   const [showTeams, setShowTeams] = useState(false)
   const [showPhysicalUpdate, setShowPhysicalUpdate] = useState(false)
   const [showFieldsEditor, setShowFieldsEditor] = useState(false)
+  const [confirmingReset, setConfirmingReset] = useState(false)
 
   const seasonGoals = matches.reduce((s, m) => s + m.goals, 0)
   const seasonAssists = matches.reduce((s, m) => s + m.assists, 0)
@@ -546,15 +547,36 @@ export function Profile() {
           <button
             className="tap-target text-xs text-center py-2"
             style={{ color: 'var(--color-danger)' }}
-            onClick={() => {
-              if (window.confirm(t('profile.resetConfirm'))) {
-                resetState()
-                window.location.reload()
-              }
-            }}
+            onClick={() => setConfirmingReset(true)}
           >
             {t('profile.reset')}
           </button>
+          {confirmingReset && (
+            <div className="card mt-1 flex flex-col gap-2 animate-fade-up" role="alertdialog" aria-live="polite">
+              <p className="text-xs font-bold" style={{ color: 'var(--color-danger)' }}>
+                {t('profile.resetConfirm')}
+              </p>
+              <div className="flex gap-2">
+                <button
+                  className="btn-choice tap-target text-xs flex-1"
+                  onClick={() => setConfirmingReset(false)}
+                >
+                  {t('common.cancel')}
+                </button>
+                <button
+                  className="tap-target text-xs flex-1 rounded-xl py-2 font-bold"
+                  style={{ background: 'var(--color-danger)', color: 'white' }}
+                  onClick={() => {
+                    setConfirmingReset(false)
+                    resetState()
+                    window.location.reload()
+                  }}
+                >
+                  {t('profile.reset')}
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 

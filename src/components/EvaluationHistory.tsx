@@ -36,7 +36,7 @@ export function EvaluationHistory() {
         const allEvals: PlayerEvaluation[] = []
         for (const teamId of teamIds.slice(0, 5)) {
           try {
-            const res = await fetch(`/api/coach/squad/${encodeURIComponent(teamId)}/evaluations`)
+            const res = await fetch(`/api/coach/team/${encodeURIComponent(teamId)}/evaluations`)
             if (res.ok) {
               const data = await res.json()
               const items: PlayerEvaluation[] = data.evaluations ?? []

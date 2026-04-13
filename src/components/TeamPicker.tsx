@@ -98,9 +98,8 @@ export function TeamPicker({ mode, onClose, externalTeams, onTeamsChange, countr
     return profilePositions?.length ? [...profilePositions] : ['CM']
   })
 
-  // Get current squads based on mode
-  const playerTeamSource = standalone ? externalTeams : (profile?.teams ?? [])
   const squads: TeamEntry[] = useMemo(() => {
+    const playerTeamSource = standalone ? (externalTeams ?? []) : (profile?.teams ?? [])
     if (mode === 'coach') {
       return (profile?.managedTeams ?? []).map((s) => ({
         id: s.teamId,
@@ -125,7 +124,7 @@ export function TeamPicker({ mode, onClose, externalTeams, onTeamsChange, countr
         positions: pos,
       }
     })
-  }, [playerTeamSource, profile?.managedTeams, mode])
+  }, [standalone, externalTeams, profile?.teams, profile?.managedTeams, mode])
 
   // Group by club
   const squadsByClub = useMemo(() => {

@@ -149,10 +149,15 @@ function extractTournamentName(html, url) {
 
 /**
  * Parse HTML fixture tables. Supports multiple formats:
- * - turniir.ee: <table> with date | teams | venue | score columns
+ * - turniir.ee match-container divs (date in header, teams in separate divs)
  * - Generic: any <table> with recognizable date/time + "team - team" patterns
  */
 function parseFixtures(html) {
+  // Method 1: turniir.ee match-container blocks
+  const matchContainerGames = parseMatchContainers(html);
+  if (matchContainerGames.length > 0) return matchContainerGames;
+
+  // Method 2: Generic <table> with <tr>/<td> rows
   const games = [];
 
   // Extract <tr> rows
@@ -185,15 +190,89 @@ function parseFixtures(html) {
 }
 
 /**
+ * Parse turniir.ee match-container blocks.
+ * Structure: <div class="match-container" id="match-container-NNNNN">
+ *   <div class="match-header">
+ *     <span class="header-content-date"><small>DD.MM.YYYY HH:MM</small></span>
+ *     <span class="header-content-venue"><small>VENUE</small></span>
+ *   </div>
+ *   <div class="match-body">
+ *     <td class="match-teams"> ... team divs ... </td>
+ *     <td class="match-score"> ... score divs ... </td>
+ *     <td class="match-time"> ... status ... </td>
+ *   </div>
+ * </div>
+ */
+function parseMatchContainers(html) {
+  const games = [];
+
+  // Split by match-container boundaries
+  const containerRe = /<div[^>]+class="match-container"[^>]*id="match-container-(\d+)"[^>]*>([\s\S]*?)(?=<div[^>]+class="match-container"|<footer|<div[^>]+class="sponsors|$)/gi;
+  let containerMatch;
+  while ((containerMatch = containerRe.exec(html)) !== null) {
+    const block = containerMatch[2];
+
+    // Extract date+time from header-content-date
+    const dateMatch = block.match(/header-content-date[^>]*><small>(\d{1,2}\.\d{1,2})\.?\d{0,4}\s+(\d{1,2}:\d{2})<\/small>/i);
+    if (!dateMatch) continue;
+    const date = dateMatch[1]; // "11.04"
+    const time = dateMatch[2]; // "10:00"
+
+    // Extract venue from header-content-venue
+    const venueMatch = block.match(/header-content-venue[^>]*><small>([^<]+)<\/small>/i);
+    const venue = venueMatch ? venueMatch[1].trim() : '';
+
+    // Extract team names from match-teams-team-name divs (strip logos/images)
+    const teamNames = [];
+    const teamRe = /match-teams-team-name[^"]*"[^>]*>([\s\S]*?)(?=<\/div>\s*<div class="match-teams|<\/td>)/gi;
+    let teamMatch;
+    while ((teamMatch = teamRe.exec(block)) !== null) {
+      let name = teamMatch[1].replace(/<[^>]+>/g, ' ').replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ').replace(/&#?\w+;/g, '').replace(/\s+/g, ' ').trim();
+      if (name) teamNames.push(name);
+    }
+    if (teamNames.length < 2) continue;
+
+    const home = teamNames[0];
+    const away = teamNames[1];
+
+    // Extract scores from match-score td
+    const scoreBlock = block.match(/<td[^>]*class="match-score"[^>]*>([\s\S]*?)<\/td>/i);
+    let score = '-';
+    let finished = false;
+    if (scoreBlock) {
+      const scoreNums = [];
+      const scoreRe = /no-wrap-class">\s*(\d+)\s*<\/span>/gi;
+      let scoreMatch;
+      while ((scoreMatch = scoreRe.exec(scoreBlock[1])) !== null) {
+        scoreNums.push(scoreMatch[1]);
+      }
+      if (scoreNums.length >= 2) {
+        score = `${scoreNums[0]}-${scoreNums[1]}`;
+      }
+    }
+
+    // Check if match is finished
+    if (/match-state-finished/i.test(block)) {
+      finished = true;
+    }
+
+    games.push({ date, time, home, away, venue, score, finished });
+  }
+
+  return games;
+}
+
+/**
  * Try to parse a table row as a fixture.
  * Expects: [dateTime, teams, venue, score?] or similar patterns.
  */
 function tryParseFixtureRow(cells) {
   // Look for a cell with date+time pattern: "28.03 14:40" or "28.03 14:40 (F)"
+  // Also handles "28.03.2026 14:40" (with year)
   let dateCell = null;
   let dateCellIdx = -1;
   for (let i = 0; i < Math.min(cells.length, 3); i++) {
-    if (/\d{1,2}\.\d{1,2}\s+\d{1,2}:\d{2}/.test(cells[i])) {
+    if (/\d{1,2}\.\d{1,2}(?:\.\d{4})?\s+\d{1,2}:\d{2}/.test(cells[i])) {
       dateCell = cells[i];
       dateCellIdx = i;
       break;
@@ -201,8 +280,8 @@ function tryParseFixtureRow(cells) {
   }
   if (!dateCell) return null;
 
-  // Parse date and time
-  const dtMatch = dateCell.match(/(\d{1,2}\.\d{1,2})\s+(\d{1,2}:\d{2})\s*(\(F\))?/);
+  // Parse date and time (with optional year)
+  const dtMatch = dateCell.match(/(\d{1,2}\.\d{1,2})(?:\.\d{4})?\s+(\d{1,2}:\d{2})\s*(\(F\))?/);
   if (!dtMatch) return null;
 
   const date = dtMatch[1]; // "28.03"

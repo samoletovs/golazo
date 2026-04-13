@@ -30,7 +30,7 @@ export function AnnouncementsPage({ teamId, teamName, coachId, coachName, onBack
     let cancelled = false
     async function load() {
       try {
-        const res = await fetch(`/api/coach/squad/${encodeURIComponent(teamId)}/announcements`)
+        const res = await fetch(`/api/coach/team/${encodeURIComponent(teamId)}/announcements`)
         if (res.ok && !cancelled) {
           const data = await res.json()
           setAnnouncements(data.announcements ?? [])
@@ -46,7 +46,7 @@ export function AnnouncementsPage({ teamId, teamName, coachId, coachName, onBack
     if (!title.trim() || !body.trim()) return
     setSaving(true)
     try {
-      const res = await fetch(`/api/coach/squad/${encodeURIComponent(teamId)}/announce`, {
+      const res = await fetch(`/api/coach/team/${encodeURIComponent(teamId)}/announce`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

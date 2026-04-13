@@ -78,7 +78,7 @@ async function getTournamentsContainer() {
 
 /**
  * Singleton Cosmos DB container for coach data (training plans, evaluations, announcements, attendance).
- * Partition key: /squadId.
+ * Partition key: /teamId.
  */
 async function getCoachContainer() {
   if (_coachContainer) return _coachContainer;

@@ -20,7 +20,7 @@ export function SquadRoster({ teamId, teamName, onBack, onEvaluate }: SquadRoste
     async function load() {
       setLoading(true)
       try {
-        const res = await fetch(`/api/coach/squad/${encodeURIComponent(teamId)}/roster`)
+        const res = await fetch(`/api/coach/team/${encodeURIComponent(teamId)}/roster`)
         if (res.ok && !cancelled) {
           const data = await res.json()
           setPlayers(data.players ?? [])

@@ -7,7 +7,7 @@ interface CoachDashboardProps {
   teams: ManagedTeam[]
   selectedTeamIds: string[]
   onToggleTeam: (id: string) => void
-  onNavigate: (page: 'roster' | 'training' | 'announce' | 'evaluate' | 'attendance', squadId: string) => void
+  onNavigate: (page: 'roster' | 'training' | 'announce' | 'evaluate' | 'attendance', teamId: string) => void
   onManageTeams: () => void
 }
 
@@ -32,7 +32,7 @@ export function CoachDashboard({ teams, selectedTeamIds, onToggleTeam, onNavigat
     return [...map.entries()]
       .map(([clubName, items]) => ({ clubName, squads: items }))
       .sort((a, b) => a.clubName.localeCompare(b.clubName))
-  }, [teams])
+  }, [filteredTeams])
 
   const totalTeams = teams.length
 
@@ -143,25 +143,27 @@ export function CoachDashboard({ teams, selectedTeamIds, onToggleTeam, onNavigat
       ))}
 
       {/* Global quick actions */}
-      <div>
-        <p className="section-label mb-2">{t('coach.dashboard.quickActions')}</p>
-        <div className="grid grid-cols-2 gap-2">
-          <button
-            className="card tap-target flex flex-col items-center gap-2 py-4"
-            onClick={() => onNavigate('evaluate', teams[0].teamId)}
-          >
-            <span className="text-2xl">📊</span>
-            <span className="text-xs font-bold">{t('coach.dashboard.evaluate')}</span>
-          </button>
-          <button
-            className="card tap-target flex flex-col items-center gap-2 py-4"
-            onClick={() => onNavigate('training', teams[0].teamId)}
-          >
-            <span className="text-2xl">📝</span>
-            <span className="text-xs font-bold">{t('coach.dashboard.planTraining')}</span>
-          </button>
+      {filteredTeams.length > 0 && (
+        <div>
+          <p className="section-label mb-2">{t('coach.dashboard.quickActions')}</p>
+          <div className="grid grid-cols-2 gap-2">
+            <button
+              className="card tap-target flex flex-col items-center gap-2 py-4"
+              onClick={() => onNavigate('evaluate', filteredTeams[0].teamId)}
+            >
+              <span className="text-2xl">📊</span>
+              <span className="text-xs font-bold">{t('coach.dashboard.evaluate')}</span>
+            </button>
+            <button
+              className="card tap-target flex flex-col items-center gap-2 py-4"
+              onClick={() => onNavigate('training', filteredTeams[0].teamId)}
+            >
+              <span className="text-2xl">📝</span>
+              <span className="text-xs font-bold">{t('coach.dashboard.planTraining')}</span>
+            </button>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   )
 }
