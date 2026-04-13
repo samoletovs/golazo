@@ -20,20 +20,20 @@ const { randomUUID } = require('crypto');
 
 /**
  * Verify that the authenticated user is a coach of the requested team.
- * Returns true if the user's profile.managedTeams includes teamId.
+ * Returns the ManagedTeam object if found, or null if not authorized.
  */
 async function verifyCoachOwnsTeam(userId, teamId) {
   const container = await getContainer();
-  if (!container) return false;
+  if (!container) return null;
   try {
     const { resources } = await container.items.query({
       query: 'SELECT c.data.managedTeams FROM c WHERE c.userId = @userId AND c.docType = "profile"',
       parameters: [{ name: '@userId', value: userId }],
     }).fetchAll();
-    if (!resources.length || !resources[0]?.managedTeams) return false;
-    return resources[0].managedTeams.some((t) => t.teamId === teamId);
+    if (!resources.length || !resources[0]?.managedTeams) return null;
+    return resources[0].managedTeams.find((t) => t.teamId === teamId) ?? null;
   } catch {
-    return false;
+    return null;
   }
 }
 
@@ -48,25 +48,52 @@ app.http('coach-roster', {
     if (!user) return jsonResponse({ error: 'Unauthorized' }, 401);
 
     const teamId = req.params.teamId;
-    if (!await verifyCoachOwnsTeam(user.userId, teamId)) return jsonResponse({ error: 'Forbidden' }, 403);
+    const managedTeam = await verifyCoachOwnsTeam(user.userId, teamId);
+    if (!managedTeam) return jsonResponse({ error: 'Forbidden' }, 403);
 
     const container = await getContainer();
     if (!container) return jsonResponse({ error: 'Database not configured' }, 503);
 
     try {
-      // Find all players who have this team in their teams (via registryId)
-      // Note: sync.js stores profile as { docType: 'profile', data: { name, role, teams, ... } }
-      const query = `SELECT c.data.id AS id, c.data.name AS name, c.data.jerseyNumber AS jerseyNumber,
-                            c.data.positions AS positions, c.data.birthDate AS birthDate,
-                            c.data.photoUrl AS photoUrl, c.updatedAt AS createdAt
-                     FROM c
-                     WHERE c.docType = 'profile'
-                       AND c.data.role = 'player'
-                       AND EXISTS(SELECT VALUE t FROM t IN c.data.teams WHERE t.registryId = @teamId AND t.active = true)`;
-      const { resources } = await container.items.query({
-        query,
-        parameters: [{ name: '@teamId', value: teamId }],
-      }).fetchAll();
+      // Match players by clubId + birthYear + teamLabel (not teamId which is a random UUID)
+      // Players store: t.clubId = SharedTeam.id, t.birthYear, t.teamLabel
+      const clubId = managedTeam.clubId;
+      const birthYear = managedTeam.birthYear;
+      const teamLabel = managedTeam.teamLabel;
+
+      let query, params;
+      if (clubId && birthYear) {
+        // Full match: club + birth year + optional team label
+        query = `SELECT c.data.id AS id, c.data.name AS name, c.data.jerseyNumber AS jerseyNumber,
+                        c.data.positions AS positions, c.data.birthDate AS birthDate,
+                        c.data.photoUrl AS photoUrl, c.updatedAt AS createdAt
+                 FROM c
+                 WHERE c.docType = 'profile'
+                   AND c.data.role = 'player'
+                   AND EXISTS(SELECT VALUE t FROM t IN c.data.teams
+                              WHERE t.clubId = @clubId
+                                AND t.birthYear = @birthYear
+                                ${teamLabel ? 'AND t.teamLabel = @teamLabel' : ''}
+                                AND t.active = true)`;
+        params = [
+          { name: '@clubId', value: clubId },
+          { name: '@birthYear', value: birthYear },
+        ];
+        if (teamLabel) params.push({ name: '@teamLabel', value: teamLabel });
+      } else {
+        // Fallback: match by registryId or clubId directly
+        query = `SELECT c.data.id AS id, c.data.name AS name, c.data.jerseyNumber AS jerseyNumber,
+                        c.data.positions AS positions, c.data.birthDate AS birthDate,
+                        c.data.photoUrl AS photoUrl, c.updatedAt AS createdAt
+                 FROM c
+                 WHERE c.docType = 'profile'
+                   AND c.data.role = 'player'
+                   AND EXISTS(SELECT VALUE t FROM t IN c.data.teams
+                              WHERE (t.registryId = @id OR t.clubId = @id) AND t.active = true)`;
+        params = [{ name: '@id', value: clubId || teamId }];
+      }
+
+      const { resources } = await container.items.query({ query, parameters: params }).fetchAll();
 
       const players = resources.map((p) => ({
         playerId: p.id,

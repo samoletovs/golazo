@@ -330,8 +330,26 @@ export function Profile() {
         {(profile?.teams?.length ?? 0) > 0 ? (
           <div className="flex flex-col gap-2">
             {profile!.teams!.filter((t) => t.active).map((team) => (
-              <div key={team.id} className="flex items-center gap-3 px-3 py-2.5 rounded-xl"
-                style={{ background: 'var(--color-glass-hover)' }}>
+              <button
+                key={team.id}
+                className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-left tap-target transition-all"
+                style={{
+                  background: team.isPrimary ? 'var(--color-glass-active)' : 'var(--color-glass-hover)',
+                  border: team.isPrimary ? '1.5px solid var(--color-primary)' : '1.5px solid transparent',
+                }}
+                onClick={() => {
+                  if (team.isPrimary) return
+                  const updated = profile!.teams!.map((t) => ({ ...t, isPrimary: t.id === team.id }))
+                  setProfile({ ...profile!, teams: updated })
+                }}
+              >
+                {/* Color dot */}
+                {team.colors?.[0] && (
+                  <div
+                    className="w-4 h-4 rounded-full flex-shrink-0"
+                    style={{ background: team.colors[0], boxShadow: '0 1px 3px rgba(0,0,0,0.15)' }}
+                  />
+                )}
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-bold truncate">{team.name}</p>
                   <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
@@ -341,7 +359,12 @@ export function Profile() {
                     ].filter(Boolean).join(' · ')}
                   </p>
                 </div>
-              </div>
+                {team.isPrimary && (
+                  <span className="text-xs font-bold px-2 py-0.5 rounded-full" style={{ background: 'var(--color-primary-bg)', color: 'var(--color-primary-dark)' }}>
+                    ★
+                  </span>
+                )}
+              </button>
             ))}
           </div>
         ) : (

@@ -54,12 +54,13 @@ function AppContent() {
   // Backfill colors from registry for teams added before colors were captured
   useEffect(() => {
     if (!profile?.teams?.length) return
-    const needsColors = profile.teams.some((t) => t.registryId && (!t.colors || t.colors.length === 0))
+    const needsColors = profile.teams.some((t) => (t.registryId || t.clubId) && (!t.colors || t.colors.length === 0))
     if (!needsColors) return
     const country = profile.country ?? 'LV'
     fetch(`/api/teams?country=${country}`)
-      .then((r) => r.ok ? r.json() : [])
-      .then((registry: { id: string; colors?: string[]; logoUrl?: string }[]) => {
+      .then((r) => r.ok ? r.json() : { teams: [] })
+      .then((data: { teams?: { id: string; colors?: string[]; logoUrl?: string }[] }) => {
+        const registry = data.teams ?? []
         if (!registry.length) return
         const updated = profile.teams!.map((t) => {
           if (t.colors?.length) return t
