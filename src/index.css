@@ -1,7 +1,7 @@
 /* ── Golazo Game Design System ────────────────────────────── */
 /* Visual thesis: Nike Training Club meets Strava — NEUTRAL    */
-/* premium, celebration-driven. Clean whites, deep emerald     */
-/* accents, bold Inter headings, oversized numbers,            */
+/* premium, celebration-driven. Emerald-tinted whites, deep    */
+/* emerald accents, bold Outfit headings, oversized numbers,   */
 /* smooth page transitions. Team colors override the palette.  */
 /* Follows design-system-playful shared patterns.              */
 @import "tailwindcss";
@@ -16,9 +16,9 @@
   --color-primary-bg-subtle: #ECFDF5;
   --color-primary-rgb: 5, 150, 105;
 
-  /* ── Background (neutral — no green tint) ── */
-  --color-bg: #FAFAFA;
-  --color-bg-warm: #F5F5F5;
+  /* ── Background (emerald-tinted — brand cohesion) ── */
+  --color-bg: #F7FAF8;
+  --color-bg-warm: #F3F7F4;
 
   /* ── Gold (XP, rewards) ── */
   --color-gold-500: #f59e0b;
@@ -75,7 +75,7 @@
 
   /* ── Type ── */
   --font-body: "Inter", system-ui, -apple-system, sans-serif;
-  --font-display: "Inter", system-ui, -apple-system, sans-serif;
+  --font-display: "Outfit", system-ui, -apple-system, sans-serif;
   --font-data: "JetBrains Mono", "IBM Plex Mono", monospace;
 
   /* ── Spacing ── */
@@ -105,7 +105,7 @@
   --duration-normal: 200ms;
   --duration-slow: 350ms;
   --duration-dramatic: 600ms;
-  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-bounce: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -140,24 +140,15 @@ body {
   letter-spacing: -0.02em;
 }
 
-/* ── Gradient text (game signature) ──────────────────────── */
+/* ── Accent text (solid colors — no gradient text) ──────── */
 .text-gradient-green {
-  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--color-primary-dark);
 }
 .text-gradient-gold {
-  background: linear-gradient(135deg, #f59e0b, #ef4444);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--color-gold-500);
 }
 .text-gradient-fire {
-  background: linear-gradient(135deg, #ef4444, #f59e0b);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--color-danger);
 }
 
 /* ── Touch target ────────────────────────────────────────── */
@@ -248,18 +239,10 @@ body {
   overflow: hidden;
   box-shadow: var(--shadow-card);
 }
-.stat-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3.5px;
-  border-radius: 20px 20px 0 0;
-}
-.stat-card-green::before { background: linear-gradient(90deg, var(--color-primary-dark), var(--color-primary)); }
-.stat-card-gold::before { background: linear-gradient(90deg, var(--color-amber-text), var(--color-gold-400)); }
-.stat-card-cyan::before { background: linear-gradient(90deg, var(--color-primary-dark), var(--color-primary-light)); }
+/* Stat card category tint (subtle full-card background) */
+.stat-card-green { background: color-mix(in oklch, var(--color-primary-bg-subtle) 50%, var(--color-glass)); }
+.stat-card-gold { background: color-mix(in oklch, var(--color-amber-bg) 40%, var(--color-glass)); }
+.stat-card-cyan { background: color-mix(in oklch, var(--color-primary-bg-subtle) 50%, var(--color-glass)); }
 
 /* Nike-style oversized stat number */
 .stat-number {
@@ -628,7 +611,7 @@ input[type="range"]::-webkit-slider-thumb {
   100% { transform: scale(1); }
 }
 .score-update {
-  animation: score-pop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation: score-pop 0.3s var(--ease-bounce);
 }
 
 @keyframes correct-pulse {
@@ -655,7 +638,7 @@ input[type="range"]::-webkit-slider-thumb {
   100% { transform: scale(1); }
 }
 .animate-achievement {
-  animation: achievement-enter 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  animation: achievement-enter 0.6s var(--ease-bounce) both;
 }
 
 /* ── Locked achievement hover ────────────────────────────── */
@@ -718,13 +701,13 @@ h1, h2, h3, h4 {
   color: #0A7B62;
 }
 
-/* ── Category Colors (for exercise cards) ────────────────── */
-.cat-technical { border-left: 4px solid var(--color-cat-technical); }
-.cat-physical { border-left: 4px solid var(--color-cat-physical); }
-.cat-tactical { border-left: 4px solid var(--color-cat-tactical); }
-.cat-mental { border-left: 4px solid var(--color-cat-mental); }
-.cat-knowledge { border-left: 4px solid var(--color-cat-knowledge); }
-.cat-matchPlay { border-left: 4px solid var(--color-cat-matchplay); }
+/* ── Category Colors (background tint — no side-stripe) ──── */
+.cat-technical { background: color-mix(in oklch, var(--color-cat-technical) 6%, var(--color-glass)); }
+.cat-physical { background: color-mix(in oklch, var(--color-cat-physical) 6%, var(--color-glass)); }
+.cat-tactical { background: color-mix(in oklch, var(--color-cat-tactical) 6%, var(--color-glass)); }
+.cat-mental { background: color-mix(in oklch, var(--color-cat-mental) 6%, var(--color-glass)); }
+.cat-knowledge { background: color-mix(in oklch, var(--color-cat-knowledge) 6%, var(--color-glass)); }
+.cat-matchPlay { background: color-mix(in oklch, var(--color-cat-matchplay) 6%, var(--color-glass)); }
 
 /* ── Category Top Stripe (grid card variant) ─────────────── */
 .cat-stripe-technical { --cat-stripe: var(--color-cat-technical); }
@@ -733,6 +716,7 @@ h1, h2, h3, h4 {
 .cat-stripe-mental { --cat-stripe: var(--color-cat-mental); }
 .cat-stripe-knowledge { --cat-stripe: var(--color-cat-knowledge); }
 .cat-stripe-matchPlay { --cat-stripe: var(--color-cat-matchplay); }
+.cat-stripe-performance { --cat-stripe: var(--color-cat-matchplay); }
 
 /* ── Horizontal Scroll Container ─────────────────────────── */
 .h-scroll {
@@ -764,16 +748,11 @@ h1, h2, h3, h4 {
   overflow: hidden;
 }
 .match-card-h::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
+  display: none;
 }
-.match-card-h[data-result="win"]::before { background: var(--color-primary); }
-.match-card-h[data-result="loss"]::before { background: var(--color-danger); }
-.match-card-h[data-result="draw"]::before { background: var(--color-gold-500); }
+.match-card-h[data-result="win"] { background: color-mix(in oklch, var(--color-primary) 5%, var(--color-glass)); }
+.match-card-h[data-result="loss"] { background: color-mix(in oklch, var(--color-danger) 5%, var(--color-glass)); }
+.match-card-h[data-result="draw"] { background: color-mix(in oklch, var(--color-gold-500) 5%, var(--color-glass)); }
 
 /* ── Challenge Preview Card (horizontal) ─────────────────── */
 .challenge-card-h {
@@ -809,16 +788,10 @@ h1, h2, h3, h4 {
   overflow: hidden;
   cursor: pointer;
   transition: all 0.2s var(--ease-out, ease);
+  border: 1px solid color-mix(in oklch, var(--cat-stripe, transparent) 15%, transparent);
 }
 .exercise-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: var(--cat-stripe, #e5e7eb);
-  border-radius: 20px 20px 0 0;
+  display: none;
 }
 .exercise-card:hover {
   box-shadow: var(--shadow-card-hover);
@@ -1296,7 +1269,7 @@ input[type="date"]:focus, input[type="time"]:focus {
   font-family: var(--font-display);
   pointer-events: auto;
   cursor: pointer;
-  animation: toast-in 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  animation: toast-in 0.35s var(--ease-bounce) both;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);

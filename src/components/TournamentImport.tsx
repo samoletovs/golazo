@@ -414,7 +414,7 @@ export function TournamentImport({ onClose }: { onClose: () => void }) {
                       {matched.map(([name, team]) => (
                         <span key={name} className="inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded-full"
                           style={{ background: 'var(--color-glass-active)', color: 'var(--color-primary-darker)' }}>
-                          {team?.logoUrl && <img src={team.logoUrl} alt="" className="w-3 h-3 rounded object-contain" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }} />}
+                          {team?.logoUrl && <img src={team.logoUrl} alt={team?.name ?? name} className="w-3 h-3 rounded object-contain" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }} />}
                           ✓ {team?.name ?? name}
                         </span>
                       ))}
@@ -451,10 +451,10 @@ export function TournamentImport({ onClose }: { onClose: () => void }) {
                       {game.date} {game.time}
                     </span>
                     <span className="flex-1 font-bold truncate">
-                      {homeMatch?.logoUrl && <img src={homeMatch.logoUrl} alt="" className="inline-block w-4 h-4 rounded mr-1 align-text-bottom object-contain" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }} />}
+                      {homeMatch?.logoUrl && <img src={homeMatch.logoUrl} alt={game.home} className="inline-block w-4 h-4 rounded mr-1 align-text-bottom object-contain" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }} />}
                       {game.home}
                       <span style={{ color: 'var(--color-text-muted)' }}> vs </span>
-                      {awayMatch?.logoUrl && <img src={awayMatch.logoUrl} alt="" className="inline-block w-4 h-4 rounded mr-1 align-text-bottom object-contain" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }} />}
+                      {awayMatch?.logoUrl && <img src={awayMatch.logoUrl} alt={game.away} className="inline-block w-4 h-4 rounded mr-1 align-text-bottom object-contain" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }} />}
                       {game.away}
                     </span>
                     {game.venue && (

@@ -94,7 +94,7 @@ function ExerciseDetailModal({
           </div>
         ) : thumbnail ? (
           <div className="exercise-modal-thumb">
-            <img src={thumbnail} alt="" />
+            <img src={thumbnail} alt={t(exercise.nameKey)} />
           </div>
         ) : (
           <div className="exercise-modal-icon">{CAT_EMOJI[exercise.category] ?? '⚽'}</div>
@@ -298,7 +298,7 @@ export function Exercises({ embedded }: { embedded?: boolean }) {
               {/* Thumbnail (if video) */}
               {thumbnail && (
                 <div className="w-full h-24 rounded-lg overflow-hidden mb-3 relative" style={{ background: 'var(--color-bg-warm)' }}>
-                  <img src={thumbnail} alt="" className="w-full h-full object-cover" loading="lazy" />
+                  <img src={thumbnail} alt={t(ex.nameKey)} className="w-full h-full object-cover" loading="lazy" />
                   <div className="absolute inset-0 flex items-center justify-center">
                     <span className="text-white text-xl drop-shadow-lg">▶</span>
                   </div>

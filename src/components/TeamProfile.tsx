@@ -233,7 +233,7 @@ export function TeamProfile({ team, onClose, allTeams, onNavigate }: TeamProfile
                 onClick={() => handleNavigate(parentTeam)}
               >
                 {parentTeam.logoUrl ? (
-                  <img src={parentTeam.logoUrl} alt="" className="w-8 h-8 rounded-lg object-contain shrink-0"
+                  <img src={parentTeam.logoUrl} alt={parentTeam.name} className="w-8 h-8 rounded-lg object-contain shrink-0"
                     style={{ background: 'rgba(255,255,255,0.5)' }}
                     onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }} />
                 ) : (

@@ -101,7 +101,7 @@ export function AddTeamDialog({ initialName, defaultCountry, onAdd, onCancel }: 
             <p className="text-xs font-bold mb-2">{t('teams.duplicateFound')}</p>
             <div className="flex items-center gap-2 mb-2">
               {duplicate.logoUrl ? (
-                <img src={duplicate.logoUrl} alt="" className="w-8 h-8 rounded object-contain" />
+                <img src={duplicate.logoUrl} alt={duplicate.name} className="w-8 h-8 rounded object-contain" />
               ) : (
                 <span className="w-8 h-8 rounded flex items-center justify-center text-sm" style={{ background: 'var(--color-glass-active)' }}>⚽</span>
               )}

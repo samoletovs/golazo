@@ -44,7 +44,7 @@ export function SquadRoster({ teamId, teamName, onBack, onEvaluate }: SquadRoste
         <div className="card animate-fade-up">
           <div className="flex items-center gap-4 mb-3">
             {selectedPlayer.photoUrl ? (
-              <img src={selectedPlayer.photoUrl} alt="" className="w-14 h-14 rounded-2xl object-cover"
+              <img src={selectedPlayer.photoUrl} alt={selectedPlayer.playerName} className="w-14 h-14 rounded-2xl object-cover"
                 onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }} />
             ) : (
               <div className="w-14 h-14 rounded-2xl flex items-center justify-center"
@@ -121,7 +121,7 @@ export function SquadRoster({ teamId, teamName, onBack, onEvaluate }: SquadRoste
               onClick={() => setSelectedPlayer(player)}
             >
               {player.photoUrl ? (
-                <img src={player.photoUrl} alt="" className="w-10 h-10 rounded-xl object-cover shrink-0"
+                <img src={player.photoUrl} alt={player.playerName} className="w-10 h-10 rounded-xl object-cover shrink-0"
                   onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }} />
               ) : (
                 <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"

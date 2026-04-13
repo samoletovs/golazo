@@ -397,7 +397,7 @@ export function TeamPicker({ mode, onClose, externalTeams, onTeamsChange, countr
                     <button key={team.id} className="card tap-target flex items-center gap-3 p-3 text-left"
                       onClick={() => selectClub(team)}>
                       {team.logoUrl ? (
-                        <img src={team.logoUrl} alt="" className="w-8 h-8 rounded-lg object-contain shrink-0"
+                        <img src={team.logoUrl} alt={team.name} className="w-8 h-8 rounded-lg object-contain shrink-0"
                           style={{ background: 'rgba(255,255,255,0.5)' }}
                           onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }} />
                       ) : (

@@ -152,7 +152,7 @@ export function TeamSearch({ value, onChange, country, placeholder, className, s
             {team.logoUrl ? (
               <img
                 src={team.logoUrl}
-                alt=""
+                alt={team.name}
                 className="w-6 h-6 rounded object-contain shrink-0"
                 onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
               />

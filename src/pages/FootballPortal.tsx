@@ -261,7 +261,7 @@ function ClubCard({ node, onViewTeam }: { node: ClubNode; onViewTeam: (t: Shared
         {club.logoUrl ? (
           <div className="w-10 h-10 rounded-xl overflow-hidden shrink-0 flex items-center justify-center"
             style={{ background: 'rgba(255,255,255,0.9)', boxShadow: '0 2px 6px rgba(0,0,0,0.08)' }}>
-            <img src={club.logoUrl} alt="" className="w-7 h-7 object-contain"
+            <img src={club.logoUrl} alt={club.name} className="w-7 h-7 object-contain"
               onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }} />
           </div>
         ) : (
