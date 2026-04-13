@@ -6,14 +6,28 @@ import { useApp } from '../contexts/AppContext'
 
 export function ThemePicker() {
   const { t } = useTranslation()
-  const { profile } = useApp()
+  const { profile, setProfile } = useApp()
   const [selected, setSelected] = useState(loadSurfaceTheme)
   const teamColor = getPrimaryTeamColor(profile?.teams)
+
+  // Get teams that have colors (for team color picker)
+  const teamsWithColors = (profile?.teams ?? []).filter((t) => t.active && t.colors?.length)
 
   function pick(id: string) {
     setSelected(id)
     saveSurfaceTheme(id)
-    applySurfaceTheme(id, teamColor)
+    applySurfaceTheme(id, getPrimaryTeamColor(profile?.teams))
+  }
+
+  function setPrimaryTeam(teamId: string) {
+    if (!profile?.teams) return
+    const updated = profile.teams.map((t) => ({ ...t, isPrimary: t.id === teamId }))
+    setProfile({ ...profile, teams: updated })
+    // Re-apply theme with new team color
+    const newColor = getPrimaryTeamColor(updated)
+    if (selected === 'team') {
+      applySurfaceTheme('team', newColor)
+    }
   }
 
   // For "My Club" preset, compute the real swatch from actual team color
@@ -73,6 +87,42 @@ export function ThemePicker() {
           )
         })}
       </div>
+
+      {/* Team color picker — shown when My Club is selected and player has multiple teams with colors */}
+      {selected === 'team' && teamsWithColors.length > 1 && (
+        <div className="mt-3 pt-3" style={{ borderTop: '1px solid var(--color-glass-border)' }}>
+          <p className="text-xs font-bold mb-2" style={{ color: 'var(--color-text-muted)' }}>
+            {t('theme.pickClub')}
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {teamsWithColors.map((team) => {
+              const isTeamPrimary = team.isPrimary
+              const color = team.colors![0]
+              return (
+                <button
+                  key={team.id}
+                  className="tap-target flex items-center gap-2 px-3 py-2 rounded-lg transition-all text-left"
+                  style={{
+                    border: isTeamPrimary ? `2px solid ${color}` : '2px solid var(--color-glass-border)',
+                    background: isTeamPrimary ? `${color}10` : 'transparent',
+                  }}
+                  onClick={() => setPrimaryTeam(team.id)}
+                  aria-pressed={isTeamPrimary}
+                >
+                  <div
+                    className="w-5 h-5 rounded-full flex-shrink-0"
+                    style={{ background: color, boxShadow: '0 1px 3px rgba(0,0,0,0.15)' }}
+                  />
+                  <span className="text-xs font-bold truncate" style={{ maxWidth: 120 }}>
+                    {team.clubName ?? team.name}
+                  </span>
+                </button>
+              )
+            })}
+          </div>
+        </div>
+      )}
+
       {selected === 'team' && !teamColor && (
         <p className="text-xs mt-2" style={{ color: 'var(--color-text-muted)' }}>
           {t('theme.noTeamHint')}

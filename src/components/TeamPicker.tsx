@@ -195,6 +195,11 @@ export function TeamPicker({ mode, onClose, externalTeams, onTeamsChange, countr
     if (!standalone && !profile) return
     const fullName = `${selectedClub.name} ${birthYear} ${teamLabel}`.trim()
 
+    // Look up colors from the shared registry
+    const registryTeam = selectedClub.id ? allTeams.find((t) => t.id === selectedClub.id) : undefined
+    const teamColors = registryTeam?.colors
+    const teamLogo = registryTeam?.logoUrl
+
     if (mode === 'coach') {
       if (!profile) return
       const current = profile.managedTeams ?? []
@@ -226,6 +231,8 @@ export function TeamPicker({ mode, onClose, externalTeams, onTeamsChange, countr
         position: positions,
         isPrimary: current.length === 0,
         active: true,
+        colors: teamColors,
+        logoUrl: teamLogo,
         createdAt: new Date().toISOString(),
       }
       onTeamsChange([...current, entry])
@@ -245,6 +252,8 @@ export function TeamPicker({ mode, onClose, externalTeams, onTeamsChange, countr
         position: positions,
         isPrimary: current.length === 0,
         active: true,
+        colors: teamColors,
+        logoUrl: teamLogo,
         createdAt: new Date().toISOString(),
       }
       setProfile({ ...profile, teams: [...current, entry] })

@@ -42,7 +42,7 @@ function AppContent() {
   const [showTeamPicker, setShowTeamPicker] = useState(false)
   const [selectedTeamIds, setSelectedTeamIds] = useState<string[]>([])
   const { user, loading: authLoading } = useAuth()
-  const { onboardingComplete, profile, syncing } = useApp()
+  const { onboardingComplete, profile, setProfile, syncing } = useApp()
   const [skippedLogin, setSkippedLogin] = useState(false)
 
   // Apply color theme — surface preset handles both surfaces AND accent color
@@ -50,6 +50,31 @@ function AppContent() {
     const teamColor = getPrimaryTeamColor(profile?.teams)
     applySurfaceTheme(loadSurfaceTheme(), teamColor)
   }, [profile?.teams])
+
+  // Backfill colors from registry for teams added before colors were captured
+  useEffect(() => {
+    if (!profile?.teams?.length) return
+    const needsColors = profile.teams.some((t) => t.registryId && (!t.colors || t.colors.length === 0))
+    if (!needsColors) return
+    const country = profile.country ?? 'LV'
+    fetch(`/api/teams?country=${country}`)
+      .then((r) => r.ok ? r.json() : [])
+      .then((registry: { id: string; colors?: string[]; logoUrl?: string }[]) => {
+        if (!registry.length) return
+        const updated = profile.teams!.map((t) => {
+          if (t.colors?.length) return t
+          const match = registry.find((r) => r.id === t.registryId || r.id === t.clubId)
+          if (match?.colors?.length) {
+            return { ...t, colors: match.colors, logoUrl: t.logoUrl || match.logoUrl }
+          }
+          return t
+        })
+        if (JSON.stringify(updated) !== JSON.stringify(profile.teams)) {
+          setProfile({ ...profile, teams: updated })
+        }
+      })
+      .catch(() => {})
+  }, [profile?.teams?.length])
 
   // Reset to dashboard when role changes
   useEffect(() => {
