@@ -54,17 +54,22 @@ function AppContent() {
   // Backfill colors from registry for teams added before colors were captured
   useEffect(() => {
     if (!profile?.teams?.length) return
-    const needsColors = profile.teams.some((t) => (t.registryId || t.clubId) && (!t.colors || t.colors.length === 0))
+    const needsColors = profile.teams.some((t) => t.active && (!t.colors || t.colors.length === 0))
     if (!needsColors) return
     const country = profile.country ?? 'LV'
     fetch(`/api/teams?country=${country}`)
       .then((r) => r.ok ? r.json() : { teams: [] })
-      .then((data: { teams?: { id: string; colors?: string[]; logoUrl?: string }[] }) => {
+      .then((data: { teams?: { id: string; name: string; colors?: string[]; logoUrl?: string }[] }) => {
         const registry = data.teams ?? []
         if (!registry.length) return
+        const norm = (s: string) => s.toLowerCase().replace(/[āàâä]/g,'a').replace(/[ēėèêë]/g,'e').replace(/[īìîï]/g,'i').replace(/[ōõöò]/g,'o').replace(/[ūùûü]/g,'u').replace(/[čć]/g,'c').replace(/[šś]/g,'s').replace(/[žź]/g,'z').replace(/[ģ]/g,'g').replace(/[ķ]/g,'k').replace(/[ļ]/g,'l').replace(/[ņ]/g,'n')
         const updated = profile.teams!.map((t) => {
           if (t.colors?.length) return t
-          const match = registry.find((r) => r.id === t.registryId || r.id === t.clubId)
+          const match = registry.find((r) =>
+            (t.registryId && r.id === t.registryId) ||
+            (t.clubId && r.id === t.clubId) ||
+            (t.clubName && norm(r.name) === norm(t.clubName))
+          )
           if (match?.colors?.length) {
             return { ...t, colors: match.colors, logoUrl: t.logoUrl || match.logoUrl }
           }

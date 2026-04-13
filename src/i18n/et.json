@@ -573,6 +573,7 @@
   "teams.title": "Minu meeskonnad",
   "teams.manage": "Halda",
   "teams.primary": "Põhiklubi",
+  "teams.tapToSetMain": "Puuduta, et valida põhiklubi",
   "teams.addFirst": "Lisa meeskond",
   "teams.newTeam": "Lisa meeskonna nimi...",
   "teams.empty": "Meeskondi pole veel",

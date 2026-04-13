@@ -328,14 +328,17 @@ export function Profile() {
           </button>
         </div>
         {(profile?.teams?.length ?? 0) > 0 ? (
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-1.5">
+            <p className="text-xs mb-0.5" style={{ color: 'var(--color-text-muted)' }}>
+              {t('teams.tapToSetMain')}
+            </p>
             {profile!.teams!.filter((t) => t.active).map((team) => (
               <button
                 key={team.id}
-                className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-left tap-target transition-all"
+                className="flex items-center gap-3 px-3 py-3 rounded-xl text-left tap-target transition-all"
                 style={{
-                  background: team.isPrimary ? 'var(--color-glass-active)' : 'var(--color-glass-hover)',
-                  border: team.isPrimary ? '1.5px solid var(--color-primary)' : '1.5px solid transparent',
+                  background: team.isPrimary ? 'var(--color-primary-bg-subtle)' : 'var(--color-glass-hover)',
+                  border: team.isPrimary ? '2px solid var(--color-primary)' : '2px solid var(--color-glass-border)',
                 }}
                 onClick={() => {
                   if (team.isPrimary) return
@@ -343,7 +346,19 @@ export function Profile() {
                   setProfile({ ...profile!, teams: updated })
                 }}
               >
-                {/* Color dot */}
+                {/* Radio indicator */}
+                <div
+                  className="w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center"
+                  style={{
+                    border: team.isPrimary ? '2px solid var(--color-primary)' : '2px solid var(--color-border-default)',
+                    background: team.isPrimary ? 'var(--color-primary)' : 'transparent',
+                  }}
+                >
+                  {team.isPrimary && (
+                    <div className="w-2 h-2 rounded-full" style={{ background: '#fff' }} />
+                  )}
+                </div>
+                {/* Color dot from club */}
                 {team.colors?.[0] && (
                   <div
                     className="w-4 h-4 rounded-full flex-shrink-0"
@@ -353,17 +368,9 @@ export function Profile() {
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-bold truncate">{team.name}</p>
                   <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
-                    {[
-                      team.position ? (Array.isArray(team.position) ? team.position.join(', ') : team.position) : null,
-                      team.isPrimary ? `★ ${t('teams.primary')}` : null,
-                    ].filter(Boolean).join(' · ')}
+                    {team.position ? (Array.isArray(team.position) ? team.position.join(', ') : team.position) : ''}
                   </p>
                 </div>
-                {team.isPrimary && (
-                  <span className="text-xs font-bold px-2 py-0.5 rounded-full" style={{ background: 'var(--color-primary-bg)', color: 'var(--color-primary-dark)' }}>
-                    ★
-                  </span>
-                )}
               </button>
             ))}
           </div>
