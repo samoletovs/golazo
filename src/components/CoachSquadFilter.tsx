@@ -39,9 +39,12 @@ export function CoachSquadFilter({ teams, selectedIds, onToggle }: CoachSquadFil
         const label = sq.birthYear
           ? `${sq.clubName} ${sq.birthYear} ${sq.teamLabel ?? ''}`.trim()
           : sq.teamName
-        // Shorten label for chip display
+        // Show club abbreviation + birth year for clarity across multiple clubs
+        const clubAbbr = sq.clubName
+          ? sq.clubName.split(' ').map(w => w[0]).join('').toUpperCase()
+          : ''
         const shortLabel = sq.birthYear
-          ? `${sq.birthYear} ${sq.teamLabel ?? ''}`.trim()
+          ? `${clubAbbr} ${sq.birthYear} ${sq.teamLabel ?? ''}`.trim()
           : sq.teamName
         return (
           <button

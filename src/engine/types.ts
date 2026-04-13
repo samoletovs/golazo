@@ -401,6 +401,7 @@ export interface RecurringTraining {
   startTime: string       // "19:00"
   endTime: string         // "21:00"
   location?: string
+  squadIds?: string[]     // Coach-only: managed team IDs
   active: boolean
   createdAt: string
 }

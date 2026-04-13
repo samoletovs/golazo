@@ -250,30 +250,6 @@ export function Profile() {
               </p>
             </div>
           </div>
-
-          {/* Managed squads summary */}
-          {(profile?.managedTeams?.length ?? 0) > 0 ? (
-            <div className="flex flex-wrap gap-1.5 mb-3">
-              {profile!.managedTeams!.map((sq) => (
-                <span key={sq.teamId} className="text-xs font-bold px-2.5 py-1 rounded-lg"
-                  style={{ background: 'var(--color-primary-bg)', color: 'var(--color-primary-dark)' }}>
-                  {sq.birthYear ? `${sq.clubName} ${sq.birthYear} ${sq.teamLabel ?? ''}`.trim() : sq.teamName}
-                </span>
-              ))}
-            </div>
-          ) : (
-            <p className="text-xs mb-3" style={{ color: 'var(--color-text-muted)' }}>
-              {t('coach.dashboard.noSquads')}
-            </p>
-          )}
-
-          <button
-            className="w-full text-center py-2.5 rounded-xl text-xs font-bold tap-target"
-            style={{ background: 'var(--color-glass-hover)', color: 'var(--color-primary-dark)' }}
-            onClick={() => setShowTeams(true)}
-          >
-            ⚽ {t('coach.onboarding.selectSquads')}
-          </button>
         </div>
       )}
 
@@ -325,7 +301,7 @@ export function Profile() {
                 onClick={() => {
                   if (team.isPrimary) return
                   const updated = profile!.teams!.map((t) => ({ ...t, isPrimary: t.id === team.id }))
-                  setProfile({ ...profile!, teams: updated })
+                  setProfile({ ...profile!, team: team.name, teams: updated })
                 }}
               >
                 {/* Color dot from club */}

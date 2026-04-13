@@ -427,12 +427,14 @@ export function SchedulePage() {
       startTime: rtStart,
       endTime: rtEnd,
       location: rtLocation || undefined,
+      squadIds: isCoach && formSquadIds.length > 0 ? formSquadIds : undefined,
       active: true,
       createdAt: new Date().toISOString(),
     }
     setRecurringTrainings([...recurringTrainings, rt])
     setRtName('')
     setRtLocation('')
+    setFormSquadIds([])
     setShowWeeklySetup(false)
   }
 
@@ -981,6 +983,36 @@ export function SchedulePage() {
                 placeholder={t('schedule.location')}
                 className="w-full"
               />
+
+              {/* Squad picker — coaches only */}
+              {isCoach && managedTeams.length > 0 && (
+                <div>
+                  <label className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>
+                    {t('coach.schedule.squads')}
+                  </label>
+                  <div className="flex flex-wrap gap-1.5 mt-1">
+                    {managedTeams.map(sq => {
+                      const label = sq.birthYear ? `${sq.birthYear} ${sq.teamLabel ?? ''}`.trim() : sq.teamName
+                      const selected = formSquadIds.includes(sq.teamId)
+                      return (
+                        <button
+                          key={sq.teamId}
+                          className="text-xs px-2.5 py-1 rounded-full font-bold tap-target transition-all"
+                          style={{
+                            background: selected ? 'var(--color-primary-bg)' : 'var(--color-glass-hover)',
+                            color: selected ? 'var(--color-primary-dark)' : 'var(--color-text-muted)',
+                            border: selected ? '1.5px solid var(--color-primary)' : '1.5px solid transparent',
+                          }}
+                          onClick={() => toggleFormSquad(sq.teamId)}
+                          aria-pressed={selected}
+                        >
+                          {sq.clubName ? `${sq.clubName} ${label}` : label}
+                        </button>
+                      )
+                    })}
+                  </div>
+                </div>
+              )}
             </div>
 
             <button className="btn-primary mt-4 w-full" onClick={addRecurringTraining}>
