@@ -28,6 +28,20 @@ app.http('profile', {
 
     // PUT
     const data = await req.json();
+
+    // Normalize legacy team entries: squadLabel → teamLabel, ensure clubId
+    if (Array.isArray(data.teams)) {
+      for (const t of data.teams) {
+        if (t.squadLabel && !t.teamLabel) {
+          t.teamLabel = t.squadLabel;
+        }
+        delete t.squadLabel;
+        if (!t.clubId && t.registryId) {
+          t.clubId = t.registryId;
+        }
+      }
+    }
+
     await container.items.upsert({
       id: `${user.userId}:profile`,
       userId: user.userId,

@@ -40,6 +40,7 @@ function AppContent() {
   const [coachTeamId, setCoachTeamId] = useState('')
   const [coachTeamName, setCoachTeamName] = useState('')
   const [coachTeamIds, setCoachTeamIds] = useState<string[]>([])
+  const [evaluatePlayerId, setEvaluatePlayerId] = useState('')
   const [showTeamPicker, setShowTeamPicker] = useState(false)
   const [selectedTeamIds, setSelectedTeamIds] = useState<string[]>([])
   const { user, loading: authLoading } = useAuth()
@@ -210,7 +211,8 @@ function AppContent() {
                   teamId={coachTeamId}
                   teamName={coachTeamName}
                   onBack={() => handleNavigate('dashboard')}
-                  onEvaluate={() => {
+                  onEvaluate={(playerId) => {
+                    setEvaluatePlayerId(playerId)
                     handleNavigate('coach-evaluate')
                   }}
                 />
@@ -240,6 +242,7 @@ function AppContent() {
                   teamName={coachTeamName}
                   coachId={profile?.id ?? ''}
                   coachName={profile?.name ?? ''}
+                  initialPlayerId={evaluatePlayerId}
                   onBack={() => handleNavigate('dashboard')}
                 />
               )}

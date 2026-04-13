@@ -57,13 +57,17 @@ app.http('coach-roster', {
     try {
       // Match players by clubId + birthYear + teamLabel (not teamId which is a random UUID)
       // Players store: t.clubId = SharedTeam.id, t.birthYear, t.teamLabel
+      // Legacy data may use "squadLabel" instead of "teamLabel" — check both
       const clubId = managedTeam.clubId;
       const birthYear = managedTeam.birthYear;
       const teamLabel = managedTeam.teamLabel;
 
       let query, params;
       if (clubId && birthYear) {
-        // Full match: club + birth year + optional team label
+        // Full match: club + birth year + optional team label (supports legacy "squadLabel" field)
+        const labelClause = teamLabel
+          ? 'AND (t.teamLabel = @teamLabel OR t.squadLabel = @teamLabel)'
+          : '';
         query = `SELECT c.data.id AS id, c.data.name AS name, c.data.jerseyNumber AS jerseyNumber,
                         c.data.positions AS positions, c.data.birthDate AS birthDate,
                         c.data.photoUrl AS photoUrl, c.updatedAt AS createdAt
@@ -73,7 +77,7 @@ app.http('coach-roster', {
                    AND EXISTS(SELECT VALUE t FROM t IN c.data.teams
                               WHERE t.clubId = @clubId
                                 AND t.birthYear = @birthYear
-                                ${teamLabel ? 'AND t.teamLabel = @teamLabel' : ''}
+                                ${labelClause}
                                 AND t.active = true)`;
         params = [
           { name: '@clubId', value: clubId },
