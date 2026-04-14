@@ -82,7 +82,7 @@ export function DailyQuiz({ onComplete, compact }: DailyQuizProps) {
       )}
 
       <p className="text-base font-bold heading-display">
-        {question.questionKey}
+        {t(`quiz.q.${question.id}`, question.questionKey)}
       </p>
 
       <div className="flex flex-col gap-2">
@@ -108,7 +108,7 @@ export function DailyQuiz({ onComplete, compact }: DailyQuizProps) {
               onClick={() => handleAnswer(i)}
               disabled={revealed}
             >
-              {option}
+              {t(`quiz.q.${question.id}.o${i}`, option)}
             </button>
           )
         })}
