@@ -82,7 +82,8 @@ async function main() {
 
   /** @type {Map<string, TaskResult>} */
   const results = new Map()
-  let hasErrors = false
+  let hasFatalErrors = false
+  let hasWarnings = false
 
   for (const taskName of executionOrder) {
     const task = taskModules.get(taskName)
@@ -109,13 +110,13 @@ async function main() {
       const elapsed = ((Date.now() - taskStart) / 1000).toFixed(1)
       console.log(`│  Added: ${result.added}  Updated: ${result.updated}  Skipped: ${result.skipped}`)
       if (result.errors.length > 0) {
-        hasErrors = true
-        console.log(`│  Errors: ${result.errors.length}`)
+        hasWarnings = true
+        console.log(`│  Warnings: ${result.errors.length}`)
         result.errors.forEach(e => console.log(`│    ⚠ ${e}`))
       }
       console.log(`└── Done (${elapsed}s)\n`)
     } catch (err) {
-      hasErrors = true
+      hasFatalErrors = true
       results.set(task.name, { added: 0, updated: 0, skipped: 0, errors: [err.message] })
       console.log(`│  ❌ FAILED: ${err.message}`)
       console.log(`└── Error\n`)
@@ -131,13 +132,16 @@ async function main() {
     const status = result.errors.length > 0 ? '⚠' : '✓'
     console.log(`  ${status} ${name}: +${result.added} added, ${result.updated} updated, ${result.skipped} skipped`)
   }
+  if (hasWarnings) console.log(`\n  ⚠ Some tasks reported warnings (non-fatal)`)
+  if (hasFatalErrors) console.log(`\n  ❌ Some tasks crashed (fatal)`)
   console.log(`\n  Total time: ${totalElapsed}s`)
   console.log('═══════════════════════════════════════════════')
 
   // Generate maintenance report
   generateReport(results, totalElapsed, config)
 
-  if (hasErrors) process.exit(1)
+  // Only exit 1 on actual task crashes, not on soft warnings
+  if (hasFatalErrors) process.exit(1)
 }
 
 /** Write data/maintenance-report.json with run results */
