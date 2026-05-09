@@ -5,8 +5,8 @@ import { ToastProvider } from './contexts/ToastContext'
 import { XpBar } from './components/XpBar'
 import { BottomNav } from './components/BottomNav'
 import FeedbackButton from './components/FeedbackButton'
-import { Dashboard } from './pages/Dashboard'
-import { LogPage } from './pages/LogPage'
+const Dashboard = lazy(() => import('./pages/Dashboard').then(m => ({ default: m.Dashboard })))
+const LogPage = lazy(() => import('./pages/LogPage').then(m => ({ default: m.LogPage })))
 import { LoginPage } from './pages/LoginPage'
 import { OnboardingPage } from './pages/OnboardingPage'
 import { getPrimaryTeamColor } from './utils/teamTheme'
