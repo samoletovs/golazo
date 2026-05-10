@@ -4,7 +4,7 @@
 
 ## Origin Story
 
-Golazo started as a personal tool for a father (mentor) to help his son — an U12 player at [Rīgas Futbola Skola](https://rigasfs.lv/) — organize training, track matches, build discipline, and stay mentally strong. When teammates saw it and wanted it too, organic demand validated the idea. Golazo is now evolving from a personal experiment into a platform for youth football players across the Baltics.
+Golazo started as a personal tool for a parent-mentor to help a young U12 footballer organize training, track matches, build discipline, and stay mentally strong. When teammates saw it and wanted it too, organic demand validated the idea. Golazo is now evolving from a personal experiment into a platform for youth football players across the Baltics.
 
 ## NauroLabs Experiment
 

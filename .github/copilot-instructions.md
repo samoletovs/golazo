@@ -1,7 +1,7 @@
 ## Golazo — Youth Football Development Platform
 
 ### Vision
-Golazo helps young footballers develop physically, technically, and mentally — with AI coaching, gamification, and a community that grows with them. Started for one player at Rīgas Futbola Skola, expanding to Baltic teams. Full triangle: player + parent/mentor + coach. See `docs/VISION.md` for full strategy.
+Golazo helps young footballers develop physically, technically, and mentally — with AI coaching, gamification, and a community that grows with them. Started for a single Baltic youth player and expanding to Baltic teams. Full triangle: player + parent/mentor + coach. See `docs/VISION.md` for full strategy.
 
 ### Key Documents (READ BEFORE WORKING)
 - `docs/VISION.md` — Product vision, mission, users, business model, strategy
@@ -12,7 +12,7 @@ Golazo helps young footballers develop physically, technically, and mentally —
 - `docs/youth-development.md` — UEFA youth development framework
 
 ### Environment
-- Azure subscription: Visual Studio Enterprise (146099412+samoletovs@users.noreply.github.com)
+- Azure subscription: Visual Studio Enterprise
 - Azure region: northeurope
 - GitHub: samoletovs/golazo (private)
 
