@@ -13,3 +13,6 @@ screenshots/
 test-screenshots/
 .playwright-mcp/
 *.png
+
+# Local-only personal-info pattern overrides
+scripts/.leak-patterns.local.txt
