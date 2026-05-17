@@ -1,0 +1,21 @@
+name: golazo
+purpose: "Mobile-first gamified football development app — track training, earn XP, improve via curated drills"
+users: "Young football players (U12–U18) and coaches"
+stage: active
+goals:
+  - "Gamification (XP, 50 levels, streaks, achievements)"
+  - "Training, match, and tournament tracking"
+  - "6-skill spider radar (Technical, Physical, Tactical, Mental, Match, Knowledge)"
+  - "25+ curated drills (Coerver, Wein, UEFA)"
+  - "Multi-language (RU, LV, EN, ES)"
+similar:
+  - "Strava"
+  - "TrainHeroic"
+  - "Fitbod"
+quality:
+  - tests
+  - ci-cd
+  - responsive
+  - api
+  - i18n
+  - pwa
