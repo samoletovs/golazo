@@ -91,5 +91,5 @@ jobs:
             --data-urlencode "chat_id=${NAURO_CHAT_ID}" \
             --data-urlencode "parse_mode=HTML" \
             --data-urlencode "text=❌ <b>golazo</b> maintenance FAILED
-Run: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}" \
+          Run: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}" \
             || echo "::warning::Telegram notification failed"
