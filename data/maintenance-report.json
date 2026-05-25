@@ -1,0 +1,63 @@
+{
+  "generatedAt": "2026-05-17T08:21:09.739Z",
+  "mode": "live",
+  "elapsedSeconds": 13.6,
+  "tasks": {
+    "federation-scanner": {
+      "added": 108,
+      "updated": 0,
+      "skipped": 0,
+      "errors": []
+    },
+    "i18n-completeness": {
+      "added": 0,
+      "updated": 5,
+      "skipped": 0,
+      "errors": []
+    },
+    "team-registry": {
+      "added": 0,
+      "updated": 58,
+      "skipped": 0,
+      "errors": [
+        "LV/RFK: missing 'colors'",
+        "LV/FS Leevon: missing 'colors'",
+        "LV/BJFK Pārdaugava: missing 'colors'",
+        "LV/Jēkabpils SS: missing 'colors'",
+        "LV/AFA Olaine: missing 'colors'",
+        "LV/FK Dinamo Riga: missing 'colors'",
+        "LV/FK Laos: missing 'colors'",
+        "LV/FKD Bites: missing 'colors'",
+        "LV/Saldus SS: missing 'colors'",
+        "LV/Futbola Skola: missing 'colors'",
+        "LT/FK Akmenės Cementas: missing 'colors'"
+      ]
+    },
+    "exercise-registry": {
+      "added": 0,
+      "updated": 0,
+      "skipped": 0,
+      "errors": [
+        "YOUTUBE_API_KEY not set — skipping video enrichment"
+      ]
+    },
+    "content": {
+      "added": 0,
+      "updated": 0,
+      "skipped": 0,
+      "errors": []
+    },
+    "cosmos-sync": {
+      "added": 0,
+      "updated": 0,
+      "skipped": 0,
+      "errors": []
+    }
+  },
+  "summary": {
+    "totalAdded": 108,
+    "totalUpdated": 63,
+    "totalSkipped": 0,
+    "totalErrors": 12
+  }
+}

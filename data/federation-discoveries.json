@@ -1,1 +1,993 @@
-[]
+[
+  {
+    "name": "Tartu JK Welco",
+    "country": "EE",
+    "league": "Esiliiga",
+    "source": "jalgpall.ee",
+    "sourceUrl": "https://jalgpall.ee/voistlused/53/team/1877?season=2026",
+    "logoUrl": "https://jalgpall.ee/https://jalgpall.ee/images/logos/1F675DCB8DBBE70C4ECB13F6E4F9F97C",
+    "discoveredAt": "2026-05-17T08:20:59.869Z",
+    "status": "pending"
+  },
+  {
+    "name": "Viimsi JK",
+    "country": "EE",
+    "league": "Esiliiga",
+    "source": "jalgpall.ee",
+    "sourceUrl": "https://jalgpall.ee/voistlused/53/team/3733?season=2026",
+    "logoUrl": "https://jalgpall.ee/https://jalgpall.ee/images/clubs/E46062B8726073630372AC79A944A4EB",
+    "discoveredAt": "2026-05-17T08:20:59.869Z",
+    "status": "pending"
+  },
+  {
+    "name": "Tallinna FC Flora U21",
+    "country": "EE",
+    "league": "Esiliiga",
+    "source": "jalgpall.ee",
+    "sourceUrl": "https://jalgpall.ee/voistlused/53/team/3744?season=2026",
+    "logoUrl": "https://jalgpall.ee/https://jalgpall.ee/images/clubs/8ACA9F1973872AEFAD1372D362C5DCE2",
+    "discoveredAt": "2026-05-17T08:20:59.870Z",
+    "status": "pending"
+  },
+  {
+    "name": "FC Nõmme United U21",
+    "country": "EE",
+    "league": "Esiliiga",
+    "source": "jalgpall.ee",
+    "sourceUrl": "https://jalgpall.ee/voistlused/53/team/6315?season=2026",
+    "logoUrl": "https://jalgpall.ee/https://jalgpall.ee/images/logos/33222BD6CE3DA91F68515106EA5CAAAF",
+    "discoveredAt": "2026-05-17T08:20:59.870Z",
+    "status": "pending"
+  },
+  {
+    "name": "JK Tallinna Kalev",
+    "country": "EE",
+    "league": "Esiliiga",
+    "source": "jalgpall.ee",
+    "sourceUrl": "https://jalgpall.ee/voistlused/53/team/583?season=2026",
+    "logoUrl": "https://jalgpall.ee/https://jalgpall.ee/images/clubs/532D267BDE9A130EE4771EB59C9E7A26",
+    "discoveredAt": "2026-05-17T08:20:59.870Z",
+    "status": "pending"
+  },
+  {
+    "name": "Nõmme Kalju FC U21",
+    "country": "EE",
+    "league": "Esiliiga",
+    "source": "jalgpall.ee",
+    "sourceUrl": "https://jalgpall.ee/voistlused/53/team/3753?season=2026",
+    "logoUrl": "https://jalgpall.ee/https://jalgpall.ee/images/logos/C287B9A18B8C02FDA9A7E921E6D3E645",
+    "discoveredAt": "2026-05-17T08:20:59.870Z",
+    "status": "pending"
+  },
+  {
+    "name": "FC Elva",
+    "country": "EE",
+    "league": "Esiliiga",
+    "source": "jalgpall.ee",
+    "sourceUrl": "https://jalgpall.ee/voistlused/53/team/217?season=2026",
+    "logoUrl": "https://jalgpall.ee/https://jalgpall.ee/images/clubs/3588A0ED0A261C73F01FBD519F6A523F",
+    "discoveredAt": "2026-05-17T08:20:59.870Z",
+    "status": "pending"
+  },
+  {
+    "name": "Maardu Linnameeskond",
+    "country": "EE",
+    "league": "Esiliiga",
+    "source": "jalgpall.ee",
+    "sourceUrl": "https://jalgpall.ee/voistlused/53/team/3868?season=2026",
+    "logoUrl": "https://jalgpall.ee/https://jalgpall.ee/images/clubs/F20D65F9755A7EB8CD98A73919191D27",
+    "discoveredAt": "2026-05-17T08:20:59.870Z",
+    "status": "pending"
+  },
+  {
+    "name": "Tallinna FCI Levadia U21",
+    "country": "EE",
+    "league": "Esiliiga",
+    "source": "jalgpall.ee",
+    "sourceUrl": "https://jalgpall.ee/voistlused/53/team/3755?season=2026",
+    "logoUrl": "https://jalgpall.ee/https://jalgpall.ee/images/logos/057147CE8C38CC81522C3741AADA2D4B",
+    "discoveredAt": "2026-05-17T08:20:59.870Z",
+    "status": "pending"
+  },
+  {
+    "name": "Tartu JK Tammeka U21",
+    "country": "EE",
+    "league": "Esiliiga B",
+    "source": "jalgpall.ee",
+    "sourceUrl": "https://jalgpall.ee/voistlused/186/team/3731?season=2026",
+    "logoUrl": "https://jalgpall.ee/https://jalgpall.ee/images/clubs/81AD4B4CED48E03076052BE2AD56B0B6",
+    "discoveredAt": "2026-05-17T08:21:01.661Z",
+    "status": "pending"
+  },
+  {
+    "name": "Jõhvi FC Phoenix",
+    "country": "EE",
+    "league": "Esiliiga B",
+    "source": "jalgpall.ee",
+    "sourceUrl": "https://jalgpall.ee/voistlused/186/team/5160?season=2026",
+    "logoUrl": "https://jalgpall.ee/https://jalgpall.ee/images/clubs/1CFA017CE8854934B07531B8117FB591",
+    "discoveredAt": "2026-05-17T08:21:01.662Z",
+    "status": "pending"
+  },
+  {
+    "name": "Viljandi JK Tulevik",
+    "country": "EE",
+    "league": "Esiliiga B",
+    "source": "jalgpall.ee",
+    "sourceUrl": "https://jalgpall.ee/voistlused/186/team/13?season=2026",
+    "logoUrl": "https://jalgpall.ee/https://jalgpall.ee/images/logos/562399A0A66A26B0AEE49F3974DF6FF4",
+    "discoveredAt": "2026-05-17T08:21:01.662Z",
+    "status": "pending"
+  },
+  {
+    "name": "JK Narva Trans U21",
+    "country": "EE",
+    "league": "Esiliiga B",
+    "source": "jalgpall.ee",
+    "sourceUrl": "https://jalgpall.ee/voistlused/186/team/144?season=2026",
+    "logoUrl": "https://jalgpall.ee/https://jalgpall.ee/images/clubs/4A3FF0803D0C049C81C5924B98567A9E",
+    "discoveredAt": "2026-05-17T08:21:01.662Z",
+    "status": "pending"
+  },
+  {
+    "name": "Pärnu JK Vaprus U21",
+    "country": "EE",
+    "league": "Esiliiga B",
+    "source": "jalgpall.ee",
+    "sourceUrl": "https://jalgpall.ee/voistlused/186/team/5362?season=2026",
+    "logoUrl": "https://jalgpall.ee/https://jalgpall.ee/images/clubs/D8034B13F45C52A82CC8EAFFB756EABF",
+    "discoveredAt": "2026-05-17T08:21:01.662Z",
+    "status": "pending"
+  },
+  {
+    "name": "FA Tartu Kalev",
+    "country": "EE",
+    "league": "Esiliiga B",
+    "source": "jalgpall.ee",
+    "sourceUrl": "https://jalgpall.ee/voistlused/186/team/5143?season=2026",
+    "logoUrl": "https://jalgpall.ee/https://jalgpall.ee/images/clubs/547940EA3D62E3126B6395AB90DB3725",
+    "discoveredAt": "2026-05-17T08:21:01.662Z",
+    "status": "pending"
+  },
+  {
+    "name": "JK Tabasalu",
+    "country": "EE",
+    "league": "Esiliiga B",
+    "source": "jalgpall.ee",
+    "sourceUrl": "https://jalgpall.ee/voistlused/186/team/3451?season=2026",
+    "logoUrl": "https://jalgpall.ee/https://jalgpall.ee/images/clubs/A6AB6509B50C54DF439B7D4CCA4ECDF6",
+    "discoveredAt": "2026-05-17T08:21:01.662Z",
+    "status": "pending"
+  },
+  {
+    "name": "Tallinna FCI Levadia U19",
+    "country": "EE",
+    "league": "Esiliiga B",
+    "source": "jalgpall.ee",
+    "sourceUrl": "https://jalgpall.ee/voistlused/186/team/5807?season=2026",
+    "logoUrl": "https://jalgpall.ee/https://jalgpall.ee/images/logos/057147CE8C38CC81522C3741AADA2D4B",
+    "discoveredAt": "2026-05-17T08:21:01.662Z",
+    "status": "pending"
+  },
+  {
+    "name": "JK Tallinna Kalev U21",
+    "country": "EE",
+    "league": "Esiliiga B",
+    "source": "jalgpall.ee",
+    "sourceUrl": "https://jalgpall.ee/voistlused/186/team/240?season=2026",
+    "logoUrl": "https://jalgpall.ee/https://jalgpall.ee/images/clubs/532D267BDE9A130EE4771EB59C9E7A26",
+    "discoveredAt": "2026-05-17T08:21:01.662Z",
+    "status": "pending"
+  },
+  {
+    "name": "Tallinna JK Legion",
+    "country": "EE",
+    "league": "Esiliiga B",
+    "source": "jalgpall.ee",
+    "sourceUrl": "https://jalgpall.ee/voistlused/186/team/8?season=2026",
+    "logoUrl": "https://jalgpall.ee/https://jalgpall.ee/images/clubs/DD90194C134E7F6D59F0698BEA4F579B",
+    "discoveredAt": "2026-05-17T08:21:01.662Z",
+    "status": "pending"
+  },
+  {
+    "name": "Riga Football League",
+    "country": "LV",
+    "league": "Virslīga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Latvian_Higher_League",
+    "discoveredAt": "2026-05-17T08:21:04.036Z",
+    "status": "pending"
+  },
+  {
+    "name": "Kaiserwald Riga",
+    "country": "LV",
+    "league": "Virslīga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Latvian_Higher_League",
+    "discoveredAt": "2026-05-17T08:21:04.036Z",
+    "status": "pending"
+  },
+  {
+    "name": "RFK Riga",
+    "country": "LV",
+    "league": "Virslīga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Latvian_Higher_League",
+    "discoveredAt": "2026-05-17T08:21:04.037Z",
+    "status": "pending"
+  },
+  {
+    "name": "Olimpija Liepāja",
+    "country": "LV",
+    "league": "Virslīga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Latvian_Higher_League",
+    "discoveredAt": "2026-05-17T08:21:04.037Z",
+    "status": "pending"
+  },
+  {
+    "name": "ASK Riga",
+    "country": "LV",
+    "league": "Virslīga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Latvian_Higher_League",
+    "discoveredAt": "2026-05-17T08:21:04.037Z",
+    "status": "pending"
+  },
+  {
+    "name": "Sarkanais Metalurgs Liepāja",
+    "country": "LV",
+    "league": "Virslīga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Latvian_Higher_League",
+    "discoveredAt": "2026-05-17T08:21:04.037Z",
+    "status": "pending"
+  },
+  {
+    "name": "SKA Riga",
+    "country": "LV",
+    "league": "Virslīga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Latvian_Higher_League",
+    "discoveredAt": "2026-05-17T08:21:04.038Z",
+    "status": "pending"
+  },
+  {
+    "name": "ESR-Enerģija Riga",
+    "country": "LV",
+    "league": "Virslīga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Latvian_Higher_League",
+    "discoveredAt": "2026-05-17T08:21:04.038Z",
+    "status": "pending"
+  },
+  {
+    "name": "Venta Ventspils",
+    "country": "LV",
+    "league": "Virslīga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Latvian_Higher_League",
+    "discoveredAt": "2026-05-17T08:21:04.039Z",
+    "status": "pending"
+  },
+  {
+    "name": "VEF Riga",
+    "country": "LV",
+    "league": "Virslīga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Latvian_Higher_League",
+    "discoveredAt": "2026-05-17T08:21:04.039Z",
+    "status": "pending"
+  },
+  {
+    "name": "Jūrnieks Riga",
+    "country": "LV",
+    "league": "Virslīga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Latvian_Higher_League",
+    "discoveredAt": "2026-05-17T08:21:04.039Z",
+    "status": "pending"
+  },
+  {
+    "name": "Enerģija Riga",
+    "country": "LV",
+    "league": "Virslīga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Latvian_Higher_League",
+    "discoveredAt": "2026-05-17T08:21:04.040Z",
+    "status": "pending"
+  },
+  {
+    "name": "Ķīmiķis Daugavpils",
+    "country": "LV",
+    "league": "Virslīga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Latvian_Higher_League",
+    "discoveredAt": "2026-05-17T08:21:04.040Z",
+    "status": "pending"
+  },
+  {
+    "name": "Elektrons Riga",
+    "country": "LV",
+    "league": "Virslīga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Latvian_Higher_League",
+    "discoveredAt": "2026-05-17T08:21:04.040Z",
+    "status": "pending"
+  },
+  {
+    "name": "Torpedo Riga",
+    "country": "LV",
+    "league": "Virslīga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Latvian_Higher_League",
+    "discoveredAt": "2026-05-17T08:21:04.041Z",
+    "status": "pending"
+  },
+  {
+    "name": "Alfa Riga",
+    "country": "LV",
+    "league": "Virslīga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Latvian_Higher_League",
+    "discoveredAt": "2026-05-17T08:21:04.041Z",
+    "status": "pending"
+  },
+  {
+    "name": "RAF Jelgava",
+    "country": "LV",
+    "league": "Virslīga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Latvian_Higher_League",
+    "discoveredAt": "2026-05-17T08:21:04.041Z",
+    "status": "pending"
+  },
+  {
+    "name": "Gauja Valmiera",
+    "country": "LV",
+    "league": "Virslīga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Latvian_Higher_League",
+    "discoveredAt": "2026-05-17T08:21:04.041Z",
+    "status": "pending"
+  },
+  {
+    "name": "Skonto Riga",
+    "country": "LV",
+    "league": "Virslīga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Latvian_Higher_League",
+    "discoveredAt": "2026-05-17T08:21:04.041Z",
+    "status": "pending"
+  },
+  {
+    "name": "Daugava Daugavpils",
+    "country": "LV",
+    "league": "Virslīga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Latvian_Higher_League",
+    "discoveredAt": "2026-05-17T08:21:04.042Z",
+    "status": "pending"
+  },
+  {
+    "name": "JPFS/FK Spartaks Jurmala",
+    "country": "LV",
+    "league": "Virslīga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Latvian_Higher_League",
+    "discoveredAt": "2026-05-17T08:21:04.042Z",
+    "status": "pending"
+  },
+  {
+    "name": "Skonto FC",
+    "country": "LV",
+    "league": "Virslīga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Latvian_Higher_League",
+    "discoveredAt": "2026-05-17T08:21:04.042Z",
+    "status": "pending"
+  },
+  {
+    "name": "Daugava Riga",
+    "country": "LV",
+    "league": "Virslīga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Latvian_Higher_League",
+    "discoveredAt": "2026-05-17T08:21:04.042Z",
+    "status": "pending"
+  },
+  {
+    "name": "FK Liepājas Metalurgs",
+    "country": "LV",
+    "league": "Virslīga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Latvian_Higher_League",
+    "discoveredAt": "2026-05-17T08:21:04.042Z",
+    "status": "pending"
+  },
+  {
+    "name": "FK Venta",
+    "country": "LV",
+    "league": "Virslīga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Latvian_Higher_League",
+    "discoveredAt": "2026-05-17T08:21:04.042Z",
+    "status": "pending"
+  },
+  {
+    "name": "FK Spartaks Jūrmala",
+    "country": "LV",
+    "league": "Virslīga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Latvian_Higher_League",
+    "discoveredAt": "2026-05-17T08:21:04.043Z",
+    "status": "pending"
+  },
+  {
+    "name": "JPFS/Spartaks Jūrmala",
+    "country": "LV",
+    "league": "Virslīga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Latvian_Higher_League",
+    "discoveredAt": "2026-05-17T08:21:04.043Z",
+    "status": "pending"
+  },
+  {
+    "name": "FC Dynamo Kyiv",
+    "country": "LV",
+    "league": "Virslīga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Latvian_Higher_League",
+    "discoveredAt": "2026-05-17T08:21:04.043Z",
+    "status": "pending"
+  },
+  {
+    "name": "FC Astana",
+    "country": "LV",
+    "league": "Virslīga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Latvian_Higher_League",
+    "discoveredAt": "2026-05-17T08:21:04.044Z",
+    "status": "pending"
+  },
+  {
+    "name": "Chicago Fire FC",
+    "country": "LV",
+    "league": "Virslīga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Latvian_Higher_League",
+    "discoveredAt": "2026-05-17T08:21:04.044Z",
+    "status": "pending"
+  },
+  {
+    "name": "FC Sheriff Tiraspol",
+    "country": "LV",
+    "league": "Virslīga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Latvian_Higher_League",
+    "discoveredAt": "2026-05-17T08:21:04.044Z",
+    "status": "pending"
+  },
+  {
+    "name": "FC Chornomorets Odesa",
+    "country": "LV",
+    "league": "Virslīga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Latvian_Higher_League",
+    "discoveredAt": "2026-05-17T08:21:04.044Z",
+    "status": "pending"
+  },
+  {
+    "name": "FC Kryvbas Kryvyi Rih",
+    "country": "LV",
+    "league": "Virslīga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Latvian_Higher_League",
+    "discoveredAt": "2026-05-17T08:21:04.044Z",
+    "status": "pending"
+  },
+  {
+    "name": "FK Partizan",
+    "country": "LV",
+    "league": "Virslīga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Latvian_Higher_League",
+    "discoveredAt": "2026-05-17T08:21:04.045Z",
+    "status": "pending"
+  },
+  {
+    "name": "FC Dinamo Tbilisi",
+    "country": "LV",
+    "league": "Virslīga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Latvian_Higher_League",
+    "discoveredAt": "2026-05-17T08:21:04.045Z",
+    "status": "pending"
+  },
+  {
+    "name": "Pafos FC",
+    "country": "LV",
+    "league": "Virslīga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Latvian_Higher_League",
+    "discoveredAt": "2026-05-17T08:21:04.045Z",
+    "status": "pending"
+  },
+  {
+    "name": "Alytus",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/A_Lyga",
+    "discoveredAt": "2026-05-17T08:21:05.130Z",
+    "status": "pending"
+  },
+  {
+    "name": "Telšiai",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/A_Lyga",
+    "discoveredAt": "2026-05-17T08:21:05.130Z",
+    "status": "pending"
+  },
+  {
+    "name": "Kaunas District",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/A_Lyga",
+    "discoveredAt": "2026-05-17T08:21:05.130Z",
+    "status": "pending"
+  },
+  {
+    "name": "Kaunas",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/A_Lyga",
+    "discoveredAt": "2026-05-17T08:21:05.130Z",
+    "status": "pending"
+  },
+  {
+    "name": "Vilnius",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/A_Lyga",
+    "discoveredAt": "2026-05-17T08:21:05.131Z",
+    "status": "pending"
+  },
+  {
+    "name": "LFLS Kaunas",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/A_Lyga",
+    "discoveredAt": "2026-05-17T08:21:05.131Z",
+    "status": "pending"
+  },
+  {
+    "name": "LFLS-2 Kaunas",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/A_Lyga",
+    "discoveredAt": "2026-05-17T08:21:05.131Z",
+    "status": "pending"
+  },
+  {
+    "name": "Kovas Kaunas",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/A_Lyga",
+    "discoveredAt": "2026-05-17T08:21:05.131Z",
+    "status": "pending"
+  },
+  {
+    "name": "KSS Klaipėda",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/A_Lyga",
+    "discoveredAt": "2026-05-17T08:21:05.131Z",
+    "status": "pending"
+  },
+  {
+    "name": "LGSF Kaunas",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/A_Lyga",
+    "discoveredAt": "2026-05-17T08:21:05.132Z",
+    "status": "pending"
+  },
+  {
+    "name": "KSS Telšiai",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/A_Lyga",
+    "discoveredAt": "2026-05-17T08:21:05.132Z",
+    "status": "pending"
+  },
+  {
+    "name": "MSK Panevėžys",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/A_Lyga",
+    "discoveredAt": "2026-05-17T08:21:05.132Z",
+    "status": "pending"
+  },
+  {
+    "name": "Lokomotyvas Panevėžys",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/A_Lyga",
+    "discoveredAt": "2026-05-17T08:21:05.132Z",
+    "status": "pending"
+  },
+  {
+    "name": "Inkaras Kaunas",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/A_Lyga",
+    "discoveredAt": "2026-05-17T08:21:05.132Z",
+    "status": "pending"
+  },
+  {
+    "name": "Karininkų Namai Vilnius",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/A_Lyga",
+    "discoveredAt": "2026-05-17T08:21:05.132Z",
+    "status": "pending"
+  },
+  {
+    "name": "Lima Kaunas",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/A_Lyga",
+    "discoveredAt": "2026-05-17T08:21:05.132Z",
+    "status": "pending"
+  },
+  {
+    "name": "Raudonoji Žvaigždė Vilnius",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/A_Lyga",
+    "discoveredAt": "2026-05-17T08:21:05.132Z",
+    "status": "pending"
+  },
+  {
+    "name": "KKI Kaunas",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/A_Lyga",
+    "discoveredAt": "2026-05-17T08:21:05.132Z",
+    "status": "pending"
+  },
+  {
+    "name": "FK Atletas Kaunas",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/A_Lyga",
+    "discoveredAt": "2026-05-17T08:21:05.133Z",
+    "status": "pending"
+  },
+  {
+    "name": "Granitas Klaipėda",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/A_Lyga",
+    "discoveredAt": "2026-05-17T08:21:05.133Z",
+    "status": "pending"
+  },
+  {
+    "name": "Statyba Panevėžys",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/A_Lyga",
+    "discoveredAt": "2026-05-17T08:21:05.133Z",
+    "status": "pending"
+  },
+  {
+    "name": "FK Minija Kretinga",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/A_Lyga",
+    "discoveredAt": "2026-05-17T08:21:05.133Z",
+    "status": "pending"
+  },
+  {
+    "name": "Saliutas Vilnius",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/A_Lyga",
+    "discoveredAt": "2026-05-17T08:21:05.133Z",
+    "status": "pending"
+  },
+  {
+    "name": "Atlantas Klaipėda",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/A_Lyga",
+    "discoveredAt": "2026-05-17T08:21:05.133Z",
+    "status": "pending"
+  },
+  {
+    "name": "Dainava Alytus",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/A_Lyga",
+    "discoveredAt": "2026-05-17T08:21:05.134Z",
+    "status": "pending"
+  },
+  {
+    "name": "Sūduva Kapsukas",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/A_Lyga",
+    "discoveredAt": "2026-05-17T08:21:05.134Z",
+    "status": "pending"
+  },
+  {
+    "name": "Banga Kaunas",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/A_Lyga",
+    "discoveredAt": "2026-05-17T08:21:05.134Z",
+    "status": "pending"
+  },
+  {
+    "name": "Ekranas Panevėžys",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/A_Lyga",
+    "discoveredAt": "2026-05-17T08:21:05.134Z",
+    "status": "pending"
+  },
+  {
+    "name": "Sirijus Klaipėda",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/A_Lyga",
+    "discoveredAt": "2026-05-17T08:21:05.134Z",
+    "status": "pending"
+  },
+  {
+    "name": "Žalgiris Vilnius",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/A_Lyga",
+    "discoveredAt": "2026-05-17T08:21:05.135Z",
+    "status": "pending"
+  },
+  {
+    "name": "Karininkų Namai / Raudonoji Žvaigždė / Saliutas Vilnius",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/A_Lyga",
+    "discoveredAt": "2026-05-17T08:21:05.135Z",
+    "status": "pending"
+  },
+  {
+    "name": "Lietuvos Makabi Vilnius",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/A_Lyga",
+    "discoveredAt": "2026-05-17T08:21:05.136Z",
+    "status": "pending"
+  },
+  {
+    "name": "Panerys Vilnius",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/A_Lyga",
+    "discoveredAt": "2026-05-17T08:21:05.136Z",
+    "status": "pending"
+  },
+  {
+    "name": "Žalgiris-EBSW Vilnius",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/A_Lyga",
+    "discoveredAt": "2026-05-17T08:21:05.136Z",
+    "status": "pending"
+  },
+  {
+    "name": "FBK Kaunas",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/A_Lyga",
+    "discoveredAt": "2026-05-17T08:21:05.136Z",
+    "status": "pending"
+  },
+  {
+    "name": "Inkaras-Grifas Kaunas",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/A_Lyga",
+    "discoveredAt": "2026-05-17T08:21:05.136Z",
+    "status": "pending"
+  },
+  {
+    "name": "Sūduva Marijampolė",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/A_Lyga",
+    "discoveredAt": "2026-05-17T08:21:05.136Z",
+    "status": "pending"
+  },
+  {
+    "name": "Vėtra Vilnius",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/A_Lyga",
+    "discoveredAt": "2026-05-17T08:21:05.136Z",
+    "status": "pending"
+  },
+  {
+    "name": "FK Ekranas",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/A_Lyga",
+    "discoveredAt": "2026-05-17T08:21:05.137Z",
+    "status": "pending"
+  },
+  {
+    "name": "FK Kruoja Pakruojis",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/A_Lyga",
+    "discoveredAt": "2026-05-17T08:21:05.137Z",
+    "status": "pending"
+  },
+  {
+    "name": "FK Kareda",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/A_Lyga",
+    "discoveredAt": "2026-05-17T08:21:05.137Z",
+    "status": "pending"
+  },
+  {
+    "name": "FK Šilutė",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/A_Lyga",
+    "discoveredAt": "2026-05-17T08:21:05.137Z",
+    "status": "pending"
+  },
+  {
+    "name": "FC Stumbras",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/A_Lyga",
+    "discoveredAt": "2026-05-17T08:21:05.138Z",
+    "status": "pending"
+  },
+  {
+    "name": "FK Vėtra",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/A_Lyga",
+    "discoveredAt": "2026-05-17T08:21:05.139Z",
+    "status": "pending"
+  },
+  {
+    "name": "FK Kruoja",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/A_Lyga",
+    "discoveredAt": "2026-05-17T08:21:05.139Z",
+    "status": "pending"
+  },
+  {
+    "name": "FK Atlantas",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "wikipedia",
+    "sourceUrl": "https://en.wikipedia.org/wiki/A_Lyga",
+    "discoveredAt": "2026-05-17T08:21:05.140Z",
+    "status": "pending"
+  },
+  {
+    "name": "Gargždų „Banga“",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "toplyga.lt",
+    "sourceUrl": "https://www.toplyga.lt",
+    "discoveredAt": "2026-05-17T08:21:08.706Z",
+    "status": "pending"
+  },
+  {
+    "name": "Telšių „Džiugas“",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "toplyga.lt",
+    "sourceUrl": "https://www.toplyga.lt",
+    "discoveredAt": "2026-05-17T08:21:08.706Z",
+    "status": "pending"
+  },
+  {
+    "name": "Kauno rajono „Hegelmann“",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "toplyga.lt",
+    "sourceUrl": "https://www.toplyga.lt",
+    "discoveredAt": "2026-05-17T08:21:08.706Z",
+    "status": "pending"
+  },
+  {
+    "name": "Vilniaus „Riteriai“",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "toplyga.lt",
+    "sourceUrl": "https://www.toplyga.lt",
+    "discoveredAt": "2026-05-17T08:21:08.707Z",
+    "status": "pending"
+  },
+  {
+    "name": "Marijampolės „Sūduva“",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "toplyga.lt",
+    "sourceUrl": "https://www.toplyga.lt",
+    "discoveredAt": "2026-05-17T08:21:08.707Z",
+    "status": "pending"
+  },
+  {
+    "name": "Vilniaus rajono „TransINVEST“",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "toplyga.lt",
+    "sourceUrl": "https://www.toplyga.lt",
+    "discoveredAt": "2026-05-17T08:21:08.707Z",
+    "status": "pending"
+  },
+  {
+    "name": "Vilniaus „Žalgiris“",
+    "country": "LT",
+    "league": "A Lyga",
+    "source": "toplyga.lt",
+    "sourceUrl": "https://www.toplyga.lt",
+    "discoveredAt": "2026-05-17T08:21:08.707Z",
+    "status": "pending"
+  }
+]
