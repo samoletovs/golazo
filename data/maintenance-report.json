@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-05-17T08:21:09.739Z",
+  "generatedAt": "2026-06-14T09:32:03.939Z",
   "mode": "live",
-  "elapsedSeconds": 13.6,
+  "elapsedSeconds": 14.8,
   "tasks": {
     "federation-scanner": {
-      "added": 108,
+      "added": 0,
       "updated": 0,
       "skipped": 0,
       "errors": []
@@ -55,7 +55,7 @@
     }
   },
   "summary": {
-    "totalAdded": 108,
+    "totalAdded": 0,
     "totalUpdated": 63,
     "totalSkipped": 0,
     "totalErrors": 12
