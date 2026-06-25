@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-06-14T09:32:03.939Z",
+  "generatedAt": "2026-06-21T09:48:03.159Z",
   "mode": "live",
-  "elapsedSeconds": 14.8,
+  "elapsedSeconds": 14,
   "tasks": {
     "federation-scanner": {
       "added": 0,
