@@ -52,6 +52,7 @@ async function handleGet(container, userId) {
     readArticles: [],
     savedExercises: [],
     programProgress: [],
+    userDrills: [],
     onboardingComplete: false,
   };
 
@@ -73,6 +74,7 @@ async function handleGet(container, userId) {
       case 'savedExercises': state.savedExercises = doc.data; break;
       case 'programProgress': state.programProgress.push(doc.data); break;
       case 'recurringTraining': state.recurringTrainings.push(doc.data); break;
+      case 'userDrill': state.userDrills.push(doc.data); break;
       case 'onboardingComplete': state.onboardingComplete = doc.data; break;
     }
   }
@@ -113,7 +115,7 @@ async function handlePut(container, userId, req) {
   }
 
   // Validate array fields: each item must have an id string
-  const arrayFieldKeys = ['trainings', 'matches', 'tournaments', 'diary', 'schedule', 'recurringTrainings', 'specialChallenges', 'checkIns', 'quizAnswers', 'readArticles', 'programProgress'];
+  const arrayFieldKeys = ['trainings', 'matches', 'tournaments', 'diary', 'schedule', 'recurringTrainings', 'specialChallenges', 'checkIns', 'quizAnswers', 'readArticles', 'programProgress', 'userDrills'];
   for (const key of arrayFieldKeys) {
     if (body[key] !== undefined && !Array.isArray(body[key])) {
       return jsonResponse({ error: `${key} must be an array` }, 400);
@@ -197,6 +199,7 @@ async function handlePut(container, userId, req) {
     { key: 'recurringTrainings', type: 'recurringTraining' },
     { key: 'checkIns', type: 'checkIn' },
     { key: 'programProgress', type: 'programProgress' },
+    { key: 'userDrills', type: 'userDrill' },
   ];
 
   for (const { key, type } of arrayFields) {

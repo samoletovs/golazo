@@ -6,7 +6,7 @@ import { VideoPlayer } from '../components/VideoPlayer'
 import { useApp } from '../contexts/AppContext'
 import { awardXp, XP_AWARDS } from '../engine/xp'
 import { getAgeTier } from '../engine/types'
-import type { SkillCategory, Exercise } from '../engine/types'
+import type { SkillCategory, Exercise, UserDrill, Equipment } from '../engine/types'
 
 const Challenges = lazy(() => import('./Challenges').then(m => ({ default: m.Challenges })))
 
@@ -159,9 +159,231 @@ function ExerciseDetailModal({
   )
 }
 
+const EQUIPMENT_OPTIONS: Equipment[] = ['ballOnly', 'cones', 'wall', 'partner', 'none']
+const DIFFICULTY_OPTIONS: (1 | 2 | 3 | 4 | 5)[] = [1, 2, 3, 4, 5]
+const CATEGORY_OPTIONS: SkillCategory[] = ['technical', 'physical', 'tactical', 'mental', 'knowledge']
+
+function userDrillToExercise(drill: UserDrill): Exercise {
+  return {
+    id: drill.id,
+    nameKey: drill.name,
+    descriptionKey: drill.description,
+    category: drill.category,
+    subSkill: drill.category,
+    difficulty: drill.difficulty,
+    durationMinutes: drill.durationMinutes,
+    equipment: drill.equipment,
+    positions: [],
+    methodology: 'coerver',
+    videoUrl: drill.videoUrl,
+    source: 'community',
+  }
+}
+
+function SubmitDrillModal({
+  onClose,
+  onSubmit,
+  t,
+}: {
+  onClose: () => void
+  onSubmit: (drill: UserDrill) => void
+  t: (key: string, opts?: Record<string, unknown>) => string
+}) {
+  const [name, setName] = useState('')
+  const [description, setDescription] = useState('')
+  const [category, setCategory] = useState<SkillCategory>('technical')
+  const [difficulty, setDifficulty] = useState<1 | 2 | 3 | 4 | 5>(2)
+  const [durationMinutes, setDurationMinutes] = useState(10)
+  const [equipment, setEquipment] = useState<Equipment[]>(['ballOnly'])
+  const [videoUrl, setVideoUrl] = useState('')
+  const [error, setError] = useState('')
+
+  function toggleEquipment(eq: Equipment) {
+    setEquipment((prev) =>
+      prev.includes(eq) ? prev.filter((e) => e !== eq) : [...prev, eq]
+    )
+  }
+
+  function handleSubmit() {
+    if (!name.trim()) { setError(t('exercises.submitDrill.errorName')); return }
+    if (!description.trim()) { setError(t('exercises.submitDrill.errorDesc')); return }
+    if (equipment.length === 0) { setError(t('exercises.submitDrill.errorEquipment')); return }
+    const drill: UserDrill = {
+      id: `user-${Date.now()}`,
+      name: name.trim(),
+      description: description.trim(),
+      category,
+      difficulty,
+      durationMinutes,
+      equipment,
+      videoUrl: videoUrl.trim() || undefined,
+      submittedAt: new Date().toISOString(),
+    }
+    onSubmit(drill)
+    onClose()
+  }
+
+  return (
+    <div className="modal-overlay" onClick={onClose} role="dialog" aria-modal="true" aria-label={t('exercises.submitDrill.title')}>
+      <div className="exercise-modal" onClick={(e) => e.stopPropagation()} style={{ maxHeight: '90vh', overflowY: 'auto' }}>
+        <button className="modal-close" onClick={onClose} aria-label={t('exercises.detail.close')}>×</button>
+
+        <h3 className="exercise-modal-title">{t('exercises.submitDrill.title')}</h3>
+
+        {error && (
+          <p className="text-sm mb-3" style={{ color: 'var(--color-error, #ef4444)' }}>{error}</p>
+        )}
+
+        <div className="flex flex-col gap-3">
+          {/* Name */}
+          <div>
+            <label className="text-xs font-bold mb-1 block" style={{ color: 'var(--color-text-secondary)' }}>
+              {t('exercises.submitDrill.name')} *
+            </label>
+            <input
+              type="text"
+              className="exercise-search w-full"
+              style={{ paddingLeft: '12px' }}
+              placeholder={t('exercises.submitDrill.namePlaceholder')}
+              value={name}
+              onChange={(e) => { setName(e.target.value); setError('') }}
+              maxLength={80}
+            />
+          </div>
+
+          {/* Description */}
+          <div>
+            <label className="text-xs font-bold mb-1 block" style={{ color: 'var(--color-text-secondary)' }}>
+              {t('exercises.submitDrill.description')} *
+            </label>
+            <textarea
+              className="exercise-search w-full"
+              style={{ paddingLeft: '12px', minHeight: '80px', resize: 'vertical' }}
+              placeholder={t('exercises.submitDrill.descriptionPlaceholder')}
+              value={description}
+              onChange={(e) => { setDescription(e.target.value); setError('') }}
+              maxLength={400}
+            />
+          </div>
+
+          {/* Category */}
+          <div>
+            <label className="text-xs font-bold mb-1 block" style={{ color: 'var(--color-text-secondary)' }}>
+              {t('exercises.submitDrill.category')}
+            </label>
+            <select
+              className="exercise-sort w-full"
+              value={category}
+              onChange={(e) => setCategory(e.target.value as SkillCategory)}
+            >
+              {CATEGORY_OPTIONS.map((c) => (
+                <option key={c} value={c}>{CAT_EMOJI[c]} {t(`skills.${c}`)}</option>
+              ))}
+            </select>
+          </div>
+
+          {/* Difficulty */}
+          <div>
+            <label className="text-xs font-bold mb-1 block" style={{ color: 'var(--color-text-secondary)' }}>
+              {t('exercises.submitDrill.difficulty')}
+            </label>
+            <div className="flex gap-2">
+              {DIFFICULTY_OPTIONS.map((d) => (
+                <button
+                  key={d}
+                  type="button"
+                  className="tap-target flex-1 rounded-lg text-sm font-bold py-2"
+                  style={{
+                    background: difficulty === d ? 'var(--color-primary)' : 'var(--color-bg-warm)',
+                    color: difficulty === d ? '#fff' : 'var(--color-text-secondary)',
+                  }}
+                  onClick={() => setDifficulty(d)}
+                >
+                  {d}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Duration */}
+          <div>
+            <label className="text-xs font-bold mb-1 block" style={{ color: 'var(--color-text-secondary)' }}>
+              {t('exercises.submitDrill.duration')}
+            </label>
+            <input
+              type="number"
+              className="exercise-search w-full"
+              style={{ paddingLeft: '12px' }}
+              value={durationMinutes}
+              min={1}
+              max={120}
+              onChange={(e) => setDurationMinutes(Math.max(1, Math.min(120, Number(e.target.value))))}
+            />
+          </div>
+
+          {/* Equipment */}
+          <div>
+            <label className="text-xs font-bold mb-1 block" style={{ color: 'var(--color-text-secondary)' }}>
+              {t('exercises.submitDrill.equipment')} *
+            </label>
+            <div className="flex flex-wrap gap-2">
+              {EQUIPMENT_OPTIONS.map((eq) => (
+                <button
+                  key={eq}
+                  type="button"
+                  className="rounded-full px-3 py-1.5 text-xs font-bold"
+                  style={{
+                    background: equipment.includes(eq) ? 'var(--color-primary)' : 'var(--color-bg-warm)',
+                    color: equipment.includes(eq) ? '#fff' : 'var(--color-text-secondary)',
+                  }}
+                  onClick={() => { toggleEquipment(eq); setError('') }}
+                >
+                  {t(`equipment.${eq}`)}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Video URL */}
+          <div>
+            <label className="text-xs font-bold mb-1 block" style={{ color: 'var(--color-text-secondary)' }}>
+              {t('exercises.submitDrill.videoUrl')}
+            </label>
+            <input
+              type="url"
+              className="exercise-search w-full"
+              style={{ paddingLeft: '12px' }}
+              placeholder={t('exercises.submitDrill.videoPlaceholder')}
+              value={videoUrl}
+              onChange={(e) => setVideoUrl(e.target.value)}
+            />
+          </div>
+        </div>
+
+        <div className="flex gap-2 mt-4">
+          <button
+            className="flex-1 tap-target text-sm font-bold py-3 rounded-full"
+            style={{ background: 'var(--color-bg-warm)', color: 'var(--color-text-secondary)' }}
+            onClick={onClose}
+          >
+            {t('exercises.submitDrill.cancel')}
+          </button>
+          <button
+            className="flex-1 tap-target text-sm font-bold py-3 rounded-full"
+            style={{ background: 'var(--color-primary)', color: '#fff' }}
+            onClick={handleSubmit}
+          >
+            {t('exercises.submitDrill.submit')}
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export function Exercises({ embedded }: { embedded?: boolean }) {
   const { t } = useTranslation()
-  const { xp, setXp, savedExercises, toggleSavedExercise, profile } = useApp()
+  const { xp, setXp, savedExercises, toggleSavedExercise, profile, userDrills, addUserDrill, deleteUserDrill } = useApp()
   const ageTier = profile?.birthDate ? getAgeTier(profile.birthDate) : undefined
   const [activeTab, setActiveTab] = useState<'exercises' | 'challenges'>('exercises')
   const [filter, setFilter] = useState<SkillCategory | 'all'>('all')
@@ -169,9 +391,14 @@ export function Exercises({ embedded }: { embedded?: boolean }) {
   const [sortBy, setSortBy] = useState<SortKey>('name')
   const [doneIds, setDoneIds] = useState<Set<string>>(new Set())
   const [detailExercise, setDetailExercise] = useState<Exercise | null>(null)
+  const [showSubmitModal, setShowSubmitModal] = useState(false)
+
+  const communityExercises = useMemo(() => userDrills.map(userDrillToExercise), [userDrills])
+
+  const allExercises = useMemo(() => [...exercises, ...communityExercises], [communityExercises])
 
   const sortedFiltered = useMemo(() => {
-    let list = filter === 'all' ? [...exercises] : exercises.filter((e) => e.category === filter)
+    let list = filter === 'all' ? [...allExercises] : allExercises.filter((e) => e.category === filter)
 
     if (search.trim()) {
       const q = search.toLowerCase()
@@ -189,7 +416,7 @@ export function Exercises({ embedded }: { embedded?: boolean }) {
     })
 
     return list
-  }, [filter, search, sortBy, t])
+  }, [filter, search, sortBy, t, allExercises])
 
   function markDone(id: string) {
     setDoneIds((prev) => new Set(prev).add(id))
@@ -277,6 +504,17 @@ export function Exercises({ embedded }: { embedded?: boolean }) {
         </select>
       </div>
 
+      {/* Submit a Drill button */}
+      <button
+        className="tap-target w-full rounded-xl py-3 text-sm font-bold flex items-center justify-center gap-2"
+        style={{ background: 'var(--color-primary-bg)', color: 'var(--color-primary-dark)', border: '1.5px dashed var(--color-primary)' }}
+        onClick={() => setShowSubmitModal(true)}
+        aria-label={t('exercises.submitDrill.title')}
+      >
+        <span>➕</span>
+        <span>{t('exercises.submitDrill.cta')}</span>
+      </button>
+
       {/* Exercise cards */}
       <div className="exercise-grid">
         {sortedFiltered.length === 0 && (
@@ -288,6 +526,7 @@ export function Exercises({ embedded }: { embedded?: boolean }) {
         {sortedFiltered.map((ex) => {
           const isDone = doneIds.has(ex.id)
           const thumbnail = ex.thumbnailUrl || (ex.videoUrl ? getThumbnailUrl(ex.videoUrl) : null)
+          const isCommunity = ex.source === 'community'
 
           return (
             <div
@@ -313,6 +552,14 @@ export function Exercises({ embedded }: { embedded?: boolean }) {
                 </div>
               )}
 
+              {/* Community badge */}
+              {isCommunity && (
+                <span className="text-xs font-bold px-2 py-0.5 rounded-full mb-1 inline-block"
+                  style={{ background: 'var(--color-primary-bg)', color: 'var(--color-primary-dark)' }}>
+                  🌐 {t('exercises.communityBadge')}
+                </span>
+              )}
+
               {/* Title */}
               <p className="text-base font-bold heading-display" style={{ color: 'var(--color-text)' }}>
                 {t(ex.nameKey)}
@@ -329,6 +576,17 @@ export function Exercises({ embedded }: { embedded?: boolean }) {
                   {ex.durationMinutes} min
                 </span>
                 <DifficultyDots level={ex.difficulty} />
+                {/* Delete button for community drills */}
+                {isCommunity && (
+                  <button
+                    className="rounded-full px-2.5 py-1 text-xs font-bold whitespace-nowrap"
+                    style={{ background: 'var(--color-bg-warm)', color: 'var(--color-text-muted)', border: 'none' }}
+                    onClick={(e) => { e.stopPropagation(); deleteUserDrill(ex.id) }}
+                    aria-label={t('exercises.submitDrill.delete')}
+                  >
+                    🗑
+                  </button>
+                )}
                 {/* XP button */}
                 <button
                   className="ml-auto rounded-full px-2.5 py-1 text-xs font-bold whitespace-nowrap"
@@ -360,6 +618,16 @@ export function Exercises({ embedded }: { embedded?: boolean }) {
             markDone(detailExercise.id)
           }}
           onToggleSave={() => toggleSavedExercise(detailExercise.id)}
+          t={t}
+        />,
+        document.body
+      )}
+
+      {/* Submit drill modal */}
+      {showSubmitModal && createPortal(
+        <SubmitDrillModal
+          onClose={() => setShowSubmitModal(false)}
+          onSubmit={addUserDrill}
           t={t}
         />,
         document.body

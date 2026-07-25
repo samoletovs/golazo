@@ -370,7 +370,19 @@ export interface Exercise {
   methodology: Methodology
   videoUrl?: string
   thumbnailUrl?: string
-  source?: 'curated' | 'generated'
+  source?: 'curated' | 'generated' | 'community'
+}
+
+export interface UserDrill {
+  id: string
+  name: string
+  description: string
+  category: SkillCategory
+  difficulty: 1 | 2 | 3 | 4 | 5
+  durationMinutes: number
+  equipment: Equipment[]
+  videoUrl?: string
+  submittedAt: string // ISO timestamp
 }
 
 export interface CompletedExercise {

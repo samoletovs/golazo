@@ -29,6 +29,7 @@ const APP_STATE_FIELDS = [
   'readArticles',
   'savedExercises',
   'programProgress',
+  'userDrills',
   'onboardingComplete',
 ] as const
 
@@ -45,6 +46,7 @@ const ARRAY_FIELDS = [
   'quizAnswers',
   'readArticles',
   'programProgress',
+  'userDrills',
 ]
 
 // Fields that are single objects (not arrays)
@@ -112,9 +114,11 @@ describe('Sync payload completeness', () => {
     const fs = await import('fs')
     const source = fs.readFileSync('api/src/functions/sync.js', 'utf-8')
     
-    // Check arrayFields mapping includes recurring trainings
+    // Check arrayFields mapping includes recurring trainings and userDrills
     expect(source).toContain("key: 'recurringTrainings'")
     expect(source).toContain("type: 'recurringTraining'")
+    expect(source).toContain("key: 'userDrills'")
+    expect(source).toContain("type: 'userDrill'")
   })
 
   it('sync API handles onboardingComplete in both directions', async () => {

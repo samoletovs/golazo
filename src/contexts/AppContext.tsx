@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef, createContext, useContext } from 'react'
 import type { ReactNode } from 'react'
-import type { XpState, PlayerProfile, SkillTree, TrainingEntry, MatchEntry, Tournament, DiaryEntry, ScheduleEvent, SpecialChallengeProgress, PhysicalProfile, RecurringTraining, DailyCheckIn, QuizAnswer, ReadArticle, ProgramProgress } from '../engine/types'
+import type { XpState, PlayerProfile, SkillTree, TrainingEntry, MatchEntry, Tournament, DiaryEntry, ScheduleEvent, SpecialChallengeProgress, PhysicalProfile, RecurringTraining, DailyCheckIn, QuizAnswer, ReadArticle, ProgramProgress, UserDrill } from '../engine/types'
 import { createInitialXpState } from '../engine/xp'
 import { createInitialSkillTree } from '../engine/skills'
 
@@ -23,6 +23,7 @@ interface AppState {
   readArticles: ReadArticle[]
   savedExercises: string[] // exercise IDs
   programProgress: ProgramProgress[]
+  userDrills: UserDrill[]
   onboardingComplete: boolean
 }
 
@@ -46,6 +47,8 @@ interface AppContextValue extends AppState {
   markArticleRead: (r: ReadArticle) => void
   toggleSavedExercise: (id: string) => void
   updateProgramProgress: (p: ProgramProgress) => void
+  addUserDrill: (d: UserDrill) => void
+  deleteUserDrill: (id: string) => void
   setOnboardingComplete: (v: boolean) => void
   syncToCloud: () => Promise<void>
   resetState: () => void
@@ -93,6 +96,7 @@ async function syncToApi(state: AppState): Promise<void> {
         readArticles: state.readArticles,
         savedExercises: state.savedExercises,
         programProgress: state.programProgress,
+        userDrills: state.userDrills,
         onboardingComplete: state.onboardingComplete,
       }),
     })
@@ -119,6 +123,7 @@ function loadState(): AppState {
       merged.savedExercises = merged.savedExercises ?? []
       merged.programProgress = merged.programProgress ?? []
       merged.recurringTrainings = merged.recurringTrainings ?? []
+      merged.userDrills = merged.userDrills ?? []
       return merged
     }
   } catch { /* ignore corrupted storage */ }
@@ -143,6 +148,7 @@ function createDefaultState(): AppState {
     readArticles: [],
     savedExercises: [],
     programProgress: [],
+    userDrills: [],
     onboardingComplete: false,
   }
 }
@@ -178,6 +184,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
           merged.trainings = (remote.trainings?.length ? remote.trainings : null) ?? prev.trainings ?? []
           merged.matches = (remote.matches?.length ? remote.matches : null) ?? prev.matches ?? []
           merged.tournaments = (remote.tournaments?.length ? remote.tournaments : null) ?? prev.tournaments ?? []
+          merged.userDrills = (remote.userDrills?.length ? remote.userDrills : null) ?? prev.userDrills ?? []
           saveState(merged)
           return merged
         })
@@ -248,6 +255,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
         p,
       ],
     }),
+    addUserDrill: (d) => update({ userDrills: [...state.userDrills, d] }),
+    deleteUserDrill: (id) => update({ userDrills: state.userDrills.filter(d => d.id !== id) }),
     setOnboardingComplete: (v) => update({ onboardingComplete: v }),
     syncToCloud,
     resetState: () => {
