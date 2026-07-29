@@ -121,4 +121,20 @@ describe('Exercises page community drill support', () => {
     expect(source).toContain('allExercises')
     expect(source).toContain('userDrillToExercise')
   })
+
+  it('Exercises page supports filtering by skill level', async () => {
+    const source = await import('fs').then(fs =>
+      fs.readFileSync('src/pages/Exercises.tsx', 'utf-8')
+    )
+    expect(source).toContain('skillLevel')
+    expect(source).toContain("e.difficulty === skillLevel")
+    expect(source).toContain('exercises.skillLevel')
+  })
+
+  it('Exercises page labels category chips as training focus', async () => {
+    const source = await import('fs').then(fs =>
+      fs.readFileSync('src/pages/Exercises.tsx', 'utf-8')
+    )
+    expect(source).toContain('exercises.trainingFocus')
+  })
 })

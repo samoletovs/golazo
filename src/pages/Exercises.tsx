@@ -20,6 +20,7 @@ const FILTER_OPTIONS: { key: SkillCategory | 'all'; labelKey: string; emoji: str
 ]
 
 type SortKey = 'name' | 'difficulty' | 'duration'
+type SkillLevelFilter = 'all' | 1 | 2 | 3 | 4 | 5
 
 const CAT_STRIPE: Record<string, string> = {
   technical: 'cat-stripe-technical',
@@ -387,6 +388,7 @@ export function Exercises({ embedded }: { embedded?: boolean }) {
   const ageTier = profile?.birthDate ? getAgeTier(profile.birthDate) : undefined
   const [activeTab, setActiveTab] = useState<'exercises' | 'challenges'>('exercises')
   const [filter, setFilter] = useState<SkillCategory | 'all'>('all')
+  const [skillLevel, setSkillLevel] = useState<SkillLevelFilter>('all')
   const [search, setSearch] = useState('')
   const [sortBy, setSortBy] = useState<SortKey>('name')
   const [doneIds, setDoneIds] = useState<Set<string>>(new Set())
@@ -399,6 +401,9 @@ export function Exercises({ embedded }: { embedded?: boolean }) {
 
   const sortedFiltered = useMemo(() => {
     let list = filter === 'all' ? [...allExercises] : allExercises.filter((e) => e.category === filter)
+    if (skillLevel !== 'all') {
+      list = list.filter((e) => e.difficulty === skillLevel)
+    }
 
     if (search.trim()) {
       const q = search.toLowerCase()
@@ -416,7 +421,7 @@ export function Exercises({ embedded }: { embedded?: boolean }) {
     })
 
     return list
-  }, [filter, search, sortBy, t, allExercises])
+  }, [filter, skillLevel, search, sortBy, t, allExercises])
 
   function markDone(id: string) {
     setDoneIds((prev) => new Set(prev).add(id))
@@ -478,6 +483,9 @@ export function Exercises({ embedded }: { embedded?: boolean }) {
       </div>
 
       {/* Filter chips + sort */}
+      <div className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>
+        {t('exercises.trainingFocus')}
+      </div>
       <div className="flex items-center gap-2">
         <div className="filter-scroll flex-1">
           {FILTER_OPTIONS.map((f) => (
@@ -492,6 +500,22 @@ export function Exercises({ embedded }: { embedded?: boolean }) {
             </button>
           ))}
         </div>
+        <select
+          className="exercise-sort"
+          value={skillLevel}
+          onChange={(e) => {
+            const value = e.target.value
+            setSkillLevel(value === 'all' ? 'all' : Number(value) as 1 | 2 | 3 | 4 | 5)
+          }}
+          aria-label={t('exercises.skillLevel')}
+        >
+          <option value="all">{t('exercises.skillLevel.all')}</option>
+          {DIFFICULTY_OPTIONS.map((level) => (
+            <option key={level} value={level}>
+              {t('exercises.skillLevel.level', { level })}
+            </option>
+          ))}
+        </select>
         <select
           className="exercise-sort"
           value={sortBy}
