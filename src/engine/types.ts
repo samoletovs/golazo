@@ -817,6 +817,23 @@ export interface ManagedTeam {
   verified: boolean
 }
 
+export interface TeamChallenge {
+  id: string
+  teamId: string
+  teamName: string
+  opponentTeamId: string
+  opponentTeamName: string
+  title: string
+  target: number
+  unit: 'trainingSessions'
+  teamProgress: number
+  opponentProgress: number
+  status: 'pending' | 'active' | 'declined' | 'completed'
+  createdBy: string
+  createdAt: string
+  endsAt: string
+}
+
 export interface CoachProfile {
   id: string
   userId: string           // Auth identity

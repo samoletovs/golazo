@@ -14,6 +14,9 @@ const { randomUUID } = require('crypto');
  * POST /api/coach/training-plan                  — create training plan
  * GET  /api/coach/team/{teamId}/plans           — list training plans
  * POST /api/coach/team/{teamId}/attendance     — save attendance
+ * GET  /api/coach/team/{teamId}/social-challenges — list sent and received challenges
+ * POST /api/coach/team/{teamId}/social-challenges — challenge another team
+ * POST /api/coach/team/{teamId}/social-challenges/{challengeId} — accept, decline, or log progress
  */
 
 /* ── Authorization helper ─────────────────────────────────── */
@@ -37,6 +40,131 @@ async function verifyCoachOwnsTeam(userId, teamId) {
   }
 }
 
+/* ── Social Team Challenges ────────────────────────────────── */
+
+  app.http('coach-social-challenges', {
+    methods: ['GET', 'POST'],
+    authLevel: 'anonymous',
+    route: 'coach/team/{teamId}/social-challenges',
+    handler: async (req) => {
+      const user = getUser(req);
+      if (!user) return jsonResponse({ error: 'Unauthorized' }, 401);
+      const teamId = req.params.teamId;
+      const managedTeam = await verifyCoachOwnsTeam(user.userId, teamId);
+      if (!managedTeam) return jsonResponse({ error: 'Forbidden' }, 403);
+      if (req.method === 'GET') return getSocialChallenges(teamId);
+      return createSocialChallenge(req, managedTeam, user.userId);
+    },
+  });
+
+  app.http('coach-social-challenge-action', {
+    methods: ['POST'],
+    authLevel: 'anonymous',
+    route: 'coach/team/{teamId}/social-challenges/{challengeId}',
+    handler: async (req) => {
+      const user = getUser(req);
+      if (!user) return jsonResponse({ error: 'Unauthorized' }, 401);
+      const teamId = req.params.teamId;
+      if (!await verifyCoachOwnsTeam(user.userId, teamId)) return jsonResponse({ error: 'Forbidden' }, 403);
+      return updateSocialChallenge(req, teamId);
+    },
+  });
+
+  async function getSocialChallenges(teamId) {
+    const container = await getCoachContainer();
+    if (!container) return jsonResponse({ challenges: [] });
+    try {
+      const { resources } = await container.items.query({
+        query: 'SELECT * FROM c WHERE c.docType = "socialChallenge" AND (c.teamId = @teamId OR c.opponentTeamId = @teamId) ORDER BY c.createdAt DESC',
+        parameters: [{ name: '@teamId', value: teamId }],
+      }).fetchAll();
+      return jsonResponse({ challenges: resources });
+    } catch {
+      return jsonResponse({ challenges: [] });
+    }
+  }
+
+  async function createSocialChallenge(req, managedTeam, userId) {
+    const container = await getCoachContainer();
+    if (!container) return jsonResponse({ error: 'Database not configured' }, 503);
+    let body;
+    try {
+      body = await req.json();
+    } catch {
+      return jsonResponse({ error: 'Invalid JSON' }, 400);
+    }
+    const fields = ['opponentTeamId', 'opponentTeamName', 'title'];
+    if (!body || fields.some((field) => typeof body[field] !== 'string' || body[field].trim().length === 0 || body[field].length > 100)) {
+      return jsonResponse({ error: 'Invalid challenge details' }, 400);
+    }
+    if (body.opponentTeamId === managedTeam.teamId) return jsonResponse({ error: 'Opponent must be another team' }, 400);
+    if (!Number.isInteger(body.target) || body.target < 1 || body.target > 50 || !Number.isInteger(body.days) || body.days < 1 || body.days > 31) {
+      return jsonResponse({ error: 'Invalid challenge target or duration' }, 400);
+    }
+    const now = new Date();
+    const challenge = {
+      id: randomUUID(),
+      teamId: managedTeam.teamId,
+      teamName: managedTeam.teamName,
+      opponentTeamId: body.opponentTeamId.trim(),
+      opponentTeamName: body.opponentTeamName.trim(),
+      title: body.title.trim(),
+      target: body.target,
+      unit: 'trainingSessions',
+      teamProgress: 0,
+      opponentProgress: 0,
+      status: 'pending',
+      createdBy: userId,
+      createdAt: now.toISOString(),
+      endsAt: new Date(now.getTime() + body.days * 86400000).toISOString(),
+      docType: 'socialChallenge',
+    };
+    try {
+      const { resource } = await container.items.create(challenge);
+      return jsonResponse(resource, 201);
+    } catch {
+      return jsonResponse({ error: 'Failed to create challenge' }, 500);
+    }
+  }
+
+  async function updateSocialChallenge(req, teamId) {
+    const container = await getCoachContainer();
+    if (!container) return jsonResponse({ error: 'Database not configured' }, 503);
+    let body;
+    try {
+      body = await req.json();
+    } catch {
+      return jsonResponse({ error: 'Invalid JSON' }, 400);
+    }
+    if (!['accept', 'decline', 'progress'].includes(body?.action)) return jsonResponse({ error: 'Invalid action' }, 400);
+    try {
+      const { resources } = await container.items.query({
+        query: 'SELECT * FROM c WHERE c.id = @id AND c.docType = "socialChallenge"',
+        parameters: [{ name: '@id', value: req.params.challengeId }],
+      }).fetchAll();
+      const challenge = resources[0];
+      if (!challenge || (challenge.teamId !== teamId && challenge.opponentTeamId !== teamId)) return jsonResponse({ error: 'Not found' }, 404);
+      const isOpponent = challenge.opponentTeamId === teamId;
+      if ((body.action === 'accept' || body.action === 'decline') && (!isOpponent || challenge.status !== 'pending')) {
+        return jsonResponse({ error: 'Challenge cannot be updated' }, 409);
+      }
+      if (body.action === 'accept') challenge.status = 'active';
+      if (body.action === 'decline') challenge.status = 'declined';
+      if (body.action === 'progress') {
+        if (challenge.status !== 'active' || new Date(challenge.endsAt) < new Date()) return jsonResponse({ error: 'Challenge is not active' }, 409);
+        const progressKey = isOpponent ? 'opponentProgress' : 'teamProgress';
+        challenge[progressKey] = Math.min(challenge[progressKey] + 1, challenge.target);
+        if (challenge[progressKey] >= challenge.target) challenge.status = 'completed';
+      }
+      const { resource } = await container.item(challenge.id, challenge.teamId).replace(challenge, {
+        accessCondition: { type: 'IfMatch', condition: challenge._etag },
+      });
+      return jsonResponse(resource);
+    } catch (error) {
+      if (error.code === 412) return jsonResponse({ error: 'Challenge changed, please try again' }, 409);
+      return jsonResponse({ error: 'Failed to update challenge' }, 500);
+    }
+  }
 /* ── Team Roster ──────────────────────────────────────────── */
 
 app.http('coach-roster', {

@@ -31,8 +31,9 @@ const EvaluationPage = lazy(() => import('./pages/EvaluationPage').then(m => ({ 
 const AttendanceGrid = lazy(() => import('./components/AttendanceGrid').then(m => ({ default: m.AttendanceGrid })))
 const TeamPickerLazy = lazy(() => import('./components/TeamPicker').then(m => ({ default: m.TeamPicker })))
 const CoachStatsPage = lazy(() => import('./pages/CoachStatsPage').then(m => ({ default: m.CoachStatsPage })))
+const TeamChallenges = lazy(() => import('./pages/TeamChallenges').then(m => ({ default: m.TeamChallenges })))
 
-type Page = 'dashboard' | 'log' | 'learn' | 'exercises' | 'profile' | 'schedule' | 'progress' | 'leaderboard' | 'challenges' | 'portal' | 'mentor' | 'coach' | 'squads' | 'stats' | 'coach-roster' | 'coach-training' | 'coach-announce' | 'coach-evaluate' | 'coach-attendance'
+type Page = 'dashboard' | 'log' | 'learn' | 'exercises' | 'profile' | 'schedule' | 'progress' | 'leaderboard' | 'challenges' | 'portal' | 'mentor' | 'coach' | 'squads' | 'stats' | 'coach-roster' | 'coach-training' | 'coach-announce' | 'coach-evaluate' | 'coach-attendance' | 'coach-challenges'
 
 function AppContent() {
   const [page, setPage] = useState<Page>('dashboard')
@@ -252,6 +253,13 @@ function AppContent() {
                   teamName={coachTeamName}
                   teamIds={coachTeamIds}
                   coachId={profile?.id ?? ''}
+                  onBack={() => handleNavigate('dashboard')}
+                />
+              )}
+              {page === 'coach-challenges' && coachTeamId && (
+                <TeamChallenges
+                  teamId={coachTeamId}
+                  teamName={coachTeamName}
                   onBack={() => handleNavigate('dashboard')}
                 />
               )}

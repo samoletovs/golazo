@@ -7,7 +7,7 @@ interface CoachDashboardProps {
   teams: ManagedTeam[]
   selectedTeamIds: string[]
   onToggleTeam: (id: string) => void
-  onNavigate: (page: 'roster' | 'training' | 'announce' | 'evaluate' | 'attendance', teamId: string) => void
+  onNavigate: (page: 'roster' | 'training' | 'announce' | 'evaluate' | 'attendance' | 'challenges', teamId: string) => void
   onNavigateMulti: (page: 'training' | 'announce' | 'attendance', teamIds: string[]) => void
   onManageTeams: () => void
 }
@@ -94,7 +94,7 @@ export function CoachDashboard({ teams, selectedTeamIds, onToggleTeam, onNavigat
                   </div>
 
                   {/* Quick action buttons for this squad */}
-                  <div className="grid grid-cols-4 gap-2">
+                  <div className="grid grid-cols-5 gap-2">
                     <button
                       className="flex flex-col items-center gap-1 py-2 rounded-xl tap-target"
                       style={{ background: 'var(--color-glass-hover)' }}
@@ -133,6 +133,16 @@ export function CoachDashboard({ teams, selectedTeamIds, onToggleTeam, onNavigat
                       <span className="text-sm">✅</span>
                       <span className="text-[10px] font-bold" style={{ color: 'var(--color-text-muted)' }}>
                         {t('coach.attendance.title')}
+                      </span>
+                    </button>
+                    <button
+                      className="flex flex-col items-center gap-1 py-2 rounded-xl tap-target"
+                      style={{ background: 'var(--color-glass-hover)' }}
+                      onClick={() => onNavigate('challenges', sq.teamId)}
+                    >
+                      <span className="text-sm">🏆</span>
+                      <span className="text-[10px] font-bold" style={{ color: 'var(--color-text-muted)' }}>
+                        {t('teamChallenges.title')}
                       </span>
                     </button>
                   </div>
