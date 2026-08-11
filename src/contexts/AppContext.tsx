@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef, createContext, useContext } from 'react'
 import type { ReactNode } from 'react'
-import type { XpState, PlayerProfile, SkillTree, TrainingEntry, MatchEntry, Tournament, DiaryEntry, ScheduleEvent, SpecialChallengeProgress, PhysicalProfile, RecurringTraining, DailyCheckIn, QuizAnswer, ReadArticle, ProgramProgress, UserDrill } from '../engine/types'
+import type { XpState, PlayerProfile, SkillTree, TrainingEntry, MatchEntry, Tournament, DiaryEntry, ScheduleEvent, SpecialChallengeProgress, PhysicalProfile, RecurringTraining, DailyCheckIn, QuizAnswer, ReadArticle, ProgramProgress, UserDrill, PersonalGoal } from '../engine/types'
 import { createInitialXpState } from '../engine/xp'
 import { createInitialSkillTree } from '../engine/skills'
 
@@ -24,6 +24,7 @@ interface AppState {
   savedExercises: string[] // exercise IDs
   programProgress: ProgramProgress[]
   userDrills: UserDrill[]
+  personalGoals: PersonalGoal[]
   onboardingComplete: boolean
 }
 
@@ -49,6 +50,10 @@ interface AppContextValue extends AppState {
   updateProgramProgress: (p: ProgramProgress) => void
   addUserDrill: (d: UserDrill) => void
   deleteUserDrill: (id: string) => void
+  setPersonalGoals: (goals: PersonalGoal[] | ((prev: PersonalGoal[]) => PersonalGoal[])) => void
+  addPersonalGoal: (g: PersonalGoal) => void
+  updatePersonalGoal: (g: PersonalGoal) => void
+  deletePersonalGoal: (id: string) => void
   setOnboardingComplete: (v: boolean) => void
   syncToCloud: () => Promise<void>
   resetState: () => void
@@ -97,6 +102,7 @@ async function syncToApi(state: AppState): Promise<void> {
         savedExercises: state.savedExercises,
         programProgress: state.programProgress,
         userDrills: state.userDrills,
+        personalGoals: state.personalGoals,
         onboardingComplete: state.onboardingComplete,
       }),
     })
@@ -124,6 +130,7 @@ function loadState(): AppState {
       merged.programProgress = merged.programProgress ?? []
       merged.recurringTrainings = merged.recurringTrainings ?? []
       merged.userDrills = merged.userDrills ?? []
+      merged.personalGoals = merged.personalGoals ?? []
       return merged
     }
   } catch { /* ignore corrupted storage */ }
@@ -149,6 +156,7 @@ function createDefaultState(): AppState {
     savedExercises: [],
     programProgress: [],
     userDrills: [],
+    personalGoals: [],
     onboardingComplete: false,
   }
 }
@@ -185,6 +193,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
           merged.matches = (remote.matches?.length ? remote.matches : null) ?? prev.matches ?? []
           merged.tournaments = (remote.tournaments?.length ? remote.tournaments : null) ?? prev.tournaments ?? []
           merged.userDrills = (remote.userDrills?.length ? remote.userDrills : null) ?? prev.userDrills ?? []
+          merged.personalGoals = (remote.personalGoals?.length ? remote.personalGoals : null) ?? prev.personalGoals ?? []
           saveState(merged)
           return merged
         })
@@ -210,20 +219,35 @@ export function AppProvider({ children }: { children: ReactNode }) {
     return () => window.removeEventListener('beforeunload', handleBeforeUnload)
   }, [])
 
-  function update(partial: Partial<AppState>) {
+  const update = useCallback((partial: Partial<AppState> | ((prev: AppState) => Partial<AppState>)) => {
     setState((prev) => {
-      const next = { ...prev, ...partial }
+      const patch = typeof partial === 'function' ? partial(prev) : partial
+      const next = { ...prev, ...patch }
       saveState(next)
       // Auto-sync to cloud after 2s debounce (non-blocking)
       window.clearTimeout(syncTimerRef.current)
       syncTimerRef.current = window.setTimeout(() => syncToApi(next), 2000)
       return next
     })
-  }
+  }, [])
 
   const syncToCloud = useCallback(async () => {
     await syncToApi(state)
   }, [state])
+
+  const setPersonalGoals = useCallback((goalsOrUpdater: PersonalGoal[] | ((prev: PersonalGoal[]) => PersonalGoal[])) => {
+    setState((prev) => {
+      const personalGoals = typeof goalsOrUpdater === 'function'
+        ? goalsOrUpdater(prev.personalGoals)
+        : goalsOrUpdater
+      if (personalGoals === prev.personalGoals) return prev
+      const next = { ...prev, personalGoals }
+      saveState(next)
+      window.clearTimeout(syncTimerRef.current)
+      syncTimerRef.current = window.setTimeout(() => syncToApi(next), 2000)
+      return next
+    })
+  }, [])
 
   const value: AppContextValue = {
     ...state,
@@ -257,6 +281,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
     }),
     addUserDrill: (d) => update({ userDrills: [...state.userDrills, d] }),
     deleteUserDrill: (id) => update({ userDrills: state.userDrills.filter(d => d.id !== id) }),
+    setPersonalGoals,
+    addPersonalGoal: (g) => update(prev => ({ personalGoals: [...prev.personalGoals, g] })),
+    updatePersonalGoal: (g) => update(prev => ({ personalGoals: prev.personalGoals.map(x => x.id === g.id ? g : x) })),
+    deletePersonalGoal: (id) => update(prev => ({ personalGoals: prev.personalGoals.filter(g => g.id !== id) })),
     setOnboardingComplete: (v) => update({ onboardingComplete: v }),
     syncToCloud,
     resetState: () => {

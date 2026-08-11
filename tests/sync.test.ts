@@ -30,6 +30,7 @@ const APP_STATE_FIELDS = [
   'savedExercises',
   'programProgress',
   'userDrills',
+  'personalGoals',
   'onboardingComplete',
 ] as const
 
@@ -119,6 +120,8 @@ describe('Sync payload completeness', () => {
     expect(source).toContain("type: 'recurringTraining'")
     expect(source).toContain("key: 'userDrills'")
     expect(source).toContain("type: 'userDrill'")
+    expect(source).toContain("docType: 'personalGoals'")
+    expect(source).toContain('validGoalMetrics')
   })
 
   it('sync API handles onboardingComplete in both directions', async () => {

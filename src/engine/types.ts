@@ -609,6 +609,17 @@ export interface Achievement {
   unlockedAt?: string
 }
 
+export type PersonalGoalMetric = 'trainings' | 'matches' | 'goals' | 'assists' | 'diary' | 'xp' | 'streak'
+
+export interface PersonalGoal {
+  id: string
+  title: string
+  metric: PersonalGoalMetric
+  target: number
+  createdAt: string
+  completedAt?: string
+}
+
 /* ── Daily Check-in ───────────────────────────────────────── */
 
 export interface DailyCheckIn {

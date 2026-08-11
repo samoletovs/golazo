@@ -8,6 +8,7 @@ import { fifaCardRatings, overallRating } from '../engine/skills'
 import { renderFifaCard } from '../engine/fifaCard'
 import { PhotoUpload } from '../components/PhotoUpload'
 import { AchievementsList } from '../components/AchievementsList'
+import { PersonalGoals } from '../components/PersonalGoals'
 import { ThemePicker } from '../components/ThemePicker'
 import { TeamPicker } from '../components/TeamPicker'
 import type { Language, AccountRole } from '../engine/types'
@@ -380,6 +381,13 @@ export function Profile() {
       {profile?.role === 'player' && (
       <div className="card animate-fade-up">
         <AchievementsList />
+      </div>
+      )}
+
+      {/* Personalized goals — player only */}
+      {profile?.role === 'player' && (
+      <div className="card animate-fade-up">
+        <PersonalGoals />
       </div>
       )}
 

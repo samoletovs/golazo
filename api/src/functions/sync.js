@@ -53,6 +53,7 @@ async function handleGet(container, userId) {
     savedExercises: [],
     programProgress: [],
     userDrills: [],
+    personalGoals: [],
     onboardingComplete: false,
   };
 
@@ -75,6 +76,9 @@ async function handleGet(container, userId) {
       case 'programProgress': state.programProgress.push(doc.data); break;
       case 'recurringTraining': state.recurringTrainings.push(doc.data); break;
       case 'userDrill': state.userDrills.push(doc.data); break;
+      case 'personalGoals':
+        if (state.personalGoals.length === 0 && Array.isArray(doc.data)) state.personalGoals = doc.data;
+        break;
       case 'onboardingComplete': state.onboardingComplete = doc.data; break;
     }
   }
@@ -139,6 +143,22 @@ async function handlePut(container, userId, req) {
   if (body.savedExercises !== undefined) {
     if (!Array.isArray(body.savedExercises) || body.savedExercises.some(e => typeof e !== 'string')) {
       return jsonResponse({ error: 'savedExercises must be a string array' }, 400);
+    }
+  }
+
+  // personalGoals is stored as a single ordered array so deletes sync cleanly
+  if (body.personalGoals !== undefined) {
+    if (!Array.isArray(body.personalGoals)) {
+      return jsonResponse({ error: 'personalGoals must be an array' }, 400);
+    }
+    const validGoalMetrics = new Set(['trainings', 'matches', 'goals', 'assists', 'diary', 'xp', 'streak']);
+    for (const goal of body.personalGoals) {
+      if (!goal || typeof goal !== 'object' || typeof goal.id !== 'string' || typeof goal.title !== 'string' || typeof goal.target !== 'number' || goal.target < 1 || typeof goal.metric !== 'string') {
+        return jsonResponse({ error: 'personalGoals items must have id, title, target, and metric' }, 400);
+      }
+      if (!validGoalMetrics.has(goal.metric)) {
+        return jsonResponse({ error: 'personalGoals items must have a valid metric' }, 400);
+      }
     }
   }
 
@@ -250,6 +270,17 @@ async function handlePut(container, userId, req) {
       userId,
       docType: 'savedExercises',
       data: body.savedExercises,
+      updatedAt: new Date().toISOString(),
+    }));
+  }
+
+  // Upsert personalGoals (single doc — ordered goal array)
+  if (Array.isArray(body.personalGoals)) {
+    operations.push(container.items.upsert({
+      id: `${userId}:personalGoals`,
+      userId,
+      docType: 'personalGoals',
+      data: body.personalGoals,
       updatedAt: new Date().toISOString(),
     }));
   }
