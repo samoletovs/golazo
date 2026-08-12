@@ -31,7 +31,7 @@ interface AppState {
 interface AppContextValue extends AppState {
   syncing: boolean
   setProfile: (p: PlayerProfile) => void
-  setXp: (xp: XpState) => void
+  setXp: (xp: XpState | ((prev: XpState) => XpState)) => void
   setSkillTree: (st: SkillTree) => void
   addTraining: (t: TrainingEntry) => void
   addMatch: (m: MatchEntry) => void
@@ -253,7 +253,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
     ...state,
     syncing,
     setProfile: (p) => update({ profile: p }),
-    setXp: (xp) => update({ xp }),
+    setXp: (xpOrUpdater) => update((prev) => ({
+      xp: typeof xpOrUpdater === 'function' ? xpOrUpdater(prev.xp) : xpOrUpdater,
+    })),
     setSkillTree: (st) => update({ skillTree: st }),
     addTraining: (t) => update({ trainings: [...state.trainings, t] }),
     addMatch: (m) => update({ matches: [...state.matches, m] }),

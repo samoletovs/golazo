@@ -32,6 +32,7 @@
   "dashboard.greetingAfternoon": "Laba diena",
   "dashboard.greetingEvening": "Labas vakaras",
   "dashboard.streakMessage": "Serija {{days}} d. iš eilės — tęsk!",
+  "dashboard.challengeOfDay": "Dienos iššūkis",
   "dashboard.drillOfDay": "Dienos pratimas",
   "dashboard.vsLastWeek": "lyginant su praėjusia savaite",
   "dashboard.upcoming": "Kitas renginys",

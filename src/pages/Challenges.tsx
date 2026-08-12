@@ -1,18 +1,11 @@
-import { useState, useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
 import { awardXp, XP_AWARDS } from '../engine/xp'
 import { getAgeTier } from '../engine/types'
-import { generateDailyChallenges, getChallengeReasonKey } from '../engine/challenges'
+import { ageTierToChallengeDifficulty, generateDailyChallenges, getChallengeReasonKey, getDailyChallengeCompletionKey } from '../engine/challenges'
 import { createInitialSkillTree } from '../engine/skills'
-import type { SpecialChallengeProgress, ActiveChallenge, QuizDifficulty, ChallengeDifficulty } from '../engine/types'
-
-function tierToDifficulty(tier: string): QuizDifficulty {
-  if (tier === 'u8') return 'u10'
-  if (tier === 'u12') return 'u12'
-  if (tier === 'u16') return 'u16'
-  return 'u16'
-}
+import type { SpecialChallengeProgress, ActiveChallenge, ChallengeDifficulty, Position } from '../engine/types'
 
 const CATEGORY_COLORS: Record<string, { bg: string; text: string }> = {
   technical: { bg: '#dbeafe', text: '#1d4ed8' },
@@ -42,16 +35,15 @@ export function Challenges() {
   const { t } = useTranslation()
   const { xp, setXp, specialChallenges, setSpecialChallenges, profile, skillTree } = useApp()
   const ageTier = profile?.birthDate ? getAgeTier(profile.birthDate) : undefined
-  const difficulty = profile?.birthDate ? tierToDifficulty(getAgeTier(profile.birthDate)) : 'u12' as QuizDifficulty
 
   const todayKey = new Date().toISOString().split('T')[0]
   const userId = profile?.id || 'anonymous'
-
+  const positionKey = (profile?.positions ?? []).join('|')
   const challenges = useMemo(() => {
     const tree = skillTree || createInitialSkillTree(userId)
-    const positions = profile?.positions || []
-    return generateDailyChallenges(userId, todayKey, difficulty, positions, tree)
-  }, [userId, todayKey, difficulty, profile?.positions, skillTree])
+    const positions = positionKey ? positionKey.split('|') as Position[] : []
+    return generateDailyChallenges(userId, todayKey, ageTierToChallengeDifficulty(ageTier), positions, tree)
+  }, [userId, todayKey, ageTier, positionKey, skillTree])
 
   const dailyChallenges = challenges.filter((c) => c.reason !== 'weekly')
   const weeklyChallenge = challenges.find((c) => c.reason === 'weekly')
@@ -59,7 +51,7 @@ export function Challenges() {
 
   const [completedIds, setCompletedIds] = useState<Set<string>>(() => {
     try {
-      const stored = localStorage.getItem(`golazo-challenges-${todayKey}`)
+      const stored = localStorage.getItem(getDailyChallengeCompletionKey(todayKey))
       return stored ? new Set(JSON.parse(stored)) : new Set()
     } catch { return new Set() }
   })
@@ -80,8 +72,8 @@ export function Challenges() {
     if (completedIds.has(challenge.templateId)) return
     const updated = new Set(completedIds).add(challenge.templateId)
     setCompletedIds(updated)
-    localStorage.setItem(`golazo-challenges-${todayKey}`, JSON.stringify([...updated]))
-    setXp(awardXp(xp, XP_AWARDS.dailyChallenge, todayKey, ageTier))
+    localStorage.setItem(getDailyChallengeCompletionKey(todayKey), JSON.stringify([...updated]))
+    setXp((currentXp) => awardXp(currentXp, challenge.xpReward, todayKey, ageTier))
   }
 
   function incrementWeekly() {
@@ -319,4 +311,3 @@ export function Challenges() {
     </div>
   )
 }
-

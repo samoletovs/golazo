@@ -1,4 +1,4 @@
-import type { SkillCategory, SkillTree, Position, QuizDifficulty, ActiveChallenge, ChallengeReason } from './types'
+import type { SkillCategory, SkillTree, Position, QuizDifficulty, ActiveChallenge, ChallengeReason, AgeTier } from './types'
 import { categoryAverage, TRAINABLE_CATEGORIES } from './skills'
 import { challengePool } from '../data/challenge-pool'
 
@@ -38,6 +38,17 @@ function shuffle<T>(arr: T[], rand: () => number): T[] {
     ;[result[i], result[j]] = [result[j], result[i]]
   }
   return result
+}
+
+export function ageTierToChallengeDifficulty(ageTier: AgeTier | undefined): QuizDifficulty {
+  if (ageTier === 'u8') return 'u10'
+  if (ageTier === 'u12') return 'u12'
+  if (ageTier === 'u16' || ageTier === 'u19plus') return 'u16'
+  return 'u12'
+}
+
+export function getDailyChallengeCompletionKey(date: string): string {
+  return `golazo-challenges-${date}`
 }
 
 /**
@@ -163,6 +174,18 @@ export function generateDailyChallenges(
       shareCode: p.template.shareCode,
     }
   })
+}
+
+export function getChallengeOfDay(
+  userId: string,
+  date: string,
+  difficulty: QuizDifficulty,
+  positions: Position[],
+  skillTree: SkillTree,
+  recentChallengeIds: string[] = [],
+): ActiveChallenge | undefined {
+  return generateDailyChallenges(userId, date, difficulty, positions, skillTree, recentChallengeIds)
+    .find((challenge) => challenge.reason !== 'weekly')
 }
 
 /** Get ISO week key for weekly challenge consistency */

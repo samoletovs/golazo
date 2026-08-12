@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { generateDailyChallenges, getChallengeReasonKey } from '../src/engine/challenges'
+import { ageTierToChallengeDifficulty, generateDailyChallenges, getChallengeOfDay, getChallengeReasonKey, getDailyChallengeCompletionKey } from '../src/engine/challenges'
 import { createInitialSkillTree } from '../src/engine/skills'
 
 describe('generateDailyChallenges', () => {
@@ -67,6 +67,16 @@ describe('generateDailyChallenges', () => {
     const result = generateDailyChallenges('player1', '2024-06-01', 'u12', ['ST'], tree, recentIds)
     expect(result.length).toBeGreaterThan(0)
   })
+
+  it('exposes a single Challenge of the Day from the daily challenge set', () => {
+    const challenges = generateDailyChallenges('player1', '2024-06-01', 'u12', ['ST'], tree)
+    const challengeOfDay = getChallengeOfDay('player1', '2024-06-01', 'u12', ['ST'], tree)
+    const firstDaily = challenges.find((c) => c.reason !== 'weekly')
+
+    expect(challengeOfDay).toEqual(firstDaily)
+    expect(challengeOfDay?.reason).not.toBe('weekly')
+    expect(challengeOfDay?.target).toBeGreaterThan(0)
+  })
 })
 
 describe('getChallengeReasonKey', () => {
@@ -77,5 +87,19 @@ describe('getChallengeReasonKey', () => {
     for (const key of keys) {
       expect(key.startsWith('ch.reason.')).toBe(true)
     }
+  })
+
+  describe('challenge helpers', () => {
+    it('maps app age tiers to challenge difficulty pools', () => {
+      expect(ageTierToChallengeDifficulty('u8')).toBe('u10')
+      expect(ageTierToChallengeDifficulty('u12')).toBe('u12')
+      expect(ageTierToChallengeDifficulty('u16')).toBe('u16')
+      expect(ageTierToChallengeDifficulty('u19plus')).toBe('u16')
+      expect(ageTierToChallengeDifficulty(undefined)).toBe('u12')
+    })
+
+    it('builds the shared daily completion storage key', () => {
+      expect(getDailyChallengeCompletionKey('2024-06-01')).toBe('golazo-challenges-2024-06-01')
+    })
   })
 })

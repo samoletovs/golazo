@@ -34,6 +34,7 @@
   "dashboard.greetingAfternoon": "Добрый день",
   "dashboard.greetingEvening": "Добрый вечер",
   "dashboard.streakMessage": "Серия {{days}} дней подряд — продолжай!",
+  "dashboard.challengeOfDay": "Челлендж дня",
   "dashboard.drillOfDay": "Упражнение дня",
   "dashboard.vsLastWeek": "vs прошлая неделя",
   "dashboard.upcoming": "Следующее событие",

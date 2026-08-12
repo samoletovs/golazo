@@ -34,6 +34,7 @@
   "dashboard.greetingAfternoon": "Good afternoon",
   "dashboard.greetingEvening": "Good evening",
   "dashboard.streakMessage": "You're on a {{days}}-day streak — keep it up!",
+  "dashboard.challengeOfDay": "Challenge of the Day",
   "dashboard.drillOfDay": "Drill of the day",
   "dashboard.vsLastWeek": "vs last week",
   "dashboard.upcoming": "Next event",

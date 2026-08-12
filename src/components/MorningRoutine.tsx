@@ -1,11 +1,12 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
 import { awardXp, XP_AWARDS, scaleXp } from '../engine/xp'
 import { DailyCheckIn } from './DailyCheckIn'
 import { DailyQuiz } from './DailyQuiz'
-import { exercises } from '../data/exercises'
 import { getAgeTier } from '../engine/types'
+import { ageTierToChallengeDifficulty, getChallengeOfDay, getDailyChallengeCompletionKey } from '../engine/challenges'
+import type { Position } from '../engine/types'
 
 type Step = 'checkin' | 'challenge' | 'quiz' | 'done'
 
@@ -15,49 +16,53 @@ interface MorningRoutineProps {
 
 export function MorningRoutine({ onClose }: MorningRoutineProps) {
   const { t } = useTranslation()
-  const { xp, setXp, checkIns, quizAnswers, profile } = useApp()
+  const { setXp, checkIns, quizAnswers, profile, skillTree } = useApp()
   const ageTier = profile?.birthDate ? getAgeTier(profile.birthDate) : undefined
+  const difficulty = ageTierToChallengeDifficulty(ageTier)
   const scaledRoutineBonus = scaleXp(XP_AWARDS.morningRoutineBonus, ageTier)
 
   const today = new Date().toISOString().slice(0, 10)
   const checkedIn = checkIns.some((c) => c.date === today)
   const quizzed = quizAnswers.some((q) => q.date === today)
+  const positionKey = (profile?.positions ?? []).join('|')
+  const challenge = useMemo(() => (
+    getChallengeOfDay(profile?.id || 'anonymous', today, difficulty, positionKey ? positionKey.split('|') as Position[] : [], skillTree)
+  ), [profile?.id, today, difficulty, positionKey, skillTree])
+  const challengeStorageKey = getDailyChallengeCompletionKey(today)
 
-  // Track XP awarded during this routine session to avoid stale state
-  const [xpAwarded, setXpAwarded] = useState(0)
+  const [completedChallengeIds, setCompletedChallengeIds] = useState<Set<string>>(() => {
+    try {
+      const stored = localStorage.getItem(challengeStorageKey)
+      return stored ? new Set(JSON.parse(stored)) : new Set()
+    } catch { return new Set() }
+  })
+  const challengeCompleted = challenge ? completedChallengeIds.has(challenge.templateId) : true
 
   // Skip already-completed steps
-  const initialStep: Step = !checkedIn ? 'checkin' : 'challenge'
+  const initialStep: Step = !checkedIn ? 'checkin' : challengeCompleted ? 'quiz' : 'challenge'
   const [step, setStep] = useState<Step>(initialStep)
-  const [challengeDone, setChallengeDone] = useState(false)
+  const currentStep: Step = step === 'challenge' && !challenge ? 'quiz' : step
 
-  // Drill of the day for the challenge step
-  const dayIndex = Math.floor(new Date(today).getTime() / 86400000) % exercises.length
-  const drill = exercises[dayIndex]
-
-  const stepNumber = step === 'checkin' ? 1 : step === 'challenge' ? 2 : step === 'quiz' ? 3 : 3
+  const stepNumber = currentStep === 'checkin' ? 1 : currentStep === 'challenge' ? 2 : currentStep === 'quiz' ? 3 : 3
   const totalSteps = 3
 
   function handleChallengeComplete() {
-    setChallengeDone(true)
-    // Award daily challenge XP — use xp + accumulated awards to avoid stale state
-    const currentXp = awardXp(xp, xpAwarded, today, ageTier) // rebase to latest
-    setXp(awardXp(currentXp, XP_AWARDS.dailyChallenge, today, ageTier))
-    setXpAwarded((prev) => prev + XP_AWARDS.dailyChallenge)
+    if (!challenge || completedChallengeIds.has(challenge.templateId)) return
+    const updated = new Set(completedChallengeIds).add(challenge.templateId)
+    setCompletedChallengeIds(updated)
+    localStorage.setItem(challengeStorageKey, JSON.stringify([...updated]))
+    setXp((currentXp) => awardXp(currentXp, challenge.xpReward, today, ageTier))
     setTimeout(() => {
       if (quizzed) {
-        finishRoutine(XP_AWARDS.dailyChallenge)
+        finishRoutine()
       } else {
         setStep('quiz')
       }
     }, 800)
   }
 
-  function finishRoutine(extraXpSoFar = 0) {
-    // Award morning routine bonus — rebase from original xp + all accumulated
-    const totalAccumulated = xpAwarded + extraXpSoFar
-    const currentXp = awardXp(xp, totalAccumulated, today, ageTier)
-    setXp(awardXp(currentXp, XP_AWARDS.morningRoutineBonus, today, ageTier))
+  function finishRoutine() {
+    setXp((currentXp) => awardXp(currentXp, XP_AWARDS.morningRoutineBonus, today, ageTier))
     setStep('done')
   }
 
@@ -81,7 +86,7 @@ export function MorningRoutine({ onClose }: MorningRoutineProps) {
       </div>
 
       {/* Progress bar */}
-      {step !== 'done' && (
+      {currentStep !== 'done' && (
         <div className="px-4 py-2">
           <div className="progress-track">
             <div
@@ -101,42 +106,47 @@ export function MorningRoutine({ onClose }: MorningRoutineProps) {
       {/* Content */}
       <div className="flex-1 overflow-y-auto p-4">
         <div className="app-shell">
-          {step === 'checkin' && (
+          {currentStep === 'checkin' && (
             <div className="animate-fade-up">
               <p className="text-lg font-bold mb-4 heading-display">
                 🌤️ {t('checkin.title')}
               </p>
               <DailyCheckIn
                 compact
-                onComplete={() => setStep('challenge')}
+                onComplete={() => setStep(challengeCompleted ? 'quiz' : 'challenge')}
               />
             </div>
           )}
 
-          {step === 'challenge' && (
+          {currentStep === 'challenge' && challenge && (
             <div className="animate-fade-up">
               <p className="text-lg font-bold mb-4 heading-display">
                 🎯 {t('routine.challengeTitle')}
               </p>
               <div className="card flex flex-col gap-3">
-                <p className="text-sm font-bold">{t(drill.nameKey)}</p>
+                <p className="text-sm font-bold">{t(challenge.textKey)}</p>
                 <p className="text-xs leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
-                  {t(drill.descriptionKey)}
+                  {t(challenge.descKey)}
                 </p>
                 <div className="flex items-center gap-3">
                   <span className="text-xs px-2 py-0.5 rounded-full font-data" style={{ background: '#f3f4f6', color: '#6b7280' }}>
-                    {drill.durationMinutes} min
+                    {challenge.target} {challenge.unit}
                   </span>
                   <span className="text-xs px-2 py-0.5 rounded-full" style={{ background: '#fef3c7', color: '#b45309' }}>
-                    {'⭐'.repeat(drill.difficulty)}
+                    +{challenge.xpReward} XP
                   </span>
                 </div>
+                {challenge.tipsKey && (
+                  <p className="text-xs rounded-xl p-3" style={{ background: '#fffbeb', color: '#78350f' }}>
+                    💡 {t(challenge.tipsKey)}
+                  </p>
+                )}
                 <button
                   className="btn-primary tap-target w-full"
                   onClick={handleChallengeComplete}
-                  disabled={challengeDone}
+                  disabled={completedChallengeIds.has(challenge.templateId)}
                 >
-                  {challengeDone
+                  {completedChallengeIds.has(challenge.templateId)
                     ? `✅ ${t('routine.challengeComplete')}`
                     : t('routine.markDone')}
                 </button>
@@ -144,7 +154,7 @@ export function MorningRoutine({ onClose }: MorningRoutineProps) {
             </div>
           )}
 
-          {step === 'quiz' && (
+          {currentStep === 'quiz' && (
             <div className="animate-fade-up">
               <p className="text-lg font-bold mb-4 heading-display">
                 🧠 {t('quiz.title')}
@@ -153,7 +163,7 @@ export function MorningRoutine({ onClose }: MorningRoutineProps) {
             </div>
           )}
 
-          {step === 'done' && (
+          {currentStep === 'done' && (
             <div className="flex flex-col items-center justify-center gap-4 py-16 animate-fade-up">
               <span className="text-6xl animate-float">🎉</span>
               <p className="text-xl font-bold heading-display" style={{ color: 'var(--color-primary-dark)' }}>

@@ -8,20 +8,27 @@ import { WeeklyGoalRing } from '../components/WeeklyGoalRing'
 import { useCountUp } from '../hooks/useCountUp'
 import { ConfettiBurst } from '../components/ConfettiBurst'
 import { getMatchResult, getAgeTier } from '../engine/types'
-import { getRank } from '../engine/xp'
-import { exercises } from '../data/exercises'
+import { awardXp, getRank } from '../engine/xp'
+import { ageTierToChallengeDifficulty, getChallengeOfDay, getChallengeReasonKey, getDailyChallengeCompletionKey } from '../engine/challenges'
 import { MatchLog } from './MatchLog'
 import { TrainingLog } from './TrainingLog'
-import type { ScheduleEvent } from '../engine/types'
+import type { Position, ScheduleEvent } from '../engine/types'
 import { isPhysicalUpdateDue, daysSinceLastMeasurement } from '../engine/physical'
 import { PhysicalUpdateFlow } from '../components/PhysicalUpdateFlow'
 import { MorningRoutine } from '../components/MorningRoutine'
 import { DailyQuiz } from '../components/DailyQuiz'
 import { LevelUpCelebration } from '../components/LevelUpCelebration'
 
+function readCompletedChallengeIds(storageKey: string): Set<string> {
+  try {
+    const stored = localStorage.getItem(storageKey)
+    return stored ? new Set(JSON.parse(stored)) : new Set()
+  } catch { return new Set() }
+}
+
 export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void }) {
   const { t } = useTranslation()
-  const { matches, trainings, xp, profile, schedule, tournaments, physicalProfile, checkIns, quizAnswers, recurringTrainings } = useApp()
+  const { matches, trainings, xp, setXp, profile, skillTree, schedule, tournaments, physicalProfile, checkIns, quizAnswers, recurringTrainings } = useApp()
   const rank = getRank(xp.level)
 
   // Age tier for adaptive UI
@@ -54,6 +61,38 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
   const todayMatches = matches.filter(m => m.date.startsWith(today)).length
   const todayTrainings = trainings.filter(tr => tr.date.startsWith(today)).length
   const todayGoals = matches.filter(m => m.date.startsWith(today)).reduce((s, m) => s + m.goals, 0)
+  const challengeDifficulty = ageTierToChallengeDifficulty(ageTier)
+  const challengeStorageKey = getDailyChallengeCompletionKey(today)
+  const positionKey = (profile?.positions ?? []).join('|')
+
+  const challengeOfDay = useMemo(() => (
+    getChallengeOfDay(profile?.id || 'anonymous', today, challengeDifficulty, positionKey ? positionKey.split('|') as Position[] : [], skillTree)
+  ), [profile?.id, today, challengeDifficulty, positionKey, skillTree])
+
+  const [completedChallengeIds, setCompletedChallengeIds] = useState<Set<string>>(() => readCompletedChallengeIds(challengeStorageKey))
+  const challengeDoneToday = challengeOfDay ? completedChallengeIds.has(challengeOfDay.templateId) : true
+
+  useEffect(() => {
+    setCompletedChallengeIds(readCompletedChallengeIds(challengeStorageKey))
+  }, [challengeStorageKey])
+
+  function closeRoutine() {
+    setCompletedChallengeIds(readCompletedChallengeIds(challengeStorageKey))
+    setShowRoutine(false)
+  }
+
+  function completeChallengeOfDay() {
+    if (!challengeOfDay) return
+    const latestCompletedIds = readCompletedChallengeIds(challengeStorageKey)
+    if (latestCompletedIds.has(challengeOfDay.templateId)) {
+      setCompletedChallengeIds(latestCompletedIds)
+      return
+    }
+    const updated = new Set(latestCompletedIds).add(challengeOfDay.templateId)
+    setCompletedChallengeIds(updated)
+    localStorage.setItem(challengeStorageKey, JSON.stringify([...updated]))
+    setXp((currentXp) => awardXp(currentXp, challengeOfDay.xpReward, today, ageTier))
+  }
 
   // Today's scheduled events (sorted by start time) — includes recurring trainings
   const todayEvents = useMemo(() => {
@@ -112,12 +151,6 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
     }
   }, [matches, trainings])
 
-  // Drill of the day — deterministic pick based on today's date
-  const drillOfDay = useMemo(() => {
-    const dayIndex = Math.floor(new Date(today).getTime() / 86400000) % exercises.length
-    return exercises[dayIndex]
-  }, [today])
-
   // Greeting based on time of day
   const greeting = useMemo(() => {
     const hour = new Date().getHours()
@@ -157,7 +190,7 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
   const [showRoutine, setShowRoutine] = useState(false)
   const todayCheckedIn = checkIns.some((c) => c.date === today)
   const todayQuizzed = quizAnswers.some((q) => q.date === today)
-  const routineComplete = todayCheckedIn && todayQuizzed
+  const routineComplete = todayCheckedIn && todayQuizzed && challengeDoneToday
 
   // Tournament discovery — find shared tournaments for player's teams
   const [discoveredTournaments, setDiscoveredTournaments] = useState<Array<{
@@ -199,7 +232,7 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
       )}
       {/* ── Morning Routine Overlay ── */}
       {showRoutine && (
-        <MorningRoutine onClose={() => setShowRoutine(false)} />
+        <MorningRoutine onClose={closeRoutine} />
       )}
 
       {/* ── Physical Update Flow ── */}
@@ -594,36 +627,51 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
         </div>
       )}
 
-      {/* ── Drill of the day (only when morning routine not completed) ── */}
-      {!routineComplete && (
+      {/* ── Challenge of the Day (only when morning routine not completed) ── */}
+      {!routineComplete && challengeOfDay && (
       <div className="card-glow animate-fade-up animate-stagger-3">
         <div className="flex items-center gap-2 mb-2">
-          <span className="text-lg">🎯</span>
-          <p className="section-label">{t('dashboard.drillOfDay')}</p>
+          <span className="text-lg">{challengeDoneToday ? '✅' : challengeOfDay.emoji}</span>
+          <p className="section-label">{t('dashboard.challengeOfDay')}</p>
         </div>
         <p className="text-base font-bold heading-display">
-          {t(drillOfDay.nameKey)}
+          {t(challengeOfDay.textKey)}
         </p>
         <p className="text-sm mt-1 leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
-          {t(drillOfDay.descriptionKey)}
+          {t(challengeOfDay.descKey)}
         </p>
         <div className="flex items-center gap-3 mt-2">
           <span className="text-xs px-2 py-0.5 rounded-full font-data" style={{ background: 'var(--color-bg-warm)', color: 'var(--color-text-muted)' }}>
-            {drillOfDay.durationMinutes} min
+            {challengeOfDay.target} {challengeOfDay.unit}
           </span>
           <span className="text-xs px-2 py-0.5 rounded-full" style={{ background: 'var(--color-amber-bg)', color: 'var(--color-amber-text)' }}>
-            {'⭐'.repeat(drillOfDay.difficulty)}
+            +{challengeOfDay.xpReward} XP
+          </span>
+          <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
+            ⏱ {challengeOfDay.estimateMin}{t('learn.minutes')}
           </span>
           {onNavigate && (
             <button
               className="ml-auto text-xs font-bold px-3 py-1 rounded-full"
               style={{ background: 'rgba(var(--color-primary-rgb), 0.12)', color: 'var(--color-primary-dark)' }}
-              onClick={() => onNavigate('exercises')}
+              onClick={() => onNavigate('challenges')}
             >
-              {t('exercises.all')} →
+              {t('nav.challenges')} →
             </button>
           )}
         </div>
+        <p className="text-xs mt-2 italic" style={{ color: 'var(--color-text-muted)' }}>
+          {t(getChallengeReasonKey(challengeOfDay.reason), { category: t(`learn.cat.${challengeOfDay.category}`) })}
+        </p>
+        {!challengeDoneToday ? (
+          <button className="btn-primary tap-target w-full mt-3 text-sm" onClick={completeChallengeOfDay}>
+            {t('challenges.markDone')} (+{challengeOfDay.xpReward} XP)
+          </button>
+        ) : (
+          <p className="text-xs mt-3 font-bold" style={{ color: 'var(--color-primary-dark)' }}>
+            ✓ {t('challenges.done')}
+          </p>
+        )}
       </div>
       )}
 

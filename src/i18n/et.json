@@ -32,6 +32,7 @@
   "dashboard.greetingAfternoon": "Tere päevast",
   "dashboard.greetingEvening": "Tere õhtust",
   "dashboard.streakMessage": "{{days}}-päevane seeria — jätka!",
+  "dashboard.challengeOfDay": "Päeva väljakutse",
   "dashboard.drillOfDay": "Päeva harjutus",
   "dashboard.vsLastWeek": "vs eelmine nädal",
   "dashboard.upcoming": "Järgmine sündmus",

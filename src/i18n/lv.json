@@ -34,6 +34,7 @@
   "dashboard.greetingAfternoon": "Labdien",
   "dashboard.greetingEvening": "Labvakar",
   "dashboard.streakMessage": "Tu esi {{days}} dienu sērijā — turpini!",
+  "dashboard.challengeOfDay": "Dienas izaicinājums",
   "dashboard.drillOfDay": "Dienas vingrojums",
   "dashboard.vsLastWeek": "vs pagājušo nedēļu",
   "dashboard.upcoming": "Nākamais notikums",
