@@ -14,6 +14,12 @@ const LABEL_KEYS: Record<SkillCategory, string> = {
   knowledge: 'skills.knowledge',
 }
 
+/**
+ * Dashboard radar chart for trainable skill categories.
+ *
+ * The chart converts category averages to points on a fixed 10-point scale, so
+ * skill growth is visually comparable across sessions and languages.
+ */
 export function SkillRadar() {
   const { skillTree } = useApp()
   const { t } = useTranslation()
@@ -24,7 +30,7 @@ export function SkillRadar() {
   const cy = 150
   const r = 110
 
-  // Generate hexagon points for a given radius
+  // Generate polygon points for the current category count at a given radius.
   const hexPoints = (radius: number) =>
     CATEGORIES.map((_, i) => {
       const angle = (Math.PI * 2 * i) / CATEGORIES.length - Math.PI / 2

@@ -61,6 +61,13 @@ interface AppContextValue extends AppState {
 
 const AppContext = createContext<AppContextValue | null>(null)
 
+/**
+ * Central app data access hook.
+ *
+ * All gameplay logs, progress data, onboarding status, and offline-first sync
+ * mutations flow through this provider so page components do not need to know
+ * whether data came from localStorage or the cloud API.
+ */
 export function useApp(): AppContextValue {
   const ctx = useContext(AppContext)
   if (!ctx) throw new Error('useApp must be used within AppProvider')
@@ -165,6 +172,13 @@ function saveState(state: AppState) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(state))
 }
 
+/**
+ * Offline-first state provider.
+ *
+ * The provider hydrates from localStorage immediately, opportunistically merges
+ * cloud state when the Static Web Apps API is available, and debounces writes
+ * back to the API so frequent taps/log updates stay responsive on mobile.
+ */
 export function AppProvider({ children }: { children: ReactNode }) {
   const [state, setState] = useState<AppState>(loadState)
   const [syncing, setSyncing] = useState(true)
@@ -235,6 +249,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
     await syncToApi(state)
   }, [state])
 
+  // Personal goals support functional updates because goal editors often derive
+  // the next list from the current list and should avoid stale closures.
   const setPersonalGoals = useCallback((goalsOrUpdater: PersonalGoal[] | ((prev: PersonalGoal[]) => PersonalGoal[])) => {
     setState((prev) => {
       const personalGoals = typeof goalsOrUpdater === 'function'

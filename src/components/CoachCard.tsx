@@ -14,6 +14,13 @@ function InsightRow({ insight }: { insight: CoachInsight }) {
   )
 }
 
+/**
+ * Personalized coaching summary shown on the dashboard.
+ *
+ * Local deterministic advice is always available offline. When the API returns
+ * useful AI advice, it is cached for the day and blended into the same display
+ * path so the UI behaves consistently in online and offline sessions.
+ */
 export function CoachCard() {
   const { t } = useTranslation()
   const { skillTree, matches, trainings, diary, tournaments, physicalProfile, checkIns } = useApp()
@@ -26,7 +33,8 @@ export function CoachCard() {
     [skillTree, matches, trainings, t, diary, tournaments, checkIns],
   )
 
-  // Rotate: show 1 skill focus per day (deterministic from date)
+  // Rotate skill guidance daily to keep the card focused without hiding
+  // wellbeing signals that may need immediate attention from the player/mentor.
   const dailyAdvice = useMemo(() => {
     const advice = aiAdvice ?? localAdvice
     // Always keep wellbeing insight if present
@@ -47,6 +55,8 @@ export function CoachCard() {
   }, [aiAdvice, localAdvice])
 
   useEffect(() => {
+    // Reuse a recent successful AI response, but discard generic/fallback data
+    // so the player can request a more specific recommendation later.
     const cached = localStorage.getItem('golazo-coach')
     if (cached) {
       try {

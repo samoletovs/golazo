@@ -11,12 +11,23 @@ interface AuthContextValue {
 
 const AuthContext = createContext<AuthContextValue | null>(null)
 
+/**
+ * Authentication access hook backed by Azure Static Web Apps auth.
+ *
+ * Components use this hook instead of calling `/.auth/me` directly so local
+ * development, login redirects, and explicit logout behavior stay centralized.
+ */
 export function useAuth(): AuthContextValue {
   const ctx = useContext(AuthContext)
   if (!ctx) throw new Error('useAuth must be used within AuthProvider')
   return ctx
 }
 
+/**
+ * Loads the current SWA client principal and exposes Google login/logout
+ * redirects. A localStorage logout flag prevents SWA from immediately restoring
+ * a Google session after the player explicitly signs out.
+ */
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<SwaClientPrincipal | null>(null)
   const [loading, setLoading] = useState(true)

@@ -5,6 +5,10 @@ interface VideoPlayerProps {
   title: string
 }
 
+/**
+ * Extracts a YouTube video ID from the URL formats used in the exercise data.
+ * Unknown providers intentionally fall back to a normal external link.
+ */
 function getYouTubeId(url: string): string | null {
   const patterns = [
     /(?:youtube\.com\/watch\?v=)([a-zA-Z0-9_-]{11})/,
@@ -18,6 +22,10 @@ function getYouTubeId(url: string): string | null {
   return null
 }
 
+/**
+ * Embeds YouTube videos with the privacy-enhanced no-cookie domain, or renders
+ * an accessible outbound link for non-YouTube exercise videos.
+ */
 export function VideoPlayer({ videoUrl, title }: VideoPlayerProps) {
   const { t } = useTranslation()
   const videoId = getYouTubeId(videoUrl)

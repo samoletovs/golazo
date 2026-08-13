@@ -110,6 +110,13 @@ const MENTOR_NAV = [
   { key: 'profile', labelKey: 'nav.profile' },
 ]
 
+/**
+ * Mobile-first primary navigation.
+ *
+ * The visible tabs are role-aware: players see logging and learning actions,
+ * while coaches and mentors get schedule/progress views that match their
+ * support workflows.
+ */
 export function BottomNav({ active, onNavigate, role }: BottomNavProps) {
   const { t } = useTranslation()
   const items = role === 'coach' ? COACH_NAV : role === 'mentor' ? MENTOR_NAV : PLAYER_NAV

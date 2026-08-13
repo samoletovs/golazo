@@ -2,6 +2,10 @@ import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
 import { getRank } from '../engine/xp'
 
+/**
+ * Compact progress header that translates raw XP state into the player's
+ * visible level, rank, next-level progress, and active streak.
+ */
 export function XpBar() {
   const { xp } = useApp()
   const { t } = useTranslation()
