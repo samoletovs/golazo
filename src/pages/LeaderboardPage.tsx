@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useAuth } from '../contexts/AuthContext'
 import { useApp } from '../contexts/AppContext'
 import { getRank } from '../engine/xp'
+import { SocialChallenges } from '../components/SocialChallenges'
 
 interface LeaderboardEntry {
   userId: string
@@ -145,6 +146,13 @@ export function LeaderboardPage() {
               {t('leaderboard.generateCode')}
             </button>
           )}
+        </div>
+      )}
+
+      {/* ── Social Challenges ── */}
+      {user && (
+        <div className="card animate-fade-up">
+          <SocialChallenges userId={user.userId} name={localEntry.name} />
         </div>
       )}
 

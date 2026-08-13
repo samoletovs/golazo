@@ -845,6 +845,27 @@ export interface TeamChallenge {
   endsAt: string
 }
 
+/** A friend/teammate taking part in a social challenge */
+export interface SocialChallengeParticipant {
+  userId: string
+  name: string
+  progress: number
+}
+
+/** Player-created challenge that friends or teammates join with a share code */
+export interface SocialChallenge {
+  id: string
+  code: string             // 6-character join code
+  title: string
+  target: number
+  unit: 'sessions'
+  createdBy: string
+  createdByName: string
+  createdAt: string
+  endsAt: string
+  participants: SocialChallengeParticipant[]
+}
+
 export interface CoachProfile {
   id: string
   userId: string           // Auth identity
