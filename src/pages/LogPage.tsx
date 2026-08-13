@@ -1,11 +1,24 @@
-import { useState, useMemo } from 'react'
+import { lazy, Suspense, useState, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
-import { TrainingLog } from './TrainingLog'
-import { MatchLog } from './MatchLog'
-import { DiaryPage } from './DiaryPage'
-import { TournamentImport } from '../components/TournamentImport'
 import { getAge, TRAINING_SKIP_REASONS, MATCH_SKIP_REASONS, type ScheduleEvent, type TrainingType } from '../engine/types'
+
+const TrainingLog = lazy(() => import('./TrainingLog').then((m) => ({ default: m.TrainingLog })))
+const MatchLog = lazy(() => import('./MatchLog').then((m) => ({ default: m.MatchLog })))
+const DiaryPage = lazy(() => import('./DiaryPage').then((m) => ({ default: m.DiaryPage })))
+const TournamentImport = lazy(() =>
+  import('../components/TournamentImport').then((m) => ({ default: m.TournamentImport })),
+)
+
+function LogFallback({ compact = false }: { compact?: boolean }) {
+  const sizeClass = compact ? 'text-2xl' : 'text-3xl'
+  const paddingClass = compact ? 'p-4' : 'p-8'
+  return (
+    <div className={`flex items-center justify-center ${paddingClass}`}>
+      <span className={sizeClass}>⚽</span>
+    </div>
+  )
+}
 
 type LogType = 'select' | 'training' | 'match' | 'diary'
 
@@ -133,9 +146,27 @@ export function LogPage() {
     }
   }
 
-  if (logType === 'training') return <TrainingLog onBack={() => { setLogType('select'); setPrefillData({}) }} prefill={prefillData as { date?: string; type?: TrainingType; durationMinutes?: number; location?: string; fromSchedule?: string }} />
-  if (logType === 'match') return <MatchLog onBack={() => { setLogType('select'); setPrefillData({}) }} prefill={prefillData as { date?: string; opponent?: string; competition?: string; matchType?: string; playingFor?: string; fromSchedule?: string }} />
-  if (logType === 'diary') return <DiaryPage onBack={() => setLogType('select')} />
+  if (logType === 'training') {
+    return (
+      <Suspense fallback={<LogFallback />}>
+        <TrainingLog onBack={() => { setLogType('select'); setPrefillData({}) }} prefill={prefillData as { date?: string; type?: TrainingType; durationMinutes?: number; location?: string; fromSchedule?: string }} />
+      </Suspense>
+    )
+  }
+  if (logType === 'match') {
+    return (
+      <Suspense fallback={<LogFallback />}>
+        <MatchLog onBack={() => { setLogType('select'); setPrefillData({}) }} prefill={prefillData as { date?: string; opponent?: string; competition?: string; matchType?: string; playingFor?: string; fromSchedule?: string }} />
+      </Suspense>
+    )
+  }
+  if (logType === 'diary') {
+    return (
+      <Suspense fallback={<LogFallback />}>
+        <DiaryPage onBack={() => setLogType('select')} />
+      </Suspense>
+    )
+  }
 
   return (
     <div className="flex flex-col gap-4 p-4 pb-32">
@@ -274,7 +305,11 @@ export function LogPage() {
         </div>
       </button>
 
-      {showImport && <TournamentImport onClose={() => setShowImport(false)} />}
+      {showImport && (
+        <Suspense fallback={<LogFallback compact />}>
+          <TournamentImport onClose={() => setShowImport(false)} />
+        </Suspense>
+      )}
 
       {/* ── Motivational tip ── */}
       <div className="tip-card animate-fade-up" style={{ marginTop: 8 }}>
