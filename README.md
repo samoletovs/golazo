@@ -1,54 +1,53 @@
-# golazo ⚽
+# golazo
 
-A mobile-first gamified football development app for youth players. Track training sessions, log matches and tournaments, earn XP, level up through football-themed ranks, and improve with curated exercises from the world's best coaching methodologies.
+golazo is a mobile-first football-development app for logging training and
+matches, following curated exercises, and visualizing progress.
 
-**Live:** [golazo.naurolabs.com](https://golazo.naurolabs.com)
+## Research question
 
-## Features
+golazo tests the NauroLabs question **"What's worth selling?"** It asks whether
+a player-first data model and agent-maintained development experience can
+become useful football infrastructure in a market where that data source does
+not yet exist.
 
-- 🎮 **Gamification** — XP, 50 levels, football ranks (Новичок → Про), streaks, achievements
-- ⚽ **Training log** — Quick entry with emoji ratings, duration presets, focus areas
-- 🏟️ **Match log** — Tap counters for goals/assists/shots, self-rating, post-match reflection
-- 🏆 **Tournaments** — Group weekend games, tournament summary with W/D/L
-- 📊 **Skill radar** — 6-category spider chart (Technical, Physical, Tactical, Mental, Match Play, Knowledge)
-- 📚 **Exercise library** — 25+ drills from Coerver, Horst Wein, Dan Abrahams, UEFA
-- 💬 **Wisdom quotes** — 16 quotes from Modrić, Messi, Iniesta, Xavi, De Bruyne in 4 languages
-- 🌐 **Multi-language** — Russian (primary), Latvian, English, Spanish
-- 📱 **Mobile-first** — Dark theme, bottom navigation, 44px touch targets
-- 🎴 **FIFA-style player card** — Overall rating, per-category stats, season record
+## What it does
 
-## Tech Stack
+- Records training sessions, matches, tournaments, and player reflections.
+- Turns activity into XP, levels, streaks, achievements, and skill trends.
+- Provides a multilingual exercise library and age-aware football guidance.
+- Syncs user data through Azure Functions and supports AI coaching.
 
-React 19 · TypeScript · Vite · Tailwind CSS 4 · Framer Motion · react-i18next · Recharts
+## Stack
 
-## Development
+- React 19, TypeScript, Vite, and Tailwind CSS
+- Framer Motion, react-i18next, and Recharts
+- Azure Functions, Cosmos DB, and Azure OpenAI
+- Azure Static Web Apps
 
-```bash
+## Run locally
+
+```powershell
 npm install
-npm run dev      # Start dev server
-npm run build    # Type-check + build
-npm run lint     # ESLint
-npm test         # Vitest
-npm run validate:football-terms  # UEFA/FIFA terminology guardrail
+Copy-Item api\local.settings.json.example api\local.settings.json
+npm run dev
 ```
 
-## UEFA/FIFA guardrails
+Before submitting a change:
 
-- Canonical terminology reference: `docs/football-terminology.md`
-- Youth development and duration guidance: `docs/youth-development.md`
-- Current alignment report: `docs/fifa-uefa-alignment.md`
-- CI enforces terminology compliance via `npm run validate:football-terms`
+```powershell
+npm run lint
+npm test
+npm run validate:football-terms
+npm run build
+```
 
-## Methodologies
+## Status
 
-Built on knowledge from 10 football development books:
-- **Coerver Coaching** — Ball mastery, 1v1 moves
-- **Horst Wein** — Game intelligence through mini-games
-- **Dan Abrahams** — 4C mental model (Commitment, Concentration, Confidence, Control)
-- **Daniel Coyle** — Deep practice, deliberate repetition
-- **Carol Dweck** — Growth mindset (mistakes = learning XP)
-- **UEFA** — Age-appropriate training for U12-U14
+**Active experiment.** Training and match logs, progression, challenges,
+exercise content, multilingual UI, backend sync, and coaching foundations are
+implemented. The broader agent-managed football data model is still being
+evaluated.
 
----
+## License
 
-A [NauroLabs](https://naurolabs.com) experiment.
+MIT
