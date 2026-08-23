@@ -204,5 +204,192 @@
     "createdAt": "2026-03-29T13:25:23.194Z",
     "videoUrl": "https://www.youtube.com/watch?v=EW4N16-0obw",
     "thumbnailUrl": "https://i.ytimg.com/vi/EW4N16-0obw/mqdefault.jpg"
+  },
+  {
+    "id": "gen-tech-weakFoot-d2",
+    "nameKey": "ex.gen.gen-tech-weakFoot-d2",
+    "descriptionKey": "ex.gen.gen-tech-weakFoot-d2.desc",
+    "nameEn": "Weak Foot — Intermediate",
+    "descEn": "Practice weak foot for 10 minutes. 20 reps per set. Based on Coerver Coaching method.",
+    "category": "technical",
+    "subSkill": "weakFoot",
+    "difficulty": 3,
+    "durationMinutes": 10,
+    "equipment": [
+      "ballOnly"
+    ],
+    "positions": [],
+    "methodology": "coerver",
+    "source": "generated",
+    "createdAt": "2026-08-23T09:15:12.826Z"
+  },
+  {
+    "id": "gen-tech-weakFoot-d3",
+    "nameKey": "ex.gen.gen-tech-weakFoot-d3",
+    "descriptionKey": "ex.gen.gen-tech-weakFoot-d3.desc",
+    "nameEn": "Weak Foot — Advanced",
+    "descEn": "Practice weak foot for 15 minutes. 30 reps per set. Based on Coerver Coaching method.",
+    "category": "technical",
+    "subSkill": "weakFoot",
+    "difficulty": 4,
+    "durationMinutes": 15,
+    "equipment": [
+      "ballOnly"
+    ],
+    "positions": [],
+    "methodology": "coerver",
+    "source": "generated",
+    "createdAt": "2026-08-23T09:15:12.826Z"
+  },
+  {
+    "id": "gen-tech-shooting-d1",
+    "nameKey": "ex.gen.gen-tech-shooting-d1",
+    "descriptionKey": "ex.gen.gen-tech-shooting-d1.desc",
+    "nameEn": "Shooting — Beginner",
+    "descEn": "Practice shooting for 5 minutes. 10 reps per set. Based on Coerver Coaching method.",
+    "category": "technical",
+    "subSkill": "shooting",
+    "difficulty": 2,
+    "durationMinutes": 5,
+    "equipment": [
+      "ballOnly",
+      "wall"
+    ],
+    "positions": [],
+    "methodology": "coerver",
+    "source": "generated",
+    "createdAt": "2026-08-23T09:15:12.826Z"
+  },
+  {
+    "id": "gen-tech-shooting-d2",
+    "nameKey": "ex.gen.gen-tech-shooting-d2",
+    "descriptionKey": "ex.gen.gen-tech-shooting-d2.desc",
+    "nameEn": "Shooting — Intermediate",
+    "descEn": "Practice shooting for 10 minutes. 20 reps per set. Based on Coerver Coaching method.",
+    "category": "technical",
+    "subSkill": "shooting",
+    "difficulty": 3,
+    "durationMinutes": 10,
+    "equipment": [
+      "ballOnly",
+      "wall"
+    ],
+    "positions": [],
+    "methodology": "coerver",
+    "source": "generated",
+    "createdAt": "2026-08-23T09:15:12.826Z"
+  },
+  {
+    "id": "gen-tech-shooting-d3",
+    "nameKey": "ex.gen.gen-tech-shooting-d3",
+    "descriptionKey": "ex.gen.gen-tech-shooting-d3.desc",
+    "nameEn": "Shooting — Advanced",
+    "descEn": "Practice shooting for 15 minutes. 30 reps per set. Based on Coerver Coaching method.",
+    "category": "technical",
+    "subSkill": "shooting",
+    "difficulty": 4,
+    "durationMinutes": 15,
+    "equipment": [
+      "ballOnly",
+      "cones"
+    ],
+    "positions": [],
+    "methodology": "coerver",
+    "source": "generated",
+    "createdAt": "2026-08-23T09:15:12.826Z"
+  },
+  {
+    "id": "gen-tech-shortPass-d1",
+    "nameKey": "ex.gen.gen-tech-shortPass-d1",
+    "descriptionKey": "ex.gen.gen-tech-shortPass-d1.desc",
+    "nameEn": "Short Pass — Beginner",
+    "descEn": "Practice short pass for 5 minutes. 10 reps per set. Based on Coerver Coaching method.",
+    "category": "technical",
+    "subSkill": "shortPass",
+    "difficulty": 2,
+    "durationMinutes": 5,
+    "equipment": [
+      "ballOnly"
+    ],
+    "positions": [],
+    "methodology": "coerver",
+    "source": "generated",
+    "createdAt": "2026-08-23T09:15:12.826Z"
+  },
+  {
+    "id": "gen-tech-shortPass-d2",
+    "nameKey": "ex.gen.gen-tech-shortPass-d2",
+    "descriptionKey": "ex.gen.gen-tech-shortPass-d2.desc",
+    "nameEn": "Short Pass — Intermediate",
+    "descEn": "Practice short pass for 10 minutes. 20 reps per set. Based on Coerver Coaching method.",
+    "category": "technical",
+    "subSkill": "shortPass",
+    "difficulty": 3,
+    "durationMinutes": 10,
+    "equipment": [
+      "ballOnly",
+      "cones"
+    ],
+    "positions": [],
+    "methodology": "coerver",
+    "source": "generated",
+    "createdAt": "2026-08-23T09:15:12.826Z"
+  },
+  {
+    "id": "gen-tech-shortPass-d3",
+    "nameKey": "ex.gen.gen-tech-shortPass-d3",
+    "descriptionKey": "ex.gen.gen-tech-shortPass-d3.desc",
+    "nameEn": "Short Pass — Advanced",
+    "descEn": "Practice short pass for 15 minutes. 30 reps per set. Based on Coerver Coaching method.",
+    "category": "technical",
+    "subSkill": "shortPass",
+    "difficulty": 4,
+    "durationMinutes": 15,
+    "equipment": [
+      "ballOnly",
+      "wall"
+    ],
+    "positions": [],
+    "methodology": "coerver",
+    "source": "generated",
+    "createdAt": "2026-08-23T09:15:12.826Z"
+  },
+  {
+    "id": "gen-tech-longPass-d1",
+    "nameKey": "ex.gen.gen-tech-longPass-d1",
+    "descriptionKey": "ex.gen.gen-tech-longPass-d1.desc",
+    "nameEn": "Long Pass — Beginner",
+    "descEn": "Practice long pass for 5 minutes. 10 reps per set. Based on Coerver Coaching method.",
+    "category": "technical",
+    "subSkill": "longPass",
+    "difficulty": 2,
+    "durationMinutes": 5,
+    "equipment": [
+      "ballOnly",
+      "wall"
+    ],
+    "positions": [],
+    "methodology": "coerver",
+    "source": "generated",
+    "createdAt": "2026-08-23T09:15:12.826Z"
+  },
+  {
+    "id": "gen-tech-longPass-d2",
+    "nameKey": "ex.gen.gen-tech-longPass-d2",
+    "descriptionKey": "ex.gen.gen-tech-longPass-d2.desc",
+    "nameEn": "Long Pass — Intermediate",
+    "descEn": "Practice long pass for 10 minutes. 20 reps per set. Based on Coerver Coaching method.",
+    "category": "technical",
+    "subSkill": "longPass",
+    "difficulty": 3,
+    "durationMinutes": 10,
+    "equipment": [
+      "ballOnly",
+      "cones"
+    ],
+    "positions": [],
+    "methodology": "coerver",
+    "source": "generated",
+    "createdAt": "2026-08-23T09:15:12.826Z"
   }
 ]
