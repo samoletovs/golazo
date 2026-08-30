@@ -391,5 +391,191 @@
     "methodology": "coerver",
     "source": "generated",
     "createdAt": "2026-08-23T09:15:12.826Z"
+  },
+  {
+    "id": "gen-tech-longPass-d3",
+    "nameKey": "ex.gen.gen-tech-longPass-d3",
+    "descriptionKey": "ex.gen.gen-tech-longPass-d3.desc",
+    "nameEn": "Long Pass — Advanced",
+    "descEn": "Practice long pass for 15 minutes. 30 reps per set. Based on Coerver Coaching method.",
+    "category": "technical",
+    "subSkill": "longPass",
+    "difficulty": 4,
+    "durationMinutes": 15,
+    "equipment": [
+      "ballOnly",
+      "wall"
+    ],
+    "positions": [],
+    "methodology": "coerver",
+    "source": "generated",
+    "createdAt": "2026-08-30T11:03:32.945Z"
+  },
+  {
+    "id": "gen-tech-volleys-d1",
+    "nameKey": "ex.gen.gen-tech-volleys-d1",
+    "descriptionKey": "ex.gen.gen-tech-volleys-d1.desc",
+    "nameEn": "Volleys — Beginner",
+    "descEn": "Practice volleys for 5 minutes. 10 reps per set. Based on Coerver Coaching method.",
+    "category": "technical",
+    "subSkill": "volleys",
+    "difficulty": 2,
+    "durationMinutes": 5,
+    "equipment": [
+      "ballOnly",
+      "wall"
+    ],
+    "positions": [],
+    "methodology": "coerver",
+    "source": "generated",
+    "createdAt": "2026-08-30T11:03:32.945Z"
+  },
+  {
+    "id": "gen-tech-volleys-d2",
+    "nameKey": "ex.gen.gen-tech-volleys-d2",
+    "descriptionKey": "ex.gen.gen-tech-volleys-d2.desc",
+    "nameEn": "Volleys — Intermediate",
+    "descEn": "Practice volleys for 10 minutes. 20 reps per set. Based on Coerver Coaching method.",
+    "category": "technical",
+    "subSkill": "volleys",
+    "difficulty": 3,
+    "durationMinutes": 10,
+    "equipment": [
+      "ballOnly",
+      "cones"
+    ],
+    "positions": [],
+    "methodology": "coerver",
+    "source": "generated",
+    "createdAt": "2026-08-30T11:03:32.945Z"
+  },
+  {
+    "id": "gen-tech-volleys-d3",
+    "nameKey": "ex.gen.gen-tech-volleys-d3",
+    "descriptionKey": "ex.gen.gen-tech-volleys-d3.desc",
+    "nameEn": "Volleys — Advanced",
+    "descEn": "Practice volleys for 15 minutes. 30 reps per set. Based on Coerver Coaching method.",
+    "category": "technical",
+    "subSkill": "volleys",
+    "difficulty": 4,
+    "durationMinutes": 15,
+    "equipment": [
+      "ballOnly"
+    ],
+    "positions": [],
+    "methodology": "coerver",
+    "source": "generated",
+    "createdAt": "2026-08-30T11:03:32.945Z"
+  },
+  {
+    "id": "gen-tech-headers-d1",
+    "nameKey": "ex.gen.gen-tech-headers-d1",
+    "descriptionKey": "ex.gen.gen-tech-headers-d1.desc",
+    "nameEn": "Headers — Beginner",
+    "descEn": "Practice headers for 5 minutes. 10 reps per set. Based on Coerver Coaching method.",
+    "category": "technical",
+    "subSkill": "headers",
+    "difficulty": 2,
+    "durationMinutes": 5,
+    "equipment": [
+      "ballOnly",
+      "cones"
+    ],
+    "positions": [],
+    "methodology": "coerver",
+    "source": "generated",
+    "createdAt": "2026-08-30T11:03:32.945Z"
+  },
+  {
+    "id": "gen-tech-headers-d2",
+    "nameKey": "ex.gen.gen-tech-headers-d2",
+    "descriptionKey": "ex.gen.gen-tech-headers-d2.desc",
+    "nameEn": "Headers — Intermediate",
+    "descEn": "Practice headers for 10 minutes. 20 reps per set. Based on Coerver Coaching method.",
+    "category": "technical",
+    "subSkill": "headers",
+    "difficulty": 3,
+    "durationMinutes": 10,
+    "equipment": [
+      "ballOnly",
+      "wall"
+    ],
+    "positions": [],
+    "methodology": "coerver",
+    "source": "generated",
+    "createdAt": "2026-08-30T11:03:32.945Z"
+  },
+  {
+    "id": "gen-tech-headers-d3",
+    "nameKey": "ex.gen.gen-tech-headers-d3",
+    "descriptionKey": "ex.gen.gen-tech-headers-d3.desc",
+    "nameEn": "Headers — Advanced",
+    "descEn": "Practice headers for 15 minutes. 30 reps per set. Based on Coerver Coaching method.",
+    "category": "technical",
+    "subSkill": "headers",
+    "difficulty": 4,
+    "durationMinutes": 15,
+    "equipment": [
+      "ballOnly",
+      "wall"
+    ],
+    "positions": [],
+    "methodology": "coerver",
+    "source": "generated",
+    "createdAt": "2026-08-30T11:03:32.945Z"
+  },
+  {
+    "id": "gen-tech-turns-d1",
+    "nameKey": "ex.gen.gen-tech-turns-d1",
+    "descriptionKey": "ex.gen.gen-tech-turns-d1.desc",
+    "nameEn": "Turns — Beginner",
+    "descEn": "Practice turns for 5 minutes. 10 reps per set. Based on Coerver Coaching method.",
+    "category": "technical",
+    "subSkill": "turns",
+    "difficulty": 2,
+    "durationMinutes": 5,
+    "equipment": [
+      "ballOnly"
+    ],
+    "positions": [],
+    "methodology": "coerver",
+    "source": "generated",
+    "createdAt": "2026-08-30T11:03:32.945Z"
+  },
+  {
+    "id": "gen-tech-turns-d2",
+    "nameKey": "ex.gen.gen-tech-turns-d2",
+    "descriptionKey": "ex.gen.gen-tech-turns-d2.desc",
+    "nameEn": "Turns — Intermediate",
+    "descEn": "Practice turns for 10 minutes. 20 reps per set. Based on Coerver Coaching method.",
+    "category": "technical",
+    "subSkill": "turns",
+    "difficulty": 3,
+    "durationMinutes": 10,
+    "equipment": [
+      "ballOnly"
+    ],
+    "positions": [],
+    "methodology": "coerver",
+    "source": "generated",
+    "createdAt": "2026-08-30T11:03:32.945Z"
+  },
+  {
+    "id": "gen-tech-turns-d3",
+    "nameKey": "ex.gen.gen-tech-turns-d3",
+    "descriptionKey": "ex.gen.gen-tech-turns-d3.desc",
+    "nameEn": "Turns — Advanced",
+    "descEn": "Practice turns for 15 minutes. 30 reps per set. Based on Coerver Coaching method.",
+    "category": "technical",
+    "subSkill": "turns",
+    "difficulty": 4,
+    "durationMinutes": 15,
+    "equipment": [
+      "ballOnly"
+    ],
+    "positions": [],
+    "methodology": "coerver",
+    "source": "generated",
+    "createdAt": "2026-08-30T11:03:32.945Z"
   }
 ]

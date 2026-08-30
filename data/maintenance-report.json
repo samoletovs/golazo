@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-08-23T09:15:15.400Z",
+  "generatedAt": "2026-08-30T11:03:35.277Z",
   "mode": "live",
-  "elapsedSeconds": 48.4,
+  "elapsedSeconds": 22.6,
   "tasks": {
     "federation-scanner": {
       "added": 0,
@@ -59,7 +59,17 @@
         "Video search failed for know-03: YouTube API: API key not valid. Please pass a valid API key.",
         "Video search failed for know-03b: YouTube API: API key not valid. Please pass a valid API key.",
         "Video search failed for know-04: YouTube API: API key not valid. Please pass a valid API key.",
-        "Video search failed for know-05: YouTube API: API key not valid. Please pass a valid API key."
+        "Video search failed for know-05: YouTube API: API key not valid. Please pass a valid API key.",
+        "Video search failed for gen-tech-weakFoot-d2: YouTube API: API key not valid. Please pass a valid API key.",
+        "Video search failed for gen-tech-weakFoot-d3: YouTube API: API key not valid. Please pass a valid API key.",
+        "Video search failed for gen-tech-shooting-d1: YouTube API: API key not valid. Please pass a valid API key.",
+        "Video search failed for gen-tech-shooting-d2: YouTube API: API key not valid. Please pass a valid API key.",
+        "Video search failed for gen-tech-shooting-d3: YouTube API: API key not valid. Please pass a valid API key.",
+        "Video search failed for gen-tech-shortPass-d1: YouTube API: API key not valid. Please pass a valid API key.",
+        "Video search failed for gen-tech-shortPass-d2: YouTube API: API key not valid. Please pass a valid API key.",
+        "Video search failed for gen-tech-shortPass-d3: YouTube API: API key not valid. Please pass a valid API key.",
+        "Video search failed for gen-tech-longPass-d1: YouTube API: API key not valid. Please pass a valid API key.",
+        "Video search failed for gen-tech-longPass-d2: YouTube API: API key not valid. Please pass a valid API key."
       ]
     },
     "content": {
@@ -79,6 +89,6 @@
     "totalAdded": 10,
     "totalUpdated": 63,
     "totalSkipped": 0,
-    "totalErrors": 32
+    "totalErrors": 42
   }
 }
