@@ -577,5 +577,194 @@
     "methodology": "coerver",
     "source": "generated",
     "createdAt": "2026-08-30T11:03:32.945Z"
+  },
+  {
+    "id": "gen-phys-agility-d1",
+    "nameKey": "ex.gen.gen-phys-agility-d1",
+    "descriptionKey": "ex.gen.gen-phys-agility-d1.desc",
+    "nameEn": "Agility — Beginner",
+    "descEn": "Practice agility for 5 minutes. 10 reps per set. Based on UEFA youth development.",
+    "category": "physical",
+    "subSkill": "agility",
+    "difficulty": 2,
+    "durationMinutes": 5,
+    "equipment": [
+      "ballOnly",
+      "cones"
+    ],
+    "positions": [],
+    "methodology": "uefa",
+    "source": "generated",
+    "createdAt": "2026-09-06T10:06:14.857Z"
+  },
+  {
+    "id": "gen-phys-agility-d2",
+    "nameKey": "ex.gen.gen-phys-agility-d2",
+    "descriptionKey": "ex.gen.gen-phys-agility-d2.desc",
+    "nameEn": "Agility — Intermediate",
+    "descEn": "Practice agility for 10 minutes. 20 reps per set. Based on UEFA youth development.",
+    "category": "physical",
+    "subSkill": "agility",
+    "difficulty": 3,
+    "durationMinutes": 10,
+    "equipment": [
+      "ballOnly",
+      "cones"
+    ],
+    "positions": [],
+    "methodology": "uefa",
+    "source": "generated",
+    "createdAt": "2026-09-06T10:06:14.857Z"
+  },
+  {
+    "id": "gen-phys-agility-d3",
+    "nameKey": "ex.gen.gen-phys-agility-d3",
+    "descriptionKey": "ex.gen.gen-phys-agility-d3.desc",
+    "nameEn": "Agility — Advanced",
+    "descEn": "Practice agility for 15 minutes. 30 reps per set. Based on UEFA youth development.",
+    "category": "physical",
+    "subSkill": "agility",
+    "difficulty": 4,
+    "durationMinutes": 15,
+    "equipment": [
+      "ballOnly",
+      "cones"
+    ],
+    "positions": [],
+    "methodology": "uefa",
+    "source": "generated",
+    "createdAt": "2026-09-06T10:06:14.857Z"
+  },
+  {
+    "id": "gen-phys-speed-d1",
+    "nameKey": "ex.gen.gen-phys-speed-d1",
+    "descriptionKey": "ex.gen.gen-phys-speed-d1.desc",
+    "nameEn": "Speed — Beginner",
+    "descEn": "Practice speed for 5 minutes. 10 reps per set. Based on UEFA youth development.",
+    "category": "physical",
+    "subSkill": "speed",
+    "difficulty": 2,
+    "durationMinutes": 5,
+    "equipment": [
+      "ballOnly",
+      "cones"
+    ],
+    "positions": [],
+    "methodology": "uefa",
+    "source": "generated",
+    "createdAt": "2026-09-06T10:06:14.857Z"
+  },
+  {
+    "id": "gen-phys-speed-d2",
+    "nameKey": "ex.gen.gen-phys-speed-d2",
+    "descriptionKey": "ex.gen.gen-phys-speed-d2.desc",
+    "nameEn": "Speed — Intermediate",
+    "descEn": "Practice speed for 10 minutes. 20 reps per set. Based on UEFA youth development.",
+    "category": "physical",
+    "subSkill": "speed",
+    "difficulty": 3,
+    "durationMinutes": 10,
+    "equipment": [
+      "ballOnly",
+      "wall"
+    ],
+    "positions": [],
+    "methodology": "uefa",
+    "source": "generated",
+    "createdAt": "2026-09-06T10:06:14.857Z"
+  },
+  {
+    "id": "gen-phys-speed-d3",
+    "nameKey": "ex.gen.gen-phys-speed-d3",
+    "descriptionKey": "ex.gen.gen-phys-speed-d3.desc",
+    "nameEn": "Speed — Advanced",
+    "descEn": "Practice speed for 15 minutes. 30 reps per set. Based on UEFA youth development.",
+    "category": "physical",
+    "subSkill": "speed",
+    "difficulty": 4,
+    "durationMinutes": 15,
+    "equipment": [
+      "ballOnly",
+      "cones"
+    ],
+    "positions": [],
+    "methodology": "uefa",
+    "source": "generated",
+    "createdAt": "2026-09-06T10:06:14.857Z"
+  },
+  {
+    "id": "gen-phys-endurance-d1",
+    "nameKey": "ex.gen.gen-phys-endurance-d1",
+    "descriptionKey": "ex.gen.gen-phys-endurance-d1.desc",
+    "nameEn": "Endurance — Beginner",
+    "descEn": "Practice endurance for 5 minutes. 10 reps per set. Based on UEFA youth development.",
+    "category": "physical",
+    "subSkill": "endurance",
+    "difficulty": 2,
+    "durationMinutes": 5,
+    "equipment": [
+      "ballOnly",
+      "wall"
+    ],
+    "positions": [],
+    "methodology": "uefa",
+    "source": "generated",
+    "createdAt": "2026-09-06T10:06:14.857Z"
+  },
+  {
+    "id": "gen-phys-endurance-d2",
+    "nameKey": "ex.gen.gen-phys-endurance-d2",
+    "descriptionKey": "ex.gen.gen-phys-endurance-d2.desc",
+    "nameEn": "Endurance — Intermediate",
+    "descEn": "Practice endurance for 10 minutes. 20 reps per set. Based on UEFA youth development.",
+    "category": "physical",
+    "subSkill": "endurance",
+    "difficulty": 3,
+    "durationMinutes": 10,
+    "equipment": [
+      "ballOnly",
+      "wall"
+    ],
+    "positions": [],
+    "methodology": "uefa",
+    "source": "generated",
+    "createdAt": "2026-09-06T10:06:14.857Z"
+  },
+  {
+    "id": "gen-phys-endurance-d3",
+    "nameKey": "ex.gen.gen-phys-endurance-d3",
+    "descriptionKey": "ex.gen.gen-phys-endurance-d3.desc",
+    "nameEn": "Endurance — Advanced",
+    "descEn": "Practice endurance for 15 minutes. 30 reps per set. Based on UEFA youth development.",
+    "category": "physical",
+    "subSkill": "endurance",
+    "difficulty": 4,
+    "durationMinutes": 15,
+    "equipment": [
+      "ballOnly",
+      "wall"
+    ],
+    "positions": [],
+    "methodology": "uefa",
+    "source": "generated",
+    "createdAt": "2026-09-06T10:06:14.857Z"
+  },
+  {
+    "id": "gen-phys-coordination-d1",
+    "nameKey": "ex.gen.gen-phys-coordination-d1",
+    "descriptionKey": "ex.gen.gen-phys-coordination-d1.desc",
+    "nameEn": "Coordination — Beginner",
+    "descEn": "Practice coordination for 5 minutes. 10 reps per set. Based on UEFA youth development.",
+    "category": "physical",
+    "subSkill": "coordination",
+    "difficulty": 2,
+    "durationMinutes": 5,
+    "equipment": [
+      "ballOnly"
+    ],
+    "positions": [],
+    "methodology": "uefa",
+    "source": "generated",
+    "createdAt": "2026-09-06T10:06:14.857Z"
   }
 ]
