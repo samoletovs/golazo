@@ -26,7 +26,6 @@
 
 const fs = require('fs')
 const path = require('path')
-const config = require('./config.cjs')
 
 /**
  * @typedef {{ added: number, updated: number, skipped: number, errors: string[] }} TaskResult
@@ -49,7 +48,7 @@ const SLOW_TASKS = new Set(['team-health'])
 
 const fullMode = process.argv.includes('--full')
 
-async function main() {
+async function main(config) {
   const startTime = Date.now()
   console.log('═══════════════════════════════════════════════')
   console.log('  ⚽ Golazo Maintenance Runner')
@@ -83,7 +82,7 @@ async function main() {
   /** @type {Map<string, TaskResult>} */
   const results = new Map()
   let hasFatalErrors = false
-  let hasWarnings = false
+  let hasTaskErrors = false
 
   for (const taskName of executionOrder) {
     const task = taskModules.get(taskName)
@@ -110,8 +109,8 @@ async function main() {
       const elapsed = ((Date.now() - taskStart) / 1000).toFixed(1)
       console.log(`│  Added: ${result.added}  Updated: ${result.updated}  Skipped: ${result.skipped}`)
       if (result.errors.length > 0) {
-        hasWarnings = true
-        console.log(`│  Warnings: ${result.errors.length}`)
+        hasTaskErrors = true
+        console.log(`│  Errors: ${result.errors.length}`)
         result.errors.forEach(e => console.log(`│    ⚠ ${e}`))
       }
       console.log(`└── Done (${elapsed}s)\n`)
@@ -132,29 +131,44 @@ async function main() {
     const status = result.errors.length > 0 ? '⚠' : '✓'
     console.log(`  ${status} ${name}: +${result.added} added, ${result.updated} updated, ${result.skipped} skipped`)
   }
-  if (hasWarnings) console.log(`\n  ⚠ Some tasks reported warnings (non-fatal)`)
+  if (hasTaskErrors) console.log(`\n  ❌ Some tasks reported errors`)
   if (hasFatalErrors) console.log(`\n  ❌ Some tasks crashed (fatal)`)
   console.log(`\n  Total time: ${totalElapsed}s`)
   console.log('═══════════════════════════════════════════════')
 
   // Generate maintenance report
-  generateReport(results, totalElapsed, config)
+  const report = generateReport(results, totalElapsed, config)
 
-  // Only exit 1 on actual task crashes, not on soft warnings
-  if (hasFatalErrors) process.exit(1)
+  if (hasFatalErrors || report.summary.totalErrors > 0) process.exitCode = 1
 }
 
 /** Write data/maintenance-report.json with run results */
 function generateReport(results, elapsed, config) {
   const report = {
     generatedAt: new Date().toISOString(),
+    runId: process.env.GITHUB_RUN_ID || null,
+    runAttempt: process.env.GITHUB_RUN_ATTEMPT || null,
+    sourceSha: process.env.GITHUB_SHA || null,
     mode: config.dryRun ? 'dry-run' : 'live',
     elapsedSeconds: parseFloat(elapsed),
+    discoveryCount: null,
     tasks: {},
     summary: { totalAdded: 0, totalUpdated: 0, totalSkipped: 0, totalErrors: 0 },
   }
 
-  for (const [name, result] of results) {
+  const discoveriesPath = path.join(config.dataDir, 'federation-discoveries.json')
+  const reportResults = new Map(results)
+  try {
+    const discoveries = JSON.parse(fs.readFileSync(discoveriesPath, 'utf-8'))
+    if (!Array.isArray(discoveries)) throw new Error('Expected an array')
+    report.discoveryCount = discoveries.length
+  } catch {
+    const error = 'Unable to count federation discoveries: file is missing, unreadable, or not a JSON array'
+    reportResults.set('maintenance-report', { added: 0, updated: 0, skipped: 0, errors: [error] })
+    console.error(error)
+  }
+
+  for (const [name, result] of reportResults) {
     report.tasks[name] = {
       added: result.added,
       updated: result.updated,
@@ -172,9 +186,14 @@ function generateReport(results, elapsed, config) {
     fs.writeFileSync(reportPath, JSON.stringify(report, null, 2) + '\n', 'utf-8')
     console.log(`\n  Report: data/maintenance-report.json`)
   }
+  return report
 }
 
-main().catch(err => {
-  console.error('Fatal error:', err)
-  process.exit(1)
-})
+if (require.main === module) {
+  main(require('./config.cjs')).catch(err => {
+    console.error('Fatal error:', err)
+    process.exitCode = 1
+  })
+}
+
+module.exports = { main, generateReport }

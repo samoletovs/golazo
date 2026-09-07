@@ -61,7 +61,7 @@ const config = {
       { id: 52, name: 'Premium Liiga', slug: 'premium-liiga' },
       { id: 53, name: 'Esiliiga', slug: 'esiliiga' },
       { id: 186, name: 'Esiliiga B', slug: 'esiliiga-b' },
-      { id: 89, name: 'U-19 Eliitliiga', slug: 'u-19-eliitliiga' },
+      { id: 89, name: 'U-19 Eliitliiga', slug: 'u-19-eliitliiga', url: 'https://jalgpall.ee/voistlused/noored/89/u-19-eliitliiga' },
     ],
     // Latvia — data.gov.lv NGO registry CSV (NACE 93.1 / "futbols")
     LV_GOV: process.env.LV_GOV_REGISTRY_URL || '',

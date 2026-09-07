@@ -6,8 +6,8 @@
  * 2. CREATE — Generate new exercise definitions from methodology templates
  * 3. EVALUATE — Check existing exercises for completeness and quality
  *
- * Generated exercises are saved to src/data/exercises-generated.json
- * (JSON, not .ts — consumed by exercises.ts at import time).
+ * Generated exercises are saved to data/exercises-generated.json.
+ * They remain maintenance candidates; exercises.ts currently exports curated exercises only.
  *
  * Uses YouTube Data API v3 (safeSearch=strict, channel whitelist).
  */
@@ -38,8 +38,8 @@ async function run(config) {
     try {
       generated = JSON.parse(fs.readFileSync(generatedPath, 'utf-8'))
     } catch {
-      result.errors.push('Failed to parse exercises-generated.json — starting fresh')
-      generated = []
+      result.errors.push('Failed to parse exercises-generated.json — leaving existing data untouched')
+      return result
     }
   }
 
@@ -55,49 +55,60 @@ async function run(config) {
   console.log(`│  Curated: ${curatedIds.length}  Generated: ${generated.length}  Total: ${allExistingIds.size}`)
 
   // ── 2. ENRICH — find videos for exercises without videoUrl ──
-  const needsVideo = generated.filter(e => !e.videoUrl)
   // Also check curated exercises (we'll store video mappings separately)
   const videoMappingsPath = path.join(config.dataDir, 'exercise-videos.json')
   let videoMappings = {}
   if (fs.existsSync(videoMappingsPath)) {
     try {
       videoMappings = JSON.parse(fs.readFileSync(videoMappingsPath, 'utf-8'))
-    } catch { videoMappings = {} }
+    } catch {
+      result.errors.push('Failed to parse exercise-videos.json — leaving existing data untouched')
+      return result
+    }
   }
 
+  const needsVideo = generated.filter(e => !e.videoUrl && !videoMappings[e.id])
   const curatedNeedVideo = curatedIds.filter(id => !videoMappings[id])
   const toEnrich = [
     ...curatedNeedVideo.map(id => ({ id, nameEn: getExerciseEnglishName(config, id) })),
     ...needsVideo.map(e => ({ id: e.id, nameEn: e.nameEn })),
   ].filter(e => e.nameEn) // skip if we can't find the English name
 
+  let providerFailure
+  async function findVideo(ex, query) {
+    if (providerFailure) {
+      result.errors.push(`Video search blocked for ${ex.id}: ${providerFailure}`)
+      return undefined
+    }
+    try {
+      return await searchYouTube(query, config)
+    } catch (err) {
+      result.errors.push(`Video search failed for ${ex.id}: ${err.message}`)
+      if (err.stopBatch) providerFailure = err.message
+      return undefined
+    }
+  }
+
   if (toEnrich.length > 0) {
     console.log(`│  Enriching ${toEnrich.length} exercises with videos...`)
 
     for (const ex of toEnrich) {
-      try {
-        const video = await searchYouTube(ex.nameEn + ' football drill', config)
-        if (video) {
-          videoMappings[ex.id] = {
-            videoUrl: `https://www.youtube.com/watch?v=${video.videoId}`,
-            thumbnailUrl: video.thumbnailUrl,
-            channelTitle: video.channelTitle,
-            fetchedAt: new Date().toISOString(),
-          }
-          result.updated++
-          if (config.verbose) {
-            console.log(`│    ✓ ${ex.id}: ${video.channelTitle} — ${video.title}`)
-          }
-        } else {
-          result.skipped++
-          if (config.verbose) console.log(`│    ⊘ ${ex.id}: no suitable video found`)
+      const video = await findVideo(ex, ex.nameEn + ' football drill')
+      if (video) {
+        videoMappings[ex.id] = {
+          videoUrl: `https://www.youtube.com/watch?v=${video.videoId}`,
+          thumbnailUrl: video.thumbnailUrl,
+          channelTitle: video.channelTitle,
+          fetchedAt: new Date().toISOString(),
         }
-      } catch (err) {
-        result.errors.push(`Video search failed for ${ex.id}: ${err.message}`)
+        result.updated++
+        if (config.verbose) console.log(`│    ✓ ${ex.id}: ${video.channelTitle} — ${video.title}`)
+      } else if (video === null) {
+        result.skipped++
+        if (config.verbose) console.log(`│    ⊘ ${ex.id}: no suitable video found`)
       }
-
       // Respect API quota — small delay between requests
-      await sleep(200)
+      if (!providerFailure) await sleep(200)
     }
   } else {
     console.log('│  All exercises already have videos')
@@ -109,14 +120,12 @@ async function run(config) {
     // Search videos for each new exercise
     for (const ex of newExercises) {
       if (config.youtubeApiKey) {
-        try {
-          const video = await searchYouTube(ex.nameEn + ' football drill tutorial', config)
-          if (video) {
-            ex.videoUrl = `https://www.youtube.com/watch?v=${video.videoId}`
-            ex.thumbnailUrl = video.thumbnailUrl
-          }
-        } catch { /* video optional for new exercises */ }
-        await sleep(200)
+        const video = await findVideo(ex, ex.nameEn + ' football drill tutorial')
+        if (video) {
+          ex.videoUrl = `https://www.youtube.com/watch?v=${video.videoId}`
+          ex.thumbnailUrl = video.thumbnailUrl
+        }
+        if (!providerFailure) await sleep(200)
       }
     }
 
@@ -159,12 +168,29 @@ async function run(config) {
 
 // ── YouTube Data API v3 Search ──────────────────────────────
 
+function providerError(code, retryable = false, status) {
+  return Object.assign(new Error(`YouTube API: ${code}${status ? ` (HTTP ${status})` : ''}`), {
+    code, retryable, stopBatch: true,
+  })
+}
+
 /**
  * @param {string} query
  * @param {object} config
  * @returns {Promise<{videoId: string, title: string, thumbnailUrl: string, channelTitle: string, channelId: string} | null>}
  */
-function searchYouTube(query, config) {
+async function searchYouTube(query, config) {
+  for (let attempt = 0; attempt < 3; attempt++) {
+    try {
+      return await requestYouTube(query, config)
+    } catch (err) {
+      if (!err.retryable || attempt === 2) throw err
+      await sleep(250 * (2 ** attempt))
+    }
+  }
+}
+
+function requestYouTube(query, config) {
   return new Promise((resolve, reject) => {
     const params = new URLSearchParams({
       part: 'snippet',
@@ -178,17 +204,33 @@ function searchYouTube(query, config) {
 
     const url = `https://www.googleapis.com/youtube/v3/search?${params}`
 
-    https.get(url, (res) => {
+    let deadline
+    const fail = err => { clearTimeout(deadline); reject(err) }
+    const req = https.get(url, (res) => {
       let data = ''
-      res.on('data', chunk => { data += chunk })
+      res.on('data', chunk => {
+        data += chunk
+        if (data.length > 1024 * 1024) req.destroy(providerError('RESPONSE_TOO_LARGE'))
+      })
+      res.on('error', () => fail(providerError('RESPONSE_INTERRUPTED', true)))
+      res.on('aborted', () => fail(providerError('RESPONSE_INTERRUPTED', true)))
       res.on('end', () => {
+        clearTimeout(deadline)
+        const status = res.statusCode || 0
         try {
           const json = JSON.parse(data)
-          if (json.error) {
-            reject(new Error(`YouTube API: ${json.error.message}`))
+          if (json.error || status !== 200) {
+            const reason = json.error?.details?.find(detail => detail.reason)?.reason ||
+              json.error?.errors?.[0]?.reason || 'REQUEST_FAILED'
+            const code = /^[a-zA-Z0-9_]{1,80}$/.test(reason) ? reason : 'REQUEST_FAILED'
+            fail(providerError(code, status === 429 || status >= 500, status))
             return
           }
-          const items = json.items || []
+          if (!Array.isArray(json.items)) {
+            fail(providerError('INVALID_RESPONSE'))
+            return
+          }
+          const items = json.items
 
           // Prefer whitelisted channels
           const whitelist = new Set(config.youtubeChannelWhitelist)
@@ -209,10 +251,12 @@ function searchYouTube(query, config) {
             channelId: best.snippet.channelId,
           })
         } catch (err) {
-          reject(new Error(`Failed to parse YouTube response: ${err.message}`))
+          fail(providerError('INVALID_RESPONSE', status === 429 || status >= 500, status))
         }
       })
-    }).on('error', reject)
+    })
+    deadline = setTimeout(() => req.destroy(providerError('TIMEOUT', true)), config.youtubeTimeoutMs || 10000)
+    req.on('error', err => fail(err.stopBatch ? err : providerError('NETWORK_ERROR', true)))
   })
 }
 
@@ -369,4 +413,4 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms))
 }
 
-module.exports = { name, run }
+module.exports = { name, run, searchYouTube }

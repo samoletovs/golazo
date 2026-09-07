@@ -25,9 +25,52 @@ jobs:
         run: npm ci
 
       - name: Run maintenance pipeline
+        id: pipeline
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
         run: node scripts/maintenance/maintain.cjs --verbose
+
+      # Capture current-run outputs before create-pull-request restores the base checkout.
+      - name: Build summary
+        id: summary
+        if: always()
+        run: node scripts/maintenance/summary.cjs
+
+      - name: Preserve maintenance report
+        if: always() && steps.summary.outcome == 'success'
+        uses: actions/upload-artifact@v4
+        with:
+          name: maintenance-report-${{ github.run_id }}-${{ github.run_attempt }}
+          path: data/maintenance-report.json
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Preserve generated maintenance outputs
+        if: always() && (steps.pipeline.outcome == 'success' || steps.pipeline.outcome == 'failure')
+        uses: actions/upload-artifact@v4
+        with:
+          name: maintenance-outputs-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            data/exercises-generated.json
+            data/exercise-videos.json
+            data/federation-discoveries.json
+            data/teams-lv.json
+            data/teams-ee.json
+            data/teams-lt.json
+            data/content-queue.json
+            data/team-health-report.json
+            src/data/articles.ts
+            src/data/quizzes.ts
+            src/data/quotes.ts
+            src/data/exercises.ts
+            src/i18n/en.json
+            src/i18n/ru.json
+            src/i18n/lv.json
+            src/i18n/es.json
+            src/i18n/et.json
+            src/i18n/lt.json
+          if-no-files-found: error
+          retention-days: 14
 
       - name: Check for changes
         id: changes
@@ -36,7 +79,7 @@ jobs:
 
       - name: Create PR with discoveries
         id: pr
-        if: steps.changes.outputs.changed == 'true'
+        if: success() && steps.pipeline.outcome == 'success' && steps.changes.outputs.changed == 'true'
         uses: peter-evans/create-pull-request@v7
         with:
           # NOT GITHUB_TOKEN. "Allow GitHub Actions to create and approve pull
@@ -64,52 +107,33 @@ jobs:
           delete-branch: true
           labels: maintenance,automated
 
-      - name: Build summary
-        id: summary
-        if: always()
-        run: |
-          if [ -f data/maintenance-report.json ]; then
-            ADDED=$(jq '.summary.totalAdded' data/maintenance-report.json)
-            ERRORS=$(jq '.summary.totalErrors' data/maintenance-report.json)
-            DISCOVERIES=$(jq 'length // 0' data/federation-discoveries.json 2>/dev/null || echo "0")
-            echo "message=⚽ golazo maintenance: ${ADDED} added, ${ERRORS} errors, ${DISCOVERIES} total discoveries" >> $GITHUB_OUTPUT
-          else
-            echo "message=⚽ golazo maintenance completed (no report generated)" >> $GITHUB_OUTPUT
-          fi
-
       - name: Notify Telegram (success)
         if: success()
         env:
           NAURO_BOT_TOKEN: ${{ secrets.NAURO_BOT_TOKEN }}
           NAURO_CHAT_ID: ${{ secrets.NAURO_CHAT_ID }}
+          MAINTENANCE_SUMMARY: ${{ steps.summary.outputs.message }}
         run: |
-          [ -z "$NAURO_BOT_TOKEN" ] && { echo "NAURO_BOT_TOKEN not set; skipping"; exit 0; }
-          curl -sf -X POST "https://api.telegram.org/bot${NAURO_BOT_TOKEN}/sendMessage" \
-            --data-urlencode "chat_id=${NAURO_CHAT_ID}" \
-            --data-urlencode "parse_mode=HTML" \
-            --data-urlencode "text=${{ steps.summary.outputs.message }}" \
-            || echo "::warning::Telegram notification failed"
+          bash scripts/notify-telegram.sh --plain "$MAINTENANCE_SUMMARY"
 
       - name: Notify Telegram (failure)
         if: failure()
         env:
           NAURO_BOT_TOKEN: ${{ secrets.NAURO_BOT_TOKEN }}
           NAURO_CHAT_ID: ${{ secrets.NAURO_CHAT_ID }}
+          MAINTENANCE_SUMMARY: ${{ steps.summary.outputs.message || 'No current-run report available; inspect the failed step.' }}
           # Which step actually failed. "maintenance FAILED" plus a link means
           # opening a laptop and reading a 500-line log to learn anything at all;
           # the first scheduled run of this workflow sent exactly that and the
           # cause (a permissions setting, not the pipeline) stayed invisible.
           FAILED_STEP: >-
-            ${{ steps.changes.outcome == 'failure' && 'change detection'
+            ${{ steps.pipeline.outcome == 'failure' && 'maintenance task errors — see the report artifact'
+             || steps.summary.outcome == 'failure' && 'current-run report validation'
+             || steps.changes.outcome == 'failure' && 'change detection'
              || steps.pr.outcome == 'failure' && 'PR creation — check GH_PAT has Pull requests: write'
              || 'the maintenance pipeline (scripts/maintenance/maintain.cjs)' }}
         run: |
-          [ -z "$NAURO_BOT_TOKEN" ] && { echo "NAURO_BOT_TOKEN not set; skipping"; exit 0; }
-          curl -sf -X POST "https://api.telegram.org/bot${NAURO_BOT_TOKEN}/sendMessage" \
-            --data-urlencode "chat_id=${NAURO_CHAT_ID}" \
-            --data-urlencode "parse_mode=HTML" \
-            --data-urlencode "disable_web_page_preview=true" \
-            --data-urlencode "text=❌ <b>golazo</b> maintenance FAILED
+          bash scripts/notify-telegram.sh --plain "❌ golazo maintenance FAILED
           Failed at: ${FAILED_STEP}
-          Run: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}" \
-            || echo "::warning::Telegram notification failed"
+          ${MAINTENANCE_SUMMARY}
+          Run: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
