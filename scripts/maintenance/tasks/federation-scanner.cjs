@@ -50,19 +50,23 @@ function findMatch(discoveredName, existingTeams) {
 }
 
 /** Fetch a URL and return the body as string */
-function fetchUrl(url, timeout = 15000) {
+function fetchUrl(url, timeout = 15000, redirectsLeft = 3) {
   return new Promise((resolve, reject) => {
     const client = url.startsWith('https') ? https : http
     const req = client.get(url, { headers: { 'User-Agent': 'Golazo/1.0 (naurolabs.com)' }, timeout }, (res) => {
       // Follow redirects (up to 3)
       if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
-        return fetchUrl(res.headers.location, timeout).then(resolve, reject)
+        res.resume()
+        if (redirectsLeft === 0) return reject(new Error(`Too many redirects for ${url}`))
+        return fetchUrl(new URL(res.headers.location, url).href, timeout, redirectsLeft - 1).then(resolve, reject)
       }
       if (res.statusCode !== 200) {
+        res.resume()
         return reject(new Error(`HTTP ${res.statusCode} for ${url}`))
       }
       let data = ''
       res.on('data', chunk => { data += chunk })
+      res.on('error', reject)
       res.on('end', () => resolve(data))
     })
     req.on('error', reject)
@@ -79,12 +83,13 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)) }
 async function scanEstonia(config, existingTeams) {
   const discoveries = []
   const enrichments = []
+  const errors = []
   const year = new Date().getFullYear()
 
   for (const league of config.federationSources.EE) {
     console.log(`│    EE: Scanning ${league.name} (ID: ${league.id})...`)
     try {
-      const url = `https://jalgpall.ee/voistlused/${league.id}/${league.slug || 'premium-liiga'}`
+      const url = league.url || `https://jalgpall.ee/voistlused/${league.id}/${league.slug || 'premium-liiga'}`
       const html = await fetchUrl(url)
 
       // Extract team names and logo URLs from league table
@@ -127,12 +132,13 @@ async function scanEstonia(config, existingTeams) {
 
       if (config.verbose) console.log(`│      Found ${seen.size} teams, ${discoveries.filter(d => d.country === 'EE' && d.league === league.name).length} new`)
     } catch (err) {
+      errors.push(`EE/${league.name}: ${err.message}`)
       console.log(`│      ⚠ Failed to scan ${league.name}: ${err.message}`)
     }
     await sleep(config.federationDelay)
   }
 
-  return { discoveries, enrichments }
+  return { discoveries, enrichments, errors }
 }
 
 // ═══════════════════════════════════════════════════════════
@@ -142,6 +148,7 @@ async function scanEstonia(config, existingTeams) {
 async function scanLatvia(config, existingTeams) {
   const discoveries = []
   const enrichments = []
+  const errors = []
 
   // Source 1: Wikipedia for professional clubs
   console.log('│    LV: Scanning Wikipedia Latvian Higher League...')
@@ -177,6 +184,7 @@ async function scanLatvia(config, existingTeams) {
     }
     if (config.verbose) console.log(`│      Wikipedia: ${seen.size} clubs checked, ${discoveries.filter(d => d.country === 'LV').length} new`)
   } catch (err) {
+    errors.push(`LV/Wikipedia: ${err.message}`)
     console.log(`│      ⚠ Wikipedia scan failed: ${err.message}`)
   }
 
@@ -218,11 +226,12 @@ async function scanLatvia(config, existingTeams) {
       }
       if (config.verbose) console.log(`│      data.gov.lv: ${found} football orgs found, ${discoveries.filter(d => d.source === 'data.gov.lv').length} new`)
     } catch (err) {
+      errors.push(`LV/data.gov.lv: ${err.message}`)
       console.log(`│      ⚠ data.gov.lv scan failed: ${err.message}`)
     }
   }
 
-  return { discoveries, enrichments }
+  return { discoveries, enrichments, errors }
 }
 
 // ═══════════════════════════════════════════════════════════
@@ -232,6 +241,7 @@ async function scanLatvia(config, existingTeams) {
 async function scanLithuania(config, existingTeams) {
   const discoveries = []
   const enrichments = []
+  const errors = []
 
   // Source 1: Wikipedia A Lyga
   console.log('│    LT: Scanning Wikipedia A Lyga...')
@@ -264,6 +274,7 @@ async function scanLithuania(config, existingTeams) {
     }
     if (config.verbose) console.log(`│      Wikipedia: ${seen.size} clubs checked, ${discoveries.filter(d => d.country === 'LT').length} new`)
   } catch (err) {
+    errors.push(`LT/Wikipedia: ${err.message}`)
     console.log(`│      ⚠ Wikipedia A Lyga scan failed: ${err.message}`)
   }
 
@@ -300,13 +311,14 @@ async function scanLithuania(config, existingTeams) {
         }
         if (config.verbose) console.log(`│      ${source.name}: ${seen.size} teams, ${discoveries.filter(d => d.source === 'toplyga.lt' && d.league === source.name).length} new`)
       } catch (err) {
+        errors.push(`LT/${source.name}: ${err.message}`)
         console.log(`│      ⚠ ${source.name} scan failed: ${err.message}`)
       }
       await sleep(config.federationDelay)
     }
   }
 
-  return { discoveries, enrichments }
+  return { discoveries, enrichments, errors }
 }
 
 // ═══════════════════════════════════════════════════════════
@@ -350,14 +362,17 @@ async function run(config) {
 
   // Scan each country
   const eeResult = await scanEstonia(config, existingTeams.EE)
+  result.errors.push(...eeResult.errors)
   allDiscoveries.push(...eeResult.discoveries)
   allEnrichments.push(...eeResult.enrichments)
 
   const lvResult = await scanLatvia(config, existingTeams.LV)
+  result.errors.push(...lvResult.errors)
   allDiscoveries.push(...lvResult.discoveries)
   allEnrichments.push(...lvResult.enrichments)
 
   const ltResult = await scanLithuania(config, existingTeams.LT)
+  result.errors.push(...ltResult.errors)
   allDiscoveries.push(...ltResult.discoveries)
   allEnrichments.push(...ltResult.enrichments)
 
