@@ -64,6 +64,24 @@ lower the coverage threshold or invent colors to make maintenance green. Notific
 capture the report before PR creation restores the checkout, and validate its run ID,
 attempt, and source SHA. No prior report is treated as evidence of a successful run.
 
+The September 20, 2026 run ([35505088773](https://github.com/samoletovs/golazo/actions/runs/35505088773))
+reported 221 missing keys in each of Estonian and Lithuanian, 11 clubs without
+colors, and one `API_KEY_INVALID` response affecting 59 exercise searches. The
+translation gaps are filled, and the 11 club palettes were sampled from their
+existing tournament badge images or the club's own logo on September 21.
+`colorsSource` records each source; these are display palettes, not certified kit
+specifications. Only color values and source URLs are retained, not copied logos
+or external training text. AFA Olaine's dead logo URL now points to its own site.
+
+The invalid YouTube credential is a separate operational blocker. The repository
+cannot repair a rejected GitHub Actions secret, and this change does not alter
+credentials, skip enrichment, or turn its errors into success. An authorized
+maintainer must replace `YOUTUBE_API_KEY` with a valid YouTube Data API v3 key,
+then run Maintenance on the merged default branch and inspect the current-run
+report and preserved outputs. The failed run's output artifact contains 50
+generated exercises, 25 video mappings and 127 discoveries; review and retain
+those candidates before rerunning rather than discarding failed-run outputs.
+
 Offline regression tests (no credentials, network calls, or fixture files needed):
 
 ```powershell

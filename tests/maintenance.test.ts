@@ -1,6 +1,6 @@
 // @vitest-environment node
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { readFileSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 import { EventEmitter } from 'node:events'
 import { spawnSync } from 'node:child_process'
 import path from 'node:path'
@@ -131,7 +131,108 @@ const invalidKey: Reply = {
 beforeEach(() => { vi.useFakeTimers() })
 afterEach(() => { vi.useRealTimers() })
 
+describe('tracked maintenance data', () => {
+  const trackedConfig = {
+    ...config,
+    dataDir: path.resolve('data'),
+    srcDir: path.resolve('src'),
+    i18nDir: path.resolve('src', 'i18n'),
+  }
+  const readOnlyFs = { existsSync, readFileSync, writeFileSync: vi.fn() }
+
+  it('keeps the checked-in translations above the unchanged maintenance threshold', async () => {
+    const task = loadModule('tasks/i18n-completeness.cjs', { run: missingTask }, { fs: readOnlyFs }).exports
+    const result = await task.run(trackedConfig)
+    expect(result.errors).toEqual([])
+    expect(result.updated).toBe(5)
+  })
+
+  it.each(['et', 'lt'])('provides every English key and interpolation token in %s', lang => {
+    const reference: Record<string, string> = JSON.parse(readFileSync(path.join(trackedConfig.i18nDir, 'en.json'), 'utf8'))
+    const translated: Record<string, string> = JSON.parse(readFileSync(path.join(trackedConfig.i18nDir, `${lang}.json`), 'utf8'))
+    const tokens = (value: string) => (value.match(/\{\{[^}]+\}\}/g) || []).sort()
+    for (const [key, value] of Object.entries(reference)) {
+      expect(translated[key], `${lang}: missing ${key}`).toBeTruthy()
+      expect(tokens(translated[key]), `${lang}: interpolation mismatch for ${key}`).toEqual(tokens(value))
+    }
+    expect(translated['teamChallenges.howItWorks']).not.toBe(reference['teamChallenges.howItWorks'])
+    expect(translated['coach.dashboard.title']).not.toBe(reference['coach.dashboard.title'])
+  })
+
+  it('validates all tracked teams without deleting incomplete clubs to pass the gate', async () => {
+    const task = loadModule('tasks/team-registry.cjs', { run: missingTask }, { fs: readOnlyFs }).exports
+    const result = await task.run(trackedConfig)
+    expect(result.errors).toEqual([])
+    expect(result.updated).toBeGreaterThanOrEqual(58)
+
+    const repairedTeams: Record<string, string[]> = {
+      lv: ['RFK', 'FS Leevon', 'BJFK Pārdaugava', 'Jēkabpils SS', 'AFA Olaine',
+        'FK Dinamo Riga', 'FK Laos', 'FKD Bites', 'Saldus SS', 'Futbola Skola'],
+      lt: ['FK Akmenės Cementas'],
+    }
+    for (const [country, names] of Object.entries(repairedTeams)) {
+      const teams: { name: string; colors: string[]; colorsSource?: string }[] =
+        JSON.parse(readFileSync(path.join(trackedConfig.dataDir, `teams-${country}.json`), 'utf8'))
+      for (const name of names) {
+        const team = teams.find(entry => entry.name === name)
+        expect(team, `${country}: lost ${name}`).toBeDefined()
+        expect(team?.colors.length, `${name}: no researched colors`).toBeGreaterThan(0)
+        expect(team?.colorsSource, `${name}: no color provenance`).toMatch(/^https:\/\//)
+      }
+    }
+    expect(readOnlyFs.writeFileSync).not.toHaveBeenCalled()
+  })
+
+  it('still rejects translation coverage below 90 percent', async () => {
+    const { fs, files } = memoryFiles()
+    const reference = Object.fromEntries(Array.from({ length: 100 }, (_, i) => [`key-${i}`, `Text ${i}`]))
+    files.set(path.join(config.i18nDir, 'en.json'), JSON.stringify(reference))
+    for (const lang of ['ru', 'lv', 'es', 'et', 'lt']) {
+      files.set(path.join(config.i18nDir, `${lang}.json`), JSON.stringify(
+        lang === 'et' ? Object.fromEntries(Object.entries(reference).slice(0, 89)) : reference,
+      ))
+    }
+    const task = loadModule('tasks/i18n-completeness.cjs', { run: missingTask }, { fs }).exports
+    const result = await task.run(config)
+    expect(result.errors).toEqual(['et: 89.0% coverage (below 90% threshold, 11 keys missing)'])
+  })
+
+  it.each([{ colors: [] }, { colors: ['green'] }])('still rejects missing or malformed club colors: $colors', async ({ colors }) => {
+    const { fs, files } = memoryFiles()
+    files.set(path.join(config.dataDir, 'teams-lv.json'), JSON.stringify([
+      { name: 'Fixture club', city: 'Rīga', league: 'Youth', colors },
+    ]))
+    const task = loadModule('tasks/team-registry.cjs', { run: missingTask }, { fs }).exports
+    const result = await task.run(config)
+    expect(result.errors).toEqual([expect.stringContaining(colors.length ? 'invalid color' : "missing 'colors'")])
+    expect(fs.writeFileSync).not.toHaveBeenCalled()
+  })
+})
+
 describe('maintenance YouTube failure recovery', () => {
+  it('retains all 59 affected exercises and live outputs when the provider rejects the key', async () => {
+    const existing = Array.from({ length: 49 }, (_, i) => ({
+      id: `reported-${i}`, nameEn: 'Original fixture drill', descEn: 'Original fixture instructions',
+    }))
+    const { fs, files } = memoryFiles(existing)
+    const http = httpFixture([invalidKey])
+    const task = loadModule('tasks/exercise-registry.cjs', { run: missingTask }, { fs, https: http.client }).exports
+    const result = await flush(task.run({ ...config, dryRun: false }))
+    const saved: { id: string }[] = JSON.parse(files.get(path.join(config.dataDir, 'exercises-generated.json')) || '[]')
+
+    expect(http.urls).toHaveLength(1)
+    expect(result.errors).toHaveLength(59)
+    expect(result.errors.every(error => error.includes('API_KEY_INVALID (HTTP 400)'))).toBe(true)
+    for (const exercise of existing) {
+      expect(saved).toContainEqual(exercise)
+      expect(result.errors.some(error => error.includes(`${exercise.id}:`))).toBe(true)
+    }
+    expect(saved).toHaveLength(59)
+    expect(result.added).toBe(10)
+    expect(result.updated).toBe(0)
+    expect(result.skipped).toBe(0)
+  })
+
   it('stops one invalid credential from causing 39 requests while preserving every affected exercise', async () => {
     const { fs } = memoryFiles(Array.from({ length: 29 }, (_, i) => ({
       id: `fixture-${i}`, nameEn: 'Fixture drill', descEn: 'Fixture instructions',
