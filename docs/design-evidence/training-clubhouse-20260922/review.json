@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "source_commit": "7e6e50c4758f4cbfb0782fddb2d291931f8a6091",
+  "brief_sha256": "535ad96e1ed5a277a7ebdaa24dbb9855ca7a8f8169d0d50af2f76097fdc3edbe",
+  "direction": {
+    "mode": "new",
+    "selected": "A",
+    "owner_decision": "On 2026-09-22 the owner selected A - Clubhouse for players aged 10-14 with parent support, then explicitly selected cobalt blue plus warm coral and neutral surfaces instead of the original mint proposal. Club colors remain separate personalization. The owner subsequently chose to ship the verified design and track loading optimization separately.",
+    "options": [
+      {
+        "id": "A",
+        "path": "docs/design-evidence/training-20260922/clubhouse-initial-1280.png",
+        "sha256": "810cb73f93e00490254ca4b86b0649d17c3cffd6ef34b88d22b41ca97d74ac9d"
+      },
+      {
+        "id": "B",
+        "path": "docs/design-evidence/training-20260922/companion-initial-1280.png",
+        "sha256": "974e709801016af35af00ae9ab3b558c611a16682e8a079edf85f5370aa3cd93"
+      }
+    ]
+  },
+  "author": "golazo-design-directions implementation agent f4d47b24-ac2f-499c-a1a1-1e0578a7be94",
+  "reviewer": "design-learning-review independent agent 8f2b3e8c-cac2-42fb-92a3-5ee7f2fac2ff",
+  "review_notes": "Independent source, visual and evidence review of 7e6e50c found no significant issues or release blockers. Reviewer ran 59 focused tests and independently exercised storage failure/retry/double submission, atomic entry/XP and PUT payload, reload and club-color separation. Final real-font screenshots, remote CI and parent-produced reports were also reviewed. Coverage limits are documented in README.md.",
+  "unresolved_findings": [],
+  "accepted_limitations": [
+    "Owner accepted current loading cost for this scoped design release; separate issue https://github.com/samoletovs/golazo/issues/9 tracks measurement and optimization, not approved automatic implementation.",
+    "Chromium and synthetic profiles/auth/API; no representative-player, screen-reader, physical-device or live backend-reconciliation assessment.",
+    "Real Inter/Outfit fonts checked at normal scale; native zoom, text enlargement and failure recovery checked separately with fallback fonts."
+  ],
+  "checks": {
+    "primary_task": {
+      "status": "pass",
+      "evidence": "Remote quality run 35714074042 passed 214 tests, 11 gate regressions, lint, types, terminology and frontend build for this exact source. Parent executed the committed real-app browser suite against the downloaded SHA-marked artifact: 68 observations and 40 captures, with visible training log, correct age-scaled XP, retained-input retry, idempotent save and reload. Independent reviewer also exercised the core persistence behavior."
+    },
+    "keyboard": {
+      "status": "pass",
+      "evidence": "Tab/Enter visible-control journey, input validation, retained-input retry and completion exercised. Focused footer and retry controls remained visible above fixed navigation. Native 200% Chromium zoom separately completed initial/form/completion with keyboard submission."
+    },
+    "responsive": {
+      "status": "pass",
+      "evidence": "EN/RU/LV/ES at 320/390/1280 CSS pixels, long club/translated labels and 200% root text were checked for reflow. Separate native chrome.tabs.setZoom(2) in an isolated temporary browser profile verified viewport/DPR changes and the working journey; this was not CSS zoom or scale emulation. Actual web fonts were checked at 390/1280 normal scale."
+    },
+    "states": {
+      "status": "pass",
+      "evidence": "First use, missing duration validation, local storage failure, retry preserving notes/mood/focus, double Enter, correct single entry/XP, failed cloud PUT and reload passed. Rest/schedule reassurance creates no activity or XP. Success says saved on this device, not synchronized. Existing cloud merge behavior is not redesigned or claimed newly verified."
+    },
+    "accessibility": {
+      "status": "pass",
+      "evidence": "Keyboard/focus, reduced motion, selected-hover contrast, extreme club-color contrast, text enlargement and native zoom were assessed. Minimum measured scoped HTML text contrast was 5.72:1 in both fallback and real-font observations. Independent spot checks found no concrete accessibility blockers. No screen-reader, physical-device, all-SVG/canvas or full-WCAG certification is claimed."
+    },
+    "performance": {
+      "status": "pass",
+      "evidence": "Scoped release assessment completed with explicit owner acceptance of the measured loading limitation: initial decoded JavaScript 1539146 bytes and CSS 61036 bytes, including charts 396869 bytes before logging. No new production dependency. No comparable baseline or approved performance threshold exists, so this pass records reviewed scope/accepted limitation, NOT optimization or threshold compliance. Separate follow-up: https://github.com/samoletovs/golazo/issues/9."
+    },
+    "visual_intent": {
+      "status": "pass",
+      "evidence": "Independent review compared final compiled normal, completion, translated, recovery and enlarged/zoomed captures against A Clubhouse and the owner's later cobalt/coral/neutral palette choice. The final appearance review includes downloaded Inter and Outfit at normal scale. Product actions stay cobalt while club identity accents remain separately readable; no significant visual-direction conflicts found."
+    }
+  },
+  "screenshots": [
+    {
+      "path": "docs/design-evidence/training-clubhouse-20260922/real-fonts-7e6e50c/en-initial-390.png",
+      "sha256": "61a8d2ec627e1af63bb38362a0faf9c1e634ed0d282abba38d8fee0ad49154ea",
+      "viewport": "mobile"
+    },
+    {
+      "path": "docs/design-evidence/training-clubhouse-20260922/real-fonts-7e6e50c/en-initial-1280.png",
+      "sha256": "9f995b69d15acb14b0b69827f0e9182e3146ccc0b3ffe3f13ac23a686f4c9246",
+      "viewport": "desktop"
+    }
+  ]
+}

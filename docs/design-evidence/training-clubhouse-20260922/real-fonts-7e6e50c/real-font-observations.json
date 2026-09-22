@@ -1,0 +1,1190 @@
+{
+  "source_commit": "7e6e50c4758f4cbfb0782fddb2d291931f8a6091",
+  "kind": "real-font-supplement-to-offline-behavior-tests",
+  "public_fonts": "Existing Google Fonts CSS and font files loaded, not mocked",
+  "synthetic_only": true,
+  "results": [
+    {
+      "language": "en",
+      "phase": "initial",
+      "viewport": 390,
+      "loadedFonts": [
+        {
+          "family": "Inter",
+          "weight": "400"
+        },
+        {
+          "family": "Inter",
+          "weight": "600"
+        },
+        {
+          "family": "Inter",
+          "weight": "700"
+        },
+        {
+          "family": "Inter",
+          "weight": "800"
+        },
+        {
+          "family": "Outfit",
+          "weight": "800"
+        }
+      ],
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.720112273366786,
+        "count": 40,
+        "failures": []
+      }
+    },
+    {
+      "language": "en",
+      "phase": "initial",
+      "viewport": 1280,
+      "loadedFonts": [
+        {
+          "family": "Inter",
+          "weight": "400"
+        },
+        {
+          "family": "Inter",
+          "weight": "600"
+        },
+        {
+          "family": "Inter",
+          "weight": "700"
+        },
+        {
+          "family": "Inter",
+          "weight": "800"
+        },
+        {
+          "family": "Outfit",
+          "weight": "800"
+        }
+      ],
+      "layout": {
+        "width": 1280,
+        "clientWidth": 1280,
+        "scrollWidth": 1280,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.720112273366786,
+        "count": 40,
+        "failures": []
+      }
+    },
+    {
+      "language": "en",
+      "phase": "form",
+      "viewport": 390,
+      "loadedFonts": [
+        {
+          "family": "Inter",
+          "weight": "400"
+        },
+        {
+          "family": "Inter",
+          "weight": "600"
+        },
+        {
+          "family": "Inter",
+          "weight": "700"
+        },
+        {
+          "family": "Inter",
+          "weight": "800"
+        },
+        {
+          "family": "Outfit",
+          "weight": "800"
+        }
+      ],
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.720112273366786,
+        "count": 59,
+        "failures": []
+      }
+    },
+    {
+      "language": "en",
+      "phase": "form",
+      "viewport": 1280,
+      "loadedFonts": [
+        {
+          "family": "Inter",
+          "weight": "400"
+        },
+        {
+          "family": "Inter",
+          "weight": "600"
+        },
+        {
+          "family": "Inter",
+          "weight": "700"
+        },
+        {
+          "family": "Inter",
+          "weight": "800"
+        },
+        {
+          "family": "Outfit",
+          "weight": "800"
+        }
+      ],
+      "layout": {
+        "width": 1280,
+        "clientWidth": 1280,
+        "scrollWidth": 1280,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.720112273366786,
+        "count": 59,
+        "failures": []
+      }
+    },
+    {
+      "language": "en",
+      "phase": "completion",
+      "viewport": 390,
+      "loadedFonts": [
+        {
+          "family": "Inter",
+          "weight": "400"
+        },
+        {
+          "family": "Inter",
+          "weight": "600"
+        },
+        {
+          "family": "Inter",
+          "weight": "700"
+        },
+        {
+          "family": "Inter",
+          "weight": "800"
+        },
+        {
+          "family": "Outfit",
+          "weight": "800"
+        }
+      ],
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.720112273366786,
+        "count": 23,
+        "failures": []
+      }
+    },
+    {
+      "language": "en",
+      "phase": "completion",
+      "viewport": 1280,
+      "loadedFonts": [
+        {
+          "family": "Inter",
+          "weight": "400"
+        },
+        {
+          "family": "Inter",
+          "weight": "600"
+        },
+        {
+          "family": "Inter",
+          "weight": "700"
+        },
+        {
+          "family": "Inter",
+          "weight": "800"
+        },
+        {
+          "family": "Outfit",
+          "weight": "800"
+        }
+      ],
+      "layout": {
+        "width": 1280,
+        "clientWidth": 1280,
+        "scrollWidth": 1280,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.720112273366786,
+        "count": 23,
+        "failures": []
+      }
+    },
+    {
+      "language": "ru",
+      "phase": "initial",
+      "viewport": 390,
+      "loadedFonts": [
+        {
+          "family": "Inter",
+          "weight": "400"
+        },
+        {
+          "family": "Inter",
+          "weight": "400"
+        },
+        {
+          "family": "Inter",
+          "weight": "600"
+        },
+        {
+          "family": "Inter",
+          "weight": "600"
+        },
+        {
+          "family": "Inter",
+          "weight": "700"
+        },
+        {
+          "family": "Inter",
+          "weight": "700"
+        },
+        {
+          "family": "Inter",
+          "weight": "800"
+        },
+        {
+          "family": "Inter",
+          "weight": "800"
+        },
+        {
+          "family": "Outfit",
+          "weight": "800"
+        }
+      ],
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.720112273366786,
+        "count": 40,
+        "failures": []
+      }
+    },
+    {
+      "language": "ru",
+      "phase": "initial",
+      "viewport": 1280,
+      "loadedFonts": [
+        {
+          "family": "Inter",
+          "weight": "400"
+        },
+        {
+          "family": "Inter",
+          "weight": "400"
+        },
+        {
+          "family": "Inter",
+          "weight": "600"
+        },
+        {
+          "family": "Inter",
+          "weight": "600"
+        },
+        {
+          "family": "Inter",
+          "weight": "700"
+        },
+        {
+          "family": "Inter",
+          "weight": "700"
+        },
+        {
+          "family": "Inter",
+          "weight": "800"
+        },
+        {
+          "family": "Inter",
+          "weight": "800"
+        },
+        {
+          "family": "Outfit",
+          "weight": "800"
+        }
+      ],
+      "layout": {
+        "width": 1280,
+        "clientWidth": 1280,
+        "scrollWidth": 1280,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.720112273366786,
+        "count": 40,
+        "failures": []
+      }
+    },
+    {
+      "language": "ru",
+      "phase": "form",
+      "viewport": 390,
+      "loadedFonts": [
+        {
+          "family": "Inter",
+          "weight": "400"
+        },
+        {
+          "family": "Inter",
+          "weight": "400"
+        },
+        {
+          "family": "Inter",
+          "weight": "600"
+        },
+        {
+          "family": "Inter",
+          "weight": "600"
+        },
+        {
+          "family": "Inter",
+          "weight": "700"
+        },
+        {
+          "family": "Inter",
+          "weight": "700"
+        },
+        {
+          "family": "Inter",
+          "weight": "800"
+        },
+        {
+          "family": "Inter",
+          "weight": "800"
+        },
+        {
+          "family": "Outfit",
+          "weight": "800"
+        }
+      ],
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.720112273366786,
+        "count": 59,
+        "failures": []
+      }
+    },
+    {
+      "language": "ru",
+      "phase": "form",
+      "viewport": 1280,
+      "loadedFonts": [
+        {
+          "family": "Inter",
+          "weight": "400"
+        },
+        {
+          "family": "Inter",
+          "weight": "400"
+        },
+        {
+          "family": "Inter",
+          "weight": "600"
+        },
+        {
+          "family": "Inter",
+          "weight": "600"
+        },
+        {
+          "family": "Inter",
+          "weight": "700"
+        },
+        {
+          "family": "Inter",
+          "weight": "700"
+        },
+        {
+          "family": "Inter",
+          "weight": "800"
+        },
+        {
+          "family": "Inter",
+          "weight": "800"
+        },
+        {
+          "family": "Outfit",
+          "weight": "800"
+        }
+      ],
+      "layout": {
+        "width": 1280,
+        "clientWidth": 1280,
+        "scrollWidth": 1280,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.720112273366786,
+        "count": 59,
+        "failures": []
+      }
+    },
+    {
+      "language": "ru",
+      "phase": "completion",
+      "viewport": 390,
+      "loadedFonts": [
+        {
+          "family": "Inter",
+          "weight": "400"
+        },
+        {
+          "family": "Inter",
+          "weight": "400"
+        },
+        {
+          "family": "Inter",
+          "weight": "600"
+        },
+        {
+          "family": "Inter",
+          "weight": "600"
+        },
+        {
+          "family": "Inter",
+          "weight": "700"
+        },
+        {
+          "family": "Inter",
+          "weight": "700"
+        },
+        {
+          "family": "Inter",
+          "weight": "800"
+        },
+        {
+          "family": "Inter",
+          "weight": "800"
+        },
+        {
+          "family": "Outfit",
+          "weight": "800"
+        }
+      ],
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.720112273366786,
+        "count": 23,
+        "failures": []
+      }
+    },
+    {
+      "language": "ru",
+      "phase": "completion",
+      "viewport": 1280,
+      "loadedFonts": [
+        {
+          "family": "Inter",
+          "weight": "400"
+        },
+        {
+          "family": "Inter",
+          "weight": "400"
+        },
+        {
+          "family": "Inter",
+          "weight": "600"
+        },
+        {
+          "family": "Inter",
+          "weight": "600"
+        },
+        {
+          "family": "Inter",
+          "weight": "700"
+        },
+        {
+          "family": "Inter",
+          "weight": "700"
+        },
+        {
+          "family": "Inter",
+          "weight": "800"
+        },
+        {
+          "family": "Inter",
+          "weight": "800"
+        },
+        {
+          "family": "Outfit",
+          "weight": "800"
+        }
+      ],
+      "layout": {
+        "width": 1280,
+        "clientWidth": 1280,
+        "scrollWidth": 1280,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.720112273366786,
+        "count": 23,
+        "failures": []
+      }
+    },
+    {
+      "language": "lv",
+      "phase": "initial",
+      "viewport": 390,
+      "loadedFonts": [
+        {
+          "family": "Inter",
+          "weight": "400"
+        },
+        {
+          "family": "Inter",
+          "weight": "400"
+        },
+        {
+          "family": "Inter",
+          "weight": "600"
+        },
+        {
+          "family": "Inter",
+          "weight": "600"
+        },
+        {
+          "family": "Inter",
+          "weight": "700"
+        },
+        {
+          "family": "Inter",
+          "weight": "700"
+        },
+        {
+          "family": "Inter",
+          "weight": "800"
+        },
+        {
+          "family": "Inter",
+          "weight": "800"
+        },
+        {
+          "family": "Outfit",
+          "weight": "800"
+        },
+        {
+          "family": "Outfit",
+          "weight": "800"
+        }
+      ],
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.720112273366786,
+        "count": 40,
+        "failures": []
+      }
+    },
+    {
+      "language": "lv",
+      "phase": "initial",
+      "viewport": 1280,
+      "loadedFonts": [
+        {
+          "family": "Inter",
+          "weight": "400"
+        },
+        {
+          "family": "Inter",
+          "weight": "400"
+        },
+        {
+          "family": "Inter",
+          "weight": "600"
+        },
+        {
+          "family": "Inter",
+          "weight": "600"
+        },
+        {
+          "family": "Inter",
+          "weight": "700"
+        },
+        {
+          "family": "Inter",
+          "weight": "700"
+        },
+        {
+          "family": "Inter",
+          "weight": "800"
+        },
+        {
+          "family": "Inter",
+          "weight": "800"
+        },
+        {
+          "family": "Outfit",
+          "weight": "800"
+        },
+        {
+          "family": "Outfit",
+          "weight": "800"
+        }
+      ],
+      "layout": {
+        "width": 1280,
+        "clientWidth": 1280,
+        "scrollWidth": 1280,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.720112273366786,
+        "count": 40,
+        "failures": []
+      }
+    },
+    {
+      "language": "lv",
+      "phase": "form",
+      "viewport": 390,
+      "loadedFonts": [
+        {
+          "family": "Inter",
+          "weight": "400"
+        },
+        {
+          "family": "Inter",
+          "weight": "400"
+        },
+        {
+          "family": "Inter",
+          "weight": "600"
+        },
+        {
+          "family": "Inter",
+          "weight": "600"
+        },
+        {
+          "family": "Inter",
+          "weight": "700"
+        },
+        {
+          "family": "Inter",
+          "weight": "700"
+        },
+        {
+          "family": "Inter",
+          "weight": "800"
+        },
+        {
+          "family": "Inter",
+          "weight": "800"
+        },
+        {
+          "family": "Outfit",
+          "weight": "800"
+        },
+        {
+          "family": "Outfit",
+          "weight": "800"
+        }
+      ],
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.720112273366786,
+        "count": 59,
+        "failures": []
+      }
+    },
+    {
+      "language": "lv",
+      "phase": "form",
+      "viewport": 1280,
+      "loadedFonts": [
+        {
+          "family": "Inter",
+          "weight": "400"
+        },
+        {
+          "family": "Inter",
+          "weight": "400"
+        },
+        {
+          "family": "Inter",
+          "weight": "600"
+        },
+        {
+          "family": "Inter",
+          "weight": "600"
+        },
+        {
+          "family": "Inter",
+          "weight": "700"
+        },
+        {
+          "family": "Inter",
+          "weight": "700"
+        },
+        {
+          "family": "Inter",
+          "weight": "800"
+        },
+        {
+          "family": "Inter",
+          "weight": "800"
+        },
+        {
+          "family": "Outfit",
+          "weight": "800"
+        },
+        {
+          "family": "Outfit",
+          "weight": "800"
+        }
+      ],
+      "layout": {
+        "width": 1280,
+        "clientWidth": 1280,
+        "scrollWidth": 1280,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.720112273366786,
+        "count": 59,
+        "failures": []
+      }
+    },
+    {
+      "language": "lv",
+      "phase": "completion",
+      "viewport": 390,
+      "loadedFonts": [
+        {
+          "family": "Inter",
+          "weight": "400"
+        },
+        {
+          "family": "Inter",
+          "weight": "400"
+        },
+        {
+          "family": "Inter",
+          "weight": "600"
+        },
+        {
+          "family": "Inter",
+          "weight": "600"
+        },
+        {
+          "family": "Inter",
+          "weight": "700"
+        },
+        {
+          "family": "Inter",
+          "weight": "700"
+        },
+        {
+          "family": "Inter",
+          "weight": "800"
+        },
+        {
+          "family": "Inter",
+          "weight": "800"
+        },
+        {
+          "family": "Outfit",
+          "weight": "800"
+        },
+        {
+          "family": "Outfit",
+          "weight": "800"
+        }
+      ],
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.720112273366786,
+        "count": 23,
+        "failures": []
+      }
+    },
+    {
+      "language": "lv",
+      "phase": "completion",
+      "viewport": 1280,
+      "loadedFonts": [
+        {
+          "family": "Inter",
+          "weight": "400"
+        },
+        {
+          "family": "Inter",
+          "weight": "400"
+        },
+        {
+          "family": "Inter",
+          "weight": "600"
+        },
+        {
+          "family": "Inter",
+          "weight": "600"
+        },
+        {
+          "family": "Inter",
+          "weight": "700"
+        },
+        {
+          "family": "Inter",
+          "weight": "700"
+        },
+        {
+          "family": "Inter",
+          "weight": "800"
+        },
+        {
+          "family": "Inter",
+          "weight": "800"
+        },
+        {
+          "family": "Outfit",
+          "weight": "800"
+        },
+        {
+          "family": "Outfit",
+          "weight": "800"
+        }
+      ],
+      "layout": {
+        "width": 1280,
+        "clientWidth": 1280,
+        "scrollWidth": 1280,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.720112273366786,
+        "count": 23,
+        "failures": []
+      }
+    },
+    {
+      "language": "es",
+      "phase": "initial",
+      "viewport": 390,
+      "loadedFonts": [
+        {
+          "family": "Inter",
+          "weight": "400"
+        },
+        {
+          "family": "Inter",
+          "weight": "600"
+        },
+        {
+          "family": "Inter",
+          "weight": "700"
+        },
+        {
+          "family": "Inter",
+          "weight": "800"
+        },
+        {
+          "family": "Outfit",
+          "weight": "800"
+        }
+      ],
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.720112273366786,
+        "count": 40,
+        "failures": []
+      }
+    },
+    {
+      "language": "es",
+      "phase": "initial",
+      "viewport": 1280,
+      "loadedFonts": [
+        {
+          "family": "Inter",
+          "weight": "400"
+        },
+        {
+          "family": "Inter",
+          "weight": "600"
+        },
+        {
+          "family": "Inter",
+          "weight": "700"
+        },
+        {
+          "family": "Inter",
+          "weight": "800"
+        },
+        {
+          "family": "Outfit",
+          "weight": "800"
+        }
+      ],
+      "layout": {
+        "width": 1280,
+        "clientWidth": 1280,
+        "scrollWidth": 1280,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.720112273366786,
+        "count": 40,
+        "failures": []
+      }
+    },
+    {
+      "language": "es",
+      "phase": "form",
+      "viewport": 390,
+      "loadedFonts": [
+        {
+          "family": "Inter",
+          "weight": "400"
+        },
+        {
+          "family": "Inter",
+          "weight": "600"
+        },
+        {
+          "family": "Inter",
+          "weight": "700"
+        },
+        {
+          "family": "Inter",
+          "weight": "800"
+        },
+        {
+          "family": "Outfit",
+          "weight": "800"
+        }
+      ],
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.720112273366786,
+        "count": 59,
+        "failures": []
+      }
+    },
+    {
+      "language": "es",
+      "phase": "form",
+      "viewport": 1280,
+      "loadedFonts": [
+        {
+          "family": "Inter",
+          "weight": "400"
+        },
+        {
+          "family": "Inter",
+          "weight": "600"
+        },
+        {
+          "family": "Inter",
+          "weight": "700"
+        },
+        {
+          "family": "Inter",
+          "weight": "800"
+        },
+        {
+          "family": "Outfit",
+          "weight": "800"
+        }
+      ],
+      "layout": {
+        "width": 1280,
+        "clientWidth": 1280,
+        "scrollWidth": 1280,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.720112273366786,
+        "count": 59,
+        "failures": []
+      }
+    },
+    {
+      "language": "es",
+      "phase": "completion",
+      "viewport": 390,
+      "loadedFonts": [
+        {
+          "family": "Inter",
+          "weight": "400"
+        },
+        {
+          "family": "Inter",
+          "weight": "600"
+        },
+        {
+          "family": "Inter",
+          "weight": "700"
+        },
+        {
+          "family": "Inter",
+          "weight": "800"
+        },
+        {
+          "family": "Outfit",
+          "weight": "800"
+        }
+      ],
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.720112273366786,
+        "count": 23,
+        "failures": []
+      }
+    },
+    {
+      "language": "es",
+      "phase": "completion",
+      "viewport": 1280,
+      "loadedFonts": [
+        {
+          "family": "Inter",
+          "weight": "400"
+        },
+        {
+          "family": "Inter",
+          "weight": "600"
+        },
+        {
+          "family": "Inter",
+          "weight": "700"
+        },
+        {
+          "family": "Inter",
+          "weight": "800"
+        },
+        {
+          "family": "Outfit",
+          "weight": "800"
+        }
+      ],
+      "layout": {
+        "width": 1280,
+        "clientWidth": 1280,
+        "scrollWidth": 1280,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.720112273366786,
+        "count": 23,
+        "failures": []
+      }
+    }
+  ],
+  "limitations": [
+    "Chromium only",
+    "Auth and API remain mocked/offline",
+    "No private player data",
+    "Native zoom and failure recovery covered separately by the offline suite"
+  ]
+}
