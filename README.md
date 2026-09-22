@@ -72,12 +72,17 @@ npm test -- tests/maintenance.test.ts tests/exercises.test.ts
 
 ## Status
 
-### Approved player training slice
+### Historical player training slice; whole-app concepts pending
 
 The owner selected **Clubhouse**, then **cobalt blue + warm coral on neutral
 surfaces**, on 2026-09-22. See [the canonical brief](.impeccable.md) and
 [implementation/verification notes](docs/training-clubhouse.md). The original
 standalone concepts remain historical comparison material, not final UI evidence.
+
+After PR #10 shipped, the owner rejected its aesthetic quality and incomplete
+application scope. The current [Football academy comparison](docs/design-directions/academy-20260922/README.md)
+covers all five main pages, drillthroughs and role treatments. It awaits an owner
+decision and does not modify production. Functional checks are not design acceptance.
 
 Player Home now prioritizes logging completed training and understanding effort.
 Existing matches, goals and activities remain under **More football**; coach and

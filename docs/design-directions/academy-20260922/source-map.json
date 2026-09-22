@@ -1,0 +1,2639 @@
+{
+  "base": "1a0b81b80ca7c0bdf73b1074a8c5bc7fdbb8dcfc",
+  "parser": "TypeScript 5.9.3",
+  "rows": [
+    {
+      "file": "src/App.tsx",
+      "imports": [
+        "./contexts/AppContext",
+        "./contexts/AuthContext",
+        "./contexts/ToastContext",
+        "./components/XpBar",
+        "./components/BottomNav",
+        "./components/FeedbackButton",
+        "./pages/Dashboard",
+        "./pages/Clubhouse",
+        "./pages/LogPage",
+        "./pages/LoginPage",
+        "./pages/OnboardingPage",
+        "./utils/teamTheme",
+        "./utils/surfaceTheme",
+        "./components/ErrorBoundary",
+        "./pages/Exercises",
+        "./pages/LearnPage",
+        "./pages/Challenges",
+        "./pages/Profile",
+        "./pages/SchedulePage",
+        "./pages/ProgressPage",
+        "./pages/LeaderboardPage",
+        "./pages/FootballPortal",
+        "./pages/MentorDashboard",
+        "./pages/CoachDashboard",
+        "./pages/SquadRoster",
+        "./pages/TrainingPlanner",
+        "./pages/AnnouncementsPage",
+        "./pages/EvaluationPage",
+        "./components/AttendanceGrid",
+        "./components/TeamPicker",
+        "./pages/CoachStatsPage",
+        "./pages/TeamChallenges"
+      ],
+      "components": [
+        "LoginPage",
+        "OnboardingPage",
+        "XpBar",
+        "Clubhouse",
+        "Dashboard",
+        "Suspense",
+        "MentorDashboard",
+        "CoachDashboard",
+        "LogPage",
+        "LearnPage",
+        "Exercises",
+        "Challenges",
+        "Profile",
+        "SchedulePage",
+        "ProgressPage",
+        "LeaderboardPage",
+        "FootballPortal",
+        "CoachStatsPage",
+        "SquadRoster",
+        "TrainingPlanner",
+        "AnnouncementsPage",
+        "EvaluationPage",
+        "AttendanceGrid",
+        "TeamChallenges",
+        "BottomNav",
+        "FeedbackButton",
+        "TeamPickerLazy",
+        "ErrorBoundary",
+        "AuthProvider",
+        "AppProvider",
+        "ToastProvider",
+        "AppContent"
+      ],
+      "states": [
+        {
+          "name": "[page, setPage]",
+          "type": "Page",
+          "initial": "'dashboard'"
+        },
+        {
+          "name": "[pageKey, setPageKey]",
+          "type": "",
+          "initial": "0"
+        },
+        {
+          "name": "[coachTeamId, setCoachTeamId]",
+          "type": "",
+          "initial": "''"
+        },
+        {
+          "name": "[coachTeamName, setCoachTeamName]",
+          "type": "",
+          "initial": "''"
+        },
+        {
+          "name": "[coachTeamIds, setCoachTeamIds]",
+          "type": "string[]",
+          "initial": "[]"
+        },
+        {
+          "name": "[evaluatePlayerId, setEvaluatePlayerId]",
+          "type": "",
+          "initial": "''"
+        },
+        {
+          "name": "[showTeamPicker, setShowTeamPicker]",
+          "type": "",
+          "initial": "false"
+        },
+        {
+          "name": "[selectedTeamIds, setSelectedTeamIds]",
+          "type": "string[]",
+          "initial": "[]"
+        },
+        {
+          "name": "[skippedLogin, setSkippedLogin]",
+          "type": "",
+          "initial": "false"
+        }
+      ],
+      "functions": [
+        "AppContent",
+        "handleSkip",
+        "App"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/components/AchievementsList.tsx",
+      "imports": [
+        "../contexts/AppContext",
+        "../engine/achievements"
+      ],
+      "components": [],
+      "states": [],
+      "functions": [
+        "getTierGradient",
+        "AchievementsList"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/components/AddTeamDialog.tsx",
+      "imports": [
+        "../engine/types"
+      ],
+      "components": [],
+      "states": [
+        {
+          "name": "[name, setName]",
+          "type": "",
+          "initial": "initialName"
+        },
+        {
+          "name": "[country, setCountry]",
+          "type": "",
+          "initial": "defaultCountry ?? 'LV'"
+        },
+        {
+          "name": "[city, setCity]",
+          "type": "",
+          "initial": "''"
+        },
+        {
+          "name": "[saving, setSaving]",
+          "type": "",
+          "initial": "false"
+        },
+        {
+          "name": "[duplicate, setDuplicate]",
+          "type": "SharedTeam | null",
+          "initial": "null"
+        },
+        {
+          "name": "[error, setError]",
+          "type": "",
+          "initial": "''"
+        }
+      ],
+      "functions": [
+        "AddTeamDialog",
+        "handleSave",
+        "useDuplicate"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/components/AnnouncementFeed.tsx",
+      "imports": [
+        "../contexts/AppContext",
+        "../engine/types"
+      ],
+      "components": [],
+      "states": [
+        {
+          "name": "[announcements, setAnnouncements]",
+          "type": "Announcement[]",
+          "initial": "[]"
+        },
+        {
+          "name": "[loading, setLoading]",
+          "type": "",
+          "initial": "true"
+        }
+      ],
+      "functions": [
+        "AnnouncementFeed",
+        "load"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/components/AttendanceGrid.tsx",
+      "imports": [
+        "../engine/types"
+      ],
+      "components": [],
+      "states": [
+        {
+          "name": "[players, setPlayers]",
+          "type": "RosterPlayer[]",
+          "initial": "[]"
+        },
+        {
+          "name": "[loading, setLoading]",
+          "type": "",
+          "initial": "true"
+        },
+        {
+          "name": "[date, setDate]",
+          "type": "",
+          "initial": "new Date().toISOString().slice(0, 10)"
+        },
+        {
+          "name": "[attendance, setAttendance]",
+          "type": "Map<string, AttendanceStatus>",
+          "initial": "new Map()"
+        },
+        {
+          "name": "[saving, setSaving]",
+          "type": "",
+          "initial": "false"
+        }
+      ],
+      "functions": [
+        "AttendanceGrid",
+        "load",
+        "cycleStatus",
+        "markAllPresent",
+        "save"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/components/BottomNav.tsx",
+      "imports": [],
+      "components": [
+        "NavIcon"
+      ],
+      "states": [],
+      "functions": [
+        "NavIcon",
+        "BottomNav"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/components/CoachCard.tsx",
+      "imports": [
+        "../contexts/AppContext",
+        "../engine/coach"
+      ],
+      "components": [
+        "InsightRow"
+      ],
+      "states": [
+        {
+          "name": "[aiAdvice, setAiAdvice]",
+          "type": "CoachAdvice | null",
+          "initial": "null"
+        },
+        {
+          "name": "[loading, setLoading]",
+          "type": "",
+          "initial": "false"
+        },
+        {
+          "name": "[aiAvailable, setAiAvailable]",
+          "type": "boolean | null",
+          "initial": "null"
+        }
+      ],
+      "functions": [
+        "InsightRow",
+        "CoachCard",
+        "fetchAiAdvice"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/components/CoachSquadFilter.tsx",
+      "imports": [
+        "../engine/types"
+      ],
+      "components": [],
+      "states": [],
+      "functions": [
+        "CoachSquadFilter"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/components/ConfettiBurst.tsx",
+      "imports": [],
+      "components": [],
+      "states": [
+        {
+          "name": "[particles, setParticles]",
+          "type": "Particle[]",
+          "initial": "[]"
+        },
+        {
+          "name": "[visible, setVisible]",
+          "type": "",
+          "initial": "false"
+        }
+      ],
+      "functions": [
+        "ConfettiBurst"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/components/DailyCheckIn.tsx",
+      "imports": [
+        "../contexts/AppContext",
+        "../engine/xp",
+        "../engine/types"
+      ],
+      "components": [],
+      "states": [
+        {
+          "name": "[mood, setMood]",
+          "type": "EnergyLevel | null",
+          "initial": "null"
+        },
+        {
+          "name": "[energy, setEnergy]",
+          "type": "EnergyLevel | null",
+          "initial": "null"
+        },
+        {
+          "name": "[note, setNote]",
+          "type": "",
+          "initial": "''"
+        },
+        {
+          "name": "[showNote, setShowNote]",
+          "type": "",
+          "initial": "false"
+        },
+        {
+          "name": "[saved, setSaved]",
+          "type": "",
+          "initial": "alreadyCheckedIn"
+        }
+      ],
+      "functions": [
+        "DailyCheckIn",
+        "handleSave"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/components/DailyQuiz.tsx",
+      "imports": [
+        "../contexts/AppContext",
+        "../engine/xp",
+        "../data/quizzes",
+        "../engine/types"
+      ],
+      "components": [],
+      "states": [
+        {
+          "name": "[selected, setSelected]",
+          "type": "number | null",
+          "initial": "null"
+        },
+        {
+          "name": "[revealed, setRevealed]",
+          "type": "",
+          "initial": "alreadyAnswered"
+        }
+      ],
+      "functions": [
+        "tierToDifficulty",
+        "DailyQuiz",
+        "handleAnswer"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/components/EmptyState.tsx",
+      "imports": [],
+      "components": [],
+      "states": [],
+      "functions": [
+        "EmptyState"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/components/ErrorBoundary.tsx",
+      "imports": [],
+      "components": [],
+      "states": [],
+      "functions": [],
+      "reachable": true
+    },
+    {
+      "file": "src/components/EvaluationHistory.tsx",
+      "imports": [
+        "../contexts/AppContext",
+        "../engine/types"
+      ],
+      "components": [],
+      "states": [
+        {
+          "name": "[evaluations, setEvaluations]",
+          "type": "PlayerEvaluation[]",
+          "initial": "[]"
+        },
+        {
+          "name": "[loading, setLoading]",
+          "type": "",
+          "initial": "true"
+        },
+        {
+          "name": "[expanded, setExpanded]",
+          "type": "string | null",
+          "initial": "null"
+        }
+      ],
+      "functions": [
+        "EvaluationHistory",
+        "load"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/components/FeedbackButton.tsx",
+      "imports": [],
+      "components": [],
+      "states": [
+        {
+          "name": "[open, setOpen]",
+          "type": "",
+          "initial": "false"
+        },
+        {
+          "name": "[text, setText]",
+          "type": "",
+          "initial": "''"
+        },
+        {
+          "name": "[type, setType]",
+          "type": "FBType",
+          "initial": "'idea'"
+        }
+      ],
+      "functions": [
+        "FeedbackButton"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/components/LevelUpCelebration.tsx",
+      "imports": [
+        "../engine/xp",
+        "./ConfettiBurst"
+      ],
+      "components": [
+        "ConfettiBurst"
+      ],
+      "states": [
+        {
+          "name": "[visible, setVisible]",
+          "type": "",
+          "initial": "false"
+        }
+      ],
+      "functions": [
+        "LevelUpCelebration"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/components/MorningRoutine.tsx",
+      "imports": [
+        "../contexts/AppContext",
+        "../engine/xp",
+        "./DailyCheckIn",
+        "./DailyQuiz",
+        "../engine/types",
+        "../engine/challenges"
+      ],
+      "components": [
+        "DailyCheckIn",
+        "DailyQuiz"
+      ],
+      "states": [
+        {
+          "name": "[completedChallengeIds, setCompletedChallengeIds]",
+          "type": "Set<string>",
+          "initial": "() => {\r\n    try {\r\n      const stored = localStorage.getItem(challengeStorageKey)\r\n      return sto"
+        },
+        {
+          "name": "[step, setStep]",
+          "type": "Step",
+          "initial": "initialStep"
+        }
+      ],
+      "functions": [
+        "MorningRoutine",
+        "handleChallengeComplete",
+        "finishRoutine"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/components/PersonalGoals.tsx",
+      "imports": [
+        "../contexts/AppContext",
+        "../engine/types",
+        "../engine/personalGoals"
+      ],
+      "components": [],
+      "states": [
+        {
+          "name": "[title, setTitle]",
+          "type": "",
+          "initial": "''"
+        },
+        {
+          "name": "[metric, setMetric]",
+          "type": "PersonalGoalMetric",
+          "initial": "'trainings'"
+        },
+        {
+          "name": "[target, setTarget]",
+          "type": "",
+          "initial": "'5'"
+        }
+      ],
+      "functions": [
+        "createId",
+        "PersonalGoals",
+        "handleAddGoal"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/components/PhotoUpload.tsx",
+      "imports": [
+        "../contexts/AppContext"
+      ],
+      "components": [],
+      "states": [
+        {
+          "name": "[uploading, setUploading]",
+          "type": "",
+          "initial": "false"
+        }
+      ],
+      "functions": [
+        "compressImage",
+        "PhotoUpload",
+        "handleFile",
+        "removePhoto"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/components/PhysicalUpdateFlow.tsx",
+      "imports": [
+        "../contexts/AppContext",
+        "../engine/types",
+        "../engine/physical"
+      ],
+      "components": [],
+      "states": [
+        {
+          "name": "[values, setValues]",
+          "type": "Partial<Record<PhysicalFieldKey, string>>",
+          "initial": "() => {\r\n    const init: Partial<Record<PhysicalFieldKey, string>> = {}\r\n    if (latest) {\r\n      fo"
+        }
+      ],
+      "functions": [
+        "PhysicalUpdateFlow",
+        "save",
+        "renderDelta"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/components/QuoteCard.tsx",
+      "imports": [
+        "../engine/types",
+        "../data/quotes"
+      ],
+      "components": [],
+      "states": [],
+      "functions": [
+        "QuoteCard"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/components/SkillRadar.tsx",
+      "imports": [
+        "../contexts/AppContext",
+        "../engine/skills",
+        "../engine/types"
+      ],
+      "components": [],
+      "states": [],
+      "functions": [
+        "SkillRadar"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/components/SocialChallenges.tsx",
+      "imports": [
+        "../engine/types",
+        "../engine/socialChallenges"
+      ],
+      "components": [],
+      "states": [
+        {
+          "name": "[challenges, setChallenges]",
+          "type": "SocialChallenge[]",
+          "initial": "[]"
+        },
+        {
+          "name": "[loading, setLoading]",
+          "type": "",
+          "initial": "true"
+        },
+        {
+          "name": "[error, setError]",
+          "type": "",
+          "initial": "''"
+        },
+        {
+          "name": "[showForm, setShowForm]",
+          "type": "",
+          "initial": "false"
+        },
+        {
+          "name": "[title, setTitle]",
+          "type": "",
+          "initial": "''"
+        },
+        {
+          "name": "[target, setTarget]",
+          "type": "",
+          "initial": "5"
+        },
+        {
+          "name": "[days, setDays]",
+          "type": "",
+          "initial": "7"
+        },
+        {
+          "name": "[joinCode, setJoinCode]",
+          "type": "",
+          "initial": "''"
+        }
+      ],
+      "functions": [
+        "SocialChallenges",
+        "createChallenge",
+        "joinChallenge",
+        "logProgress"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/components/TeamPicker.tsx",
+      "imports": [
+        "../contexts/AppContext",
+        "./AddTeamDialog",
+        "../engine/types"
+      ],
+      "components": [
+        "AddTeamDialog"
+      ],
+      "states": [
+        {
+          "name": "[view, setView]",
+          "type": "View",
+          "initial": "'my-teams'"
+        },
+        {
+          "name": "[allTeams, setAllTeams]",
+          "type": "SharedTeam[]",
+          "initial": "[]"
+        },
+        {
+          "name": "[loading, setLoading]",
+          "type": "",
+          "initial": "true"
+        },
+        {
+          "name": "[search, setSearch]",
+          "type": "",
+          "initial": "''"
+        },
+        {
+          "name": "[addTeamName, setAddTeamName]",
+          "type": "string | null",
+          "initial": "null"
+        },
+        {
+          "name": "[selectedClub, setSelectedClub]",
+          "type": "{ id?: string; name: string } | null",
+          "initial": "null"
+        },
+        {
+          "name": "[birthYear, setBirthYear]",
+          "type": "",
+          "initial": "2014"
+        },
+        {
+          "name": "[teamLabel, setTeamLabel]",
+          "type": "",
+          "initial": "'A'"
+        },
+        {
+          "name": "[coachRole, setCoachRole]",
+          "type": "CoachRole",
+          "initial": "'head'"
+        },
+        {
+          "name": "[positions, setPositions]",
+          "type": "Position[]",
+          "initial": "() => {\r\n    // Default from profile positions\r\n    const profilePositions = profile?.positions\r\n   "
+        }
+      ],
+      "functions": [
+        "norm",
+        "TeamPicker",
+        "load",
+        "removeTeam",
+        "addTeam",
+        "selectClub",
+        "handleNewTeamAdded"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/components/TeamProfile.tsx",
+      "imports": [
+        "../engine/types"
+      ],
+      "components": [],
+      "states": [],
+      "functions": [
+        "TeamProfile",
+        "handleNavigate"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/components/TeamSearch.tsx",
+      "imports": [
+        "../engine/types"
+      ],
+      "components": [],
+      "states": [
+        {
+          "name": "[query, setQuery]",
+          "type": "",
+          "initial": "value"
+        },
+        {
+          "name": "[results, setResults]",
+          "type": "SharedTeam[]",
+          "initial": "[]"
+        },
+        {
+          "name": "[open, setOpen]",
+          "type": "",
+          "initial": "false"
+        },
+        {
+          "name": "[loading, setLoading]",
+          "type": "",
+          "initial": "false"
+        },
+        {
+          "name": "[selected, setSelected]",
+          "type": "",
+          "initial": "false"
+        },
+        {
+          "name": "[dropdownPos, setDropdownPos]",
+          "type": "{ top: number; left: number; width: number; openUp: boolean }",
+          "initial": "{ top: 0, left: 0, width: 0, openUp: false }"
+        }
+      ],
+      "functions": [
+        "normalize",
+        "matchedAlias",
+        "TeamSearch",
+        "handleClose",
+        "handleScroll",
+        "handleInput",
+        "selectTeam"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/components/ThemePicker.tsx",
+      "imports": [
+        "../utils/surfaceTheme",
+        "../utils/teamTheme",
+        "../contexts/AppContext"
+      ],
+      "components": [],
+      "states": [
+        {
+          "name": "[selected, setSelected]",
+          "type": "",
+          "initial": "loadSurfaceTheme"
+        }
+      ],
+      "functions": [
+        "ThemePicker",
+        "pick",
+        "getSwatchForPreset"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/components/TournamentImport.tsx",
+      "imports": [
+        "../contexts/AppContext",
+        "./TeamSearch",
+        "../engine/footballStandards",
+        "../engine/types"
+      ],
+      "components": [
+        "TeamSearch"
+      ],
+      "states": [
+        {
+          "name": "[url, setUrl]",
+          "type": "",
+          "initial": "''"
+        },
+        {
+          "name": "[teamName, setTeamName]",
+          "type": "",
+          "initial": "profile?.teams?.find(t => t.isPrimary)?.name || profile?.teams?.[0]?.name || profile?.team || ''"
+        },
+        {
+          "name": "[selectedTeamId, setSelectedTeamId]",
+          "type": "",
+          "initial": "playerTeams[0]?.id ?? ''"
+        },
+        {
+          "name": "[durationMin, setDurationMin]",
+          "type": "",
+          "initial": "durationRecommendation.totalMinutes"
+        },
+        {
+          "name": "[loading, setLoading]",
+          "type": "",
+          "initial": "false"
+        },
+        {
+          "name": "[error, setError]",
+          "type": "",
+          "initial": "''"
+        },
+        {
+          "name": "[fetchedTeams, setFetchedTeams]",
+          "type": "string[]",
+          "initial": "[]"
+        },
+        {
+          "name": "[showTeamPicker, setShowTeamPicker]",
+          "type": "",
+          "initial": "false"
+        },
+        {
+          "name": "[result, setResult]",
+          "type": "ImportResult | null",
+          "initial": "null"
+        },
+        {
+          "name": "[imported, setImported]",
+          "type": "",
+          "initial": "false"
+        }
+      ],
+      "functions": [
+        "TournamentImport",
+        "handleFetch",
+        "handleImport",
+        "createOrJoinSharedTournament"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/components/TrackedFieldsEditor.tsx",
+      "imports": [
+        "../contexts/AppContext",
+        "../engine/types",
+        "../engine/physical"
+      ],
+      "components": [],
+      "states": [
+        {
+          "name": "[tracked, setTracked]",
+          "type": "PhysicalFieldKey[]",
+          "initial": "() => {\r\n    if (physicalProfile?.trackedFields && physicalProfile.trackedFields.length > 0) {\r\n    "
+        }
+      ],
+      "functions": [
+        "TrackedFieldsEditor",
+        "toggle",
+        "resetToDefaults",
+        "save"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/components/training/ClubhouseHeader.tsx",
+      "imports": [
+        "../../contexts/AppContext",
+        "../../utils/teamTheme"
+      ],
+      "components": [],
+      "states": [],
+      "functions": [
+        "ClubhouseHeader"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/components/training/TrainingCompletion.tsx",
+      "imports": [
+        "../../engine/training",
+        "./TrainingProgress"
+      ],
+      "components": [
+        "TrainingProgress"
+      ],
+      "states": [],
+      "functions": [
+        "TrainingCompletion"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/components/training/TrainingFields.tsx",
+      "imports": [
+        "../../engine/types"
+      ],
+      "components": [],
+      "states": [],
+      "functions": [
+        "TrainingFields"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/components/training/TrainingProgress.tsx",
+      "imports": [
+        "../../contexts/AppContext",
+        "../../engine/training"
+      ],
+      "components": [],
+      "states": [],
+      "functions": [
+        "TrainingProgress"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/components/ui/BackButton.tsx",
+      "imports": [],
+      "components": [],
+      "states": [],
+      "functions": [
+        "BackButton"
+      ]
+    },
+    {
+      "file": "src/components/ui/Card.tsx",
+      "imports": [],
+      "components": [],
+      "states": [],
+      "functions": [
+        "Card"
+      ]
+    },
+    {
+      "file": "src/components/ui/FormInput.tsx",
+      "imports": [],
+      "components": [],
+      "states": [],
+      "functions": [
+        "FormInput"
+      ]
+    },
+    {
+      "file": "src/components/ui/PageContainer.tsx",
+      "imports": [],
+      "components": [],
+      "states": [],
+      "functions": [
+        "PageContainer"
+      ]
+    },
+    {
+      "file": "src/components/ui/SectionHeader.tsx",
+      "imports": [],
+      "components": [],
+      "states": [],
+      "functions": [
+        "SectionHeader"
+      ]
+    },
+    {
+      "file": "src/components/ui/StatDisplay.tsx",
+      "imports": [],
+      "components": [],
+      "states": [],
+      "functions": [
+        "StatDisplay"
+      ]
+    },
+    {
+      "file": "src/components/VideoPlayer.tsx",
+      "imports": [],
+      "components": [],
+      "states": [],
+      "functions": [
+        "getYouTubeId",
+        "VideoPlayer"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/components/WeeklyGoalRing.tsx",
+      "imports": [
+        "../contexts/AppContext"
+      ],
+      "components": [],
+      "states": [],
+      "functions": [
+        "WeeklyGoalRing"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/components/WeeklySummary.tsx",
+      "imports": [
+        "../contexts/AppContext",
+        "../engine/skills"
+      ],
+      "components": [],
+      "states": [],
+      "functions": [
+        "WeeklySummary"
+      ]
+    },
+    {
+      "file": "src/components/WorkoutView.tsx",
+      "imports": [
+        "../engine/types",
+        "../data/exercises"
+      ],
+      "components": [
+        "ExerciseCard"
+      ],
+      "states": [
+        {
+          "name": "[showRating, setShowRating]",
+          "type": "",
+          "initial": "false"
+        },
+        {
+          "name": "[rating, setRating]",
+          "type": "1 | 2 | 3 | 4 | 5 | null",
+          "initial": "null"
+        }
+      ],
+      "functions": [
+        "getExerciseName",
+        "WorkoutView",
+        "handleComplete",
+        "handleRate",
+        "handleSkipRating",
+        "ExerciseCard"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/components/XpBar.tsx",
+      "imports": [
+        "../contexts/AppContext",
+        "../engine/xp"
+      ],
+      "components": [],
+      "states": [],
+      "functions": [
+        "XpBar"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/contexts/AppContext.tsx",
+      "imports": [
+        "../engine/types",
+        "../engine/xp",
+        "../engine/skills",
+        "../engine/training"
+      ],
+      "components": [
+        "AppContext.Provider"
+      ],
+      "states": [
+        {
+          "name": "[state, setState]",
+          "type": "AppState",
+          "initial": "loadState"
+        },
+        {
+          "name": "[syncing, setSyncing]",
+          "type": "",
+          "initial": "true"
+        }
+      ],
+      "functions": [
+        "useApp",
+        "syncFromApi",
+        "syncToApi",
+        "loadState",
+        "createDefaultState",
+        "saveState",
+        "AppProvider",
+        "handleBeforeUnload"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/contexts/AuthContext.tsx",
+      "imports": [
+        "../engine/types"
+      ],
+      "components": [
+        "AuthContext.Provider"
+      ],
+      "states": [
+        {
+          "name": "[user, setUser]",
+          "type": "SwaClientPrincipal | null",
+          "initial": "null"
+        },
+        {
+          "name": "[loading, setLoading]",
+          "type": "",
+          "initial": "true"
+        }
+      ],
+      "functions": [
+        "useAuth",
+        "AuthProvider",
+        "checkAuth",
+        "login",
+        "logout"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/contexts/ToastContext.tsx",
+      "imports": [],
+      "components": [
+        "ToastContext.Provider",
+        "ToastContainer"
+      ],
+      "states": [
+        {
+          "name": "[toasts, setToasts]",
+          "type": "Toast[]",
+          "initial": "[]"
+        }
+      ],
+      "functions": [
+        "useToast",
+        "ToastProvider",
+        "ToastContainer"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/main.tsx",
+      "imports": [
+        "./App",
+        "./i18n",
+        "./index.css"
+      ],
+      "components": [
+        "React.StrictMode",
+        "App"
+      ],
+      "states": [],
+      "functions": [],
+      "reachable": true
+    },
+    {
+      "file": "src/pages/AnnouncementsPage.tsx",
+      "imports": [
+        "../contexts/ToastContext",
+        "../engine/types"
+      ],
+      "components": [],
+      "states": [
+        {
+          "name": "[announcements, setAnnouncements]",
+          "type": "Announcement[]",
+          "initial": "[]"
+        },
+        {
+          "name": "[loading, setLoading]",
+          "type": "",
+          "initial": "true"
+        },
+        {
+          "name": "[showNew, setShowNew]",
+          "type": "",
+          "initial": "false"
+        },
+        {
+          "name": "[title, setTitle]",
+          "type": "",
+          "initial": "''"
+        },
+        {
+          "name": "[body, setBody]",
+          "type": "",
+          "initial": "''"
+        },
+        {
+          "name": "[priority, setPriority]",
+          "type": "AnnouncementPriority",
+          "initial": "'normal'"
+        },
+        {
+          "name": "[audience, setAudience]",
+          "type": "AnnouncementAudience",
+          "initial": "'all'"
+        },
+        {
+          "name": "[linkUrl, setLinkUrl]",
+          "type": "",
+          "initial": "''"
+        },
+        {
+          "name": "[saving, setSaving]",
+          "type": "",
+          "initial": "false"
+        }
+      ],
+      "functions": [
+        "AnnouncementsPage",
+        "load",
+        "send"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/pages/Challenges.tsx",
+      "imports": [
+        "../contexts/AppContext",
+        "../engine/xp",
+        "../engine/types",
+        "../engine/challenges",
+        "../engine/skills"
+      ],
+      "components": [],
+      "states": [
+        {
+          "name": "[completedIds, setCompletedIds]",
+          "type": "Set<string>",
+          "initial": "() => {\r\n    try {\r\n      const stored = localStorage.getItem(getDailyChallengeCompletionKey(todayKe"
+        },
+        {
+          "name": "[weeklyProgress, setWeeklyProgress]",
+          "type": "number",
+          "initial": "() => {\r\n    if (!weeklyStorageKey) return 0\r\n    try {\r\n      const stored = localStorage.getItem(w"
+        },
+        {
+          "name": "[expandedId, setExpandedId]",
+          "type": "string | null",
+          "initial": "null"
+        }
+      ],
+      "functions": [
+        "Challenges",
+        "completeDaily",
+        "incrementWeekly",
+        "getSpecialProgress",
+        "startOrLogSpecial"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/pages/Clubhouse.tsx",
+      "imports": [
+        "../contexts/AppContext",
+        "../components/training/ClubhouseHeader",
+        "../components/training/TrainingProgress",
+        "./TrainingLog",
+        "../clubhouse.css"
+      ],
+      "components": [
+        "TrainingLog",
+        "ClubhouseHeader",
+        "TrainingProgress"
+      ],
+      "states": [
+        {
+          "name": "[logging, setLogging]",
+          "type": "",
+          "initial": "false"
+        }
+      ],
+      "functions": [
+        "Clubhouse"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/pages/CoachDashboard.tsx",
+      "imports": [
+        "../components/CoachSquadFilter",
+        "../engine/types"
+      ],
+      "components": [
+        "CoachSquadFilter"
+      ],
+      "states": [],
+      "functions": [
+        "CoachDashboard"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/pages/CoachStatsPage.tsx",
+      "imports": [
+        "../components/CoachSquadFilter",
+        "../engine/types"
+      ],
+      "components": [
+        "CoachSquadFilter"
+      ],
+      "states": [],
+      "functions": [
+        "CoachStatsPage"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/pages/Dashboard.tsx",
+      "imports": [
+        "../contexts/AppContext",
+        "../components/QuoteCard",
+        "../components/CoachCard",
+        "../components/AnnouncementFeed",
+        "../components/WeeklyGoalRing",
+        "../hooks/useCountUp",
+        "../components/ConfettiBurst",
+        "../engine/types",
+        "../engine/xp",
+        "../engine/challenges",
+        "./MatchLog",
+        "./TrainingLog",
+        "../engine/physical",
+        "../components/PhysicalUpdateFlow",
+        "../components/MorningRoutine",
+        "../components/DailyQuiz",
+        "../components/LevelUpCelebration"
+      ],
+      "components": [
+        "ConfettiBurst",
+        "LevelUpCelebration",
+        "MorningRoutine",
+        "PhysicalUpdateFlow",
+        "ComparisonArrow",
+        "WeeklyGoalRing",
+        "MatchLog",
+        "TrainingLog",
+        "CoachCard",
+        "AnnouncementFeed",
+        "DailyQuiz",
+        "QuoteCard"
+      ],
+      "states": [
+        {
+          "name": "[prevLevel, setPrevLevel]",
+          "type": "",
+          "initial": "xp.level"
+        },
+        {
+          "name": "[showLevelUp, setShowLevelUp]",
+          "type": "",
+          "initial": "false"
+        },
+        {
+          "name": "[completedChallengeIds, setCompletedChallengeIds]",
+          "type": "Set<string>",
+          "initial": "() => readCompletedChallengeIds(challengeStorageKey)"
+        },
+        {
+          "name": "[expandedEventId, setExpandedEventId]",
+          "type": "string | null",
+          "initial": "null"
+        },
+        {
+          "name": "[loggedEventIds, setLoggedEventIds]",
+          "type": "Set<string>",
+          "initial": "new Set()"
+        },
+        {
+          "name": "[showPhysicalUpdate, setShowPhysicalUpdate]",
+          "type": "",
+          "initial": "false"
+        },
+        {
+          "name": "[physicalDismissed, setPhysicalDismissed]",
+          "type": "",
+          "initial": "false"
+        },
+        {
+          "name": "[showRoutine, setShowRoutine]",
+          "type": "",
+          "initial": "false"
+        },
+        {
+          "name": "[discoveredTournaments, setDiscoveredTournaments]",
+          "type": "Array<{\r\n    id: string; name: string; startDate: string; endDate: string; location: string;\r\n    participantCount: number; teams: string[]\r\n  }>",
+          "initial": "[]"
+        }
+      ],
+      "functions": [
+        "readCompletedChallengeIds",
+        "Dashboard",
+        "closeRoutine",
+        "completeChallengeOfDay",
+        "ComparisonArrow"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/pages/DiaryPage.tsx",
+      "imports": [
+        "../contexts/AppContext",
+        "../engine/xp",
+        "../engine/types"
+      ],
+      "components": [],
+      "states": [
+        {
+          "name": "[saved, setSaved]",
+          "type": "",
+          "initial": "false"
+        },
+        {
+          "name": "[text, setText]",
+          "type": "",
+          "initial": "''"
+        },
+        {
+          "name": "[mood, setMood]",
+          "type": "EnergyLevel",
+          "initial": "3"
+        },
+        {
+          "name": "[usedPrompts, setUsedPrompts]",
+          "type": "string[]",
+          "initial": "[]"
+        },
+        {
+          "name": "[moodContext, setMoodContext]",
+          "type": "string | null",
+          "initial": "null"
+        },
+        {
+          "name": "[aiConsent, setAiConsent]",
+          "type": "",
+          "initial": "true"
+        }
+      ],
+      "functions": [
+        "DiaryPage",
+        "togglePrompt",
+        "handleSave"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/pages/EvaluationPage.tsx",
+      "imports": [
+        "../contexts/ToastContext",
+        "../engine/types"
+      ],
+      "components": [],
+      "states": [
+        {
+          "name": "[players, setPlayers]",
+          "type": "RosterPlayer[]",
+          "initial": "[]"
+        },
+        {
+          "name": "[selectedPlayerId, setSelectedPlayerId]",
+          "type": "",
+          "initial": "initialPlayerId ?? ''"
+        },
+        {
+          "name": "[loading, setLoading]",
+          "type": "",
+          "initial": "true"
+        },
+        {
+          "name": "[saving, setSaving]",
+          "type": "",
+          "initial": "false"
+        },
+        {
+          "name": "[period, setPeriod]",
+          "type": "",
+          "initial": "''"
+        },
+        {
+          "name": "[ratings, setRatings]",
+          "type": "Record<string, number>",
+          "initial": "{\r\n    technicalRating: 5, tacticalRating: 5, physicalRating: 5,\r\n    mentalRating: 5, performanceRa"
+        },
+        {
+          "name": "[attendancePct, setAttendancePct]",
+          "type": "",
+          "initial": "80"
+        },
+        {
+          "name": "[strengths, setStrengths]",
+          "type": "string[]",
+          "initial": "[]"
+        },
+        {
+          "name": "[strengthInput, setStrengthInput]",
+          "type": "",
+          "initial": "''"
+        },
+        {
+          "name": "[improvements, setImprovements]",
+          "type": "string[]",
+          "initial": "[]"
+        },
+        {
+          "name": "[improveInput, setImproveInput]",
+          "type": "",
+          "initial": "''"
+        },
+        {
+          "name": "[coachNotes, setCoachNotes]",
+          "type": "",
+          "initial": "''"
+        },
+        {
+          "name": "[goals, setGoals]",
+          "type": "string[]",
+          "initial": "[]"
+        },
+        {
+          "name": "[goalInput, setGoalInput]",
+          "type": "",
+          "initial": "''"
+        }
+      ],
+      "functions": [
+        "EvaluationPage",
+        "load",
+        "addItem",
+        "save"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/pages/Exercises.tsx",
+      "imports": [
+        "../data/exercises",
+        "../components/VideoPlayer",
+        "../contexts/AppContext",
+        "../engine/xp",
+        "../engine/types",
+        "./Challenges"
+      ],
+      "components": [
+        "VideoPlayer",
+        "DifficultyDots",
+        "Suspense",
+        "Challenges",
+        "ExerciseDetailModal",
+        "SubmitDrillModal"
+      ],
+      "states": [
+        {
+          "name": "[name, setName]",
+          "type": "",
+          "initial": "''"
+        },
+        {
+          "name": "[description, setDescription]",
+          "type": "",
+          "initial": "''"
+        },
+        {
+          "name": "[category, setCategory]",
+          "type": "SkillCategory",
+          "initial": "'technical'"
+        },
+        {
+          "name": "[difficulty, setDifficulty]",
+          "type": "1 | 2 | 3 | 4 | 5",
+          "initial": "2"
+        },
+        {
+          "name": "[durationMinutes, setDurationMinutes]",
+          "type": "",
+          "initial": "10"
+        },
+        {
+          "name": "[equipment, setEquipment]",
+          "type": "Equipment[]",
+          "initial": "['ballOnly']"
+        },
+        {
+          "name": "[videoUrl, setVideoUrl]",
+          "type": "",
+          "initial": "''"
+        },
+        {
+          "name": "[error, setError]",
+          "type": "",
+          "initial": "''"
+        },
+        {
+          "name": "[activeTab, setActiveTab]",
+          "type": "'exercises' | 'challenges'",
+          "initial": "'exercises'"
+        },
+        {
+          "name": "[filter, setFilter]",
+          "type": "SkillCategory | 'all'",
+          "initial": "'all'"
+        },
+        {
+          "name": "[skillLevel, setSkillLevel]",
+          "type": "SkillLevelFilter",
+          "initial": "'all'"
+        },
+        {
+          "name": "[search, setSearch]",
+          "type": "",
+          "initial": "''"
+        },
+        {
+          "name": "[sortBy, setSortBy]",
+          "type": "SortKey",
+          "initial": "'name'"
+        },
+        {
+          "name": "[doneIds, setDoneIds]",
+          "type": "Set<string>",
+          "initial": "new Set()"
+        },
+        {
+          "name": "[detailExercise, setDetailExercise]",
+          "type": "Exercise | null",
+          "initial": "null"
+        },
+        {
+          "name": "[showSubmitModal, setShowSubmitModal]",
+          "type": "",
+          "initial": "false"
+        }
+      ],
+      "functions": [
+        "getThumbnailUrl",
+        "DifficultyDots",
+        "ExerciseDetailModal",
+        "userDrillToExercise",
+        "SubmitDrillModal",
+        "toggleEquipment",
+        "handleSubmit",
+        "Exercises",
+        "markDone"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/pages/FootballPortal.tsx",
+      "imports": [
+        "../contexts/AppContext",
+        "../components/TournamentImport",
+        "../components/TeamProfile",
+        "../engine/types"
+      ],
+      "components": [
+        "ClubCard",
+        "TeamProfile",
+        "CalendarStrip",
+        "UpcomingEventRow",
+        "TournamentStandingsCard",
+        "RecentResultCard",
+        "ClubsBrowser",
+        "TournamentImport"
+      ],
+      "states": [
+        {
+          "name": "[expanded, setExpanded]",
+          "type": "",
+          "initial": "false"
+        },
+        {
+          "name": "[allTeams, setAllTeams]",
+          "type": "SharedTeam[]",
+          "initial": "[]"
+        },
+        {
+          "name": "[loading, setLoading]",
+          "type": "",
+          "initial": "false"
+        },
+        {
+          "name": "[viewTeam, setViewTeam]",
+          "type": "SharedTeam | null",
+          "initial": "null"
+        },
+        {
+          "name": "[showImport, setShowImport]",
+          "type": "",
+          "initial": "false"
+        },
+        {
+          "name": "[selectedDate, setSelectedDate]",
+          "type": "",
+          "initial": "today"
+        }
+      ],
+      "functions": [
+        "CalendarStrip",
+        "TournamentStandingsCard",
+        "RecentResultCard",
+        "UpcomingEventRow",
+        "buildClubTree",
+        "groupByYear",
+        "ClubCard",
+        "ClubsBrowser",
+        "load",
+        "FootballPortal"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/pages/LeaderboardPage.tsx",
+      "imports": [
+        "../contexts/AuthContext",
+        "../contexts/AppContext",
+        "../engine/xp",
+        "../components/SocialChallenges"
+      ],
+      "components": [
+        "SocialChallenges"
+      ],
+      "states": [
+        {
+          "name": "[entries, setEntries]",
+          "type": "LeaderboardEntry[]",
+          "initial": "[]"
+        },
+        {
+          "name": "[loading, setLoading]",
+          "type": "",
+          "initial": "false"
+        },
+        {
+          "name": "[inviteCode, setInviteCode]",
+          "type": "",
+          "initial": "''"
+        },
+        {
+          "name": "[joinCode, setJoinCode]",
+          "type": "",
+          "initial": "''"
+        },
+        {
+          "name": "[message, setMessage]",
+          "type": "",
+          "initial": "''"
+        }
+      ],
+      "functions": [
+        "LeaderboardPage",
+        "fetchLeaderboard",
+        "createInvite",
+        "acceptInvite"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/pages/LearnPage.tsx",
+      "imports": [
+        "../contexts/AppContext",
+        "../engine/xp",
+        "../data/articles",
+        "../data/programs",
+        "../engine/types",
+        "../components/WorkoutView",
+        "./Exercises"
+      ],
+      "components": [
+        "Suspense",
+        "Exercises",
+        "WorkoutView"
+      ],
+      "states": [
+        {
+          "name": "[tab, setTab]",
+          "type": "LearnTab",
+          "initial": "() => {\r\n    const saved = localStorage.getItem('golazo-learn-tab') as LearnTab | null\r\n    return s"
+        },
+        {
+          "name": "[categoryFilter, setCategoryFilter]",
+          "type": "ArticleCategory | 'all'",
+          "initial": "'all'"
+        },
+        {
+          "name": "[expandedArticle, setExpandedArticle]",
+          "type": "string | null",
+          "initial": "null"
+        },
+        {
+          "name": "[expandedProgram, setExpandedProgram]",
+          "type": "string | null",
+          "initial": "null"
+        }
+      ],
+      "functions": [
+        "tierToDifficulty",
+        "LearnContent",
+        "handleReadArticle",
+        "handleStartProgram",
+        "handleCompleteWorkout"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/pages/LoginPage.tsx",
+      "imports": [
+        "../contexts/AuthContext"
+      ],
+      "components": [],
+      "states": [],
+      "functions": [
+        "LoginPage"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/pages/LogPage.tsx",
+      "imports": [
+        "../contexts/AppContext",
+        "../engine/types",
+        "./TrainingLog",
+        "./MatchLog",
+        "./DiaryPage",
+        "../components/TournamentImport"
+      ],
+      "components": [
+        "Suspense",
+        "LogFallback",
+        "TrainingLog",
+        "MatchLog",
+        "DiaryPage",
+        "TournamentImport"
+      ],
+      "states": [
+        {
+          "name": "[logType, setLogType]",
+          "type": "LogType",
+          "initial": "'select'"
+        },
+        {
+          "name": "[showImport, setShowImport]",
+          "type": "",
+          "initial": "false"
+        },
+        {
+          "name": "[prefillData, setPrefillData]",
+          "type": "Record<string, string | number | undefined>",
+          "initial": "{}"
+        },
+        {
+          "name": "[skipConfirmId, setSkipConfirmId]",
+          "type": "string | null",
+          "initial": "null"
+        },
+        {
+          "name": "[skippedIds, setSkippedIds]",
+          "type": "Set<string>",
+          "initial": "() => {\r\n    try {\r\n      const stored = localStorage.getItem('golazo-skipped-events')\r\n      return"
+        }
+      ],
+      "functions": [
+        "LogFallback",
+        "LogPage",
+        "skipEvent",
+        "openFromPending"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/pages/MatchLog.tsx",
+      "imports": [
+        "../contexts/AppContext",
+        "../engine/xp",
+        "../components/TeamSearch",
+        "../engine/footballStandards",
+        "../engine/types"
+      ],
+      "components": [
+        "TeamSearch"
+      ],
+      "states": [
+        {
+          "name": "[saved, setSaved]",
+          "type": "",
+          "initial": "false"
+        },
+        {
+          "name": "[showDetails, setShowDetails]",
+          "type": "",
+          "initial": "false"
+        },
+        {
+          "name": "[date, setDate]",
+          "type": "",
+          "initial": "prefill?.date ?? today"
+        },
+        {
+          "name": "[opponent, setOpponent]",
+          "type": "",
+          "initial": "prefill?.opponent ?? ''"
+        },
+        {
+          "name": "[competition, setCompetition]",
+          "type": "",
+          "initial": "prefill?.competition ?? ''"
+        },
+        {
+          "name": "[playingFor, setPlayingFor]",
+          "type": "",
+          "initial": "prefill?.playingFor ?? (profile?.teams?.find(t => t.isPrimary)?.name || profile?.teams?.[0]?.name ||"
+        },
+        {
+          "name": "[scoreUs, setScoreUs]",
+          "type": "",
+          "initial": "0"
+        },
+        {
+          "name": "[scoreThem, setScoreThem]",
+          "type": "",
+          "initial": "0"
+        },
+        {
+          "name": "[positions, setPositions]",
+          "type": "Position[]",
+          "initial": "profile?.positions?.length ? [profile.positions[0]] : ['CM']"
+        },
+        {
+          "name": "[minutes]",
+          "type": "",
+          "initial": "durationRecommendation.totalMinutes"
+        },
+        {
+          "name": "[goals, setGoals]",
+          "type": "",
+          "initial": "0"
+        },
+        {
+          "name": "[assists, setAssists]",
+          "type": "",
+          "initial": "0"
+        },
+        {
+          "name": "[shots, setShots]",
+          "type": "",
+          "initial": "0"
+        },
+        {
+          "name": "[keyPasses, setKeyPasses]",
+          "type": "",
+          "initial": "0"
+        },
+        {
+          "name": "[tackles, setTackles]",
+          "type": "",
+          "initial": "0"
+        },
+        {
+          "name": "[selfRating, setSelfRating]",
+          "type": "",
+          "initial": "7"
+        },
+        {
+          "name": "[bestMoment, setBestMoment]",
+          "type": "",
+          "initial": "''"
+        },
+        {
+          "name": "[toImprove, setToImprove]",
+          "type": "",
+          "initial": "''"
+        },
+        {
+          "name": "[mood, setMood]",
+          "type": "EnergyLevel",
+          "initial": "3"
+        }
+      ],
+      "functions": [
+        "MatchLog",
+        "togglePosition",
+        "handleSave"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/pages/MentorDashboard.tsx",
+      "imports": [
+        "../contexts/AppContext",
+        "../engine/types",
+        "../components/AnnouncementFeed"
+      ],
+      "components": [
+        "AnnouncementFeed",
+        "ResponsiveContainer",
+        "LineChart",
+        "CartesianGrid",
+        "XAxis",
+        "YAxis",
+        "Tooltip",
+        "Line"
+      ],
+      "states": [
+        {
+          "name": "[mentees, setMentees]",
+          "type": "MenteeInfo[]",
+          "initial": "[]"
+        },
+        {
+          "name": "[activeMenteeId, setActiveMenteeId]",
+          "type": "string | null",
+          "initial": "null"
+        }
+      ],
+      "functions": [
+        "MentorDashboard",
+        "loadMentees"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/pages/OnboardingPage.tsx",
+      "imports": [
+        "../contexts/AppContext",
+        "../contexts/AuthContext",
+        "../engine/skills",
+        "../components/TeamPicker",
+        "../engine/types",
+        "../engine/physical"
+      ],
+      "components": [
+        "TeamPicker"
+      ],
+      "states": [
+        {
+          "name": "[step, setStep]",
+          "type": "Step",
+          "initial": "'role'"
+        },
+        {
+          "name": "[showTeamPicker, setShowTeamPicker]",
+          "type": "",
+          "initial": "false"
+        },
+        {
+          "name": "[form, setForm]",
+          "type": "OnboardingForm",
+          "initial": "{\r\n    role: 'player',\r\n    name: '',\r\n    birthDate: '',\r\n    country: 'LV',\r\n    city: '',\r\n    te"
+        }
+      ],
+      "functions": [
+        "prefillSkillTree",
+        "OnboardingPage",
+        "next",
+        "back",
+        "togglePosition",
+        "setAssessment",
+        "finishOnboarding",
+        "toggleField"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/pages/Profile.tsx",
+      "imports": [
+        "../contexts/AppContext",
+        "../contexts/AuthContext",
+        "../engine/xp",
+        "../engine/skills",
+        "../engine/fifaCard",
+        "../components/PhotoUpload",
+        "../components/AchievementsList",
+        "../components/PersonalGoals",
+        "../components/ThemePicker",
+        "../components/TeamPicker",
+        "../engine/types",
+        "../engine/physical",
+        "../components/PhysicalUpdateFlow",
+        "../components/TrackedFieldsEditor"
+      ],
+      "components": [
+        "TeamPicker",
+        "PhotoUpload",
+        "AchievementsList",
+        "PersonalGoals",
+        "ThemePicker",
+        "PhysicalUpdateFlow",
+        "TrackedFieldsEditor"
+      ],
+      "states": [
+        {
+          "name": "[exporting, setExporting]",
+          "type": "",
+          "initial": "false"
+        },
+        {
+          "name": "[showTeams, setShowTeams]",
+          "type": "",
+          "initial": "false"
+        },
+        {
+          "name": "[showPhysicalUpdate, setShowPhysicalUpdate]",
+          "type": "",
+          "initial": "false"
+        },
+        {
+          "name": "[showFieldsEditor, setShowFieldsEditor]",
+          "type": "",
+          "initial": "false"
+        },
+        {
+          "name": "[confirmingReset, setConfirmingReset]",
+          "type": "",
+          "initial": "false"
+        }
+      ],
+      "functions": [
+        "Profile",
+        "changeLanguage",
+        "exportCard",
+        "getDiff"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/pages/ProgressPage.tsx",
+      "imports": [
+        "../contexts/AppContext",
+        "../components/SkillRadar",
+        "../components/EvaluationHistory",
+        "../components/EmptyState",
+        "../engine/types",
+        "../engine/physical"
+      ],
+      "components": [
+        "EmptyState",
+        "ResponsiveContainer",
+        "LineChart",
+        "CartesianGrid",
+        "XAxis",
+        "YAxis",
+        "Tooltip",
+        "Line",
+        "AreaChart",
+        "Area",
+        "BarChart",
+        "Bar",
+        "SkillRadar",
+        "EvaluationHistory"
+      ],
+      "states": [],
+      "functions": [
+        "ProgressPage"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/pages/SchedulePage.tsx",
+      "imports": [
+        "../contexts/AppContext",
+        "../components/TournamentImport",
+        "../components/TeamSearch",
+        "../engine/footballStandards",
+        "../engine/types"
+      ],
+      "components": [
+        "TimePicker",
+        "TeamSearch",
+        "TournamentImport"
+      ],
+      "states": [
+        {
+          "name": "[viewYear, setViewYear]",
+          "type": "",
+          "initial": "today.getFullYear()"
+        },
+        {
+          "name": "[viewMonth, setViewMonth]",
+          "type": "",
+          "initial": "today.getMonth()"
+        },
+        {
+          "name": "[selectedDate, setSelectedDate]",
+          "type": "string | null",
+          "initial": "null"
+        },
+        {
+          "name": "[showForm, setShowForm]",
+          "type": "",
+          "initial": "false"
+        },
+        {
+          "name": "[formType, setFormType]",
+          "type": "ScheduleType",
+          "initial": "'training'"
+        },
+        {
+          "name": "[formTitle, setFormTitle]",
+          "type": "",
+          "initial": "''"
+        },
+        {
+          "name": "[formTime, setFormTime]",
+          "type": "",
+          "initial": "'18:00'"
+        },
+        {
+          "name": "[formEndTime, setFormEndTime]",
+          "type": "",
+          "initial": "addMinutesToTime('18:00', matchDurationRecommendation.totalMinutes)"
+        },
+        {
+          "name": "[formLocation, setFormLocation]",
+          "type": "",
+          "initial": "''"
+        },
+        {
+          "name": "[formOpponent, setFormOpponent]",
+          "type": "",
+          "initial": "''"
+        },
+        {
+          "name": "[formMatchType, setFormMatchType]",
+          "type": "MatchType",
+          "initial": "'friendly'"
+        },
+        {
+          "name": "[formCompetition, setFormCompetition]",
+          "type": "",
+          "initial": "''"
+        },
+        {
+          "name": "[showImport, setShowImport]",
+          "type": "",
+          "initial": "false"
+        },
+        {
+          "name": "[showWeeklySetup, setShowWeeklySetup]",
+          "type": "",
+          "initial": "false"
+        },
+        {
+          "name": "[weekOffset, setWeekOffset]",
+          "type": "",
+          "initial": "0"
+        },
+        {
+          "name": "[activeTab, setActiveTab]",
+          "type": "'week' | 'month'",
+          "initial": "'week'"
+        },
+        {
+          "name": "[formNotes, setFormNotes]",
+          "type": "",
+          "initial": "''"
+        },
+        {
+          "name": "[formTrainingType, setFormTrainingType]",
+          "type": "TrainingType",
+          "initial": "'team'"
+        },
+        {
+          "name": "[selectDateHint, setSelectDateHint]",
+          "type": "",
+          "initial": "false"
+        },
+        {
+          "name": "[rtName, setRtName]",
+          "type": "",
+          "initial": "''"
+        },
+        {
+          "name": "[rtType, setRtType]",
+          "type": "TrainingType",
+          "initial": "'team'"
+        },
+        {
+          "name": "[rtDay, setRtDay]",
+          "type": "",
+          "initial": "1"
+        },
+        {
+          "name": "[rtStart, setRtStart]",
+          "type": "",
+          "initial": "'19:00'"
+        },
+        {
+          "name": "[rtEnd, setRtEnd]",
+          "type": "",
+          "initial": "'21:00'"
+        },
+        {
+          "name": "[rtLocation, setRtLocation]",
+          "type": "",
+          "initial": "''"
+        },
+        {
+          "name": "[formSquadIds, setFormSquadIds]",
+          "type": "string[]",
+          "initial": "[]"
+        },
+        {
+          "name": "[sharedGames, setSharedGames]",
+          "type": "ScheduleEvent[]",
+          "initial": "[]"
+        }
+      ],
+      "functions": [
+        "TimePicker",
+        "getMonthDays",
+        "dateKey",
+        "getWeekMonday",
+        "getWeekDates",
+        "SchedulePage",
+        "toggleFormSquad",
+        "fetchShared",
+        "prevMonth",
+        "nextMonth",
+        "openAddForm",
+        "tryOpenAdd",
+        "saveEvent",
+        "addRecurringTraining",
+        "removeRecurring"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/pages/SquadRoster.tsx",
+      "imports": [
+        "../engine/types"
+      ],
+      "components": [],
+      "states": [
+        {
+          "name": "[players, setPlayers]",
+          "type": "RosterPlayer[]",
+          "initial": "[]"
+        },
+        {
+          "name": "[loading, setLoading]",
+          "type": "",
+          "initial": "true"
+        },
+        {
+          "name": "[selectedPlayer, setSelectedPlayer]",
+          "type": "RosterPlayer | null",
+          "initial": "null"
+        }
+      ],
+      "functions": [
+        "SquadRoster",
+        "load"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/pages/TeamChallenges.tsx",
+      "imports": [
+        "../engine/types"
+      ],
+      "components": [],
+      "states": [
+        {
+          "name": "[challenges, setChallenges]",
+          "type": "TeamChallenge[]",
+          "initial": "[]"
+        },
+        {
+          "name": "[loading, setLoading]",
+          "type": "",
+          "initial": "true"
+        },
+        {
+          "name": "[error, setError]",
+          "type": "",
+          "initial": "''"
+        },
+        {
+          "name": "[showForm, setShowForm]",
+          "type": "",
+          "initial": "false"
+        },
+        {
+          "name": "[opponentTeamId, setOpponentTeamId]",
+          "type": "",
+          "initial": "''"
+        },
+        {
+          "name": "[opponentTeamName, setOpponentTeamName]",
+          "type": "",
+          "initial": "''"
+        },
+        {
+          "name": "[title, setTitle]",
+          "type": "",
+          "initial": "''"
+        },
+        {
+          "name": "[target, setTarget]",
+          "type": "",
+          "initial": "3"
+        },
+        {
+          "name": "[days, setDays]",
+          "type": "",
+          "initial": "7"
+        }
+      ],
+      "functions": [
+        "isOpponent",
+        "TeamChallenges",
+        "loadChallenges",
+        "createChallenge",
+        "updateChallenge"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/pages/TournamentPage.tsx",
+      "imports": [
+        "../contexts/AppContext",
+        "../engine/xp",
+        "../engine/types"
+      ],
+      "components": [],
+      "states": [
+        {
+          "name": "[saved, setSaved]",
+          "type": "",
+          "initial": "false"
+        },
+        {
+          "name": "[name, setName]",
+          "type": "",
+          "initial": "''"
+        },
+        {
+          "name": "[location, setLocation]",
+          "type": "",
+          "initial": "''"
+        },
+        {
+          "name": "[games, setGames]",
+          "type": "",
+          "initial": "3"
+        },
+        {
+          "name": "[startDate]",
+          "type": "",
+          "initial": "today"
+        }
+      ],
+      "functions": [
+        "TournamentPage",
+        "handleSave"
+      ]
+    },
+    {
+      "file": "src/pages/TrainingLog.tsx",
+      "imports": [
+        "../contexts/AppContext",
+        "../contexts/ToastContext",
+        "../components/training/TrainingFields",
+        "../components/training/TrainingCompletion",
+        "../engine/training",
+        "../engine/types",
+        "../clubhouse.css"
+      ],
+      "components": [
+        "TrainingCompletion",
+        "TrainingFields"
+      ],
+      "states": [
+        {
+          "name": "[draft, setDraft]",
+          "type": "TrainingEntry",
+          "initial": "() => ({\r\n    id: crypto.randomUUID(), playerId: profile?.id ?? 'default',\r\n    date: prefill?.date "
+        },
+        {
+          "name": "[receipt, setReceipt]",
+          "type": "TrainingReceipt | null",
+          "initial": "null"
+        },
+        {
+          "name": "[failed, setFailed]",
+          "type": "",
+          "initial": "false"
+        }
+      ],
+      "functions": [
+        "TrainingLog",
+        "handleSave"
+      ],
+      "reachable": true
+    },
+    {
+      "file": "src/pages/TrainingPlanner.tsx",
+      "imports": [
+        "../contexts/ToastContext",
+        "../engine/types"
+      ],
+      "components": [
+        "DrillForm"
+      ],
+      "states": [
+        {
+          "name": "[title, setTitle]",
+          "type": "",
+          "initial": "''"
+        },
+        {
+          "name": "[date, setDate]",
+          "type": "",
+          "initial": "new Date().toISOString().slice(0, 10)"
+        },
+        {
+          "name": "[startTime, setStartTime]",
+          "type": "",
+          "initial": "'18:00'"
+        },
+        {
+          "name": "[location, setLocation]",
+          "type": "",
+          "initial": "''"
+        },
+        {
+          "name": "[durationMinutes, setDurationMinutes]",
+          "type": "",
+          "initial": "90"
+        },
+        {
+          "name": "[objectives, setObjectives]",
+          "type": "string[]",
+          "initial": "[]"
+        },
+        {
+          "name": "[objInput, setObjInput]",
+          "type": "",
+          "initial": "''"
+        },
+        {
+          "name": "[drills, setDrills]",
+          "type": "TrainingDrill[]",
+          "initial": "[]"
+        },
+        {
+          "name": "[notes, setNotes]",
+          "type": "",
+          "initial": "''"
+        },
+        {
+          "name": "[saving, setSaving]",
+          "type": "",
+          "initial": "false"
+        }
+      ],
+      "functions": [
+        "DrillForm",
+        "TrainingPlanner",
+        "addObjective",
+        "addDrill",
+        "updateDrill",
+        "removeDrill",
+        "save"
+      ],
+      "reachable": true
+    }
+  ]
+}

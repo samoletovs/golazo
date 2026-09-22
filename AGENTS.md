@@ -8,9 +8,11 @@ TypeScript + Vite + Tailwind CSS 4. Azure Functions API + Cosmos DB backend with
 offline-first data sync.
 
 Canonical design context: [`.impeccable.md`](.impeccable.md). It records the
-confirmed audience, approved Clubhouse/cobalt-coral direction, post-training
-journey and healthy-motivation principles. The historical concepts in
-`docs/design-directions/training-20260922/` do not approve a production redesign.
+confirmed audience, Football academy character, cobalt/coral palette, whole-app
+scope and healthy-motivation principles. The owner rejected the first slice's
+visual quality and incomplete application scope after PR #10. Current concepts
+in `docs/design-directions/academy-20260922/` await owner choice; earlier concepts
+and functional checks are historical evidence, not whole-app design acceptance.
 
 ## Build & verify
 
@@ -115,7 +117,10 @@ api/
 
 Use [the canonical design brief](.impeccable.md), not the historical conflicting
 light/dark or commercial-game recipes previously recorded here.
-Production changes are bounded to the approved player training slice.
+The current task is a whole-app rendered concept comparison and coverage
+inventory. Do not reduce it to one approved slice or silently leave other
+routes/roles visually unchanged. Do not edit production UI/backend/schema until
+the owner chooses the new multipage direction.
 Preserve the conventions above when implementing production UI; the standalone
 synthetic concepts are explicitly outside the production React/i18n pipeline.
 
