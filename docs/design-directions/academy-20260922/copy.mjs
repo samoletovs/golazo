@@ -132,6 +132,7 @@ export const copy = {
     noGoal: 'No goal yet. Choose one if it helps.', chooseGoal: 'Choose a goal',
     late: 'Late', allPresent: 'Mark all present',
     monthTitle: 'September 2026', noCoachPlan: 'No session plan yet.', noCoachPlanBody: 'Start with a session objective, then add the drills you need. No squad statistics are invented.',
+    skipContent: 'Skip to content',
   },
   lv: {
     concept: 'Interaktīvs koncepts', synthetic: 'Izdomāti dati · bez sinhronizācijas · pārlāde atiestata',
@@ -266,6 +267,7 @@ export const copy = {
     noGoal: 'Vēl nav mērķa. Izvēlies, ja tas palīdz.', chooseGoal: 'Izvēlēties mērķi',
     late: 'Kavēja', allPresent: 'Visi ir klāt',
     monthTitle: '2026. gada septembris', noCoachPlan: 'Vēl nav treniņa plāna.', noCoachPlanBody: 'Sāc ar treniņa mērķi, tad pievieno vajadzīgos vingrinājumus. Komandas statistika netiek izdomāta.',
+    skipContent: 'Pāriet uz saturu',
   },
 };
 

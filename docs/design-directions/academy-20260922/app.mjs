@@ -10,7 +10,8 @@ const dialog = document.querySelector('#dialog');
 let dialogOpener = null;
 
 function currentRoute() {
-  return decodeURIComponent(location.hash.slice(1)) || 'home';
+  const route = decodeURIComponent(location.hash.slice(1));
+  return !route || route === 'main' ? 'home' : route;
 }
 
 function navigation(t) {
@@ -59,6 +60,7 @@ function view(t) {
 function render({ focus = false, restore = null, scroll = false } = {}) {
   const t = translator(state.language);
   document.documentElement.lang = state.language;
+  document.querySelector('.skip').textContent = t('skipContent');
   document.body.dataset.direction = state.direction;
   const basePage = state.page.split('/')[0];
   document.title = `Golazo · ${state.direction.toUpperCase()} · ${t(basePage in mainViews ? basePage : 'academy')}`;
@@ -86,11 +88,10 @@ function render({ focus = false, restore = null, scroll = false } = {}) {
 
 function navigate() {
   const route = currentRoute();
-  if (route === 'main') {
-    document.querySelector('#main')?.focus();
-    return;
-  }
   state.page = route;
+  if (['training', 'match', 'reflection'].includes(route) && state.completedTokens.has(state.drafts[route]?.token)) {
+    delete state.drafts[route];
+  }
   state.notice = '';
   state.failure = false;
   if (['coach', 'roster', 'attendance', 'planner', 'stats'].includes(route)) state.role = 'coach';
@@ -339,5 +340,9 @@ dialog.addEventListener('submit', event => {
 });
 
 window.addEventListener('hashchange', navigate);
+document.querySelector('.skip').addEventListener('click', event => {
+  event.preventDefault();
+  document.querySelector('#main')?.focus();
+});
 state.page = currentRoute();
 navigate();

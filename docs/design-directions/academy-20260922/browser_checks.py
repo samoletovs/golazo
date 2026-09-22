@@ -128,6 +128,9 @@ def main() -> None:
                     source = response.headers.get("x-concept-source")
                     if args.source:
                         assert source == args.source, (source, args.source)
+                    page.locator(".skip").press("Enter")
+                    expect(page).to_have_url(re.compile(r"#home$"))
+                    expect(page.locator("#page-title")).to_be_visible()
                     for width, height, size in ((1440, 1000, "desktop"), (390, 844, "mobile"), (320, 844, "narrow")):
                         page.set_viewport_size({"width": width, "height": height})
                         for tab, label in zip(PAGES, LABELS[language]):
@@ -174,6 +177,11 @@ def main() -> None:
                     page.locator('main a[href="#progress"]').click()
                     expect(page.locator('[data-week="5"]')).to_contain_text("150")
                     results.append({"direction": direction, "language": language, "flow": "training-invalid-failure-direction-switch-retry", "retainedInput": True, "minutesAfter": 210, "currentWeekAfter": 150, "contrast": colors})
+                    page.locator('[data-nav="log"]').click()
+                    page.locator('.log-tool[href="#training"]').click()
+                    page.locator('input[name="durationMinutes"]').fill("15")
+                    page.locator('[data-form] button[type="submit"]').click()
+                    expect(page.locator(".mini-stat")).to_contain_text("225")
 
                     page.locator('[data-nav="log"]').click()
                     page.locator('.log-tool[href="#match"]').click()
@@ -187,7 +195,7 @@ def main() -> None:
                     page.locator('[data-form] button[type="submit"]').click()
                     expect(page).to_have_url(re.compile(r"#saved$"))
                     page.locator('[data-nav="log"]').click()
-                    assert page.locator('main time[datetime="2026-09-22"]').count() == 3
+                    assert page.locator('main time[datetime="2026-09-22"]').count() == 4
                     review_controls(page, role="mentor")
                     assert "PRIVATE-DEMO-REFLECTION" not in page.locator("main").inner_text()
                     page.locator('[data-nav="progress"]').click()
