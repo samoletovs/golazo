@@ -166,6 +166,7 @@ body[data-direction="b"] .entry-aside { background: #fff; padding: 28px; }
   body[data-direction="a"] .rail-identity, body[data-direction="b"] .rail-identity { display: block; margin: 0; padding: 0; border: 0; font-size: .75rem; }
   body[data-direction="a"] .rail-identity strong { display: inline; font-size: 1.2rem; color: var(--coral); margin-right: 8px; }
   .rail-identity small { display: inline !important; }
+  .rail-identity strong { margin-right: 8px; }
   .rail-identity .club-caption { display: none !important; }
   .masthead .nav-list { position: fixed; bottom: 0; left: 0; right: 0; z-index: 30; display: flex !important; flex-direction: row !important; justify-content: center; gap: 0 !important; background: #fff; border-top: 1px solid var(--line); padding-bottom: env(safe-area-inset-bottom); }
   .masthead .nav-link { min-width: 0; flex: 1 1 20%; max-width: 100px; padding: 10px 2px; min-height: 66px; flex-direction: column; gap: 4px; font-size: .8rem; text-align: center; color: var(--muted) !important; border-radius: 0; }
