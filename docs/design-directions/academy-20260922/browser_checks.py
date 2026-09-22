@@ -195,7 +195,7 @@ def main() -> None:
                     page.locator('[data-form] button[type="submit"]').click()
                     expect(page).to_have_url(re.compile(r"#saved$"))
                     page.locator('[data-nav="log"]').click()
-                    assert page.locator('main time[datetime="2026-09-22"]').count() == 4
+                    expect(page.locator('main time[datetime="2026-09-22"]')).to_have_count(4)
                     review_controls(page, role="mentor")
                     assert "PRIVATE-DEMO-REFLECTION" not in page.locator("main").inner_text()
                     page.locator('[data-nav="progress"]').click()
