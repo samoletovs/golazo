@@ -27,22 +27,19 @@ export interface SurfacePreset {
   swatch: [string, string, string]
 }
 
+const CLUBHOUSE_PRESET: SurfacePreset = {
+  id: 'clubhouse', bg: '#F4F5F7', bgWarm: '#EEF0F4', surface: '#FFFFFF',
+  borderTint: '#D5DBE5', surfaceHover: '#F4F5F7', surfaceActive: '#EEF0F4',
+  headerBg: '#FFFFFF', navBg: '#FFFFFF', choiceBg: '#FFFFFF',
+  choiceBorder: '#74839B', accent: '#2548B5',
+  swatch: ['#2548B5', '#FFB49C', '#FFFFFF'],
+}
+
 export const SURFACE_PRESETS: SurfacePreset[] = [
+  CLUBHOUSE_PRESET,
   {
-    // Dynamic — derived from club primary color (default, always first)
+    ...CLUBHOUSE_PRESET,
     id: 'team',
-    bg: '#F0FAF2',
-    bgWarm: '#E6F5E9',
-    surface: '#F7FCF8',
-    borderTint: 'rgba(5, 150, 105, 0.10)',
-    surfaceHover: '#EEF8F0',
-    surfaceActive: 'rgba(5, 150, 105, 0.06)',
-    headerBg: 'rgba(240, 250, 242, 0.90)',
-    navBg: 'rgba(247, 252, 248, 0.93)',
-    choiceBg: '#F7FCF8',
-    choiceBorder: 'rgba(5, 150, 105, 0.12)',
-    accent: null,
-    swatch: ['#059669', '#A7F3D0', '#F0FAF2'],
   },
   {
     // Pure white — Apple-clean, minimal personality
@@ -128,36 +125,13 @@ export const SURFACE_PRESETS: SurfacePreset[] = [
 
 /** Derive a surface preset from a team's primary hex color */
 export function deriveTeamSurface(hex: string): SurfacePreset {
-  const r = parseInt(hex.slice(1, 3), 16)
-  const g = parseInt(hex.slice(3, 5), 16)
-  const b = parseInt(hex.slice(5, 7), 16)
-
-  // Apple-style subtle tinting — surfaces barely tinted, card lighter than bg
-  const mix = (c: number, pct: number) => Math.round(c + (255 - c) * pct)
-  const bg = `rgb(${mix(r, 0.93)}, ${mix(g, 0.93)}, ${mix(b, 0.93)})`
-  const bgWarm = `rgb(${mix(r, 0.90)}, ${mix(g, 0.90)}, ${mix(b, 0.90)})`
-  const surface = `rgb(${mix(r, 0.97)}, ${mix(g, 0.97)}, ${mix(b, 0.97)})`
-  const surfaceHover = `rgb(${mix(r, 0.94)}, ${mix(g, 0.94)}, ${mix(b, 0.94)})`
-  const midTint = `rgb(${mix(r, 0.60)}, ${mix(g, 0.60)}, ${mix(b, 0.60)})`
-
   return {
-    id: 'team',
-    bg,
-    bgWarm,
-    surface,
-    borderTint: `rgba(${r}, ${g}, ${b}, 0.10)`,
-    surfaceHover,
-    surfaceActive: `rgba(${r}, ${g}, ${b}, 0.06)`,
-    headerBg: `rgba(${mix(r, 0.94)}, ${mix(g, 0.94)}, ${mix(b, 0.94)}, 0.90)`,
-    navBg: `rgba(${mix(r, 0.97)}, ${mix(g, 0.97)}, ${mix(b, 0.97)}, 0.93)`,
-    choiceBg: surface,
-    choiceBorder: `rgba(${r}, ${g}, ${b}, 0.12)`,
-    accent: null,
-    swatch: [hex, midTint, bg],
+    ...CLUBHOUSE_PRESET, id: 'team',
+    swatch: [readableClubColor(hex).background, '#FFB49C', '#FFFFFF'],
   }
 }
 
-import { applyTeamTheme } from './teamTheme'
+import { applyTeamTheme, readableClubColor } from './teamTheme'
 
 const SURFACE_VARS = [
   '--color-bg', '--color-bg-warm', '--color-game-surface',
@@ -184,14 +158,9 @@ export function applySurfaceTheme(presetId: string, teamHex?: string): void {
   }
 
   let preset: SurfacePreset
-  if (resolvedId === 'team' && teamHex) {
-    preset = deriveTeamSurface(teamHex)
-  } else if (resolvedId === 'team') {
-    // No team color available — fall back to classic (clean white)
-    SURFACE_VARS.forEach((v) => root.style.removeProperty(v))
-    const classicPreset = SURFACE_PRESETS.find((p) => p.id === 'classic')!
-    applyTeamTheme(classicPreset.accent ?? undefined)
-    return
+  if (resolvedId === 'team') {
+    // Club colors stay on the identity, not on every surface or action.
+    preset = deriveTeamSurface(teamHex ?? '#2548B5')
   } else {
     preset = SURFACE_PRESETS.find((p) => p.id === resolvedId) ?? SURFACE_PRESETS[0]
   }
@@ -221,7 +190,7 @@ export function applySurfaceTheme(presetId: string, teamHex?: string): void {
 const STORAGE_KEY = 'golazo-surface-theme'
 
 export function loadSurfaceTheme(): string {
-  return localStorage.getItem(STORAGE_KEY) ?? 'team'
+  return localStorage.getItem(STORAGE_KEY) ?? 'clubhouse'
 }
 
 export function saveSurfaceTheme(presetId: string): void {

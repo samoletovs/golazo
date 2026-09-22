@@ -8,8 +8,8 @@ TypeScript + Vite + Tailwind CSS 4. Azure Functions API + Cosmos DB backend with
 offline-first data sync.
 
 Canonical design context: [`.impeccable.md`](.impeccable.md). It records the
-confirmed audience, post-training journey, healthy-motivation principles and
-pending A/B direction choice. The isolated concepts in
+confirmed audience, approved Clubhouse/cobalt-coral direction, post-training
+journey and healthy-motivation principles. The historical concepts in
 `docs/design-directions/training-20260922/` do not approve a production redesign.
 
 ## Build & verify
@@ -114,8 +114,8 @@ api/
 ## Design System
 
 Use [the canonical design brief](.impeccable.md), not the historical conflicting
-light/dark or commercial-game recipes previously recorded here. Existing
-production tokens and components remain unchanged pending owner selection.
+light/dark or commercial-game recipes previously recorded here.
+Production changes are bounded to the approved player training slice.
 Preserve the conventions above when implementing production UI; the standalone
 synthetic concepts are explicitly outside the production React/i18n pipeline.
 

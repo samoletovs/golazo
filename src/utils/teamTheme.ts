@@ -1,6 +1,5 @@
 /**
- * Team Color Theming — derives a full CSS variable palette from a team's primary hex color.
- * Applied to document.documentElement to override the default emerald palette.
+ * Accent palettes and separate club-identity colors.
  */
 
 /** Parse hex to RGB tuple */
@@ -26,13 +25,24 @@ function rgbToHex([r, g, b]: [number, number, number]): string {
 }
 
 /** Ensure minimum contrast ratio (4.5:1) against white for text usage */
+function luminance(rgb: [number, number, number]): number {
+  const linear = rgb.map(value => {
+    const channel = value / 255
+    return channel <= 0.04045 ? channel / 12.92 : ((channel + 0.055) / 1.055) ** 2.4
+  })
+  return linear[0] * 0.2126 + linear[1] * 0.7152 + linear[2] * 0.0722
+}
+
 function ensureContrast(rgb: [number, number, number]): [number, number, number] {
-  const luminance = (0.299 * rgb[0] + 0.587 * rgb[1] + 0.114 * rgb[2]) / 255
-  if (luminance > 0.5) {
-    // Too light for text on white — darken until usable
-    return darken(rgb, 0.4)
-  }
-  return rgb
+  let result = rgb
+  while (1.05 / (luminance(result) + 0.05) < 4.5) result = darken(result, 0.1)
+  return result
+}
+
+export function readableClubColor(hex?: string): { background: string; text: string } {
+  const background = hex && /^#(?:[0-9a-f]{3}|[0-9a-f]{6})$/i.test(hex) ? hex : '#2548b5'
+  const light = luminance(hexToRgb(background))
+  return { background, text: 1.05 / (light + 0.05) >= (light + 0.05) / 0.05 ? '#ffffff' : '#000000' }
 }
 
 export interface TeamThemeVars {
@@ -47,11 +57,11 @@ export interface TeamThemeVars {
 
 /** Generate a full theme palette from a single hex color */
 export function generateTeamTheme(primaryHex: string): TeamThemeVars {
-  const rgb = hexToRgb(primaryHex)
+  const rgb = hexToRgb(readableClubColor(primaryHex).background)
   const contrastRgb = ensureContrast(rgb)
 
   return {
-    '--color-primary': rgbToHex(rgb),
+    '--color-primary': rgbToHex(contrastRgb),
     '--color-primary-light': rgbToHex(lighten(rgb, 0.25)),
     '--color-primary-dark': rgbToHex(darken(contrastRgb, 0.15)),
     '--color-primary-darker': rgbToHex(darken(contrastRgb, 0.35)),

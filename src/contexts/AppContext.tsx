@@ -3,6 +3,8 @@ import type { ReactNode } from 'react'
 import type { XpState, PlayerProfile, SkillTree, TrainingEntry, MatchEntry, Tournament, DiaryEntry, ScheduleEvent, SpecialChallengeProgress, PhysicalProfile, RecurringTraining, DailyCheckIn, QuizAnswer, ReadArticle, ProgramProgress, UserDrill, PersonalGoal } from '../engine/types'
 import { createInitialXpState } from '../engine/xp'
 import { createInitialSkillTree } from '../engine/skills'
+import { prepareTrainingSave } from '../engine/training'
+import type { TrainingReceipt } from '../engine/training'
 
 /* ── App state ────────────────────────────────────────────── */
 
@@ -34,6 +36,7 @@ interface AppContextValue extends AppState {
   setXp: (xp: XpState | ((prev: XpState) => XpState)) => void
   setSkillTree: (st: SkillTree) => void
   addTraining: (t: TrainingEntry) => void
+  saveTraining: (entry: TrainingEntry) => TrainingReceipt
   addMatch: (m: MatchEntry) => void
   addTournament: (t: Tournament) => void
   updateTournament: (t: Tournament) => void
@@ -209,6 +212,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
           merged.userDrills = (remote.userDrills?.length ? remote.userDrills : null) ?? prev.userDrills ?? []
           merged.personalGoals = (remote.personalGoals?.length ? remote.personalGoals : null) ?? prev.personalGoals ?? []
           saveState(merged)
+          latestStateRef.current = merged
           return merged
         })
       }
@@ -234,16 +238,22 @@ export function AppProvider({ children }: { children: ReactNode }) {
   }, [])
 
   const update = useCallback((partial: Partial<AppState> | ((prev: AppState) => Partial<AppState>)) => {
-    setState((prev) => {
-      const patch = typeof partial === 'function' ? partial(prev) : partial
-      const next = { ...prev, ...patch }
-      saveState(next)
-      // Auto-sync to cloud after 2s debounce (non-blocking)
-      window.clearTimeout(syncTimerRef.current)
-      syncTimerRef.current = window.setTimeout(() => syncToApi(next), 2000)
-      return next
-    })
+    const previous = latestStateRef.current
+    const patch = typeof partial === 'function' ? partial(previous) : partial
+    const next = { ...previous, ...patch }
+    // Persist before publishing state so a failed local write is retryable.
+    saveState(next)
+    latestStateRef.current = next
+    setState(next)
+    window.clearTimeout(syncTimerRef.current)
+    syncTimerRef.current = window.setTimeout(() => syncToApi(next), 2000)
   }, [])
+
+  const saveTraining = useCallback((entry: TrainingEntry): TrainingReceipt => {
+    const prepared = prepareTrainingSave(latestStateRef.current, entry)
+    if (!prepared.receipt.alreadySaved) update({ trainings: prepared.trainings, xp: prepared.xp })
+    return prepared.receipt
+  }, [update])
 
   const syncToCloud = useCallback(async () => {
     await syncToApi(state)
@@ -252,18 +262,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
   // Personal goals support functional updates because goal editors often derive
   // the next list from the current list and should avoid stale closures.
   const setPersonalGoals = useCallback((goalsOrUpdater: PersonalGoal[] | ((prev: PersonalGoal[]) => PersonalGoal[])) => {
-    setState((prev) => {
-      const personalGoals = typeof goalsOrUpdater === 'function'
-        ? goalsOrUpdater(prev.personalGoals)
-        : goalsOrUpdater
-      if (personalGoals === prev.personalGoals) return prev
-      const next = { ...prev, personalGoals }
-      saveState(next)
-      window.clearTimeout(syncTimerRef.current)
-      syncTimerRef.current = window.setTimeout(() => syncToApi(next), 2000)
-      return next
-    })
-  }, [])
+    const previous = latestStateRef.current.personalGoals
+    const personalGoals = typeof goalsOrUpdater === 'function' ? goalsOrUpdater(previous) : goalsOrUpdater
+    if (personalGoals !== previous) update({ personalGoals })
+  }, [update])
 
   const value: AppContextValue = {
     ...state,
@@ -273,7 +275,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
       xp: typeof xpOrUpdater === 'function' ? xpOrUpdater(prev.xp) : xpOrUpdater,
     })),
     setSkillTree: (st) => update({ skillTree: st }),
-    addTraining: (t) => update({ trainings: [...state.trainings, t] }),
+    addTraining: (t) => update(prev => ({ trainings: [...prev.trainings, t] })),
+    saveTraining,
     addMatch: (m) => update({ matches: [...state.matches, m] }),
     addTournament: (t) => update({ tournaments: [...state.tournaments, t] }),
     updateTournament: (t) => update({ tournaments: state.tournaments.map((x) => (x.id === t.id ? t : x)) }),
@@ -307,8 +310,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
     syncToCloud,
     resetState: () => {
       const fresh = createDefaultState()
-      setState(fresh)
       saveState(fresh)
+      latestStateRef.current = fresh
+      setState(fresh)
     },
   }
 

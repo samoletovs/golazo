@@ -1,30 +1,13 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import type { FormEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
-import { awardXp, XP_AWARDS, scaleXp } from '../engine/xp'
-import { getAgeTier } from '../engine/types'
-import type { TrainingType, FocusArea, EnergyLevel, TrainingEntry } from '../engine/types'
-
-const TYPES: { key: TrainingType; labelKey: string }[] = [
-  { key: 'team', labelKey: 'training.type.team' },
-  { key: 'individual', labelKey: 'training.type.individual' },
-  { key: 'technical', labelKey: 'training.type.technical' },
-  { key: 'tactical', labelKey: 'training.type.tactical' },
-  { key: 'physical', labelKey: 'training.type.physical' },
-  { key: 'gym', labelKey: 'training.type.gym' },
-  { key: 'recovery', labelKey: 'training.type.recovery' },
-  { key: 'futsal', labelKey: 'training.type.futsal' },
-]
-
-const FOCUS: { key: FocusArea; labelKey: string }[] = [
-  { key: 'technical', labelKey: 'training.focus.technical' },
-  { key: 'physical', labelKey: 'training.focus.physical' },
-  { key: 'tactical', labelKey: 'training.focus.tactical' },
-  { key: 'mental', labelKey: 'training.focus.mental' },
-]
-
-const DURATIONS = [60, 90, 120]
-const ENERGY_EMOJIS = ['😴', '😐', '🙂', '😄', '🔥']
+import { useToast } from '../contexts/ToastContext'
+import { TrainingFields } from '../components/training/TrainingFields'
+import { TrainingCompletion } from '../components/training/TrainingCompletion'
+import type { TrainingReceipt } from '../engine/training'
+import type { TrainingType, TrainingEntry } from '../engine/types'
+import '../clubhouse.css'
 
 export interface TrainingLogProps {
   onBack?: () => void
@@ -35,223 +18,66 @@ export interface TrainingLogProps {
 
 export function TrainingLog({ onBack, inline, prefill, onSaved }: TrainingLogProps) {
   const { t } = useTranslation()
-  const { xp, setXp, addTraining, profile } = useApp()
-  const ageTier = profile?.birthDate ? getAgeTier(profile.birthDate) : undefined
-  const scaledTrainingXp = scaleXp(XP_AWARDS.logTraining, ageTier)
-  const [saved, setSaved] = useState(false)
-  const [showDetails, setShowDetails] = useState(false)
+  const { saveTraining, profile } = useApp()
+  const { showToast } = useToast()
+  const today = new Date().toISOString().slice(0, 10)
+  const [draft, setDraft] = useState<TrainingEntry>(() => ({
+    id: crypto.randomUUID(), playerId: profile?.id ?? 'default',
+    date: prefill?.date ?? today, type: prefill?.type ?? 'team',
+    durationMinutes: prefill?.durationMinutes ?? 90, focusAreas: [],
+    energy: 3, mood: 3, notes: '', exerciseIds: [],
+    fromSchedule: prefill?.fromSchedule, createdAt: new Date().toISOString(),
+  }))
+  const [receipt, setReceipt] = useState<TrainingReceipt | null>(null)
+  const [failed, setFailed] = useState(false)
+  const saving = useRef(false)
+  const heading = useRef<HTMLHeadingElement>(null)
+  useEffect(() => { heading.current?.focus() }, [])
 
-  const today = new Date().toISOString().split('T')[0]
-  const [date, setDate] = useState(prefill?.date ?? today)
-  const [type, setType] = useState<TrainingType>(prefill?.type ?? 'team')
-  const [duration, setDuration] = useState(prefill?.durationMinutes ?? 90)
-  const [focus, setFocus] = useState<FocusArea[]>([])
-  const [energy, setEnergy] = useState<EnergyLevel>(3)
-  const [mood, setMood] = useState<EnergyLevel>(3)
-  const [notes, setNotes] = useState('')
-
-  function toggleFocus(f: FocusArea) {
-    setFocus((prev) => (prev.includes(f) ? prev.filter((x) => x !== f) : [...prev, f]))
-  }
-
-  function handleSave() {
-    const entry: TrainingEntry = {
-      id: crypto.randomUUID(),
-      playerId: 'default',
-      date,
-      type,
-      durationMinutes: duration,
-      focusAreas: focus,
-      energy,
-      mood,
-      notes,
-      exerciseIds: [],
-      fromSchedule: prefill?.fromSchedule,
-      createdAt: new Date().toISOString(),
+  function handleSave(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    if (saving.current || receipt) return
+    if (!event.currentTarget.reportValidity()) return
+    saving.current = true
+    let result: TrainingReceipt
+    try {
+      result = saveTraining(draft)
+    } catch (error) {
+      console.error('Training could not be saved on this device:', error)
+      setFailed(true)
+      showToast(t('training.localError'), 'error')
+      saving.current = false
+      return
     }
-    addTraining(entry)
-    setXp(awardXp(xp, XP_AWARDS.logTraining, date, ageTier))
-    setSaved(true)
+    setFailed(false)
+    setReceipt(result)
     onSaved?.()
-    if (!inline) setTimeout(() => { setSaved(false); onBack?.() }, 2000)
   }
 
-  if (saved && !inline) {
-    return (
-      <div className="flex flex-col items-center justify-center gap-4 p-8 pb-32 animate-fade-up">
-        <span className="text-5xl animate-float">✅</span>
-        <p className="text-lg font-bold" style={{ color: 'var(--color-primary-dark)' }}>
-          {t('training.saved', { xp: scaledTrainingXp })}
-        </p>
-      </div>
-    )
-  }
-
-  if (saved && inline) {
-    return (
-      <div className="flex items-center gap-2 p-3 rounded-xl" style={{ background: 'var(--color-primary-bg-subtle)' }}>
-        <span className="text-xl">✅</span>
-        <p className="text-sm font-bold" style={{ color: 'var(--color-primary-dark)' }}>
-          {t('training.saved', { xp: scaledTrainingXp })}
-        </p>
-      </div>
-    )
-  }
+  if (receipt) return <TrainingCompletion receipt={receipt} onDone={onBack} inline={inline} />
 
   return (
-    <div className={inline ? 'flex flex-col gap-4' : 'flex flex-col gap-4 p-4 pb-32'}>
-      {!inline && (
-        <div className="flex items-center gap-3">
-          {onBack && (
-            <button onClick={onBack} className="tap-target text-xl" aria-label={t('common.back')}>←</button>
-          )}
-          <h2 className="text-lg font-bold">{t('training.title')}</h2>
-        </div>
-      )}
-
-      {/* Date */}
-      <div>
-        <p className="section-label mb-2">{t('log.date')}</p>
-        <input
-          type="date"
-          value={date}
-          max={today}
-          onChange={(e) => setDate(e.target.value)}
-          className="w-full text-sm p-2.5 rounded-lg border"
-          style={{ background: 'var(--color-bg-field, #f8fafc)' }}
-        />
+    <section className={`clubhouse training-view${inline ? ' training-inline' : ''}`} aria-labelledby="training-title">
+      {onBack && <button className="club-link" onClick={onBack}>{t('common.back')}</button>}
+      <header className="club-section-heading">
+        <span className="club-eyebrow">{t('clubhouse.afterTraining')}</span>
+        <h1 id="training-title" ref={heading} tabIndex={-1}>{t('training.title')}</h1>
+        <p>{t('training.quickIntro')}</p>
+      </header>
+      <div className="club-two-column">
+        <form className="club-panel training-form" onSubmit={handleSave}>
+          <TrainingFields draft={draft} onChange={setDraft} today={today} />
+          {failed && <p className="club-error" role="alert">{t('training.localError')}</p>}
+          <button className="club-button" type="submit">{t(failed ? 'training.retry' : 'training.saveLocal')}</button>
+          <p className="club-hint">{t('training.localHint')}</p>
+        </form>
+        <aside className="club-panel training-aside">
+          <span className="club-eyebrow">{t('training.yourEffort')}</span>
+          <h2>{t('training.noPerfect')}</h2>
+          <p>{t('training.feelingsCount')}</p>
+          <p className="club-muted">{t('clubhouse.restBody')}</p>
+        </aside>
       </div>
-
-      {/* Type selector */}
-      <div>
-        <p className="section-label mb-2">
-          {t('log.training')}
-        </p>
-        <div className="grid grid-cols-4 gap-2">
-          {TYPES.map((tp) => (
-            <button
-              key={tp.key}
-              className="btn-choice tap-target text-center text-sm"
-              onClick={() => setType(tp.key)}
-              aria-pressed={type === tp.key}
-            >
-              {t(tp.labelKey)}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Duration */}
-      <div>
-        <p className="section-label mb-2">
-          {t('training.duration')}
-        </p>
-        <div className="flex gap-2">
-          {DURATIONS.map((d) => (
-            <button
-              key={d}
-              className="btn-choice tap-target flex-1 text-center text-sm"
-              onClick={() => setDuration(d)}
-              aria-pressed={duration === d}
-            >
-              {t('training.minutes', { min: d })}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Energy */}
-      <div>
-        <p className="section-label mb-2">
-          {t('training.energy')}
-        </p>
-        <div className="flex gap-2 justify-center">
-          {ENERGY_EMOJIS.map((emoji, i) => (
-            <button
-              key={i}
-              className="emoji-btn"
-              data-selected={energy === (i + 1)}
-              onClick={() => setEnergy((i + 1) as EnergyLevel)}
-              aria-label={`Energy level ${i + 1}`}
-            >
-              {emoji}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Mood — always visible (primary metric) */}
-      <div>
-        <p className="section-label mb-2">
-          {t('training.mood')}
-        </p>
-        <div className="flex gap-2 justify-center">
-          {ENERGY_EMOJIS.map((emoji, i) => (
-            <button
-              key={i}
-              className="emoji-btn"
-              data-selected={mood === (i + 1)}
-              onClick={() => setMood((i + 1) as EnergyLevel)}
-              aria-label={`Mood level ${i + 1}`}
-            >
-              {emoji}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Details toggle */}
-      <button
-        className="text-xs font-bold tap-target flex items-center gap-1 justify-center"
-        style={{ color: 'var(--color-primary-dark)' }}
-        onClick={() => setShowDetails(!showDetails)}
-      >
-        {showDetails ? t('common.lessDetails') : t('common.moreDetails')}
-      </button>
-
-      {showDetails && (
-        <>
-          {/* Focus areas */}
-          <div>
-            <p className="section-label mb-2">
-              {t('training.focus')}
-            </p>
-            <div className="flex flex-wrap gap-2">
-              {FOCUS.map((f) => (
-                <button
-                  key={f.key}
-                  className="btn-choice tap-target text-sm px-4"
-                  onClick={() => toggleFocus(f.key)}
-                  aria-pressed={focus.includes(f.key)}
-                >
-                  {t(f.labelKey)}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Notes */}
-          <div>
-            <textarea
-              className="w-full rounded-xl p-3 text-sm"
-              style={{ resize: 'none' }}
-              rows={3}
-              placeholder={t('training.notes')}
-              value={notes}
-              onChange={(e) => setNotes(e.target.value)}
-            />
-          </div>
-        </>
-      )}
-
-      {/* Save button */}
-      <button
-        className="btn-primary tap-target w-full"
-        onClick={handleSave}
-        aria-label={t('training.save')}
-      >
-        {t('training.save')} (+{scaledTrainingXp} XP)
-      </button>
-    </div>
+    </section>
   )
 }

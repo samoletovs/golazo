@@ -23,6 +23,8 @@ api/local.settings.json
 # Test output
 test-results/
 playwright-report/
+.test-artifacts/
+__pycache__/
 
 # IDE
 .vscode/

@@ -6,7 +6,7 @@ import { getRank } from '../engine/xp'
  * Compact progress header that translates raw XP state into the player's
  * visible level, rank, next-level progress, and active streak.
  */
-export function XpBar() {
+export function XpBar({ showStreak = true }: { showStreak?: boolean }) {
   const { xp } = useApp()
   const { t } = useTranslation()
   const rank = getRank(xp.level)
@@ -39,7 +39,7 @@ export function XpBar() {
       </div>
 
       {/* Streak */}
-      {xp.streakDays > 0 && (
+      {showStreak && xp.streakDays > 0 && (
         <div className="stat-pill stat-pill-gold">
           {t('dashboard.streak', { days: xp.streakDays })}
         </div>

@@ -6,6 +6,7 @@ import { XpBar } from './components/XpBar'
 import { BottomNav } from './components/BottomNav'
 import FeedbackButton from './components/FeedbackButton'
 const Dashboard = lazy(() => import('./pages/Dashboard').then(m => ({ default: m.Dashboard })))
+const Clubhouse = lazy(() => import('./pages/Clubhouse').then(m => ({ default: m.Clubhouse })))
 const LogPage = lazy(() => import('./pages/LogPage').then(m => ({ default: m.LogPage })))
 import { LoginPage } from './pages/LoginPage'
 import { OnboardingPage } from './pages/OnboardingPage'
@@ -33,7 +34,7 @@ const TeamPickerLazy = lazy(() => import('./components/TeamPicker').then(m => ({
 const CoachStatsPage = lazy(() => import('./pages/CoachStatsPage').then(m => ({ default: m.CoachStatsPage })))
 const TeamChallenges = lazy(() => import('./pages/TeamChallenges').then(m => ({ default: m.TeamChallenges })))
 
-type Page = 'dashboard' | 'log' | 'learn' | 'exercises' | 'profile' | 'schedule' | 'progress' | 'leaderboard' | 'challenges' | 'portal' | 'mentor' | 'coach' | 'squads' | 'stats' | 'coach-roster' | 'coach-training' | 'coach-announce' | 'coach-evaluate' | 'coach-attendance' | 'coach-challenges'
+type Page = 'dashboard' | 'activity' | 'log' | 'learn' | 'exercises' | 'profile' | 'schedule' | 'progress' | 'leaderboard' | 'challenges' | 'portal' | 'mentor' | 'coach' | 'squads' | 'stats' | 'coach-roster' | 'coach-training' | 'coach-announce' | 'coach-evaluate' | 'coach-attendance' | 'coach-challenges'
 
 function AppContent() {
   const [page, setPage] = useState<Page>('dashboard')
@@ -146,17 +147,18 @@ function AppContent() {
 
   return (
     <div className="flex flex-col min-h-dvh">
-      <div className="app-shell flex flex-col min-h-dvh">
+      <div className={`app-shell flex flex-col min-h-dvh${isPlayer && page === 'dashboard' ? ' app-shell-clubhouse' : ''}`}>
         {/* Header: XP bar for players only */}
-        {isPlayer && (
+        {isPlayer && page !== 'dashboard' && (
           <header className="app-header">
-            <XpBar />
+            <XpBar showStreak={page !== 'log'} />
           </header>
         )}
 
         <main className="flex-1 overflow-y-auto pb-20">
           <div key={pageKey} className="page-enter">
-            {page === 'dashboard' && isPlayer && <Dashboard onNavigate={handleNavigate} />}
+            {page === 'dashboard' && isPlayer && <Clubhouse onNavigate={handleNavigate} />}
+            {page === 'activity' && isPlayer && <Dashboard onNavigate={handleNavigate} />}
             {page === 'dashboard' && isMentor && (
               <Suspense fallback={<div className="flex items-center justify-center p-8"><span className="text-3xl">⚽</span></div>}>
                 <MentorDashboard />
@@ -272,7 +274,7 @@ function AppContent() {
         </footer>
       </div>
 
-      <BottomNav active={page} onNavigate={handleNavigate} role={profile?.role} />
+      <BottomNav active={page === 'activity' ? 'dashboard' : page} onNavigate={handleNavigate} role={profile?.role} />
       <FeedbackButton />
 
       {/* Coach squad picker modal */}

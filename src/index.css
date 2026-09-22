@@ -1,24 +1,21 @@
 /* ── Golazo Game Design System ────────────────────────────── */
-/* Visual thesis: Nike Training Club meets Strava — NEUTRAL    */
-/* premium, celebration-driven. Emerald-tinted whites, deep    */
-/* emerald accents, bold Outfit headings, oversized numbers,   */
-/* smooth page transitions. Team colors override the palette.  */
-/* Follows design-system-playful shared patterns.              */
+/* Clubhouse default: cobalt actions, coral rewards, neutral surfaces.
+   Club identity colors are separate from functional contrast tokens. */
 @import "tailwindcss";
 
 @theme {
-  /* ── Primary (themeable — overridden by team colors) ── */
-  --color-primary: #059669;
-  --color-primary-light: #10b981;
-  --color-primary-dark: #047857;
-  --color-primary-darker: #065f46;
-  --color-primary-bg: #D1FAE5;
-  --color-primary-bg-subtle: #ECFDF5;
-  --color-primary-rgb: 5, 150, 105;
+  /* ── Primary (explicit theme preferences may override) ── */
+  --color-primary: #2548b5;
+  --color-primary-light: #5875c8;
+  --color-primary-dark: #193589;
+  --color-primary-darker: #172b47;
+  --color-primary-bg: #e5eafa;
+  --color-primary-bg-subtle: #f1f4fc;
+  --color-primary-rgb: 37, 72, 181;
 
-  /* ── Background (emerald-tinted — brand cohesion) ── */
-  --color-bg: #F7FAF8;
-  --color-bg-warm: #F3F7F4;
+  /* ── Neutral background ── */
+  --color-bg: #F4F5F7;
+  --color-bg-warm: #EEF0F4;
 
   /* ── Gold (XP, rewards) ── */
   --color-gold-500: #f59e0b;
@@ -71,7 +68,7 @@
   /* ── Text (neutral, professional) ── */
   --color-text: #111827;
   --color-text-secondary: #4B5563;
-  --color-text-muted: #9CA3AF;
+  --color-text-muted: #5C6779;
 
   /* ── Type ── */
   --font-body: "Inter", system-ui, -apple-system, sans-serif;
@@ -445,13 +442,15 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 2px;
-  font-size: 0.625rem;
+  font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.02em;
-  color: #9ca3af;
+  color: var(--color-text-muted);
   cursor: pointer;
   padding: 8px 0;
   width: 72px;
+  min-width: 0;
+  overflow-wrap: anywhere;
   max-width: 96px;
   min-height: 48px;
   justify-content: center;
@@ -460,8 +459,10 @@ body {
   background: none;
   border: none;
 }
-.bottom-nav-item:hover {
-  color: #6b7280;
+@media (hover: hover) and (pointer: fine) {
+  .bottom-nav-item:hover {
+    color: var(--color-text-secondary);
+  }
 }
 .bottom-nav-item[data-active="true"] {
   color: var(--color-primary-dark);
