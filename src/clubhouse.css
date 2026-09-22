@@ -25,6 +25,9 @@
 .clubhouse button, .clubhouse input, .clubhouse textarea, .clubhouse summary { font: inherit; }
 .clubhouse :focus-visible { outline: 3px solid var(--club-action); outline-offset: 4px; }
 .clubhouse :focus:not(:focus-visible) { outline: none; }
+/* These headings are screen-reader routing targets, not interactive tab stops. */
+.clubhouse h1:focus { outline: none; }
+.clubhouse button, .clubhouse input, .clubhouse textarea, .clubhouse summary { scroll-margin-block: 24px 7rem; }
 .clubhouse button, .clubhouse summary { cursor: pointer; min-height: 48px; }
 .clubhouse button { touch-action: manipulation; }
 .club-welcome { display: grid; grid-template-columns: minmax(0, 1fr) 100px; gap: 12px; background: var(--club-surface); border: 1px solid var(--club-line); border-radius: 24px; margin-bottom: 24px; padding: 24px; }
@@ -72,7 +75,7 @@
 .club-choice { border: 1px solid var(--club-field-line); color: var(--club-ink); background: var(--club-surface); gap: 6px; padding: 10px 14px; }
 .club-choice[aria-pressed="true"] { background: var(--club-action); border-color: var(--club-action); color: #fff; }
 .club-choice[aria-pressed="true"]::before { content: "✓"; }
-.training-ratings { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 4.2rem), 1fr)); gap: 8px; }
+.training-ratings { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 2.75rem), 1fr)); gap: 4px; }
 .training-rating { display: flex; align-items: center; flex-direction: column; min-width: 0; border: 1px solid var(--club-field-line); border-radius: 10px; padding: 10px 6px; text-align: center; cursor: pointer; }
 .training-rating:has(:checked) { background: var(--club-neutral); border: 2px solid var(--club-action); padding: 9px 5px; }
 .training-rating input { width: 20px; height: 20px; margin: 0 0 6px; accent-color: var(--club-action); }

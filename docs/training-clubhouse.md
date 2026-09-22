@@ -29,7 +29,8 @@ screenshots or test results for the production implementation.
   Stable entry IDs and same-schedule/date checks make a retry idempotent.
 - A failed local write leaves both entry and XP unchanged, keeps the form,
   displays an inline error plus the existing error toast and permits retry.
-  Successful completion says **saved on this device**, not "synced".
+  Retry clears its own obsolete error toast on success; unrelated notifications
+  are preserved. Successful completion says **saved on this device**, not "synced".
 - Existing debounced cloud synchronization remains separate. A failing PUT does
   not roll back the local entry or award; no server-confirmation capability is
   invented. The existing cloud-hydration/merge policy is unchanged: this is not

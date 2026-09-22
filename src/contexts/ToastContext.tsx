@@ -12,7 +12,8 @@ interface Toast {
 
 interface ToastContextValue {
   toasts: Toast[]
-  showToast: (message: string, type?: ToastType, icon?: string) => void
+  showToast: (message: string, type?: ToastType, icon?: string) => number
+  dismissToast: (id: number) => void
   showXpToast: (xp: number) => void
   showAchievement: (title: string) => void
 }
@@ -35,6 +36,11 @@ export function ToastProvider({ children }: { children: ReactNode }) {
     setTimeout(() => {
       setToasts(prev => prev.filter(toast => toast.id !== id))
     }, 3200)
+    return id
+  }, [])
+
+  const dismissToast = useCallback((id: number) => {
+    setToasts(previous => previous.filter(toast => toast.id !== id))
   }, [])
 
   const showXpToast = useCallback((xp: number) => {
@@ -46,9 +52,9 @@ export function ToastProvider({ children }: { children: ReactNode }) {
   }, [showToast])
 
   return (
-    <ToastContext.Provider value={{ toasts, showToast, showXpToast, showAchievement }}>
+    <ToastContext.Provider value={{ toasts, showToast, dismissToast, showXpToast, showAchievement }}>
       {children}
-      <ToastContainer toasts={toasts} onDismiss={(id) => setToasts(prev => prev.filter(t => t.id !== id))} />
+      <ToastContainer toasts={toasts} onDismiss={dismissToast} />
     </ToastContext.Provider>
   )
 }

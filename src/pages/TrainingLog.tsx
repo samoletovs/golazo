@@ -19,7 +19,7 @@ export interface TrainingLogProps {
 export function TrainingLog({ onBack, inline, prefill, onSaved }: TrainingLogProps) {
   const { t } = useTranslation()
   const { saveTraining, profile } = useApp()
-  const { showToast } = useToast()
+  const { showToast, dismissToast } = useToast()
   const today = new Date().toISOString().slice(0, 10)
   const [draft, setDraft] = useState<TrainingEntry>(() => ({
     id: crypto.randomUUID(), playerId: profile?.id ?? 'default',
@@ -32,7 +32,11 @@ export function TrainingLog({ onBack, inline, prefill, onSaved }: TrainingLogPro
   const [failed, setFailed] = useState(false)
   const saving = useRef(false)
   const heading = useRef<HTMLHeadingElement>(null)
+  const errorToast = useRef<number | null>(null)
   useEffect(() => { heading.current?.focus() }, [])
+  useEffect(() => () => {
+    if (errorToast.current !== null) dismissToast(errorToast.current)
+  }, [dismissToast])
 
   function handleSave(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -45,11 +49,16 @@ export function TrainingLog({ onBack, inline, prefill, onSaved }: TrainingLogPro
     } catch (error) {
       console.error('Training could not be saved on this device:', error)
       setFailed(true)
-      showToast(t('training.localError'), 'error')
+      if (errorToast.current !== null) dismissToast(errorToast.current)
+      errorToast.current = showToast(t('training.localError'), 'error')
       saving.current = false
       return
     }
     setFailed(false)
+    if (errorToast.current !== null) {
+      dismissToast(errorToast.current)
+      errorToast.current = null
+    }
     setReceipt(result)
     onSaved?.()
   }

@@ -46,6 +46,7 @@
 
   /* ── Semantic Backgrounds ── */
   --color-error-bg: #FEE2E2;
+  --color-error-text: #9D2925;
   --color-warning-bg: #FFF7ED;
   --color-success-bg: #F0FDF4;
   --color-amber-bg: #FEF3C7;
@@ -1365,8 +1366,9 @@ input[type="date"]:focus, input[type="time"]:focus {
   color: #fff;
 }
 .toast-error {
-  background: rgba(239, 68, 68, 0.95);
-  color: #fff;
+  background: var(--color-error-bg);
+  color: var(--color-error-text);
+  border: 1px solid var(--color-error-text);
 }
 .toast-info {
   background: rgba(59, 130, 246, 0.95);

@@ -107,7 +107,7 @@ def contrast(page: Page) -> dict:
       const background=e=>{let layers=[];for(let p=e;p;p=p.parentElement)layers.unshift(rgb(getComputedStyle(p).backgroundColor));
         return layers.reduce((u,c)=>c.slice(0,3).map((v,i)=>v*(c[3]??1)+u[i]*(1-(c[3]??1))),[255,255,255]);};
       const values=[];
-      for(const e of document.querySelectorAll('.clubhouse *, .bottom-nav-item span')) {
+      for(const e of document.querySelectorAll('.clubhouse *, .bottom-nav-item span, .toast span')) {
         if(e.closest('svg')||!e.getClientRects().length||![...e.childNodes].some(n=>n.nodeType===Node.TEXT_NODE&&n.textContent.trim())) continue;
         const rect=e.getBoundingClientRect();if(!rect.width||!rect.height)continue;
         const s=getComputedStyle(e), a=lum(rgb(s.color)), b=lum(background(e));
@@ -133,7 +133,12 @@ def capture(page: Page, output: Path, name: str) -> None:
 def keyboard_to(page: Page, selector: str) -> None:
     for _ in range(40):
         if page.locator(selector).evaluate("e=>e===document.activeElement"):
-            return
+            visible = page.locator(selector).evaluate("""e=>{
+              const r=e.getBoundingClientRect(), nav=document.querySelector('.bottom-nav').getBoundingClientRect();
+              return r.top>=0 && r.bottom<=nav.top && getComputedStyle(e).outlineStyle!=='none';
+            }""")
+            if visible:
+                return
         page.keyboard.press("Tab")
     raise AssertionError(f"Keyboard could not reach {selector}")
 
@@ -168,6 +173,8 @@ def main() -> None:
                 page.on("pageerror", lambda error: state["page_errors"].append(str(error)))
                 page.goto(args.url, wait_until="networkidle")
                 expect(page.locator(".club-welcome")).to_be_visible()
+                initial_assets = page.evaluate("""() => performance.getEntriesByType('resource').filter(e=>new URL(e.name).pathname.startsWith('/assets/')).map(e=>({path:new URL(e.name).pathname,decodedBytes:e.decodedBodySize,transferBytes:e.transferSize}))""")
+                results.append({"language": language, "phase": "initial-payload", "assets": initial_assets})
                 for width in (320, 390, 1280):
                     page.set_viewport_size({"width": width, "height": 900 if width == 1280 else 844})
                     results.append({"language": language, "phase": "initial", "layout": no_overflow(page), "contrast": contrast(page)})
@@ -176,6 +183,8 @@ def main() -> None:
                 keyboard_to(page, ".club-log-card .club-button")
                 page.keyboard.press("Enter")
                 expect(page.locator(".training-form")).to_be_visible()
+                new_assets = page.evaluate("""known => performance.getEntriesByType('resource').filter(e=>new URL(e.name).pathname.startsWith('/assets/')&&!known.includes(new URL(e.name).pathname)).map(e=>new URL(e.name).pathname)""", [item["path"] for item in initial_assets])
+                results.append({"language": language, "phase": "opening-log-assets", "additionalAssets": new_assets})
                 page.locator('input[name="duration"]').fill("")
                 page.locator(".training-form button[type=submit]").click()
                 assert not page.locator('input[name="duration"]').evaluate("e=>e.validity.valid")
@@ -199,6 +208,7 @@ def main() -> None:
                 page.keyboard.press("Enter")
                 page.keyboard.press("Enter")
                 expect(page.locator(".club-complete-label")).to_be_visible()
+                expect(page.locator(".toast-error")).to_have_count(0)
                 assert len(save_state(page)["trainings"]) == 3 and save_state(page)["xp"]["totalXp"] == 100
                 assert save_state(page)["trainings"][-1]["playerId"] == "synthetic-player"
                 assert save_state(page)["trainings"][-1]["fromSchedule"] == "synthetic-schedule"
@@ -223,6 +233,26 @@ def main() -> None:
                 assert not state["page_errors"] and not state["unexpected_external"], state
                 results.append({"language": language, "mocked_cloud_failures": len(state["puts"]), "page_errors": state["page_errors"], "external_requests_sent": 0})
                 context.close()
+            context = browser.new_context(viewport={"width": 390, "height": 844}, reduced_motion="reduce")
+            first_use = fixture()
+            first_use["trainings"], first_use["schedule"] = [], []
+            first_use["xp"].update({"totalXp": 0, "currentLevelXp": 0, "streakDays": 0})
+            install_mocks(context, args.url, first_use)
+            page = context.new_page()
+            page.goto(args.url, wait_until="networkidle")
+            expect(page.locator(".club-journal")).to_contain_text("Your journal starts here")
+            capture(page, output, "first-use-390")
+            page.locator(".club-rest button").click()
+            assert not save_state(page)["trainings"] and save_state(page)["xp"]["totalXp"] == 0
+            page.get_by_role("button", name="Home", exact=True).click()
+            expect(page.locator(".club-welcome")).to_be_visible()
+            page.locator(".club-log-card .club-button").click()
+            page.locator('input[name="duration"]').fill("10")
+            page.locator(".training-form button[type=submit]").click()
+            expect(page.locator(".club-complete-label")).to_be_visible()
+            assert len(save_state(page)["trainings"]) == 1 and save_state(page)["xp"]["totalXp"] == 20
+            results.append({"phase": "first-use-and-rest-link", "sessions": 1, "minutes": 10, "xp": 20, "restRecordedNothing": True})
+            context.close()
         finally:
             browser.close()
 
