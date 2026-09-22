@@ -2,7 +2,15 @@
 
 ## Project
 
-Golazo is a mobile-first gamified football development platform for players of all ages. React 19 + TypeScript + Vite + Tailwind CSS 4. Light theme with refined pitch green accents. Azure Functions API + Cosmos DB backend with offline-first data sync.
+Golazo is a mobile-first gamified football development platform. The confirmed
+design audience is players aged 10–14, with parents supporting. React 19 +
+TypeScript + Vite + Tailwind CSS 4. Azure Functions API + Cosmos DB backend with
+offline-first data sync.
+
+Canonical design context: [`.impeccable.md`](.impeccable.md). It records the
+confirmed audience, approved Clubhouse/cobalt-coral direction, post-training
+journey and healthy-motivation principles. The historical concepts in
+`docs/design-directions/training-20260922/` do not approve a production redesign.
 
 ## Build & verify
 
@@ -105,12 +113,11 @@ api/
 
 ## Design System
 
-- Dark theme: `--color-pitch-black` (#0a0f0a) base
-- Green accents: `--color-pitch-green-light` (#22c55e)
-- Rank colors: bronze/silver/gold/diamond/platinum
-- Cards: `--color-surface` with `--color-pitch-line` borders
-- Emoji-based ratings (5-point scale)
-- FIFA/EA FC aesthetic — energetic, not childish
+Use [the canonical design brief](.impeccable.md), not the historical conflicting
+light/dark or commercial-game recipes previously recorded here.
+Production changes are bounded to the approved player training slice.
+Preserve the conventions above when implementing production UI; the standalone
+synthetic concepts are explicitly outside the production React/i18n pipeline.
 
 ## Deploy
 

@@ -1,0 +1,369 @@
+{
+  "kind": "candidate-validation-not-independent-review",
+  "source_commit": "9251a7df09a59ba6dad53ac7178b52923cab9242",
+  "owner_choice": "A Clubhouse; cobalt blue + warm coral + neutral default, approved 2026-09-22",
+  "independent_review": "PENDING with parent coordinator",
+  "production_receipt": "NOT CREATED",
+  "validation": {
+    "exact_lockfile": "npm ci --offline --no-audit --no-fund: passed, no downloads",
+    "unit": {
+      "command": "npm test -- --maxWorkers=1",
+      "passed": 214,
+      "failed": 0,
+      "tested_at_source": "a78b44a08075906d738d697a32c6a74f707eac91",
+      "subsequent_delta": "Only scoped footer-clearance CSS and Python browser regression changed; final-source browser matrix rerun passed."
+    },
+    "design_gate": {
+      "command": "C:\\Python314\\python.exe tests\\test_design_gate.py",
+      "passed": 11,
+      "coverage": [
+        "missing receipt",
+        "stale receipt",
+        "artifact changes",
+        "missing history",
+        "base UI drift",
+        "backend-only scope",
+        "merge ancestry"
+      ]
+    },
+    "lint": {
+      "full_errors": 0,
+      "preexisting_warnings": 23,
+      "final_changed_flow_errors": 0
+    },
+    "build": {
+      "command": "npm run build",
+      "source_commit": "9251a7df09a59ba6dad53ac7178b52923cab9242",
+      "type_check": "passed",
+      "node": "v24.14.0",
+      "vite": "8.2.1",
+      "vitest": "4.1.11",
+      "warnings": [
+        "Existing large main chunk",
+        "Existing mixed static/dynamic TeamPicker import"
+      ]
+    },
+    "football_terms": "passed",
+    "browser": {
+      "observations": 68,
+      "screenshots": 40,
+      "locales": [
+        "en",
+        "ru",
+        "lv",
+        "es"
+      ],
+      "widths": [
+        320,
+        390,
+        1280
+      ],
+      "minimum_measured_text_contrast": 5.720112273366786,
+      "contrast_states": 32,
+      "root_text_enlargement": "16px to 32px",
+      "true_browser_zoom": "chrome.tabs.setZoom(2); measured innerWidth 1422 to 711 and DPR 1 to 2; no CSS overflow",
+      "failure_and_retry": "retained input, exactly one entry and real age-scaled reward, stale error toast removed",
+      "cloud": "mocked PUT 503; local result retained on reload with mocked offline GET",
+      "first_use": "empty journal then 10-minute session gives one entry and 20 XP",
+      "rest": "schedule navigation adds no entry or XP",
+      "focus": "actual Tab/Enter path, retry and footer fully above fixed nav at normal/enlarged sizes",
+      "initial_asset_count": 11,
+      "initial_decoded_asset_bytes": 1600182,
+      "additional_assets_on_log_open": []
+    },
+    "ui_pr_gate": "Expected exit 1: missing independently reviewed production review.json"
+  },
+  "limits": [
+    "Chromium only",
+    "Synthetic profiles/auth/API responses",
+    "Google font CSS mocked empty: system fallback typography tested",
+    "No real-user or screen-reader testing",
+    "Independent production review pending",
+    "Existing cloud-hydration merge policy unchanged; not a new offline/multi-device reconciliation protocol.",
+    "A shared-host Vitest worker startup timeout occurred; final full suite passed with maxWorkers=1.",
+    "CI runtime is Node 22; parent remote validation pending.",
+    "No push, PR, merge or deployment performed by implementing agent."
+  ],
+  "artifacts": [
+    {
+      "path": "en-completion-1280.png",
+      "sha256": "ae0a8f9c3cc04e535da32fe9c2bf754718bf6727bfee6b0a0dcacdf683038d79",
+      "width": 1280,
+      "height": 959,
+      "bytes": 59476
+    },
+    {
+      "path": "en-completion-320.png",
+      "sha256": "106c5f4f6e0c9d32fa9d298cb97238da0fc462bc01c276c849831ce5bdb0701a",
+      "width": 320,
+      "height": 1466,
+      "bytes": 51805
+    },
+    {
+      "path": "en-completion-390.png",
+      "sha256": "72f5ee15ca335a076b620b6db4d584553579370fb417fb0917ac33c18b1c111a",
+      "width": 390,
+      "height": 1330,
+      "bytes": 49602
+    },
+    {
+      "path": "en-failure-390.png",
+      "sha256": "848a01dbeae78359b697e45f594113f8c3093f82072d907b9ccf40e30c7f1286",
+      "width": 390,
+      "height": 2522,
+      "bytes": 99751
+    },
+    {
+      "path": "en-initial-1280.png",
+      "sha256": "37d883f8694d24da8942bc4114fcc13eafd17255e39cf3967f03c7ead95b099e",
+      "width": 1280,
+      "height": 1535,
+      "bytes": 90831
+    },
+    {
+      "path": "en-initial-320.png",
+      "sha256": "bb802eba4010eb6291f9537ae4c86b2f077a806bcebfe6dda6dcabe54bb1784f",
+      "width": 320,
+      "height": 2185,
+      "bytes": 72467
+    },
+    {
+      "path": "en-initial-390.png",
+      "sha256": "5512b73e1a1bff621b4bac3999aca9c695ce62f5c663b204affa53775352b5b3",
+      "width": 390,
+      "height": 1875,
+      "bytes": 71916
+    },
+    {
+      "path": "en-text-200-form.png",
+      "sha256": "87478fa8e7e7b783539579ddb562185d6df2b928cdc6e6d570811442212762c6",
+      "width": 390,
+      "height": 4413,
+      "bytes": 223551
+    },
+    {
+      "path": "en-text-200-initial.png",
+      "sha256": "57514d7fc2289320ba48c7181393538fa0eb59fb29edb9448263f6a4d9e33804",
+      "width": 390,
+      "height": 4183,
+      "bytes": 226647
+    },
+    {
+      "path": "es-completion-1280.png",
+      "sha256": "e73939cc2f3b46fb6318a6123e333229c33c78c09b4da13e7d191792d0b23253",
+      "width": 1280,
+      "height": 959,
+      "bytes": 61839
+    },
+    {
+      "path": "es-completion-320.png",
+      "sha256": "e0eb48ff6f767b8f1f72a62a39e65319cb8fb6839dc8ecbd435a403a4485c211",
+      "width": 320,
+      "height": 1560,
+      "bytes": 54774
+    },
+    {
+      "path": "es-completion-390.png",
+      "sha256": "1b23652beb8e120596607ab68f37b5245e68925a1989a4ec0bcaaadede7de65b",
+      "width": 390,
+      "height": 1412,
+      "bytes": 53067
+    },
+    {
+      "path": "es-failure-390.png",
+      "sha256": "c1a7dde6723104406bd897854aa3904d0de329f5fa14ddf1565963ff40266df5",
+      "width": 390,
+      "height": 2649,
+      "bytes": 109237
+    },
+    {
+      "path": "es-initial-1280.png",
+      "sha256": "44870a9a9e973e0d08c89cf796e07f7b411cdf3031638a0ced4559be7e10621a",
+      "width": 1280,
+      "height": 1535,
+      "bytes": 95095
+    },
+    {
+      "path": "es-initial-320.png",
+      "sha256": "a58700b5010211ab07efb118de5ce25a281ac06b16fe5377d027b792db874b49",
+      "width": 320,
+      "height": 2308,
+      "bytes": 81520
+    },
+    {
+      "path": "es-initial-390.png",
+      "sha256": "8f6f83103d1b1e3cb9f0d098543172956cd2b19e32b53b4427f3aa927f16edfa",
+      "width": 390,
+      "height": 1960,
+      "bytes": 81179
+    },
+    {
+      "path": "es-text-200-form.png",
+      "sha256": "d95ee2287d49d6555053a4b9e8c229e9b194c341739feb6d45f4f963450ad92e",
+      "width": 390,
+      "height": 4943,
+      "bytes": 265265
+    },
+    {
+      "path": "es-text-200-initial.png",
+      "sha256": "409772965aa252f088785e1bbe90521a9a0aa6728a8875d9b9ba8fc3d1e23f49",
+      "width": 390,
+      "height": 4588,
+      "bytes": 247086
+    },
+    {
+      "path": "first-use-390.png",
+      "sha256": "59b161294107ac5789f836d157b8150374b8e24ed7520120abe59f36cdae45a4",
+      "width": 390,
+      "height": 1793,
+      "bytes": 67758
+    },
+    {
+      "path": "lv-completion-1280.png",
+      "sha256": "7b28e85d2b0df7e96e1dc822713b175b3238ac88823c1905253359b020fdb54c",
+      "width": 1280,
+      "height": 929,
+      "bytes": 60600
+    },
+    {
+      "path": "lv-completion-320.png",
+      "sha256": "7a41685f021f280798c4603ce1c2e919399d90aaa527b04c551d11977003c0d5",
+      "width": 320,
+      "height": 1487,
+      "bytes": 53209
+    },
+    {
+      "path": "lv-completion-390.png",
+      "sha256": "214fbbf5445e7adafd36ec3379ba786342e3d3bc7c50dab5e1a5b49da11be191",
+      "width": 390,
+      "height": 1330,
+      "bytes": 51148
+    },
+    {
+      "path": "lv-failure-390.png",
+      "sha256": "39904d3b4694937bf818a643a39da86072a8e4ac43355857a944996e564571d9",
+      "width": 390,
+      "height": 2621,
+      "bytes": 106959
+    },
+    {
+      "path": "lv-initial-1280.png",
+      "sha256": "e7e5c0029dd6ab7b69feb778e9c30922aacb37ba6c3f14e472f0ff764ec98855",
+      "width": 1280,
+      "height": 1535,
+      "bytes": 92536
+    },
+    {
+      "path": "lv-initial-320.png",
+      "sha256": "3e0d6cbb6c36bf1fc1cb7883a8c04e286bfe93c7803603a3e0b552b8bab326f0",
+      "width": 320,
+      "height": 2234,
+      "bytes": 76237
+    },
+    {
+      "path": "lv-initial-390.png",
+      "sha256": "fc73b16156e86884493bd2c31aa9137553eb94670a7bb4b1ef704052e6f47045",
+      "width": 390,
+      "height": 1875,
+      "bytes": 76199
+    },
+    {
+      "path": "lv-text-200-form.png",
+      "sha256": "f814bf7918368c3052b6e9768ae72ce04113f17178308378dace1c662d63a7ea",
+      "width": 390,
+      "height": 4490,
+      "bytes": 240056
+    },
+    {
+      "path": "lv-text-200-initial.png",
+      "sha256": "0dd3068af20a6d838bc698730d50588840f2a49af37c92a9e0c9ed1f943f3908",
+      "width": 390,
+      "height": 4432,
+      "bytes": 240446
+    },
+    {
+      "path": "native-zoom200-completion.png",
+      "sha256": "60eed6fb82f34a97f44700833485ebc1b130c7dfe4b0fdce7a9556bb9d475522",
+      "width": 1422,
+      "height": 2354,
+      "bytes": 150823
+    },
+    {
+      "path": "native-zoom200-form.png",
+      "sha256": "84c9316660ff3bdeb87c1c98dfb1ab290eb0961bacabc4b7a04f4c6088a9844d",
+      "width": 1422,
+      "height": 3547,
+      "bytes": 228766
+    },
+    {
+      "path": "native-zoom200-initial.png",
+      "sha256": "8f07fcecbc3fb6666ddf694168f113532155386a2e6a47d61d477d25fafbe48b",
+      "width": 1422,
+      "height": 3483,
+      "bytes": 225235
+    },
+    {
+      "path": "ru-completion-1280.png",
+      "sha256": "6721442d70d32dc16f0093f24ba64781b8870d9c97d60e7939aa53bc27f7adb2",
+      "width": 1280,
+      "height": 959,
+      "bytes": 65140
+    },
+    {
+      "path": "ru-completion-320.png",
+      "sha256": "e1b6af1286338532c574c6bb5d03c24ab82a6f3608dd477f2cb94b72973107cf",
+      "width": 320,
+      "height": 1589,
+      "bytes": 58577
+    },
+    {
+      "path": "ru-completion-390.png",
+      "sha256": "f2b34983f36032463cc7fa1866f7591314502f152a6516a401ebe508ebbcb417",
+      "width": 390,
+      "height": 1477,
+      "bytes": 60191
+    },
+    {
+      "path": "ru-failure-390.png",
+      "sha256": "455aa0357b652226062aa4c84bcff695ed858680d2c27b0baaf1c9a6269e0d1e",
+      "width": 390,
+      "height": 2618,
+      "bytes": 110245
+    },
+    {
+      "path": "ru-initial-1280.png",
+      "sha256": "e956632e0af5561053091b808e59caa1232f61990d0b9948d67f4b7a7f0fe5ec",
+      "width": 1280,
+      "height": 1535,
+      "bytes": 100326
+    },
+    {
+      "path": "ru-initial-320.png",
+      "sha256": "89eee4d5982a150a05ff13b0dc882a2ed4acb1137e3c04328130ec25f6e996c4",
+      "width": 320,
+      "height": 2387,
+      "bytes": 84338
+    },
+    {
+      "path": "ru-initial-390.png",
+      "sha256": "750e6e71dfaf4d0b900856f4c3a59a8e7ce94ebba0d9ec7ff4801d4a6e824806",
+      "width": 390,
+      "height": 2070,
+      "bytes": 86470
+    },
+    {
+      "path": "ru-text-200-form.png",
+      "sha256": "60ccc5cd4b394528d3f43b303ba7c173233fc715e494d92ec2459c7c3cba253d",
+      "width": 390,
+      "height": 5132,
+      "bytes": 259548
+    },
+    {
+      "path": "ru-text-200-initial.png",
+      "sha256": "458ecdbef3b0eceb3c57bc33a7818da360194b3c39c4107a951e6fe4dcc1f366",
+      "width": 390,
+      "height": 4794,
+      "bytes": 258527
+    }
+  ]
+}

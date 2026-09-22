@@ -1,0 +1,123 @@
+.clubhouse {
+  --club-ink: #172b47;
+  --club-muted: #506078;
+  --club-action: #2548b5;
+  --club-action-hover: #193589;
+  --club-coral: #ffb49c;
+  --club-reward-bg: #fff0e9;
+  --club-line: #d5dbe5;
+  --club-field-line: #74839b;
+  --club-error: #9d2925;
+  --club-surface: #ffffff;
+  --club-neutral: #f4f5f7;
+  color: var(--club-ink);
+  font-size: 1rem;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.app-shell.app-shell-clubhouse { max-width: 1160px; overflow: visible; }
+.app-shell:has(.clubhouse) { padding-bottom: calc(5rem + env(safe-area-inset-bottom)); }
+html:has(.clubhouse), .app-shell:has(.clubhouse) main { scroll-padding-block: 24px 7rem; }
+.club-home, .training-view { padding: 24px 20px 48px; }
+.training-inline { padding: 0; }
+.clubhouse h1, .clubhouse h2 { font-family: var(--font-display); letter-spacing: -.035em; line-height: 1.12; font-weight: 800; }
+.clubhouse h1 { font-size: clamp(2rem, 4vw, 3.5rem); margin: 16px 0 24px; }
+.clubhouse h2 { font-size: 1.6rem; margin: 0 0 16px; }
+.clubhouse p { margin: 0 0 16px; }
+.clubhouse button, .clubhouse input, .clubhouse textarea, .clubhouse summary { font: inherit; }
+.clubhouse :focus-visible { outline: 3px solid var(--club-action); outline-offset: 4px; }
+.clubhouse :focus:not(:focus-visible) { outline: none; }
+/* These headings are screen-reader routing targets, not interactive tab stops. */
+.clubhouse h1:focus { outline: none; }
+.clubhouse button, .clubhouse input, .clubhouse textarea, .clubhouse summary { scroll-margin-block: 24px 7rem; }
+.clubhouse button, .clubhouse summary { cursor: pointer; min-height: 48px; }
+.clubhouse button { touch-action: manipulation; }
+.club-welcome { display: grid; grid-template-columns: minmax(0, 1fr) 100px; gap: 12px; background: var(--club-surface); border: 1px solid var(--club-line); border-radius: 24px; margin-bottom: 24px; padding: 24px; }
+.club-wordmark { font-size: 1.8rem; font-family: var(--font-display); letter-spacing: -.06em; font-weight: 800; }
+.club-wordmark span { color: var(--club-action); }
+.club-welcome-copy { min-width: 0; }
+.club-welcome-copy > p:last-child { max-width: 38ch; }
+.club-eyebrow { display: block; font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; margin-bottom: 12px; color: var(--club-muted); }
+.club-identity { align-self: center; min-width: 0; }
+.club-jersey { display: block; width: 100%; max-width: 240px; margin: 0 auto 16px; }
+.club-team-name { font-size: .875rem; font-weight: 700; text-align: center; }
+.club-two-column { display: grid; gap: 24px; }
+.club-panel { min-width: 0; background: var(--club-surface); border: 1px solid var(--club-line); border-radius: 20px; padding: 24px; }
+.club-log-card { border-top: 6px solid var(--club-coral); }
+.club-button, .club-link, .club-choice { display: inline-flex; align-items: center; justify-content: center; gap: 16px; border-radius: 10px; padding: 12px 20px; max-width: 100%; }
+.club-button { background: var(--club-action); color: #fff; border: 2px solid var(--club-action); font-weight: 700 !important; }
+.club-link { background: transparent; color: var(--club-action); border: 0; padding: 12px 4px; font-weight: 700 !important; text-decoration: underline; text-underline-offset: 5px; }
+.club-muted, .club-hint { color: var(--club-muted); }
+.club-hint { font-size: .875rem; margin-top: 16px !important; }
+.club-metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 8rem), 1fr)); gap: 24px; margin: 24px 0; }
+.club-metrics > div { display: flex; flex-direction: column-reverse; }
+.club-metrics dt { font-size: .875rem; color: var(--club-muted); }
+.club-metrics dd { margin: 0 0 6px; font-family: var(--font-display); font-size: 3rem; line-height: 1; font-weight: 800; font-variant-numeric: tabular-nums; }
+.club-level-label { display: flex; flex-wrap: wrap; gap: 8px 20px; justify-content: space-between; font-size: .875rem; }
+.clubhouse progress { appearance: none; width: 100%; display: block; height: 8px; border: 0; border-radius: 8px; overflow: hidden; margin: 12px 0; background: var(--club-line); }
+.clubhouse progress::-webkit-progress-bar { background: var(--club-line); }
+.clubhouse progress::-webkit-progress-value { background: var(--club-action); }
+.clubhouse progress::-moz-progress-bar { background: var(--club-action); }
+.club-rest { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 32px; padding: 28px 0; border-bottom: 1px solid var(--club-line); }
+.club-rest > div { flex: 1 1 240px; }
+.club-rest p { margin-bottom: 0; color: var(--club-muted); max-width: 62ch; }
+.club-journal { margin: 32px 0 16px; }
+.club-journal ul { list-style: none; padding: 0; }
+.club-journal li { display: grid; grid-template-columns: minmax(0, .7fr) minmax(0, 1.3fr) auto; align-items: center; gap: 12px; padding: 16px 0; border-top: 1px solid var(--club-line); }
+.club-journal time, .club-journal li > span { font-size: .875rem; color: var(--club-muted); }
+.club-section-heading { margin: 16px 0 28px; }
+.club-section-heading > p { max-width: 58ch; }
+.club-field { display: block; min-width: 0; margin: 0 0 24px; padding: 0; border: 0; }
+.club-field > span, .club-field > label, .club-field legend { display: block; font-weight: 700; margin-bottom: 10px; }
+.club-field input:not([type="radio"]):not([type="checkbox"]), .club-field textarea { display: block; box-sizing: border-box; width: 100%; min-width: 0; min-height: 50px; padding: 12px; border: 1px solid var(--club-field-line); border-radius: 8px; color: var(--club-ink); background: var(--club-surface); }
+.club-field textarea { resize: vertical; }
+.club-field small { display: block; color: var(--club-muted); font-size: .875rem; margin-top: 8px; }
+.training-types, .training-presets { display: flex; flex-wrap: wrap; gap: 8px; }
+.training-presets { margin: -12px 0 24px; }
+.club-choice { border: 1px solid var(--club-field-line); color: var(--club-ink); background: var(--club-surface); gap: 6px; padding: 10px 14px; }
+.club-choice[aria-pressed="true"] { background: var(--club-action); border-color: var(--club-action); color: #fff; }
+.club-choice[aria-pressed="true"]::before { content: "✓"; }
+.training-ratings { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 2.75rem), 1fr)); gap: 4px; }
+.training-rating { display: flex; align-items: center; flex-direction: column; min-width: 0; border: 1px solid var(--club-field-line); border-radius: 10px; padding: 10px 6px; text-align: center; cursor: pointer; }
+.training-rating:has(:checked) { background: var(--club-neutral); border: 2px solid var(--club-action); padding: 9px 5px; }
+.training-rating input { width: 20px; height: 20px; margin: 0 0 6px; accent-color: var(--club-action); }
+.training-rating > span { font-weight: 700; }
+.training-rating small { font-weight: 400; margin-top: 4px; font-size: .8rem; }
+.training-focus { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+.training-focus label { display: flex; align-items: center; gap: 10px; min-height: 48px; }
+.training-focus input { width: 22px; height: 22px; accent-color: var(--club-action); }
+.training-details { border-top: 1px solid var(--club-line); padding-top: 12px; margin-bottom: 24px; }
+.training-details summary { padding: 12px 0; font-weight: 700; }
+.training-details[open] summary { margin-bottom: 16px; }
+.training-aside { align-self: start; border-top: 6px solid var(--club-coral); }
+.training-result { background: var(--club-reward-bg); }
+.training-reflection { margin: 16px 0 24px; white-space: pre-wrap; }
+.club-reward, .club-complete-label { display: inline-block; font-weight: 700; padding: 10px 16px; border-radius: 8px; }
+.club-reward { background: var(--club-coral); color: var(--club-ink); }
+.club-complete-label { color: #fff; background: var(--club-action); }
+.club-error { color: var(--club-error); background: var(--club-reward-bg); border: 1px solid var(--club-error); border-radius: 8px; padding: 16px; }
+@media (min-width: 800px) {
+  .club-home, .training-view { padding: 32px 32px 48px; }
+  .training-inline { padding: 0; }
+  .club-welcome { grid-template-columns: 1.4fr 1fr; gap: 40px; padding: 40px; }
+  .club-two-column { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); }
+  .clubhouse.training-inline .club-two-column { grid-template-columns: 1fr; }
+}
+@media (max-width: 350px) {
+  .club-welcome { grid-template-columns: 1fr; }
+  .club-identity { display: flex; align-items: center; gap: 16px; }
+  .club-jersey { width: 56px; margin: 0; flex-shrink: 0; }
+  .club-team-name { text-align: left; margin: 0 !important; }
+  .club-panel { padding: 20px; }
+  .club-journal li { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+}
+@media (hover: hover) and (pointer: fine) {
+  .club-button:hover, .club-choice[aria-pressed="true"]:hover { background: var(--club-action-hover); border-color: var(--club-action-hover); color: #fff; }
+  .club-choice:not([aria-pressed="true"]):hover, .training-rating:hover { background: var(--club-neutral); }
+  .club-link:hover { color: var(--club-action-hover); text-decoration-thickness: 2px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .club-button:active, .club-choice:active { transform: translateY(1px); }
+  .club-complete-label { animation: club-arrive 240ms ease-out 1; }
+  @keyframes club-arrive { from { opacity: .5; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+}

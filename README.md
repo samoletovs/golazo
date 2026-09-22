@@ -72,6 +72,17 @@ npm test -- tests/maintenance.test.ts tests/exercises.test.ts
 
 ## Status
 
+### Approved player training slice
+
+The owner selected **Clubhouse**, then **cobalt blue + warm coral on neutral
+surfaces**, on 2026-09-22. See [the canonical brief](.impeccable.md) and
+[implementation/verification notes](docs/training-clubhouse.md). The original
+standalone concepts remain historical comparison material, not final UI evidence.
+
+Player Home now prioritizes logging completed training and understanding effort.
+Existing matches, goals and activities remain under **More football**; coach and
+mentor dashboards keep their existing routes.
+
 **Active experiment.** Training and match logs, progression, challenges,
 exercise content, multilingual UI, backend sync, and coaching foundations are
 implemented. The broader agent-managed football data model is still being

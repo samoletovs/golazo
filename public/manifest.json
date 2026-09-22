@@ -4,8 +4,8 @@
   "description": "Youth football development platform",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#FAFAFA",
-  "theme_color": "#059669",
+  "background_color": "#F4F5F7",
+  "theme_color": "#2548B5",
   "icons": [
     {
       "src": "/favicon.svg",

@@ -1,0 +1,23 @@
+{
+  "description": "Reviewed validator and shipped checker/regressions, vendored without logic changes.",
+  "sources": [
+    {
+      "repo": "samoletovs/nauroLabs-github",
+      "commit": "8fa6ccbe7481bc00aad0568517dde4cd3bafbf3a",
+      "file": "scripts/design-gate.py",
+      "sha256": "f20f30cf44d486efa152f80bc4d5b754f4fe747406c1bee3e0cf270812dd81b5"
+    },
+    {
+      "repo": "samoletovs/rosette",
+      "commit": "d275259233f61f00898649dcd5fbc3e24a43d0d8",
+      "file": "scripts/check-design-pr.py",
+      "sha256": "3a0cb43990b4ef318f475219aa36f4a76b07da694e808269b688602a9b92741e"
+    },
+    {
+      "repo": "samoletovs/rosette",
+      "commit": "d275259233f61f00898649dcd5fbc3e24a43d0d8",
+      "file": "tests/test_design_gate.py",
+      "sha256": "136b224634d17cb1574d2d122996d9e1735d840ddfb54103bef552d98604360e"
+    }
+  ]
+}

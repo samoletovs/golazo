@@ -1,0 +1,390 @@
+{
+  "version": 1,
+  "kind": "bounded-concept-verification-not-production-approval",
+  "source_commit": "42d9ce91b281e4124dea64e7761f5d545aeffaea",
+  "verified_at": "2026-09-22T07:25:29.934Z",
+  "brief_sha256": "fb9af152efd0b16b8d734ca3c18aaa0442708b748f7b397cb9ed88c24ee06064",
+  "owner_direction": "PENDING: A, B, or revisions",
+  "independent_review": "PENDING: parent coordinator will arrange",
+  "real_user_testing": "NOT PERFORMED",
+  "browser": "Chromium 153.0.8010.48",
+  "capture_geometry": "Requested browser viewports were 320/390/768/1280 CSS pixels. Desktop Chromium reserves a 15px vertical scrollbar where needed: full-page PNG content widths are 305/375/1265, or 1280 without a scrollbar. Exact PNG dimensions are listed per artifact; this is narrower-content testing, not physical mobile hardware.",
+  "source_marker": "X-Concept-Source matched source_commit for both local previews before final capture",
+  "tests": {
+    "unit_command": "node --test docs\\design-directions\\training-20260922\\model.test.mjs",
+    "unit_passed": 7,
+    "unit_output": "✔ completed 60-minute training adds exactly one session, 60 minutes and 20 XP (2.397ms)\n✔ rest or missed day without a training entry preserves previous progress (0.3049ms)\n✔ first-use progress is honest before and after one short session (2.829ms)\n✔ rejects missing, zero, fractional and oversized durations without rejecting short training (2.2889ms)\n✔ rejects impossible, missing and future dates (0.3129ms)\n✔ an older session earns activity XP without inflating last-seven-day totals (0.247ms)\n✔ capturing a draft preserves optional notes and focus without sharing the array (0.2229ms)\nℹ tests 7\nℹ suites 0\nℹ pass 7\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 163.6464\n",
+    "syntax_checks": [
+      "concept.js",
+      "browser-check.cjs",
+      "serve.mjs"
+    ],
+    "browser": {
+      "directions": [
+        "clubhouse",
+        "companion"
+      ],
+      "reflow_cases_per_direction": [
+        "initial-320",
+        "initial-390",
+        "initial-768",
+        "initial-1280",
+        "log-390",
+        "failure-390",
+        "completion-320",
+        "completion-390",
+        "completion-1280",
+        "rest-390",
+        "missed-390",
+        "long-labels-320",
+        "long-labels-390",
+        "long-labels-1280",
+        "text200-initial",
+        "text200-log",
+        "text200-complete",
+        "log-1280",
+        "log-320"
+      ],
+      "overflow_failures": 0,
+      "browser_page_errors": 0,
+      "external_requests": 0,
+      "live_auth_or_api_requests": 0,
+      "task": "Visible controls: initial -> log -> blank-duration validation -> optional note/focus -> simulated failure -> retry -> 3 sessions / 185 minutes / +20 XP -> finish. No duplicate invitation after completion.",
+      "retention": "60 minutes, mood 4, technical focus and note retained after failed save",
+      "keyboard": "Tab/Enter/Space through log, validation, details, retry and finish; visible focus. Activating skip link then Tab reaches log action.",
+      "rest": "Rest and missed day each retain 2 sessions / 125 minutes / 80 XP; no catch-up invitation; no training added.",
+      "first_use": "Empty journal -> 10-minute entry -> 1 session / 10 minutes / 20 XP at level 1",
+      "storage": "localStorage/sessionStorage empty; reload resets",
+      "long_content": "Synthetic Latvian club and action labels at 320, 390 and 1280px",
+      "text_enlargement": {
+        "method": "root font-size 200%",
+        "measured_root_font": "32px",
+        "inner_width": 390,
+        "client_width": 375,
+        "scroll_width": 375,
+        "native_browser_zoom": "NOT VERIFIED"
+      },
+      "reduced_motion": "Completion animation-name none with reduce; normal animation arrive, 0.32s, 1 iteration",
+      "contrast": {
+        "method": "computed HTML text foreground over alpha-composited actual ancestor backgrounds; 4.5:1 normal / 3:1 large thresholds",
+        "states": [
+          "initial",
+          "form",
+          "selected-hover",
+          "primary-hover",
+          "disabled-saving",
+          "failure",
+          "completion",
+          "completion-mobile"
+        ],
+        "clubhouse_min_ratio": 5.26,
+        "companion_min_ratio": 5.36,
+        "failures": 0,
+        "decorative_svg": "not part of text scan",
+        "wcag_conformance_claim": false
+      },
+      "targets": {
+        "scope": "13 visible desktop form controls per direction; native check/radio labels have separate comfortable click areas",
+        "minimum_measured_height": 48,
+        "below_44px_measured_targets": 0
+      },
+      "performance": {
+        "method": "decoded local resource payload; all 4 subresources fetched on initial load; HTML byte size from served source; no font/image requests",
+        "clubhouse_total_decoded_bytes": 42196,
+        "companion_total_decoded_bytes": 41843,
+        "approved_performance_budget": null,
+        "field_web_vitals": "NOT MEASURED"
+      }
+    }
+  },
+  "limits": [
+    "Current governance was supplied by parent at 25719b1fba2eec0f60188840c9f7adbcdd1490c2; loader drift confirmed with preflight exit 1 and current charter/skills read directly. Fresh governance fetch/API ref returned 404.",
+    "Untouched production baseline npm test -- --run tests/xp.test.ts could not start: Vitest not installed. No downloads, dependency changes or production build claims.",
+    "Browser checks executed through available Playwright MCP code callbacks; direct runner filename loading outside MCP workspace roots was refused. No dependencies installed.",
+    "No native browser zoom, screen-reader session, alternate browser engine, real touch device or representative-player testing.",
+    "Concept-only failure simulation is not evidence of production API recovery; no live services were contacted.",
+    "No owner identity selection, independent review, push, PR, merge or deployment performed."
+  ],
+  "artifacts": [
+    {
+      "path": "docs\\design-evidence\\training-20260922\\clubhouse-completion-1280.png",
+      "sha256": "37c90baaf34a5dda08dcfc02297b2b1c84a83ca1bf6093b0810ce8cad165e574",
+      "width": 1265,
+      "height": 1227,
+      "bytes": 83633
+    },
+    {
+      "path": "docs\\design-evidence\\training-20260922\\clubhouse-completion-320.png",
+      "sha256": "9018d1b73d2f3119f2d99e5a24565c88a32dea08c30f13903fe26bccdade5a88",
+      "width": 305,
+      "height": 1985,
+      "bytes": 71772
+    },
+    {
+      "path": "docs\\design-evidence\\training-20260922\\clubhouse-completion-390.png",
+      "sha256": "83f691c1c0959436e6764a3cb06c5d40b709f52735b9ae020094a506b0505d0f",
+      "width": 375,
+      "height": 1712,
+      "bytes": 71928
+    },
+    {
+      "path": "docs\\design-evidence\\training-20260922\\clubhouse-empty-390.png",
+      "sha256": "252845136a97157201115fd68d346a027027398b6b8eb50ca7b9081f8a001e0f",
+      "width": 375,
+      "height": 1873,
+      "bytes": 71419
+    },
+    {
+      "path": "docs\\design-evidence\\training-20260922\\clubhouse-failure-390.png",
+      "sha256": "913a99c7a34bf55869e52324c765812b31d727417bc4ac00a0019a9b5457c250",
+      "width": 375,
+      "height": 2456,
+      "bytes": 89052
+    },
+    {
+      "path": "docs\\design-evidence\\training-20260922\\clubhouse-finished-1280.png",
+      "sha256": "82306d31dd100b916eb5830e9ad1fdaf1bd2c4fa7d7348c7b2e5b17b51f88aab",
+      "width": 1280,
+      "height": 900,
+      "bytes": 50430
+    },
+    {
+      "path": "docs\\design-evidence\\training-20260922\\clubhouse-initial-1280.png",
+      "sha256": "810cb73f93e00490254ca4b86b0649d17c3cffd6ef34b88d22b41ca97d74ac9d",
+      "width": 1265,
+      "height": 1435,
+      "bytes": 122229
+    },
+    {
+      "path": "docs\\design-evidence\\training-20260922\\clubhouse-initial-320.png",
+      "sha256": "010c944416a95a6eb05482e8c99b940876f0c5d488fa3a5e0b255e0932a61eac",
+      "width": 305,
+      "height": 2214,
+      "bytes": 71364
+    },
+    {
+      "path": "docs\\design-evidence\\training-20260922\\clubhouse-initial-390.png",
+      "sha256": "e85d8034bcdef23474e2d4e57aadeee41176fcd8752faccd3931b7c68d65a561",
+      "width": 375,
+      "height": 1924,
+      "bytes": 74972
+    },
+    {
+      "path": "docs\\design-evidence\\training-20260922\\clubhouse-log-1280.png",
+      "sha256": "3d1f29ec97dd151770f8e9c0cb602454e75681ab4faa8a70242354062706286a",
+      "width": 1265,
+      "height": 1283,
+      "bytes": 80374
+    },
+    {
+      "path": "docs\\design-evidence\\training-20260922\\clubhouse-log-320.png",
+      "sha256": "32766981ae4dd347f4c84212ddcdee5c045a7d6df58caa29af75142677d856e0",
+      "width": 305,
+      "height": 2210,
+      "bytes": 71835
+    },
+    {
+      "path": "docs\\design-evidence\\training-20260922\\clubhouse-log-390.png",
+      "sha256": "ecdf9c2bf16fee8d69a40369d14cc70a2aa90e67eeb2dee029c309cc95b847da",
+      "width": 375,
+      "height": 1962,
+      "bytes": 70985
+    },
+    {
+      "path": "docs\\design-evidence\\training-20260922\\clubhouse-long-labels-320.png",
+      "sha256": "f533f72d4d178d4648dc82791b63bb50136ceae7b5907934fe03d5bc8e08c6ce",
+      "width": 305,
+      "height": 2550,
+      "bytes": 85010
+    },
+    {
+      "path": "docs\\design-evidence\\training-20260922\\clubhouse-missed-390.png",
+      "sha256": "a964089d203a48b1780d22bd5e0c41737a592b77b8378d8988912780a28343aa",
+      "width": 375,
+      "height": 1221,
+      "bytes": 51041
+    },
+    {
+      "path": "docs\\design-evidence\\training-20260922\\clubhouse-rest-390.png",
+      "sha256": "23f1a7605012e80285a9fcb41ac25e556de69002c677e6c514414a5253b1f48a",
+      "width": 375,
+      "height": 1152,
+      "bytes": 45522
+    },
+    {
+      "path": "docs\\design-evidence\\training-20260922\\clubhouse-saving-390.png",
+      "sha256": "fc13871617c86a20ea37db9afb32e0ed2c71baaec2cdf9af2337b596afa74a8d",
+      "width": 375,
+      "height": 2626,
+      "bytes": 96757
+    },
+    {
+      "path": "docs\\design-evidence\\training-20260922\\clubhouse-text-200-completion-390.png",
+      "sha256": "21dee3ce87fefed86518ea49db746b9b60e9a0b8a009f6e0b8a7ee9eaa877989",
+      "width": 375,
+      "height": 4286,
+      "bytes": 249255
+    },
+    {
+      "path": "docs\\design-evidence\\training-20260922\\clubhouse-text-200-initial-390.png",
+      "sha256": "5e58aeb33d396792f13041203d873f792c928916f66288704e5cbaff17c7b3ad",
+      "width": 375,
+      "height": 5188,
+      "bytes": 292034
+    },
+    {
+      "path": "docs\\design-evidence\\training-20260922\\clubhouse-text-200-log-390.png",
+      "sha256": "a2b0432ad82bc64ad8b762716ba6b9be1959e8d8b8dd8fc71245ad13367f4658",
+      "width": 375,
+      "height": 4275,
+      "bytes": 234200
+    },
+    {
+      "path": "docs\\design-evidence\\training-20260922\\clubhouse-validation-390.png",
+      "sha256": "8d0080cb3a5903e4c9e37675f155de1dc263b47e18f2c489f2b31990edb5f2bf",
+      "width": 375,
+      "height": 1962,
+      "bytes": 74155
+    },
+    {
+      "path": "docs\\design-evidence\\training-20260922\\companion-completion-1280.png",
+      "sha256": "e5978533066dd34b1b3b4131be2337e4f1f4c551b19a4c4591a8a9c912b677cf",
+      "width": 1265,
+      "height": 1346,
+      "bytes": 79459
+    },
+    {
+      "path": "docs\\design-evidence\\training-20260922\\companion-completion-320.png",
+      "sha256": "9222887c3d21015786931b92d26db58137c5a7e7d41ef2efafafb45ce77c0f20",
+      "width": 305,
+      "height": 2013,
+      "bytes": 65978
+    },
+    {
+      "path": "docs\\design-evidence\\training-20260922\\companion-completion-390.png",
+      "sha256": "b2334595245800e55fb0d4556cfaac8d1f37a2d9c376b2b9ddda6c95f83324ed",
+      "width": 375,
+      "height": 1760,
+      "bytes": 65365
+    },
+    {
+      "path": "docs\\design-evidence\\training-20260922\\companion-empty-390.png",
+      "sha256": "43dc858d912643ce07ec20c3628672ec894c362bdb71c724aa178d77d764734c",
+      "width": 375,
+      "height": 1653,
+      "bytes": 61517
+    },
+    {
+      "path": "docs\\design-evidence\\training-20260922\\companion-failure-390.png",
+      "sha256": "77271cf1a8326c38a0d9ce27ab51bee8ce136813c5b3c8b4e03becff208221b4",
+      "width": 375,
+      "height": 2491,
+      "bytes": 83334
+    },
+    {
+      "path": "docs\\design-evidence\\training-20260922\\companion-finished-1280.png",
+      "sha256": "7094eb6e76742d9a62e0c43f56d80c824802e105b28076daa50b1af86b5fce3a",
+      "width": 1280,
+      "height": 900,
+      "bytes": 47015
+    },
+    {
+      "path": "docs\\design-evidence\\training-20260922\\companion-initial-1280.png",
+      "sha256": "974e709801016af35af00ae9ab3b558c611a16682e8a079edf85f5370aa3cd93",
+      "width": 1265,
+      "height": 1119,
+      "bytes": 77547
+    },
+    {
+      "path": "docs\\design-evidence\\training-20260922\\companion-initial-320.png",
+      "sha256": "83b5cf2301aed4ca2542a7e4e4d0f21be7e98f13fa57a388775d35cd08b0955b",
+      "width": 305,
+      "height": 1942,
+      "bytes": 65757
+    },
+    {
+      "path": "docs\\design-evidence\\training-20260922\\companion-initial-390.png",
+      "sha256": "587483471b28265e9ac6134e136a62505bf9ae03a58a173eb960318f75183afb",
+      "width": 375,
+      "height": 1703,
+      "bytes": 65279
+    },
+    {
+      "path": "docs\\design-evidence\\training-20260922\\companion-log-1280.png",
+      "sha256": "b8f25aaa1c2488f88c54c63b62a23461c238b27629313ded96e6596b7f8c67c0",
+      "width": 1265,
+      "height": 1319,
+      "bytes": 76288
+    },
+    {
+      "path": "docs\\design-evidence\\training-20260922\\companion-log-320.png",
+      "sha256": "e77b9ebc102c3b5fa62dc6faaf51d8a115abd284c1f8b06ac594328f21c5404c",
+      "width": 305,
+      "height": 2227,
+      "bytes": 67584
+    },
+    {
+      "path": "docs\\design-evidence\\training-20260922\\companion-log-390.png",
+      "sha256": "be30bb238b8815908f05f45e9a45fab1def7634f6cb161bbea0ff96af6afb7b5",
+      "width": 375,
+      "height": 1997,
+      "bytes": 66220
+    },
+    {
+      "path": "docs\\design-evidence\\training-20260922\\companion-long-labels-320.png",
+      "sha256": "640a7318e5d16992fcc20433c126a2ce64603bd0ac147d6f95dbfc786f987502",
+      "width": 305,
+      "height": 2280,
+      "bytes": 78390
+    },
+    {
+      "path": "docs\\design-evidence\\training-20260922\\companion-missed-390.png",
+      "sha256": "44580df8a98a186030660db0360eaed63ef70093677cf58f4a40b0ce4af29b23",
+      "width": 375,
+      "height": 1266,
+      "bytes": 48412
+    },
+    {
+      "path": "docs\\design-evidence\\training-20260922\\companion-rest-390.png",
+      "sha256": "fd421e38a8874a6a02b3cb2b46ba5baafaab2147d5f94bd177652aac48507693",
+      "width": 375,
+      "height": 1153,
+      "bytes": 42271
+    },
+    {
+      "path": "docs\\design-evidence\\training-20260922\\companion-saving-390.png",
+      "sha256": "1c5f01ab770d9897214342e8db37ef2e0cbccbc6522c13fb7cd28f51eeb379be",
+      "width": 375,
+      "height": 2661,
+      "bytes": 91449
+    },
+    {
+      "path": "docs\\design-evidence\\training-20260922\\companion-text-200-completion-390.png",
+      "sha256": "4a1f26f892e4488a2c2d830ae40d9ce80f40643ddef8730e94ca44301338f281",
+      "width": 375,
+      "height": 4434,
+      "bytes": 243074
+    },
+    {
+      "path": "docs\\design-evidence\\training-20260922\\companion-text-200-initial-390.png",
+      "sha256": "357613c6ac11eb4e91d1e674693dd4d3847a2c0f7a1960b867f128e52b1300c7",
+      "width": 375,
+      "height": 4778,
+      "bytes": 269747
+    },
+    {
+      "path": "docs\\design-evidence\\training-20260922\\companion-text-200-log-390.png",
+      "sha256": "8783861fd54c9db84fce3dc2f4f93b0e395ab25d5929e9ea48c57d26f4bcf821",
+      "width": 375,
+      "height": 4268,
+      "bytes": 229451
+    },
+    {
+      "path": "docs\\design-evidence\\training-20260922\\companion-validation-390.png",
+      "sha256": "fab658d8d6182d5ffe5772141a7e98abc823407950486f02ac1f30e75aaa5f7f",
+      "width": 375,
+      "height": 1997,
+      "bytes": 68933
+    }
+  ]
+}
