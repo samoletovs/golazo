@@ -9,8 +9,8 @@ export function weekboard(state, t) {
   return `<div class="weekboard" aria-label="${t('thisWeek')}">${weekdays(state.language).map((day, index) => {
     const date = `2026-09-${21 + index}`;
     const event = state.events.find(item => item.date === date);
-    return `<button class="week-day ${date === TODAY ? 'today' : ''}" data-day="${date}" aria-label="${day} ${21 + index}: ${event ? eventTitle(event, t) : t('rest')}">
-      <small>${day}</small><strong>${21 + index}</strong>${event ? '<span class="event-dot" aria-hidden="true"></span>' : ''}
+    return `<button class="week-day ${date === TODAY ? 'today' : ''}" data-day="${date}" aria-label="${day} ${21 + index}: ${event ? `${eventTitle(event, t)}, ${event.time}, ${t(event.status)}` : t('rest')}">
+      <small><span class="weekday-long">${day}</span><span class="weekday-short">${state.language === 'lv' ? ['P', 'O', 'T', 'C', 'Pk', 'S', 'Sv'][index] : ['M', 'T', 'W', 'T', 'F', 'S', 'S'][index]}</span></small><strong>${21 + index}</strong>${event ? '<span class="event-dot" aria-hidden="true"></span>' : ''}
       <span class="day-kind">${event ? eventTitle(event, t) : t('rest')}</span>
       <span class="day-status">${event ? `${event.time} · ${t(event.status)}` : '—'}</span></button>`;
   }).join('')}</div>`;
@@ -52,10 +52,10 @@ function miniEffort(state, t) {
 
 export function home(state, t) {
   if (state.direction === 'a') {
-    return `${head(t, 'weekTitle', 'weekIntro', link('schedule', t('period'), 'button secondary'))}
+    return `${head(t, 'weekTitle', 'weekIntro')}<div class="week-heading"><span>${t('period')}</span>${link('schedule', t('schedule'))}</div>
       ${weekboard(state, t)}
       <div class="a-home-focus">
-        <section class="session-board"><div class="session-stamp">22<small>SEP / ${t('today')}</small></div><div>${sessionAction(state, t)}</div></section>
+        <section class="session-board"><div class="session-stamp">22<small>SEP</small></div><div>${sessionAction(state, t)}</div></section>
         <section class="practice-board"><div><span class="eyebrow">${t('practiceFocus')}</span><h2>${t('firstTouch')}</h2>${link('exercise', t('openPractice'))}</div>${tactic('touch')}</section>
       </div>
       <div class="a-match-strip"><section class="match-strip"><div class="section-label"><span class="eyebrow">${t('lastMatch')}</span>${link(state.matches.length ? 'match-detail' : 'match', t('matchReview'))}</div>${scoreline(state, t)}</section>${miniEffort(state, t)}</div>
@@ -127,11 +127,13 @@ function focusRows(state, t) {
 }
 
 export function progress(state, t) {
-  const header = head(t, 'progressTitle', 'progressIntro', `<span class="tag">${t('sixWeeks')}</span>`);
+  const header = head(t, 'progressTitle', 'progressIntro');
   const graph = `${metricTabs(state, t)}${chart(state, t, state.direction === 'b')}${chartDetail(state, t)}<p class="small muted section">${t('chartHelp')}</p>`;
   const focus = `<h2>${t('focusDistribution')}</h2><p class="small muted">${t('focusExplain')}</p>${focusRows(state, t)}`;
+  const total = chartSeries(state).reduce((sum, week) => sum + week[state.metric], 0);
+  const period = total ? `<aside class="period-total"><span class="eyebrow">${t('periodTotal')}</span><strong>${total}</strong><span>${t(state.metric === 'minutes' ? 'minutes' : state.metric === 'sessions' ? 'sessionCount' : 'matchCount')}</span><div class="period-rule" aria-hidden="true"></div><p class="small muted">${dateLabel(chartSeries(state)[0].date, state.language)} – ${dateLabel(TODAY, state.language)}</p></aside>` : '';
   return state.direction === 'a'
-    ? `${header}<section class="panel">${graph}</section><div class="split section"><section>${focus}</section><section><h2>${t('matchesHeading')}</h2>${scoreline(state, t)}${link(state.matches.length ? 'match-detail' : 'match', t('matchReview'))}</section></div>${progressLinks(t)}`
+    ? `${header}<section class="progress-sheet">${period}<div class="progress-plot">${graph}</div></section><div class="split section"><section>${focus}</section><section><h2>${t('matchesHeading')}</h2>${scoreline(state, t)}${link(state.matches.length ? 'match-detail' : 'match', t('matchReview'))}</section></div>${progressLinks(t)}`
     : `${header}<div class="b-progress-layout"><section class="b-chart dark"><span class="eyebrow">${t('sixWeeks')}</span>${graph}</section><aside>${focus}<hr class="rule">${link('measurements', t('recordedMeasure'))}</aside></div><section class="section"><h2>${t('matchesHeading')}</h2>${recordRows({ ...state, trainings: [], diary: [] }, t, 2)}</section>${progressLinks(t)}`;
 }
 
@@ -171,7 +173,7 @@ function goalCard(state, t) {
 
 export function profile(state, t) {
   const actions = `<div class="links-grid section">${link('teams', t('myTeams'), '')}${link('measurements', t('measurements'), '')}${link('surface/achievements', t('achievements'), '')}${link('surface/export', t('export'), '')}${link('surface/friends', t('friends'), '')}${link('surface/photo', t('photo'), '')}${link('settings', t('settings'), '')}${link('onboarding', t('onboarding'), '')}</div>`;
-  if (state.direction === 'a') return `${head(t, 'profileTitle', 'profileIntro', link('settings', t('settings'), 'button secondary'))}
+  if (state.direction === 'a') return `${head(t, 'profileTitle', null)}<div class="profile-subhead"><p>${t('profileIntro')}</p>${link('settings', t('settings'))}</div>
     <div class="profile-grid"><section class="a-passport dark"><span class="eyebrow">${t('academy')} / U13</span><div class="profile-number">${esc(state.profile.number)}</div><span class="position-chip">${esc(state.profile.position)}</span><h2>${t('playerName')}</h2><p>${t(state.profile.clubKey)}</p>${profileDetails(state, t)}<button class="button light" data-dialog="identity">${t('editIdentity')}</button></section>
     <section>${goalCard(state, t)}${actions}</section></div>`;
   return `${head(t, 'profileTitle', 'profileIntro')}

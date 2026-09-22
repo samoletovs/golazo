@@ -64,16 +64,16 @@ function render({ focus = false, restore = null, scroll = false } = {}) {
   document.body.dataset.direction = state.direction;
   const basePage = state.page.split('/')[0];
   document.title = `Golazo · ${state.direction.toUpperCase()} · ${t(basePage in mainViews ? basePage : 'academy')}`;
-  root.innerHTML = `<div class="lab-bar"><p class="disclaimer"><strong>${t('concept')}</strong> / ${t('synthetic')}</p>
-    <div class="direction-switch" role="group" aria-label="${t('compare')}">${['a', 'b'].map(direction => `<button data-direction="${direction}" aria-label="${t(direction)}" aria-pressed="${state.direction === direction}"><span class="direction-long">${t(direction)}</span><span class="direction-short">${t(`${direction}Short`)}</span></button>`).join('')}</div>
-    <label class="utility-select"><span>${t('language')}</span><select data-language><option value="lv" ${state.language === 'lv' ? 'selected' : ''}>LV</option><option value="en" ${state.language === 'en' ? 'selected' : ''}>EN</option></select></label>
+  root.innerHTML = `<div class="lab-bar"><p class="disclaimer"><span class="disclaimer-long"><strong>${t('concept')}</strong> / ${t('synthetic')}</span><strong class="disclaimer-short">${t('conceptShort')}</strong></p>
+    <div class="direction-switch" role="group" aria-label="${t('compare')}">${['a', 'b'].map(direction => `<button data-direction="${direction}" aria-label="${t(direction)}" title="${t(direction)}" aria-pressed="${state.direction === direction}"><span class="direction-long">${t(direction)}</span><span class="direction-short">${direction.toUpperCase()}</span></button>`).join('')}</div>
+    <label class="utility-select"><span>${t('language')}</span><select data-language aria-label="${t('language')}"><option value="lv" ${state.language === 'lv' ? 'selected' : ''}>LV</option><option value="en" ${state.language === 'en' ? 'selected' : ''}>EN</option></select></label>
     <a class="utility-link" href="./contact.html" target="_blank" rel="noopener">${t('contact')}</a>
     <button class="lab-views" data-dialog="review">${t('viewOptions')}</button>
     </div><div class="shell"><header class="masthead"><p class="brand">golazo<span class="brand-dot">.</span></p>${navigation(t)}
       <div class="rail-identity"><strong>${state.role === 'player' ? esc(state.profile.number) : 'U13'}</strong><small>${t(state.role)}</small><small class="club-caption">${t(state.role === 'player' ? state.profile.clubKey : 'club')}</small></div></header>
-    <main id="main" tabindex="-1"><div class="context-line"><span class="season">${t('academy')} / 2026–27</span>
+    <main id="main" tabindex="-1"><div class="context-line"><span class="season">${t(state.role === 'player' ? state.profile.clubKey : 'club')} / U13 / 2026–27</span>
       <div class="player-chip"><span class="number">${state.role === 'player' ? esc(state.profile.number) : 'U13'}</span><div><strong>${t(state.role === 'player' ? 'playerName' : state.role)}</strong><small>${t(state.role === 'player' ? 'age' : 'club')}</small></div></div>
-      <label class="utility-select"><span>${t('role')}</span><select id="role-select">${['player', 'coach', 'mentor'].map(role => `<option value="${role}" ${state.role === role ? 'selected' : ''}>${t(role)}</option>`).join('')}</select></label></div>
+      </div>
       ${state.notice ? `<p class="status" role="status">${t(state.notice)} <button class="text-link" data-action="dismiss-notice">${t('close')}</button></p>` : ''}
       ${view(t)}
       <details class="prototype-tools"><summary>${t('concept')} / ${t('data')}</summary><div class="controls">
@@ -136,11 +136,6 @@ root.addEventListener('change', event => {
     state.language = event.target.value;
     queryState();
     render({ restore: '[data-language]' });
-  } else if (event.target.id === 'role-select') {
-    state.role = event.target.value;
-    state.page = 'home';
-    history.replaceState(null, '', `${location.pathname}${location.search}#home`);
-    render({ focus: true, scroll: true });
   } else if (event.target.id === 'data-select') {
     const { language, direction, role, page } = state;
     state = createState(`?data=${event.target.value}&lang=${language}&direction=${direction}`);
@@ -287,7 +282,7 @@ function openDialog(kind, argument = '') {
     content = `<p>${t('synthetic')}</p><p>${t('saveHint')}</p><form data-dialog-form="reset"><button class="button">${t('reset')}</button></form>`;
   } else if (kind === 'review') {
     title = t('viewOptions');
-    content = `<form data-dialog-form="review"><label class="field">${t('role')}<select name="role">${['player', 'coach', 'mentor'].map(role => `<option value="${role}" ${state.role === role ? 'selected' : ''}>${t(role)}</option>`).join('')}</select></label><label class="field">${t('data')}<select name="data"><option value="populated" ${!state.sparse ? 'selected' : ''}>${t('populated')}</option><option value="sparse" ${state.sparse ? 'selected' : ''}>${t('sparse')}</option></select></label><label class="check"><input type="checkbox" name="fail" ${state.failNext ? 'checked' : ''}>${t('fail')}</label><button class="button">${t('apply')}</button></form>${link('coverage', t('coverage'))}<p class="small muted">${t('synthetic')}</p>`;
+    content = `<form data-dialog-form="review"><label class="field">${t('role')}<select name="role">${['player', 'coach', 'mentor'].map(role => `<option value="${role}" ${state.role === role ? 'selected' : ''}>${t(role)}</option>`).join('')}</select></label><label class="field">${t('data')}<select name="data"><option value="populated" ${!state.sparse ? 'selected' : ''}>${t('populated')}</option><option value="sparse" ${state.sparse ? 'selected' : ''}>${t('sparse')}</option></select></label><label class="check"><input type="checkbox" name="fail" ${state.failNext ? 'checked' : ''}>${t('fail')}</label><button class="button">${t('apply')}</button></form>${link('coverage', t('coverage'))}<a class="utility-link" href="./contact.html" target="_blank" rel="noopener">${t('contact')}</a><p class="small muted">${t('synthetic')}</p>`;
   }
   dialog.innerHTML = `<div class="dialog-head"><h2 id="dialog-title">${title}</h2><button class="dialog-close" aria-label="${t('close')}" data-close-dialog>×</button></div>${content}`;
   if (!dialog.open) dialog.showModal();

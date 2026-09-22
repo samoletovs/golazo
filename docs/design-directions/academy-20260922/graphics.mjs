@@ -23,19 +23,33 @@ export function icon(name) {
 export function tactic(kind = 'touch', active = 0, position = 'CM') {
   const positionPoints = { GK: [160, 208], CB: [160, 182], LB: [60, 182], RB: [260, 182], CDM: [160, 157], CM: [160, 124], CAM: [160, 89], LM: [60, 124], RM: [260, 124], LW: [60, 62], RW: [260, 62], ST: [160, 52] };
   const [px, py] = positionPoints[position] || positionPoints.CM;
-  const paths = {
-    touch: '<path d="M65 150H140Q165 150 165 120V60" stroke-dasharray="6 7"/><path d="M165 150Q205 190 253 126"/>',
-    pass: '<path d="m80 186 130-92-23 87-100-76" stroke-dasharray="6 7"/>',
-    turn: '<path d="M65 165Q155 60 200 145T275 75"/>',
-    position: '<path d="M160 23v204M20 124h280"/><circle cx="160" cy="124" r="48"/>',
+  const stations = {
+    touch: {
+      path: '<path d="M55 183 149 149" stroke-dasharray="6 7"/><path d="M156 145Q185 120 235 70"/><path d="m219 74 18-7-5 19"/>',
+      kit: '<path d="m194 86 10 18h-20Zm69 47 10 18h-20Z"/>',
+      points: [[55, 183], [153, 147], [238, 67]],
+    },
+    pass: {
+      path: '<path d="M55 177 269 79 159 180" stroke-dasharray="7 6"/><path d="m175 165-20 19 5-23"/>',
+      kit: '<path d="M276 50h16v149h-16Z"/><path d="m279 65 10-8m-10 35 10-8m-10 35 10-8m-10 35 10-8m-10 35 10-8" stroke="#14243b" stroke-width="2"/>',
+      points: [[55, 177], [268, 79], [155, 184]],
+    },
+    turn: {
+      path: '<path d="M55 171C105 229 167 152 160 106S68 48 65 104s81 119 164 80 22-143-18-121"/><path d="m223 51-17 13 23 1"/>',
+      kit: '<path d="m100 101 10 18H90Zm129 10 10 18h-20Z"/>',
+      points: [[55, 171], [159, 106], [210, 63]],
+    },
   };
-  return `<div class="tactical-board"><svg viewBox="0 0 320 250" aria-hidden="true">
-    <g fill="none" stroke="#a8b9fb" stroke-width="1"><rect x="20" y="23" width="280" height="204" rx="1"/><path d="M20 124h280"/><circle cx="160" cy="124" r="43"/><path d="M112 23v33h96V23M112 227v-33h96v33"/></g>
-    <g fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round">${paths[kind] || paths.touch}</g>
-    ${kind !== 'position' ? `${kind === 'pass' ? '<path d="M280 72v115" stroke="#ff9b7b" stroke-width="8"/>' : '<g fill="#ff9b7b" stroke="#14243b" stroke-width="1.5"><path d="m123 111 7 13h-14Z"/><path d="m229 163 7 13h-14Z"/></g>'}
-    <g stroke="#fff" stroke-width="2"><circle cx="65" cy="150" r="${active === 1 ? 15 : 11}" fill="#14243b"/><circle cx="165" cy="150" r="${active === 2 ? 15 : 11}" fill="#14243b"/><circle cx="253" cy="126" r="${active === 3 ? 15 : 11}" fill="#ff9b7b"/></g>
-    <g fill="#fff" font-size="11" font-family="system-ui" font-weight="700" text-anchor="middle"><text x="65" y="154">1</text><text x="165" y="154">2</text><text x="253" y="130" fill="#14243b">3</text></g>` : ''}
-    ${kind === 'position' ? `<circle cx="${px}" cy="${py}" r="20" fill="#ff9b7b"/><text x="${px}" y="${py + 5}" text-anchor="middle" fill="#14243b" font-family="system-ui" font-size="13" font-weight="700">${esc(position)}</text>` : ''}
+  if (kind === 'position') return `<div class="tactical-board position-board"><svg viewBox="0 0 320 250" aria-hidden="true">
+    <g fill="none" stroke="#b6c5ff" stroke-width="1.3"><rect x="20" y="23" width="280" height="204"/><path d="M20 124h280"/><circle cx="160" cy="124" r="43"/><path d="M112 23v33h96V23M112 227v-33h96v33"/></g>
+    <circle cx="${px}" cy="${py}" r="24" fill="#ff9b7b"/><circle cx="${px}" cy="${py}" r="34" fill="none" stroke="#fff" stroke-width="2"/>
+    <text x="${px}" y="${py + 5}" text-anchor="middle" fill="#14243b" font-family="system-ui" font-size="13" font-weight="700">${esc(position)}</text></svg></div>`;
+  const station = stations[kind] || stations.touch;
+  return `<div class="tactical-board station-board station-${kind}"><svg viewBox="0 0 320 250" aria-hidden="true">
+    <g fill="none" stroke="#a8b9fb" stroke-width="1" opacity=".55"><path d="M20 65V22h43m194 0h43v43M20 186v43h43m194 0h43v-43"/><path d="M106 22v207M214 22v207M20 91h280M20 160h280" stroke-dasharray="2 7"/></g>
+    <g fill="#ff9b7b" stroke="#14243b" stroke-width="2">${station.kit}</g>
+    <g fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">${station.path}</g>
+    ${station.points.map(([x, y], index) => `<circle cx="${x}" cy="${y}" r="${active === index + 1 ? 20 : 15}" fill="${index === 2 ? '#ff9b7b' : '#14243b'}" stroke="#fff" stroke-width="2"/><text x="${x}" y="${y + 4}" text-anchor="middle" fill="${index === 2 ? '#14243b' : '#fff'}" font-family="system-ui" font-size="12" font-weight="700">${index + 1}</text>`).join('')}
   </svg></div>`;
 }
 

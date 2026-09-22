@@ -46,6 +46,15 @@ not permission to recolor every control. Local Bahnschrift/Arial Narrow carries
 the athletic display role; Segoe UI/system text carries reading and controls.
 These are concept choices for Golazo, not universal font/palette rules.
 
+The real-use-scale refinement keeps review controls out of the way on phones:
+the whole week and today's log action are visible together, the journal's
+three entry types are compact, and the library uses readable practice rows.
+Original station diagrams now distinguish receiving, wall passing and turns
+instead of repeating a generic full-pitch illustration. A's progress sheet
+adds a six-week total calculated from the same dated records, not a new KPI or
+ability score. The player credential is compact enough to show its edit action.
+These are visual proposals to judge in the preview, not evidence of owner acceptance.
+
 The signature is the football working material: a weekboard, dated match sheet,
 original receiving/passing/turning diagrams and player registration geometry.
 There is no commercial card frame, stock footballer, borrowed mascot or photo.
@@ -63,6 +72,7 @@ data, or make the next demo save fail. Changing A/B keeps the current page and
 draft. A failed log preserves answers and supports retry. Parent/mentor views
 never display private reflection text. Coach statistics show the actual
 baseline limitation instead of invented aggregates.
+On phones, the contact sheet is also available inside **Views / Skati**.
 
 Other reachable surfaces have **individual mapped treatments**, accessible
 through the inventory and contextual links. A mapped treatment is explicitly
