@@ -297,7 +297,9 @@ def main() -> None:
                 assert page.locator("img").evaluate_all("images=>images.every(i=>i.complete&&i.naturalWidth>0)")
                 page.screenshot(path=str(output / "contact-sheet-lv.png"), full_page=True)
                 page.locator("#language").select_option("en")
-                page.wait_for_function("[...document.images].every(i=>i.complete&&i.naturalWidth>0)")
+                for image in page.locator("img").all():
+                    expect(image).to_have_js_property("complete", True)
+                    assert image.evaluate("image=>image.naturalWidth") > 0
                 page.screenshot(path=str(output / "contact-sheet-en.png"), full_page=True)
                 context.close()
         finally:
