@@ -51,8 +51,8 @@
     {"id": "player-routine-completion", "entry": "MorningRoutine overlay > done/close", "role": "player"},
     {"id": "player-level-up-overlay", "entry": "Activity Dashboard > LevelUpCelebration overlay and bounded celebration feedback", "role": "player"},
 
-    {"id": "player-log-hub", "entry": "BottomNav Log > LogPage selector, pending scheduled items and recent-record proposal", "role": "player"},
-    {"id": "player-log-skip-dialog", "entry": "LogPage > pending event > skip/reason confirmation", "role": "player"},
+    {"id": "player-log-hub", "entry": "BottomNav Log > LogPage selector, unlogged scheduled items and recent-record proposal", "role": "player"},
+    {"id": "player-log-skip-dialog", "entry": "LogPage > unlogged scheduled event > skip/reason confirmation", "role": "player"},
     {"id": "player-home-training-log", "entry": "Home > Clubhouse quick action > TrainingLog in the wide Home shell", "role": "player"},
     {"id": "player-home-training-completion", "entry": "Home training > TrainingCompletion local result and return to Home", "role": "player"},
     {"id": "player-log-training-log", "entry": "BottomNav Log > Training > TrainingLog in the Log shell with optional details", "role": "player"},
@@ -165,7 +165,7 @@
     {"id": "coach-player-evaluation", "entry": "CoachDashboard or roster player detail > coach-evaluate > EvaluationPage player/period/rating/feedback editor", "role": "coach"},
     {"id": "coach-team-challenges", "entry": "CoachDashboard > coach-challenges > TeamChallenges list and status/progress actions", "role": "coach"},
     {"id": "coach-team-challenge-create", "entry": "TeamChallenges > create/invite opposing-team challenge form", "role": "coach"},
-    {"id": "coach-statistics", "entry": "BottomNav Stats > CoachStatsPage; current placeholder aggregates are not a working analytics API", "role": "coach"},
+    {"id": "coach-statistics", "entry": "BottomNav Stats > CoachStatsPage; static zero/equal-weight totals are not connected to an analytics API", "role": "coach"},
     {"id": "coach-statistics-squad-filter", "entry": "CoachStatsPage > CoachSquadFilter selection", "role": "coach"},
 
     {"id": "coach-schedule-week", "entry": "BottomNav Schedule > SchedulePage week view with squad context", "role": "coach"},

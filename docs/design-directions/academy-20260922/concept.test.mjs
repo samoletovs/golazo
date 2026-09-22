@@ -78,7 +78,10 @@ test('source scope declares the whole product and keeps role-specific surface ID
   assert.equal(new Set(scope.surfaces.map(surface => surface.id)).size, scope.surfaces.length);
   assert.equal(new Set(scope.surfaces.map(surface => `${surface.role}:${surface.entry}`)).size, scope.surfaces.length);
   for (const surface of scope.surfaces) {
-    for (const key of ['id', 'entry', 'role']) assert.equal(typeof surface[key], 'string');
+    for (const key of ['id', 'entry', 'role']) {
+      assert.equal(typeof surface[key], 'string');
+      assert.doesNotMatch(surface[key], /\b(TODO|TBD|pending|placeholder)\b|<[^>]+>/i);
+    }
     assert.ok(surface.id.trim() && surface.entry.trim() && surface.role.trim());
   }
   const ids = new Set(scope.surfaces.map(surface => surface.id));
