@@ -48,8 +48,8 @@ svg { display: block; max-width: 100%; }
 .prototype-inner { max-width: 1200px; margin: auto; padding: 12px 32px; display: flex; flex-wrap: wrap; gap: 4px 16px; align-items: center; }
 .prototype-inner p { margin: 0; flex: 1 1 320px; }
 .prototype-inner a { min-height: 44px; display: inline-flex; align-items: center; font-weight: 700; }
-.masthead { max-width: 1200px; margin: auto; display: flex; align-items: center; gap: 24px; padding: 24px 32px; }
-.wordmark { font-family: var(--display); font-size: 2rem; line-height: 1; font-weight: 900; letter-spacing: -.08em; margin: 0; }
+.masthead { max-width: 1200px; margin: auto; display: flex; flex-wrap: wrap; align-items: center; gap: 24px; padding: 24px 32px; }
+.wordmark { font-family: var(--display); font-size: 2rem; line-height: 1; font-weight: 900; letter-spacing: -.08em; margin: 0; flex-shrink: 0; }
 .wordmark span { color: var(--brand-dot); }
 .identity { display: flex; align-items: center; gap: 12px; margin-left: auto; min-width: 0; }
 .identity small { display: block; font-size: .875rem; color: var(--muted); }
@@ -113,8 +113,8 @@ summary { font-weight: 700; padding: 12px 0; }
 .save-status { min-height: 24px; margin: 8px 0; }
 .aside-panel p:last-child { margin-bottom: 0; }
 .aside-panel .eyebrow { margin-bottom: 12px; }
-.mini-number { font-family: var(--display); font-size: 3.5rem; line-height: 1; font-weight: 700; }
-.mini-number span { font-family: "Local UI", system-ui, sans-serif; font-size: 1rem; margin-left: 8px; }
+.mini-number { font-family: var(--display); font-size: 3.5rem; line-height: 1; font-weight: 700; display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+.mini-number span { font-family: "Local UI", system-ui, sans-serif; font-size: 1rem; }
 .rule { border: 0; border-top: 1px solid var(--line); margin: 24px 0; }
 .result-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 24px; }
 .result-panel { background: var(--surface); border: 1px solid var(--line); }

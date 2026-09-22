@@ -20,6 +20,7 @@ async (page, options = {}) => {
     const capture = async name => {
       if (!output) return;
       const file = `${direction}-${name}.png`;
+      await tab.evaluate(() => window.scrollTo(0, 0));
       await tab.screenshot({ path: `${output}\\${file}`, fullPage: true, scale: 'css' });
       captures.push(file);
     };
