@@ -133,7 +133,11 @@ The runner uses fresh local-only browser contexts, actual five-tab clicks,
 visible log/drillthrough controls, draft retention across directions, error and
 retry, mentor privacy, learning actions, calendar/event/tournament, onboarding,
 coach planning/attendance, sparse data, reduced motion, long Latvian and
-320/390/1440px layouts. It checks rendered HTML contrast and 200% root text size.
+320/390/768/1024/1440px layouts. The weekboard responds to its actual available
+content width: tablet/narrow placements use compact dates with full event
+drillthroughs, while wide placements retain full labels. Tests inspect rendered
+word ranges for fragmentation/clipping and assert a single `2 : 1` score separator.
+It checks rendered HTML contrast and 200% root text size.
 It produces viewport comparisons, full-page references, state captures and
 contact sheets under `evidence/`.
 
@@ -151,6 +155,11 @@ real-user research, full WCAG conformance or an award-winning result. Native
 browser zoom, screen-reader use, physical devices and a production backend are
 not claimed for this concept run. There is no approved performance budget or
 production-optimization claim.
+
+The pre-tablet-fix captures remain unchanged in Git at checkpoint
+`d75c40985d10ebc14285657d38f9ab5490fe6cdd` (rendered source
+`485a4df6e5483f4656c37b79b59fc19da330ce78`). Refreshed captures record their own
+source revision; old evidence is not relabelled as if it exercised the fix.
 
 The new branch is backed up **without a PR or deployment**. Production source,
 backend, auth, schema, dependency manifests and CI stay byte-identical to the

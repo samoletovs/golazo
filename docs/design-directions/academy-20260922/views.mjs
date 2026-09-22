@@ -6,14 +6,14 @@ export function head(t, title, intro, tools = '') {
 }
 
 export function weekboard(state, t) {
-  return `<div class="weekboard" aria-label="${t('thisWeek')}">${weekdays(state.language).map((day, index) => {
+  return `<div class="week-frame"><div class="weekboard" aria-label="${t('thisWeek')}">${weekdays(state.language).map((day, index) => {
     const date = `2026-09-${21 + index}`;
     const event = state.events.find(item => item.date === date);
     return `<button class="week-day ${date === TODAY ? 'today' : ''}" data-day="${date}" aria-label="${day} ${21 + index}: ${event ? `${eventTitle(event, t)}, ${event.time}, ${t(event.status)}` : t('rest')}">
       <small><span class="weekday-long">${day}</span><span class="weekday-short">${state.language === 'lv' ? ['P', 'O', 'T', 'C', 'Pk', 'S', 'Sv'][index] : ['M', 'T', 'W', 'T', 'F', 'S', 'S'][index]}</span></small><strong>${21 + index}</strong>${event ? '<span class="event-dot" aria-hidden="true"></span>' : ''}
       <span class="day-kind">${event ? eventTitle(event, t) : t('rest')}</span>
       <span class="day-status">${event ? `${event.time} · ${t(event.status)}` : '—'}</span></button>`;
-  }).join('')}</div>`;
+  }).join('')}</div></div>`;
 }
 
 export function recordRows(state, t, limit = 6) {
@@ -33,7 +33,7 @@ export function opponent(entry, t) {
 
 export function scoreline(state, t, entry = state.matches.at(-1)) {
   if (!entry) return `<div class="empty"><h3>${t('noEntries')}</h3>${link('match', t('match'), 'button secondary')}</div>`;
-  return `<div class="scoreline"><span class="team">${t('club')}</span><strong class="score">${entry.scoreUs}<span aria-hidden="true"> : </span><span class="sr-only">–</span>${entry.scoreThem}</strong><span class="team">${opponent(entry, t)}</span></div>`;
+  return `<div class="scoreline"><span class="team">${t('club')}</span><strong class="score">${entry.scoreUs} : ${entry.scoreThem}</strong><span class="team">${opponent(entry, t)}</span></div>`;
 }
 
 function sessionAction(state, t) {

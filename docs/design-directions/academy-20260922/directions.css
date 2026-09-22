@@ -159,6 +159,20 @@ body[data-direction="b"] .entry-aside { background: #fff; padding: 28px; }
   .b-agenda > h2 { grid-column: 1 / -1; }
   .b-library-list { grid-template-columns: 1fr; }
 }
+@media (min-width: 761px) and (max-width: 1023px) {
+  body[data-direction="a"] .shell { display: block; }
+  body[data-direction="a"] .masthead { height: auto; min-height: 0; padding: 18px 24px; display: flex; flex-direction: row; flex-wrap: wrap; gap: 14px; z-index: 20; }
+  body[data-direction="a"] .masthead .brand { padding: 0; }
+  body[data-direction="a"] .nav-list { order: 3; width: 100%; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 6px; }
+  body[data-direction="a"] .nav-link { padding: 12px 10px; gap: 8px; justify-content: center; font-size: .9375rem; }
+  body[data-direction="a"] .rail-identity { margin: 0 0 0 auto; padding: 0; border: 0; }
+  body[data-direction="a"] .rail-identity strong { display: inline; font-size: 1.2rem; margin-right: 8px; color: var(--coral); }
+  body[data-direction="a"] .rail-identity small { display: inline; }
+  body[data-direction="a"] .rail-identity .club-caption { display: none; }
+  body[data-direction="a"] main { padding: 24px 32px 40px; }
+  body[data-direction="a"] .profile-grid { grid-template-columns: 1fr; }
+  body[data-direction="a"] main a, body[data-direction="a"] main button, body[data-direction="a"] main input, body[data-direction="a"] main select, body[data-direction="a"] main textarea, body[data-direction="a"] main summary { scroll-margin-top: 160px; }
+}
 @media (max-width: 760px) {
   body[data-direction="a"] .shell { display: block; }
   body[data-direction="a"] .masthead, body[data-direction="b"] .masthead { padding: 16px 20px; display: flex; flex-direction: row; justify-content: space-between; gap: 16px; position: static; height: auto; min-height: 0; }

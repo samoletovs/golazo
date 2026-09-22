@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 import { createState, chartSeries, recentSummary, freshDraft, submitDraft } from './model.mjs';
 import { copy, translator } from './copy.mjs';
 import { inventory, internalOnly } from './inventory.mjs';
-import { mainViews } from './views.mjs';
+import { mainViews, scoreline } from './views.mjs';
 
 test('the featured English and Latvian scenario have identical copy coverage', () => {
   assert.deepEqual(Object.keys(copy.en).sort(), Object.keys(copy.lv).sort());
@@ -24,6 +24,13 @@ test('weekly charts and last-seven-day totals come from dated training records',
   const state = createState();
   assert.deepEqual(chartSeries(state).map(week => week.minutes), [120, 165, 90, 180, 135, 90]);
   assert.deepEqual(recentSummary(state), { sessions: 2, minutes: 150 });
+});
+test('the match score has one visible and accessible separator', () => {
+  for (const language of ['en', 'lv']) {
+    const html = scoreline(createState(), translator(language));
+    assert.ok(html.includes('<strong class="score">2 : 1</strong>'));
+    assert.ok(!html.includes('sr-only') && !html.includes('aria-hidden'));
+  }
 });
 test('sparse mode contains no invented trends, matches or check-ins', () => {
   const state = createState('?data=sparse');

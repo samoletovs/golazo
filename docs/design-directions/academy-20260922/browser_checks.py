@@ -56,6 +56,35 @@ def contrast(page: Page) -> dict:
     return result
 
 
+def calendar_readability(page: Page) -> dict:
+    result = page.evaluate(r"""() => {
+      const frame=document.querySelector('.week-frame');
+      const broken=[],clipped=[];
+      for(const element of frame.querySelectorAll('small,span,strong')){
+        if(!element.getClientRects().length)continue;
+        const cell=element.closest('.week-day').getBoundingClientRect();
+        for(const node of element.childNodes){
+          if(node.nodeType!==Node.TEXT_NODE)continue;
+          for(const match of node.textContent.matchAll(/[\p{L}\p{N}][\p{L}\p{M}\p{N}.'’:-]*/gu)){
+            const range=document.createRange();range.setStart(node,match.index);range.setEnd(node,match.index+match[0].length);
+            const rects=[...range.getClientRects()].filter(r=>r.width&&r.height);
+            if(new Set(rects.map(r=>Math.round(r.top))).size>1)broken.push(match[0]);
+            if(rects.some(r=>r.left<cell.left-1||r.right>cell.right+1||r.bottom>cell.bottom+1))clipped.push(match[0]);
+          }
+        }
+      }
+      return {contentWidth:frame.getBoundingClientRect().width,
+        compact:getComputedStyle(frame.querySelector('.day-kind')).display==='none',
+        cells:frame.querySelectorAll('.week-day').length,brokenWords:broken,clippedWords:clipped};
+    }""")
+    assert result["cells"] == 7 and not result["brokenWords"] and not result["clippedWords"], result
+    if page.viewport_size["width"] in (768, 1024):
+        assert result["compact"], result
+    if page.viewport_size["width"] == 1440 and page.url.endswith("#home") and "direction=a" in page.url:
+        assert not result["compact"], result
+    return result
+
+
 def keyboard_to(page: Page, selector: str) -> None:
     for _ in range(100):
         target = page.locator(selector)
@@ -131,7 +160,7 @@ def main() -> None:
                     page.locator(".skip").press("Enter")
                     expect(page).to_have_url(re.compile(r"#home$"))
                     expect(page.locator("#page-title")).to_be_visible()
-                    for width, height, size in ((1440, 1000, "desktop"), (390, 844, "mobile"), (320, 844, "narrow")):
+                    for width, height, size in ((1440, 1000, "desktop"), (1024, 900, "tablet-landscape"), (768, 1000, "tablet-portrait"), (390, 844, "mobile"), (320, 844, "narrow")):
                         page.set_viewport_size({"width": width, "height": height})
                         for tab, label in zip(PAGES, LABELS[language]):
                             page.locator(f'.nav-list [data-nav="{tab}"]').click()
@@ -141,10 +170,21 @@ def main() -> None:
                             assert page.locator(".nav-list .nav-link span").all_text_contents() == LABELS[language]
                             measured = layout(page)
                             colors = contrast(page)
-                            results.append({"direction": direction, "language": language, "page": tab, "size": size, "layout": measured, "contrast": colors})
-                            if args.capture and size != "narrow":
+                            observation = {"direction": direction, "language": language, "page": tab, "size": size, "layout": measured, "contrast": colors}
+                            if tab == "home":
+                                expect(page.locator(".scoreline .score").first).to_have_text("2 : 1")
+                                assert page.locator(".scoreline .score").first.text_content().strip() == "2 : 1"
+                                if page.locator(".week-frame").count():
+                                    observation["calendar"] = calendar_readability(page)
+                                    if width in (768, 1024):
+                                        page.locator('[data-day="2026-09-22"]').click()
+                                        expect(page.locator("dialog")).to_contain_text("Piespēles un kustība" if language == "lv" else "Passing & moving")
+                                        expect(page.locator("dialog")).to_contain_text("16:00")
+                                        page.locator("dialog .dialog-close").click()
+                            results.append(observation)
+                            if args.capture and (size in ("desktop", "mobile") or (direction == "a" and tab == "home" and size.startswith("tablet"))):
                                 capture(page, output, f"{direction}-{tab}-{language}-{size}")
-                                if language == "lv":
+                                if language == "lv" and size in ("desktop", "mobile"):
                                     capture(page, output, f"{direction}-{tab}-{language}-{size}-full", full=True)
 
                     page.set_viewport_size({"width": 390, "height": 844})
@@ -233,6 +273,12 @@ def main() -> None:
 
                     page.locator('[data-nav="home"]').click()
                     page.locator('main a[href="#schedule"]').first.click()
+                    for width in (768, 1024):
+                        page.set_viewport_size({"width": width, "height": 1000})
+                        results.append({"direction": direction, "language": language, "page": "schedule", "width": width, "layout": layout(page), "calendar": calendar_readability(page)})
+                        if args.capture and direction == "a":
+                            capture(page, output, f"{direction}-schedule-{language}-{width}")
+                    page.set_viewport_size({"width": 390, "height": 844})
                     page.locator('[data-dialog="event"]').click()
                     page.locator('dialog input[name="title"]').fill("Synthetic extra session")
                     page.locator('[data-dialog-form="event"] button').click()
