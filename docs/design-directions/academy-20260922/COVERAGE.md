@@ -1,5 +1,11 @@
 # Whole-app surface inventory
 
+The authoritative per-surface, per-role source inventory is
+[`.design-scope.json`](../../../.design-scope.json). The groups in this document
+describe concept treatments; they are not a substitute for its stable IDs and
+are not owner approvals. Shared components are split by role and materially
+different entry contexts in that source file.
+
 Source baseline: `1a0b81b80ca7c0bdf73b1074a8c5bc7fdbb8dcfc` (fresh `origin/master`, PR #10).
 
 **60 named surface/treatment groups:** 29 representative interactive concepts, 31 individually mapped treatments. The static scan covers all 73 TSX files: 65 in the App import graph and 8 explicitly unimported. Import-graph reachability is not the same as an exposed navigation path. No production code changes are included.

@@ -68,3 +68,27 @@ test('every TSX file in the source scan has an explicit rendered/planned/interna
     assert.ok(['rendered', 'planned'].includes(item.status));
   }
 });
+
+test('source scope declares the whole product and keeps role-specific surface IDs distinct', () => {
+  const scope = JSON.parse(readFileSync(new URL('../../../.design-scope.json', import.meta.url), 'utf8'));
+  assert.equal(scope.version, 1);
+  assert.equal(scope.kind, 'product-redesign');
+  assert.ok(scope.owner_scope.includes('2026-09-22'));
+  assert.ok(scope.inventory_basis.includes('App.tsx'));
+  assert.equal(new Set(scope.surfaces.map(surface => surface.id)).size, scope.surfaces.length);
+  assert.equal(new Set(scope.surfaces.map(surface => `${surface.role}:${surface.entry}`)).size, scope.surfaces.length);
+  for (const surface of scope.surfaces) {
+    for (const key of ['id', 'entry', 'role']) assert.equal(typeof surface[key], 'string');
+    assert.ok(surface.id.trim() && surface.entry.trim() && surface.role.trim());
+  }
+  const ids = new Set(scope.surfaces.map(surface => surface.id));
+  for (const role of ['player', 'coach', 'mentor']) {
+    for (const surface of ['shell', 'profile', 'settings', 'reset-confirmation', 'schedule-week', 'schedule-month', 'schedule-tournament-import']) {
+      assert.ok(ids.has(`${role}-${surface}`), `${role}-${surface}`);
+    }
+  }
+  for (const id of ['player-home-training-log', 'player-log-training-log',
+    'player-activity-inline-training', 'player-exercise-detail-dialog',
+    'player-workout-rating', 'coach-roster-player-detail', 'mentor-evaluation-detail',
+    'onboarding-role-choice', 'visitor-sign-in']) assert.ok(ids.has(id), id);
+});
