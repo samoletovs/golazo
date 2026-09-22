@@ -16,6 +16,7 @@
   overflow-wrap: anywhere;
 }
 .app-shell.app-shell-clubhouse { max-width: 1160px; overflow: visible; }
+.app-shell:has(.clubhouse) { padding-bottom: calc(5rem + env(safe-area-inset-bottom)); }
 html:has(.clubhouse), .app-shell:has(.clubhouse) main { scroll-padding-block: 24px 7rem; }
 .club-home, .training-view { padding: 24px 20px 48px; }
 .training-inline { padding: 0; }

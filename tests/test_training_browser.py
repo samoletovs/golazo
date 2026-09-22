@@ -178,6 +178,8 @@ def main() -> None:
                 for width in (320, 390, 1280):
                     page.set_viewport_size({"width": width, "height": 900 if width == 1280 else 844})
                     results.append({"language": language, "phase": "initial", "layout": no_overflow(page), "contrast": contrast(page)})
+                    keyboard_to(page, ".nl-footer a")
+                    results.append({"language": language, "phase": "footer-focus", "width": width, "fullyAboveNavigation": True})
                     capture(page, output, f"{language}-initial-{width}")
                 page.set_viewport_size({"width": 390, "height": 844})
                 keyboard_to(page, ".club-log-card .club-button")
@@ -226,6 +228,7 @@ def main() -> None:
                 page.set_viewport_size({"width": 390, "height": 844})
                 page.evaluate("document.documentElement.style.fontSize='200%'")
                 results.append({"language": language, "phase": "text-200-initial", "layout": no_overflow(page)})
+                keyboard_to(page, ".nl-footer a")
                 capture(page, output, f"{language}-text-200-initial")
                 page.locator(".club-log-card .club-button").click()
                 results.append({"language": language, "phase": "text-200-form", "layout": no_overflow(page)})
