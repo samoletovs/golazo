@@ -1,6 +1,6 @@
 {
   "kind": "held-concept-checkpoint-not-redesign-delivery",
-  "source_commit": "e849de89f5c3c826deb73ed2d0970c432be790dc",
+  "source_commit": "485a4df6e5483f4656c37b79b59fc19da330ce78",
   "production_base": "1a0b81b80ca7c0bdf73b1074a8c5bc7fdbb8dcfc",
   "governance_reference": "c541f55d0196caa8ac03bfc0f1c2ec334a8a0a22",
   "owner_choice": "PENDING between new whole-app compositions",
@@ -22,7 +22,7 @@
     "production_unchanged": true
   },
   "verification": {
-    "node_model_and_inventory_tests": 7,
+    "node_model_and_inventory_tests": 8,
     "browser_observations": 76,
     "html_contrast_samples": 64,
     "minimum_measured_html_text_contrast": 5.4941860760290675,
@@ -63,5 +63,12 @@
     "contact-sheet-lv.png",
     "contact-sheet-en.png"
   ],
-  "decision": "Technical observations do not establish aesthetic quality or owner acceptance. No PR or deployment."
+  "decision": "Still held for owner comparison. Technical checks and a selected character do not establish aesthetic acceptance; no approval receipt, PR or deployment.",
+  "visual_revision": [
+    "Compact review controls and shorter task-led headings make the application visible at phone scale.",
+    "The seven-day overview and today training action sit together.",
+    "Practice graphics distinguish receiving, wall passing and turning instead of repeating full-pitch diagrams.",
+    "Journal entry tools, recorded-progress sheet and identity credential are composed for their actual tasks.",
+    "The six-week total is computed from existing dated fixture records; no ability KPI or recommendation API is invented."
+  ]
 }

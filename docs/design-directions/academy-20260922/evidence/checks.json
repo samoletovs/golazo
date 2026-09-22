@@ -1,6 +1,6 @@
 {
   "kind": "concept-function-checks-not-owner-design-acceptance",
-  "source": "e849de89f5c3c826deb73ed2d0970c432be790dc",
+  "source": "485a4df6e5483f4656c37b79b59fc19da330ce78",
   "browser": "145.0.7632.6",
   "results": [
     {
@@ -33,6 +33,74 @@
       },
       "contrast": {
         "minimum": 5.4941860760290675,
+        "count": 66,
+        "failures": []
+      }
+    },
+    {
+      "direction": "a",
+      "language": "lv",
+      "page": "progress",
+      "size": "desktop",
+      "layout": {
+        "width": 1440,
+        "scroll": 1440,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.4941860760290675,
+        "count": 72,
+        "failures": []
+      }
+    },
+    {
+      "direction": "a",
+      "language": "lv",
+      "page": "learn",
+      "size": "desktop",
+      "layout": {
+        "width": 1440,
+        "scroll": 1440,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.4941860760290675,
+        "count": 49,
+        "failures": []
+      }
+    },
+    {
+      "direction": "a",
+      "language": "lv",
+      "page": "profile",
+      "size": "desktop",
+      "layout": {
+        "width": 1440,
+        "scroll": 1440,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.4941860760290675,
+        "count": 55,
+        "failures": []
+      }
+    },
+    {
+      "direction": "a",
+      "language": "lv",
+      "page": "home",
+      "size": "mobile",
+      "layout": {
+        "width": 390,
+        "scroll": 390,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.4941860760290675,
         "count": 67,
         "failures": []
       }
@@ -40,74 +108,6 @@
     {
       "direction": "a",
       "language": "lv",
-      "page": "progress",
-      "size": "desktop",
-      "layout": {
-        "width": 1440,
-        "scroll": 1440,
-        "rootFont": "16px",
-        "outside": []
-      },
-      "contrast": {
-        "minimum": 5.4941860760290675,
-        "count": 70,
-        "failures": []
-      }
-    },
-    {
-      "direction": "a",
-      "language": "lv",
-      "page": "learn",
-      "size": "desktop",
-      "layout": {
-        "width": 1440,
-        "scroll": 1440,
-        "rootFont": "16px",
-        "outside": []
-      },
-      "contrast": {
-        "minimum": 5.4941860760290675,
-        "count": 50,
-        "failures": []
-      }
-    },
-    {
-      "direction": "a",
-      "language": "lv",
-      "page": "profile",
-      "size": "desktop",
-      "layout": {
-        "width": 1440,
-        "scroll": 1440,
-        "rootFont": "16px",
-        "outside": []
-      },
-      "contrast": {
-        "minimum": 5.4941860760290675,
-        "count": 56,
-        "failures": []
-      }
-    },
-    {
-      "direction": "a",
-      "language": "lv",
-      "page": "home",
-      "size": "mobile",
-      "layout": {
-        "width": 390,
-        "scroll": 390,
-        "rootFont": "16px",
-        "outside": []
-      },
-      "contrast": {
-        "minimum": 5.4941860760290675,
-        "count": 83,
-        "failures": []
-      }
-    },
-    {
-      "direction": "a",
-      "language": "lv",
       "page": "log",
       "size": "mobile",
       "layout": {
@@ -118,7 +118,7 @@
       },
       "contrast": {
         "minimum": 5.4941860760290675,
-        "count": 62,
+        "count": 59,
         "failures": []
       }
     },
@@ -135,7 +135,7 @@
       },
       "contrast": {
         "minimum": 5.4941860760290675,
-        "count": 65,
+        "count": 64,
         "failures": []
       }
     },
@@ -152,7 +152,7 @@
       },
       "contrast": {
         "minimum": 5.4941860760290675,
-        "count": 45,
+        "count": 42,
         "failures": []
       }
     },
@@ -169,7 +169,7 @@
       },
       "contrast": {
         "minimum": 5.4941860760290675,
-        "count": 51,
+        "count": 48,
         "failures": []
       }
     },
@@ -186,7 +186,7 @@
       },
       "contrast": {
         "minimum": 5.4941860760290675,
-        "count": 83,
+        "count": 67,
         "failures": []
       }
     },
@@ -203,7 +203,7 @@
       },
       "contrast": {
         "minimum": 5.4941860760290675,
-        "count": 62,
+        "count": 59,
         "failures": []
       }
     },
@@ -220,7 +220,7 @@
       },
       "contrast": {
         "minimum": 5.4941860760290675,
-        "count": 65,
+        "count": 64,
         "failures": []
       }
     },
@@ -237,7 +237,7 @@
       },
       "contrast": {
         "minimum": 5.4941860760290675,
-        "count": 45,
+        "count": 42,
         "failures": []
       }
     },
@@ -254,7 +254,7 @@
       },
       "contrast": {
         "minimum": 5.4941860760290675,
-        "count": 51,
+        "count": 48,
         "failures": []
       }
     },
@@ -267,7 +267,7 @@
       "currentWeekAfter": 150,
       "contrast": {
         "minimum": 5.4941860760290675,
-        "count": 45,
+        "count": 42,
         "failures": []
       }
     },
@@ -327,6 +327,74 @@
       },
       "contrast": {
         "minimum": 5.4941860760290675,
+        "count": 66,
+        "failures": []
+      }
+    },
+    {
+      "direction": "a",
+      "language": "en",
+      "page": "progress",
+      "size": "desktop",
+      "layout": {
+        "width": 1440,
+        "scroll": 1440,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.4941860760290675,
+        "count": 72,
+        "failures": []
+      }
+    },
+    {
+      "direction": "a",
+      "language": "en",
+      "page": "learn",
+      "size": "desktop",
+      "layout": {
+        "width": 1440,
+        "scroll": 1440,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.4941860760290675,
+        "count": 49,
+        "failures": []
+      }
+    },
+    {
+      "direction": "a",
+      "language": "en",
+      "page": "profile",
+      "size": "desktop",
+      "layout": {
+        "width": 1440,
+        "scroll": 1440,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.4941860760290675,
+        "count": 55,
+        "failures": []
+      }
+    },
+    {
+      "direction": "a",
+      "language": "en",
+      "page": "home",
+      "size": "mobile",
+      "layout": {
+        "width": 390,
+        "scroll": 390,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.4941860760290675,
         "count": 67,
         "failures": []
       }
@@ -334,74 +402,6 @@
     {
       "direction": "a",
       "language": "en",
-      "page": "progress",
-      "size": "desktop",
-      "layout": {
-        "width": 1440,
-        "scroll": 1440,
-        "rootFont": "16px",
-        "outside": []
-      },
-      "contrast": {
-        "minimum": 5.4941860760290675,
-        "count": 70,
-        "failures": []
-      }
-    },
-    {
-      "direction": "a",
-      "language": "en",
-      "page": "learn",
-      "size": "desktop",
-      "layout": {
-        "width": 1440,
-        "scroll": 1440,
-        "rootFont": "16px",
-        "outside": []
-      },
-      "contrast": {
-        "minimum": 5.4941860760290675,
-        "count": 50,
-        "failures": []
-      }
-    },
-    {
-      "direction": "a",
-      "language": "en",
-      "page": "profile",
-      "size": "desktop",
-      "layout": {
-        "width": 1440,
-        "scroll": 1440,
-        "rootFont": "16px",
-        "outside": []
-      },
-      "contrast": {
-        "minimum": 5.4941860760290675,
-        "count": 56,
-        "failures": []
-      }
-    },
-    {
-      "direction": "a",
-      "language": "en",
-      "page": "home",
-      "size": "mobile",
-      "layout": {
-        "width": 390,
-        "scroll": 390,
-        "rootFont": "16px",
-        "outside": []
-      },
-      "contrast": {
-        "minimum": 5.4941860760290675,
-        "count": 83,
-        "failures": []
-      }
-    },
-    {
-      "direction": "a",
-      "language": "en",
       "page": "log",
       "size": "mobile",
       "layout": {
@@ -412,7 +412,7 @@
       },
       "contrast": {
         "minimum": 5.4941860760290675,
-        "count": 62,
+        "count": 59,
         "failures": []
       }
     },
@@ -429,7 +429,7 @@
       },
       "contrast": {
         "minimum": 5.4941860760290675,
-        "count": 65,
+        "count": 64,
         "failures": []
       }
     },
@@ -446,7 +446,7 @@
       },
       "contrast": {
         "minimum": 5.4941860760290675,
-        "count": 45,
+        "count": 42,
         "failures": []
       }
     },
@@ -463,7 +463,7 @@
       },
       "contrast": {
         "minimum": 5.4941860760290675,
-        "count": 51,
+        "count": 48,
         "failures": []
       }
     },
@@ -480,7 +480,7 @@
       },
       "contrast": {
         "minimum": 5.4941860760290675,
-        "count": 83,
+        "count": 67,
         "failures": []
       }
     },
@@ -497,7 +497,7 @@
       },
       "contrast": {
         "minimum": 5.4941860760290675,
-        "count": 62,
+        "count": 59,
         "failures": []
       }
     },
@@ -514,7 +514,7 @@
       },
       "contrast": {
         "minimum": 5.4941860760290675,
-        "count": 65,
+        "count": 64,
         "failures": []
       }
     },
@@ -531,7 +531,7 @@
       },
       "contrast": {
         "minimum": 5.4941860760290675,
-        "count": 45,
+        "count": 42,
         "failures": []
       }
     },
@@ -548,7 +548,7 @@
       },
       "contrast": {
         "minimum": 5.4941860760290675,
-        "count": 51,
+        "count": 48,
         "failures": []
       }
     },
@@ -561,7 +561,7 @@
       "currentWeekAfter": 150,
       "contrast": {
         "minimum": 5.4941860760290675,
-        "count": 45,
+        "count": 42,
         "failures": []
       }
     },
@@ -604,7 +604,7 @@
       },
       "contrast": {
         "minimum": 5.69626977416139,
-        "count": 74,
+        "count": 73,
         "failures": []
       }
     },
@@ -621,7 +621,7 @@
       },
       "contrast": {
         "minimum": 5.69626977416139,
-        "count": 68,
+        "count": 67,
         "failures": []
       }
     },
@@ -638,7 +638,7 @@
       },
       "contrast": {
         "minimum": 5.69626977416139,
-        "count": 75,
+        "count": 73,
         "failures": []
       }
     },
@@ -655,7 +655,7 @@
       },
       "contrast": {
         "minimum": 5.69626977416139,
-        "count": 53,
+        "count": 52,
         "failures": []
       }
     },
@@ -672,7 +672,7 @@
       },
       "contrast": {
         "minimum": 5.69626977416139,
-        "count": 55,
+        "count": 54,
         "failures": []
       }
     },
@@ -689,7 +689,7 @@
       },
       "contrast": {
         "minimum": 5.69626977416139,
-        "count": 69,
+        "count": 66,
         "failures": []
       }
     },
@@ -706,7 +706,7 @@
       },
       "contrast": {
         "minimum": 5.69626977416139,
-        "count": 63,
+        "count": 60,
         "failures": []
       }
     },
@@ -723,7 +723,7 @@
       },
       "contrast": {
         "minimum": 5.69626977416139,
-        "count": 70,
+        "count": 66,
         "failures": []
       }
     },
@@ -740,7 +740,7 @@
       },
       "contrast": {
         "minimum": 5.69626977416139,
-        "count": 48,
+        "count": 45,
         "failures": []
       }
     },
@@ -757,7 +757,7 @@
       },
       "contrast": {
         "minimum": 5.69626977416139,
-        "count": 50,
+        "count": 47,
         "failures": []
       }
     },
@@ -774,7 +774,7 @@
       },
       "contrast": {
         "minimum": 5.69626977416139,
-        "count": 69,
+        "count": 66,
         "failures": []
       }
     },
@@ -791,7 +791,7 @@
       },
       "contrast": {
         "minimum": 5.69626977416139,
-        "count": 63,
+        "count": 60,
         "failures": []
       }
     },
@@ -808,7 +808,7 @@
       },
       "contrast": {
         "minimum": 5.69626977416139,
-        "count": 70,
+        "count": 66,
         "failures": []
       }
     },
@@ -825,7 +825,7 @@
       },
       "contrast": {
         "minimum": 5.69626977416139,
-        "count": 48,
+        "count": 45,
         "failures": []
       }
     },
@@ -842,7 +842,7 @@
       },
       "contrast": {
         "minimum": 5.69626977416139,
-        "count": 50,
+        "count": 47,
         "failures": []
       }
     },
@@ -855,7 +855,7 @@
       "currentWeekAfter": 150,
       "contrast": {
         "minimum": 5.69626977416139,
-        "count": 45,
+        "count": 42,
         "failures": []
       }
     },
@@ -898,7 +898,7 @@
       },
       "contrast": {
         "minimum": 5.69626977416139,
-        "count": 74,
+        "count": 73,
         "failures": []
       }
     },
@@ -915,7 +915,7 @@
       },
       "contrast": {
         "minimum": 5.69626977416139,
-        "count": 68,
+        "count": 67,
         "failures": []
       }
     },
@@ -932,7 +932,7 @@
       },
       "contrast": {
         "minimum": 5.69626977416139,
-        "count": 75,
+        "count": 73,
         "failures": []
       }
     },
@@ -949,7 +949,7 @@
       },
       "contrast": {
         "minimum": 5.69626977416139,
-        "count": 53,
+        "count": 52,
         "failures": []
       }
     },
@@ -966,7 +966,7 @@
       },
       "contrast": {
         "minimum": 5.69626977416139,
-        "count": 55,
+        "count": 54,
         "failures": []
       }
     },
@@ -983,7 +983,7 @@
       },
       "contrast": {
         "minimum": 5.69626977416139,
-        "count": 69,
+        "count": 66,
         "failures": []
       }
     },
@@ -1000,7 +1000,7 @@
       },
       "contrast": {
         "minimum": 5.69626977416139,
-        "count": 63,
+        "count": 60,
         "failures": []
       }
     },
@@ -1017,7 +1017,7 @@
       },
       "contrast": {
         "minimum": 5.69626977416139,
-        "count": 70,
+        "count": 66,
         "failures": []
       }
     },
@@ -1034,7 +1034,7 @@
       },
       "contrast": {
         "minimum": 5.69626977416139,
-        "count": 48,
+        "count": 45,
         "failures": []
       }
     },
@@ -1051,7 +1051,7 @@
       },
       "contrast": {
         "minimum": 5.69626977416139,
-        "count": 50,
+        "count": 47,
         "failures": []
       }
     },
@@ -1068,7 +1068,7 @@
       },
       "contrast": {
         "minimum": 5.69626977416139,
-        "count": 69,
+        "count": 66,
         "failures": []
       }
     },
@@ -1085,7 +1085,7 @@
       },
       "contrast": {
         "minimum": 5.69626977416139,
-        "count": 63,
+        "count": 60,
         "failures": []
       }
     },
@@ -1102,7 +1102,7 @@
       },
       "contrast": {
         "minimum": 5.69626977416139,
-        "count": 70,
+        "count": 66,
         "failures": []
       }
     },
@@ -1119,7 +1119,7 @@
       },
       "contrast": {
         "minimum": 5.69626977416139,
-        "count": 48,
+        "count": 45,
         "failures": []
       }
     },
@@ -1136,7 +1136,7 @@
       },
       "contrast": {
         "minimum": 5.69626977416139,
-        "count": 50,
+        "count": 47,
         "failures": []
       }
     },
@@ -1149,7 +1149,7 @@
       "currentWeekAfter": 150,
       "contrast": {
         "minimum": 5.69626977416139,
-        "count": 45,
+        "count": 42,
         "failures": []
       }
     },
@@ -1191,387 +1191,387 @@
   "artifacts": [
     {
       "path": "a-attendance-en.png",
-      "sha256": "7febcf0835d160aa52661dc7103bc61e73284b2221a5ffea962345ef10f69ac4"
+      "sha256": "aa58911be6febef14e30a8d4def7cd5de002fc0427668587e40ada46d1e9ee50"
     },
     {
       "path": "a-attendance-lv.png",
-      "sha256": "f591b54184411effee6e7a1cb24a2721e253e95a6eb8d9db733533564cda5017"
+      "sha256": "509eb0b20d5de9531005dc1538fad1d941a2e12875efd4d218ce6c8ec9edbea3"
     },
     {
       "path": "a-coach-plan-en.png",
-      "sha256": "864f0ff9d6ff152e398a7efd1f059480f8386b5b431fe516d1a2cab03ca71a36"
+      "sha256": "a4055e6ea7320bc5b92d73a70e608070feb07875dfe0f1a1ab755d4082cba982"
     },
     {
       "path": "a-coach-plan-lv.png",
-      "sha256": "78b7a01162df0341fa0cc511d755de04e1181cb9688d5e706f8fe88d523c88f0"
+      "sha256": "55d36f4cb5b40b8fa0353de141dcf98ac2b62fdd3164fafecf9b613ac9392554"
     },
     {
       "path": "a-exercise-en.png",
-      "sha256": "6e4423422963e8b191bbac2de32678a955535a240297f977121e6af5703ce0f3"
+      "sha256": "1efac5e218da446e93aa6a77663faf73bf1f3edc3bf7c5cbbd177650f0464402"
     },
     {
       "path": "a-exercise-lv.png",
-      "sha256": "3c393ddebc2c714848ae2819638848d35b1d2686153093ac073e1aa8fb19c46b"
+      "sha256": "616b77b324f1c66b40edbfc94719603edb433956a7910ef04d183e93ec7374dd"
     },
     {
       "path": "a-home-en-desktop.png",
-      "sha256": "8ae64831f75b0b84bf5a697785ec0c9bebe957121a166565631686958d2df1fd"
+      "sha256": "3f50566fd9ce1aff0e4e18a7950f1063c5617305d7bd0dfc6698e8e29d068690"
     },
     {
       "path": "a-home-en-mobile.png",
-      "sha256": "9b82f0e6968d0fc43b916f3e60e1ae564888c131df9f4336df3c4f752fca8283"
+      "sha256": "6f0ba22132aef908d4389cea3d2f1abd7be7de382b1724fb4196f34e65da544a"
     },
     {
       "path": "a-home-lv-desktop-full.png",
-      "sha256": "2cef871e6fba92bd6b7922d6547c74b3774f598f4071545d93fdae984b9f329b"
+      "sha256": "57c06c8b51cc7ddb40d915e25227718e5ecb974048796c7cc123b8b2e21d270c"
     },
     {
       "path": "a-home-lv-desktop.png",
-      "sha256": "ff4470ea4bfee292fa2beb3a9043ff2a7b9d1b70d3222168dcc6ebe935f4ec52"
+      "sha256": "281a1c3c4e736a8b49d4bfcb3c600c1996f18fdf3bdc3471fd3e79218576e2a4"
     },
     {
       "path": "a-home-lv-mobile-full.png",
-      "sha256": "2774bb34bd51c9e987dc7f80cb70836ace1b547dc34d8bfd25f66a1c801e2a47"
+      "sha256": "a567baf5149bfc868b104a9c67b6e282cb55f06bd962964abe9019715f6e18fc"
     },
     {
       "path": "a-home-lv-mobile.png",
-      "sha256": "47e1b71bba594c0dfa80ac678d065738c2671c6a7ba3c04beb44f4b63f667f65"
+      "sha256": "f24bcbf34e355eec77c696212d53e3bda7a04a5c2060855dbbc7f335bbc3d7bf"
     },
     {
       "path": "a-home-sparse.png",
-      "sha256": "b89ed3526a87dcda12d981eee6f584b4e6bf7a9a331988b631a4136e3399d1fe"
+      "sha256": "0cc9aea1aaf21188e8ab170ceae335a7c3c6be1cb47113b3a18ece4b4dee185c"
     },
     {
       "path": "a-learn-en-desktop.png",
-      "sha256": "82074235e212f7a9e4b9606c73609aa704fa7bd38dadf62fef6877152f4b5648"
+      "sha256": "8109824a73d8f804df4f0ab6ab837e2fa791745075ea80e32943bd01393f8be6"
     },
     {
       "path": "a-learn-en-mobile.png",
-      "sha256": "bf86f2d7010635dc11b644784cefc5967e7c368820ec856185bd10827178750f"
+      "sha256": "b120567d1fc22dfcca582e12b1ec8462c7522cd17762ce335cd54b403b378e8a"
     },
     {
       "path": "a-learn-lv-desktop-full.png",
-      "sha256": "b4fe27fd739b1ad86c68c95214aaa78ad8eb3914d37a6be55820bdcff101a357"
+      "sha256": "160a167ab4c36895c7aba48fa45be0be4b4e83c53be2b8b446f65fb4abae376b"
     },
     {
       "path": "a-learn-lv-desktop.png",
-      "sha256": "5d523d383a0591e8d465bfc650faa1c2cf0cdb31d9209a97d9431ab8f0db8abf"
+      "sha256": "92f8be51cccf42b51e9ff7af4bf8e12bf833500b39d091851e0044e8499d972b"
     },
     {
       "path": "a-learn-lv-mobile-full.png",
-      "sha256": "0499be908d7726564a1f960e08c4433668ed658963609df08c6126ba60207b3b"
+      "sha256": "770ab23b7b93e80ef369e79d6e2025b69256e6d04ffd56cb32a87442fdad72ed"
     },
     {
       "path": "a-learn-lv-mobile.png",
-      "sha256": "f486d9124763e3c0f69550505ce038533e9a96a77b89e6a5b9436f82f479626e"
+      "sha256": "f9f1461757b96cdabee19815170850e22df71b3bd57e6551ad92e77389071431"
     },
     {
       "path": "a-learn-sparse.png",
-      "sha256": "0499be908d7726564a1f960e08c4433668ed658963609df08c6126ba60207b3b"
+      "sha256": "770ab23b7b93e80ef369e79d6e2025b69256e6d04ffd56cb32a87442fdad72ed"
     },
     {
       "path": "a-log-en-desktop.png",
-      "sha256": "12121ca9fb5be3fefae72cca410cef5e7b915b8b9010388c2103da99ed2c7045"
+      "sha256": "8143aa4d7fef0f192af8028a1c604cfd0354e1a1eb4b08876bcb5a595612c348"
     },
     {
       "path": "a-log-en-mobile.png",
-      "sha256": "791e63ea52f075957cc318ec4ac088dc21961fa3a7fb8f124c0a9b43ad3d5d07"
+      "sha256": "ff7acef1f3d8528e3eb7fe3daa3a181ba50e346cf1e0d73337b7e70e3536105a"
     },
     {
       "path": "a-log-lv-desktop-full.png",
-      "sha256": "dbd23c39ce3521f678c84af5a928b921b28a4e21f726448e6779eb1fd0358254"
+      "sha256": "72a7821407dc8a32bcdf7fcc5783627af96f77577e5bbe1f0c4d32ec9bdd712b"
     },
     {
       "path": "a-log-lv-desktop.png",
-      "sha256": "73a3e2459e865be23ee872ef270eb2ca58a86a4b0a60eda7e77d590487c7a8de"
+      "sha256": "b507ae2e2dad319839958712689da1cb4f480c628584fad64a8719168df75d51"
     },
     {
       "path": "a-log-lv-mobile-full.png",
-      "sha256": "5b27328afee47591147b8658a4f246e98ebea2484fc2e891bbf4af5fc914eb69"
+      "sha256": "2a41368ae6f3702876276fc82e4bca7d47a7f0f1c693b498d37e21b160a53186"
     },
     {
       "path": "a-log-lv-mobile.png",
-      "sha256": "b246b6eb7eeb07f6cdf6e629ab60347c4486297092d9ebf124e4fab77381ad09"
+      "sha256": "891e33558edd51ae536b00d3ff1eac2d38572cc0df4be27577365a1e3b3d9546"
     },
     {
       "path": "a-log-sparse.png",
-      "sha256": "8801900894fd877a8cda5d21578ef2180d3e4c30d1b3b75149482ed8d78d5c14"
+      "sha256": "06b86873168cbeff4a3ec721bb64f7a00b0423d0b068ac1d4997c7b2782f182b"
     },
     {
       "path": "a-mentor-en.png",
-      "sha256": "0f7d3b205e3e1d71f974016473d34aceb34fb4f81c0717872b4aed0e4cee7951"
+      "sha256": "0a19c3b6b47c0573fabddabe3151959ac09b9a8d0b2cc4dafda4f3d3f2fa8e2e"
     },
     {
       "path": "a-mentor-lv.png",
-      "sha256": "42bd10a8a3e6741f429ca8e5b19dddd88ed46236453e1d391808e49f6fca0180"
+      "sha256": "f7bf5dd86fab8a337b05a88b8efea01969a366b09c63aada08bbfc44688020c7"
     },
     {
       "path": "a-profile-en-desktop.png",
-      "sha256": "9a8476a9fb462759e233d2dac2ce81193e761bd706ccbe0f046c828eddc486da"
+      "sha256": "ab674db27cc767f70d64cbce5d80e6b6b0961d050d7bfea429e2474aa763f722"
     },
     {
       "path": "a-profile-en-mobile.png",
-      "sha256": "d79dfbb59b36e3c79b2da450aab63febfe7491aab8e49a1a4cb8fe4380f31dfd"
+      "sha256": "6149e459ab6ad63c867f7cb2a58fbedda80a87dcfd3c9558b279a9b32b85a01d"
     },
     {
       "path": "a-profile-lv-desktop-full.png",
-      "sha256": "b307216153f4c8cd8c3b7de4e732158f186c5f65e594c09994dc983393f8555a"
+      "sha256": "be429043d5bfafd861e40ef4c4bfa61b86c33c141b8c898fc13464d1eb2a505c"
     },
     {
       "path": "a-profile-lv-desktop.png",
-      "sha256": "7a35980fb8b003738d1b0b74b585938800d16dff5572eaded51fdfb43d00ca85"
+      "sha256": "5430f6e8521e5ec67e7318cc36122a3f09705a7617542a57c5cc857c0ace4e38"
     },
     {
       "path": "a-profile-lv-mobile-full.png",
-      "sha256": "32b3a81f6c838ec09174ae48328b1b43e0f927f2ce4ceed2250c5f7d796ddf5e"
+      "sha256": "6179c70a218ca9f97e53471587b50bdf8072ab88576e977295a8e875814b583e"
     },
     {
       "path": "a-profile-lv-mobile.png",
-      "sha256": "cfa70ccb0c44ef738f0ab915197588ec68fb88d3ff771d72e6101e707345006e"
+      "sha256": "153a981de66f7282debb7f033d69e06b69acd16304d2a4f0715e0d5b5fd31a6a"
     },
     {
       "path": "a-profile-sparse.png",
-      "sha256": "0e541a1f8eedb7286537c5039b43c80f286db1585b101da3c17091155e3d8c4f"
+      "sha256": "eea23dfb776a3857607ddc87910f1e087b49e7b842917baed7250a1091d606a5"
     },
     {
       "path": "a-progress-en-desktop.png",
-      "sha256": "ad1c39996adf41d3998ced6b5b0492012a08f7b33859f054b60ae39a152348c8"
+      "sha256": "55ca9c3f43af43dfcca9df1a311d446b58973ff56698ed8c2d7fea17265ade31"
     },
     {
       "path": "a-progress-en-mobile.png",
-      "sha256": "edd18cdfa7c7982ee0296cae2a71116307266b944f666fb6320044089dd9489d"
+      "sha256": "cea7d7bc23bb864857159e7cfd63121641920a00312decae6b5bc7c6ccc05c33"
     },
     {
       "path": "a-progress-lv-desktop-full.png",
-      "sha256": "93c221befb0eb8aeb429b0103a296a35b70898d4956a3eb119c6b5246f2684f4"
+      "sha256": "34fa7bff5ebeb43c94c4d618bb0e38c3d38823952caed22a1616844c17666647"
     },
     {
       "path": "a-progress-lv-desktop.png",
-      "sha256": "ed22d677af8ee059ceeb5adccebc0eb09a1ecbdf807784f280e0a894bb92c1a9"
+      "sha256": "909bf9c2e7bd3ead2b10420d3cf0b396a1101d61be7e83d852e3520ef596e75f"
     },
     {
       "path": "a-progress-lv-mobile-full.png",
-      "sha256": "f9cdf6b99b2f0f4be6c6bc65e065cbfee0ba76c09becdafe8685fbb2ba76a42d"
+      "sha256": "4f46feddafb0016de1bde6ca325a45e0b26926273ea7c2b710ed59acb2bd07c4"
     },
     {
       "path": "a-progress-lv-mobile.png",
-      "sha256": "d8bd1052b2fa3fbbdcb90151b319086bcc3e2b7640181e5eee09b6e343300b62"
+      "sha256": "d006a1b6ceba8a05271d5f1910304a322920da14abb822e57465253cb0095fb2"
     },
     {
       "path": "a-progress-sparse.png",
-      "sha256": "e60e664b403754012d14667738304d9211d314f8837c535cb404467c6f1cb461"
+      "sha256": "1d46847343d28aa8380fcc8f5a8760adc88242b56f390726b74a1cc473a627d6"
     },
     {
       "path": "a-tournament-en.png",
-      "sha256": "af797ce33f9353d5fe9a4a8d9592e84bbb18edf4b0f70acd1d58d103b83ec09d"
+      "sha256": "ad8ef3adcbbf2733944519127ca552ba5f79a3b3d71e0d5fdcef519bc283ab23"
     },
     {
       "path": "a-tournament-lv.png",
-      "sha256": "d5f8e3e0b54e3148e1173d96c280574b662fe49e685adb50b1c7fdd9ba9de7a6"
+      "sha256": "0a98b43c3bdbdeb1618a7a064b5fccf2f088506405a5650680914e0541724a33"
     },
     {
       "path": "a-training-failure-en.png",
-      "sha256": "f5af96bcf0df4941b46c6e6bda6788c8074e851a12f5190eaa12cb486b1827f3"
+      "sha256": "0d736131462fa263ea0bf9ed8673f74d1658c20e9148c462ba99a69ace1b1210"
     },
     {
       "path": "a-training-failure-lv.png",
-      "sha256": "772d7753a1d878c4aa3da0dcc34b4ed135ae2bd34a2d56d17f4abf9df1c6eba2"
+      "sha256": "5a368162dcff3d8a0b9abd5679db90ff4937c22e8a1c170e88b4ebd70c091ece"
     },
     {
       "path": "b-attendance-en.png",
-      "sha256": "4c2257db2a10499153d07d9d08f13098247271f787b4ab210a304cb96ced458b"
+      "sha256": "efaee499708980bc69e829f31ff20631d5b876dab1d6283a077b0afaa04b53aa"
     },
     {
       "path": "b-attendance-lv.png",
-      "sha256": "dafcff69cfba2f10df18c5ae1be9eea2870da73cfc78230d6116321601168a33"
+      "sha256": "6ccb80644a2627b82f59290c0f893ccbc5670a55401b38b02cdfaa84391f37c7"
     },
     {
       "path": "b-coach-plan-en.png",
-      "sha256": "b138d060b6f3193b57138e1fb5a967860a650dc420388e9f0a7c4497436fba90"
+      "sha256": "a03c34f78d53d8a7b125ed9fca7ff3bd4c7c5ddd7a90a038516b09af0c2dbe67"
     },
     {
       "path": "b-coach-plan-lv.png",
-      "sha256": "25cd3bb809db517de5b325e2f727ad5414b041afb7c927ad772912b4f4957b89"
+      "sha256": "2be09013e6871a72d95dd873201219c687539cb92fa17092edde5e6690fd18e0"
     },
     {
       "path": "b-exercise-en.png",
-      "sha256": "7aec1b940852770443112035e22164deb123db83f90054b4818e9072f9cc6c7c"
+      "sha256": "7bef53b4c80832b639525dccf047e4d9051c21646cd2ad1795a25b27864aec79"
     },
     {
       "path": "b-exercise-lv.png",
-      "sha256": "cdd46566504fc10a5750827af173520c37aa35680a0ae4c88c28b9760cbfc81e"
+      "sha256": "90ef55bc5ca5ae34301d50078d8c93fbe5dcdf51cb9c9045b81dbbf5b966f949"
     },
     {
       "path": "b-home-en-desktop.png",
-      "sha256": "8815c92065e684b360b34172a4d2ed6935e0a1f53e58055d5c9fbfaff56e370f"
+      "sha256": "3ad66f9eda5df6ea5e878128d392b3266afa66628f3cdd279369b158666c3f99"
     },
     {
       "path": "b-home-en-mobile.png",
-      "sha256": "33440e43f129854e2865a127e7a72fe7f8a3b2fe1659a7a6e5f45eff5ad6dee9"
+      "sha256": "38e1f56453647eaa32c6fbaa9bbe6758757f949e4617b8c27e6b5662599d2a1b"
     },
     {
       "path": "b-home-lv-desktop-full.png",
-      "sha256": "1b61572a2ebbf6a1d25041faa8d5f54aa96799b014da597c66e79cef2028dfd2"
+      "sha256": "b567f01f7c0b8724c50c95350130716a84e10f3040f432318af54f3475dad851"
     },
     {
       "path": "b-home-lv-desktop.png",
-      "sha256": "ede0e41ddcb133b3f9d51a88e7aa84c309cd0af8296cfe99787d0cfbcc2cbcd6"
+      "sha256": "d709d959f01e216904983f1aec13cc75fb629461c35e60c5359095b463282c9c"
     },
     {
       "path": "b-home-lv-mobile-full.png",
-      "sha256": "3b91b9472758c6878fc692433bd657bb90e9b029461ab56081d6e7746fa7c77d"
+      "sha256": "4a93dfbb992260c53a392193083a7766cd665bfda07b72c5177ec3bb344683cd"
     },
     {
       "path": "b-home-lv-mobile.png",
-      "sha256": "3d44f9da9540b7fe13878888da11b29dcda8df66fb07a99353b685f8efd2b8ee"
+      "sha256": "9eeedce8be79c19812682e169e80f434021a91efc51abee35b635b7c6c02f0d9"
     },
     {
       "path": "b-home-sparse.png",
-      "sha256": "c25aac77ba72593d9db0160d339291e2345b9362eafd3dd02ef118a1fe5b21ec"
+      "sha256": "56ae39c8a4a1e45b401a3fec5f1ea0fde963c44ec9d1f3403265bbf9611d45f2"
     },
     {
       "path": "b-learn-en-desktop.png",
-      "sha256": "1308086920f627bb950ffc4cd2c7387c35cf09762b015fa78b2aa369476228de"
+      "sha256": "0c62cc7aaa6cb28fca6ffeace03e2d7332d58ae8f8b02ba8f54a14fd24c2cd2e"
     },
     {
       "path": "b-learn-en-mobile.png",
-      "sha256": "cce4b4b9bbfbe4fa88124240e09a3c18fa737a80a09825f77921f44f6cfdc433"
+      "sha256": "11e1865b407381379aa26f4067de97421faabe4a1ec7bde5129025d6df89a430"
     },
     {
       "path": "b-learn-lv-desktop-full.png",
-      "sha256": "129bbb1b0bc7c13599dda2954d4f5b2a47395b577ce110eca75237db92ba8398"
+      "sha256": "771d4366972129dd51e7bd4dd130f287eb8a50aa66ec8d452e8b63654dcd2a31"
     },
     {
       "path": "b-learn-lv-desktop.png",
-      "sha256": "6cf78a11fef1ccbb0b165bd57ea81effeec33735acd6bc0b0216ec8a64b40bcb"
+      "sha256": "f3613661b3e883d6cb0b87e1ecbe05814f4d73bb5edc099a25e2c73fd6a1bae5"
     },
     {
       "path": "b-learn-lv-mobile-full.png",
-      "sha256": "09c282bd694644f1e33dbc4418524146e79dd88633f4eba4346d7b577af1e828"
+      "sha256": "ecbe4c7bb9c0d9853033c9f99bb11961b8fe0285d2ea0d39115eb6cddf77290d"
     },
     {
       "path": "b-learn-lv-mobile.png",
-      "sha256": "cf453d5e366b7cfc66ccee950ba952975a82fc05730320f34e472a357896dc83"
+      "sha256": "4f8c14a8b5eb866bd75fa4cdc08e725e7acd6b4eee22137bcef74c629352b657"
     },
     {
       "path": "b-learn-sparse.png",
-      "sha256": "09c282bd694644f1e33dbc4418524146e79dd88633f4eba4346d7b577af1e828"
+      "sha256": "ecbe4c7bb9c0d9853033c9f99bb11961b8fe0285d2ea0d39115eb6cddf77290d"
     },
     {
       "path": "b-log-en-desktop.png",
-      "sha256": "7ba508d1bdbef85e1ddf327a48b61933e9d7d58c9484ff5121306e48e94d3ce9"
+      "sha256": "2f961cd3726a3c4f1a0adf67d84092536c9072cf139f20454cbe2ec8a467ae94"
     },
     {
       "path": "b-log-en-mobile.png",
-      "sha256": "7252e60eda836850af2bb12f2d3996886b274db5df94f989e8a64007440ded1e"
+      "sha256": "9665a3c0dad499240694d59173addcb240ba0397b5040a8a93de641b06cc1896"
     },
     {
       "path": "b-log-lv-desktop-full.png",
-      "sha256": "e512360d9751152bce5e34865c5f805ca9c8de348261d1d8a3c759f6ac35baa2"
+      "sha256": "7a1919ab849ed23bcc82e23780b06e2b08cf500e66eaadfc44de0b9d6106446f"
     },
     {
       "path": "b-log-lv-desktop.png",
-      "sha256": "7e08552caad3211bd10e231bf680b417e79f6595dcebf063e6673928225f96ff"
+      "sha256": "99513b88b485a5a7e18f6c94db50ec40771c851c96506d37283cd7c4b7456251"
     },
     {
       "path": "b-log-lv-mobile-full.png",
-      "sha256": "3902a9bd2ef58706bfab891bcfe0a399ff01b551d7903a5d24e4e78d2b345d1d"
+      "sha256": "019247cf517b71cd5209429551c4918494916eb09e6a2932f679f1bafbc2b092"
     },
     {
       "path": "b-log-lv-mobile.png",
-      "sha256": "0ebc2782987094a91331ea82105c0ba6d0d849bf9bf437f922ee805ced3da88e"
+      "sha256": "a4165a946f7eed5be197f2343a85164024858ce55b1cda8e1b63e181ef333b45"
     },
     {
       "path": "b-log-sparse.png",
-      "sha256": "d06cd99c44198239572ebc2aa8cb0f5785fd636e5fa4a80a91226edf66b270aa"
+      "sha256": "1f2cc0ae3d0ff881dc2ef58983e03269e602b282c92d0462930e7f2cd1516f61"
     },
     {
       "path": "b-mentor-en.png",
-      "sha256": "4c68378b66f99607a20fe074fc81b410db0e8437bd917e61dae9f3bae5b63a99"
+      "sha256": "608fc72bee515d995fa6460b2410a12952d43d3505c3fb835422276d779c38bc"
     },
     {
       "path": "b-mentor-lv.png",
-      "sha256": "1e07d94e550db45e204c1b8f831219ec5a0464fc64b6f91b2d838a06861359a5"
+      "sha256": "bb8eea6f3fd60ccd1c908521ac369c1af86627ccb20d8b31fd1f136b737a19eb"
     },
     {
       "path": "b-profile-en-desktop.png",
-      "sha256": "46b472fb4e3b8009e3374d21d7279481506b921f95afec19f1c9f2a1c59b029b"
+      "sha256": "1113744fd5fb602cb4222e60b9e1013a0b662d0736e0c0fcbdbdc562cb286589"
     },
     {
       "path": "b-profile-en-mobile.png",
-      "sha256": "da9a3867c972dafc8a4cb909835708775bf4dd4061f4b2355e8477fe7b97b2c8"
+      "sha256": "f05d36957adc48a774d51bb10175191dfb799d6948b53f1ee1b4f0b04e5e11fb"
     },
     {
       "path": "b-profile-lv-desktop-full.png",
-      "sha256": "fc71c3262375ee924d5accaa358e7cbb42b9b1d447304e3f0537f185a9a15004"
+      "sha256": "209631441f764f75042680db6d79be6e8f9370be37595ffc7d20d4ef7e931506"
     },
     {
       "path": "b-profile-lv-desktop.png",
-      "sha256": "46a401ce35475bfad276b7982a78bc043516ae27a571b55ba7082105739195dc"
+      "sha256": "62a1104304bf1785b1379c08c0f0204f0bebbfd9cbf73eec63abebe5cb7ca90a"
     },
     {
       "path": "b-profile-lv-mobile-full.png",
-      "sha256": "2ef0e4817a40610ab53c7c53645df786df6a1565f689435c147e9acdba1794b4"
+      "sha256": "1ecc6e9275fff19ee9423a1e7dcca726e5202ea7700f49054f7c8c2c57b9f3d5"
     },
     {
       "path": "b-profile-lv-mobile.png",
-      "sha256": "240c8f7fbadcc10c2e351c3d33dc83abd059b4dff77b1fabe3bfd46e704d8da8"
+      "sha256": "890b253151d566b0ee5dcc66dccd8babb522d5741b08c7556709d7da359d3339"
     },
     {
       "path": "b-profile-sparse.png",
-      "sha256": "c14fa36aa421ea4f44262b2a9b6345f3d324500a90ab1da351ebcaf823b0836d"
+      "sha256": "e544200e242b2002c24f928e3c308ad080126acaef5fbb53dbcb1913fca9159b"
     },
     {
       "path": "b-progress-en-desktop.png",
-      "sha256": "c214f88f739c1ff89260f85d253d63171cefa22c029487e42ebfa89b8e0a5ee4"
+      "sha256": "0fdfae37484ada2c5ff83a3738243ae41cc000f3436578defc5584dec8d2ef86"
     },
     {
       "path": "b-progress-en-mobile.png",
-      "sha256": "eb8ba8a52ff13d9312077f1b7b8b2eddc1e241440b3a3900de8789f0f7c1069b"
+      "sha256": "b3e9ae6f152487feb97fa1805b61b24611ce7bf3bdc06612a425c77729f69fe1"
     },
     {
       "path": "b-progress-lv-desktop-full.png",
-      "sha256": "9dc5ff6842fa85ff1671b093c88675aad44c0dbbdd95cc1890fb0e5d72c16e15"
+      "sha256": "a64fed3d8fe5c2e70dc0e2498d2bb8e9518af6ba4be27137828bef1839a0ba70"
     },
     {
       "path": "b-progress-lv-desktop.png",
-      "sha256": "9332e683cf95be026e0e7aeb8a3b5375c7efe688c694411bb2b9499c463c9efb"
+      "sha256": "e41b8f2cc5c75ca3009b3f1a94782df509f2fe632088af117f02fc3605c45f09"
     },
     {
       "path": "b-progress-lv-mobile-full.png",
-      "sha256": "d890819dff66c69d14c7c38d80b1c0973ff5c7bd5bca92e2bcf009eca9a585c3"
+      "sha256": "2913994bbc105215ae8c29c48604a8c2043754f8f954b019af98817ef555e532"
     },
     {
       "path": "b-progress-lv-mobile.png",
-      "sha256": "21a4b0dd7e385dc8a5b40388386915e8dde6541e736ad6d8f809261b7a8c4658"
+      "sha256": "dc0e421e5810bfb0e16dc1b7ec43641fff1ab2b8a7c732945030573eaa528cd5"
     },
     {
       "path": "b-progress-sparse.png",
-      "sha256": "b8298f3d49e4754f1f951d00a196ad9cb521ba1d7ab1d5890ff27882c06c6b74"
+      "sha256": "130a476b4036d9a38c6ff19e915515f0640771b4495d7ba6947892f9ec6b4e67"
     },
     {
       "path": "b-tournament-en.png",
-      "sha256": "3ab9766cd2f6f9b8cf2f29b8cf15a2017cbebbb3d923aa154f5d07260607a915"
+      "sha256": "2ad8d1ee9413e5ea0d84185d4556cabadf6fc55623f7fe953cfb9738cfd468de"
     },
     {
       "path": "b-tournament-lv.png",
-      "sha256": "0c86bcb243efb618b7327ff1c6c47f8759d9c7bfdbffda28ee81201cea1f2772"
+      "sha256": "39ba35dda80e0e23af482e39d4eb1bb37ca87e103b202aaa14feca1db00b886a"
     },
     {
       "path": "b-training-failure-en.png",
-      "sha256": "d155705261c8d8f4490770e1325648330850922f840438392a750c147f35c877"
+      "sha256": "f48c2f96c8305d15e60165b7b17701d20b8e2bf5999bf529131f4af648d55074"
     },
     {
       "path": "b-training-failure-lv.png",
-      "sha256": "e72592d02c394b92fd5439eb6045d759bcf48f4df9dac616e379332756dfbe53"
+      "sha256": "c5b080a392bbc87af7eca4ed6c6669168793ef9b957cfa32881f64f77a2fc2fc"
     },
     {
       "path": "contact-sheet-en.png",
-      "sha256": "80097dccc4170a80f6e0a789765780986c5e01520871dab8c42246231ec6df6d"
+      "sha256": "98de899f3ed4dcb18fe28978b484836aa1f43a573eabb4223de63914450e52b4"
     },
     {
       "path": "contact-sheet-lv.png",
-      "sha256": "11f26e23a3cc79dd45cd9d68e7e44d5abc80ae052051932827787071885ac4c0"
+      "sha256": "ed30c3d7500cd4fca84f5cb88867dbcfcf53caa76f1174a49f804a52e4fbfe48"
     }
   ]
 }
