@@ -1,0 +1,88 @@
+:root {
+  --page: #f6f8f6;
+  --surface: #ffffff;
+  --subtle: #eaf2ec;
+  --notice: #e9efec;
+  --ink: #153344;
+  --muted: #4a6168;
+  --action: #2548b5;
+  --action-hover: #193589;
+  --on-action: #ffffff;
+  --selected: #153344;
+  --selected-hover: #284e62;
+  --on-selected: #ffffff;
+  --line: #d0dcd8;
+  --line-strong: #6a8586;
+  --field: #ffffff;
+  --focus: #9e320b;
+  --error: #9d2925;
+  --error-bg: #fff1ef;
+  --track: #d9e5dc;
+  --progress: #315d47;
+  --brand-dot: #2548b5;
+  --radius: 10px;
+  --radius-lg: 20px;
+  --display: "Local UI", system-ui, sans-serif;
+}
+.home-hero { background: #c9efd8; border-radius: 24px; overflow: hidden; display: grid; grid-template-columns: 1.2fr 1fr; position: relative; }
+.hero-copy { padding: 40px; position: relative; z-index: 1; }
+.hero-copy h1 { font-size: clamp(3.5rem, 5vw, 4rem); font-weight: 900; max-width: 10ch; }
+.hero-copy p { max-width: 32ch; font-size: 1.125rem; }
+.club-tag { display: inline-block; padding: 6px 12px; border: 1px solid #6a8e79; border-radius: 6px; font-size: .8rem; text-transform: uppercase; letter-spacing: .07em; font-weight: 700; margin-bottom: 24px; }
+.kit-scene { min-height: 330px; display: grid; place-items: center; position: relative; padding: 28px; }
+.kit-scene::before { content: ""; position: absolute; width: 300px; height: 300px; border: 1px solid #7eaa90; border-radius: 50%; }
+.kit-scene::after { content: ""; position: absolute; width: 355px; height: 355px; border: 1px solid #7eaa90; border-radius: 50%; }
+.kit { width: 290px; transform: rotate(8deg); z-index: 1; }
+.kit-note { position: absolute; z-index: 2; right: 28px; bottom: 36px; background: #ffb79d; border: 2px solid #153344; padding: 10px 16px; transform: rotate(-7deg); font-weight: 900; font-size: 1.2rem; line-height: 1.15; box-shadow: 4px 4px 0 #153344; }
+.club-ribbon { grid-column: 1 / -1; background: #153344; color: white; padding: 14px 40px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px 24px; font-size: .875rem; }
+.club-ribbon strong { color: #c9efd8; }
+.home-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 24px; margin-top: 24px; }
+.today-card { background: white; border: 1px solid var(--line); padding: 32px; border-radius: 20px; }
+.today-card h2 { font-size: 2rem; }
+.today-card .session-summary { display: flex; flex-wrap: wrap; gap: 8px 16px; margin: 20px 0 24px; }
+.session-tag { background: #eaf2ec; border-radius: 6px; padding: 6px 12px; font-weight: 700; }
+.today-card .actions .button { flex: 1; }
+.today-card .rest-link { display: flex; justify-content: center; margin-top: 12px; }
+.progress-card { padding: 32px; border-radius: 20px; background: #eaf2ec; }
+.club-notice { display: flex; gap: 16px; align-items: flex-start; margin-top: 24px; padding-top: 24px; border-top: 1px solid #b6cbc0; }
+.club-notice svg { width: 32px; flex-shrink: 0; }
+.club-notice p { margin: 0; }
+.history-section { margin-top: 36px; }
+.history-section .journal { display: grid; grid-template-columns: 1fr 1fr; column-gap: 32px; }
+.result-heading h1 { font-weight: 900; max-width: 12ch; }
+.result-panel.celebrate { background: #c9efd8; border-color: #c9efd8; position: relative; }
+.reward-stamp { font-size: 1.1rem; font-weight: 900; background: #ffb79d; display: inline-block; padding: 10px 16px; border: 2px solid #153344; border-radius: 6px; transform: rotate(-3deg); margin-bottom: 24px; }
+.completion-mark { background: #153344; }
+.form-grid .aside-panel { border-top: 6px solid #ffb79d; }
+@media (max-width: 760px) {
+  .home-hero { grid-template-columns: 1.25fr .75fr; }
+  .hero-copy { padding: 28px; }
+  .hero-copy h1 { font-size: 3.5rem; }
+  .kit-scene { padding: 12px; min-height: 280px; }
+  .kit { min-width: 180px; }
+  .kit-scene::before { width: 240px; height: 240px; }
+  .kit-scene::after { width: 280px; height: 280px; }
+  .kit-note { font-size: .9rem; right: 18px; bottom: 26px; }
+  .home-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+  .home-hero { grid-template-columns: minmax(0, 1fr) 100px; }
+  .hero-copy { padding: 24px 8px 24px 24px; }
+  .hero-copy h1 { font-size: 2rem; max-width: none; }
+  .hero-copy p { font-size: 1rem; max-width: 17ch; margin-bottom: 0; }
+  .club-tag { font-size: .75rem; margin-bottom: 18px; }
+  .kit-scene { min-height: 0; padding: 0 12px 0 0; }
+  .kit { width: 80px; min-width: 0; }
+  .kit-scene::before, .kit-scene::after { display: none; }
+  .kit-note { display: none; }
+  .club-ribbon { padding: 14px 24px; }
+  .today-card, .progress-card { padding: 24px; }
+  .today-card h2 { font-size: 1.8rem; }
+  .history-section .journal { display: block; }
+}
+@media (max-width: 350px) {
+  .home-hero { display: block; }
+  .hero-copy { padding: 24px; }
+  .kit-scene { display: none; }
+  .hero-copy p { max-width: none; }
+}
