@@ -66,7 +66,7 @@ source, stamp it, and serve only the compiled output:
 ```powershell
 $source = git rev-parse HEAD
 npm run build
-Set-Content -Encoding utf8 -NoNewline dist\source-revision.txt $source
+Set-Content -LiteralPath dist\source-revision.txt -Value $source -Encoding utf8 -NoNewline
 npm run preview -- --host 127.0.0.1 --port 4318 --strictPort
 # In another terminal, use the selected compatible Python executable:
 python tests\test_training_browser.py --repo . --source $source --output docs\design-evidence\training-clubhouse-20260922
