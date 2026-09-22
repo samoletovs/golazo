@@ -1,6 +1,6 @@
 {
   "kind": "concept-function-checks-not-owner-design-acceptance",
-  "source": "485a4df6e5483f4656c37b79b59fc19da330ce78",
+  "source": "7a6843dacedd1beca6c9725241f214b697f9e4aa",
   "browser": "145.0.7632.6",
   "results": [
     {
@@ -16,8 +16,15 @@
       },
       "contrast": {
         "minimum": 5.4941860760290675,
-        "count": 88,
+        "count": 87,
         "failures": []
+      },
+      "calendar": {
+        "contentWidth": 1152,
+        "compact": false,
+        "cells": 7,
+        "brokenWords": [],
+        "clippedWords": []
       }
     },
     {
@@ -50,7 +57,7 @@
       },
       "contrast": {
         "minimum": 5.4941860760290675,
-        "count": 72,
+        "count": 71,
         "failures": []
       }
     },
@@ -92,6 +99,190 @@
       "direction": "a",
       "language": "lv",
       "page": "home",
+      "size": "tablet-landscape",
+      "layout": {
+        "width": 1024,
+        "scroll": 1024,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.4941860760290675,
+        "count": 73,
+        "failures": []
+      },
+      "calendar": {
+        "contentWidth": 796,
+        "compact": true,
+        "cells": 7,
+        "brokenWords": [],
+        "clippedWords": []
+      }
+    },
+    {
+      "direction": "a",
+      "language": "lv",
+      "page": "log",
+      "size": "tablet-landscape",
+      "layout": {
+        "width": 1024,
+        "scroll": 1024,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.4941860760290675,
+        "count": 66,
+        "failures": []
+      }
+    },
+    {
+      "direction": "a",
+      "language": "lv",
+      "page": "progress",
+      "size": "tablet-landscape",
+      "layout": {
+        "width": 1024,
+        "scroll": 1024,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.4941860760290675,
+        "count": 71,
+        "failures": []
+      }
+    },
+    {
+      "direction": "a",
+      "language": "lv",
+      "page": "learn",
+      "size": "tablet-landscape",
+      "layout": {
+        "width": 1024,
+        "scroll": 1024,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.4941860760290675,
+        "count": 49,
+        "failures": []
+      }
+    },
+    {
+      "direction": "a",
+      "language": "lv",
+      "page": "profile",
+      "size": "tablet-landscape",
+      "layout": {
+        "width": 1024,
+        "scroll": 1024,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.4941860760290675,
+        "count": 55,
+        "failures": []
+      }
+    },
+    {
+      "direction": "a",
+      "language": "lv",
+      "page": "home",
+      "size": "tablet-portrait",
+      "layout": {
+        "width": 768,
+        "scroll": 768,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.4941860760290675,
+        "count": 72,
+        "failures": []
+      },
+      "calendar": {
+        "contentWidth": 704,
+        "compact": true,
+        "cells": 7,
+        "brokenWords": [],
+        "clippedWords": []
+      }
+    },
+    {
+      "direction": "a",
+      "language": "lv",
+      "page": "log",
+      "size": "tablet-portrait",
+      "layout": {
+        "width": 768,
+        "scroll": 768,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.4941860760290675,
+        "count": 65,
+        "failures": []
+      }
+    },
+    {
+      "direction": "a",
+      "language": "lv",
+      "page": "progress",
+      "size": "tablet-portrait",
+      "layout": {
+        "width": 768,
+        "scroll": 768,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.4941860760290675,
+        "count": 70,
+        "failures": []
+      }
+    },
+    {
+      "direction": "a",
+      "language": "lv",
+      "page": "learn",
+      "size": "tablet-portrait",
+      "layout": {
+        "width": 768,
+        "scroll": 768,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.4941860760290675,
+        "count": 48,
+        "failures": []
+      }
+    },
+    {
+      "direction": "a",
+      "language": "lv",
+      "page": "profile",
+      "size": "tablet-portrait",
+      "layout": {
+        "width": 768,
+        "scroll": 768,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.4941860760290675,
+        "count": 54,
+        "failures": []
+      }
+    },
+    {
+      "direction": "a",
+      "language": "lv",
+      "page": "home",
       "size": "mobile",
       "layout": {
         "width": 390,
@@ -101,8 +292,15 @@
       },
       "contrast": {
         "minimum": 5.4941860760290675,
-        "count": 67,
+        "count": 66,
         "failures": []
+      },
+      "calendar": {
+        "contentWidth": 350,
+        "compact": true,
+        "cells": 7,
+        "brokenWords": [],
+        "clippedWords": []
       }
     },
     {
@@ -135,7 +333,7 @@
       },
       "contrast": {
         "minimum": 5.4941860760290675,
-        "count": 64,
+        "count": 63,
         "failures": []
       }
     },
@@ -186,8 +384,15 @@
       },
       "contrast": {
         "minimum": 5.4941860760290675,
-        "count": 67,
+        "count": 66,
         "failures": []
+      },
+      "calendar": {
+        "contentWidth": 280,
+        "compact": true,
+        "cells": 7,
+        "brokenWords": [],
+        "clippedWords": []
       }
     },
     {
@@ -220,7 +425,7 @@
       },
       "contrast": {
         "minimum": 5.4941860760290675,
-        "count": 64,
+        "count": 63,
         "failures": []
       }
     },
@@ -269,6 +474,44 @@
         "minimum": 5.4941860760290675,
         "count": 42,
         "failures": []
+      }
+    },
+    {
+      "direction": "a",
+      "language": "lv",
+      "page": "schedule",
+      "width": 768,
+      "layout": {
+        "width": 768,
+        "scroll": 768,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "calendar": {
+        "contentWidth": 704,
+        "compact": true,
+        "cells": 7,
+        "brokenWords": [],
+        "clippedWords": []
+      }
+    },
+    {
+      "direction": "a",
+      "language": "lv",
+      "page": "schedule",
+      "width": 1024,
+      "layout": {
+        "width": 1024,
+        "scroll": 1024,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "calendar": {
+        "contentWidth": 796,
+        "compact": true,
+        "cells": 7,
+        "brokenWords": [],
+        "clippedWords": []
       }
     },
     {
@@ -310,8 +553,15 @@
       },
       "contrast": {
         "minimum": 5.4941860760290675,
-        "count": 88,
+        "count": 87,
         "failures": []
+      },
+      "calendar": {
+        "contentWidth": 1152,
+        "compact": false,
+        "cells": 7,
+        "brokenWords": [],
+        "clippedWords": []
       }
     },
     {
@@ -344,7 +594,7 @@
       },
       "contrast": {
         "minimum": 5.4941860760290675,
-        "count": 72,
+        "count": 71,
         "failures": []
       }
     },
@@ -386,6 +636,190 @@
       "direction": "a",
       "language": "en",
       "page": "home",
+      "size": "tablet-landscape",
+      "layout": {
+        "width": 1024,
+        "scroll": 1024,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.4941860760290675,
+        "count": 73,
+        "failures": []
+      },
+      "calendar": {
+        "contentWidth": 796,
+        "compact": true,
+        "cells": 7,
+        "brokenWords": [],
+        "clippedWords": []
+      }
+    },
+    {
+      "direction": "a",
+      "language": "en",
+      "page": "log",
+      "size": "tablet-landscape",
+      "layout": {
+        "width": 1024,
+        "scroll": 1024,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.4941860760290675,
+        "count": 66,
+        "failures": []
+      }
+    },
+    {
+      "direction": "a",
+      "language": "en",
+      "page": "progress",
+      "size": "tablet-landscape",
+      "layout": {
+        "width": 1024,
+        "scroll": 1024,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.4941860760290675,
+        "count": 71,
+        "failures": []
+      }
+    },
+    {
+      "direction": "a",
+      "language": "en",
+      "page": "learn",
+      "size": "tablet-landscape",
+      "layout": {
+        "width": 1024,
+        "scroll": 1024,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.4941860760290675,
+        "count": 49,
+        "failures": []
+      }
+    },
+    {
+      "direction": "a",
+      "language": "en",
+      "page": "profile",
+      "size": "tablet-landscape",
+      "layout": {
+        "width": 1024,
+        "scroll": 1024,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.4941860760290675,
+        "count": 55,
+        "failures": []
+      }
+    },
+    {
+      "direction": "a",
+      "language": "en",
+      "page": "home",
+      "size": "tablet-portrait",
+      "layout": {
+        "width": 768,
+        "scroll": 768,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.4941860760290675,
+        "count": 72,
+        "failures": []
+      },
+      "calendar": {
+        "contentWidth": 704,
+        "compact": true,
+        "cells": 7,
+        "brokenWords": [],
+        "clippedWords": []
+      }
+    },
+    {
+      "direction": "a",
+      "language": "en",
+      "page": "log",
+      "size": "tablet-portrait",
+      "layout": {
+        "width": 768,
+        "scroll": 768,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.4941860760290675,
+        "count": 65,
+        "failures": []
+      }
+    },
+    {
+      "direction": "a",
+      "language": "en",
+      "page": "progress",
+      "size": "tablet-portrait",
+      "layout": {
+        "width": 768,
+        "scroll": 768,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.4941860760290675,
+        "count": 70,
+        "failures": []
+      }
+    },
+    {
+      "direction": "a",
+      "language": "en",
+      "page": "learn",
+      "size": "tablet-portrait",
+      "layout": {
+        "width": 768,
+        "scroll": 768,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.4941860760290675,
+        "count": 48,
+        "failures": []
+      }
+    },
+    {
+      "direction": "a",
+      "language": "en",
+      "page": "profile",
+      "size": "tablet-portrait",
+      "layout": {
+        "width": 768,
+        "scroll": 768,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.4941860760290675,
+        "count": 54,
+        "failures": []
+      }
+    },
+    {
+      "direction": "a",
+      "language": "en",
+      "page": "home",
       "size": "mobile",
       "layout": {
         "width": 390,
@@ -395,8 +829,15 @@
       },
       "contrast": {
         "minimum": 5.4941860760290675,
-        "count": 67,
+        "count": 66,
         "failures": []
+      },
+      "calendar": {
+        "contentWidth": 350,
+        "compact": true,
+        "cells": 7,
+        "brokenWords": [],
+        "clippedWords": []
       }
     },
     {
@@ -429,7 +870,7 @@
       },
       "contrast": {
         "minimum": 5.4941860760290675,
-        "count": 64,
+        "count": 63,
         "failures": []
       }
     },
@@ -480,8 +921,15 @@
       },
       "contrast": {
         "minimum": 5.4941860760290675,
-        "count": 67,
+        "count": 66,
         "failures": []
+      },
+      "calendar": {
+        "contentWidth": 280,
+        "compact": true,
+        "cells": 7,
+        "brokenWords": [],
+        "clippedWords": []
       }
     },
     {
@@ -514,7 +962,7 @@
       },
       "contrast": {
         "minimum": 5.4941860760290675,
-        "count": 64,
+        "count": 63,
         "failures": []
       }
     },
@@ -563,6 +1011,44 @@
         "minimum": 5.4941860760290675,
         "count": 42,
         "failures": []
+      }
+    },
+    {
+      "direction": "a",
+      "language": "en",
+      "page": "schedule",
+      "width": 768,
+      "layout": {
+        "width": 768,
+        "scroll": 768,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "calendar": {
+        "contentWidth": 704,
+        "compact": true,
+        "cells": 7,
+        "brokenWords": [],
+        "clippedWords": []
+      }
+    },
+    {
+      "direction": "a",
+      "language": "en",
+      "page": "schedule",
+      "width": 1024,
+      "layout": {
+        "width": 1024,
+        "scroll": 1024,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "calendar": {
+        "contentWidth": 796,
+        "compact": true,
+        "cells": 7,
+        "brokenWords": [],
+        "clippedWords": []
       }
     },
     {
@@ -604,7 +1090,7 @@
       },
       "contrast": {
         "minimum": 5.69626977416139,
-        "count": 73,
+        "count": 72,
         "failures": []
       }
     },
@@ -680,6 +1166,176 @@
       "direction": "b",
       "language": "lv",
       "page": "home",
+      "size": "tablet-landscape",
+      "layout": {
+        "width": 1024,
+        "scroll": 1024,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.69626977416139,
+        "count": 72,
+        "failures": []
+      }
+    },
+    {
+      "direction": "b",
+      "language": "lv",
+      "page": "log",
+      "size": "tablet-landscape",
+      "layout": {
+        "width": 1024,
+        "scroll": 1024,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.69626977416139,
+        "count": 67,
+        "failures": []
+      }
+    },
+    {
+      "direction": "b",
+      "language": "lv",
+      "page": "progress",
+      "size": "tablet-landscape",
+      "layout": {
+        "width": 1024,
+        "scroll": 1024,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.69626977416139,
+        "count": 73,
+        "failures": []
+      }
+    },
+    {
+      "direction": "b",
+      "language": "lv",
+      "page": "learn",
+      "size": "tablet-landscape",
+      "layout": {
+        "width": 1024,
+        "scroll": 1024,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.69626977416139,
+        "count": 52,
+        "failures": []
+      }
+    },
+    {
+      "direction": "b",
+      "language": "lv",
+      "page": "profile",
+      "size": "tablet-landscape",
+      "layout": {
+        "width": 1024,
+        "scroll": 1024,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.69626977416139,
+        "count": 54,
+        "failures": []
+      }
+    },
+    {
+      "direction": "b",
+      "language": "lv",
+      "page": "home",
+      "size": "tablet-portrait",
+      "layout": {
+        "width": 768,
+        "scroll": 768,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.69626977416139,
+        "count": 69,
+        "failures": []
+      }
+    },
+    {
+      "direction": "b",
+      "language": "lv",
+      "page": "log",
+      "size": "tablet-portrait",
+      "layout": {
+        "width": 768,
+        "scroll": 768,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.69626977416139,
+        "count": 64,
+        "failures": []
+      }
+    },
+    {
+      "direction": "b",
+      "language": "lv",
+      "page": "progress",
+      "size": "tablet-portrait",
+      "layout": {
+        "width": 768,
+        "scroll": 768,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.69626977416139,
+        "count": 70,
+        "failures": []
+      }
+    },
+    {
+      "direction": "b",
+      "language": "lv",
+      "page": "learn",
+      "size": "tablet-portrait",
+      "layout": {
+        "width": 768,
+        "scroll": 768,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.69626977416139,
+        "count": 49,
+        "failures": []
+      }
+    },
+    {
+      "direction": "b",
+      "language": "lv",
+      "page": "profile",
+      "size": "tablet-portrait",
+      "layout": {
+        "width": 768,
+        "scroll": 768,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.69626977416139,
+        "count": 51,
+        "failures": []
+      }
+    },
+    {
+      "direction": "b",
+      "language": "lv",
+      "page": "home",
       "size": "mobile",
       "layout": {
         "width": 390,
@@ -689,7 +1345,7 @@
       },
       "contrast": {
         "minimum": 5.69626977416139,
-        "count": 66,
+        "count": 65,
         "failures": []
       }
     },
@@ -774,7 +1430,7 @@
       },
       "contrast": {
         "minimum": 5.69626977416139,
-        "count": 66,
+        "count": 65,
         "failures": []
       }
     },
@@ -862,6 +1518,44 @@
     {
       "direction": "b",
       "language": "lv",
+      "page": "schedule",
+      "width": 768,
+      "layout": {
+        "width": 768,
+        "scroll": 768,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "calendar": {
+        "contentWidth": 257.609375,
+        "compact": true,
+        "cells": 7,
+        "brokenWords": [],
+        "clippedWords": []
+      }
+    },
+    {
+      "direction": "b",
+      "language": "lv",
+      "page": "schedule",
+      "width": 1024,
+      "layout": {
+        "width": 1024,
+        "scroll": 1024,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "calendar": {
+        "contentWidth": 360,
+        "compact": true,
+        "cells": 7,
+        "brokenWords": [],
+        "clippedWords": []
+      }
+    },
+    {
+      "direction": "b",
+      "language": "lv",
       "flow": "match-reflection-privacy-learning-calendar-tournament-onboarding-coach",
       "pass": true
     },
@@ -898,7 +1592,7 @@
       },
       "contrast": {
         "minimum": 5.69626977416139,
-        "count": 73,
+        "count": 72,
         "failures": []
       }
     },
@@ -974,6 +1668,176 @@
       "direction": "b",
       "language": "en",
       "page": "home",
+      "size": "tablet-landscape",
+      "layout": {
+        "width": 1024,
+        "scroll": 1024,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.69626977416139,
+        "count": 72,
+        "failures": []
+      }
+    },
+    {
+      "direction": "b",
+      "language": "en",
+      "page": "log",
+      "size": "tablet-landscape",
+      "layout": {
+        "width": 1024,
+        "scroll": 1024,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.69626977416139,
+        "count": 67,
+        "failures": []
+      }
+    },
+    {
+      "direction": "b",
+      "language": "en",
+      "page": "progress",
+      "size": "tablet-landscape",
+      "layout": {
+        "width": 1024,
+        "scroll": 1024,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.69626977416139,
+        "count": 73,
+        "failures": []
+      }
+    },
+    {
+      "direction": "b",
+      "language": "en",
+      "page": "learn",
+      "size": "tablet-landscape",
+      "layout": {
+        "width": 1024,
+        "scroll": 1024,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.69626977416139,
+        "count": 52,
+        "failures": []
+      }
+    },
+    {
+      "direction": "b",
+      "language": "en",
+      "page": "profile",
+      "size": "tablet-landscape",
+      "layout": {
+        "width": 1024,
+        "scroll": 1024,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.69626977416139,
+        "count": 54,
+        "failures": []
+      }
+    },
+    {
+      "direction": "b",
+      "language": "en",
+      "page": "home",
+      "size": "tablet-portrait",
+      "layout": {
+        "width": 768,
+        "scroll": 768,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.69626977416139,
+        "count": 69,
+        "failures": []
+      }
+    },
+    {
+      "direction": "b",
+      "language": "en",
+      "page": "log",
+      "size": "tablet-portrait",
+      "layout": {
+        "width": 768,
+        "scroll": 768,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.69626977416139,
+        "count": 64,
+        "failures": []
+      }
+    },
+    {
+      "direction": "b",
+      "language": "en",
+      "page": "progress",
+      "size": "tablet-portrait",
+      "layout": {
+        "width": 768,
+        "scroll": 768,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.69626977416139,
+        "count": 70,
+        "failures": []
+      }
+    },
+    {
+      "direction": "b",
+      "language": "en",
+      "page": "learn",
+      "size": "tablet-portrait",
+      "layout": {
+        "width": 768,
+        "scroll": 768,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.69626977416139,
+        "count": 49,
+        "failures": []
+      }
+    },
+    {
+      "direction": "b",
+      "language": "en",
+      "page": "profile",
+      "size": "tablet-portrait",
+      "layout": {
+        "width": 768,
+        "scroll": 768,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 5.69626977416139,
+        "count": 51,
+        "failures": []
+      }
+    },
+    {
+      "direction": "b",
+      "language": "en",
+      "page": "home",
       "size": "mobile",
       "layout": {
         "width": 390,
@@ -983,7 +1847,7 @@
       },
       "contrast": {
         "minimum": 5.69626977416139,
-        "count": 66,
+        "count": 65,
         "failures": []
       }
     },
@@ -1068,7 +1932,7 @@
       },
       "contrast": {
         "minimum": 5.69626977416139,
-        "count": 66,
+        "count": 65,
         "failures": []
       }
     },
@@ -1151,6 +2015,44 @@
         "minimum": 5.69626977416139,
         "count": 42,
         "failures": []
+      }
+    },
+    {
+      "direction": "b",
+      "language": "en",
+      "page": "schedule",
+      "width": 768,
+      "layout": {
+        "width": 768,
+        "scroll": 768,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "calendar": {
+        "contentWidth": 257.609375,
+        "compact": true,
+        "cells": 7,
+        "brokenWords": [],
+        "clippedWords": []
+      }
+    },
+    {
+      "direction": "b",
+      "language": "en",
+      "page": "schedule",
+      "width": 1024,
+      "layout": {
+        "width": 1024,
+        "scroll": 1024,
+        "rootFont": "16px",
+        "outside": []
+      },
+      "calendar": {
+        "contentWidth": 360,
+        "compact": true,
+        "cells": 7,
+        "brokenWords": [],
+        "clippedWords": []
       }
     },
     {
@@ -1222,6 +2124,14 @@
       "sha256": "6f0ba22132aef908d4389cea3d2f1abd7be7de382b1724fb4196f34e65da544a"
     },
     {
+      "path": "a-home-en-tablet-landscape.png",
+      "sha256": "2cf83420463d946667a5ce22fc0825c231fc86f56195e77b9b62e52a148e77a2"
+    },
+    {
+      "path": "a-home-en-tablet-portrait.png",
+      "sha256": "33a160c4dc32302af6553138c99d2492346549b7eca69a6ed427a240d52c2c31"
+    },
+    {
       "path": "a-home-lv-desktop-full.png",
       "sha256": "57c06c8b51cc7ddb40d915e25227718e5ecb974048796c7cc123b8b2e21d270c"
     },
@@ -1236,6 +2146,14 @@
     {
       "path": "a-home-lv-mobile.png",
       "sha256": "f24bcbf34e355eec77c696212d53e3bda7a04a5c2060855dbbc7f335bbc3d7bf"
+    },
+    {
+      "path": "a-home-lv-tablet-landscape.png",
+      "sha256": "bd894b0556f84428b83e22b9b3197e81f4420786d5436125eb342683ada718ed"
+    },
+    {
+      "path": "a-home-lv-tablet-portrait.png",
+      "sha256": "a26c26838a09f30c0b5245a7a9a03a4f3cb82475693d624a512d11186c5b57fb"
     },
     {
       "path": "a-home-sparse.png",
@@ -1360,6 +2278,22 @@
     {
       "path": "a-progress-sparse.png",
       "sha256": "1d46847343d28aa8380fcc8f5a8760adc88242b56f390726b74a1cc473a627d6"
+    },
+    {
+      "path": "a-schedule-en-1024.png",
+      "sha256": "8d1e916b3552bcc3a84dc42b34ce196cf4f934f890c8c84a1f0ffbc8a405e6ac"
+    },
+    {
+      "path": "a-schedule-en-768.png",
+      "sha256": "cf6de87dd22fe9246322ab01fdb320a625d8488311f365b4d0572f70f24e95fa"
+    },
+    {
+      "path": "a-schedule-lv-1024.png",
+      "sha256": "554c2b62c196f7ea6e5cb1e2d0652b4f2cc928301ee611899b4e97c73ef5eb26"
+    },
+    {
+      "path": "a-schedule-lv-768.png",
+      "sha256": "1e33cfc0710f02d285eb5f179c3da6ef6145ed79be44d8220d6c19e723c45c4b"
     },
     {
       "path": "a-tournament-en.png",
