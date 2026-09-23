@@ -295,8 +295,8 @@ export function MentorDashboard() {
               <XAxis dataKey="date" tick={{ fontSize: 12, fill: 'var(--color-text-muted)' }} axisLine={false} tickLine={false} />
               <YAxis domain={[1, 5]} ticks={[1, 2, 3, 4, 5]} tick={{ fontSize: 12, fill: 'var(--color-text-muted)' }} width={20} axisLine={false} tickLine={false} />
               <Tooltip contentStyle={{ fontSize: 12, borderRadius: 12, border: 'none', boxShadow: '0 4px 16px rgba(0,0,0,0.1)' }} />
-              <Line type="monotone" dataKey="mood" stroke="var(--color-gold-500)" strokeWidth={2.5} dot={{ r: 3, fill: 'var(--color-gold-500)', stroke: '#fff', strokeWidth: 2 }} name="Mood" />
-              <Line type="monotone" dataKey="energy" stroke="var(--color-primary-light)" strokeWidth={2.5} dot={{ r: 3, fill: 'var(--color-primary-light)', stroke: '#fff', strokeWidth: 2 }} name="Energy" />
+              <Line isAnimationActive={false} type="monotone" dataKey="mood" stroke="var(--color-gold-500)" strokeWidth={2.5} dot={{ r: 3, fill: 'var(--color-gold-500)', stroke: '#fff', strokeWidth: 2 }} name="Mood" />
+              <Line isAnimationActive={false} type="monotone" dataKey="energy" stroke="var(--color-primary-light)" strokeWidth={2.5} dot={{ r: 3, fill: 'var(--color-primary-light)', stroke: '#fff', strokeWidth: 2 }} name="Energy" />
             </LineChart>
           </ResponsiveContainer>
         </div>

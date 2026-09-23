@@ -219,9 +219,9 @@ export function ProgressPage() {
               <XAxis dataKey="match" tick={{ fontSize: 12, fill: 'var(--color-text-muted)' }} axisLine={false} tickLine={false} />
               <YAxis tick={{ fontSize: 12, fill: 'var(--color-text-muted)' }} width={20} allowDecimals={false} axisLine={false} tickLine={false} />
               <Tooltip contentStyle={{ fontSize: 12, borderRadius: 12, border: 'none', boxShadow: '0 4px 16px rgba(0,0,0,0.1)' }} />
-              <Line type="monotone" dataKey="goals" stroke="var(--color-primary)" strokeWidth={2.5} dot={{ r: 3, fill: 'var(--color-primary)', stroke: '#fff', strokeWidth: 2 }} name={t('progress.goals')} />
-              <Line type="monotone" dataKey="assists" stroke="var(--color-primary-light)" strokeWidth={2.5} dot={{ r: 3, fill: 'var(--color-primary-light)', stroke: '#fff', strokeWidth: 2 }} name={t('progress.assists')} />
-              <Line type="monotone" dataKey="rating" stroke="#f59e0b" strokeWidth={1.5} strokeDasharray="5 5" dot={false} name={t('progress.selfRating')} />
+              <Line isAnimationActive={false} type="monotone" dataKey="goals" stroke="var(--color-primary)" strokeWidth={2.5} dot={{ r: 3, fill: 'var(--color-primary)', stroke: '#fff', strokeWidth: 2 }} name={t('progress.goals')} />
+              <Line isAnimationActive={false} type="monotone" dataKey="assists" stroke="var(--color-primary-light)" strokeWidth={2.5} dot={{ r: 3, fill: 'var(--color-primary-light)', stroke: '#fff', strokeWidth: 2 }} name={t('progress.assists')} />
+              <Line isAnimationActive={false} type="monotone" dataKey="rating" stroke="#f59e0b" strokeWidth={1.5} strokeDasharray="5 5" dot={false} name={t('progress.selfRating')} />
             </LineChart>
           </ResponsiveContainer>
         </div>
@@ -245,7 +245,7 @@ export function ProgressPage() {
               contentStyle={{ fontSize: 12, borderRadius: 12, border: 'none', boxShadow: '0 4px 16px rgba(0,0,0,0.1)', fontFamily: 'var(--font-data)' }}
               cursor={{ stroke: 'var(--color-primary)', strokeWidth: 1, strokeDasharray: '4 4' }}
             />
-            <Area type="monotone" dataKey="minutes" name={t('clubhouse.minutes')} stroke="var(--color-primary)" strokeWidth={2.5} fill="url(#xpGradient)" dot={false} activeDot={{ r: 5, fill: 'var(--color-primary)', stroke: '#fff', strokeWidth: 2 }} />
+            <Area isAnimationActive={false} type="monotone" dataKey="minutes" name={t('clubhouse.minutes')} stroke="var(--color-primary)" strokeWidth={2.5} fill="url(#xpGradient)" dot={false} activeDot={{ r: 5, fill: 'var(--color-primary)', stroke: '#fff', strokeWidth: 2 }} />
           </AreaChart>
         </ResponsiveContainer>
       </div>
@@ -265,7 +265,7 @@ export function ProgressPage() {
             <XAxis dataKey="week" tick={{ fontSize: 12, fill: 'var(--color-text-muted)' }} axisLine={false} tickLine={false} />
             <YAxis tick={{ fontSize: 12, fill: 'var(--color-text-muted)' }} width={20} allowDecimals={false} axisLine={false} tickLine={false} />
             <Tooltip contentStyle={{ fontSize: 12, borderRadius: 12, border: 'none', boxShadow: '0 4px 16px rgba(0,0,0,0.1)' }} />
-            <Bar dataKey="sessions" fill="url(#trainingGradient)" radius={[6, 6, 0, 0]} />
+            <Bar isAnimationActive={false} dataKey="sessions" fill="url(#trainingGradient)" radius={[6, 6, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
       </div>
@@ -316,8 +316,8 @@ export function ProgressPage() {
               <XAxis dataKey="date" tick={{ fontSize: 12, fill: 'var(--color-text-muted)' }} axisLine={false} tickLine={false} />
               <YAxis domain={[1, 5]} ticks={[1, 2, 3, 4, 5]} tick={{ fontSize: 12, fill: 'var(--color-text-muted)' }} width={20} axisLine={false} tickLine={false} />
               <Tooltip contentStyle={{ fontSize: 12, borderRadius: 12, border: 'none', boxShadow: '0 4px 16px rgba(0,0,0,0.1)' }} />
-              <Line type="monotone" dataKey="mood" stroke="#f59e0b" strokeWidth={2.5} dot={{ r: 3, fill: '#f59e0b', stroke: '#fff', strokeWidth: 2 }} name={t('checkin.mood')} />
-              <Line type="monotone" dataKey="energy" stroke="var(--color-primary-light)" strokeWidth={2.5} dot={{ r: 3, fill: 'var(--color-primary-light)', stroke: '#fff', strokeWidth: 2 }} name={t('checkin.energy')} />
+              <Line isAnimationActive={false} type="monotone" dataKey="mood" stroke="#f59e0b" strokeWidth={2.5} dot={{ r: 3, fill: '#f59e0b', stroke: '#fff', strokeWidth: 2 }} name={t('checkin.mood')} />
+              <Line isAnimationActive={false} type="monotone" dataKey="energy" stroke="var(--color-primary-light)" strokeWidth={2.5} dot={{ r: 3, fill: 'var(--color-primary-light)', stroke: '#fff', strokeWidth: 2 }} name={t('checkin.energy')} />
             </LineChart>
           </ResponsiveContainer>
           <div className="flex justify-center gap-4 mt-2">
@@ -337,8 +337,8 @@ export function ProgressPage() {
               <XAxis dataKey="match" tick={{ fontSize: 12, fill: 'var(--color-text-muted)' }} axisLine={false} tickLine={false} />
               <YAxis domain={[0, 10]} tick={{ fontSize: 12, fill: 'var(--color-text-muted)' }} width={20} axisLine={false} tickLine={false} />
               <Tooltip contentStyle={{ fontSize: 12, borderRadius: 12, border: 'none', boxShadow: '0 4px 16px rgba(0,0,0,0.1)' }} />
-              <Line type="monotone" dataKey="mood" stroke="#f59e0b" strokeWidth={2} dot={{ r: 3, fill: '#f59e0b', stroke: '#fff', strokeWidth: 2 }} name={t('checkin.mood')} />
-              <Line type="monotone" dataKey="rating" stroke="var(--color-primary)" strokeWidth={2.5} dot={{ r: 3, fill: 'var(--color-primary)', stroke: '#fff', strokeWidth: 2 }} name={t('progress.selfRating')} />
+              <Line isAnimationActive={false} type="monotone" dataKey="mood" stroke="#f59e0b" strokeWidth={2} dot={{ r: 3, fill: '#f59e0b', stroke: '#fff', strokeWidth: 2 }} name={t('checkin.mood')} />
+              <Line isAnimationActive={false} type="monotone" dataKey="rating" stroke="var(--color-primary)" strokeWidth={2.5} dot={{ r: 3, fill: 'var(--color-primary)', stroke: '#fff', strokeWidth: 2 }} name={t('progress.selfRating')} />
             </LineChart>
           </ResponsiveContainer>
         </div>
@@ -355,8 +355,8 @@ export function ProgressPage() {
               <YAxis yAxisId="left" tick={{ fontSize: 12, fill: 'var(--color-text-muted)' }} width={30} axisLine={false} tickLine={false} domain={['dataMin - 5', 'dataMax + 5']} />
               <YAxis yAxisId="right" orientation="right" tick={{ fontSize: 12, fill: 'var(--color-text-muted)' }} width={30} axisLine={false} tickLine={false} domain={['dataMin - 5', 'dataMax + 5']} />
               <Tooltip contentStyle={{ fontSize: 12, borderRadius: 12, border: 'none', boxShadow: '0 4px 16px rgba(0,0,0,0.1)' }} />
-              {hasPhysicalField('height') && <Line yAxisId="left" type="monotone" dataKey="height" stroke="#8b5cf6" strokeWidth={2.5} dot={{ r: 3, fill: '#8b5cf6', stroke: '#fff', strokeWidth: 2 }} name={t('progress.height')} connectNulls />}
-              {hasPhysicalField('weight') && <Line yAxisId="right" type="monotone" dataKey="weight" stroke="#f59e0b" strokeWidth={2.5} dot={{ r: 3, fill: '#f59e0b', stroke: '#fff', strokeWidth: 2 }} name={t('progress.weight')} connectNulls />}
+              {hasPhysicalField('height') && <Line isAnimationActive={false} yAxisId="left" type="monotone" dataKey="height" stroke="#8b5cf6" strokeWidth={2.5} dot={{ r: 3, fill: '#8b5cf6', stroke: '#fff', strokeWidth: 2 }} name={t('progress.height')} connectNulls />}
+              {hasPhysicalField('weight') && <Line isAnimationActive={false} yAxisId="right" type="monotone" dataKey="weight" stroke="#f59e0b" strokeWidth={2.5} dot={{ r: 3, fill: '#f59e0b', stroke: '#fff', strokeWidth: 2 }} name={t('progress.weight')} connectNulls />}
             </LineChart>
           </ResponsiveContainer>
           <div className="flex justify-center gap-4 mt-2">
@@ -387,10 +387,10 @@ export function ProgressPage() {
               <XAxis dataKey="date" tick={{ fontSize: 12, fill: 'var(--color-text-muted)' }} axisLine={false} tickLine={false} />
               <YAxis tick={{ fontSize: 12, fill: 'var(--color-text-muted)' }} width={30} axisLine={false} tickLine={false} />
               <Tooltip contentStyle={{ fontSize: 12, borderRadius: 12, border: 'none', boxShadow: '0 4px 16px rgba(0,0,0,0.1)' }} />
-              {hasPhysicalField('sprint10') && <Line type="monotone" dataKey="sprint10" stroke="#ef4444" strokeWidth={2} dot={{ r: 3, fill: '#ef4444', stroke: '#fff', strokeWidth: 2 }} name={t('physical.sprint10m')} connectNulls />}
-              {hasPhysicalField('sprint20') && <Line type="monotone" dataKey="sprint20" stroke="#f97316" strokeWidth={2} dot={{ r: 3, fill: '#f97316', stroke: '#fff', strokeWidth: 2 }} name={t('physical.sprint20m')} connectNulls />}
-            {hasPhysicalField('cmj') && <Line type="monotone" dataKey="cmj" stroke="var(--color-primary-light)" strokeWidth={2} dot={{ r: 3, fill: 'var(--color-primary-light)', stroke: '#fff', strokeWidth: 2 }} name={t('physical.cmj')} connectNulls />}
-            {hasPhysicalField('jump') && <Line type="monotone" dataKey="jump" stroke="var(--color-primary)" strokeWidth={2} dot={{ r: 3, fill: 'var(--color-primary)', stroke: '#fff', strokeWidth: 2 }} name={t('physical.standingJump')} connectNulls />}
+              {hasPhysicalField('sprint10') && <Line isAnimationActive={false} type="monotone" dataKey="sprint10" stroke="#ef4444" strokeWidth={2} dot={{ r: 3, fill: '#ef4444', stroke: '#fff', strokeWidth: 2 }} name={t('physical.sprint10m')} connectNulls />}
+              {hasPhysicalField('sprint20') && <Line isAnimationActive={false} type="monotone" dataKey="sprint20" stroke="#f97316" strokeWidth={2} dot={{ r: 3, fill: '#f97316', stroke: '#fff', strokeWidth: 2 }} name={t('physical.sprint20m')} connectNulls />}
+            {hasPhysicalField('cmj') && <Line isAnimationActive={false} type="monotone" dataKey="cmj" stroke="var(--color-primary-light)" strokeWidth={2} dot={{ r: 3, fill: 'var(--color-primary-light)', stroke: '#fff', strokeWidth: 2 }} name={t('physical.cmj')} connectNulls />}
+            {hasPhysicalField('jump') && <Line isAnimationActive={false} type="monotone" dataKey="jump" stroke="var(--color-primary)" strokeWidth={2} dot={{ r: 3, fill: 'var(--color-primary)', stroke: '#fff', strokeWidth: 2 }} name={t('physical.standingJump')} connectNulls />}
             </LineChart>
           </ResponsiveContainer>
           ) : (
@@ -410,8 +410,8 @@ export function ProgressPage() {
               <XAxis dataKey="date" tick={{ fontSize: 12, fill: 'var(--color-text-muted)' }} axisLine={false} tickLine={false} />
               <YAxis tick={{ fontSize: 12, fill: 'var(--color-text-muted)' }} width={30} axisLine={false} tickLine={false} />
               <Tooltip contentStyle={{ fontSize: 12, borderRadius: 12, border: 'none', boxShadow: '0 4px 16px rgba(0,0,0,0.1)' }} />
-              {hasPhysicalField('yoyo') && <Line type="monotone" dataKey="yoyo" stroke="var(--color-primary)" strokeWidth={2.5} dot={{ r: 3, fill: 'var(--color-primary)', stroke: '#fff', strokeWidth: 2 }} name={t('progress.yoyo')} connectNulls />}
-              {hasPhysicalField('agility') && <Line type="monotone" dataKey="agility" stroke="#f59e0b" strokeWidth={2.5} dot={{ r: 3, fill: '#f59e0b', stroke: '#fff', strokeWidth: 2 }} name={t('progress.agility')} connectNulls />}
+              {hasPhysicalField('yoyo') && <Line isAnimationActive={false} type="monotone" dataKey="yoyo" stroke="var(--color-primary)" strokeWidth={2.5} dot={{ r: 3, fill: 'var(--color-primary)', stroke: '#fff', strokeWidth: 2 }} name={t('progress.yoyo')} connectNulls />}
+              {hasPhysicalField('agility') && <Line isAnimationActive={false} type="monotone" dataKey="agility" stroke="#f59e0b" strokeWidth={2.5} dot={{ r: 3, fill: '#f59e0b', stroke: '#fff', strokeWidth: 2 }} name={t('progress.agility')} connectNulls />}
             </LineChart>
           </ResponsiveContainer>
           ) : (
@@ -431,8 +431,8 @@ export function ProgressPage() {
               <XAxis dataKey="date" tick={{ fontSize: 12, fill: 'var(--color-text-muted)' }} axisLine={false} tickLine={false} />
               <YAxis tick={{ fontSize: 12, fill: 'var(--color-text-muted)' }} width={35} axisLine={false} tickLine={false} />
               <Tooltip contentStyle={{ fontSize: 12, borderRadius: 12, border: 'none', boxShadow: '0 4px 16px rgba(0,0,0,0.1)' }} />
-              {hasPhysicalField('plank') && <Line type="monotone" dataKey="plank" stroke="#ef4444" strokeWidth={2.5} dot={{ r: 3, fill: '#ef4444', stroke: '#fff', strokeWidth: 2 }} name={t('progress.plank')} connectNulls />}
-              {hasPhysicalField('juggles') && <Line type="monotone" dataKey="juggles" stroke="var(--color-primary)" strokeWidth={2.5} dot={{ r: 3, fill: 'var(--color-primary)', stroke: '#fff', strokeWidth: 2 }} name={t('progress.juggles')} connectNulls />}
+              {hasPhysicalField('plank') && <Line isAnimationActive={false} type="monotone" dataKey="plank" stroke="#ef4444" strokeWidth={2.5} dot={{ r: 3, fill: '#ef4444', stroke: '#fff', strokeWidth: 2 }} name={t('progress.plank')} connectNulls />}
+              {hasPhysicalField('juggles') && <Line isAnimationActive={false} type="monotone" dataKey="juggles" stroke="var(--color-primary)" strokeWidth={2.5} dot={{ r: 3, fill: 'var(--color-primary)', stroke: '#fff', strokeWidth: 2 }} name={t('progress.juggles')} connectNulls />}
             </LineChart>
           </ResponsiveContainer>
           ) : (

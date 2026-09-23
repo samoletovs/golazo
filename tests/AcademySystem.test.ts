@@ -46,6 +46,7 @@ describe('complete Academy shell contract', () => {
     expect(css).not.toContain('.app-shell')
     expect(css).not.toMatch(/transition:\s*all\b/)
     expect(css).toContain('prefers-reduced-motion')
+    expect(css).toMatch(/prefers-reduced-motion:reduce[\s\S]*animation: none !important; transition: none !important/)
   })
 
   it('applies the Academy page or introductory structure to every reachable page, not just Home', () => {
