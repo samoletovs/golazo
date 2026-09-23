@@ -1,3 +1,4 @@
+import { formatDisplayDate } from '../utils/dateFormat'
 import { AcademyPage } from '../components/academy/AcademyPage'
 import { AcademyError } from '../components/academy/AcademyState'
 import { useState, useEffect } from 'react'
@@ -207,7 +208,7 @@ export function AnnouncementsPage({ teamId, teamName, teamIds, coachId, coachNam
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-bold">{ann.title}</p>
                   <p className="text-xs mt-0.5" style={{ color: 'var(--color-text-muted)' }}>
-                    {ann.authorName} · {new Date(ann.createdAt).toLocaleDateString()}
+                    {ann.authorName} · {formatDisplayDate(new Date(ann.createdAt))}
                   </p>
                 </div>
               </div>

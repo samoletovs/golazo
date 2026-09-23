@@ -1,3 +1,4 @@
+import { formatDisplayDate } from '../utils/dateFormat'
 import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
@@ -67,7 +68,7 @@ export function AnnouncementFeed() {
             <div className="flex-1 min-w-0">
               <p className="text-sm font-bold">{ann.title}</p>
               <p className="text-xs mt-0.5" style={{ color: 'var(--color-text-muted)' }}>
-                {ann.authorName} · {new Date(ann.createdAt).toLocaleDateString()}
+                {ann.authorName} · {formatDisplayDate(new Date(ann.createdAt))}
               </p>
               <p className="text-xs mt-1 leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
                 {ann.body.length > 120 ? ann.body.slice(0, 120) + '…' : ann.body}

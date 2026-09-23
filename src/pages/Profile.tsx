@@ -81,7 +81,7 @@ export function Profile() {
         <AcademyTeams onManage={() => setShowTeams(true)} />
       </div>
       <div className="academy-stack">
-        {player && <><TacticalGraphic kind="position" position={profile?.positions?.[0]} /><AcademyPanel><PersonalGoals /></AcademyPanel><AcademyPanel><AchievementsList /></AcademyPanel></>}
+        {player && <><TacticalGraphic kind={profile?.positions?.length ? 'position' : 'touch'} position={profile?.positions?.[0]} /><AcademyPanel><PersonalGoals /></AcademyPanel><AcademyPanel><AchievementsList /></AcademyPanel></>}
         {player && <AcademyPhysicalHistory />}
       </div>
     </div>

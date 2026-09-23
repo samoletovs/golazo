@@ -1,3 +1,4 @@
+import { formatDisplayDate } from '../utils/dateFormat'
 import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
@@ -72,7 +73,7 @@ export function EvaluationHistory() {
             <div className="flex items-center justify-between mb-1">
               <p className="text-sm font-bold">{ev.period}</p>
               <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
-                {ev.coachName} · {new Date(ev.date).toLocaleDateString()}
+                {ev.coachName} · {formatDisplayDate(new Date(ev.date))}
               </p>
             </div>
 

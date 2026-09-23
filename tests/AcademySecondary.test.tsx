@@ -7,6 +7,7 @@ import { AchievementsList } from '../src/components/AchievementsList'
 import { CoachCard } from '../src/components/CoachCard'
 import i18n from '../src/i18n'
 import type { ReactNode } from 'react'
+import { formatDisplayDate } from '../src/utils/dateFormat'
 
 function mount(children: ReactNode) {
   return render(<AppProvider><ToastProvider>{children}</ToastProvider></AppProvider>)
@@ -20,6 +21,12 @@ beforeEach(async () => {
 afterEach(() => { vi.restoreAllMocks(); vi.unstubAllGlobals() })
 
 describe('Academy supporting player controls', () => {
+  it.each(['en', 'lv', 'ru', 'es', 'lt', 'et'])('keeps document language aligned with %s controls', async language => {
+    await i18n.changeLanguage(language)
+    expect(document.documentElement.lang).toBe(language)
+    const months: Record<string, string> = { en: 'September', lv: 'septembris', ru: 'сентябрь', es: 'septiembre', lt: 'rugsėjis', et: 'september' }
+    expect(formatDisplayDate(new Date('2026-09-23T12:00:00'), { month: 'long' })).toBe(months[language])
+  })
   it('keeps all 17 achievement definitions readable behind an accessible disclosure', () => {
     mount(<AchievementsList />)
     fireEvent.click(screen.getByText(i18n.t('academy.achievementCollection', { count: 17 })))

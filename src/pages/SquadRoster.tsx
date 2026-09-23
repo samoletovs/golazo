@@ -1,3 +1,4 @@
+import { formatDisplayDate } from '../utils/dateFormat'
 import { AcademyPage } from '../components/academy/AcademyPage'
 import { AcademyError, AcademyLoading } from '../components/academy/AcademyState'
 import { useState, useEffect } from 'react'
@@ -81,13 +82,13 @@ export function SquadRoster({ teamId, teamName, onBack, onEvaluate }: SquadRoste
 
           <div className="grid grid-cols-2 gap-2 text-center">
             <div className="py-2 rounded-xl" style={{ background: 'var(--color-glass-hover)' }}>
-              <p className="text-sm font-bold">{new Date(selectedPlayer.birthDate).toLocaleDateString()}</p>
+              <p className="text-sm font-bold">{formatDisplayDate(new Date(selectedPlayer.birthDate))}</p>
               <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
                 {t('onboarding.birthDate')}
               </p>
             </div>
             <div className="py-2 rounded-xl" style={{ background: 'var(--color-glass-hover)' }}>
-              <p className="text-sm font-bold">{new Date(selectedPlayer.joinedAt).toLocaleDateString()}</p>
+              <p className="text-sm font-bold">{formatDisplayDate(new Date(selectedPlayer.joinedAt))}</p>
               <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
                 {t('coach.roster.lastActive')}
               </p>

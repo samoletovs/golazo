@@ -1,3 +1,4 @@
+import { formatDisplayDate } from '../utils/dateFormat'
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
@@ -59,7 +60,7 @@ export function ProgressPage() {
   const physicalData = useMemo(() => {
     if (!physicalProfile?.measurements.length) return []
     return physicalProfile.measurements.map((m) => ({
-      date: new Date(m.measuredAt).toLocaleDateString(undefined, { month: 'short', year: '2-digit' }),
+      date: formatDisplayDate(new Date(m.measuredAt), { month: 'short', year: '2-digit' }),
       height: m.heightCm || null,
       weight: m.weightKg || null,
       bmi: m.heightCm && m.weightKg ? Math.round((m.weightKg / ((m.heightCm / 100) ** 2)) * 10) / 10 : null,
@@ -184,7 +185,7 @@ export function ProgressPage() {
               return (
                 <div key={m.id} className="match-card-h" style={{ background: bg, width: 180 }} data-result={result}>
                   <p className="text-xs font-bold" style={{ color: 'var(--color-text-muted)' }}>
-                    {new Date(m.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
+                    {formatDisplayDate(new Date(m.date), { month: 'short', day: 'numeric' })}
                   </p>
                   <p className="text-xs font-bold mt-1 heading-display">
                     {m.opponent}

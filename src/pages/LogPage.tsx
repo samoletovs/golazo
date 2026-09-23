@@ -1,3 +1,4 @@
+import { formatDisplayDate } from '../utils/dateFormat'
 import { lazy, Suspense, useState, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
@@ -107,7 +108,7 @@ export function LogPage() {
             ? t('log.today')
             : daysBack === 1
             ? t('log.yesterday')
-            : d.toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' })
+            : formatDisplayDate(d, { weekday: 'short', month: 'short', day: 'numeric' })
 
           result.push({ event: ev, isToday, dayLabel })
         }

@@ -1,3 +1,4 @@
+import { formatDisplayDate } from '../utils/dateFormat'
 import { AcademyPage } from '../components/academy/AcademyPage'
 import { AcademyDialog } from '../components/academy/AcademyDialog'
 import { useState, useMemo, useEffect } from 'react'
@@ -321,7 +322,7 @@ export function SchedulePage() {
   const isCurrentWeek = weekOffset === 0
   const weekSunday = new Date(weekMonday)
   weekSunday.setDate(weekMonday.getDate() + 6)
-  const weekLabel = `${weekMonday.toLocaleDateString(undefined, { day: 'numeric', month: 'short' })} – ${weekSunday.toLocaleDateString(undefined, { day: 'numeric', month: 'short' })}`
+  const weekLabel = `${formatDisplayDate(weekMonday, { day: 'numeric', month: 'short' })} – ${formatDisplayDate(weekSunday, { day: 'numeric', month: 'short' })}`
 
   function prevMonth() {
     if (viewMonth === 0) {
@@ -477,7 +478,7 @@ export function SchedulePage() {
       ? weekEventsByDate.get(selectedDate) ?? []
       : eventsByDate.get(selectedDate) ?? [])
     : []
-  const monthName = new Date(viewYear, viewMonth).toLocaleDateString(undefined, { month: 'long', year: 'numeric' })
+  const monthName = formatDisplayDate(new Date(viewYear, viewMonth), { month: 'long', year: 'numeric' })
 
   return (
     <AcademyPage surface="pages-schedule-page" title={t('mentor.schedule.title')} className="academy-support-page">
@@ -664,7 +665,7 @@ export function SchedulePage() {
       {selectedDate && (
             <div className="flex flex-col gap-2 animate-fade-up">
               <p className="section-label">
-                {new Date(selectedDate + 'T00:00:00').toLocaleDateString(undefined, { weekday: 'long', month: 'short', day: 'numeric' })}
+                {formatDisplayDate(new Date(selectedDate + 'T00:00:00'), { weekday: 'long', month: 'short', day: 'numeric' })}
               </p>
 
               {selectedEvents.length === 0 && (

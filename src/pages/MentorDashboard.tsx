@@ -1,3 +1,4 @@
+import { formatDisplayDate } from '../utils/dateFormat'
 import { AcademyPage } from '../components/academy/AcademyPage'
 import { AcademyError, AcademyLoading } from '../components/academy/AcademyState'
 import { useMemo, useState, useEffect } from 'react'
@@ -225,7 +226,7 @@ export function MentorDashboard() {
                   {moodNum >= 3.5 ? t('mentor.status.good') : moodNum >= 2.5 ? t('mentor.status.attention') : t('mentor.status.concern')}
                 </p>
                 <p className="text-xs mt-0.5" style={{ color: 'var(--color-text-muted)' }}>
-                  {t('mentor.status.lastCheckin')}: {new Date(latest.date).toLocaleDateString()}
+                  {t('mentor.status.lastCheckin')}: {formatDisplayDate(new Date(latest.date))}
                 </p>
               </div>
             </div>
@@ -362,7 +363,7 @@ export function MentorDashboard() {
                   <div className="flex-1 min-w-0">
                     <p className="text-xs font-bold truncate">{m.opponent}</p>
                     <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
-                      {new Date(m.date).toLocaleDateString()}
+                      {formatDisplayDate(new Date(m.date))}
                     </p>
                   </div>
                   <span className="text-sm font-black font-data">{m.scoreUs}:{m.scoreThem}</span>

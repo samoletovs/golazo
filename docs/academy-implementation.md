@@ -31,6 +31,8 @@ helpers are not represented as reachable product screens.
 
 - No backend endpoint, authentication contract or persisted product schema was
   changed. There are no synthetic production records or new recommendation APIs.
+- Document language and displayed dates follow the selected app language.
+  Persisted ISO dates and calendar identifiers are unchanged.
 - Training, match and diary records and their real XP changes are written
   atomically to local storage before publication. A stable draft ID prevents a
   double-submit from duplicating a record or reward. Existing match growth and

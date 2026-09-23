@@ -199,7 +199,7 @@ export function OnboardingPage() {
       <aside className="academy-welcome-story">
         <p className="academy-brand">golazo<span>.</span></p>
         <div><span className="academy-eyebrow">{t('academy.yourFootball')}</span><h1>{t('onboarding.welcome')}</h1><p>{t('academy.profileIntro')}</p></div>
-        <TacticalGraphic kind="position" position={form.positions[0]} />
+        <TacticalGraphic kind={form.positions.length ? 'position' : 'touch'} position={form.positions[0]} />
       </aside>
       <div className="academy-welcome-form">
         {/* Progress bar */}
