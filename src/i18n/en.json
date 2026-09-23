@@ -1,4 +1,9 @@
 {
+  "academy.achievementsIntro": "Milestones from your own football journey. Rest and missed days are part of it.",
+  "academy.achievementCollection": "Explore the collection ({{count}})",
+  "academy.localPracticeTitle": "Practice ideas",
+  "academy.localPracticeSource": "Suggestions calculated on this device from your recorded activity and skills, not an AI response.",
+  "academy.coachUnavailable": "AI guidance is unavailable right now. Your local practice ideas are still available.",
   "academy.squadSavesConfirmed": "Confirmed squads: {{count}} / {{total}}. Confirmed squads are not sent again on retry.",
   "academy.participants": "Participants: {{count}}",
   "academy.overallSkill": "Overall skill rating",

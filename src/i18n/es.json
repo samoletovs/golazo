@@ -1,4 +1,9 @@
 {
+  "academy.achievementsIntro": "Hitos de tu propio camino en el fútbol. El descanso y los días sin entrenar también forman parte.",
+  "academy.achievementCollection": "Explorar la colección ({{count}})",
+  "academy.localPracticeTitle": "Ideas para practicar",
+  "academy.localPracticeSource": "Sugerencias calculadas en este dispositivo a partir de tu actividad y habilidades registradas, no una respuesta de IA.",
+  "academy.coachUnavailable": "Los consejos de IA no están disponibles ahora. Tus ideas de práctica locales siguen disponibles.",
   "academy.squadSavesConfirmed": "Equipos confirmados: {{count}} / {{total}}. No se vuelve a enviar a los equipos confirmados al reintentar.",
   "academy.participants": "Participantes: {{count}}",
   "academy.overallSkill": "Valoración general de habilidades",

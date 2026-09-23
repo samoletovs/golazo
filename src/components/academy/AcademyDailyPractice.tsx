@@ -47,7 +47,7 @@ export function AcademyDailyPractice({ onNavigate }: { onNavigate?: (page: strin
       showToast(t('academy.preferenceError'), 'error')
     }
   }
-  return <div className="academy-stack">
+  return <div className="academy-daily-grid">
     <AcademyPanel title={t('routine.cta')}>
       <p className="academy-muted mb-4">{routineDone ? t('checkin.done') : t('routine.ctaSub')}</p>
       {!routineDone && <button className="academy-button secondary" onClick={() => setShowRoutine(true)}>{t('routine.go')}</button>}

@@ -1,4 +1,9 @@
 {
+  "academy.achievementsIntro": "Sinu jalgpalliteekonna verstapostid. Puhkus ja vahelejäänud päevad on samuti selle osa.",
+  "academy.achievementCollection": "Vaata kollektsiooni ({{count}})",
+  "academy.localPracticeTitle": "Harjutamise ideed",
+  "academy.localPracticeSource": "Soovitused on arvutatud selles seadmes sinu kirjapandud tegevuse ja oskuste põhjal, mitte tehisintellekti vastus.",
+  "academy.coachUnavailable": "Tehisintellekti nõuanded pole praegu saadaval. Kohalikud harjutusideed on endiselt kättesaadavad.",
   "academy.squadSavesConfirmed": "Kinnitatud võistkonnad: {{count}} / {{total}}. Uuel katsel ei saadeta kinnitatud võistkondadele uuesti.",
   "academy.participants": "Osalejad: {{count}}",
   "academy.overallSkill": "Oskuste üldhinnang",

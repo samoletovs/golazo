@@ -1,4 +1,9 @@
 {
+  "academy.achievementsIntro": "Вехи твоего футбольного пути. Отдых и пропущенные дни тоже его часть.",
+  "academy.achievementCollection": "Посмотреть коллекцию ({{count}})",
+  "academy.localPracticeTitle": "Идеи для тренировок",
+  "academy.localPracticeSource": "Подсказки рассчитаны на устройстве по записанным занятиям и навыкам. Это не ответ ИИ.",
+  "academy.coachUnavailable": "Советы ИИ сейчас недоступны. Локальные идеи для тренировок остаются доступными.",
   "academy.squadSavesConfirmed": "Подтверждённые команды: {{count}} / {{total}}. При повторной попытке данные не отправляются им заново.",
   "academy.participants": "Участники: {{count}}",
   "academy.overallSkill": "Общая оценка навыков",

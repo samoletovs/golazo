@@ -1,4 +1,9 @@
 {
+  "academy.achievementsIntro": "Pieturas punkti tavā futbola ceļā. Arī atpūta un izlaistas dienas ir tā daļa.",
+  "academy.achievementCollection": "Apskatīt kolekciju ({{count}})",
+  "academy.localPracticeTitle": "Idejas treniņiem",
+  "academy.localPracticeSource": "Ieteikumi aprēķināti šajā ierīcē no pierakstītajām aktivitātēm un prasmēm. Tā nav MI atbilde.",
+  "academy.coachUnavailable": "MI ieteikumi pašlaik nav pieejami. Vietējās treniņu idejas joprojām ir pieejamas.",
   "academy.squadSavesConfirmed": "Apstiprinātās komandas: {{count}} / {{total}}. Atkārtoti mēģinot, apstiprinātajām komandām dati netiek sūtīti vēlreiz.",
   "academy.participants": "Dalībnieki: {{count}}",
   "academy.overallSkill": "Kopējais prasmju vērtējums",

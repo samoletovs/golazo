@@ -48,6 +48,9 @@ helpers are not represented as reachable product screens.
   The selection filters only records that actually carry a player identifier.
 - Program focus metadata is not displayed as a measured skill increase.
   Overall skill ratings and XP rank are labelled separately.
+- Offline calculated practice ideas are labelled separately from an AI response.
+  An unavailable AI request remains an explicit error with a retry, not an
+  apparently successful generated plan.
 - Rest and missed sessions do not generate records or XP. Comparisons describe
   stored activity without presenting lower frequency as failure.
 

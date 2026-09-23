@@ -27,6 +27,7 @@ export function CoachCard() {
   const [aiAdvice, setAiAdvice] = useState<CoachAdvice | null>(null)
   const [loading, setLoading] = useState(false)
   const [aiAvailable, setAiAvailable] = useState<boolean | null>(null)
+  const [cacheError, setCacheError] = useState(false)
 
   const localAdvice = useMemo(
     () => generateLocalAdvice(skillTree, matches, trainings, t, diary, tournaments, checkIns),
@@ -73,6 +74,7 @@ export function CoachCard() {
 
   async function fetchAiAdvice() {
     setLoading(true)
+    setCacheError(false)
     try {
       const res = await fetch('/api/coach', {
         method: 'POST',
@@ -86,7 +88,7 @@ export function CoachCard() {
           physicalProfile,
         }),
       })
-      if (!res.ok) throw new Error('Failed')
+      if (!res.ok) throw new Error(`AI advice request failed: ${res.status}`)
       const data = await res.json() as CoachAdvice
       if ((data.focusArea as string) === 'general') {
         setAiAvailable(false)
@@ -94,8 +96,10 @@ export function CoachCard() {
       }
       setAiAdvice(data)
       setAiAvailable(true)
-      localStorage.setItem('golazo-coach', JSON.stringify({ data, ts: Date.now() }))
-    } catch {
+      try { localStorage.setItem('golazo-coach', JSON.stringify({ data, ts: Date.now() })) }
+      catch (cause) { console.error('Advice could not be cached on this device:', cause); setCacheError(true) }
+    } catch (cause) {
+      console.error('AI advice could not be loaded:', cause)
       setAiAvailable(false)
     } finally {
       setLoading(false)
@@ -109,8 +113,7 @@ export function CoachCard() {
     <div className="card-glow animate-fade-up">
       {/* Header */}
       <div className="flex items-center gap-2 mb-2">
-        <span className="text-xl">🧠</span>
-        <p className="text-base font-bold heading-display">{t('coach.title')}</p>
+        <h2>{t(aiAdvice ? 'coach.title' : 'academy.localPracticeTitle')}</h2>
         {aiAdvice && (
           <span className="text-xs px-1.5 py-0.5 rounded-full font-bold" style={{ background: 'var(--color-primary-bg)', color: 'var(--color-primary-dark)' }}>
             AI
@@ -119,6 +122,9 @@ export function CoachCard() {
       </div>
 
       <div className="flex flex-col gap-2">
+        {!aiAdvice && <p className="academy-hint">{t('academy.localPracticeSource')}</p>}
+        {aiAvailable === false && <p className="academy-error" role="alert">{t('academy.coachUnavailable')}</p>}
+        {cacheError && <p className="academy-error" role="alert">{t('academy.preferenceError')}</p>}
         {/* Greeting */}
         <p className="text-xs font-medium" style={{ color: 'var(--color-text-primary)' }}>
           {advice.greeting}
@@ -155,14 +161,14 @@ export function CoachCard() {
         )}
 
         {/* AI upgrade button */}
-        {!aiAdvice && aiAvailable !== false && (
+        {!aiAdvice && (
           <button
             className="text-xs mt-1 self-start"
             style={{ color: 'var(--color-primary-dark)', opacity: loading ? 0.5 : 1 }}
             onClick={fetchAiAdvice}
             disabled={loading}
           >
-            {loading ? '...' : `✨ ${t('coach.getAiAdvice')}`}
+            {loading ? t('common.loading') : t(aiAvailable === false ? 'academy.retry' : 'coach.getAiAdvice')}
           </button>
         )}
       </div>

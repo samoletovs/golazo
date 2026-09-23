@@ -72,13 +72,13 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
           <p className="mt-6 text-sm">{xp.currentLevelXp} / {xp.nextLevelXp} XP</p>
           <div className="xp-bar-track mt-2"><div className="xp-bar-fill" style={{ width: `${xp.nextLevelXp > 0 ? Math.min(100, xp.currentLevelXp / xp.nextLevelXp * 100) : 100}%`, background: 'var(--color-coral)' }} /></div>
         </AcademyPanel>
-        <AcademyDailyPractice onNavigate={onNavigate} />
         {measurementDue && <AcademyPanel title={t('physical.reminderTitle')}>
           <div className="academy-actions"><button className="academy-button secondary" onClick={() => setPhysicalOpen(true)}>{t('physical.update')}</button><button className="academy-link" onClick={() => setPhysicalDismissed(true)}>{t('physical.later')}</button></div>
         </AcademyPanel>}
         <QuoteCard />
       </div>
     </div>
+    <AcademyDailyPractice onNavigate={onNavigate} />
     {physicalOpen && <PhysicalUpdateFlow onClose={() => setPhysicalOpen(false)} />}
     {showLevel && !logging && <LevelUpCelebration level={xp.level} onClose={() => setShowLevel(false)} />}
   </AcademyPage>

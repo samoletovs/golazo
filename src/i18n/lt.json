@@ -1,4 +1,9 @@
 {
+  "academy.achievementsIntro": "Tavo futbolo kelio etapai. Poilsis ir praleistos dienos taip pat yra jo dalis.",
+  "academy.achievementCollection": "Peržiūrėti kolekciją ({{count}})",
+  "academy.localPracticeTitle": "Treniruočių idėjos",
+  "academy.localPracticeSource": "Pasiūlymai apskaičiuoti šiame įrenginyje pagal užrašytą veiklą ir įgūdžius, o ne sugeneruoti DI.",
+  "academy.coachUnavailable": "DI patarimai šiuo metu nepasiekiami. Vietinės treniruočių idėjos tebėra pasiekiamos.",
   "academy.squadSavesConfirmed": "Patvirtintos komandos: {{count}} / {{total}}. Bandant dar kartą joms duomenys pakartotinai nesiunčiami.",
   "academy.participants": "Dalyviai: {{count}}",
   "academy.overallSkill": "Bendras įgūdžių įvertinimas",
