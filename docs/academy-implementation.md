@@ -40,6 +40,9 @@ helpers are not represented as reachable product screens.
 - Saved-entry inspection is read-only and never grants XP. Identity editing uses
   the existing profile fields and setter; it does not add a record-edit endpoint
   or manufacture an unstored experience/history field.
+- Tournament import saves the tournament and all of its fixtures in one local
+  write. Repeating the same open import draft does not duplicate them. Optional
+  team sharing is reported separately and is not implied by local success.
 - A local save explicitly does **not** confirm a cloud save. Remote coach writes
   report failed/unconfirmed responses and retain the editor. Multi-squad retries
   skip confirmed targets within that editor. An interrupted response remains

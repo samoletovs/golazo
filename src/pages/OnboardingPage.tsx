@@ -203,7 +203,7 @@ export function OnboardingPage() {
       </aside>
       <div className="academy-welcome-form">
         {/* Progress bar */}
-        <div className="p-4 pb-0">
+        <div>
           <div className="progress-track" style={{ height: '4px' }}>
             <div
               className="progress-fill"
@@ -228,7 +228,7 @@ export function OnboardingPage() {
         </div>
 
         {/* Step content */}
-        <main className="flex-1 p-4 overflow-y-auto">
+        <main className="flex-1 min-w-0">
           {step === 'role' && (
             <div className="flex flex-col gap-4 animate-fade-up">
               <h2 className="text-xl font-extrabold">{t('onboarding.welcome')}</h2>
@@ -306,7 +306,7 @@ export function OnboardingPage() {
                   className="w-full"
                 />
 
-                <div className="grid grid-cols-2 gap-2 mt-2">
+                <div className="academy-onboarding-fields mt-2">
                   <div>
                     <label className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>
                       {t('onboarding.country')}
@@ -355,7 +355,7 @@ export function OnboardingPage() {
                         key={team.id}
                         className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold"
                         style={{
-                          background: i === 0 ? 'var(--color-primary-light, #dcfce7)' : 'var(--color-glass-active, #f1f5f9)',
+                          background: i === 0 ? 'var(--color-primary-bg)' : 'var(--color-glass-active, #f1f5f9)',
                           color: i === 0 ? 'var(--color-primary-dark, #166534)' : 'var(--color-text)',
                         }}
                       >
@@ -541,7 +541,7 @@ export function OnboardingPage() {
                               type="button"
                               className="text-xs px-2.5 py-1 rounded-full font-bold transition-colors"
                               style={{
-                                background: isOn ? 'var(--color-primary-light, #dcfce7)' : 'var(--color-glass-active, #e2e8f0)',
+                                background: isOn ? 'var(--color-primary-bg)' : 'var(--color-glass-active, #e2e8f0)',
                                 color: isOn ? 'var(--color-primary-dark, #166534)' : 'var(--color-text-muted)',
                                 opacity: isRequired ? 0.7 : 1,
                               }}
@@ -571,7 +571,7 @@ export function OnboardingPage() {
                         {groupInfo.emoji} {t(groupInfo.labelKey)} <span className="normal-case font-normal">({t('onboarding.optional')})</span>
                       </p>
                     )}
-                    <div className="grid grid-cols-2 gap-3">
+                    <div className="academy-onboarding-fields">
                       {groupFields.map((field) => (
                         <div key={field.key} className="flex flex-col gap-1">
                           <label className="text-xs font-bold" style={{ color: 'var(--color-text-secondary)' }}>
@@ -623,7 +623,7 @@ export function OnboardingPage() {
                     <p className="text-sm font-bold mb-2">
                       {skill.emoji} {t(skill.labelKey)}
                     </p>
-                    <div className="flex gap-1">
+                    <div className="academy-assessment-options">
                       {[1, 2, 3, 4, 5].map((level) => (
                         <button
                           key={level}

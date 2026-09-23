@@ -7,6 +7,7 @@ import { prepareTrainingSave } from '../engine/training'
 import type { TrainingReceipt } from '../engine/training'
 import { prepareDiarySave, prepareMatchSave } from '../engine/activitySave'
 import type { ActivityReceipt } from '../engine/activitySave'
+import { prepareTournamentImport } from '../engine/tournamentImport'
 
 /* ── App state ────────────────────────────────────────────── */
 
@@ -43,6 +44,7 @@ interface AppContextValue extends AppState {
   saveDiary: (entry: DiaryEntry) => ActivityReceipt
   addMatch: (m: MatchEntry) => void
   addTournament: (t: Tournament) => void
+  saveTournamentImport: (tournament: Tournament, events: ScheduleEvent[]) => { addedGames: number; alreadySaved: boolean }
   updateTournament: (t: Tournament) => void
   addDiary: (d: DiaryEntry) => void
   addScheduleEvent: (e: ScheduleEvent) => void
@@ -275,6 +277,12 @@ export function AppProvider({ children }: { children: ReactNode }) {
     return prepared.receipt
   }, [update])
 
+  const saveTournamentImport = useCallback((tournament: Tournament, events: ScheduleEvent[]) => {
+    const prepared = prepareTournamentImport(latestStateRef.current, tournament, events)
+    if (!prepared.alreadySaved) update({ tournaments: prepared.tournaments, schedule: prepared.schedule })
+    return { addedGames: prepared.addedGames, alreadySaved: prepared.alreadySaved }
+  }, [update])
+
   // Personal goals support functional updates because goal editors often derive
   // the next list from the current list and should avoid stale closures.
   const setPersonalGoals = useCallback((goalsOrUpdater: PersonalGoal[] | ((prev: PersonalGoal[]) => PersonalGoal[])) => {
@@ -295,11 +303,12 @@ export function AppProvider({ children }: { children: ReactNode }) {
     saveTraining,
     saveMatch,
     saveDiary,
+    saveTournamentImport,
     addMatch: (m) => update({ matches: [...state.matches, m] }),
-    addTournament: (t) => update({ tournaments: [...state.tournaments, t] }),
+    addTournament: (t) => update(previous => ({ tournaments: [...previous.tournaments, t] })),
     updateTournament: (t) => update({ tournaments: state.tournaments.map((x) => (x.id === t.id ? t : x)) }),
     addDiary: (d) => update({ diary: [...state.diary, d] }),
-    addScheduleEvent: (e) => update({ schedule: [...state.schedule, e] }),
+    addScheduleEvent: (e) => update(previous => ({ schedule: [...previous.schedule, e] })),
     removeScheduleEvent: (id) => update({ schedule: state.schedule.filter((e) => e.id !== id) }),
     setRecurringTrainings: (rt) => update({ recurringTrainings: rt }),
     setSpecialChallenges: (sc) => update({ specialChallenges: sc }),

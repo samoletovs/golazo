@@ -385,6 +385,8 @@
 .academy-welcome-form .login-card > svg { width: 28px; flex-shrink: 0; color: var(--color-primary-dark); }
 .academy-welcome-form .login-card > span:first-of-type { flex: 1; }
 .academy-welcome-form .login-card strong { font: 800 1.3rem var(--font-display); }
+.academy-onboarding-fields { display: grid; grid-template-columns: repeat(auto-fit,minmax(min(100%,10rem),1fr)); gap: 16px; }
+.academy-assessment-options { display: grid; grid-template-columns: repeat(auto-fit,minmax(min(100%,7rem),1fr)); gap: 8px; }
 
 @container academy-week (max-width: 60rem) {
   .academy-day { align-items: center; padding: 12px 3px; min-height: 106px; gap: 10px; }
