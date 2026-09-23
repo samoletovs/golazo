@@ -123,12 +123,7 @@ function AppContent() {
   // Show loading skeleton while checking auth OR syncing data from cloud
   if (authLoading || syncing) {
     return (
-      <div className="flex items-center justify-center min-h-dvh" style={{ background: 'var(--color-bg)' }}>
-        <div className="flex flex-col items-center gap-3 animate-fade-up">
-          <span className="text-5xl">⚽</span>
-          <div className="skeleton" style={{ width: 120, height: 20 }} />
-        </div>
-      </div>
+      <main className="academy-bootstrap" data-academy-surface="bootstrap"><p className="academy-brand">golazo.</p><AcademyLoading /></main>
     )
   }
 

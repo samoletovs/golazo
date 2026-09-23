@@ -39,6 +39,16 @@ class DesignGateTests(unittest.TestCase):
         self.git("config", "commit.gpgsign", "false")
         self.git("config", "core.autocrlf", "false")
         self.write(".impeccable.md", "Approved test-only direction A.\n")
+        self.scope = {
+            "version": 1, "kind": "product-redesign",
+            "owner_scope": "Test-only request covering Home and Progress.",
+            "inventory_basis": "Fixture navigation includes Home and Progress.",
+            "surfaces": [
+                {"id": "home", "entry": "Home tab", "role": "player"},
+                {"id": "progress", "entry": "Progress tab", "role": "player"},
+            ],
+        }
+        self.write(".design-scope.json", json.dumps(self.scope))
         self.write("src/App.tsx", "export const label = 'Before';\n")
         for name in ("design-gate.py", "check-design-pr.py"):
             self.write(f"scripts/{name}", (ROOT / "scripts" / name).read_text(encoding="utf-8"))
@@ -88,15 +98,37 @@ class DesignGateTests(unittest.TestCase):
             check=True, capture_output=True,
         ).stdout
         record = {
-            "version": 1, "source_commit": source,
+            "version": 2, "source_commit": source,
             "brief_sha256": hashlib.sha256(canonical).hexdigest(),
+            "scope_sha256": hashlib.sha256((self.repo / ".design-scope.json").read_bytes()).hexdigest(),
             "direction": {"mode": "reuse", "selected": "A", "owner_decision": "Test-only prior approval"},
             "author": "fixture implementer", "reviewer": "fixture independent reviewer",
             "review_notes": "Synthetic unit-test receipt; not product review.",
             "unresolved_findings": [],
             "checks": {name: {"status": "pass", "evidence": "Unit-test contract fixture"} for name in CHECKS},
             "screenshots": screenshots,
+            "coverage": [],
+            "craft": {name: {"status": "pass", "evidence": "Synthetic unit-test contract only"}
+                      for name in ("identity", "composition", "cohesion")},
+            "owner_acceptance": {
+                "status": "approved", "source_commit": source,
+                "decision": "Test-only acceptance fixture, not product approval.",
+            },
         }
+        for index, surface in enumerate(self.scope["surfaces"], start=1):
+            captures = []
+            for viewport, width in (("mobile", 390), ("desktop", 1440)):
+                image = directory / f"{surface['id']}-{viewport}.png"
+                image.write_bytes(fixture_png(width + index, 610 + index))
+                captures.append({
+                    "viewport": viewport, "path": image.relative_to(self.repo).as_posix(),
+                    "sha256": hashlib.sha256(image.read_bytes()).hexdigest(),
+                })
+            record["coverage"].append({
+                "id": surface["id"], "status": "implemented",
+                "evidence": "Synthetic per-surface test fixture, not browser evidence.",
+                "screenshots": captures,
+            })
         path = directory / "review.json"
         path.write_text(json.dumps(record), encoding="utf-8")
         return path
@@ -206,6 +238,49 @@ class DesignGateTests(unittest.TestCase):
         result = self.run_gate(base)
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertIn("No product UI paths changed", result.stderr)
+
+    def test_legacy_receipt_cannot_bypass_complete_scope(self) -> None:
+        path = self.receipt(self.ui_commit())
+        record = json.loads(path.read_text(encoding="utf-8"))
+        record["version"] = 1
+        path.write_text(json.dumps(record), encoding="utf-8")
+        result = self.run_gate()
+        self.assertEqual(result.returncode, 1)
+        self.assertIn("version 2", result.stderr)
+
+    def test_missing_supporting_surface_is_rejected(self) -> None:
+        path = self.receipt(self.ui_commit())
+        record = json.loads(path.read_text(encoding="utf-8"))
+        record["coverage"] = record["coverage"][:1]
+        path.write_text(json.dumps(record), encoding="utf-8")
+        result = self.run_gate()
+        self.assertEqual(result.returncode, 1)
+        self.assertIn("missing surface coverage: progress", result.stderr)
+
+    def test_direction_choice_is_not_final_integrated_owner_acceptance(self) -> None:
+        path = self.receipt(self.ui_commit())
+        record = json.loads(path.read_text(encoding="utf-8"))
+        record["owner_acceptance"]["status"] = "not_run"
+        path.write_text(json.dumps(record), encoding="utf-8")
+        result = self.run_gate()
+        self.assertEqual(result.returncode, 1)
+        self.assertIn("owner acceptance", result.stderr)
+
+    def test_functional_success_cannot_replace_craft_review(self) -> None:
+        path = self.receipt(self.ui_commit())
+        record = json.loads(path.read_text(encoding="utf-8"))
+        record["craft"]["cohesion"]["status"] = "not_run"
+        path.write_text(json.dumps(record), encoding="utf-8")
+        result = self.run_gate()
+        self.assertEqual(result.returncode, 1)
+        self.assertIn("functional checks are not design approval", result.stderr)
+
+    def test_removing_scope_cannot_restore_legacy_shortcut(self) -> None:
+        (self.repo / ".design-scope.json").unlink()
+        self.commit("remove scope")
+        result = self.run_gate()
+        self.assertEqual(result.returncode, 1)
+        self.assertIn("Missing source-controlled", result.stderr)
 
 
 if __name__ == "__main__":

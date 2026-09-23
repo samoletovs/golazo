@@ -2,6 +2,7 @@ import { AcademyDialog } from './academy/AcademyDialog'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
+import { useToast } from '../contexts/ToastContext'
 import type { AgeTier } from '../engine/types'
 import { getAgeTier } from '../engine/types'
 import { getTrackedFieldConfigs, buildMeasurement, PHYSICAL_GROUPS, type PhysicalFieldKey } from '../engine/physical'
@@ -13,6 +14,8 @@ interface Props {
 export function PhysicalUpdateFlow({ onClose }: Props) {
   const { t } = useTranslation()
   const { profile, physicalProfile, setPhysicalProfile } = useApp()
+  const { showToast } = useToast()
+  const [failed, setFailed] = useState(false)
 
   const tier: AgeTier = profile?.birthDate ? getAgeTier(profile.birthDate) : 'u12'
   const fields = getTrackedFieldConfigs(physicalProfile, tier)
@@ -37,11 +40,18 @@ export function PhysicalUpdateFlow({ onClose }: Props) {
     const measurement = buildMeasurement(values)
 
     const existing = physicalProfile?.measurements ?? []
-    setPhysicalProfile({
-      measurements: [...existing, measurement],
-      latestIndex: existing.length,
-      trackedFields: physicalProfile?.trackedFields,
-    })
+    try {
+      setPhysicalProfile({
+        measurements: [...existing, measurement],
+        latestIndex: existing.length,
+        trackedFields: physicalProfile?.trackedFields,
+      })
+    } catch (cause) {
+      console.error('Measurements could not be saved:', cause)
+      setFailed(true)
+      showToast(t('academy.saveError'), 'error')
+      return
+    }
     onClose()
   }
 
@@ -51,7 +61,7 @@ export function PhysicalUpdateFlow({ onClose }: Props) {
     const prev = latest[key]
     const curr = parseFloat(currentVal)
     if (prev === null || prev === undefined || isNaN(curr) || curr === 0) return null
-    const diff = curr - (prev as number)
+    const diff = curr - prev
     if (Math.abs(diff) < 0.01) return null
     const isPositive = diff > 0
     // For sprint/agility times, lower is better
@@ -66,7 +76,7 @@ export function PhysicalUpdateFlow({ onClose }: Props) {
 
   return (
     <AcademyDialog surface="components-physical-update-flow" title={t('physical.updateTitle')} onClose={onClose} wide>
-      <div className="academy-dialog-flow">
+      <form className="academy-dialog-flow" onSubmit={event => { event.preventDefault(); save() }}>
         <div className="p-4 flex flex-col gap-4">
           {/* Header */}
           <div className="flex items-center justify-between">
@@ -89,12 +99,13 @@ export function PhysicalUpdateFlow({ onClose }: Props) {
                 <div className="grid grid-cols-2 gap-3">
                   {groupFields.map((field) => (
                     <div key={field.key} className="flex flex-col gap-1">
-                      <label className="text-xs font-bold flex items-center" style={{ color: 'var(--color-text-secondary)' }}>
+                      <label htmlFor={`physical-${field.key}`} className="text-sm font-bold flex items-center" style={{ color: 'var(--color-text-secondary)' }}>
                         {t(field.labelKey)}
                         {renderDelta(field.key, values[field.key] ?? '')}
                       </label>
                       <div className="relative">
                         <input
+                          id={`physical-${field.key}`}
                           type="number"
                           step={field.step ?? '1'}
                           min={field.min}
@@ -114,11 +125,12 @@ export function PhysicalUpdateFlow({ onClose }: Props) {
           })}
 
           {/* Save */}
-          <button className="btn-primary w-full mt-2" onClick={save}>
+          {failed && <p className="academy-error" role="alert">{t('academy.saveError')}</p>}
+          <button className="btn-primary w-full mt-2" type="submit">
             {t('physical.save')}
           </button>
         </div>
-      </div>
+      </form>
     </AcademyDialog>
   )
 }

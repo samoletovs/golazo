@@ -1,4 +1,13 @@
 {
+  "academy.serverConfirmed": "The server confirmed this save.",
+  "academy.photoError": "The photo couldn't be read or saved on this device. You can retry this file or choose another image.",
+  "academy.deviceSnapshot": "This device's check-in history",
+  "academy.mentorDataScope": "Player selection filters player-linked matches and training. Existing check-ins have no player identifier: wellbeing below is this device's history, not an assessment of the selected player. Private diary text is not shown.",
+  "academy.remoteSaveError": "The server did not confirm this save. Your draft is still here. Check the result before retrying to avoid a duplicate.",
+  "academy.attendanceDraft": "Attendance starts as an editable draft with everyone marked present. Check each player, then save. These marks are not a retrieved attendance record.",
+  "academy.previousMonth": "Previous month",
+  "academy.nextMonth": "Next month",
+  "academy.removeEvent": "Remove event",
   "academy.statisticsUnavailable": "Team statistics are not connected",
   "academy.statisticsUnavailableBody": "This version does not load team-wide results or wellbeing statistics. No totals or risk assessments are shown as if they had been measured.",
   "academy.recordedMinutes": "Training minutes recorded · last 30 days",

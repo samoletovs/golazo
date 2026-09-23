@@ -21,6 +21,7 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
   const { matches, trainings, xp, profile, physicalProfile } = useApp()
   const [previousLevel, setPreviousLevel] = useState(xp.level)
   const [showLevel, setShowLevel] = useState(false)
+  const [logging, setLogging] = useState(false)
   const [physicalOpen, setPhysicalOpen] = useState(false)
   const [physicalDismissed, setPhysicalDismissed] = useState(false)
   useEffect(() => {
@@ -32,7 +33,7 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
   const measurementDue = !young && !physicalDismissed && isPhysicalUpdateDue(physicalProfile?.measurements[physicalProfile.latestIndex]?.measuredAt)
   return <AcademyPage surface="player-home" title={t('academy.weekTitle')} subtitle={t('academy.weekIntro')}
     actions={<button className="academy-button" onClick={() => onNavigate?.('log')}>{t('nav.log')} <span aria-hidden="true">↗</span></button>}>
-    <AcademyWeekboard onNavigate={onNavigate} />
+    <AcademyWeekboard onNavigate={onNavigate} onLoggingChange={setLogging} />
     <div className="academy-grid">
       <div className="academy-stack">
         <AcademyPanel title={t('academy.lastMatch')}>
@@ -77,6 +78,6 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
       </div>
     </div>
     {physicalOpen && <PhysicalUpdateFlow onClose={() => setPhysicalOpen(false)} />}
-    {showLevel && <LevelUpCelebration level={xp.level} onClose={() => setShowLevel(false)} />}
+    {showLevel && !logging && <LevelUpCelebration level={xp.level} onClose={() => setShowLevel(false)} />}
   </AcademyPage>
 }

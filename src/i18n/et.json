@@ -1,4 +1,13 @@
 {
+  "academy.serverConfirmed": "Server kinnitas salvestamise.",
+  "academy.photoError": "Fotot ei saanud selles seadmes lugeda või salvestada. Proovi sama failiga uuesti või vali teine pilt.",
+  "academy.deviceSnapshot": "Selle seadme enesetunde ajalugu",
+  "academy.mentorDataScope": "Mängija valimine filtreerib temaga seotud mängud ja treeningud. Senistel enesetunde kirjetel pole mängija tunnust: all on seadme ajalugu, mitte valitud mängija hinnang. Privaatse päeviku teksti ei näidata.",
+  "academy.remoteSaveError": "Server ei kinnitanud salvestamist. Mustand on alles. Duplikaadi vältimiseks kontrolli enne uuesti proovimist tulemust.",
+  "academy.attendanceDraft": "Osalemine algab muudetava mustandina, kus kõik on kohal. Kontrolli iga mängijat ja salvesta. Need märgid pole varem salvestatud osalemisandmed.",
+  "academy.previousMonth": "Eelmine kuu",
+  "academy.nextMonth": "Järgmine kuu",
+  "academy.removeEvent": "Eemalda sündmus",
   "academy.statisticsUnavailable": "Võistkonna statistika pole ühendatud",
   "academy.statisticsUnavailableBody": "See versioon ei laadi võistkonna üldisi tulemusi ega heaolustatistikat. Kogusummasid ja riskihinnanguid ei esitata mõõdetud andmetena.",
   "academy.recordedMinutes": "Kirja pandud treeningminutid · viimased 30 päeva",

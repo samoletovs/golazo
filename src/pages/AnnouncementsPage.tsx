@@ -1,5 +1,6 @@
 import { AcademyPage } from '../components/academy/AcademyPage'
-import { useState, useEffect } from 'react'
+import { AcademyError } from '../components/academy/AcademyState'
+import { useState, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useToast } from '../contexts/ToastContext'
 import type { Announcement, AnnouncementPriority, AnnouncementAudience } from '../engine/types'
@@ -27,25 +28,34 @@ export function AnnouncementsPage({ teamId, teamName, coachId, coachName, onBack
   const [audience, setAudience] = useState<AnnouncementAudience>('all')
   const [linkUrl, setLinkUrl] = useState('')
   const [saving, setSaving] = useState(false)
+  const [loadError, setLoadError] = useState(false)
+  const [saveError, setSaveError] = useState(false)
+  const [attempt, setAttempt] = useState(0)
+  const savingRef = useRef(false)
 
   useEffect(() => {
     let cancelled = false
     async function load() {
+      setLoadError(false)
+      setLoading(true)
       try {
         const res = await fetch(`/api/coach/team/${encodeURIComponent(teamId)}/announcements`)
+        if (!res.ok) throw new Error(`Announcements request failed: ${res.status}`)
         if (res.ok && !cancelled) {
           const data = await res.json()
           setAnnouncements(data.announcements ?? [])
         }
-      } catch { /* offline */ }
+      } catch (cause) { if (!cancelled) { console.error('Announcements could not be loaded:', cause); setLoadError(true) } }
       finally { if (!cancelled) setLoading(false) }
     }
     load()
     return () => { cancelled = true }
-  }, [teamId])
+  }, [teamId, attempt])
 
   async function send() {
-    if (!title.trim() || !body.trim()) return
+    if (!title.trim() || !body.trim() || savingRef.current) return
+    savingRef.current = true
+    setSaveError(false)
     setSaving(true)
     try {
       const res = await fetch(`/api/coach/team/${encodeURIComponent(teamId)}/announce`, {
@@ -61,6 +71,7 @@ export function AnnouncementsPage({ teamId, teamName, coachId, coachName, onBack
           linkUrl: linkUrl.trim() || undefined,
         }),
       })
+      if (!res.ok) throw new Error(`Announcement send failed: ${res.status}`)
       if (res.ok) {
         const created = await res.json()
         setAnnouncements([created, ...announcements])
@@ -72,13 +83,17 @@ export function AnnouncementsPage({ teamId, teamName, coachId, coachName, onBack
         setPriority('normal')
         setAudience('all')
       }
-    } catch { /* offline */ }
-    finally { setSaving(false) }
+    } catch (cause) {
+      console.error('Announcement was not confirmed:', cause)
+      setSaveError(true)
+      showToast(t('academy.remoteSaveError'), 'error')
+    } finally { savingRef.current = false; setSaving(false) }
   }
 
   if (showNew) {
     return (
-      <AcademyPage surface="pages-announcements-page" title={t('coach.announce.new')} className="academy-support-page">
+      <AcademyPage surface="announcement-compose" title={t('coach.announce.new')} className="academy-support-page">
+        {saveError && <p role="alert" className="academy-error">{t('academy.remoteSaveError')}</p>}
         <div className="flex items-center gap-3">
           <button onClick={() => setShowNew(false)} className="tap-target text-xl" aria-label={t('common.back')}>←</button>
 
@@ -163,6 +178,7 @@ export function AnnouncementsPage({ teamId, teamName, coachId, coachName, onBack
 
   return (
     <AcademyPage surface="pages-announcements-page" title={t('coach.announce.title')} className="academy-support-page">
+      {loadError && <AcademyError message={t('academy.loadError')} onRetry={() => setAttempt(value => value + 1)} />}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <button onClick={onBack} className="tap-target text-xl" aria-label={t('common.back')}>←</button>

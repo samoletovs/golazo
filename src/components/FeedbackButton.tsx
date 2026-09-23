@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { AcademyDialog } from './academy/AcademyDialog';
+import { AcademyIcon } from './academy/AcademyIcon';
 
 const REPO_OWNER = 'samoletovs';
 const REPO_NAME = 'golazo';
@@ -45,32 +47,18 @@ export default function FeedbackButton() {
         }}
         aria-label={t('feedback.title')}
       >
-        💬
+        <AcademyIcon name="diary" />
       </button>
     );
   }
 
   return (
-    <div
-      className="fixed z-[9999] rounded-2xl p-4"
-      style={{
-        bottom: 72, right: 16, width: 300,
-        background: 'var(--color-glass)',
-        border: '1px solid var(--color-border-subtle)',
-        boxShadow: 'var(--shadow-elevated)',
-      }}
-      role="dialog"
-      aria-modal="true"
-      aria-label={t('feedback.title')}
-    >
-      <div className="flex justify-between items-center mb-3">
-        <span className="text-sm font-semibold" style={{ color: 'var(--color-text)' }}>💬 {t('feedback.title')}</span>
-        <button onClick={() => setOpen(false)} className="text-base cursor-pointer bg-transparent border-none" style={{ color: 'var(--color-text-muted)' }}>✕</button>
-      </div>
+    <AcademyDialog surface="feedback" title={t('feedback.title')} onClose={() => setOpen(false)}>
       <div className="flex gap-1 mb-2">
         {(Object.keys(types) as FBType[]).map(k => (
           <button
             key={k}
+            aria-pressed={type === k}
             onClick={() => setType(k)}
             className="flex-1 py-1.5 rounded-lg text-xs font-medium border-none cursor-pointer"
             style={{
@@ -83,6 +71,7 @@ export default function FeedbackButton() {
         ))}
       </div>
       <textarea
+        aria-label={t('feedback.placeholder')}
         value={text}
         onChange={e => setText(e.target.value)}
         placeholder={t('feedback.placeholder')}
@@ -114,6 +103,6 @@ export default function FeedbackButton() {
           {t('feedback.submit')}
         </button>
       </div>
-    </div>
+    </AcademyDialog>
   );
 }

@@ -1,4 +1,13 @@
 {
+  "academy.serverConfirmed": "El servidor confirmó el guardado.",
+  "academy.photoError": "No se pudo leer o guardar la foto en este dispositivo. Puedes reintentar con este archivo o elegir otra imagen.",
+  "academy.deviceSnapshot": "El historial de bienestar de este dispositivo",
+  "academy.mentorDataScope": "La selección filtra partidos y entrenamientos vinculados al jugador. Los registros de bienestar no tienen identificador de jugador: se muestra el historial del dispositivo, no una evaluación del jugador seleccionado. El diario privado no se muestra.",
+  "academy.remoteSaveError": "El servidor no confirmó el guardado. Tu borrador sigue aquí. Comprueba el resultado antes de reintentar para evitar un duplicado.",
+  "academy.attendanceDraft": "La asistencia empieza como un borrador editable con todos presentes. Revisa cada jugador y guarda. Estas marcas no son un registro de asistencia recuperado.",
+  "academy.previousMonth": "Mes anterior",
+  "academy.nextMonth": "Mes siguiente",
+  "academy.removeEvent": "Eliminar evento",
   "academy.statisticsUnavailable": "Las estadísticas del equipo no están conectadas",
   "academy.statisticsUnavailableBody": "Esta versión no carga resultados ni estadísticas de bienestar del equipo. No se muestran totales ni evaluaciones de riesgo como si se hubieran medido.",
   "academy.recordedMinutes": "Minutos de entrenamiento registrados · últimos 30 días",

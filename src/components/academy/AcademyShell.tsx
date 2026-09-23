@@ -43,7 +43,7 @@ export function AcademyShell({ page, onNavigate, children }: { page: Page; onNav
         <footer className="nl-footer"><p>An experiment by <a href="https://naurolabs.com" target="_blank" rel="noopener noreferrer">nauro<span>Labs</span></a></p></footer>
       </div>
       {showMenu && <AcademyDialog surface="football-spaces" title={t('academy.footballSpaces')} onClose={() => setShowMenu(false)}>
-        <div className="academy-menu-list">{secondary.map(item => <button key={item.page} className="academy-menu-link" onClick={() => navigate(item.page)}><AcademyIcon name={item.icon} />{t(item.label)}<span aria-hidden="true">→</span></button>)}</div>
+        <div className="academy-menu-list">{secondary.map(item => <button key={item.page} className="academy-menu-link" data-page={item.page} onClick={() => navigate(item.page)}><AcademyIcon name={item.icon} />{t(item.label)}<span aria-hidden="true">→</span></button>)}</div>
       </AcademyDialog>}
     </div>
   )

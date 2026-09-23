@@ -1,4 +1,5 @@
 import { AcademyPage } from '../components/academy/AcademyPage'
+import { AcademyError, AcademyLoading } from '../components/academy/AcademyState'
 import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import type { RosterPlayer } from '../engine/types'
@@ -15,27 +16,33 @@ export function SquadRoster({ teamId, teamName, onBack, onEvaluate }: SquadRoste
   const [players, setPlayers] = useState<RosterPlayer[]>([])
   const [loading, setLoading] = useState(true)
   const [selectedPlayer, setSelectedPlayer] = useState<RosterPlayer | null>(null)
+  const [failed, setFailed] = useState(false)
+  const [attempt, setAttempt] = useState(0)
 
   useEffect(() => {
     let cancelled = false
     async function load() {
       setLoading(true)
+      setFailed(false)
       try {
         const res = await fetch(`/api/coach/team/${encodeURIComponent(teamId)}/roster`)
+        if (!res.ok) throw new Error(`Roster request failed: ${res.status}`)
         if (res.ok && !cancelled) {
           const data = await res.json()
           setPlayers(data.players ?? [])
         }
-      } catch { /* offline */ }
+      } catch (cause) {
+        if (!cancelled) { console.error('Roster could not be loaded:', cause); setFailed(true) }
+      }
       finally { if (!cancelled) setLoading(false) }
     }
     load()
     return () => { cancelled = true }
-  }, [teamId])
+  }, [teamId, attempt])
 
   if (selectedPlayer) {
     return (
-      <AcademyPage surface="pages-squad-roster" title={t('coach.roster.detail')} className="academy-support-page">
+      <AcademyPage surface="roster-player-detail" title={t('coach.roster.detail')} className="academy-support-page">
         <div className="flex items-center gap-3">
           <button onClick={() => setSelectedPlayer(null)} className="tap-target text-xl" aria-label={t('common.back')}>←</button>
 
@@ -109,12 +116,8 @@ export function SquadRoster({ teamId, teamName, onBack, onEvaluate }: SquadRoste
         </div>
       </div>
 
-      {loading ? (
-        <div className="text-center py-8">
-          <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>...</span>
-        </div>
-      ) : players.length > 0 ? (
-        <div className="flex flex-col gap-2">
+      {failed ? <AcademyError message={t('academy.loadError')} onRetry={() => setAttempt(value => value + 1)} /> : loading ? <AcademyLoading /> : players.length > 0 ? (
+        <div className="academy-roster-grid">
           {players.map((player) => (
             <button
               key={player.playerId}

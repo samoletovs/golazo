@@ -10,12 +10,14 @@ export function dayKey(date: Date): string {
   return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
 }
 
-export function AcademyWeekboard({ onNavigate }: { onNavigate?: (page: string) => void }) {
+export function AcademyWeekboard({ onNavigate, onLoggingChange }: { onNavigate?: (page: string) => void; onLoggingChange?: (open: boolean) => void }) {
   const { t, i18n } = useTranslation()
   const { schedule, recurringTrainings, trainings, matches, profile } = useApp()
   const [offset, setOffset] = useState(0)
   const [selected, setSelected] = useState(() => dayKey(new Date()))
   const [logging, setLogging] = useState<ScheduleEvent | null>(null)
+  function openLog(event: ScheduleEvent) { setLogging(event); onLoggingChange?.(true) }
+  function closeLog() { setLogging(null); onLoggingChange?.(false) }
   const today = dayKey(new Date())
   const monday = new Date(`${today}T12:00:00`)
   monday.setDate(monday.getDate() - (monday.getDay() + 6) % 7 + offset * 7)
@@ -68,15 +70,15 @@ export function AcademyWeekboard({ onNavigate }: { onNavigate?: (page: string) =
         <time>{event.startTime || '—'}</time>
         <div><h3>{event.title}{event.opponent ? ` · ${event.opponent}` : ''}</h3><p>{event.location}</p>
           {isLogged(event) ? <p className="academy-complete-label">{t('academy.recorded')}</p> : event.date <= today && (event.type === 'training' || event.type === 'match')
-            ? <button className="academy-link" onClick={() => setLogging(event)}>{t('academy.dayLog')} <span aria-hidden="true">→</span></button>
+            ? <button className="academy-link" onClick={() => openLog(event)}>{t('academy.dayLog')} <span aria-hidden="true">→</span></button>
             : <button className="academy-link" onClick={() => onNavigate?.('schedule')}>{t('nav.schedule')} <span aria-hidden="true">→</span></button>}
         </div>
       </div>)}
     </div>
-    {logging && <AcademyDialog surface={`home-${logging.type}-log`} title={logging.title} onClose={() => setLogging(null)} wide>
+    {logging && <AcademyDialog surface={`home-${logging.type}-log`} title={logging.title} onClose={closeLog} wide>
       {logging.type === 'training'
-        ? <TrainingLog inline onBack={() => setLogging(null)} prefill={{ date: logging.date, type: logging.trainingType, durationMinutes: duration, fromSchedule: logging.id }} />
-        : <MatchLog inline onBack={() => setLogging(null)} prefill={{ date: logging.date, opponent: logging.opponent, competition: logging.competition, matchType: logging.matchType, fromSchedule: logging.id }} />}
+        ? <TrainingLog inline onBack={closeLog} prefill={{ date: logging.date, type: logging.trainingType, durationMinutes: duration, fromSchedule: logging.id }} />
+        : <MatchLog inline onBack={closeLog} prefill={{ date: logging.date, opponent: logging.opponent, competition: logging.competition, matchType: logging.matchType, fromSchedule: logging.id }} />}
     </AcademyDialog>}
   </section>
 }

@@ -1,5 +1,5 @@
 import { AcademyPage } from '../components/academy/AcademyPage'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useToast } from '../contexts/ToastContext'
 import type { TrainingDrill, TrainingPlan } from '../engine/types'
@@ -66,6 +66,8 @@ export function TrainingPlanner({ teamId, teamName, coachId, onBack }: TrainingP
   const [drills, setDrills] = useState<TrainingDrill[]>([])
   const [notes, setNotes] = useState('')
   const [saving, setSaving] = useState(false)
+  const [failed, setFailed] = useState(false)
+  const savingRef = useRef(false)
 
   function addObjective() {
     if (!objInput.trim()) return
@@ -86,7 +88,9 @@ export function TrainingPlanner({ teamId, teamName, coachId, onBack }: TrainingP
   }
 
   async function save() {
-    if (!title.trim()) return
+    if (!title.trim() || savingRef.current) return
+    savingRef.current = true
+    setFailed(false)
     setSaving(true)
     try {
       const plan: Omit<TrainingPlan, 'id' | 'createdAt'> = {
@@ -106,16 +110,21 @@ export function TrainingPlanner({ teamId, teamName, coachId, onBack }: TrainingP
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(plan),
       })
+      if (!res.ok) throw new Error(`Training plan save failed: ${res.status}`)
       if (res.ok) {
         showToast(t('coach.training.saved'), 'success')
         onBack()
       }
-    } catch { /* offline */ }
-    finally { setSaving(false) }
+    } catch (cause) {
+      console.error('Training plan was not confirmed:', cause)
+      setFailed(true)
+      showToast(t('academy.remoteSaveError'), 'error')
+    } finally { savingRef.current = false; setSaving(false) }
   }
 
   return (
     <AcademyPage surface="pages-training-planner" title={t('coach.training.new')} className="academy-support-page">
+      {failed && <p role="alert" className="academy-error">{t('academy.remoteSaveError')}</p>}
       <div className="flex items-center gap-3">
         <button onClick={onBack} className="tap-target text-xl" aria-label={t('common.back')}>←</button>
         <div className="flex-1 min-w-0">

@@ -1,4 +1,5 @@
 import { AcademyPage } from '../components/academy/AcademyPage'
+import { AcademyError, AcademyLoading } from '../components/academy/AcademyState'
 import { useMemo, useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
@@ -19,32 +20,42 @@ interface MenteeInfo {
  */
 export function MentorDashboard() {
   const { t } = useTranslation()
-  const { checkIns, trainings, matches, xp, profile } = useApp()
-
-  const playerName = profile?.name?.split(' ')[0] ?? ''
+  const { checkIns: storedCheckIns, trainings: storedTrainings, matches: storedMatches, profile } = useApp()
 
   // Mentee management
   const [mentees, setMentees] = useState<MenteeInfo[]>([])
   const [activeMenteeId, setActiveMenteeId] = useState<string | null>(null)
+  const [menteesLoading, setMenteesLoading] = useState(false)
+  const [menteesError, setMenteesError] = useState(false)
+  const [retry, setRetry] = useState(0)
+  const playerName = mentees.find(mentee => mentee.id === activeMenteeId)?.name ?? ''
+  const checkIns = storedCheckIns
+  const trainings = useMemo(() => storedTrainings.filter(item => item.playerId === activeMenteeId), [storedTrainings, activeMenteeId])
+  const matches = useMemo(() => storedMatches.filter(item => item.playerId === activeMenteeId), [storedMatches, activeMenteeId])
 
   // Load mentee list from profile.menteeIds
   useEffect(() => {
     if (!profile?.menteeIds?.length) return
+    const ids = profile.menteeIds.join(',')
+    let cancelled = false
     async function loadMentees() {
+      setMenteesLoading(true)
+      setMenteesError(false)
       try {
-        const res = await fetch(`/api/mentor/mentees?ids=${encodeURIComponent(profile!.menteeIds!.join(','))}`)
-        if (res.ok) {
+        const res = await fetch(`/api/mentor/mentees?ids=${encodeURIComponent(ids)}`)
+        if (!res.ok) throw new Error(`Mentee request failed: ${res.status}`)
+        if (!cancelled) {
           const data = await res.json()
           setMentees(data.mentees ?? [])
-          // Auto-select first mentee if none selected
-          if (data.mentees?.length && !activeMenteeId) {
-            setActiveMenteeId(data.mentees[0].id)
-          }
+          setActiveMenteeId(current => data.mentees?.some((mentee: MenteeInfo) => mentee.id === current) ? current : data.mentees?.[0]?.id ?? null)
         }
-      } catch { /* offline */ }
+      } catch (cause) {
+        if (!cancelled) { console.error('Mentee list could not be loaded:', cause); setMenteesError(true) }
+      } finally { if (!cancelled) setMenteesLoading(false) }
     }
-    loadMentees()
-  }, [profile?.menteeIds?.join(',')])
+    void loadMentees()
+    return () => { cancelled = true }
+  }, [profile?.menteeIds, retry])
 
   /* ── Mood/Energy trend (last 30 days) ── */
   const moodTrend = useMemo(() => {
@@ -70,7 +81,8 @@ export function MentorDashboard() {
     const weeks: { week: string; trainings: number; matches: number }[] = []
     for (let w = 3; w >= 0; w--) {
       const weekStart = new Date(now)
-      weekStart.setDate(weekStart.getDate() - w * 7)
+      weekStart.setHours(0, 0, 0, 0)
+      weekStart.setDate(weekStart.getDate() - (weekStart.getDay() + 6) % 7 - w * 7)
       const weekEnd = new Date(weekStart)
       weekEnd.setDate(weekEnd.getDate() + 7)
       const inRange = (date: string) => {
@@ -101,7 +113,7 @@ export function MentorDashboard() {
         result.push({
           type: 'warning',
           icon: '⚠️',
-          message: t('mentor.dashboard.alertLowMood', { name: playerName || 'Your player' }),
+          message: t('mentor.dashboard.alertLowMood', { name: t('academy.deviceSnapshot') }),
         })
       }
     }
@@ -109,7 +121,7 @@ export function MentorDashboard() {
     // Low energy + high training = burnout risk
     if (recent7.length >= 3) {
       const avgEnergy = recent7.reduce((s, c) => s + c.energy, 0) / recent7.length
-      const recentTrainings = trainings.filter((tr) =>
+      const recentTrainings = storedTrainings.filter((tr) =>
         new Date(tr.date).getTime() > Date.now() - 7 * 24 * 60 * 60 * 1000
       )
       if (avgEnergy < 2.5 && recentTrainings.length >= 5) {
@@ -135,7 +147,7 @@ export function MentorDashboard() {
     }
 
     return result
-  }, [checkIns, trainings, t, playerName])
+  }, [checkIns, storedTrainings, t])
 
   /* ── Summary stats ── */
   const recentCheckIns = checkIns.filter((c) =>
@@ -150,6 +162,9 @@ export function MentorDashboard() {
 
   return (
     <AcademyPage surface="pages-mentor-dashboard" title={t('mentor.title')} className="academy-support-page">
+      <p className="academy-data-note">{t('academy.mentorDataScope')}</p>
+      {menteesLoading && <AcademyLoading />}
+      {menteesError && <AcademyError message={t('academy.loadError')} onRetry={() => setRetry(value => value + 1)} />}
       {/* Mentee picker — shown when mentor has linked players */}
       {mentees.length > 0 && (
         <div className="flex flex-wrap gap-2">
@@ -163,6 +178,7 @@ export function MentorDashboard() {
                 border: activeMenteeId === m.id ? '1.5px solid var(--color-primary)' : '1.5px solid transparent',
               }}
               onClick={() => setActiveMenteeId(m.id)}
+              aria-pressed={activeMenteeId === m.id}
             >
               {m.photoUrl ? (
                 <img src={m.photoUrl} alt="" className="w-5 h-5 rounded-full object-cover" />
@@ -176,7 +192,7 @@ export function MentorDashboard() {
       )}
 
       {/* No mentees — explain how to link */}
-      {mentees.length === 0 && (
+      {mentees.length === 0 && !menteesLoading && !menteesError && (
         <div className="card text-center py-6 animate-fade-up">
           <span className="text-4xl mb-2 block">👨‍👧‍👦</span>
           <p className="text-sm font-bold mb-1">{t('mentor.noMentees')}</p>
@@ -193,6 +209,7 @@ export function MentorDashboard() {
       </div>
 
       {/* Wellbeing status card */}
+      <div className="academy-grid"><div className="academy-stack">
       {recentCheckIns.length > 0 ? (() => {
         const latest = checkIns[checkIns.length - 1]
         const moodNum = Number(avgMood7)
@@ -252,6 +269,7 @@ export function MentorDashboard() {
       ))}
 
       {/* Weekly summary cards */}
+      </div><div className="academy-stack">
       <div className="grid grid-cols-3 gap-3">
         <div className="stat-card stat-card-gold">
           <p className="stat-number stat-number-sm" style={{ color: 'var(--color-amber-text)' }}>{avgMood7}</p>
@@ -262,8 +280,8 @@ export function MentorDashboard() {
           <p className="stat-label">{t('mentor.avgEnergy')}</p>
         </div>
         <div className="stat-card stat-card-green">
-          <p className="stat-number stat-number-sm" style={{ color: 'var(--color-primary-dark)' }}>{xp.streakDays}</p>
-          <p className="stat-label">{t('mentor.streak')}</p>
+          <p className="stat-number stat-number-sm" style={{ color: 'var(--color-primary-dark)' }}>{matches.length}</p>
+          <p className="stat-label">{t('log.match')}</p>
         </div>
       </div>
 
@@ -291,7 +309,7 @@ export function MentorDashboard() {
           {weeklyActivity.map((w) => (
             <div key={w.week} className="flex items-center gap-3">
               <span className="text-xs font-data font-bold w-8" style={{ color: 'var(--color-text-muted)' }}>{w.week}</span>
-              <div className="flex-1 flex gap-1">
+              <div className="flex-1 flex flex-wrap gap-1">
                 {Array.from({ length: Math.max(w.trainings + w.matches, 0) }, (_, i) => (
                   <div
                     key={i}
@@ -356,6 +374,7 @@ export function MentorDashboard() {
           </div>
         </div>
       )}
+      </div></div>
     </AcademyPage>
   )
 }

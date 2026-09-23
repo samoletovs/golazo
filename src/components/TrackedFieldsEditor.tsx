@@ -2,6 +2,7 @@ import { AcademyDialog } from './academy/AcademyDialog'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
+import { useToast } from '../contexts/ToastContext'
 import type { AgeTier } from '../engine/types'
 import { getAgeTier } from '../engine/types'
 import { PHYSICAL_FIELDS, PHYSICAL_GROUPS, getDefaultTrackedFields, type PhysicalFieldKey } from '../engine/physical'
@@ -13,13 +14,14 @@ interface Props {
 export function TrackedFieldsEditor({ onClose }: Props) {
   const { t } = useTranslation()
   const { profile, physicalProfile, setPhysicalProfile } = useApp()
+  const { showToast } = useToast()
 
   const tier: AgeTier = profile?.birthDate ? getAgeTier(profile.birthDate) : 'u12'
   const defaults = getDefaultTrackedFields(tier)
 
   const [tracked, setTracked] = useState<PhysicalFieldKey[]>(() => {
     if (physicalProfile?.trackedFields && physicalProfile.trackedFields.length > 0) {
-      return physicalProfile.trackedFields as PhysicalFieldKey[]
+      return PHYSICAL_FIELDS.filter(field => physicalProfile.trackedFields?.includes(field.key)).map(field => field.key)
     }
     return defaults
   })
@@ -39,14 +41,16 @@ export function TrackedFieldsEditor({ onClose }: Props) {
   }
 
   function save() {
-    if (!physicalProfile) {
-      onClose()
+    try {
+      setPhysicalProfile({
+        ...(physicalProfile ?? { measurements: [], latestIndex: 0 }),
+        trackedFields: tracked,
+      })
+    } catch (cause) {
+      console.error('Tracked fields could not be saved:', cause)
+      showToast(t('academy.saveError'), 'error')
       return
     }
-    setPhysicalProfile({
-      ...physicalProfile,
-      trackedFields: tracked,
-    })
     onClose()
   }
 

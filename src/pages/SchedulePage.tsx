@@ -3,6 +3,7 @@ import { AcademyDialog } from '../components/academy/AcademyDialog'
 import { useState, useMemo, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
+import { useToast } from '../contexts/ToastContext'
 import { TournamentImport } from '../components/TournamentImport'
 import { TeamSearch } from '../components/TeamSearch'
 import { addMinutesToTime, getMatchDurationRecommendation } from '../engine/footballStandards'
@@ -120,6 +121,8 @@ function getWeekDates(monday: Date): string[] {
 export function SchedulePage() {
   const { t } = useTranslation()
   const { schedule, addScheduleEvent, removeScheduleEvent, recurringTrainings, setRecurringTrainings, profile } = useApp()
+  const { showToast } = useToast()
+  const [saveError, setSaveError] = useState(false)
   const matchDurationRecommendation = getMatchDurationRecommendation(profile?.birthDate)
 
   const today = new Date()
@@ -339,6 +342,7 @@ export function SchedulePage() {
   }
 
   function openAddForm(date: string, nextType: ScheduleType = formType) {
+    setSaveError(false)
     setSelectedDate(date)
     setShowForm(true)
     setFormType(nextType)
@@ -393,7 +397,13 @@ export function SchedulePage() {
       createdBy: profile?.id ?? 'local',
       createdAt: new Date().toISOString(),
     }
-    addScheduleEvent(ev)
+    try { addScheduleEvent(ev) }
+    catch (cause) {
+      console.error('Scheduled event could not be saved:', cause)
+      setSaveError(true)
+      showToast(t('academy.saveError'), 'error')
+      return
+    }
     setShowForm(false)
     setFormSquadIds([])
 
@@ -433,7 +443,13 @@ export function SchedulePage() {
       active: true,
       createdAt: new Date().toISOString(),
     }
-    setRecurringTrainings([...recurringTrainings, rt])
+    try { setRecurringTrainings([...recurringTrainings, rt]) }
+    catch (cause) {
+      console.error('Recurring training could not be saved:', cause)
+      setSaveError(true)
+      showToast(t('academy.saveError'), 'error')
+      return
+    }
     setRtName('')
     setRtLocation('')
     setFormSquadIds([])
@@ -441,7 +457,19 @@ export function SchedulePage() {
   }
 
   function removeRecurring(id: string) {
-    setRecurringTrainings(recurringTrainings.filter((r) => r.id !== id))
+    try { setRecurringTrainings(recurringTrainings.filter((r) => r.id !== id)) }
+    catch (cause) {
+      console.error('Recurring training could not be removed:', cause)
+      showToast(t('academy.saveError'), 'error')
+    }
+  }
+
+  function removeEvent(id: string) {
+    try { removeScheduleEvent(id) }
+    catch (cause) {
+      console.error('Scheduled event could not be removed:', cause)
+      showToast(t('academy.saveError'), 'error')
+    }
   }
 
   const selectedEvents = selectedDate
@@ -466,11 +494,12 @@ export function SchedulePage() {
       </div>
 
       {/* ══════════════════════ WEEK TAB ══════════════════════ */}
+      <div className="academy-schedule-layout"><div className="academy-stack">
       {activeTab === 'week' && (
         <div style={{ minHeight: 380 }} className="flex flex-col gap-4">
           {/* Week navigation — outside card, like month */}
           <div className="flex items-center justify-between">
-            <button className="tap-target text-lg font-bold px-2" onClick={() => setWeekOffset(weekOffset - 1)} aria-label="Previous week">←</button>
+            <button className="tap-target text-lg font-bold px-2" onClick={() => setWeekOffset(weekOffset - 1)} aria-label={t('academy.previousWeek')}>←</button>
             <div className="text-center">
               <span className="text-sm font-bold">{weekLabel}</span>
               {!isCurrentWeek && (
@@ -479,7 +508,7 @@ export function SchedulePage() {
                 </button>
               )}
             </div>
-            <button className="tap-target text-lg font-bold px-2" onClick={() => setWeekOffset(weekOffset + 1)} aria-label="Next week">→</button>
+            <button className="tap-target text-lg font-bold px-2" onClick={() => setWeekOffset(weekOffset + 1)} aria-label={t('academy.nextWeek')}>→</button>
           </div>
 
           {/* Week day rows */}
@@ -494,20 +523,18 @@ export function SchedulePage() {
                 return (
                   <div
                     key={dk}
-                    className="flex items-start gap-2 py-2 px-2 rounded-lg cursor-pointer"
+                    className="academy-schedule-day"
                     style={{
                       background: dk === selectedDate ? 'rgba(var(--color-primary-rgb), 0.1)' : isToday ? 'rgba(var(--color-primary-rgb), 0.06)' : undefined,
-                      borderLeft: dk === selectedDate ? '3px solid var(--color-primary-dark)' : isToday ? '3px solid var(--color-primary-dark)' : '3px solid transparent',
                       borderBottom: idx < 6 ? '1px solid var(--color-pitch-line, #e5e7eb)' : undefined,
                     }}
-                    onClick={() => setSelectedDate(dk)}
                   >
-                    <div className="w-12 shrink-0 pt-0.5">
+                    <button className="academy-schedule-date" onClick={() => setSelectedDate(dk)} aria-pressed={dk === selectedDate}>
                       <span className="text-xs font-bold block" style={{ color: isToday ? 'var(--color-primary-dark)' : isWeekend ? 'var(--color-text-muted)' : 'var(--color-text-secondary)' }}>
                         {t(WEEKDAY_NAMES[jsDow])}
                       </span>
                       <span className="text-xs font-data" style={{ color: 'var(--color-text-muted)' }}>{dayNum}</span>
-                    </div>
+                    </button>
                     <div className="flex-1 min-w-0">
                       {dayEvents.length === 0 ? (
                         <span className="text-xs py-0.5" style={{ color: 'var(--color-text-muted)', opacity: 0.5 }}>—</span>
@@ -520,15 +547,15 @@ export function SchedulePage() {
                               <div key={ev.id} className="flex items-center gap-1.5 group">
                                 <div className="w-2 h-2 rounded-full shrink-0" style={{ background: evType?.color ?? 'var(--color-primary-dark)' }} />
                                 <span className="text-xs font-bold shrink-0" style={{ color: 'var(--color-text-secondary)' }}>{ev.startTime}</span>
-                                <span className="text-xs truncate flex-1" style={{ color: 'var(--color-text-primary)' }}>{ev.title}</span>
+                                <span className="text-sm flex-1 min-w-0" style={{ color: 'var(--color-text-primary)' }}>{ev.title}</span>
                                 {ev.id.startsWith('rt-') && <span className="text-[0.5rem]">🔁</span>}
                                 {ev.id.startsWith('shared-') && <span className="text-[0.5rem]" style={{ color: 'var(--color-primary-dark)' }}>👥</span>}
                                 {isRemovable && (
                                   <button
-                                    className="text-xs px-1 opacity-30 group-hover:opacity-100 shrink-0"
+                                    className="text-sm px-1 shrink-0 tap-target"
                                     style={{ color: 'var(--color-danger)' }}
-                                    onClick={() => removeScheduleEvent(ev.id)}
-                                    aria-label="Remove"
+                                    onClick={() => removeEvent(ev.id)}
+                                    aria-label={t('academy.removeEvent')}
                                   >✕</button>
                                 )}
                               </div>
@@ -550,9 +577,9 @@ export function SchedulePage() {
         <div style={{ minHeight: 380 }} className="flex flex-col gap-4">
           {/* Month navigation */}
           <div className="flex items-center justify-between">
-            <button className="tap-target text-lg font-bold px-2" onClick={prevMonth} aria-label="Previous month">←</button>
+            <button className="tap-target text-lg font-bold px-2" onClick={prevMonth} aria-label={t('academy.previousMonth')}>←</button>
             <span className="text-sm font-bold capitalize">{monthName}</span>
-            <button className="tap-target text-lg font-bold px-2" onClick={nextMonth} aria-label="Next month">→</button>
+            <button className="tap-target text-lg font-bold px-2" onClick={nextMonth} aria-label={t('academy.nextMonth')}>→</button>
           </div>
 
           {/* Calendar grid */}
@@ -606,7 +633,8 @@ export function SchedulePage() {
       )}
 
       {/* ── Add event buttons (visible on both week & month) ── */}
-      <div className="grid grid-cols-4 gap-2">
+      </div><div className="academy-stack">
+      <div className="academy-schedule-actions">
         {([
           { type: 'training' as ScheduleType, emoji: '⚽', labelKey: 'schedule.addTraining', color: 'var(--color-primary-dark)' },
           { type: 'match' as ScheduleType, emoji: '🏟️', labelKey: 'schedule.addMatch', color: 'var(--color-cat-physical)' },
@@ -678,8 +706,8 @@ export function SchedulePage() {
                       <button
                         className="text-xs px-2 py-1 rounded"
                         style={{ color: 'var(--color-danger)' }}
-                        onClick={() => removeScheduleEvent(ev.id)}
-                        aria-label="Delete event"
+                        onClick={() => removeEvent(ev.id)}
+                        aria-label={t('academy.removeEvent')}
                       >
                         ✕
                       </button>
@@ -736,7 +764,7 @@ export function SchedulePage() {
                           <button
                             className="ml-0.5 opacity-40 hover:opacity-100"
                             onClick={() => removeRecurring(rt.id)}
-                            aria-label="Remove"
+                            aria-label={t('academy.removeEvent')}
                           >✕</button>
                         </span>
                       )
@@ -750,8 +778,10 @@ export function SchedulePage() {
       </div>
 
       {/* ══════════════════════ ADD EVENT FORM (overlay) ══════════════════════ */}
+      </div></div>
       {showForm && (
         <AcademyDialog surface="pages-schedule-page" title={t('mentor.schedule.add')} onClose={() => setShowForm(false)} wide>
+          {saveError && <p className="academy-error" role="alert">{t('academy.saveError')}</p>}
           <div className="academy-dialog-flow">
             <div className="flex items-center justify-between mb-4">
 
@@ -922,7 +952,8 @@ export function SchedulePage() {
 
       {/* ══════════════════════ ADD RECURRING FORM (overlay) ══════════════════════ */}
       {showWeeklySetup && (
-        <AcademyDialog surface="pages-schedule-page" title={t('schedule.addRecurring')} onClose={() => setShowWeeklySetup(false)} wide>
+        <AcademyDialog surface="weekly-setup" title={t('schedule.addRecurring')} onClose={() => setShowWeeklySetup(false)} wide>
+          {saveError && <p className="academy-error" role="alert">{t('academy.saveError')}</p>}
           <div className="academy-dialog-flow">
             <div className="flex items-center justify-between mb-4">
 

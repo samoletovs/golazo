@@ -1,4 +1,13 @@
 {
+  "academy.serverConfirmed": "Serveris patvirtino išsaugojimą.",
+  "academy.photoError": "Nepavyko nuskaityti ar išsaugoti nuotraukos šiame įrenginyje. Gali bandyti dar kartą arba pasirinkti kitą vaizdą.",
+  "academy.deviceSnapshot": "Šio įrenginio savijautos istorija",
+  "academy.mentorDataScope": "Žaidėjo pasirinkimas filtruoja su juo susietas rungtynes ir treniruotes. Esami savijautos įrašai neturi žaidėjo identifikatoriaus: rodoma įrenginio istorija, ne pasirinkto žaidėjo vertinimas. Privatus dienoraštis nerodomas.",
+  "academy.remoteSaveError": "Serveris nepatvirtino išsaugojimo. Juodraštis liko čia. Prieš bandydamas dar kartą patikrink rezultatą, kad nesukurtum dublikato.",
+  "academy.attendanceDraft": "Lankomumas pradedamas kaip redaguojamas juodraštis, kuriame visi pažymėti atvykę. Patikrink kiekvieną žaidėją ir išsaugok. Tai nėra įkeltas lankomumo įrašas.",
+  "academy.previousMonth": "Ankstesnis mėnuo",
+  "academy.nextMonth": "Kitas mėnuo",
+  "academy.removeEvent": "Pašalinti įvykį",
   "academy.statisticsUnavailable": "Komandos statistika neprijungta",
   "academy.statisticsUnavailableBody": "Ši versija neįkelia bendrų komandos rezultatų ar savijautos statistikos. Sumos ir rizikos vertinimai nepateikiami kaip išmatuoti duomenys.",
   "academy.recordedMinutes": "Užrašytos treniruočių minutės · paskutinės 30 dienų",

@@ -1,5 +1,6 @@
 import { AcademyPage } from './academy/AcademyPage'
-import { useState, useEffect } from 'react'
+import { AcademyError, AcademyLoading } from './academy/AcademyState'
+import { useState, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import type { RosterPlayer, AttendanceStatus } from '../engine/types'
 
@@ -30,13 +31,20 @@ export function AttendanceGrid({ teamId, teamName, coachId, onBack }: Attendance
   const [date, setDate] = useState(new Date().toISOString().slice(0, 10))
   const [attendance, setAttendance] = useState<Map<string, AttendanceStatus>>(new Map())
   const [saving, setSaving] = useState(false)
+  const [saved, setSaved] = useState(false)
+  const [loadError, setLoadError] = useState(false)
+  const [saveError, setSaveError] = useState(false)
+  const [attempt, setAttempt] = useState(0)
+  const savingRef = useRef(false)
 
   useEffect(() => {
     let cancelled = false
     async function load() {
       setLoading(true)
+      setLoadError(false)
       try {
         const res = await fetch(`/api/coach/team/${encodeURIComponent(teamId)}/roster`)
+        if (!res.ok) throw new Error(`Attendance roster request failed: ${res.status}`)
         if (res.ok && !cancelled) {
           const data = await res.json()
           const roster: RosterPlayer[] = data.players ?? []
@@ -48,14 +56,15 @@ export function AttendanceGrid({ teamId, teamName, coachId, onBack }: Attendance
           }
           setAttendance(initial)
         }
-      } catch { /* offline */ }
+      } catch (cause) { if (!cancelled) { console.error('Attendance roster could not be loaded:', cause); setLoadError(true) } }
       finally { if (!cancelled) setLoading(false) }
     }
     load()
     return () => { cancelled = true }
-  }, [teamId])
+  }, [teamId, attempt])
 
   function cycleStatus(playerId: string) {
+    setSaved(false)
     const order: AttendanceStatus[] = ['present', 'absent', 'excused', 'late']
     const current = attendance.get(playerId) ?? 'present'
     const nextIdx = (order.indexOf(current) + 1) % order.length
@@ -65,25 +74,34 @@ export function AttendanceGrid({ teamId, teamName, coachId, onBack }: Attendance
   }
 
   function markAllPresent() {
+    setSaved(false)
     const all = new Map<string, AttendanceStatus>()
     for (const p of players) all.set(p.playerId, 'present')
     setAttendance(all)
   }
 
   async function save() {
+    if (savingRef.current) return
+    savingRef.current = true
+    setSaveError(false)
+    setSaved(false)
     setSaving(true)
     try {
       const records: AttendanceEntry[] = players.map((p) => ({
         playerId: p.playerId,
         status: attendance.get(p.playerId) ?? 'present',
       }))
-      await fetch(`/api/coach/team/${encodeURIComponent(teamId)}/attendance`, {
+      const response = await fetch(`/api/coach/team/${encodeURIComponent(teamId)}/attendance`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ date, coachId, records }),
       })
-    } catch { /* offline */ }
-    finally { setSaving(false) }
+      if (!response.ok) throw new Error(`Attendance save failed: ${response.status}`)
+      setSaved(true)
+    } catch (cause) {
+      console.error('Attendance was not confirmed:', cause)
+      setSaveError(true)
+    } finally { savingRef.current = false; setSaving(false) }
   }
 
   const presentCount = [...attendance.values()].filter((s) => s === 'present' || s === 'late').length
@@ -92,6 +110,9 @@ export function AttendanceGrid({ teamId, teamName, coachId, onBack }: Attendance
 
   return (
     <AcademyPage surface="components-attendance-grid" title={t('coach.attendance.title')} className="academy-support-page">
+      {loadError && <AcademyError message={t('academy.loadError')} onRetry={() => setAttempt(value => value + 1)} />}
+      {saveError && <p role="alert" className="academy-error">{t('academy.remoteSaveError')}</p>}
+      {saved && <p role="status" className="academy-complete-label">{t('academy.serverConfirmed')}</p>}
       <div className="flex items-center gap-3">
         <button onClick={onBack} className="tap-target text-xl" aria-label={t('common.back')}>←</button>
         <div className="flex-1 min-w-0">
@@ -103,7 +124,7 @@ export function AttendanceGrid({ teamId, teamName, coachId, onBack }: Attendance
       {/* Date + summary */}
       <div className="card animate-fade-up">
         <div className="flex items-center gap-3">
-          <input type="date" value={date} onChange={(e) => setDate(e.target.value)} className="text-sm" />
+          <input type="date" aria-label={t('log.date')} value={date} onChange={(e) => { setDate(e.target.value); setSaved(false) }} className="text-sm" />
           <div className="flex-1 text-right">
             <span className="text-lg font-black font-data" style={{ color: 'var(--color-primary-dark)' }}>
               {presentCount}/{totalCount}
@@ -112,8 +133,9 @@ export function AttendanceGrid({ teamId, teamName, coachId, onBack }: Attendance
               {t('coach.attendance.rate', { pct })}
             </p>
           </div>
-        </div>
-      </div>
+            </div>
+          </div>
+          <p className="academy-hint">{t('academy.attendanceDraft')}</p>
 
       {/* Mark all button */}
       <button
@@ -125,12 +147,8 @@ export function AttendanceGrid({ teamId, teamName, coachId, onBack }: Attendance
       </button>
 
       {/* Player list with tap-to-cycle status */}
-      {loading ? (
-        <div className="text-center py-8">
-          <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>...</span>
-        </div>
-      ) : (
-        <div className="flex flex-col gap-1">
+      {loading ? <AcademyLoading /> : (
+        <div className="academy-roster-grid">
           {players.map((player) => {
             const status = attendance.get(player.playerId) ?? 'present'
             return (
@@ -169,7 +187,7 @@ export function AttendanceGrid({ teamId, teamName, coachId, onBack }: Attendance
           onClick={save}
           disabled={saving}
         >
-          {saving ? '...' : `✓ ${t('coach.eval.save')}`}
+          {saving ? t('common.loading') : t('common.save')}
         </button>
       )}
     </AcademyPage>

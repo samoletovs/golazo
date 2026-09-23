@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
+import { useToast } from '../contexts/ToastContext'
 
 const MAX_SIZE_PX = 512
 const MAX_BYTES = 200_000 // 200KB after compression
@@ -35,10 +36,11 @@ async function compressImage(file: File): Promise<string> {
             return
           }
         }
-        resolve(canvas.toDataURL('image/jpeg', 0.3))
+        reject(new Error('Image exceeds the supported local storage size'))
       }
       img.onerror = reject
-      img.src = reader.result as string
+      if (typeof reader.result !== 'string') { reject(new Error('Image file could not be read')); return }
+      img.src = reader.result
     }
     reader.onerror = reject
     reader.readAsDataURL(file)
@@ -48,19 +50,22 @@ async function compressImage(file: File): Promise<string> {
 export function PhotoUpload() {
   const { t } = useTranslation()
   const { profile, setProfile } = useApp()
+  const { showToast } = useToast()
   const [uploading, setUploading] = useState(false)
+  const [failedFile, setFailedFile] = useState<File | null>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
-  async function handleFile(e: React.ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files?.[0]
-    if (!file || !profile) return
-
+  async function savePhoto(file: File) {
+    if (!profile || uploading) return
     setUploading(true)
     try {
       const dataUrl = await compressImage(file)
       setProfile({ ...profile, photoUrl: dataUrl })
-    } catch {
-      // Silently fail — user can try again
+      setFailedFile(null)
+    } catch (cause) {
+      console.error('Photo could not be saved:', cause)
+      setFailedFile(file)
+      showToast(t('academy.photoError'), 'error')
     } finally {
       setUploading(false)
       if (inputRef.current) inputRef.current.value = ''
@@ -69,14 +74,17 @@ export function PhotoUpload() {
 
   function removePhoto() {
     if (!profile) return
-    const { photoUrl: _, ...rest } = profile
-    setProfile({ ...rest, photoUrl: undefined } as typeof profile)
+    try { setProfile({ ...profile, photoUrl: undefined }) }
+    catch (cause) {
+      console.error('Photo could not be removed:', cause)
+      showToast(t('academy.saveError'), 'error')
+    }
   }
 
   const hasPhoto = !!profile?.photoUrl
 
   return (
-    <div className="flex flex-col items-center gap-2">
+    <section className="academy-photo-controls" data-academy-surface="profile-photo">
       {/* Photo preview */}
       <div
         className="relative w-20 h-20 rounded-full overflow-hidden flex items-center justify-center"
@@ -98,17 +106,17 @@ export function PhotoUpload() {
 
       {/* Upload / Remove buttons */}
       <div className="flex gap-2">
-        <label className="btn-choice text-xs py-1.5 px-3 cursor-pointer" aria-label={t('profile.uploadPhoto')}>
+        <button type="button" className="academy-button secondary" onClick={() => inputRef.current?.click()} disabled={uploading}>
           {uploading ? t('common.loading') : hasPhoto ? t('profile.changePhoto') : t('profile.uploadPhoto')}
+        </button>
           <input
             ref={inputRef}
             type="file"
             accept="image/*"
             className="hidden"
-            onChange={handleFile}
+            onChange={event => { const file = event.target.files?.[0]; if (file) void savePhoto(file) }}
             disabled={uploading}
           />
-        </label>
         {hasPhoto && (
           <button
             className="btn-choice text-xs py-1.5 px-3"
@@ -120,6 +128,7 @@ export function PhotoUpload() {
           </button>
         )}
       </div>
-    </div>
+      {failedFile && <div className="academy-error" role="alert"><p>{t('academy.photoError')}</p><button className="academy-link" onClick={() => void savePhoto(failedFile)} disabled={uploading}>{t('academy.retry')}</button></div>}
+    </section>
   )
 }

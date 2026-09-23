@@ -1,5 +1,6 @@
 import { AcademyPage } from '../components/academy/AcademyPage'
-import { useState, useEffect } from 'react'
+import { AcademyError, AcademyLoading } from '../components/academy/AcademyState'
+import { useState, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useToast } from '../contexts/ToastContext'
 import type { RosterPlayer, PlayerEvaluation } from '../engine/types'
@@ -30,6 +31,10 @@ export function EvaluationPage({ teamId, teamName, coachId, coachName, initialPl
   const [selectedPlayerId, setSelectedPlayerId] = useState(initialPlayerId ?? '')
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
+  const [loadError, setLoadError] = useState(false)
+  const [saveError, setSaveError] = useState(false)
+  const [attempt, setAttempt] = useState(0)
+  const savingRef = useRef(false)
 
   // Form
   const [period, setPeriod] = useState('')
@@ -49,18 +54,21 @@ export function EvaluationPage({ teamId, teamName, coachId, coachName, initialPl
   useEffect(() => {
     let cancelled = false
     async function load() {
+      setLoadError(false)
+      setLoading(true)
       try {
         const res = await fetch(`/api/coach/team/${encodeURIComponent(teamId)}/roster`)
+        if (!res.ok) throw new Error(`Roster request failed: ${res.status}`)
         if (res.ok && !cancelled) {
           const data = await res.json()
           setPlayers(data.players ?? [])
         }
-      } catch { /* offline */ }
+      } catch (cause) { if (!cancelled) { console.error('Evaluation roster could not be loaded:', cause); setLoadError(true) } }
       finally { if (!cancelled) setLoading(false) }
     }
     load()
     return () => { cancelled = true }
-  }, [teamId])
+  }, [teamId, attempt])
 
   function addItem(list: string[], setter: (v: string[]) => void, input: string, inputSetter: (v: string) => void) {
     if (!input.trim()) return
@@ -69,7 +77,9 @@ export function EvaluationPage({ teamId, teamName, coachId, coachName, initialPl
   }
 
   async function save() {
-    if (!selectedPlayerId || !period.trim()) return
+    if (!selectedPlayerId || !period.trim() || savingRef.current) return
+    savingRef.current = true
+    setSaveError(false)
     setSaving(true)
     try {
       const evaluation = {
@@ -91,16 +101,22 @@ export function EvaluationPage({ teamId, teamName, coachId, coachName, initialPl
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(evaluation),
       })
+      if (!res.ok) throw new Error(`Evaluation save failed: ${res.status}`)
       if (res.ok) {
         showToast(t('coach.eval.saved'), 'success')
         onBack()
       }
-    } catch { /* offline */ }
-    finally { setSaving(false) }
+    } catch (cause) {
+      console.error('Evaluation was not confirmed:', cause)
+      setSaveError(true)
+      showToast(t('academy.remoteSaveError'), 'error')
+    } finally { savingRef.current = false; setSaving(false) }
   }
 
   return (
     <AcademyPage surface="pages-evaluation-page" title={t('coach.eval.title')} className="academy-support-page">
+      {loadError && <AcademyError message={t('academy.loadError')} onRetry={() => setAttempt(value => value + 1)} />}
+      {saveError && <p role="alert" className="academy-error">{t('academy.remoteSaveError')}</p>}
       <div className="flex items-center gap-3">
         <button onClick={onBack} className="tap-target text-xl" aria-label={t('common.back')}>←</button>
         <div>
@@ -110,11 +126,7 @@ export function EvaluationPage({ teamId, teamName, coachId, coachName, initialPl
       </div>
 
       {/* Player selector */}
-      {loading ? (
-        <div className="text-center py-4">
-          <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>...</span>
-        </div>
-      ) : (
+      {loading ? <AcademyLoading /> : (
         <div className="card">
           <select
             value={selectedPlayerId}
