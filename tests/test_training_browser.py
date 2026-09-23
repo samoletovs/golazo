@@ -126,6 +126,24 @@ def save_state(page: Page) -> dict:
     return page.evaluate("JSON.parse(localStorage.getItem('golazo-state'))")
 
 
+def component_text_fits(page: Page) -> dict:
+    result = page.evaluate("""() => {
+      const failures=[];
+      const nodes=document.querySelectorAll('.academy-day > strong, .academy-credential-ratings dt, .academy-primary-nav .academy-nav-item span');
+      for(const element of nodes) {
+        if(!element.getClientRects().length) continue;
+        const boundary=element.parentElement.getBoundingClientRect();
+        const range=document.createRange();range.selectNodeContents(element);
+        for(const rect of range.getClientRects()) if(rect.width && (rect.left<boundary.left-1 || rect.right>boundary.right+1)) {
+          failures.push({text:element.textContent,container:boundary.width,textWidth:rect.width});break;
+        }
+      }
+      return {checked:nodes.length,failures};
+    }""")
+    assert not result["failures"], result["failures"]
+    return result
+
+
 def capture(page: Page, output: Path, name: str) -> None:
     page.evaluate("window.scrollTo(0,0)")
     page.screenshot(path=str(output / f"{name}.png"), full_page=True, scale="css")
@@ -238,6 +256,11 @@ def main() -> None:
                 expect(page.locator(".academy-form")).to_be_visible()
                 results.append({"language": language, "phase": "text-200-form", "layout": no_overflow(page)})
                 capture(page, output, f"{language}-text-200-form")
+                for destination in ("dashboard", "log", "progress", "learn", "profile"):
+                    page.locator(f'.academy-primary-nav [data-page="{destination}"]').click()
+                    expect(page.locator("main .academy-page").first).to_be_visible()
+                    results.append({"language": language, "phase": f"text-200-{destination}", "layout": no_overflow(page), "componentText": component_text_fits(page)})
+                    capture(page, output, f"{language}-text-200-{destination}")
                 page.evaluate("document.documentElement.style.fontSize='100%'")
                 for width in (390, 1440):
                     page.set_viewport_size({"width": width, "height": 900})

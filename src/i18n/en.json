@@ -1,4 +1,9 @@
 {
+  "academy.squadSavesConfirmed": "Confirmed squads: {{count}} / {{total}}. Confirmed squads are not sent again on retry.",
+  "academy.participants": "Participants: {{count}}",
+  "academy.overallSkill": "Overall skill rating",
+  "academy.programFocus": "Practice focus, not a measured increase in skill",
+  "academy.previousWeekComparison": "Last 7 days compared with the previous 7",
   "academy.serverConfirmed": "The server confirmed this save.",
   "academy.photoError": "The photo couldn't be read or saved on this device. You can retry this file or choose another image.",
   "academy.deviceSnapshot": "This device's check-in history",
@@ -44,7 +49,7 @@
   "academy.profileIntro": "Your identity, your teams and the skills you are building.",
   "academy.loading": "Preparing your football space",
   "nav.settings": "Settings",
-  "theme.clubhouse": "Clubhouse",
+  "theme.clubhouse": "Academy",
   "clubhouse.afterTraining": "Back from the pitch",
   "clubhouse.yourPace": "Your club. Your pace.",
   "clubhouse.welcome": "Good work, {{name}}.",

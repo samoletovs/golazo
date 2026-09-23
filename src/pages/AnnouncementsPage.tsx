@@ -1,6 +1,8 @@
 import { AcademyPage } from '../components/academy/AcademyPage'
 import { AcademyError } from '../components/academy/AcademyState'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
+import { useSquadSave } from '../hooks/useSquadSave'
+import { SquadSaveStatus } from '../components/academy/SquadSaveStatus'
 import { useTranslation } from 'react-i18next'
 import { useToast } from '../contexts/ToastContext'
 import type { Announcement, AnnouncementPriority, AnnouncementAudience } from '../engine/types'
@@ -14,7 +16,7 @@ interface AnnouncementsPageProps {
   onBack: () => void
 }
 
-export function AnnouncementsPage({ teamId, teamName, coachId, coachName, onBack }: AnnouncementsPageProps) {
+export function AnnouncementsPage({ teamId, teamName, teamIds, coachId, coachName, onBack }: AnnouncementsPageProps) {
   const { t } = useTranslation()
   const { showToast } = useToast()
   const [announcements, setAnnouncements] = useState<Announcement[]>([])
@@ -27,11 +29,9 @@ export function AnnouncementsPage({ teamId, teamName, coachId, coachName, onBack
   const [priority, setPriority] = useState<AnnouncementPriority>('normal')
   const [audience, setAudience] = useState<AnnouncementAudience>('all')
   const [linkUrl, setLinkUrl] = useState('')
-  const [saving, setSaving] = useState(false)
+  const { submit, saving, failed, confirmed, total, reset } = useSquadSave()
   const [loadError, setLoadError] = useState(false)
-  const [saveError, setSaveError] = useState(false)
   const [attempt, setAttempt] = useState(0)
-  const savingRef = useRef(false)
 
   useEffect(() => {
     let cancelled = false
@@ -53,12 +53,10 @@ export function AnnouncementsPage({ teamId, teamName, coachId, coachName, onBack
   }, [teamId, attempt])
 
   async function send() {
-    if (!title.trim() || !body.trim() || savingRef.current) return
-    savingRef.current = true
-    setSaveError(false)
-    setSaving(true)
-    try {
-      const res = await fetch(`/api/coach/team/${encodeURIComponent(teamId)}/announce`, {
+    if (!title.trim() || !body.trim()) return
+    const createdItems: Announcement[] = []
+    const success = await submit(teamIds?.length ? teamIds : [teamId], async targetId => {
+      const res = await fetch(`/api/coach/team/${encodeURIComponent(targetId)}/announce`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -72,9 +70,12 @@ export function AnnouncementsPage({ teamId, teamName, coachId, coachName, onBack
         }),
       })
       if (!res.ok) throw new Error(`Announcement send failed: ${res.status}`)
-      if (res.ok) {
-        const created = await res.json()
-        setAnnouncements([created, ...announcements])
+      const created: Announcement = await res.json()
+      createdItems.push(created)
+    })
+    setAnnouncements(current => [...createdItems, ...current])
+    if (success) {
+        reset()
         showToast(t('coach.announce.sent'), 'success')
         setShowNew(false)
         setTitle('')
@@ -82,23 +83,19 @@ export function AnnouncementsPage({ teamId, teamName, coachId, coachName, onBack
         setLinkUrl('')
         setPriority('normal')
         setAudience('all')
-      }
-    } catch (cause) {
-      console.error('Announcement was not confirmed:', cause)
-      setSaveError(true)
-      showToast(t('academy.remoteSaveError'), 'error')
-    } finally { savingRef.current = false; setSaving(false) }
+    }
   }
 
   if (showNew) {
     return (
       <AcademyPage surface="announcement-compose" title={t('coach.announce.new')} className="academy-support-page">
-        {saveError && <p role="alert" className="academy-error">{t('academy.remoteSaveError')}</p>}
+        <SquadSaveStatus confirmed={confirmed} total={total} failed={failed} />
         <div className="flex items-center gap-3">
           <button onClick={() => setShowNew(false)} className="tap-target text-xl" aria-label={t('common.back')}>←</button>
 
         </div>
 
+        <fieldset className="academy-stack" disabled={saving || (failed && confirmed > 0)}>
         <div className="card animate-fade-up">
           <div className="flex flex-col gap-3">
             <input
@@ -165,6 +162,7 @@ export function AnnouncementsPage({ teamId, teamName, coachId, coachName, onBack
           </div>
         </div>
 
+        </fieldset>
         <button
           className="btn-primary w-full text-sm py-3 rounded-xl tap-target"
           onClick={send}

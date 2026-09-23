@@ -1,4 +1,9 @@
 {
+  "academy.squadSavesConfirmed": "Equipos confirmados: {{count}} / {{total}}. No se vuelve a enviar a los equipos confirmados al reintentar.",
+  "academy.participants": "Participantes: {{count}}",
+  "academy.overallSkill": "Valoración general de habilidades",
+  "academy.programFocus": "Enfoque de práctica, no una mejora medida de habilidad",
+  "academy.previousWeekComparison": "Últimos 7 días frente a los 7 anteriores",
   "academy.serverConfirmed": "El servidor confirmó el guardado.",
   "academy.photoError": "No se pudo leer o guardar la foto en este dispositivo. Puedes reintentar con este archivo o elegir otra imagen.",
   "academy.deviceSnapshot": "El historial de bienestar de este dispositivo",
@@ -44,7 +49,7 @@
   "academy.profileIntro": "Tu identidad, tus equipos y las habilidades que desarrollas.",
   "academy.loading": "Preparando tu espacio de fútbol",
   "nav.settings": "Ajustes",
-  "theme.clubhouse": "Casa del club",
+  "theme.clubhouse": "Academia",
   "clubhouse.afterTraining": "De vuelta del campo",
   "clubhouse.yourPace": "Tu club. Tu ritmo.",
   "clubhouse.welcome": "Buen trabajo, {{name}}.",

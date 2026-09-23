@@ -247,6 +247,7 @@ function AppContent() {
                   teamId={coachTeamId}
                   teamName={coachTeamName}
                   teamIds={coachTeamIds}
+                  teamNames={Object.fromEntries((profile?.managedTeams ?? []).map(team => [team.teamId, team.teamName]))}
                   coachId={profile?.id ?? ''}
                   onBack={() => handleNavigate('dashboard')}
                 />

@@ -1,4 +1,9 @@
 {
+  "academy.squadSavesConfirmed": "Kinnitatud võistkonnad: {{count}} / {{total}}. Uuel katsel ei saadeta kinnitatud võistkondadele uuesti.",
+  "academy.participants": "Osalejad: {{count}}",
+  "academy.overallSkill": "Oskuste üldhinnang",
+  "academy.programFocus": "Harjutamise fookus, mitte mõõdetud oskuste kasv",
+  "academy.previousWeekComparison": "Viimased 7 päeva võrreldes eelnenud 7 päevaga",
   "academy.serverConfirmed": "Server kinnitas salvestamise.",
   "academy.photoError": "Fotot ei saanud selles seadmes lugeda või salvestada. Proovi sama failiga uuesti või vali teine pilt.",
   "academy.deviceSnapshot": "Selle seadme enesetunde ajalugu",
@@ -44,7 +49,7 @@
   "academy.profileIntro": "Sinu identiteet, võistkonnad ja arendatavad oskused.",
   "academy.loading": "Valmistame sinu jalgpallijaotist ette",
   "nav.settings": "Seaded",
-  "theme.clubhouse": "Klubimaja",
+  "theme.clubhouse": "Akadeemia",
   "clubhouse.afterTraining": "Pärast treeningut",
   "clubhouse.yourPace": "Sinu klubi. Sinu tempo.",
   "clubhouse.welcome": "Tubli töö, {{name}}.",

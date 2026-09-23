@@ -32,7 +32,11 @@ export function AcademyWeekboard({ onNavigate, onLoggingChange }: { onNavigate?:
       createdBy: 'recurring', createdAt: item.createdAt,
     }))
     const events = [...schedule.filter(item => item.date === key), ...recurring].sort((a, b) => (a.startTime ?? '').localeCompare(b.startTime ?? ''))
-    return { date, key, events }
+    return {
+      date, key, events,
+      trainings: trainings.filter(entry => entry.date.slice(0, 10) === key),
+      matches: matches.filter(entry => entry.date.slice(0, 10) === key),
+    }
   })
   const active = days.find(day => day.key === selected) ?? days[0]
   const isLogged = (event: ScheduleEvent) => event.type === 'training'
@@ -60,11 +64,15 @@ export function AcademyWeekboard({ onNavigate, onLoggingChange }: { onNavigate?:
         <small className="academy-day-long">{day.date.toLocaleDateString(i18n.language, { weekday: 'long' })}</small>
         <small className="academy-day-short">{day.date.toLocaleDateString(i18n.language, { weekday: 'narrow' })}</small>
         <strong>{day.date.getDate()}</strong>
-        {day.events.length > 0 && <><span className="academy-day-dot" /><span className="academy-day-title">{day.events[0].title}</span></>}
+        {(day.events.length > 0 || day.trainings.length > 0 || day.matches.length > 0) && <><span className="academy-day-dot" /><span className="academy-day-title">{day.events[0]?.title ?? t('academy.recorded')}</span></>}
       </button>)}
     </div></div>
     <div className="academy-panel">
       <h3>{active.date.toLocaleDateString(i18n.language, { weekday: 'long', month: 'long', day: 'numeric' })}</h3>
+      {(active.trainings.length > 0 || active.matches.length > 0) && <p className="academy-complete-label mt-4">
+        {t('academy.recorded')}: {active.trainings.length} {t('log.training')} · {active.matches.length} {t('log.match')}
+        {active.trainings.length > 0 && ` · ${t('training.minutes', { min: active.trainings.reduce((sum, entry) => sum + entry.durationMinutes, 0) })}`}
+      </p>}
       {!active.events.length && <p className="academy-muted mt-4">{t('academy.noPlan')}</p>}
       {active.events.map(event => <div className="academy-agenda-row" key={event.id}>
         <time>{event.startTime || '—'}</time>

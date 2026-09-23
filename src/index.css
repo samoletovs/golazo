@@ -87,7 +87,7 @@
   #root { min-height: 100dvh; }
   button, input, select, textarea { font: inherit; max-width: 100%; }
   button, summary, select { cursor: pointer; }
-  button, a, input, select, textarea, summary { touch-action: manipulation; scroll-margin-block: 24px 120px; }
+  button, a, input, select, textarea, summary { touch-action: manipulation; scroll-margin-block: 24px calc(var(--academy-nav-height, 96px) + 24px); }
   button, summary, select { min-height: 44px; }
   button { color: inherit; }
   button:disabled { cursor: default; opacity: .65; }
@@ -119,14 +119,14 @@
 .academy-masthead { background: var(--color-glass); border-bottom: 1px solid var(--color-border-default); display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 20px; }
 .academy-brand { font: 900 2rem/1 var(--font-display); letter-spacing: -.06em; background: none; }
 .academy-brand span { color: var(--color-primary); }
-.academy-primary-nav { display: flex; background: var(--color-glass); position: fixed; z-index: 40; bottom: 0; left: 0; right: 0; padding: 8px 8px max(8px, env(safe-area-inset-bottom)); border-top: 1px solid var(--color-border-default); justify-content: space-around; gap: 4px; }
+.academy-primary-nav { display: flex; flex-wrap: wrap; background: var(--color-glass); position: fixed; z-index: 40; bottom: 0; left: 0; right: 0; padding: 8px 8px max(8px, env(safe-area-inset-bottom)); border-top: 1px solid var(--color-border-default); justify-content: space-around; gap: 4px; }
 .academy-nav-item { min-width: 0; background: none; display: flex; align-items: center; gap: 12px; border-radius: var(--radius-sm); font-weight: 650; padding: 12px 16px; text-align: left; }
 .academy-nav-item svg, .academy-menu-link svg { width: 22px; height: 22px; flex-shrink: 0; }
-.academy-primary-nav .academy-nav-item { flex: 1; flex-direction: column; gap: 5px; padding: 8px 2px; font-size: .75rem; line-height: 1.2; text-align: center; }
+.academy-primary-nav .academy-nav-item { flex: 1 1 auto; min-width: min-content; flex-direction: column; gap: 5px; padding: 8px 4px; font-size: .75rem; line-height: 1.2; text-align: center; }
 .academy-nav-item[aria-current="page"] { color: var(--color-primary-dark); background: var(--color-primary-bg); }
 .academy-secondary-nav, .academy-rail-identity { display: none; }
 .academy-menu-toggle { width: 48px; padding: 12px; border: 1px solid var(--color-border-default); border-radius: var(--radius-sm); }
-.academy-workspace { padding: 20px 16px 112px; min-width: 0; }
+.academy-workspace { padding: 20px 16px calc(var(--academy-nav-height, 96px) + 32px); min-width: 0; }
 .academy-context { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; margin-bottom: 28px; color: var(--color-text-muted); font-size: .875rem; }
 .academy-context > span { max-width: 55ch; }
 .academy-player-link { display: flex; align-items: center; gap: 10px; text-align: left; background: none; font-weight: 600; color: var(--color-text); }
@@ -219,6 +219,10 @@
 .academy-stat-line { display: flex; flex-wrap: wrap; gap: 20px 32px; border-block: 1px solid var(--color-border-default); padding-block: 20px; }
 .academy-stat-line dt { color: var(--color-text-muted); font-size: .875rem; }
 .academy-stat-line dd { font: 800 1.8rem var(--font-display); }
+.academy-comparison { display: flex; flex-wrap: wrap; gap: 12px 24px; margin-top: 12px; font-size: .875rem; }
+.academy-comparison > div { display: flex; gap: 8px; align-items: baseline; }
+.academy-comparison dt { color: var(--color-text-muted); }
+.academy-comparison dd { font-weight: 700; }
 .academy-log-options { display: grid; grid-template-columns: minmax(0,1fr); gap: 16px; }
 .academy-log-option { display: grid; grid-template-columns: 44px minmax(0,1fr) auto; align-items: center; gap: 20px; text-align: left; border: 1px solid var(--color-border-default); padding: 24px; background: var(--color-glass); border-radius: var(--radius-md); }
 .academy-log-option h2 { font-size: 1.65rem; margin-bottom: 8px; }
@@ -230,7 +234,7 @@
 .academy-credential .academy-eyebrow, .academy-credential small { color: #c5d0df; }
 .academy-credential-number { color: var(--color-coral); font: 900 5rem/1 var(--font-display); }
 .academy-credential-photo { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: var(--radius-sm); }
-.academy-credential-ratings { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); border-top: 1px solid #536278; gap: 20px; padding: 24px 32px; }
+.academy-credential-ratings { display: grid; grid-template-columns: repeat(auto-fit,minmax(min(100%,max(7rem,calc((100% - 40px) / 3))),1fr)); border-top: 1px solid #536278; gap: 20px; padding: 24px 32px; }
 .academy-credential-ratings dt { font-size: .75rem; color: #c5d0df; }
 .academy-credential-ratings dd { font: 800 1.8rem var(--font-display); }
 .academy-rating-bar { height: 4px; background: #536278; margin-top: 8px; }
@@ -357,6 +361,10 @@
   .academy-day-short { display: inline; }
   .academy-day > strong { font-size: 1.65rem; }
 }
+@container academy-week (max-width: 20rem) {
+  .academy-week { grid-template-columns: repeat(auto-fit,minmax(3.5rem,1fr)); }
+  .academy-day { border-bottom: 1px solid var(--color-border-default); }
+}
 @media (min-width: 760px) {
   .academy-welcome { grid-template-columns: minmax(0,1fr) minmax(0,1.15fr); }
   .academy-welcome-story, .academy-welcome-form { padding: 48px; }
@@ -377,7 +385,7 @@
 }
 @media (min-width: 1100px) {
   .academy-schedule-layout { grid-template-columns: minmax(0,1.2fr) minmax(0,1fr); }
-  .academy-shell { display: grid; grid-template-columns: 220px minmax(0,1fr); }
+  .academy-shell { display: grid; grid-template-columns: max(220px,14rem) minmax(0,1fr); }
   .academy-masthead { position: sticky; top: 0; height: 100dvh; overflow-y: auto; display: flex; flex-direction: column; align-items: stretch; justify-content: flex-start; padding: 32px 16px 24px; border-right: 1px solid var(--color-border-default); border-bottom: 0; }
   .academy-brand { text-align: left; padding-left: 16px; margin-bottom: 32px; }
   .academy-primary-nav { display: flex; flex-direction: column; justify-content: flex-start; gap: 8px; flex: none; }

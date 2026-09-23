@@ -3,17 +3,24 @@ import { useTranslation } from 'react-i18next'
 import { SURFACE_PRESETS, applySurfaceTheme, saveSurfaceTheme, loadSurfaceTheme, deriveTeamSurface } from '../utils/surfaceTheme'
 import { getPrimaryTeamColor } from '../utils/teamTheme'
 import { useApp } from '../contexts/AppContext'
+import { useToast } from '../contexts/ToastContext'
 
 export function ThemePicker() {
   const { t } = useTranslation()
   const { profile } = useApp()
+  const { showToast } = useToast()
   const [selected, setSelected] = useState(loadSurfaceTheme)
   const teamColor = getPrimaryTeamColor(profile?.teams)
 
   function pick(id: string) {
-    setSelected(id)
-    saveSurfaceTheme(id)
-    applySurfaceTheme(id, getPrimaryTeamColor(profile?.teams))
+    try {
+      saveSurfaceTheme(id)
+      applySurfaceTheme(id, getPrimaryTeamColor(profile?.teams))
+      setSelected(id)
+    } catch (cause) {
+      console.error('Theme preference could not be saved:', cause)
+      showToast(t('academy.preferenceError'), 'error')
+    }
   }
 
   // For "My Club" preset, compute the real swatch from actual team color

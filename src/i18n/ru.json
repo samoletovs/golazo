@@ -1,4 +1,9 @@
 {
+  "academy.squadSavesConfirmed": "Подтверждённые команды: {{count}} / {{total}}. При повторной попытке данные не отправляются им заново.",
+  "academy.participants": "Участники: {{count}}",
+  "academy.overallSkill": "Общая оценка навыков",
+  "academy.programFocus": "Направление занятий, а не измеренный прирост навыков",
+  "academy.previousWeekComparison": "Последние 7 дней в сравнении с предыдущими 7",
   "academy.serverConfirmed": "Сервер подтвердил сохранение.",
   "academy.photoError": "Не удалось прочитать или сохранить фотографию на устройстве. Можно повторить попытку с этим файлом или выбрать другой.",
   "academy.deviceSnapshot": "История самочувствия на этом устройстве",
@@ -44,7 +49,7 @@
   "academy.profileIntro": "Твоя личность, команды и навыки, которые ты развиваешь.",
   "academy.loading": "Готовим твой футбольный раздел",
   "nav.settings": "Настройки",
-  "theme.clubhouse": "Клубный дом",
+  "theme.clubhouse": "Академия",
   "clubhouse.afterTraining": "После тренировки",
   "clubhouse.yourPace": "Твой клуб. Твой темп.",
   "clubhouse.welcome": "Хорошая работа, {{name}}.",

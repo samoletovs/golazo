@@ -1,4 +1,9 @@
 {
+  "academy.squadSavesConfirmed": "Apstiprinātās komandas: {{count}} / {{total}}. Atkārtoti mēģinot, apstiprinātajām komandām dati netiek sūtīti vēlreiz.",
+  "academy.participants": "Dalībnieki: {{count}}",
+  "academy.overallSkill": "Kopējais prasmju vērtējums",
+  "academy.programFocus": "Treniņu uzsvars, nevis izmērīts prasmju pieaugums",
+  "academy.previousWeekComparison": "Pēdējās 7 dienas salīdzinājumā ar iepriekšējām 7",
   "academy.serverConfirmed": "Serveris apstiprināja saglabāšanu.",
   "academy.photoError": "Fotoattēlu neizdevās nolasīt vai saglabāt šajā ierīcē. Vari mēģināt vēlreiz vai izvēlēties citu attēlu.",
   "academy.deviceSnapshot": "Šīs ierīces pašsajūtas vēsture",
@@ -44,7 +49,7 @@
   "academy.profileIntro": "Tava identitāte, komandas un prasmes, kuras attīsti.",
   "academy.loading": "Sagatavojam tavu futbola sadaļu",
   "nav.settings": "Iestatījumi",
-  "theme.clubhouse": "Kluba māja",
+  "theme.clubhouse": "Akadēmija",
   "clubhouse.afterTraining": "Pēc treniņa",
   "clubhouse.yourPace": "Tavs klubs. Tavs temps.",
   "clubhouse.welcome": "Labs darbs, {{name}}.",

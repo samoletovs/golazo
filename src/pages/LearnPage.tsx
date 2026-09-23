@@ -382,9 +382,10 @@ export function LearnContent() {
                         </p>
                         {program.skillImpact && (
                           <div className="flex gap-2 flex-wrap justify-center">
-                            {Object.entries(program.skillImpact).map(([cat, val]) => (
+                            <p className="w-full academy-muted">{t('academy.programFocus')}</p>
+                            {Object.keys(program.skillImpact).map(cat => (
                               <span key={cat} className="text-xs px-2 py-0.5 rounded-full font-bold" style={{ background: 'var(--color-primary-bg)', color: 'var(--color-primary-dark)' }}>
-                                {t(`learn.cat.${cat}`)} ↑ +{val}
+                                {t(`learn.cat.${cat}`)}
                               </span>
                             ))}
                           </div>

@@ -1,4 +1,9 @@
 {
+  "academy.squadSavesConfirmed": "Patvirtintos komandos: {{count}} / {{total}}. Bandant dar kartą joms duomenys pakartotinai nesiunčiami.",
+  "academy.participants": "Dalyviai: {{count}}",
+  "academy.overallSkill": "Bendras įgūdžių įvertinimas",
+  "academy.programFocus": "Treniruočių kryptis, ne išmatuotas įgūdžių pagerėjimas",
+  "academy.previousWeekComparison": "Paskutinės 7 dienos, palyginti su ankstesnėmis 7",
   "academy.serverConfirmed": "Serveris patvirtino išsaugojimą.",
   "academy.photoError": "Nepavyko nuskaityti ar išsaugoti nuotraukos šiame įrenginyje. Gali bandyti dar kartą arba pasirinkti kitą vaizdą.",
   "academy.deviceSnapshot": "Šio įrenginio savijautos istorija",
@@ -44,7 +49,7 @@
   "academy.profileIntro": "Tavo tapatybė, komandos ir ugdomi įgūdžiai.",
   "academy.loading": "Ruošiama tavo futbolo skiltis",
   "nav.settings": "Nustatymai",
-  "theme.clubhouse": "Klubo namai",
+  "theme.clubhouse": "Akademija",
   "clubhouse.afterTraining": "Po treniruotės",
   "clubhouse.yourPace": "Tavo klubas. Tavo tempas.",
   "clubhouse.welcome": "Puikus darbas, {{name}}.",

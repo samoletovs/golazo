@@ -57,6 +57,7 @@ export function Profile() {
             <div><span className="academy-eyebrow">{t(player ? 'academy.playerRecord' : profile?.role === 'coach' ? 'coach.role' : 'login.asMentor')}</span>
               <h2>{profile?.name}</h2>
               <p>{player ? profile?.positions?.join(' / ') : [profile?.city, profile?.country].filter(Boolean).join(' · ')}</p>
+              {player && <small>{t('dashboard.level', { level: xp.level })} · {t(getRank(xp.level).key)}</small>}
               <p className="mt-3">{profile?.teams?.find(team => team.isPrimary)?.name || profile?.team}</p>
             </div>
             <div>{profile?.photoUrl ? <img className="academy-credential-photo" src={profile.photoUrl} alt={profile.name} /> : <span className="academy-credential-number">{profile?.jerseyNumber ?? 'G'}</span>}</div>
@@ -68,7 +69,7 @@ export function Profile() {
         </section>
         {player && <>
           <dl className="academy-stat-line">
-            <div><dt>{t(getRank(xp.level).key)}</dt><dd>{Math.round(overallRating(skillTree) * 10)}</dd></div>
+            <div><dt>{t('academy.overallSkill')}</dt><dd>{Math.round(overallRating(skillTree) * 10)}</dd></div>
             <div><dt>{t('dashboard.matches')}</dt><dd>{matches.length}</dd></div>
             <div><dt>{t('dashboard.goals')}</dt><dd>{goals}</dd></div>
             <div><dt>{t('dashboard.assists')}</dt><dd>{assists}</dd></div>

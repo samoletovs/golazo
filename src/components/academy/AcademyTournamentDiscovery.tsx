@@ -45,11 +45,11 @@ export function AcademyTournamentDiscovery({ onNavigate }: { onNavigate?: (page:
     return () => controller.abort()
   }, [profile?.teams, tournaments, attempt])
   if (!items.length && !failed) return null
-  return <AcademyPanel title={t('dashboard.tournamentDiscovery')}>
+  return <AcademyPanel title={t('portal.tournaments')}>
     {failed && <AcademyError message={t('academy.loadError')} onRetry={() => setAttempt(value => value + 1)} />}
     {items.map(item => <div key={item.id} className="academy-agenda-row"><time>{item.startDate}</time><div>
-      <h3>{item.name}</h3><p>{item.location} · {t('dashboard.teammates', { count: item.participantCount })}</p>
-      <button className="academy-link" onClick={() => onNavigate?.('schedule')}>{t('dashboard.joinTournament')} →</button>
+      <h3>{item.name}</h3><p>{item.location} · {t('academy.participants', { count: item.participantCount })}</p>
+      <button className="academy-link" onClick={() => onNavigate?.('schedule')}>{t('nav.schedule')} →</button>
     </div></div>)}
   </AcademyPanel>
 }

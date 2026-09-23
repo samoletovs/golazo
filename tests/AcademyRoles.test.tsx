@@ -1,11 +1,12 @@
 import { beforeEach, afterEach, describe, expect, it, vi } from 'vitest'
-import { fireEvent, render, screen } from '@testing-library/react'
+import { act, fireEvent, render, renderHook, screen, waitFor } from '@testing-library/react'
 import { SquadRoster } from '../src/pages/SquadRoster'
 import { TrainingPlanner } from '../src/pages/TrainingPlanner'
 import { AttendanceGrid } from '../src/components/AttendanceGrid'
 import { CoachStatsPage } from '../src/pages/CoachStatsPage'
 import { ToastProvider } from '../src/contexts/ToastContext'
 import i18n from '../src/i18n'
+import { useSquadSave } from '../src/hooks/useSquadSave'
 
 beforeEach(async () => {
   await i18n.changeLanguage('en')
@@ -32,7 +33,7 @@ describe('Academy supporting role states', () => {
     render(<ToastProvider><TrainingPlanner teamId="fixture" teamName="Fictional club" coachId="synthetic-coach" onBack={back} /></ToastProvider>)
     const title = screen.getByPlaceholderText(i18n.t('coach.training.title'))
     fireEvent.change(title, { target: { value: 'Fictional receiving session' } })
-    fireEvent.click(screen.getByRole('button', { name: `✓ ${i18n.t('coach.training.saved').replace('!', '')}` }))
+    fireEvent.click(screen.getByRole('button', { name: i18n.t('common.save'), exact: true }))
     expect((await screen.findAllByText(i18n.t('academy.remoteSaveError'))).length).toBeGreaterThan(0)
     expect(title).toHaveValue('Fictional receiving session')
     expect(back).not.toHaveBeenCalled()
@@ -56,5 +57,58 @@ describe('Academy supporting role states', () => {
     fireEvent.click(screen.getByRole('button', { name: i18n.t('common.save'), exact: true }))
     expect(await screen.findByRole('alert')).toHaveTextContent(i18n.t('academy.remoteSaveError'))
     expect(screen.queryByRole('status')).not.toBeInTheDocument()
+  })
+
+  it('submits a training plan to every selected squad and retries only unconfirmed squads', async () => {
+    const sent: string[] = []
+    let betaAttempts = 0
+    vi.stubGlobal('fetch', vi.fn(async (_url: string, init?: RequestInit) => {
+      if (typeof init?.body !== 'string') throw new Error('Expected a JSON plan')
+      const payload = JSON.parse(init.body)
+      sent.push(payload.teamId)
+      if (payload.teamId === 'beta' && betaAttempts++ === 0) return new Response('{}', { status: 503 })
+      return new Response('{}', { status: 201 })
+    }))
+    const back = vi.fn()
+    render(<ToastProvider><TrainingPlanner teamId="alpha" teamIds={['alpha', 'beta']} teamName="Alpha, Beta" coachId="synthetic-coach" onBack={back} /></ToastProvider>)
+    const title = screen.getByPlaceholderText(i18n.t('coach.training.title'))
+    fireEvent.change(title, { target: { value: 'Fictional receiving session' } })
+    const save = screen.getByRole('button', { name: i18n.t('common.save'), exact: true })
+    fireEvent.click(save)
+    expect(await screen.findByRole('alert')).toHaveTextContent(i18n.t('academy.remoteSaveError'))
+    expect(title).toHaveValue('Fictional receiving session')
+    expect(title).toBeDisabled()
+    expect(back).not.toHaveBeenCalled()
+    fireEvent.click(save)
+    await waitFor(() => expect(back).toHaveBeenCalledTimes(1))
+    expect(sent).toEqual(['alpha', 'beta', 'beta'])
+  })
+
+  it('keeps attendance marks separate for the same player in two selected squads', async () => {
+    const sent: { url: string; records: { playerId: string; status: string }[] }[] = []
+    vi.stubGlobal('fetch', vi.fn(async (url: string, init?: RequestInit) => {
+      if (init?.method === 'POST') {
+        if (typeof init.body !== 'string') throw new Error('Expected attendance JSON')
+        sent.push({ url, records: JSON.parse(init.body).records })
+        return new Response('{}', { status: 200 })
+      }
+      return new Response(JSON.stringify({ players: [{ playerId: 'same-player', playerName: 'Fictional Player 07', positions: ['CM'], active: true }] }), { status: 200 })
+    }))
+    render(<AttendanceGrid teamId="alpha" teamIds={['alpha', 'beta']} teamNames={{ alpha: 'Alpha', beta: 'Beta' }} teamName="Alpha, Beta" coachId="synthetic-coach" onBack={vi.fn()} />)
+    fireEvent.click(await screen.findByRole('button', { name: /Fictional Player 07.*Alpha/ }))
+    fireEvent.click(screen.getByRole('button', { name: i18n.t('common.save'), exact: true }))
+    expect(await screen.findByText(i18n.t('academy.serverConfirmed'))).toBeInTheDocument()
+    expect(sent).toEqual([
+      { url: '/api/coach/team/alpha/attendance', records: [{ playerId: 'same-player', status: 'absent' }] },
+      { url: '/api/coach/team/beta/attendance', records: [{ playerId: 'same-player', status: 'present' }] },
+    ])
+  })
+
+  it('does not carry a completed squad-operation acknowledgement into a new draft', async () => {
+    const send = vi.fn(async () => {})
+    const { result } = renderHook(() => useSquadSave())
+    await act(async () => { expect(await result.current.submit(['alpha'], send)).toBe(true) })
+    await act(async () => { expect(await result.current.submit(['alpha'], send)).toBe(true) })
+    expect(send).toHaveBeenCalledTimes(2)
   })
 })

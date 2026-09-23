@@ -1,0 +1,103 @@
+# Academy implementation candidate
+
+This is the held implementation of the owner's **A - Academy weekboard**
+selection. It is not final design acceptance, an independent review, or permission
+to open a PR or deploy. The canonical [brief](../.impeccable.md) and frozen
+[220-surface scope](../.design-scope.json) govern the complete player, coach and
+mentor experience. Original concepts remain in their historical directory.
+
+## Connected screen family
+
+| Area | Real implementation |
+| --- | --- |
+| Shared shell | Role-aware Academy rail, tablet navigation, wrapping phone navigation with measured clearance, secondary spaces and original SVG icons |
+| Home | Actual scheduled/recurring week, day drillthrough, recorded activity, latest match, season and previous-week comparison, routine/quiz/challenge, goals, announcements, coach advice and tournament discovery |
+| Log | Training, match and reflection forms; scheduled-entry prefill and skip controls; real age-scaled rewards; local failure and retained-input retry; tournament entry |
+| Progress | Recorded activity and training minutes, match/skill/physical/wellbeing views and evaluation history; no reconstructed historical XP series presented as fact |
+| Learn | Articles, categories, programs/workouts and exercise search/filter/sort/detail/video/custom-drill flows |
+| Profile | Original Academy credential and PNG export, photo controls, teams, goals, achievements and physical history/customization |
+| Settings | Existing language, theme, role, sign-out and reset capabilities moved into a dedicated workspace |
+| Calendar and football | Week/month views, selected-day detail, training/match/event forms, recurring setup, tournament import and existing tournament/match drillthroughs |
+| Coach | Squad selection, roster/player detail, training/drill planning, announcements, evaluation, attendance and team challenges |
+| Mentor | Linked-player selection and player-linked activity, clearly separated from unscoped device check-in history; no diary text |
+| Entry/recovery | Sign-in, existing role-specific onboarding steps, bootstrap skeleton and error recovery; shared native dialog focus/Escape behavior |
+
+The CSS replacement removes the competing Clubhouse stylesheet and narrow app
+shell. The compatibility classes used by smaller existing controls now resolve to
+the same Academy tokens, rather than a second overlaid theme. Unimported legacy
+helpers are not represented as reachable product screens.
+
+## Behavior and truthfulness
+
+- No backend endpoint, authentication contract or persisted product schema was
+  changed. There are no synthetic production records or new recommendation APIs.
+- Training, match and diary records and their real XP changes are written
+  atomically to local storage before publication. A stable draft ID prevents a
+  double-submit from duplicating a record or reward. Existing match growth and
+  age-tier rules remain in the engine.
+- A local save explicitly does **not** confirm a cloud save. Remote coach writes
+  report failed/unconfirmed responses and retain the editor. Multi-squad retries
+  skip confirmed targets within that editor. An interrupted response remains
+  uncertain: without a backend idempotency contract, a new/reopened remote
+  submission cannot be promised globally exactly-once.
+- Coach aggregate statistics were static zero/equal-weight displays, not a
+  working analytics endpoint. The candidate states that the data is unavailable
+  rather than showing those figures as observations.
+- Existing check-ins have no player identifier. Mentor wellbeing remains
+  explicitly a device snapshot, not a claim about the selected linked player.
+  The selection filters only records that actually carry a player identifier.
+- Program focus metadata is not displayed as a measured skill increase.
+  Overall skill ratings and XP rank are labelled separately.
+- Rest and missed sessions do not generate records or XP. Comparisons describe
+  stored activity without presenting lower frequency as failure.
+
+## Local compiled preview
+
+Use the existing interpreter with Playwright already installed; no package
+download or environment switch is necessary. Build and stamp the exact source:
+
+```powershell
+npm run build
+$source = git rev-parse HEAD
+Set-Content -LiteralPath dist\source-revision.txt -Value $source -NoNewline
+& C:\Python314\python.exe tests\academy_preview.py --dist dist --source $source --port 4323
+```
+
+Open `http://127.0.0.1:4323/__preview`. The launcher is test tooling, not part of
+the shipped bundle. It labels its fictional profile and can reset player, coach
+or mentor scenarios. It refuses to replace a different existing local profile.
+The server binds only to loopback, serves the compiled assets, returns synthetic
+read fixtures and deliberately refuses remote writes. It never proxies to a live
+service or signs into a real account.
+
+The clean `/` response remains the unmodified compiled HTML for browser
+verification. The labelled owner preview adds test-only framing around that
+same compiled app; do not confuse the framing with production UI.
+
+## Verification and outstanding review
+
+Use the source hashes, observations, captures and surface-status record in
+[the candidate evidence directory](design-evidence/academy-20260923/). Captures
+from earlier source hashes are historical and must not be relabelled.
+
+- `npm test -- --maxWorkers=1`, `npm run build`, `npm run lint` and
+  `npm run validate:football-terms` use the existing toolchain.
+- `tests/test_design_gate.py` exercises missing/stale evidence, merge-tree base
+  drift, backend-only scope, v2 surface coverage, separate craft review and
+  integrated owner acceptance.
+- `tests/test_training_browser.py` uses the actual compiled source marker,
+  local-only fixtures, native keyboard controls, local-write failure/retry,
+  narrow/tablet/desktop layouts, contrast, enlarged text and true browser zoom.
+- `tests/academy-browser-probe.js` describes the role/language/navigation probe.
+  The source-level shell regression follows actual imports; it is not a claim
+  that craft quality or every interaction has been independently reviewed.
+
+The retained baseline manifest is **build output sizes at the PR #10 production
+base**, not pre-PR #10 performance evidence and not an initial-network baseline.
+Current request measurements are recorded separately. Initial JavaScript remains
+large. There is no new approved performance budget or optimization claim, and
+unrelated loading-optimization work is not included.
+
+Independent code/functional review, a separate visual craft review and the owner's
+integrated-app acceptance belong to the parent delivery process. A v2 draft is
+deliberately non-passing until those judgments and complete surface evidence exist.

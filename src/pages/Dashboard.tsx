@@ -15,6 +15,7 @@ import { AcademyWeekboard } from '../components/academy/AcademyWeekboard'
 import { AcademyDailyPractice } from '../components/academy/AcademyDailyPractice'
 import { AcademyTournamentDiscovery } from '../components/academy/AcademyTournamentDiscovery'
 import { TacticalGraphic } from '../components/academy/TacticalGraphic'
+import { AcademySeasonComparison } from '../components/academy/AcademySeasonComparison'
 
 export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void }) {
   const { t, i18n } = useTranslation()
@@ -54,6 +55,7 @@ export function Dashboard({ onNavigate }: { onNavigate?: (page: string) => void 
               <div><dt>{t('dashboard.wins')}</dt><dd>{matches.filter(item => getMatchResult(item) === 'win').length}</dd></div></>}
             <div><dt>{t('log.training')}</dt><dd>{trainings.length}</dd></div>
           </dl>
+          {!young && <AcademySeasonComparison />}
         </section>
         <WeeklyGoalRing />
         <AnnouncementFeed />
