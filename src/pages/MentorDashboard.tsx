@@ -186,7 +186,7 @@ export function MentorDashboard() {
               ) : (
                 <span>⚽</span>
               )}
-              {m.name.split(' ')[0]}
+              {m.name}
             </button>
           ))}
         </div>

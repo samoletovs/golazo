@@ -5,6 +5,7 @@ import { ToastProvider } from '../src/contexts/ToastContext'
 import { PersonalGoals } from '../src/components/PersonalGoals'
 import { AchievementsList } from '../src/components/AchievementsList'
 import { CoachCard } from '../src/components/CoachCard'
+import { MentorDashboard } from '../src/pages/MentorDashboard'
 import i18n from '../src/i18n'
 import type { ReactNode } from 'react'
 import { formatDisplayDate } from '../src/utils/dateFormat'
@@ -60,5 +61,22 @@ describe('Academy supporting player controls', () => {
     expect(await screen.findByRole('alert')).toHaveTextContent(i18n.t('academy.coachUnavailable'))
     expect(screen.getByRole('button', { name: i18n.t('academy.retry') })).toBeEnabled()
     expect(screen.getByRole('heading', { name: i18n.t('academy.localPracticeTitle') })).toBeInTheDocument()
+  })
+
+  it('distinguishes linked players with a shared first name and never renders diary text', async () => {
+    localStorage.setItem('golazo-state', JSON.stringify({
+      profile: { id: 'synthetic-mentor', role: 'mentor', name: 'Fictional Mentor', menteeIds: ['child-a', 'child-b'] },
+      diary: [{ id: 'private-fixture', playerId: 'child-a', date: '2026-09-23', text: 'PRIVATE_REFLECTION_SENTINEL', mood: 3, promptsUsed: [], linkedTrainingIds: [], linkedMatchIds: [], createdAt: '2026-09-23' }],
+    }))
+    vi.stubGlobal('fetch', vi.fn(async (url: string) => url.startsWith('/api/mentor/mentees')
+      ? new Response(JSON.stringify({ mentees: [{ id: 'child-a', name: 'Fictional Player 07' }, { id: 'child-b', name: 'Fictional Player 08' }] }), { status: 200 })
+      : new Response('{}', { status: 503 })))
+    mount(<MentorDashboard />)
+    const first = await screen.findByRole('button', { name: /Fictional Player 07/ })
+    const second = screen.getByRole('button', { name: /Fictional Player 08/ })
+    expect(first).toHaveAttribute('aria-pressed', 'true')
+    fireEvent.click(second)
+    expect(second).toHaveAttribute('aria-pressed', 'true')
+    expect(screen.queryByText('PRIVATE_REFLECTION_SENTINEL')).not.toBeInTheDocument()
   })
 })
