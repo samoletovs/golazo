@@ -238,6 +238,14 @@ def main() -> None:
                 expect(page.locator(".academy-form")).to_be_visible()
                 results.append({"language": language, "phase": "text-200-form", "layout": no_overflow(page)})
                 capture(page, output, f"{language}-text-200-form")
+                page.evaluate("document.documentElement.style.fontSize='100%'")
+                for width in (390, 1440):
+                    page.set_viewport_size({"width": width, "height": 900})
+                    for destination in ("dashboard", "log", "progress", "learn", "profile"):
+                        page.locator(f'.academy-primary-nav [data-page="{destination}"]').click()
+                        expect(page.locator("main .academy-page").first).to_be_visible()
+                        results.append({"language": language, "phase": f"workspace-{destination}", "layout": no_overflow(page), "contrast": contrast(page)})
+                        capture(page, output, f"{language}-workspace-{destination}-{width}")
                 assert not state["page_errors"] and not state["unexpected_external"], state
                 results.append({"language": language, "mocked_cloud_failures": len(state["puts"]), "page_errors": state["page_errors"], "external_requests_sent": 0})
                 context.close()
@@ -252,7 +260,7 @@ def main() -> None:
             capture(page, output, "first-use-390")
             page.locator('main').get_by_role("button", name="Schedule", exact=True).click()
             assert not save_state(page)["trainings"] and save_state(page)["xp"]["totalXp"] == 0
-            page.get_by_role("button", name="Home", exact=True).click()
+            page.locator('.academy-primary-nav [data-page="dashboard"]').click()
             expect(page.locator('[data-academy-surface="player-home"]')).to_be_visible()
             page.locator('.academy-primary-nav [data-page="log"]').click()
             page.get_by_role("button", name="Training", exact=True).click()
@@ -286,6 +294,11 @@ def main() -> None:
                 }""", args.url)
                 assert zoom == 2
                 page.wait_for_function("old=>innerWidth<=old.width*.51 && devicePixelRatio>=old.dpr*1.99", arg=before)
+                for destination in ("dashboard", "log", "progress", "learn", "profile"):
+                    page.locator(f'.academy-primary-nav [data-page="{destination}"]').click()
+                    expect(page.locator("main .academy-page").first).to_be_visible()
+                    results.append({"phase": f"native-zoom200-{destination}", "layout": no_overflow(page), "before": before, "browserZoom": zoom})
+                page.locator('.academy-primary-nav [data-page="dashboard"]').click()
                 for phase in ("initial", "form", "completion"):
                     if phase == "form":
                         page.locator('.academy-primary-nav [data-page="log"]').click()
