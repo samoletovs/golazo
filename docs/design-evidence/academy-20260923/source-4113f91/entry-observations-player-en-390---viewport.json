@@ -1,0 +1,172 @@
+{
+  "source_commit": "4113f91a630285da4f78328f8a90ba3ecbf62cba",
+  "kind": "synthetic-entry-and-tournament-observations-not-review",
+  "observations": [
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "surface": "visitor-sign-in",
+      "capture": "entry-player-en-visitor-sign-in-390.png",
+      "viewport_capture": "entry-player-en-visitor-sign-in-390-viewport.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "surface": "role-choice",
+      "capture": "entry-player-en-role-choice-390.png",
+      "viewport_capture": "entry-player-en-role-choice-390-viewport.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "surface": "onboarding-basics",
+      "capture": "entry-player-en-onboarding-basics-390.png",
+      "viewport_capture": "entry-player-en-onboarding-basics-390-viewport.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "surface": "onboarding-football",
+      "capture": "entry-player-en-onboarding-football-390.png",
+      "viewport_capture": "entry-player-en-onboarding-football-390-viewport.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "surface": "onboarding-physical",
+      "capture": "entry-player-en-onboarding-physical-390.png",
+      "viewport_capture": "entry-player-en-onboarding-physical-390-viewport.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "surface": "onboarding-assessment",
+      "capture": "entry-player-en-onboarding-assessment-390.png",
+      "viewport_capture": "entry-player-en-onboarding-assessment-390-viewport.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "surface": "onboarding-ready",
+      "capture": "entry-player-en-onboarding-ready-390.png",
+      "viewport_capture": "entry-player-en-onboarding-ready-390-viewport.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "surface": "team-list",
+      "capture": "entry-player-en-team-list-390.png",
+      "viewport_capture": "entry-player-en-team-list-390-viewport.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "surface": "club-choice",
+      "capture": "entry-player-en-club-choice-390.png",
+      "viewport_capture": "entry-player-en-club-choice-390-viewport.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "surface": "squad-choice",
+      "capture": "entry-player-en-squad-choice-390.png",
+      "viewport_capture": "entry-player-en-squad-choice-390-viewport.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "surface": "create-team",
+      "capture": "entry-player-en-create-team-390.png",
+      "viewport_capture": "entry-player-en-create-team-390-viewport.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "surface": "duplicate-team-choice",
+      "capture": "entry-player-en-duplicate-team-choice-390.png",
+      "viewport_capture": "entry-player-en-duplicate-team-choice-390-viewport.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "surface": "tournament-import",
+      "capture": "entry-player-en-tournament-import-390.png",
+      "viewport_capture": "entry-player-en-tournament-import-390-viewport.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "surface": "tournament-team-choice",
+      "capture": "entry-player-en-tournament-team-choice-390.png",
+      "viewport_capture": "entry-player-en-tournament-team-choice-390-viewport.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "surface": "tournament-preview",
+      "capture": "entry-player-en-tournament-preview-390.png",
+      "viewport_capture": "entry-player-en-tournament-preview-390-viewport.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "surface": "tournament-result",
+      "capture": "entry-player-en-tournament-result-390.png",
+      "viewport_capture": "entry-player-en-tournament-result-390-viewport.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "No real sign-in or tournament parser requests",
+    "Final onboarding readiness is the first live Home after completion",
+    "Native controls and local data only; external services simulated"
+  ]
+}

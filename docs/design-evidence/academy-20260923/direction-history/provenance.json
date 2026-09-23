@@ -1,0 +1,21 @@
+{
+  "kind": "historical-direction-options-not-final-UI-evidence",
+  "source_commit": "7a6843dacedd1beca6c9725241f214b697f9e4aa",
+  "original_checkpoint": "806859b4e04b34e338dce24ec190042bb23cf073",
+  "options": [
+    {
+      "id": "A",
+      "copy": "option-a.png",
+      "original": "docs/design-directions/academy-20260922/evidence/a-home-en-desktop.png",
+      "meaning": "Academy weekboard concept before owner selection"
+    },
+    {
+      "id": "B",
+      "copy": "option-b.png",
+      "original": "docs/design-directions/academy-20260922/evidence/b-home-en-desktop.png",
+      "meaning": "Player journal alternative before owner selection"
+    }
+  ],
+  "later_actual_decision": "On 2026-09-23 the owner selected Develop A - Academy weekboard. This is concept selection, not final integrated-app acceptance.",
+  "limits": "The copies preserve the original rendered bytes. They are direction-comparison history only and must never be used as final production-UI captures."
+}

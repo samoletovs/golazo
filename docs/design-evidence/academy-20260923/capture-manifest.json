@@ -1,0 +1,3869 @@
+{
+  "source_commit": "4113f91a630285da4f78328f8a90ba3ecbf62cba",
+  "captures": [
+    {
+      "path": "source-4113f91/controls-en-credential-export-control-1440.png",
+      "sha256": "2c6bd7c8fb46db9ed85d0c8cbb3b946b30c2a2437550ead4731f16dc34cdeb8c",
+      "width": 1440,
+      "height": 1537,
+      "bytes": 120507,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/controls-en-credential-export-control-390.png",
+      "sha256": "a6e3ce8044b3ce4d20853d96e9374d22fbd31b539376a0184bdd1eaef9c03851",
+      "width": 390,
+      "height": 3182,
+      "bytes": 102746,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/controls-en-diary-completion-1440.png",
+      "sha256": "e49effc1e5ef17ead247c0b3f8a73c7642585c7b686f69b3634fd17346262d94",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 49572,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/controls-en-diary-completion-390.png",
+      "sha256": "3090a448f41fcb35b12a8ff8069c0a0b243010d32fc41020a53dc90060f8fe42",
+      "width": 390,
+      "height": 1000,
+      "bytes": 33433,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/controls-en-diary-retained-failure-1440.png",
+      "sha256": "ab4bf086a98a71ff3af311150eece4b80172962624e6d6de3c6c2b7261e05828",
+      "width": 1440,
+      "height": 1560,
+      "bytes": 101873,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/controls-en-diary-retained-failure-390.png",
+      "sha256": "b1fec8f8bf4cea3c4b150704a4fba70446e73832eb58cec0f858dabfe3de7c33",
+      "width": 390,
+      "height": 2018,
+      "bytes": 79447,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/controls-en-explicit-alternate-theme-1440.png",
+      "sha256": "f7072f0530cfd6e46d0229af50fb34f3ad389579a276d366fb73637bd898fa62",
+      "width": 1440,
+      "height": 1052,
+      "bytes": 69207,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/controls-en-explicit-alternate-theme-390.png",
+      "sha256": "5bd5c858a9ac83233fd4ed491cf372087ba2e5900318ca9521274050429da8f3",
+      "width": 390,
+      "height": 1528,
+      "bytes": 49788,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/controls-en-language-persisted-1440.png",
+      "sha256": "98f52da4ef3753bf1661ee93343779516d9f6778559be82c002fc7f0c7376e4a",
+      "width": 1440,
+      "height": 1052,
+      "bytes": 69454,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/controls-en-language-persisted-390.png",
+      "sha256": "9d6624df0fa52d5fc5bff5b9a73ae15a3ee5e019deedc73bf02e3493e10f1ea6",
+      "width": 390,
+      "height": 1528,
+      "bytes": 50385,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/controls-en-match-completion-1440.png",
+      "sha256": "545c7fe61b53db7bd7e846dfe29f75adfd1bbad24a4deaec669c875bca094445",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 49437,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/controls-en-match-completion-390.png",
+      "sha256": "e811926cf5b6c569927c88d0bd2378c8bae0eaed7c17c0436cad7f5067da7e28",
+      "width": 390,
+      "height": 1000,
+      "bytes": 33274,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/controls-en-match-retained-failure-1440.png",
+      "sha256": "42317dc82e47b464208b09fa38ece0174de2e8f4e6e73702110f169293a5586d",
+      "width": 1440,
+      "height": 1335,
+      "bytes": 82697,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/controls-en-match-retained-failure-390.png",
+      "sha256": "4678045494b77bad3362e8e56daee35407f10df0af1343bad5390885bf924d0d",
+      "width": 390,
+      "height": 1568,
+      "bytes": 59917,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/controls-en-photo-removal-1440.png",
+      "sha256": "794f27286b8de06c2a899cb97819ec42b182d628928a7a3929e2041eef9aa9e5",
+      "width": 1440,
+      "height": 1537,
+      "bytes": 120331,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/controls-en-photo-removal-390.png",
+      "sha256": "e2d295c547fd85737e83419a31d46b1e2c74f28b1f1f4bfdf30753a72017a3a1",
+      "width": 390,
+      "height": 3182,
+      "bytes": 102544,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/controls-en-photo-upload-1440.png",
+      "sha256": "3892886be3393527163ec5465073d24033f32a45cb33a6be4b035a4598964d36",
+      "width": 1440,
+      "height": 1537,
+      "bytes": 141678,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/controls-en-photo-upload-390.png",
+      "sha256": "5a967b0a3eaeb3d4c3f754c2ba93528b44c4acd5583940b55984b4d3dca5cda3",
+      "width": 390,
+      "height": 3182,
+      "bytes": 122824,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/controls-en-role-mentor-1440.png",
+      "sha256": "0a8b87f284e62bd69f440b29383b4333ec809bec30250e35512292a1420adca1",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 28911,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/controls-en-role-mentor-390.png",
+      "sha256": "48050b59892f4e486934d25003f262883e759a2ab3bcb082bdbd937d0f039f00",
+      "width": 390,
+      "height": 1000,
+      "bytes": 19233,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/controls-lv-credential-export-control-1440.png",
+      "sha256": "89211f1b28574625bf071dcbcd177d7e96fb8121b93fa3383b2f09858e8bda05",
+      "width": 1440,
+      "height": 1537,
+      "bytes": 120585,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/controls-lv-credential-export-control-390.png",
+      "sha256": "f8b2da2fd5ffd2d397eb30684336683d57c8905fefcfc430a4e6cf7b2d4a7a9e",
+      "width": 390,
+      "height": 3182,
+      "bytes": 102609,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/controls-lv-diary-completion-1440.png",
+      "sha256": "b939d3b6a4c915cba8621e9b1a71127b88394aab182e6e670ca16fc8c2647897",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 45773,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/controls-lv-diary-completion-390.png",
+      "sha256": "e9ec4c637721885ecc24fa062030ea72d39f9c268062bb8b13047f3a81e77d2e",
+      "width": 390,
+      "height": 1000,
+      "bytes": 29949,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/controls-lv-diary-retained-failure-1440.png",
+      "sha256": "48e6f2006b5cf3628d59927bdb476a328dbac265e5cb30b61a9c3b52a5759176",
+      "width": 1440,
+      "height": 1560,
+      "bytes": 94273,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/controls-lv-diary-retained-failure-390.png",
+      "sha256": "43c5bbb698e9dc162374177303250d970919047b09d0ca8da5beda1cf68b6b2b",
+      "width": 390,
+      "height": 1994,
+      "bytes": 75054,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/controls-lv-explicit-alternate-theme-1440.png",
+      "sha256": "0fc2077e42a0bfb0fbef30f0e19ac62e40997e0291b574383b590150b21f0fc7",
+      "width": 1440,
+      "height": 1052,
+      "bytes": 68381,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/controls-lv-explicit-alternate-theme-390.png",
+      "sha256": "6a183b297d76d6f444a9d38ef080b1dcc3d2c553d2eb48afa90a90dc88c5ca92",
+      "width": 390,
+      "height": 1528,
+      "bytes": 49058,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/controls-lv-language-persisted-1440.png",
+      "sha256": "1aaeaad8e32c52015904e9c6de844d16b13fcc34e253107543447a21fca86ab3",
+      "width": 1440,
+      "height": 1052,
+      "bytes": 68592,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/controls-lv-language-persisted-390.png",
+      "sha256": "7d0f5bcbcd4142037f2a200f0f6db5bfa9f338711bc10710b090b8078fb6450d",
+      "width": 390,
+      "height": 1528,
+      "bytes": 49884,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/controls-lv-match-completion-1440.png",
+      "sha256": "cb6852650837bda93b4c0b5b203ac177a439f7dfab7f8c3197a07c48effcd230",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 47660,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/controls-lv-match-completion-390.png",
+      "sha256": "1bb106985f7284d3dc7218b7517dbe3cd4b1b5414ec537a8cc85df8eadee9d04",
+      "width": 390,
+      "height": 1000,
+      "bytes": 31655,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/controls-lv-match-retained-failure-1440.png",
+      "sha256": "03bfedfa7a90ba5ce4cfdad5ec53a4a154bb1aff13a034b17c2b438412b46ed7",
+      "width": 1440,
+      "height": 1335,
+      "bytes": 76385,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/controls-lv-match-retained-failure-390.png",
+      "sha256": "8a897195c42cbd81ae4320d5549c881cbfdbbb04825420c022b99181f6fd5c5a",
+      "width": 390,
+      "height": 1544,
+      "bytes": 54634,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/controls-lv-photo-removal-1440.png",
+      "sha256": "3cd37faf1b4e49600b38386150022570ab5b43515626b7adcd68f0087f5a7a58",
+      "width": 1440,
+      "height": 1537,
+      "bytes": 120613,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/controls-lv-photo-removal-390.png",
+      "sha256": "50c0cb41db07228f650e2e60035ad247735ec2c73dd7b7d9431defe3584d6260",
+      "width": 390,
+      "height": 3182,
+      "bytes": 102633,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/controls-lv-photo-upload-1440.png",
+      "sha256": "f10de4e25f68c557c1510e0708105be3efa7860f2bb5e6beacdc9693b54b7e78",
+      "width": 1440,
+      "height": 1537,
+      "bytes": 141340,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/controls-lv-photo-upload-390.png",
+      "sha256": "c784729350207b35807eb9c17dd6b8ab7d214769c817105615ab1b887d82f9a6",
+      "width": 390,
+      "height": 3182,
+      "bytes": 122454,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/controls-lv-role-mentor-1440.png",
+      "sha256": "97659c672fe6720ca53a0bc1c8476f22ffe1248658276eafd9f9a3e8b328d551",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 28757,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/controls-lv-role-mentor-390.png",
+      "sha256": "0ed0766e3b9b9df92d2d89b34dd12161aeca2858d2483222330258f0d564739a",
+      "width": 390,
+      "height": 1000,
+      "bytes": 19059,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/credential-export-en-1440.png",
+      "sha256": "004cb7e1aa19d6d92d363da0c2b2f5c2ba031051d61a65acd98291e7e3a70d07",
+      "width": 660,
+      "height": 880,
+      "bytes": 52900,
+      "kind": "exported-credential"
+    },
+    {
+      "path": "source-4113f91/credential-export-en-390.png",
+      "sha256": "004cb7e1aa19d6d92d363da0c2b2f5c2ba031051d61a65acd98291e7e3a70d07",
+      "width": 660,
+      "height": 880,
+      "bytes": 52900,
+      "kind": "exported-credential"
+    },
+    {
+      "path": "source-4113f91/credential-export-lv-1440.png",
+      "sha256": "97272f2ef9a8ee1d8c049105b32ef05221dc76a02bf294699a8c017eb9f222a4",
+      "width": 660,
+      "height": 880,
+      "bytes": 53529,
+      "kind": "exported-credential"
+    },
+    {
+      "path": "source-4113f91/credential-export-lv-390.png",
+      "sha256": "97272f2ef9a8ee1d8c049105b32ef05221dc76a02bf294699a8c017eb9f222a4",
+      "width": 660,
+      "height": 880,
+      "bytes": 53529,
+      "kind": "exported-credential"
+    },
+    {
+      "path": "source-4113f91/en-completion-1024.png",
+      "sha256": "ac0463ae1152916e310696687dd6b6c93131bee837305bb3efc7890a06f28c25",
+      "width": 1024,
+      "height": 3246,
+      "bytes": 214089,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/en-completion-1440.png",
+      "sha256": "5e2f8764b37e7f6426e62cce68bacd6a42858e4b3008d4df2ccbedd19a352392",
+      "width": 1440,
+      "height": 2674,
+      "bytes": 242380,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/en-completion-320.png",
+      "sha256": "480526da33cd51249bb85d0f67e38bf657e8cf05f61bed7c25ee2aa551451d00",
+      "width": 320,
+      "height": 5011,
+      "bytes": 196497,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/en-completion-390.png",
+      "sha256": "4d4ff4ef857b3ddc27ee585400296ca1d0ba22ae80fd1c3a692b875621ce22f5",
+      "width": 390,
+      "height": 4693,
+      "bytes": 197178,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/en-completion-768.png",
+      "sha256": "be2ec9d40b2a5ff0226f0c0f1c1aba9cc02770333dc2b84093116258bc9244fe",
+      "width": 768,
+      "height": 3367,
+      "bytes": 210550,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/en-failure-390.png",
+      "sha256": "7d9fad5edc3a36f55c84bee4e9d4c678afed37046158ae2efd8723af3de949fe",
+      "width": 390,
+      "height": 4676,
+      "bytes": 187678,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/en-initial-1024.png",
+      "sha256": "7c4e756881f5e17df69685032af0d90e7c692036b0f5fd947e92cab117aec89e",
+      "width": 1024,
+      "height": 3229,
+      "bytes": 207483,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/en-initial-1440.png",
+      "sha256": "7c14b02351f4520323daced4830953ce5848d54836b41b97d65e1cc50b77c0fa",
+      "width": 1440,
+      "height": 2657,
+      "bytes": 226339,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/en-initial-320.png",
+      "sha256": "22d4895623aae25a70404006b7ee442cc546ec25ad58d91ad56064ac8229d542",
+      "width": 320,
+      "height": 4970,
+      "bytes": 184790,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/en-initial-390.png",
+      "sha256": "c93e65766dbe4efc2a1be61b0db9c76151dd5baf448d21ff57e9c4e3633be23e",
+      "width": 390,
+      "height": 4676,
+      "bytes": 194225,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/en-initial-768.png",
+      "sha256": "0694a41fe23413aa8ade8bb24d8e96ee86b7f0ea71a3e108d833ac23fae8441b",
+      "width": 768,
+      "height": 3350,
+      "bytes": 205402,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/en-text-200-dashboard.png",
+      "sha256": "5f2dd089fce0889d4b9c684b52acbe823f0efa97e194db0e13b60ce767e116f8",
+      "width": 390,
+      "height": 10404,
+      "bytes": 527849,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/en-text-200-form.png",
+      "sha256": "b84dd71f500753a1673f3c138590dc129fc25df2686b8681fb69fbbf80935295",
+      "width": 390,
+      "height": 4118,
+      "bytes": 206407,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/en-text-200-initial.png",
+      "sha256": "3c1a138c6f608e357130d83b8430a2d89ae88e7f3c33a1e7985ce12ca9cbcdbb",
+      "width": 390,
+      "height": 10404,
+      "bytes": 527895,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/en-text-200-learn.png",
+      "sha256": "df9a235a0e0e52edeba30326a1bd9b613b0aa751c05706125f07f4cc610b899c",
+      "width": 390,
+      "height": 17930,
+      "bytes": 969493,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/en-text-200-log.png",
+      "sha256": "5e40ef961c8cc0dadac01d039dbc903153e7f7da00d8a1ad35e3c4ec30e56f10",
+      "width": 390,
+      "height": 2900,
+      "bytes": 135527,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/en-text-200-profile.png",
+      "sha256": "a59f891f94d29609d47c8dae9b011e81fd70baf9969cd880a7ffd2f4a28c63e5",
+      "width": 390,
+      "height": 5630,
+      "bytes": 221849,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/en-text-200-progress.png",
+      "sha256": "212fa505d967c5ddb1f1e38e2ffd513eecfdbf26cb526d2ab316519ff416bf76",
+      "width": 390,
+      "height": 3331,
+      "bytes": 148623,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/en-workspace-dashboard-1440.png",
+      "sha256": "4b95831d982702f60ebb46cbee1f2403edb45a25f7bf96c725dd32a83b64b85a",
+      "width": 1440,
+      "height": 2674,
+      "bytes": 228550,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/en-workspace-dashboard-390.png",
+      "sha256": "df204865323752b6ac15775cac6a173dd082dc937eb335f51c6c3d08fbb1602d",
+      "width": 390,
+      "height": 4693,
+      "bytes": 196413,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/en-workspace-learn-1440.png",
+      "sha256": "3299549d06d273e7a207489213ed7ad4d8f23793219c23db1f265480250795f0",
+      "width": 1440,
+      "height": 3691,
+      "bytes": 346176,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/en-workspace-learn-390.png",
+      "sha256": "093eecf571994a3a795e76e966e99d002b7b5486988964b2339a2f00f98bad67",
+      "width": 390,
+      "height": 7610,
+      "bytes": 377032,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/en-workspace-log-1440.png",
+      "sha256": "d28efee7b0a9e85802b85aa1600a79b7520b506e2f3394c1e550ed18fe8a635b",
+      "width": 1440,
+      "height": 1008,
+      "bytes": 70468,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/en-workspace-log-390.png",
+      "sha256": "a310a93a2b254029c8f128d1431055f50f6f9aa7897511c2c55448a3cc67900a",
+      "width": 390,
+      "height": 1622,
+      "bytes": 49605,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/en-workspace-profile-1440.png",
+      "sha256": "08fb54047eae7bc5bdd545f14aece5de3e9349787df21e9a4c34410a88825363",
+      "width": 1440,
+      "height": 1462,
+      "bytes": 107002,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/en-workspace-profile-390.png",
+      "sha256": "2bc36141af4e61b5f60911a81187341b06aaabf485327afef7969a0ee68940ca",
+      "width": 390,
+      "height": 2900,
+      "bytes": 88597,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/en-workspace-progress-1440.png",
+      "sha256": "deb3264f829bf76db12958deaface3f63c41d6da5b491fa85beb4a3b54117764",
+      "width": 1440,
+      "height": 1549,
+      "bytes": 90459,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/en-workspace-progress-390.png",
+      "sha256": "5848d10bb2a284e29f703e26623462ee405e49e31930738371d95579943047f1",
+      "width": 390,
+      "height": 2031,
+      "bytes": 68085,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-en-club-choice-1440.png",
+      "sha256": "8068efcb5daca8ea87f66b77d83b2684ebd163541d420e6bddf4cc9fdb65d347",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 60697,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-en-club-choice-390-viewport.png",
+      "sha256": "d5e9ae114e1ac16a5a652e2c109c9974a04dc4762f6b3df53bdfb5ee4c9bc608",
+      "width": 390,
+      "height": 1000,
+      "bytes": 41265,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-en-club-choice-390.png",
+      "sha256": "d5e9ae114e1ac16a5a652e2c109c9974a04dc4762f6b3df53bdfb5ee4c9bc608",
+      "width": 390,
+      "height": 1000,
+      "bytes": 41265,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-en-create-team-1440.png",
+      "sha256": "8adf95adcde6e4acb4ae351d6276083fd9bff2b916ee4b7afee9cc3be5f21d9b",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 65714,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-en-create-team-390-viewport.png",
+      "sha256": "41b40fde1333a5da5eb2033f441209c53d9cb353defe8b6560fc956bfac49144",
+      "width": 390,
+      "height": 1000,
+      "bytes": 36676,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-en-create-team-390.png",
+      "sha256": "41b40fde1333a5da5eb2033f441209c53d9cb353defe8b6560fc956bfac49144",
+      "width": 390,
+      "height": 1000,
+      "bytes": 36676,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-en-duplicate-team-choice-1440.png",
+      "sha256": "75f7f8fdb641598c46479070c41448712686398d30bdbb1d6015c2d535f6153f",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 69013,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-en-duplicate-team-choice-390-viewport.png",
+      "sha256": "47b879d34627f9ca88fcef00ca90b786c1beef4b2ba308ad59c07473ef8acae5",
+      "width": 390,
+      "height": 1000,
+      "bytes": 40898,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-en-duplicate-team-choice-390.png",
+      "sha256": "47b879d34627f9ca88fcef00ca90b786c1beef4b2ba308ad59c07473ef8acae5",
+      "width": 390,
+      "height": 1000,
+      "bytes": 40898,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-en-onboarding-basics-1440.png",
+      "sha256": "8333b6d2b16995f81fff59e66f43d7d7fa615adb1b22f869a1a40e4f59e12cf8",
+      "width": 1440,
+      "height": 1160,
+      "bytes": 66651,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-en-onboarding-basics-390-viewport.png",
+      "sha256": "4300cbcc8696abd9ee8cc86eaa538054fb445b5e97d4d18e23fc529e774a9fc9",
+      "width": 390,
+      "height": 1000,
+      "bytes": 39478,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-en-onboarding-basics-390.png",
+      "sha256": "375ad3dea051a6c4fb6a24c0dc918e7d09b48b67fce4db37ba2ae10fe91555df",
+      "width": 390,
+      "height": 1278,
+      "bytes": 47692,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-en-onboarding-ready-1440.png",
+      "sha256": "7ed58b73bcaa73a207f12a90553be2f47527232bb063acd2c2fbd46282ff662b",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 46225,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-en-onboarding-ready-390-viewport.png",
+      "sha256": "ba793a809761fe7aa03acc166d312aeb3186aba199279051ae86290e51e150b2",
+      "width": 390,
+      "height": 1000,
+      "bytes": 35617,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-en-onboarding-ready-390.png",
+      "sha256": "ba793a809761fe7aa03acc166d312aeb3186aba199279051ae86290e51e150b2",
+      "width": 390,
+      "height": 1000,
+      "bytes": 35617,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-en-squad-choice-1440.png",
+      "sha256": "ad7f26f75545752fdc5b4817876327795d85987acd7f4258a2ba5aae57ad7285",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 66282,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-en-squad-choice-390-viewport.png",
+      "sha256": "dfa9690de94c2e98af31cd0d07a99d408c4acb756b4e28f0d90bbb49263904c7",
+      "width": 390,
+      "height": 1000,
+      "bytes": 42244,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-en-squad-choice-390.png",
+      "sha256": "dfa9690de94c2e98af31cd0d07a99d408c4acb756b4e28f0d90bbb49263904c7",
+      "width": 390,
+      "height": 1000,
+      "bytes": 42244,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-en-team-list-1440.png",
+      "sha256": "ac98d75adc130d54acffc89bd7ab2eeb5b01f97c3af0e1afa14fa026c6a8c132",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 58215,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-en-team-list-390-viewport.png",
+      "sha256": "5e6913010aec8c8b49e1fae17dafbc590a8aaa69222cafb2b7222d654dda00f5",
+      "width": 390,
+      "height": 1000,
+      "bytes": 37996,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-en-team-list-390.png",
+      "sha256": "5e6913010aec8c8b49e1fae17dafbc590a8aaa69222cafb2b7222d654dda00f5",
+      "width": 390,
+      "height": 1000,
+      "bytes": 37996,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-en-tournament-import-1440.png",
+      "sha256": "8e38c7094816224e7ed7e6e7583ad273e858a65075c477de948d1a669b754790",
+      "width": 1440,
+      "height": 1090,
+      "bytes": 60855,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-en-tournament-import-390-viewport.png",
+      "sha256": "abb563271c93bc8baa13ccadf4a5dd8ec685bad39f894dc5df8458bfb04b9871",
+      "width": 390,
+      "height": 1000,
+      "bytes": 36115,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-en-tournament-import-390.png",
+      "sha256": "dfd150552888a02c17540f271d1394a68145697f9831e3ca3547576e4a137834",
+      "width": 390,
+      "height": 1578,
+      "bytes": 52131,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-en-tournament-preview-1440.png",
+      "sha256": "822629d5b76a45b8a08e4d6b099262babe066a920584acb8b398e2cae7d6a1f7",
+      "width": 1440,
+      "height": 1090,
+      "bytes": 63853,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-en-tournament-preview-390-viewport.png",
+      "sha256": "2b8897415f4bbd9e9b09cb9eb16459187b06c52cefc2d3d3c94a76eec00a707b",
+      "width": 390,
+      "height": 1000,
+      "bytes": 34848,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-en-tournament-preview-390.png",
+      "sha256": "a616f814ad9783249b5b7fca05dfd2f16b638d9da827dcc1b0643d800cb4fe19",
+      "width": 390,
+      "height": 1578,
+      "bytes": 51026,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-en-tournament-result-1440.png",
+      "sha256": "74edb16eeaabb91785dad17b0fa72c509030dceb7905b0a25293f7467c0f4f42",
+      "width": 1440,
+      "height": 1138,
+      "bytes": 64442,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-en-tournament-result-390-viewport.png",
+      "sha256": "b0fac309d32cbbf76ac40ff831abd19cb3fd9ceca44d7945286f638f30636b14",
+      "width": 390,
+      "height": 1000,
+      "bytes": 43530,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-en-tournament-result-390.png",
+      "sha256": "43d7c6c9fdfa7a18cd0620d5d56bc3c893f23d4800887d2d6a2b3503bf694cd6",
+      "width": 390,
+      "height": 1709,
+      "bytes": 62501,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-en-tournament-team-choice-1440.png",
+      "sha256": "d01a8fdead9a2f2066e06fe632096c750e3a8a2801f054ee3a529ceaa9145a62",
+      "width": 1440,
+      "height": 1090,
+      "bytes": 65943,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-en-tournament-team-choice-390-viewport.png",
+      "sha256": "8e0db70e020fadf677a70fb02be88b5310418972e96460082d4bc871dd3071f7",
+      "width": 390,
+      "height": 1000,
+      "bytes": 35138,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-en-tournament-team-choice-390.png",
+      "sha256": "afdc1dfea7ae84de14b647337215dc81fa590bce5a13f23a3935bd433b441370",
+      "width": 390,
+      "height": 1578,
+      "bytes": 51422,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-lv-club-choice-1440.png",
+      "sha256": "7d355fb496968955a449a8d79c00c1aefff5c3e470594650a4f273b55807f41d",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 58626,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-lv-club-choice-390.png",
+      "sha256": "e0a604e39fdf9eaa3b9b36216049369eb9a24409dd049f62a133e3ea1d3e6902",
+      "width": 390,
+      "height": 1000,
+      "bytes": 40006,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-lv-create-team-1440.png",
+      "sha256": "57973a9861e64d2cbd79c7a87550a7b714549ef239e10f8c874f5f8d6d12ffed",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 65550,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-lv-create-team-390.png",
+      "sha256": "50e6c55ae32b80ed9983e081eeeade2b27a341f43926fb62bb74407eff870add",
+      "width": 390,
+      "height": 1000,
+      "bytes": 37886,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-lv-duplicate-team-choice-1440.png",
+      "sha256": "26c43c51265f9aec3fffa95593438d1d14e13c595afa8d4733b9fb63176b0174",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 67810,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-lv-duplicate-team-choice-390.png",
+      "sha256": "08f59b8e5cd8ba979fa5a3aa088c0addd5011b60a937e8aeb720bcc522e612ec",
+      "width": 390,
+      "height": 1000,
+      "bytes": 40512,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-lv-onboarding-basics-1440.png",
+      "sha256": "ef2a59fe177fe80016c30701a79292022196755a9348612cc9ad3f97a35d9a35",
+      "width": 1440,
+      "height": 1160,
+      "bytes": 64461,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-lv-onboarding-basics-390.png",
+      "sha256": "a1abc6545df81d948d9bb8394643749fb2c395ad8876c212ecb03826a5052299",
+      "width": 390,
+      "height": 1278,
+      "bytes": 46435,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-lv-onboarding-ready-1440.png",
+      "sha256": "73bc12d482354a3bc3218b8856959fb58080813af7a880f9361e6f8e5f9ba8ca",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 44633,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-lv-onboarding-ready-390.png",
+      "sha256": "c13443b0865db9d4668f38117c654163f66cacbf85b1978e793065429f91acaa",
+      "width": 390,
+      "height": 1000,
+      "bytes": 36258,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-lv-squad-choice-1440.png",
+      "sha256": "65058ca0f61827ad0f910810c4efca0ba193247219fd9a6cb78ca74c3cc85ae1",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 68406,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-lv-squad-choice-390.png",
+      "sha256": "f1769320b62f28641fd7b282e6afafdee9db70ffa109b892a036841abbdfb05f",
+      "width": 390,
+      "height": 1000,
+      "bytes": 44100,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-lv-team-list-1440.png",
+      "sha256": "fed2b6b41d0b667036c43527f845b8863f0eaaa29b97519b3ac4d557d7358528",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 56145,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-lv-team-list-390.png",
+      "sha256": "49b7cd8272243004448e668927b08c459a07a2fecfe5ca2607acac750dcc9a34",
+      "width": 390,
+      "height": 1000,
+      "bytes": 37176,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-lv-tournament-import-1440.png",
+      "sha256": "ef853bce75aea04638d8e46b6f2ee8ce0dca79d665feb6e9a78219dd7e880735",
+      "width": 1440,
+      "height": 1090,
+      "bytes": 61523,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-lv-tournament-import-390.png",
+      "sha256": "fac0a4652ad2cdf731a3e454be618f470c2932647955bfe24bc8a0dc958702f8",
+      "width": 390,
+      "height": 1578,
+      "bytes": 51705,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-lv-tournament-preview-1440.png",
+      "sha256": "7888d37dce7b0ab169265550e11a5688de53fe9bca600c30b536765666be8fc8",
+      "width": 1440,
+      "height": 1090,
+      "bytes": 63081,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-lv-tournament-preview-390.png",
+      "sha256": "3f979f3af913b51c2e66f781e79eca28ce46029f9c89c8059e2bed4618810fd8",
+      "width": 390,
+      "height": 1578,
+      "bytes": 50654,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-lv-tournament-result-1440.png",
+      "sha256": "78d63f5693ec593cc419bba2cb02c3b492f1ac05aa29328b103a9a591f49028a",
+      "width": 1440,
+      "height": 1138,
+      "bytes": 65002,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-lv-tournament-result-390.png",
+      "sha256": "c8eb9b4051825e56563564b2f83d265bae0aeefc228dd253a9a5c7d7ec53f3e3",
+      "width": 390,
+      "height": 1709,
+      "bytes": 62109,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-lv-tournament-team-choice-1440.png",
+      "sha256": "bdf6cfdbaab9a0a57a426d17d8654af652f572ee9e2c6edd436d7ae59ddd671c",
+      "width": 1440,
+      "height": 1090,
+      "bytes": 67243,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-coach-lv-tournament-team-choice-390.png",
+      "sha256": "01c3b377e6fb4bedbfa2c0263f7d49619f827575b7f55438b80a9e9dde417073",
+      "width": 390,
+      "height": 1578,
+      "bytes": 51496,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-en-club-choice-1440.png",
+      "sha256": "5517868538750c6e43abcfb5c2732ccfab1cbd712f173c7c10222b2fed02d5c3",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 51322,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-en-club-choice-390.png",
+      "sha256": "1b9f927b9f7052caedb6039cbec27156f66a9b3403462b0b618cae3288bd0dd2",
+      "width": 390,
+      "height": 1175,
+      "bytes": 45903,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-en-create-team-1440.png",
+      "sha256": "b21f24deb0207f16e75ca5932678b5848e23b918fc2a26c39251d790161f5058",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 61431,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-en-create-team-390.png",
+      "sha256": "c60304d6656172ea3a79366812a6c80953f822c7a3cf06935d1d25d351905d28",
+      "width": 390,
+      "height": 1175,
+      "bytes": 45018,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-en-duplicate-team-choice-1440.png",
+      "sha256": "3eb8e89faf6891896d906d52e8d2738a7093d780e02325971d88839fdc963a74",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 61081,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-en-duplicate-team-choice-390.png",
+      "sha256": "68f748cdc231eb580758efbbe6bbe0a2f882224939e275f29cbb9b823dee7517",
+      "width": 390,
+      "height": 1175,
+      "bytes": 48108,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-en-onboarding-assessment-1440.png",
+      "sha256": "6543d9b6fa57d878d64b971e26739c3ccb6035227434cc0dedc9d72920c2e1aa",
+      "width": 1440,
+      "height": 1160,
+      "bytes": 81717,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-en-onboarding-assessment-390.png",
+      "sha256": "1c2fe74dbf54b3f0e1963e4afbc99807581c83d7c59beb1cf278a35042b9793f",
+      "width": 390,
+      "height": 2464,
+      "bytes": 70055,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-en-onboarding-basics-1440.png",
+      "sha256": "403a12aee8617d6645d6656e4fc84e87fcbf2e6e6bf34a6c054bb970a70bcfe4",
+      "width": 1440,
+      "height": 1160,
+      "bytes": 68991,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-en-onboarding-basics-390.png",
+      "sha256": "c0c6e0bdc7102ed2ca59742d42c1a4be054927a3261fd0b11a29d5a1473f0773",
+      "width": 390,
+      "height": 1465,
+      "bytes": 50561,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-en-onboarding-football-1440.png",
+      "sha256": "db0fbfcd52bbfc99ff6577083dccc110606f1c80a588c49c7b71ebfd5f14cf47",
+      "width": 1440,
+      "height": 1160,
+      "bytes": 66196,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-en-onboarding-football-390.png",
+      "sha256": "9a1852b630209c923c6562766ed7340bf3a708fb326b2200c53de949fc9af7b2",
+      "width": 390,
+      "height": 1219,
+      "bytes": 45936,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-en-onboarding-physical-1440.png",
+      "sha256": "96b274741d58a19e76a8db56e1004b07f1275572797c031699e5e607687a167e",
+      "width": 1440,
+      "height": 1627,
+      "bytes": 118325,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-en-onboarding-physical-390.png",
+      "sha256": "32465acf0e624aeb8cfb253b91d88572ecaa75b7a950b1e61ae738586d615b57",
+      "width": 390,
+      "height": 2542,
+      "bytes": 99634,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-en-onboarding-ready-1440.png",
+      "sha256": "57e080720b85ac9081d4612cc82f08fdaff0f21eed23f386d86e35b274a50064",
+      "width": 1440,
+      "height": 1186,
+      "bytes": 66993,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-en-onboarding-ready-390.png",
+      "sha256": "87cf1060504cd689d442cbb28ad735bdcac100d80deeac042b35b6f5fbc6fd5b",
+      "width": 390,
+      "height": 1548,
+      "bytes": 52229,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-en-squad-choice-1440.png",
+      "sha256": "b7e5a57fe144936c7e2e23bc8b306bcf62c40a78cc667927c70c0285563b4a0f",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 61157,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-en-squad-choice-390.png",
+      "sha256": "97552b5242b0956c6d7b30d93364fbe72d6bb62c0d75134c4fc3e7e997aa34c3",
+      "width": 390,
+      "height": 1175,
+      "bytes": 48666,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-en-team-list-1440.png",
+      "sha256": "46544020b7b5990cc0784694a6fa07c960f756dcc0ac5449bf2ec26c2110b931",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 49433,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-en-team-list-390.png",
+      "sha256": "0ef9060a616b20036398b9bf8b0d88627ad5ca8e06d15b362bd99b95faf2f924",
+      "width": 390,
+      "height": 1175,
+      "bytes": 42595,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-en-tournament-import-1440.png",
+      "sha256": "ddfe4318cd08fb8142a8bf853fc4a9b1eab2f8924472a2853d37920c633e43a8",
+      "width": 1440,
+      "height": 1090,
+      "bytes": 61316,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-en-tournament-import-390.png",
+      "sha256": "7746b2969c31904d413ec8a6857468dfbc7e34f29a127eb49122504bf8bc785b",
+      "width": 390,
+      "height": 1578,
+      "bytes": 52517,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-en-tournament-preview-1440.png",
+      "sha256": "0cd7c7000398d5b3853f39a6617e39470ec267f7c5a061bdd3a8a2646fab7b77",
+      "width": 1440,
+      "height": 1090,
+      "bytes": 64250,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-en-tournament-preview-390.png",
+      "sha256": "d860bb2b30327d57017ab222f92f76ac90ad4f93fb883e2b4da71e3304cccd2e",
+      "width": 390,
+      "height": 1578,
+      "bytes": 51096,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-en-tournament-result-1440.png",
+      "sha256": "ff5d0593f62b17309e071a686e731ca01b3673a49ae5fbf99971508bb6c1a9b9",
+      "width": 1440,
+      "height": 1138,
+      "bytes": 64802,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-en-tournament-result-390.png",
+      "sha256": "c390f7066132aa1e6d2cb7424e1041ea8366457be4c5eb03fe4f36cd26687e16",
+      "width": 390,
+      "height": 1709,
+      "bytes": 62577,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-en-tournament-team-choice-1440.png",
+      "sha256": "5b00d495789d082417d51d439c83834ab5f8980ab8dd59fe19ea8efea96191b0",
+      "width": 1440,
+      "height": 1090,
+      "bytes": 66441,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-en-tournament-team-choice-390.png",
+      "sha256": "0faca376c12c08f1ccf4653e18da5cf3b37f57e8025ba8a3b642ceba1f4e9f1b",
+      "width": 390,
+      "height": 1578,
+      "bytes": 51818,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-lv-club-choice-1440.png",
+      "sha256": "86cf3448911c1f83f6dbebdd9c96ce968474b13cc0eea370ab4eba571d0b3226",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 52092,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-lv-club-choice-390.png",
+      "sha256": "b96be4cd330c5d749ba493aa3756335cfde50562db9583247310cba4e636eaff",
+      "width": 390,
+      "height": 1175,
+      "bytes": 46782,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-lv-create-team-1440.png",
+      "sha256": "514d207fd6f157591ae08bc7ad33533dbd03b5bae17b194a8091220ae3e7ced1",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 62733,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-lv-create-team-390.png",
+      "sha256": "44ae93abc14783df74f8cefc59ef6447281767a32bfea1535760818cb46092a7",
+      "width": 390,
+      "height": 1175,
+      "bytes": 46673,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-lv-duplicate-team-choice-1440.png",
+      "sha256": "3fe702d622695a71aeb00ac79a27d4af47b482746a3538b05f5b450114e05779",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 62857,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-lv-duplicate-team-choice-390.png",
+      "sha256": "f26c1bac56937860dbe74239ad8d0602f7a5cbeafc532b581b2bbeb490905fb9",
+      "width": 390,
+      "height": 1175,
+      "bytes": 49045,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-lv-onboarding-assessment-1440.png",
+      "sha256": "10b6774be841774fda4af62968800a58f947d38fc2fa0d8efaa884c9c36a3f7e",
+      "width": 1440,
+      "height": 1160,
+      "bytes": 80047,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-lv-onboarding-assessment-390.png",
+      "sha256": "93d7955e11f05420407bc5b4625e4c381d928957c8d95782b0006126c9b2924f",
+      "width": 390,
+      "height": 2447,
+      "bytes": 69149,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-lv-onboarding-basics-1440.png",
+      "sha256": "4f05c89305125dde9d1d4ebf1b45c2d27e4753abfe1855766670b6ca7af43c54",
+      "width": 1440,
+      "height": 1160,
+      "bytes": 66710,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-lv-onboarding-basics-390.png",
+      "sha256": "dabbed6181c035869734f214142e0cee0f3b498731729a234148caa194482c8e",
+      "width": 390,
+      "height": 1465,
+      "bytes": 49271,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-lv-onboarding-football-1440.png",
+      "sha256": "3dfdff1ba86b9547a3b6ab83f65f4c5598c88db3a55e3d45dc3959390ca6025c",
+      "width": 1440,
+      "height": 1160,
+      "bytes": 64248,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-lv-onboarding-football-390.png",
+      "sha256": "64f572348b69c98604f62039183a2dcc54fcd310136f1ab8a9d46bbc62a04830",
+      "width": 390,
+      "height": 1219,
+      "bytes": 44622,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-lv-onboarding-physical-1440.png",
+      "sha256": "c70cacf667e8b7c9a066d91800ef94b0dad058ac7eceb7917e01ee8057881faf",
+      "width": 1440,
+      "height": 1577,
+      "bytes": 114112,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-lv-onboarding-physical-390.png",
+      "sha256": "3007c9fc0a1a41cbc15b8d902d7b18ef6830f239e36cd39dd7a33ca27d816017",
+      "width": 390,
+      "height": 2525,
+      "bytes": 97364,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-lv-onboarding-ready-1440.png",
+      "sha256": "21f7be507421706e226cf256591d19f3b8abf7cb84210f7709609559fb48a802",
+      "width": 1440,
+      "height": 1186,
+      "bytes": 66785,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-lv-onboarding-ready-390.png",
+      "sha256": "70f909f017e26c7ad58bb4c76c1d64a82891dbe69ed7d5740e2cebfaab5be762",
+      "width": 390,
+      "height": 1540,
+      "bytes": 51964,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-lv-squad-choice-1440.png",
+      "sha256": "e4afa390bb170b853a7948b87d4afe7bb19192b28f4a0eb5726610cb9ed072d7",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 63483,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-lv-squad-choice-390.png",
+      "sha256": "3478ca5978c720d5e328d9b21aaa17f0e7967c16e216a4477607a38b0249b496",
+      "width": 390,
+      "height": 1175,
+      "bytes": 50512,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-lv-team-list-1440.png",
+      "sha256": "d6bdd378ea43f5d894b7f73ca580841e116d496439d47046ae3c93182a5ba167",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 50681,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-lv-team-list-390.png",
+      "sha256": "c4816f567c9472e8f399942121e487dc4f90c070f4515563f53edd30495793e7",
+      "width": 390,
+      "height": 1175,
+      "bytes": 44129,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-lv-tournament-import-1440.png",
+      "sha256": "875cbfad892ea340204f6cc973270d739a6d9281992c00e6aabb60efa96874c0",
+      "width": 1440,
+      "height": 1090,
+      "bytes": 61743,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-lv-tournament-import-390.png",
+      "sha256": "2bfb58bb4f8435cb4a55ddb7c72b560752b45d09fffe1428c72470098a4413ee",
+      "width": 390,
+      "height": 1578,
+      "bytes": 52051,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-lv-tournament-preview-1440.png",
+      "sha256": "e5e26048cd8b762d08c77b0624f84b5b0f4551c02795c3b8ca843868eb324a10",
+      "width": 1440,
+      "height": 1090,
+      "bytes": 63240,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-lv-tournament-preview-390.png",
+      "sha256": "cf76f7b9f50c68dfa9799d61c31cab15f7760a5e2d88a30a4e4083332c41463f",
+      "width": 390,
+      "height": 1578,
+      "bytes": 50678,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-lv-tournament-result-1440.png",
+      "sha256": "ac3ba7afb147ed1312a1da95f35aa0a590ce5f725091cb2d6359a91f53949df1",
+      "width": 1440,
+      "height": 1138,
+      "bytes": 65152,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-lv-tournament-result-390.png",
+      "sha256": "39ec3a7f7c4e2b2a9c3aa01da01f939568612204b871e05f82cfcf9120bd6dba",
+      "width": 390,
+      "height": 1709,
+      "bytes": 62145,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-lv-tournament-team-choice-1440.png",
+      "sha256": "e141b4057d21e121321dcf2523819ca90d622fcbe061d79fd6cc846d0fe45088",
+      "width": 1440,
+      "height": 1090,
+      "bytes": 67529,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-mentor-lv-tournament-team-choice-390.png",
+      "sha256": "47d9dade013685637f1e6db5a2d178f0ec1a39086277dc3e20b742c8309f4bec",
+      "width": 390,
+      "height": 1578,
+      "bytes": 51902,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-en-club-choice-1440.png",
+      "sha256": "914ca93fb0b338ad76e2130f3781087b44201f9ed3968a3d72927b227ccf7431",
+      "width": 1440,
+      "height": 1540,
+      "bytes": 108799,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-en-club-choice-390-viewport.png",
+      "sha256": "b0a7117a41c9bd6a3ec75b1777ab8c59537d78d30525f250ff4b40c4688cb9d6",
+      "width": 390,
+      "height": 1000,
+      "bytes": 37975,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-en-club-choice-390.png",
+      "sha256": "b92d56b7c37740d2fc540ca3762a64782c87ed0be451eb512f1a0f9d43ba90e2",
+      "width": 390,
+      "height": 3003,
+      "bytes": 98771,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-en-create-team-1440.png",
+      "sha256": "05c0e7105160cdd625e462168d171902490785d02314f475ce81eb8c22390598",
+      "width": 1440,
+      "height": 1540,
+      "bytes": 117066,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-en-create-team-390-viewport.png",
+      "sha256": "d525b69eef9f6ca9ac97b855a6b887502fe5fb2e335be06a2d1784571159f855",
+      "width": 390,
+      "height": 1000,
+      "bytes": 36515,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-en-create-team-390.png",
+      "sha256": "fd2372ceace00b94196ec7819d576fdde1f1f4227f99379f0b85c6ff1d2934d3",
+      "width": 390,
+      "height": 3003,
+      "bytes": 97616,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-en-duplicate-team-choice-1440.png",
+      "sha256": "e1b948dd4ff6971d7c4caa4473cc5dc6692f231fa442f3a714fc14a0bcce3a98",
+      "width": 1440,
+      "height": 1540,
+      "bytes": 116710,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-en-duplicate-team-choice-390-viewport.png",
+      "sha256": "24a15cfc4904cb1e38f304a0cdf1527beee36b3ca9874b32cce73d765fc68793",
+      "width": 390,
+      "height": 1000,
+      "bytes": 39755,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-en-duplicate-team-choice-390.png",
+      "sha256": "7958add4821847946220988fe1aa1b1ded97e19781ebf8b72bd9106f05f1d777",
+      "width": 390,
+      "height": 3003,
+      "bytes": 100926,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-en-onboarding-assessment-1440.png",
+      "sha256": "6543d9b6fa57d878d64b971e26739c3ccb6035227434cc0dedc9d72920c2e1aa",
+      "width": 1440,
+      "height": 1160,
+      "bytes": 81717,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-en-onboarding-assessment-390-viewport.png",
+      "sha256": "5703c79c83a2582ab9302d7a9828e348b58d4750cbbadcccc59c9c3a5ccd2adb",
+      "width": 390,
+      "height": 1000,
+      "bytes": 23243,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-en-onboarding-assessment-390.png",
+      "sha256": "1c2fe74dbf54b3f0e1963e4afbc99807581c83d7c59beb1cf278a35042b9793f",
+      "width": 390,
+      "height": 2464,
+      "bytes": 70055,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-en-onboarding-basics-1440.png",
+      "sha256": "a2b4880a4b8a88c447e980b6df450f41d51243b865ecb913542a25fa46c25339",
+      "width": 1440,
+      "height": 1160,
+      "bytes": 68124,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-en-onboarding-basics-390-viewport.png",
+      "sha256": "77d239c73b9968f2b8c756f44ac8f6e23b01ab6722669a25d7da63348f5d42a4",
+      "width": 390,
+      "height": 1000,
+      "bytes": 37726,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-en-onboarding-basics-390.png",
+      "sha256": "d054032589f18188266b9382c46209a4a4596a8afe7ae29d83d00d1df022b21b",
+      "width": 390,
+      "height": 1465,
+      "bytes": 49707,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-en-onboarding-football-1440.png",
+      "sha256": "db0fbfcd52bbfc99ff6577083dccc110606f1c80a588c49c7b71ebfd5f14cf47",
+      "width": 1440,
+      "height": 1160,
+      "bytes": 66196,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-en-onboarding-football-390-viewport.png",
+      "sha256": "734711b425a9e0f2954de2d90cc2b851bf1cafe983014c8bfbb0e1da8a7dadb4",
+      "width": 390,
+      "height": 1000,
+      "bytes": 34027,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-en-onboarding-football-390.png",
+      "sha256": "9a1852b630209c923c6562766ed7340bf3a708fb326b2200c53de949fc9af7b2",
+      "width": 390,
+      "height": 1219,
+      "bytes": 45936,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-en-onboarding-physical-1440.png",
+      "sha256": "1882f056e2e4f63c0dbc924a2a1fe16db5e8da38dda24f35493fe23e2d399b85",
+      "width": 1440,
+      "height": 1627,
+      "bytes": 118448,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-en-onboarding-physical-390-viewport.png",
+      "sha256": "2edc79b8b3375f20eb95cee3f350f57b9b2df1bff495630c657941787ec8fede",
+      "width": 390,
+      "height": 1000,
+      "bytes": 43838,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-en-onboarding-physical-390.png",
+      "sha256": "32465acf0e624aeb8cfb253b91d88572ecaa75b7a950b1e61ae738586d615b57",
+      "width": 390,
+      "height": 2542,
+      "bytes": 99634,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-en-onboarding-ready-1440.png",
+      "sha256": "dd315d3b49c6b280e2e561b7c725e76eb9beeee6e4f692a0d562364312570bcc",
+      "width": 1440,
+      "height": 2406,
+      "bytes": 210607,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-en-onboarding-ready-390-viewport.png",
+      "sha256": "3dafdbc687756e6f345f3f98847a99795546d83dad009cb9dae00078ec68aaeb",
+      "width": 390,
+      "height": 1000,
+      "bytes": 47438,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-en-onboarding-ready-390.png",
+      "sha256": "9d392f8b71d2882d560d1395b9efc056ed623fa301340b239bcad44ec2a8baaf",
+      "width": 390,
+      "height": 4241,
+      "bytes": 180496,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-en-role-choice-1440.png",
+      "sha256": "31acf5b3865a1cdc42e390f6150715922b8a360f8870a6ce4483668e868b18f4",
+      "width": 1440,
+      "height": 1160,
+      "bytes": 63011,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-en-role-choice-390-viewport.png",
+      "sha256": "e9b437470528f791c71bc08a75d5b4e2b57c4da073b66babd69bbea54135c9a4",
+      "width": 390,
+      "height": 1000,
+      "bytes": 41304,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-en-role-choice-390.png",
+      "sha256": "f1914d9f19ee488dba35689eba4a5c5af71527d0e2ca290803ec4ea05868bac8",
+      "width": 390,
+      "height": 1138,
+      "bytes": 44869,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-en-squad-choice-1440.png",
+      "sha256": "8dd6e3bf6d1f112f1a02a058ad9e281c1b24d3978bc879855722c35468006e1c",
+      "width": 1440,
+      "height": 1540,
+      "bytes": 117699,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-en-squad-choice-390-viewport.png",
+      "sha256": "93b6762ecd76f7e0c0f0c86e3ef0deaf2064ce504df58a10ef75aea4385d414e",
+      "width": 390,
+      "height": 1000,
+      "bytes": 41043,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-en-squad-choice-390.png",
+      "sha256": "0f16c62f7fe2dc946b0218703da911cb19436b777e5d017c09a9b1fc14454060",
+      "width": 390,
+      "height": 3003,
+      "bytes": 102277,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-en-team-list-1440.png",
+      "sha256": "4d3414165acdba2dd32e563f9c7cb7467029040b7d6968e8e087257f1f1e721e",
+      "width": 1440,
+      "height": 1540,
+      "bytes": 104466,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-en-team-list-390-viewport.png",
+      "sha256": "ca032c1bdef3bca06d129c7915a8a7bc29830b9d7248d26e38f1bd00ec3edccd",
+      "width": 390,
+      "height": 1000,
+      "bytes": 35254,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-en-team-list-390.png",
+      "sha256": "82627778141d7e243f171328a4b1806bb2d2838b0b0a2d079e1dde1ae38f7437",
+      "width": 390,
+      "height": 3003,
+      "bytes": 96332,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-en-tournament-import-1440.png",
+      "sha256": "2c421cb01b3f3eefa9482c8090b7e8dc5582347618ecc4295ff8d93b23d21806",
+      "width": 1440,
+      "height": 1090,
+      "bytes": 66949,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-en-tournament-import-390-viewport.png",
+      "sha256": "c26e0025ab9ebf93d6604ac390e5510865715ffc7397ad1f766b2f11882ad6a4",
+      "width": 390,
+      "height": 1000,
+      "bytes": 36476,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-en-tournament-import-390.png",
+      "sha256": "c303e6031cbaf08c49c4085def9f67ece9e28cb474ade576e8439e3900df9c5b",
+      "width": 390,
+      "height": 1578,
+      "bytes": 52607,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-en-tournament-preview-1440.png",
+      "sha256": "f51c1269da114bb5f451edb44bdaf2053cc9e93b0b39751bd215580369c9c286",
+      "width": 1440,
+      "height": 1090,
+      "bytes": 69894,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-en-tournament-preview-390-viewport.png",
+      "sha256": "f9ae7391940f163ded0e265d728b5b1233609088d00b1052aeb36aabe0baadf0",
+      "width": 390,
+      "height": 1000,
+      "bytes": 34926,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-en-tournament-preview-390.png",
+      "sha256": "467f1e6698a5ec7f97d887043b93f95f1264bbd972bd14fe09233f52ec9e0382",
+      "width": 390,
+      "height": 1578,
+      "bytes": 51183,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-en-tournament-result-1440.png",
+      "sha256": "f3dbc04bedd8b4dbdcc825de2ac5e289980c9173044cc56ffc9b8f5e2447e5ae",
+      "width": 1440,
+      "height": 1138,
+      "bytes": 70687,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-en-tournament-result-390-viewport.png",
+      "sha256": "cc51ed4ca2ad335cf3131abceb80d924cd09a64efe7a78ddd1c6c7d17570690b",
+      "width": 390,
+      "height": 1000,
+      "bytes": 43594,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-en-tournament-result-390.png",
+      "sha256": "eab5f6b869ab7208676c9204cb691d2bae93f3bd0be972164010d5502037c07f",
+      "width": 390,
+      "height": 1709,
+      "bytes": 62673,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-en-tournament-team-choice-1440.png",
+      "sha256": "7d7e5056c14db8c4999c608fc77dff4a2d41a5bc0b989c0073373b18d0d6b880",
+      "width": 1440,
+      "height": 1090,
+      "bytes": 72090,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-en-tournament-team-choice-390-viewport.png",
+      "sha256": "7cba304a0a366b1fb03a139d05cc92c68d3cf813aa5f5ff5397e0cfe5c157073",
+      "width": 390,
+      "height": 1000,
+      "bytes": 35411,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-en-tournament-team-choice-390.png",
+      "sha256": "4614b06df13bd96d4c66ca877680b1a273ad4048218ad5079cbf02455791807c",
+      "width": 390,
+      "height": 1578,
+      "bytes": 51810,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-en-visitor-sign-in-1440.png",
+      "sha256": "0a9955ea2a92a3a1067ca2bc74f639744752db97616eb576984ca5c9afc76ca2",
+      "width": 1440,
+      "height": 1160,
+      "bytes": 72038,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-en-visitor-sign-in-390-viewport.png",
+      "sha256": "83ea5eb227ffb7242dc7b113caf78c2a5ad02eca56a3649f541f210d0a445713",
+      "width": 390,
+      "height": 1000,
+      "bytes": 45128,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-en-visitor-sign-in-390.png",
+      "sha256": "74834dd9e41b7bd6aba811cc8e8346fe314017e63c24a951134d272ea3636ce3",
+      "width": 390,
+      "height": 1377,
+      "bytes": 55710,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-lv-club-choice-1440.png",
+      "sha256": "80317097cf6d49f7c0f4ae41b6088394bb5bc468015888e1d09898ca3268f58f",
+      "width": 1440,
+      "height": 1540,
+      "bytes": 111639,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-lv-club-choice-390.png",
+      "sha256": "ee125c58622b2a1a112ee0023cf2e1d846098abcffc44ca937ae0f7ae2de2b21",
+      "width": 390,
+      "height": 3003,
+      "bytes": 99917,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-lv-create-team-1440.png",
+      "sha256": "3d741ff208d40f6e1076be5066a2689f80fa07e722f2baefb11fc596c7368a8d",
+      "width": 1440,
+      "height": 1540,
+      "bytes": 120037,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-lv-create-team-390.png",
+      "sha256": "a565069f2c6d0d4c400008b6fa51a166d0f51756acac74f3806c5cce0ef1ef37",
+      "width": 390,
+      "height": 3003,
+      "bytes": 99689,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-lv-duplicate-team-choice-1440.png",
+      "sha256": "8c767a88578ff0ba18fae5c5e0565e5d40b3fbba00e5fc52cf71a090453d6335",
+      "width": 1440,
+      "height": 1540,
+      "bytes": 120145,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-lv-duplicate-team-choice-390.png",
+      "sha256": "ccabaedb809b6aa2da09e79d4891b7abbc36211255ea315e0fe879c55ab15357",
+      "width": 390,
+      "height": 3003,
+      "bytes": 102253,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-lv-onboarding-assessment-1440.png",
+      "sha256": "10b6774be841774fda4af62968800a58f947d38fc2fa0d8efaa884c9c36a3f7e",
+      "width": 1440,
+      "height": 1160,
+      "bytes": 80047,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-lv-onboarding-assessment-390.png",
+      "sha256": "93d7955e11f05420407bc5b4625e4c381d928957c8d95782b0006126c9b2924f",
+      "width": 390,
+      "height": 2447,
+      "bytes": 69149,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-lv-onboarding-basics-1440.png",
+      "sha256": "7d0cdb79641c0dca1ec4461a8e013da94b89e21f6839e425684b5ab0786aba98",
+      "width": 1440,
+      "height": 1160,
+      "bytes": 66023,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-lv-onboarding-basics-390.png",
+      "sha256": "c30700b37c400de8c4ea767741e7fd6561b1c78654e76ba8d58bb05927cde6aa",
+      "width": 390,
+      "height": 1465,
+      "bytes": 48595,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-lv-onboarding-football-1440.png",
+      "sha256": "3dfdff1ba86b9547a3b6ab83f65f4c5598c88db3a55e3d45dc3959390ca6025c",
+      "width": 1440,
+      "height": 1160,
+      "bytes": 64248,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-lv-onboarding-football-390.png",
+      "sha256": "64f572348b69c98604f62039183a2dcc54fcd310136f1ab8a9d46bbc62a04830",
+      "width": 390,
+      "height": 1219,
+      "bytes": 44622,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-lv-onboarding-physical-1440.png",
+      "sha256": "c70cacf667e8b7c9a066d91800ef94b0dad058ac7eceb7917e01ee8057881faf",
+      "width": 1440,
+      "height": 1577,
+      "bytes": 114112,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-lv-onboarding-physical-390.png",
+      "sha256": "30625fb3b79af7e3b2c0bb41922edb7b31e0ce3e39b744aa63a28ab876bbf4f6",
+      "width": 390,
+      "height": 2525,
+      "bytes": 97354,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-lv-onboarding-ready-1440.png",
+      "sha256": "fea2a791085356fa2ac6d34a3464800416ddc2e5d514d7720d1648b841b929f9",
+      "width": 1440,
+      "height": 2382,
+      "bytes": 203794,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-lv-onboarding-ready-390.png",
+      "sha256": "10054c69914532a8b7b10f00368c2946776685222ca6f9cf0b389a594f09ed3b",
+      "width": 390,
+      "height": 4219,
+      "bytes": 175305,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-lv-role-choice-1440.png",
+      "sha256": "1be379b7bddad88cf7567e842d683010a7efd987b8169de2c86050bf731346ba",
+      "width": 1440,
+      "height": 1160,
+      "bytes": 59079,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-lv-role-choice-390.png",
+      "sha256": "10c0abc379bbad39284cc9cdc319a4766684813ba54779b4cad1979161abfd00",
+      "width": 390,
+      "height": 1134,
+      "bytes": 42595,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-lv-squad-choice-1440.png",
+      "sha256": "1e36e41c2165a2bd1fc838afe72d467531662eb15e7fcf6cbfd30af1da90d2e2",
+      "width": 1440,
+      "height": 1540,
+      "bytes": 120617,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-lv-squad-choice-390.png",
+      "sha256": "deb9eb9be29063026aa7e2d7c7e6f4ea02b25b50222782b52b7f6114d90bc64a",
+      "width": 390,
+      "height": 3003,
+      "bytes": 104607,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-lv-team-list-1440.png",
+      "sha256": "ba75d495057d4d1a8b3b5b50c5f134e35995c699c0536963dad1cfd6fd5ef7e2",
+      "width": 1440,
+      "height": 1540,
+      "bytes": 107274,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-lv-team-list-390.png",
+      "sha256": "a3155dc30e57ea1c8540a8fd74ab72db0003ea0b7c277400d42f63c6efdddfb9",
+      "width": 390,
+      "height": 3003,
+      "bytes": 98417,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-lv-tournament-import-1440.png",
+      "sha256": "91923825193a2b2a6ecfc2f4c7bf13c9aaa53fc7919207b1b8a85677c30f5f3b",
+      "width": 1440,
+      "height": 1090,
+      "bytes": 67845,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-lv-tournament-import-390.png",
+      "sha256": "b1517c61585d6cbd9a7f9a2855f2352e5dbf169c24ca0de93a9909e8bc2f7f8a",
+      "width": 390,
+      "height": 1578,
+      "bytes": 52329,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-lv-tournament-preview-1440.png",
+      "sha256": "441f046d06eda7511d9baa0beeaf39fbc2aa2ccd5c595c748d7741e313bdab1a",
+      "width": 1440,
+      "height": 1090,
+      "bytes": 69357,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-lv-tournament-preview-390.png",
+      "sha256": "52cd633cd0e031f7dbe0653e9f342ea44c0b3f0e79c4a760de95933ebead5de9",
+      "width": 390,
+      "height": 1578,
+      "bytes": 50985,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-lv-tournament-result-1440.png",
+      "sha256": "3120f3d7d5915371735d24332c98b20b8997cb1a723f10578b27d5113d0f5297",
+      "width": 1440,
+      "height": 1138,
+      "bytes": 71438,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-lv-tournament-result-390.png",
+      "sha256": "7fd76bfd395eea726deb77fc1362f2db12880ad7aa33c31e23469f8112cbb4ba",
+      "width": 390,
+      "height": 1709,
+      "bytes": 62456,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-lv-tournament-team-choice-1440.png",
+      "sha256": "1270db8af441f56ab840f6abc06b9021fe654c63420cb14173af6e878376b0b9",
+      "width": 1440,
+      "height": 1090,
+      "bytes": 73544,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-lv-tournament-team-choice-390.png",
+      "sha256": "65e75294854370775a935fafb53ed323bbbbadb2279c6d8abb16eafce37dd3ca",
+      "width": 390,
+      "height": 1578,
+      "bytes": 51880,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-lv-visitor-sign-in-1440.png",
+      "sha256": "4f407f15ce29f8f4d4ea4b39d0af7b26c7621eb97ab14841f3a628c9caedd51a",
+      "width": 1440,
+      "height": 1160,
+      "bytes": 68980,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/entry-player-lv-visitor-sign-in-390.png",
+      "sha256": "b70d2414510af29a24ced92f2ceaac300b61faa4695c5b5e5cf3dc94a08f9da5",
+      "width": 390,
+      "height": 1324,
+      "bytes": 51474,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/es-completion-1024.png",
+      "sha256": "ffe267eb30a85d7dfe45ad9b00bca21b2fd1bc8f8b28e19962a76d1e99264edb",
+      "width": 1024,
+      "height": 3222,
+      "bytes": 214101,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/es-completion-1440.png",
+      "sha256": "c84f667c0f5d3c0f0697a641cc8aa9f4a69bb52122671184807e15fc5de49ddf",
+      "width": 1440,
+      "height": 2629,
+      "bytes": 242353,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/es-completion-320.png",
+      "sha256": "95a98393c53df61da325b7bd0e1f4e09a81a2e05e50d2f4009ca57ad5e102d56",
+      "width": 320,
+      "height": 5073,
+      "bytes": 194280,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/es-completion-390.png",
+      "sha256": "c1a246f81cddeacdaf9d85ada22bd26fc2612ff3bf571b726bab45adb80246bb",
+      "width": 390,
+      "height": 4808,
+      "bytes": 194494,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/es-completion-768.png",
+      "sha256": "92dde4eb26f9cf53597db920e93261e6fc28bc5f53a2a6a049f70762453f078b",
+      "width": 768,
+      "height": 3464,
+      "bytes": 215030,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/es-failure-390.png",
+      "sha256": "dc004946e3e46d479de70a0d3efc7e81b66fe13773537304247f3c6725311b00",
+      "width": 390,
+      "height": 4767,
+      "bytes": 182376,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/es-initial-1024.png",
+      "sha256": "374988df8601c784055307b056ac87f68442eea3897133e0e2f1683f79017a33",
+      "width": 1024,
+      "height": 3205,
+      "bytes": 202793,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/es-initial-1440.png",
+      "sha256": "441940e32bbf1d3bc902d06db923544be979dd342f607d83f70f3d2a67fb85c6",
+      "width": 1440,
+      "height": 2612,
+      "bytes": 221624,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/es-initial-320.png",
+      "sha256": "a963712088a191764d0e106ea357ddf97247c4dd17bd227b3d834efab4297717",
+      "width": 320,
+      "height": 5032,
+      "bytes": 181994,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/es-initial-390.png",
+      "sha256": "2c4bbec8d0f0e14097257f0aad5b0d88e78d45b47ee4f56ff352f50988fe2d9e",
+      "width": 390,
+      "height": 4767,
+      "bytes": 190249,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/es-initial-768.png",
+      "sha256": "4c1f6a03b6a7e0c24f1dc97815d241254b9727c0247a5d7197659dcf87390d47",
+      "width": 768,
+      "height": 3447,
+      "bytes": 201178,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/es-text-200-dashboard.png",
+      "sha256": "4980138fc77b6566714fdcb103e55d62a06ff1dc88b4ba62165741a7413a70b8",
+      "width": 390,
+      "height": 10286,
+      "bytes": 533918,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/es-text-200-form.png",
+      "sha256": "c906b317d54975db6e1cdc1550d8548f152f6880f849712bde983e36c94a94c7",
+      "width": 390,
+      "height": 4676,
+      "bytes": 235697,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/es-text-200-initial.png",
+      "sha256": "83f6b5955f70a272f127c8ea7efefe4153890546e8ed0df7a07d51b2d4e52136",
+      "width": 390,
+      "height": 10286,
+      "bytes": 533959,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/es-text-200-learn.png",
+      "sha256": "9ef3b2c11b4efdec860adeeb42322428e151fe8d08cacb75b2f7212bf833cc8e",
+      "width": 390,
+      "height": 18264,
+      "bytes": 998485,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/es-text-200-log.png",
+      "sha256": "dc749f5cbd5a1ef5fd2b929e46c7b8cb3bb62f4aef501b5a87df6c6a3a60fdf1",
+      "width": 390,
+      "height": 3047,
+      "bytes": 143243,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/es-text-200-profile.png",
+      "sha256": "f08f77f845daa02c920d597ba28b5236c0dfd879b714bb840b2e4a55671b2e6a",
+      "width": 390,
+      "height": 5837,
+      "bytes": 238640,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/es-text-200-progress.png",
+      "sha256": "31027d92af5bc5fa46b0cb9d2fd46e4978cc2b445ddc4c00ed1b5efb57eda556",
+      "width": 390,
+      "height": 3322,
+      "bytes": 153375,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/es-workspace-dashboard-1440.png",
+      "sha256": "52770a4298077a71c555bcffb8dacfc2a7b4bf2a47a9be15f891e790dc6814de",
+      "width": 1440,
+      "height": 2629,
+      "bytes": 223707,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/es-workspace-dashboard-390.png",
+      "sha256": "c3bc9590f1e6095daa69928d26ec235058724a019c25964a50c01d66f19cdeb3",
+      "width": 390,
+      "height": 4808,
+      "bytes": 192660,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/es-workspace-learn-1440.png",
+      "sha256": "9a227fb08bab49576c0d62a4c623a172c2de6e3dee89ab85222915160cb5bb8c",
+      "width": 1440,
+      "height": 3799,
+      "bytes": 345031,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/es-workspace-learn-390.png",
+      "sha256": "41029f2a3bca5c44b958d6e7b4b0f8c1d5f2c8f1d32d524a5ce9f6ec5b206eda",
+      "width": 390,
+      "height": 7638,
+      "bytes": 381914,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/es-workspace-log-1440.png",
+      "sha256": "49ec09bfa76cbaa17b9e17c96bf16533f6a713bf526ac84f6adc5ed6249e4106",
+      "width": 1440,
+      "height": 1008,
+      "bytes": 73955,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/es-workspace-log-390.png",
+      "sha256": "fb310d40d3b2129587340f64841d80938da7aeb04a6125e2c27e7cebe3f8902b",
+      "width": 390,
+      "height": 1601,
+      "bytes": 52513,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/es-workspace-profile-1440.png",
+      "sha256": "e886d731b9d269ca9eeef3bbfcf6faea346538c42d5abeceba753a9fc8711e15",
+      "width": 1440,
+      "height": 1472,
+      "bytes": 107190,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/es-workspace-profile-390.png",
+      "sha256": "88c78e6c51c8f64ce83b70690d95ec0ca0a188df6ae00a2d8362bd5e0ddf8a78",
+      "width": 390,
+      "height": 2938,
+      "bytes": 89712,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/es-workspace-progress-1440.png",
+      "sha256": "546396622694062878d590b21517497ed7f0845a8322f911887b5028c8b45e0c",
+      "width": 1440,
+      "height": 1525,
+      "bytes": 90049,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/es-workspace-progress-390.png",
+      "sha256": "24c641cc71a441e0d7fef7a4f8bb15e88baa0ef5267701b603f246b814fba88a",
+      "width": 390,
+      "height": 2031,
+      "bytes": 68009,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/first-use-390.png",
+      "sha256": "11444c5d6771c44a38bc60c1962c6a3d06093e9afa267eec0043994b67b312dc",
+      "width": 390,
+      "height": 4702,
+      "bytes": 195312,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/lv-completion-1024.png",
+      "sha256": "b874f0c025959863de1a263b3adc4b15bd4c5c284a25da6243aff152e5efc3ca",
+      "width": 1024,
+      "height": 3201,
+      "bytes": 208432,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/lv-completion-1440.png",
+      "sha256": "71129723aac6afac6ed203cd881c7dd3050ac005357bb5ec776bc299b5f23a28",
+      "width": 1440,
+      "height": 2629,
+      "bytes": 235570,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/lv-completion-320.png",
+      "sha256": "bd2ee3ec432367af2086d8f25a4d0cf8843f60b396c6e62336c03456ed837f87",
+      "width": 320,
+      "height": 5008,
+      "bytes": 191167,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/lv-completion-390.png",
+      "sha256": "f05a443b7c403d223e6f6ed14dde64bae00eaad9627cba229b36b76dab2317a8",
+      "width": 390,
+      "height": 4660,
+      "bytes": 192611,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/lv-completion-768.png",
+      "sha256": "9e3e6b7ab8b95fe49eb52c48d1024cf98729115800c321796eafe1d915048bcf",
+      "width": 768,
+      "height": 3396,
+      "bytes": 211734,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/lv-failure-390.png",
+      "sha256": "6faa5eecb6b57a5594317fd38678bd341e8cc940090650001822f39eabe0c244",
+      "width": 390,
+      "height": 4643,
+      "bytes": 183511,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/lv-initial-1024.png",
+      "sha256": "9af5c78f789ee54352fef82a2cc600ee84658eb746632f899e5d8e170f9744c9",
+      "width": 1024,
+      "height": 3184,
+      "bytes": 201102,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/lv-initial-1440.png",
+      "sha256": "b47deca68b9cbeb516ccc034d67dde809e1e452d6e2e128eb0947504d03658b1",
+      "width": 1440,
+      "height": 2612,
+      "bytes": 218516,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/lv-initial-320.png",
+      "sha256": "e4ee7d8b423f83d79706794b7d5a2393e0688b3f41b5dd4e3b542ec3a03966ac",
+      "width": 320,
+      "height": 4967,
+      "bytes": 181896,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/lv-initial-390.png",
+      "sha256": "f4b0edddc2e7bb07bc2289d4db5d820fb22862fedc732b9de9c6272e7cf38bed",
+      "width": 390,
+      "height": 4643,
+      "bytes": 189409,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/lv-initial-768.png",
+      "sha256": "0c05cd99419cc4c707623c50ee1c0fb9fedf7e636c62af33afe790744e4dbcea",
+      "width": 768,
+      "height": 3379,
+      "bytes": 199755,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/lv-text-200-dashboard.png",
+      "sha256": "4a9abfe9d124e2ddbfc77c89d4bfaabe92a39378247b7f88d2c910a2ad0c8c71",
+      "width": 390,
+      "height": 10239,
+      "bytes": 512239,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/lv-text-200-form.png",
+      "sha256": "bd98334508faa715d572ec9a870360be3445a033e82a1f04335742b432de1a8f",
+      "width": 390,
+      "height": 4244,
+      "bytes": 222056,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/lv-text-200-initial.png",
+      "sha256": "6bed7ea1ff8519a04f169048aae6425d191d8a526dd17b2d5161f3cddef3e7f6",
+      "width": 390,
+      "height": 10239,
+      "bytes": 512282,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/lv-text-200-learn.png",
+      "sha256": "5d521e6027abbf256c46dc878e93e91b118638be96bc547894a61075b0d343e7",
+      "width": 390,
+      "height": 17734,
+      "bytes": 974159,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/lv-text-200-log.png",
+      "sha256": "ca28e767ff83e7fdc9f7afbfb7915f29f18d8a029587847402ceda94b44fd7de",
+      "width": 390,
+      "height": 2867,
+      "bytes": 143574,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/lv-text-200-profile.png",
+      "sha256": "9e33c76a915e86f4c0c7bd63997417042470c341afcfed8469c6297af359b5c4",
+      "width": 390,
+      "height": 5840,
+      "bytes": 227191,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/lv-text-200-progress.png",
+      "sha256": "9983d32cb893945c33cef3a3922fe5ff28f015ed082ae4555b630b944f386f9c",
+      "width": 390,
+      "height": 3389,
+      "bytes": 156514,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/lv-workspace-dashboard-1440.png",
+      "sha256": "87a9ec4aab05ea7e741e56aea7369037c3b52168a2e5639bbdd5f6f4784144f2",
+      "width": 1440,
+      "height": 2629,
+      "bytes": 220118,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/lv-workspace-dashboard-390.png",
+      "sha256": "6fcb8ecca2c23a649446e9bf46aa2b2463b4cccda3601c74796a9b78965b8553",
+      "width": 390,
+      "height": 4660,
+      "bytes": 191502,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/lv-workspace-learn-1440.png",
+      "sha256": "a1c6442a7c3501dfa48862248abb1a28e0293b76befff22300b2a8447072977c",
+      "width": 1440,
+      "height": 3635,
+      "bytes": 334029,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/lv-workspace-learn-390.png",
+      "sha256": "dd0138f099dec62898e4c26f0863a1b6312a5a90ec908ed8101e4c9a173dafce",
+      "width": 390,
+      "height": 7441,
+      "bytes": 369432,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/lv-workspace-log-1440.png",
+      "sha256": "a5c9ff49857ccb1a10492154107e7842ba44ee4eb328eae9601eb61b162fa3ad",
+      "width": 1440,
+      "height": 984,
+      "bytes": 74179,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/lv-workspace-log-390.png",
+      "sha256": "d0aae7534acfba75a9c29a7458f1adbf926b1661c8848068586f49faef2c3d8b",
+      "width": 390,
+      "height": 1622,
+      "bytes": 53845,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/lv-workspace-profile-1440.png",
+      "sha256": "5a2b072aa45855c2b12172e4ca3e4c1928f1ce07fd6e1b5e2b4131267a422024",
+      "width": 1440,
+      "height": 1462,
+      "bytes": 107998,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/lv-workspace-profile-390.png",
+      "sha256": "3328c1215706d29c295580d7f63f9311982f7b7e67a68ca62d7b92cd763db857",
+      "width": 390,
+      "height": 2900,
+      "bytes": 89284,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/lv-workspace-progress-1440.png",
+      "sha256": "d73d297a516901a159b4a1e172e164a5b4af39f021b23bc3902dbee652b23e70",
+      "width": 1440,
+      "height": 1549,
+      "bytes": 91340,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/lv-workspace-progress-390.png",
+      "sha256": "0639f8cc4bf7f6c04676e9b164c4d4eed7be7c13b5b043fb8e8ee9b004d75e25",
+      "width": 390,
+      "height": 2031,
+      "bytes": 68455,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/native-zoom200-completion.png",
+      "sha256": "ea93459a4c1f47c393b808480aabc05b96dec69c34fadebf0ffca862ea6fccb3",
+      "width": 1422,
+      "height": 2597,
+      "bytes": 160556,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/native-zoom200-form.png",
+      "sha256": "1de7fdb97b006f496d4be3d4872cb5ca089dc2cca8debb9c4c0d71da3bba6665",
+      "width": 1422,
+      "height": 3610,
+      "bytes": 219930,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/native-zoom200-initial.png",
+      "sha256": "553a3ad85ebe3de32f24f22a98aecfc242cd985adbef1b39e4d026b61b4fe488",
+      "width": 1422,
+      "height": 8789,
+      "bytes": 567535,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/ru-completion-1024.png",
+      "sha256": "2125f9ed9232b282866077b55eb66e1ed2116757c3a8a13d6d8d7188eac481cb",
+      "width": 1024,
+      "height": 3246,
+      "bytes": 223673,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/ru-completion-1440.png",
+      "sha256": "3bef030380c898776a9e7d4c94e59dd18c9bf5987aa1d5ba937b00f386bb5204",
+      "width": 1440,
+      "height": 2653,
+      "bytes": 250674,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/ru-completion-320.png",
+      "sha256": "12f5661a82686c517d1155d17010eed2588d74cb05bcd383c53394aed77b27f1",
+      "width": 320,
+      "height": 5371,
+      "bytes": 203533,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/ru-completion-390.png",
+      "sha256": "442eb5985281b365d3ea9a81120ca18511c6219399677709d66b46b995df907b",
+      "width": 390,
+      "height": 5021,
+      "bytes": 208201,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/ru-completion-768.png",
+      "sha256": "9fe22b1b4d6dc44b16f2afa29fce9bf29b06a854671873dd21b4e32e8740a0f0",
+      "width": 768,
+      "height": 3507,
+      "bytes": 229425,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/ru-failure-390.png",
+      "sha256": "c8c68e29751a28c19c08605d67cf8842829a96e7ca07840f95e8f81d954f970d",
+      "width": 390,
+      "height": 4980,
+      "bytes": 192812,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/ru-initial-1024.png",
+      "sha256": "e3af96ffd334cc5025d7b3e840d90d7f5373e2055278536e3b4161a6f4511e3a",
+      "width": 1024,
+      "height": 3229,
+      "bytes": 208273,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/ru-initial-1440.png",
+      "sha256": "bb90e3a064cf8d30ebd23e4e8aef467924ce40b9883c1e80583be31b069c5d35",
+      "width": 1440,
+      "height": 2636,
+      "bytes": 224673,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/ru-initial-320.png",
+      "sha256": "ccec3756240fb4b73a8aa39000c2abebfc5aff0ea61f345f42cb5db1993f0045",
+      "width": 320,
+      "height": 5330,
+      "bytes": 195127,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/ru-initial-390.png",
+      "sha256": "14770a07fddb83caf485e599bc929d77c42e367b449a115eda1d149e5c67671a",
+      "width": 390,
+      "height": 4980,
+      "bytes": 195044,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/ru-initial-768.png",
+      "sha256": "3b2736790cc743ab64a7af6c89b2c151362c612e99564a75ba487a1809fea121",
+      "width": 768,
+      "height": 3490,
+      "bytes": 207660,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/ru-text-200-dashboard.png",
+      "sha256": "e73b52d06104ab13f3c632c6aa7075096237be42f2ccc422b21d6f2b4b294645",
+      "width": 390,
+      "height": 11378,
+      "bytes": 528728,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/ru-text-200-form.png",
+      "sha256": "983c26c303aeece5075d2e80000fec339d47300aa1af8aae5c325642428a3cae",
+      "width": 390,
+      "height": 4829,
+      "bytes": 237300,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/ru-text-200-initial.png",
+      "sha256": "80f7d0041af8dd3ed25fde2f3ad09f33a8977dc108b11166682a111b941fe580",
+      "width": 390,
+      "height": 11378,
+      "bytes": 528771,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/ru-text-200-learn.png",
+      "sha256": "869b92d009bb369c6c6ab09ed8734533416a8977322a9cffc0c6dff88f902fb3",
+      "width": 390,
+      "height": 19555,
+      "bytes": 970214,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/ru-text-200-log.png",
+      "sha256": "bcfd272eb69b2c854b9d720439ba007259a8c6fd2ca93ec9c58529c6a753bd45",
+      "width": 390,
+      "height": 3202,
+      "bytes": 136930,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/ru-text-200-profile.png",
+      "sha256": "ac076798f4de16d68fcc2e936399b0c578382983a7f779b5e9a3236a19c92f51",
+      "width": 390,
+      "height": 6435,
+      "bytes": 249954,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/ru-text-200-progress.png",
+      "sha256": "ada8686c2652801096e9747926a20c622847b89a53006ed12f198b36e0e206cc",
+      "width": 390,
+      "height": 3818,
+      "bytes": 156910,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/ru-workspace-dashboard-1440.png",
+      "sha256": "447e13b6ef7005a645f697d100678eea2c48f232d1b213670d5931da13befbbe",
+      "width": 1440,
+      "height": 2653,
+      "bytes": 230356,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/ru-workspace-dashboard-390.png",
+      "sha256": "e5105bee300ba1173ab226053a2cb8384b2e8e5c003d17118285609df110d90a",
+      "width": 390,
+      "height": 5021,
+      "bytes": 197857,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/ru-workspace-learn-1440.png",
+      "sha256": "6d89f186b965cbb9ee03e778fe538c415d6f717b55e804553ced6029335575a4",
+      "width": 1440,
+      "height": 3803,
+      "bytes": 360332,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/ru-workspace-learn-390.png",
+      "sha256": "f5ab546b7504a5222b7a8f0bc131e1b57fdb5f4183e3d4a22ca01dd9937842ec",
+      "width": 390,
+      "height": 7956,
+      "bytes": 385154,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/ru-workspace-log-1440.png",
+      "sha256": "193043b73bcb1ce93b212df38b7fe1cae70ce7a77148a3168e0516b8303ad3c0",
+      "width": 1440,
+      "height": 1008,
+      "bytes": 77898,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/ru-workspace-log-390.png",
+      "sha256": "ae0e595c8236d18552fae50576a2ffd30476aaf8d21136b5595f08787bd3b85c",
+      "width": 390,
+      "height": 1670,
+      "bytes": 58330,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/ru-workspace-profile-1440.png",
+      "sha256": "d4bd328b52eb7e37f77f503bf71cfc9519699693e5d73ff7162e7ac3bb0d0888",
+      "width": 1440,
+      "height": 1489,
+      "bytes": 114599,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/ru-workspace-profile-390.png",
+      "sha256": "2c4eabf6723bead891c6a983b9e0b306fff970796387884e4e02bb4a1bf78aa6",
+      "width": 390,
+      "height": 3050,
+      "bytes": 95079,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/ru-workspace-progress-1440.png",
+      "sha256": "f54505a20f26dc73f8bc69a1e5241799960aef5be96010252b48c28f4121c92a",
+      "width": 1440,
+      "height": 1525,
+      "bytes": 92028,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/ru-workspace-progress-390.png",
+      "sha256": "b77e6595593144f181a3dd858ffa5e637de804457c000b9b2f489e7c3b74a3fa",
+      "width": 390,
+      "height": 2068,
+      "bytes": 68487,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-coach-en-announcements-1440.png",
+      "sha256": "7c071830e78dd92f49b22a00da05e3263db3513c67943cc78d5b41a42c5cb73b",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 37135,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-coach-en-announcements-390.png",
+      "sha256": "1fd49df64121dae5bdb535bcfdb127374f8f18af9f20c8966f9d467bcb5be8ab",
+      "width": 390,
+      "height": 1000,
+      "bytes": 26412,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-coach-en-attendance-1440.png",
+      "sha256": "c8f85832000e6a3e173addbbed63e025b759265d10c38c7be143e72f218c5abb",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 43955,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-coach-en-attendance-390.png",
+      "sha256": "338a07e96230a7ee8b3f8b77cee0f7ca29746076b4d5ffdc4b3d8354d1f43d83",
+      "width": 390,
+      "height": 1000,
+      "bytes": 32717,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-coach-en-evaluation-1440.png",
+      "sha256": "6bb59987313f161e9ed63b08e5e304f7b8f7a1266e8778ab8f2e15509f735efe",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 34093,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-coach-en-evaluation-390.png",
+      "sha256": "a15bed65d50315fb2916cc765f1b3d3467c11785764b94983bff072e790ea060",
+      "width": 390,
+      "height": 1000,
+      "bytes": 23304,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-coach-en-home-populated-1440.png",
+      "sha256": "a5fd0f263815566af6d9fddaea64200a5c2dc7d1e6534a26f6c16c8a1d9ea4af",
+      "width": 1440,
+      "height": 1105,
+      "bytes": 88599,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-coach-en-home-populated-390.png",
+      "sha256": "130355aa1865b479e293b948ac0badeedc4e4061d4c3cc3024188439e689fa29",
+      "width": 390,
+      "height": 2259,
+      "bytes": 77893,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-coach-en-reset-confirmation-1440.png",
+      "sha256": "5e5cdc79ff42f5c04829d5c2082cdd8f610f815e2f70583ad1efce3e0f1c1a14",
+      "width": 1440,
+      "height": 1052,
+      "bytes": 74132,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-coach-en-reset-confirmation-390.png",
+      "sha256": "806a30b75e3e61685741dfa3f66de999bc951e142c1961b60965645c5f5e6a73",
+      "width": 390,
+      "height": 1612,
+      "bytes": 60992,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-coach-en-roster-1440.png",
+      "sha256": "b01167c88cb5817c3cc3db711eab3063db1fce58bc909218d826e7ea270a334f",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 35734,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-coach-en-roster-390.png",
+      "sha256": "1100fce28e6d8d116cee814618e70a9f88b6399b6edf6e9e1a214e3d992eedb8",
+      "width": 390,
+      "height": 1000,
+      "bytes": 24747,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-coach-en-roster-player-detail-1440.png",
+      "sha256": "b9c1c0401afbdf146efbeb34bf488b2cbcb07d46484a51f4b2eee57ac7b91a77",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 39054,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-coach-en-roster-player-detail-390.png",
+      "sha256": "3394eaebcc531f63f680003b5b8a6c0758c4ef002478ba4a352ce6cd14cad658",
+      "width": 390,
+      "height": 1000,
+      "bytes": 28578,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-coach-en-settings-1440.png",
+      "sha256": "2eee5ff04de04e0c439c1d6c2391cbf1b5d75599bb601e72f227e18907f42dda",
+      "width": 1440,
+      "height": 1052,
+      "bytes": 62178,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-coach-en-settings-390.png",
+      "sha256": "ba190629578e3462dd4aeea6edffe075c37dd435a15e5d1526091c63ea52df64",
+      "width": 390,
+      "height": 1612,
+      "bytes": 51123,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-coach-en-team-challenges-1440.png",
+      "sha256": "e831de9281646656370321f32cafada9afda73f9a6627c3a513e72ec8a7353c4",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 47183,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-coach-en-team-challenges-390.png",
+      "sha256": "19145cbb9445a8d5e5266c6f50b9f7c3fd5f21685db59574a6361d6eb75597ce",
+      "width": 390,
+      "height": 1000,
+      "bytes": 35162,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-coach-en-training-1440.png",
+      "sha256": "92462611fb05a2811e3c4b1692fa161b37d23d92cf1bb417cf21c106b230caac",
+      "width": 1440,
+      "height": 1128,
+      "bytes": 47071,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-coach-en-training-390.png",
+      "sha256": "a0e100a1e200b7a99a6655c3738c0a0233702c62551eb4cb7b2b6757739ee30e",
+      "width": 390,
+      "height": 1268,
+      "bytes": 34040,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-coach-en-training-drill-editor-1440.png",
+      "sha256": "5f2e216013b592e0fbe91ddd9a2adeb584630831a2b93f85b032e5d1af9f3e3a",
+      "width": 1440,
+      "height": 1250,
+      "bytes": 51234,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-coach-en-training-drill-editor-390.png",
+      "sha256": "6539598a8ea450c6a1446633729d632c2951873d5e145e51e09aa80b2a470b19",
+      "width": 390,
+      "height": 1391,
+      "bytes": 37274,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-coach-en-training-retained-remote-failure-1440.png",
+      "sha256": "8c3af70edefd7d32da56f77f21f578fac71548c036d8a85f0f931e964c24d103",
+      "width": 1440,
+      "height": 1336,
+      "bytes": 56059,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-coach-en-training-retained-remote-failure-390.png",
+      "sha256": "a030a68ee8f284d04bfbe2a8a9afedee1b6e1e44609fca1c33b4191833e16837",
+      "width": 390,
+      "height": 1525,
+      "bytes": 43196,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-coach-lv-announcements-1440.png",
+      "sha256": "42dbb19551e005c74d6bf705d8d30687ddf8321fe5ca93ec67cbfec677a4964b",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 35103,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-coach-lv-announcements-390.png",
+      "sha256": "7dfe5839e381759d18a364e40b70bc9e60375788abc02d3be167ec0dda962439",
+      "width": 390,
+      "height": 1000,
+      "bytes": 24702,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-coach-lv-attendance-1440.png",
+      "sha256": "429ef963cdd1739f688872741d63f9331246861c62165abdfa01fb12abbe036b",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 45661,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-coach-lv-attendance-390.png",
+      "sha256": "81b29c2a377655495b69eb33ecbf978a4a0c2e1cd3c2f1432e4af0adb335e0e4",
+      "width": 390,
+      "height": 1000,
+      "bytes": 34739,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-coach-lv-evaluation-1440.png",
+      "sha256": "5ec0f3f14b45bb9b7788e346623f2247f0be8439938bc980a0325ccf41e809a7",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 36043,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-coach-lv-evaluation-390.png",
+      "sha256": "f009ebb3dc061cd1c2f9c4c92554cba089f577387cb2652a2603bea9fb57b5fd",
+      "width": 390,
+      "height": 1000,
+      "bytes": 25441,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-coach-lv-home-populated-1440.png",
+      "sha256": "c720621e0ddd53ac0b165229dfae1b2cdb55e60037f739e04d391fa4064fc286",
+      "width": 1440,
+      "height": 1105,
+      "bytes": 88907,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-coach-lv-home-populated-390.png",
+      "sha256": "91eae9bb8066586d308abdedfa62f6078b1bd6589f846ca2a1f379c5320d39bf",
+      "width": 390,
+      "height": 2259,
+      "bytes": 78256,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-coach-lv-reset-confirmation-1440.png",
+      "sha256": "4ca2a8def51daecb085f9a17f8de218ab9fd7f5ae9d9f7d4f68fd04be7625fcd",
+      "width": 1440,
+      "height": 1052,
+      "bytes": 77766,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-coach-lv-reset-confirmation-390.png",
+      "sha256": "920846c282f5344b7eb1348fe6f468d66e604cd3d90c2cc8a75f76579cf9f7e5",
+      "width": 390,
+      "height": 1612,
+      "bytes": 63536,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-coach-lv-roster-1440.png",
+      "sha256": "adcc3fed2b9f69946f7a036287aa79fe8367265d30f581ca6684dd95fff1fc13",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 37006,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-coach-lv-roster-390.png",
+      "sha256": "eb70845562881b05dfd9193657ee31c143eafe52344eff4cb320342f669f247c",
+      "width": 390,
+      "height": 1000,
+      "bytes": 25801,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-coach-lv-roster-player-detail-1440.png",
+      "sha256": "ed349fb561c0f7248ddf5ce9eab59faeae70548b6da0a1d13ba3b443b4ee3830",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 42257,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-coach-lv-roster-player-detail-390.png",
+      "sha256": "1eb16cc2382d6b843618194e933859af05e45fb8f9db2d96ed1cf1493d3e6a27",
+      "width": 390,
+      "height": 1000,
+      "bytes": 30493,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-coach-lv-settings-1440.png",
+      "sha256": "5e607d39f632b58ead6dba46c7a944a3cde5cd32326d9f121eb7e2c5c858bb50",
+      "width": 1440,
+      "height": 1052,
+      "bytes": 62630,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-coach-lv-settings-390.png",
+      "sha256": "ea3d2cb5f5c9580160d75e2fca215f14d12f0dc32f09a34f01580d2682a1c5d0",
+      "width": 390,
+      "height": 1612,
+      "bytes": 52102,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-coach-lv-team-challenges-1440.png",
+      "sha256": "444764e0df92abe2c76e807eedbf4f8fa562f48ce2951de63d42cbdc08263e3e",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 47748,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-coach-lv-team-challenges-390.png",
+      "sha256": "05dbc62e5e1f3d8ea8c8de27363f7c2c4cf1af164e95b4d96baacef5736f7af2",
+      "width": 390,
+      "height": 1000,
+      "bytes": 35751,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-coach-lv-training-1440.png",
+      "sha256": "6aaecf48cc78f1a54d3c803a782684309d3c6b0309eb5b9580476073c991c2f5",
+      "width": 1440,
+      "height": 1128,
+      "bytes": 45913,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-coach-lv-training-390.png",
+      "sha256": "b8f3078de24469aedd6caa4f1d785233ad1d4390a37c215163cae69082deceee",
+      "width": 390,
+      "height": 1268,
+      "bytes": 34141,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-coach-lv-training-drill-editor-1440.png",
+      "sha256": "43ffc7accbd5eaad343c0bc09b311a07a2df61701b66317a8a88a0c6bb08e5f2",
+      "width": 1440,
+      "height": 1250,
+      "bytes": 51081,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-coach-lv-training-drill-editor-390.png",
+      "sha256": "c9d7ab33dcb43b124cb98cf432bfdc8ab276ec6ba54dcd03bcd22ed92498f88d",
+      "width": 390,
+      "height": 1391,
+      "bytes": 37812,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-coach-lv-training-retained-remote-failure-1440.png",
+      "sha256": "c557383411524442c7a8dd3d712784bd4d0ac5583c35452844d22f4e2517f3a0",
+      "width": 1440,
+      "height": 1336,
+      "bytes": 57031,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-coach-lv-training-retained-remote-failure-390.png",
+      "sha256": "074ad5456539e5425497d364d5563e41a67f6626d7cfb28bb0c4233faf1b449a",
+      "width": 390,
+      "height": 1549,
+      "bytes": 45658,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-mentor-en-home-populated-1440.png",
+      "sha256": "c57cf9c93df7bfedc4efda70ed44c41e41c055b7a78de57a6949dbe521d1078a",
+      "width": 1440,
+      "height": 1397,
+      "bytes": 85521,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-mentor-en-home-populated-390.png",
+      "sha256": "568deb498e398d30a5ea62fba125d7bf1243b19dca81168ca5b252266164fbf9",
+      "width": 390,
+      "height": 1778,
+      "bytes": 67390,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-mentor-en-linked-player-selector-1440.png",
+      "sha256": "c57cf9c93df7bfedc4efda70ed44c41e41c055b7a78de57a6949dbe521d1078a",
+      "width": 1440,
+      "height": 1397,
+      "bytes": 85521,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-mentor-en-linked-player-selector-390.png",
+      "sha256": "568deb498e398d30a5ea62fba125d7bf1243b19dca81168ca5b252266164fbf9",
+      "width": 390,
+      "height": 1778,
+      "bytes": 67390,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-mentor-en-linked-player-sparse-1440.png",
+      "sha256": "211ed106df4070a6d2463c3b576e570cc071f3d3e68e8f8a403e29be31e7b7d0",
+      "width": 1440,
+      "height": 1095,
+      "bytes": 69550,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-mentor-en-linked-player-sparse-390.png",
+      "sha256": "1c16575e314313f22a4c9875ed2cc27297a388c2f18be0956873c2c39528ab51",
+      "width": 390,
+      "height": 1476,
+      "bytes": 52496,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-mentor-en-reset-confirmation-1440.png",
+      "sha256": "34f37345340d3df206f6d0debfb6d546834f7d643eb16d98556d35f774876c74",
+      "width": 1440,
+      "height": 1052,
+      "bytes": 77085,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-mentor-en-reset-confirmation-390.png",
+      "sha256": "6475b29ba5ed09ea5b3f857330656d6ef8d9f81b250e53f276f2639a5e416deb",
+      "width": 390,
+      "height": 1649,
+      "bytes": 62193,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-mentor-en-settings-1440.png",
+      "sha256": "42252a0dbeb840c11b117395900cac3601fba33f9722a2a89373d8925053104f",
+      "width": 1440,
+      "height": 1052,
+      "bytes": 65396,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-mentor-en-settings-390.png",
+      "sha256": "7245ffb9ce37a897c995a06385c2726603625934723aa63d55480a34fae90ee4",
+      "width": 390,
+      "height": 1649,
+      "bytes": 52259,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-mentor-lv-home-populated-1440.png",
+      "sha256": "8a7a4f6f4a78527bee6c59de09a6b4da3189cb14457e41e5c13aea5c1fb2f82f",
+      "width": 1440,
+      "height": 1397,
+      "bytes": 85502,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-mentor-lv-home-populated-390.png",
+      "sha256": "11cf00d9e9d79ee1353b5ca3b2a77638c3a0e17bced7a1be7e5f1f6c0a59ffda",
+      "width": 390,
+      "height": 1770,
+      "bytes": 66421,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-mentor-lv-linked-player-selector-1440.png",
+      "sha256": "8a7a4f6f4a78527bee6c59de09a6b4da3189cb14457e41e5c13aea5c1fb2f82f",
+      "width": 1440,
+      "height": 1397,
+      "bytes": 85502,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-mentor-lv-linked-player-selector-390.png",
+      "sha256": "11cf00d9e9d79ee1353b5ca3b2a77638c3a0e17bced7a1be7e5f1f6c0a59ffda",
+      "width": 390,
+      "height": 1770,
+      "bytes": 66421,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-mentor-lv-linked-player-sparse-1440.png",
+      "sha256": "74cb156530c0a0ec84b081621dffc130b9fa94c44350649e2d783e68ccd56e15",
+      "width": 1440,
+      "height": 1095,
+      "bytes": 69195,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-mentor-lv-linked-player-sparse-390.png",
+      "sha256": "826882457cb8e9f4c1a7d777b4cfb561585fe01214c493c94159ef82920aaa36",
+      "width": 390,
+      "height": 1468,
+      "bytes": 51776,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-mentor-lv-reset-confirmation-1440.png",
+      "sha256": "25766db6f5340f450c32059e8281e2ef314952cb341d1ccbeabaa832eee48bd4",
+      "width": 1440,
+      "height": 1052,
+      "bytes": 80321,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-mentor-lv-reset-confirmation-390.png",
+      "sha256": "dd3d7bdaada312d22e596ddb61d20c9034ffe1b4910c9486cf6ea15ae8c7a386",
+      "width": 390,
+      "height": 1649,
+      "bytes": 64611,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-mentor-lv-settings-1440.png",
+      "sha256": "0503e1cd1c287f60593bb10f1ed81f6cf2ecfafd1141008f5162bb5dc753d96e",
+      "width": 1440,
+      "height": 1052,
+      "bytes": 65608,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-mentor-lv-settings-390.png",
+      "sha256": "d21897527a15b1920d72f66f9e13356cb004f4b0166e6ae7195f2fe87008ab4d",
+      "width": 390,
+      "height": 1649,
+      "bytes": 52679,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-en-achievement-collection-1440.png",
+      "sha256": "13e9025aa31e92d451c5ca44e588cf7004677ec155a8f6c8502ac9b1d47e520f",
+      "width": 1440,
+      "height": 3865,
+      "bytes": 222923,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-en-achievement-collection-390.png",
+      "sha256": "687976b2cf00cba5c7fb031b3e7b1d96a411725b3f47eaa27c21b8c445fc1982",
+      "width": 390,
+      "height": 5687,
+      "bytes": 186733,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-en-calendar-training-form-1440.png",
+      "sha256": "cf8533f78651b5713248a4776c8d875ff38279aaa4cd88160da9e285498f9b68",
+      "width": 1440,
+      "height": 1090,
+      "bytes": 74511,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-en-calendar-training-form-390.png",
+      "sha256": "54e859bb1361d6f982cb65b9d4b91055f3a1418f31c4832138d5b3e79c1b4435",
+      "width": 390,
+      "height": 1761,
+      "bytes": 61369,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-en-custom-drill-1440.png",
+      "sha256": "019a81257913ef6c37371ac61c62c7ebe2130fadc16d35cc09d0ba1b431e10e2",
+      "width": 1440,
+      "height": 6719,
+      "bytes": 724069,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-en-custom-drill-390.png",
+      "sha256": "d024a25f7fc55c1f315581f1d39910f1d5c33d1544a9aed8aeb3e294dff0b537",
+      "width": 390,
+      "height": 20993,
+      "bytes": 929212,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-en-diary-record-detail-1440.png",
+      "sha256": "4068e4bbe1908fd3ea9b37570eee9d40bca18f2f1024c5b75bd06da52e78a05d",
+      "width": 1440,
+      "height": 1218,
+      "bytes": 92368,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-en-diary-record-detail-390.png",
+      "sha256": "d7aca98bf2a348210cb481bb42cbfcd09317044e9bc37114abc1f64d0a915990",
+      "width": 390,
+      "height": 2204,
+      "bytes": 79752,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-en-exercise-detail-1440.png",
+      "sha256": "3da74664d11affa603de3d651af5fc48ceaf94999df084351ad27abfab0eb508",
+      "width": 1440,
+      "height": 6719,
+      "bytes": 742509,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-en-exercise-detail-390.png",
+      "sha256": "3c313cb48446636e26872faeac6181e5fbdbb3036975c585238a6ba03139f438",
+      "width": 390,
+      "height": 20993,
+      "bytes": 938260,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-en-exercise-library-1440.png",
+      "sha256": "bf6f6bad06bb0b4b1091f9c4696ebc7628a5c79ba12f69768c9aca97498bf295",
+      "width": 1440,
+      "height": 6719,
+      "bytes": 739629,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-en-exercise-library-390.png",
+      "sha256": "973a66d3272ec314377fcd1a4e5db0e1f3123de7865dae2d6fbb9729cc977580",
+      "width": 390,
+      "height": 20993,
+      "bytes": 944374,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-en-goal-editor-1440.png",
+      "sha256": "ba19b7c6664225274453c92faa1fe8fd9d29f14ff447747c07f5fed6cc6c9f52",
+      "width": 1440,
+      "height": 4116,
+      "bytes": 229252,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-en-goal-editor-390.png",
+      "sha256": "3a135b072838735cd8fc8c01ee0ce95cf4bc13ff687d9d8bcc6576796cdadbec",
+      "width": 390,
+      "height": 5938,
+      "bytes": 190758,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-en-home-populated-1440.png",
+      "sha256": "6e6e664d44e3d5933292f26f58d73115ab9dde0d51cd22bfbd45a65d81a4722c",
+      "width": 1440,
+      "height": 2588,
+      "bytes": 228197,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-en-home-populated-390.png",
+      "sha256": "9c670e9e2cdf25d398d97970f0d950b1f17c0a5df84634f25cc294af6a373be4",
+      "width": 390,
+      "height": 4603,
+      "bytes": 191398,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-en-identity-editor-1440.png",
+      "sha256": "8bb6a6fc56087509a1900815736281a19ba6ece508a2d1ec86ea42fc94b1f63c",
+      "width": 1440,
+      "height": 1537,
+      "bytes": 111418,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-en-identity-editor-390.png",
+      "sha256": "59cb20f7919aca87b73190ab904e658115749dc27cf0df67435bfd6e50011e96",
+      "width": 390,
+      "height": 3182,
+      "bytes": 99761,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-en-identity-retained-failure-1440.png",
+      "sha256": "eeeae4a1d243c3ae9775fe28fd2b2d1f4a4d0ae17a5efaab4f95eedef529ba39",
+      "width": 1440,
+      "height": 1537,
+      "bytes": 119918,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-en-identity-retained-failure-390.png",
+      "sha256": "b5dd52387997ab97c70bf0490972d7ddb1d6b3156b7416c38edc121dbf0b66fe",
+      "width": 390,
+      "height": 3182,
+      "bytes": 100150,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-en-journal-populated-1440.png",
+      "sha256": "266fae71db95a719e5e7b5b3668341303cb35cb434ee28eb74dc5ff57f1bb77d",
+      "width": 1440,
+      "height": 1218,
+      "bytes": 94773,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-en-journal-populated-390.png",
+      "sha256": "bb65dbccf23e69fb8e3ca6a495a80ca0ec8b13b7c59c2adb53bb524b49ec43b7",
+      "width": 390,
+      "height": 2204,
+      "bytes": 72330,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-en-match-record-detail-1440.png",
+      "sha256": "b6cfe99efa6a4295c47207aa76e677d5304418db77404498f33f7acaf16d3f89",
+      "width": 1440,
+      "height": 1218,
+      "bytes": 88671,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-en-match-record-detail-390.png",
+      "sha256": "3858c5a2099a3deac107b412de05c0e6f5ea7a0184696b1c5ac145b925b06b42",
+      "width": 390,
+      "height": 2204,
+      "bytes": 80417,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-en-recurring-setup-1440.png",
+      "sha256": "cc4708f6f68af2308eb3bc3d90d213e76305844a6168e39dd848f57cddc1e1bd",
+      "width": 1440,
+      "height": 1090,
+      "bytes": 75668,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-en-recurring-setup-390.png",
+      "sha256": "59d7b7269cf428ad817b6cda2708b00fdbd132ba6d8e47c02fa21d17bf3a43da",
+      "width": 390,
+      "height": 1761,
+      "bytes": 60087,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-en-reset-confirmation-1440.png",
+      "sha256": "0dbc1913d3432f0bafa13ecdf56b7bfbf2425b55358076f4150371f736bfbc1e",
+      "width": 1440,
+      "height": 1052,
+      "bytes": 86098,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-en-reset-confirmation-390.png",
+      "sha256": "72ba4478a5164e316259486f15a7b6353c677edbeb0e01f471237b826305eb04",
+      "width": 390,
+      "height": 1649,
+      "bytes": 65060,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-en-settings-1440.png",
+      "sha256": "21cd60a569b194c8d5de75a10077918a970040d0a6e1b8083fc59fb477fc9a57",
+      "width": 1440,
+      "height": 1052,
+      "bytes": 75020,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-en-settings-390.png",
+      "sha256": "b9bf0ed8292557d74da67d8a42a74b6ce5cabb7a202d7c2bf16d94f62b4352b1",
+      "width": 390,
+      "height": 1649,
+      "bytes": 55103,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-en-training-record-detail-1440.png",
+      "sha256": "719cabdd1083b2ac32c7e09a48da764a5556e2dc6692e196ad314e2af58715f5",
+      "width": 1440,
+      "height": 1218,
+      "bytes": 94118,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-en-training-record-detail-390.png",
+      "sha256": "43d9192c36cf3393dc6177b86bd53c3355dfdb511da2bfd01a416a982a4fdc1a",
+      "width": 390,
+      "height": 2204,
+      "bytes": 80323,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-lv-achievement-collection-1440.png",
+      "sha256": "0557a865465e146b8e4e8ead724cb1e35b58703ac49f6d2dd8de828cec7d6ed5",
+      "width": 1440,
+      "height": 3865,
+      "bytes": 221737,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-lv-achievement-collection-390.png",
+      "sha256": "9911197b09a9fadd953a96cc24dd95d4132b9643c23026bb9b5055f6eddd9240",
+      "width": 390,
+      "height": 5687,
+      "bytes": 184253,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-lv-calendar-training-form-1440.png",
+      "sha256": "cfe0ba5545d600b64365855cc5a9076302df31d8ab6b3d6028b20af046deda97",
+      "width": 1440,
+      "height": 1090,
+      "bytes": 77509,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-lv-calendar-training-form-390.png",
+      "sha256": "b48b9733a80617d4cbc177a0356d343fe9e310dbafc7cb2b87b6dc0694eac5f3",
+      "width": 390,
+      "height": 1761,
+      "bytes": 63315,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-lv-custom-drill-1440.png",
+      "sha256": "ed88755e581099c4ca3f3c6c7085500705b31669013b97f66fbb8e21bcd52b6e",
+      "width": 1440,
+      "height": 6517,
+      "bytes": 728190,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-lv-custom-drill-390.png",
+      "sha256": "37a90d4c4d309aefb96a2cf7de453789171a85ecd74b4c78aa65de55b7724956",
+      "width": 390,
+      "height": 20829,
+      "bytes": 938368,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-lv-diary-record-detail-1440.png",
+      "sha256": "6ddd0e880bf76a71b2810ad681c390e505877c4602a7dcad773077276d4b4801",
+      "width": 1440,
+      "height": 1194,
+      "bytes": 97713,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-lv-diary-record-detail-390.png",
+      "sha256": "61ce43e2797092fb3da62f0a1d7131821cd6cd489ee721ebf8554929a25c8870",
+      "width": 390,
+      "height": 2204,
+      "bytes": 85259,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-lv-exercise-detail-1440.png",
+      "sha256": "50b55ea63559665a48a6e8d42f0c1c313dad2f328e8bc0208648d45b55285278",
+      "width": 1440,
+      "height": 6517,
+      "bytes": 744786,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-lv-exercise-detail-390.png",
+      "sha256": "fb72e8dea415e8a1fa955320fcc6b261e44b0148c3a7ac63f555050578a443d8",
+      "width": 390,
+      "height": 20829,
+      "bytes": 947049,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-lv-exercise-library-1440.png",
+      "sha256": "ee1f92ba10baeb56c5933f27c786176b14793848d9fe4b3c8a7752bbf9526003",
+      "width": 1440,
+      "height": 6517,
+      "bytes": 748262,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-lv-exercise-library-390.png",
+      "sha256": "39304c6b0f0d0221f73780e7c275b4c3e9337fb934821dbe0496e0f1bb05355e",
+      "width": 390,
+      "height": 20829,
+      "bytes": 948496,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-lv-goal-editor-1440.png",
+      "sha256": "392cbc53bdbbc6adb3e8c235b89faa852906d0714b2e1c23327403d110ae4a9f",
+      "width": 1440,
+      "height": 4116,
+      "bytes": 228375,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-lv-goal-editor-390.png",
+      "sha256": "7e91e0e03f97f53e47d0371067cc65a5f338948f37ced174e82f4ac7bcd79194",
+      "width": 390,
+      "height": 5938,
+      "bytes": 188924,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-lv-home-populated-1440.png",
+      "sha256": "e3a404e5085677c96118eeab9dae5e4e90cc1f2f59c21ab93a6f249f2f1f6e89",
+      "width": 1440,
+      "height": 2522,
+      "bytes": 219347,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-lv-home-populated-390.png",
+      "sha256": "103d1196961728d6e030db30f6e0440a57c9ee3bfdd7a8d046f0dc8ab698c040",
+      "width": 390,
+      "height": 4587,
+      "bytes": 184973,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-lv-identity-editor-1440.png",
+      "sha256": "c480a9e7db67e0ea8171c4159b1e83fcb2aac01c1a3403ba4f85fa470f65cbb1",
+      "width": 1440,
+      "height": 1537,
+      "bytes": 115990,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-lv-identity-editor-390.png",
+      "sha256": "ddfd889b58c17508e26397814e8b2a6d1bfd107aae2f1bdce74dc824ef9f4562",
+      "width": 390,
+      "height": 3182,
+      "bytes": 102581,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-lv-identity-retained-failure-1440.png",
+      "sha256": "cbb7445327b66b50d3a470b5d6a31a6f80b72d135d2eb88e56453bb0c3e15a2a",
+      "width": 1440,
+      "height": 1537,
+      "bytes": 125746,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-lv-identity-retained-failure-390.png",
+      "sha256": "56d823de1aaa596158b3a9ae2a435207ff0fc20d061104e0d3aa8a8f0c871b4f",
+      "width": 390,
+      "height": 3182,
+      "bytes": 101367,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-lv-journal-populated-1440.png",
+      "sha256": "a052dab3542abae30ea2974c0d37f436b940293416f0d11f11ca7256c0c5b183",
+      "width": 1440,
+      "height": 1194,
+      "bytes": 100871,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-lv-journal-populated-390.png",
+      "sha256": "41df71878392481407fc350169e588b0d5d3db6824a12bea240df0e525998305",
+      "width": 390,
+      "height": 2204,
+      "bytes": 78158,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-lv-match-record-detail-1440.png",
+      "sha256": "925348e79475936aa41f005e1cbb5b62582494b7d8d32d1e014dc39d84a7c7ed",
+      "width": 1440,
+      "height": 1194,
+      "bytes": 86480,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-lv-match-record-detail-390.png",
+      "sha256": "8e097bb6a3d372c4007f3927b4707d88afb0c3c12b84a2659de56f7068c9301f",
+      "width": 390,
+      "height": 2204,
+      "bytes": 84429,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-lv-recurring-setup-1440.png",
+      "sha256": "ad39b0f469b190a69bddaee0bdb4229c894216536db01500e481b00cafa296e7",
+      "width": 1440,
+      "height": 1090,
+      "bytes": 77823,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-lv-recurring-setup-390.png",
+      "sha256": "e74af2ed06787ee610619c7a73fa862b1c8d2c9a0f0cfa406c3dc9e89b9271c1",
+      "width": 390,
+      "height": 1761,
+      "bytes": 61664,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-lv-reset-confirmation-1440.png",
+      "sha256": "ea16eb2ab4d2fa808d75ef754e92f3e12cb7408e6161825b6c90222ac7ed3706",
+      "width": 1440,
+      "height": 1052,
+      "bytes": 89643,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-lv-reset-confirmation-390.png",
+      "sha256": "54ff65ae3cc9401e392753d2aead3da0270128b84e67e8b15ad2b92fe949d165",
+      "width": 390,
+      "height": 1649,
+      "bytes": 67628,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-lv-settings-1440.png",
+      "sha256": "f9ad55b7f922cfaf8438a79f4f84d85647984bcb4b8fe69f03bddee54efd02e1",
+      "width": 1440,
+      "height": 1052,
+      "bytes": 75548,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-lv-settings-390.png",
+      "sha256": "512d12d1c5fbc22567aef9a58b4251874a79e5efbd024ca274ec5837605822a5",
+      "width": 390,
+      "height": 1649,
+      "bytes": 55321,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-lv-training-record-detail-1440.png",
+      "sha256": "ca8d78c32c65c484e7af966aca97d54a9d5adaeb64ccac144f1a3a0c884ebd9e",
+      "width": 1440,
+      "height": 1194,
+      "bytes": 99627,
+      "kind": "browser-capture"
+    },
+    {
+      "path": "source-4113f91/support-player-lv-training-record-detail-390.png",
+      "sha256": "4855fbc35abde16a9fb14907124ab4e2e874ec27ac8a916a32513de473133fff",
+      "width": 390,
+      "height": 2204,
+      "bytes": 84555,
+      "kind": "browser-capture"
+    }
+  ]
+}

@@ -1,0 +1,2724 @@
+{
+  "source_commit": "4113f91a630285da4f78328f8a90ba3ecbf62cba",
+  "kind": "candidate-observations-not-review-receipt",
+  "results": [
+    {
+      "language": "en",
+      "phase": "initial-payload",
+      "assets": [
+        {
+          "path": "/assets/index-CkKj9bH1.js",
+          "decodedBytes": 927504,
+          "transferBytes": 927804
+        },
+        {
+          "path": "/assets/rolldown-runtime-hePW80VL.js",
+          "decodedBytes": 716,
+          "transferBytes": 1016
+        },
+        {
+          "path": "/assets/react-Clpx-5N5.js",
+          "decodedBytes": 182114,
+          "transferBytes": 182414
+        },
+        {
+          "path": "/assets/charts-BAHzxo24.js",
+          "decodedBytes": 396869,
+          "transferBytes": 397169
+        },
+        {
+          "path": "/assets/AppContext-nCvzOMgv.js",
+          "decodedBytes": 12806,
+          "transferBytes": 13106
+        },
+        {
+          "path": "/assets/i18n-CRPEYGxM.js",
+          "decodedBytes": 45662,
+          "transferBytes": 45962
+        },
+        {
+          "path": "/assets/AcademyDialog-NMkh3tWU.js",
+          "decodedBytes": 1193,
+          "transferBytes": 1493
+        },
+        {
+          "path": "/assets/index-Cc0F9ofT.css",
+          "decodedBytes": 55597,
+          "transferBytes": 55897
+        },
+        {
+          "path": "/assets/Dashboard-Bp5QoVQI.js",
+          "decodedBytes": 87044,
+          "transferBytes": 87344
+        },
+        {
+          "path": "/assets/AcademyPage-PxR7cSvk.js",
+          "decodedBytes": 1077,
+          "transferBytes": 1377
+        },
+        {
+          "path": "/assets/challenges-BkSjQTpn.js",
+          "decodedBytes": 20334,
+          "transferBytes": 20634
+        },
+        {
+          "path": "/assets/PhysicalUpdateFlow-CzW0qpdX.js",
+          "decodedBytes": 3046,
+          "transferBytes": 3346
+        },
+        {
+          "path": "/assets/exercises-Ux6N0XSa.js",
+          "decodedBytes": 9551,
+          "transferBytes": 9851
+        },
+        {
+          "path": "/assets/AnnouncementFeed-pNpzdlDT.js",
+          "decodedBytes": 2036,
+          "transferBytes": 2336
+        },
+        {
+          "path": "/assets/dateFormat-B4PCadCD.js",
+          "decodedBytes": 159,
+          "transferBytes": 459
+        },
+        {
+          "path": "/assets/TrainingLog-OfiKhyfn.js",
+          "decodedBytes": 6714,
+          "transferBytes": 7014
+        },
+        {
+          "path": "/assets/TrainingProgress-WZuVFQD_.js",
+          "decodedBytes": 1070,
+          "transferBytes": 1370
+        },
+        {
+          "path": "/assets/MatchLog-UkD8wR3m.js",
+          "decodedBytes": 8279,
+          "transferBytes": 8579
+        },
+        {
+          "path": "/assets/footballStandards-HFMLq1HR.js",
+          "decodedBytes": 7716,
+          "transferBytes": 8016
+        },
+        {
+          "path": "/assets/AcademySaved-BOFjiFJG.js",
+          "decodedBytes": 1067,
+          "transferBytes": 1367
+        }
+      ]
+    },
+    {
+      "language": "en",
+      "phase": "initial",
+      "layout": {
+        "width": 320,
+        "clientWidth": 320,
+        "scrollWidth": 320,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 112,
+        "failures": []
+      }
+    },
+    {
+      "language": "en",
+      "phase": "footer-focus",
+      "width": 320,
+      "fullyAboveNavigation": true
+    },
+    {
+      "language": "en",
+      "phase": "initial",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 112,
+        "failures": []
+      }
+    },
+    {
+      "language": "en",
+      "phase": "footer-focus",
+      "width": 390,
+      "fullyAboveNavigation": true
+    },
+    {
+      "language": "en",
+      "phase": "initial",
+      "layout": {
+        "width": 768,
+        "clientWidth": 768,
+        "scrollWidth": 768,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 112,
+        "failures": []
+      }
+    },
+    {
+      "language": "en",
+      "phase": "footer-focus",
+      "width": 768,
+      "fullyAboveNavigation": true
+    },
+    {
+      "language": "en",
+      "phase": "initial",
+      "layout": {
+        "width": 1024,
+        "clientWidth": 1024,
+        "scrollWidth": 1024,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 112,
+        "failures": []
+      }
+    },
+    {
+      "language": "en",
+      "phase": "footer-focus",
+      "width": 1024,
+      "fullyAboveNavigation": true
+    },
+    {
+      "language": "en",
+      "phase": "initial",
+      "layout": {
+        "width": 1440,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 122,
+        "failures": []
+      }
+    },
+    {
+      "language": "en",
+      "phase": "footer-focus",
+      "width": 1440,
+      "fullyAboveNavigation": true
+    },
+    {
+      "language": "en",
+      "phase": "opening-log-assets",
+      "additionalAssets": []
+    },
+    {
+      "language": "en",
+      "phase": "selected-hover",
+      "contrast": {
+        "minimum": 4.71759313797187,
+        "count": 169,
+        "failures": []
+      }
+    },
+    {
+      "language": "en",
+      "phase": "failure",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.71759313797187,
+        "count": 171,
+        "failures": []
+      }
+    },
+    {
+      "language": "en",
+      "phase": "completion",
+      "layout": {
+        "width": 320,
+        "clientWidth": 320,
+        "scrollWidth": 320,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 133,
+        "failures": []
+      }
+    },
+    {
+      "language": "en",
+      "phase": "completion",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 133,
+        "failures": []
+      }
+    },
+    {
+      "language": "en",
+      "phase": "completion",
+      "layout": {
+        "width": 768,
+        "clientWidth": 768,
+        "scrollWidth": 768,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 133,
+        "failures": []
+      }
+    },
+    {
+      "language": "en",
+      "phase": "completion",
+      "layout": {
+        "width": 1024,
+        "clientWidth": 1024,
+        "scrollWidth": 1024,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 133,
+        "failures": []
+      }
+    },
+    {
+      "language": "en",
+      "phase": "completion",
+      "layout": {
+        "width": 1440,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 143,
+        "failures": []
+      }
+    },
+    {
+      "language": "en",
+      "phase": "text-200-initial",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "32px",
+        "dpr": 1,
+        "outside": []
+      }
+    },
+    {
+      "language": "en",
+      "phase": "text-200-form",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "32px",
+        "dpr": 1,
+        "outside": []
+      }
+    },
+    {
+      "language": "en",
+      "phase": "text-200-dashboard",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "32px",
+        "dpr": 1,
+        "outside": []
+      },
+      "componentText": {
+        "checked": 12,
+        "failures": []
+      }
+    },
+    {
+      "language": "en",
+      "phase": "text-200-log",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "32px",
+        "dpr": 1,
+        "outside": []
+      },
+      "componentText": {
+        "checked": 5,
+        "failures": []
+      }
+    },
+    {
+      "language": "en",
+      "phase": "text-200-progress",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "32px",
+        "dpr": 1,
+        "outside": []
+      },
+      "componentText": {
+        "checked": 5,
+        "failures": []
+      }
+    },
+    {
+      "language": "en",
+      "phase": "keyboard-chart-values",
+      "tables": [
+        {
+          "label": "Training minutes recorded \u00b7 last 30 days",
+          "left": 0,
+          "width": 308,
+          "scrollWidth": 308,
+          "keyboardLeftAfter": 0
+        },
+        {
+          "label": "Training Frequency",
+          "left": 0,
+          "width": 308,
+          "scrollWidth": 308,
+          "keyboardLeftAfter": 0
+        },
+        {
+          "label": "My Skills",
+          "left": 0,
+          "width": 308,
+          "scrollWidth": 450,
+          "keyboardLeftAfter": 8
+        }
+      ]
+    },
+    {
+      "language": "en",
+      "phase": "text-200-learn",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "32px",
+        "dpr": 1,
+        "outside": []
+      },
+      "componentText": {
+        "checked": 5,
+        "failures": []
+      }
+    },
+    {
+      "language": "en",
+      "phase": "text-200-profile",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "32px",
+        "dpr": 1,
+        "outside": []
+      },
+      "componentText": {
+        "checked": 11,
+        "failures": []
+      }
+    },
+    {
+      "language": "en",
+      "phase": "workspace-dashboard",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 112,
+        "failures": []
+      }
+    },
+    {
+      "language": "en",
+      "phase": "workspace-log",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 44,
+        "failures": []
+      }
+    },
+    {
+      "language": "en",
+      "phase": "workspace-progress",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 133,
+        "failures": []
+      }
+    },
+    {
+      "language": "en",
+      "phase": "workspace-learn",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 229,
+        "failures": []
+      }
+    },
+    {
+      "language": "en",
+      "phase": "workspace-profile",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 136,
+        "failures": []
+      }
+    },
+    {
+      "language": "en",
+      "phase": "workspace-dashboard",
+      "layout": {
+        "width": 1440,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 122,
+        "failures": []
+      }
+    },
+    {
+      "language": "en",
+      "phase": "workspace-log",
+      "layout": {
+        "width": 1440,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 52,
+        "failures": []
+      }
+    },
+    {
+      "language": "en",
+      "phase": "workspace-progress",
+      "layout": {
+        "width": 1440,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 141,
+        "failures": []
+      }
+    },
+    {
+      "language": "en",
+      "phase": "workspace-learn",
+      "layout": {
+        "width": 1440,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 237,
+        "failures": []
+      }
+    },
+    {
+      "language": "en",
+      "phase": "workspace-profile",
+      "layout": {
+        "width": 1440,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 144,
+        "failures": []
+      }
+    },
+    {
+      "language": "en",
+      "mocked_cloud_failures": 1,
+      "page_errors": [],
+      "external_requests_sent": 0
+    },
+    {
+      "language": "ru",
+      "phase": "initial-payload",
+      "assets": [
+        {
+          "path": "/assets/index-CkKj9bH1.js",
+          "decodedBytes": 927504,
+          "transferBytes": 927804
+        },
+        {
+          "path": "/assets/rolldown-runtime-hePW80VL.js",
+          "decodedBytes": 716,
+          "transferBytes": 1016
+        },
+        {
+          "path": "/assets/charts-BAHzxo24.js",
+          "decodedBytes": 396869,
+          "transferBytes": 397169
+        },
+        {
+          "path": "/assets/AppContext-nCvzOMgv.js",
+          "decodedBytes": 12806,
+          "transferBytes": 13106
+        },
+        {
+          "path": "/assets/react-Clpx-5N5.js",
+          "decodedBytes": 182114,
+          "transferBytes": 182414
+        },
+        {
+          "path": "/assets/i18n-CRPEYGxM.js",
+          "decodedBytes": 45662,
+          "transferBytes": 45962
+        },
+        {
+          "path": "/assets/AcademyDialog-NMkh3tWU.js",
+          "decodedBytes": 1193,
+          "transferBytes": 1493
+        },
+        {
+          "path": "/assets/index-Cc0F9ofT.css",
+          "decodedBytes": 55597,
+          "transferBytes": 55897
+        },
+        {
+          "path": "/assets/Dashboard-Bp5QoVQI.js",
+          "decodedBytes": 87044,
+          "transferBytes": 87344
+        },
+        {
+          "path": "/assets/AcademyPage-PxR7cSvk.js",
+          "decodedBytes": 1077,
+          "transferBytes": 1377
+        },
+        {
+          "path": "/assets/challenges-BkSjQTpn.js",
+          "decodedBytes": 20334,
+          "transferBytes": 20634
+        },
+        {
+          "path": "/assets/PhysicalUpdateFlow-CzW0qpdX.js",
+          "decodedBytes": 3046,
+          "transferBytes": 3346
+        },
+        {
+          "path": "/assets/exercises-Ux6N0XSa.js",
+          "decodedBytes": 9551,
+          "transferBytes": 9851
+        },
+        {
+          "path": "/assets/AnnouncementFeed-pNpzdlDT.js",
+          "decodedBytes": 2036,
+          "transferBytes": 2336
+        },
+        {
+          "path": "/assets/dateFormat-B4PCadCD.js",
+          "decodedBytes": 159,
+          "transferBytes": 459
+        },
+        {
+          "path": "/assets/TrainingLog-OfiKhyfn.js",
+          "decodedBytes": 6714,
+          "transferBytes": 7014
+        },
+        {
+          "path": "/assets/TrainingProgress-WZuVFQD_.js",
+          "decodedBytes": 1070,
+          "transferBytes": 1370
+        },
+        {
+          "path": "/assets/MatchLog-UkD8wR3m.js",
+          "decodedBytes": 8279,
+          "transferBytes": 8579
+        },
+        {
+          "path": "/assets/footballStandards-HFMLq1HR.js",
+          "decodedBytes": 7716,
+          "transferBytes": 8016
+        },
+        {
+          "path": "/assets/AcademySaved-BOFjiFJG.js",
+          "decodedBytes": 1067,
+          "transferBytes": 1367
+        }
+      ]
+    },
+    {
+      "language": "ru",
+      "phase": "initial",
+      "layout": {
+        "width": 320,
+        "clientWidth": 320,
+        "scrollWidth": 320,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 112,
+        "failures": []
+      }
+    },
+    {
+      "language": "ru",
+      "phase": "footer-focus",
+      "width": 320,
+      "fullyAboveNavigation": true
+    },
+    {
+      "language": "ru",
+      "phase": "initial",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 112,
+        "failures": []
+      }
+    },
+    {
+      "language": "ru",
+      "phase": "footer-focus",
+      "width": 390,
+      "fullyAboveNavigation": true
+    },
+    {
+      "language": "ru",
+      "phase": "initial",
+      "layout": {
+        "width": 768,
+        "clientWidth": 768,
+        "scrollWidth": 768,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 112,
+        "failures": []
+      }
+    },
+    {
+      "language": "ru",
+      "phase": "footer-focus",
+      "width": 768,
+      "fullyAboveNavigation": true
+    },
+    {
+      "language": "ru",
+      "phase": "initial",
+      "layout": {
+        "width": 1024,
+        "clientWidth": 1024,
+        "scrollWidth": 1024,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 112,
+        "failures": []
+      }
+    },
+    {
+      "language": "ru",
+      "phase": "footer-focus",
+      "width": 1024,
+      "fullyAboveNavigation": true
+    },
+    {
+      "language": "ru",
+      "phase": "initial",
+      "layout": {
+        "width": 1440,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 122,
+        "failures": []
+      }
+    },
+    {
+      "language": "ru",
+      "phase": "footer-focus",
+      "width": 1440,
+      "fullyAboveNavigation": true
+    },
+    {
+      "language": "ru",
+      "phase": "opening-log-assets",
+      "additionalAssets": []
+    },
+    {
+      "language": "ru",
+      "phase": "selected-hover",
+      "contrast": {
+        "minimum": 4.71759313797187,
+        "count": 169,
+        "failures": []
+      }
+    },
+    {
+      "language": "ru",
+      "phase": "failure",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.71759313797187,
+        "count": 171,
+        "failures": []
+      }
+    },
+    {
+      "language": "ru",
+      "phase": "completion",
+      "layout": {
+        "width": 320,
+        "clientWidth": 320,
+        "scrollWidth": 320,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 133,
+        "failures": []
+      }
+    },
+    {
+      "language": "ru",
+      "phase": "completion",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 133,
+        "failures": []
+      }
+    },
+    {
+      "language": "ru",
+      "phase": "completion",
+      "layout": {
+        "width": 768,
+        "clientWidth": 768,
+        "scrollWidth": 768,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 133,
+        "failures": []
+      }
+    },
+    {
+      "language": "ru",
+      "phase": "completion",
+      "layout": {
+        "width": 1024,
+        "clientWidth": 1024,
+        "scrollWidth": 1024,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 133,
+        "failures": []
+      }
+    },
+    {
+      "language": "ru",
+      "phase": "completion",
+      "layout": {
+        "width": 1440,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 143,
+        "failures": []
+      }
+    },
+    {
+      "language": "ru",
+      "phase": "text-200-initial",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "32px",
+        "dpr": 1,
+        "outside": []
+      }
+    },
+    {
+      "language": "ru",
+      "phase": "text-200-form",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "32px",
+        "dpr": 1,
+        "outside": []
+      }
+    },
+    {
+      "language": "ru",
+      "phase": "text-200-dashboard",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "32px",
+        "dpr": 1,
+        "outside": []
+      },
+      "componentText": {
+        "checked": 12,
+        "failures": []
+      }
+    },
+    {
+      "language": "ru",
+      "phase": "text-200-log",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "32px",
+        "dpr": 1,
+        "outside": []
+      },
+      "componentText": {
+        "checked": 5,
+        "failures": []
+      }
+    },
+    {
+      "language": "ru",
+      "phase": "text-200-progress",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "32px",
+        "dpr": 1,
+        "outside": []
+      },
+      "componentText": {
+        "checked": 5,
+        "failures": []
+      }
+    },
+    {
+      "language": "ru",
+      "phase": "keyboard-chart-values",
+      "tables": [
+        {
+          "label": "\u0417\u0430\u043f\u0438\u0441\u0430\u043d\u043d\u044b\u0435 \u043c\u0438\u043d\u0443\u0442\u044b \u0442\u0440\u0435\u043d\u0438\u0440\u043e\u0432\u043e\u043a \u00b7 \u043f\u043e\u0441\u043b\u0435\u0434\u043d\u0438\u0435 30 \u0434\u043d\u0435\u0439",
+          "left": 0,
+          "width": 308,
+          "scrollWidth": 308,
+          "keyboardLeftAfter": 0
+        },
+        {
+          "label": "\u0427\u0430\u0441\u0442\u043e\u0442\u0430 \u0442\u0440\u0435\u043d\u0438\u0440\u043e\u0432\u043e\u043a",
+          "left": 0,
+          "width": 308,
+          "scrollWidth": 335,
+          "keyboardLeftAfter": 1
+        },
+        {
+          "label": "\u041c\u043e\u0438 \u043d\u0430\u0432\u044b\u043a\u0438",
+          "left": 0,
+          "width": 308,
+          "scrollWidth": 552,
+          "keyboardLeftAfter": 2
+        }
+      ]
+    },
+    {
+      "language": "ru",
+      "phase": "text-200-learn",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "32px",
+        "dpr": 1,
+        "outside": []
+      },
+      "componentText": {
+        "checked": 5,
+        "failures": []
+      }
+    },
+    {
+      "language": "ru",
+      "phase": "text-200-profile",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "32px",
+        "dpr": 1,
+        "outside": []
+      },
+      "componentText": {
+        "checked": 11,
+        "failures": []
+      }
+    },
+    {
+      "language": "ru",
+      "phase": "workspace-dashboard",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 112,
+        "failures": []
+      }
+    },
+    {
+      "language": "ru",
+      "phase": "workspace-log",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 44,
+        "failures": []
+      }
+    },
+    {
+      "language": "ru",
+      "phase": "workspace-progress",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 133,
+        "failures": []
+      }
+    },
+    {
+      "language": "ru",
+      "phase": "workspace-learn",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 229,
+        "failures": []
+      }
+    },
+    {
+      "language": "ru",
+      "phase": "workspace-profile",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 136,
+        "failures": []
+      }
+    },
+    {
+      "language": "ru",
+      "phase": "workspace-dashboard",
+      "layout": {
+        "width": 1440,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 122,
+        "failures": []
+      }
+    },
+    {
+      "language": "ru",
+      "phase": "workspace-log",
+      "layout": {
+        "width": 1440,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 52,
+        "failures": []
+      }
+    },
+    {
+      "language": "ru",
+      "phase": "workspace-progress",
+      "layout": {
+        "width": 1440,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 141,
+        "failures": []
+      }
+    },
+    {
+      "language": "ru",
+      "phase": "workspace-learn",
+      "layout": {
+        "width": 1440,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 237,
+        "failures": []
+      }
+    },
+    {
+      "language": "ru",
+      "phase": "workspace-profile",
+      "layout": {
+        "width": 1440,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 144,
+        "failures": []
+      }
+    },
+    {
+      "language": "ru",
+      "mocked_cloud_failures": 1,
+      "page_errors": [],
+      "external_requests_sent": 0
+    },
+    {
+      "language": "lv",
+      "phase": "initial-payload",
+      "assets": [
+        {
+          "path": "/assets/index-CkKj9bH1.js",
+          "decodedBytes": 927504,
+          "transferBytes": 927804
+        },
+        {
+          "path": "/assets/rolldown-runtime-hePW80VL.js",
+          "decodedBytes": 716,
+          "transferBytes": 1016
+        },
+        {
+          "path": "/assets/charts-BAHzxo24.js",
+          "decodedBytes": 396869,
+          "transferBytes": 397169
+        },
+        {
+          "path": "/assets/react-Clpx-5N5.js",
+          "decodedBytes": 182114,
+          "transferBytes": 182414
+        },
+        {
+          "path": "/assets/AppContext-nCvzOMgv.js",
+          "decodedBytes": 12806,
+          "transferBytes": 13106
+        },
+        {
+          "path": "/assets/i18n-CRPEYGxM.js",
+          "decodedBytes": 45662,
+          "transferBytes": 45962
+        },
+        {
+          "path": "/assets/AcademyDialog-NMkh3tWU.js",
+          "decodedBytes": 1193,
+          "transferBytes": 1493
+        },
+        {
+          "path": "/assets/index-Cc0F9ofT.css",
+          "decodedBytes": 55597,
+          "transferBytes": 55897
+        },
+        {
+          "path": "/assets/Dashboard-Bp5QoVQI.js",
+          "decodedBytes": 87044,
+          "transferBytes": 87344
+        },
+        {
+          "path": "/assets/AcademyPage-PxR7cSvk.js",
+          "decodedBytes": 1077,
+          "transferBytes": 1377
+        },
+        {
+          "path": "/assets/challenges-BkSjQTpn.js",
+          "decodedBytes": 20334,
+          "transferBytes": 20634
+        },
+        {
+          "path": "/assets/PhysicalUpdateFlow-CzW0qpdX.js",
+          "decodedBytes": 3046,
+          "transferBytes": 3346
+        },
+        {
+          "path": "/assets/exercises-Ux6N0XSa.js",
+          "decodedBytes": 9551,
+          "transferBytes": 9851
+        },
+        {
+          "path": "/assets/AnnouncementFeed-pNpzdlDT.js",
+          "decodedBytes": 2036,
+          "transferBytes": 2336
+        },
+        {
+          "path": "/assets/dateFormat-B4PCadCD.js",
+          "decodedBytes": 159,
+          "transferBytes": 459
+        },
+        {
+          "path": "/assets/TrainingLog-OfiKhyfn.js",
+          "decodedBytes": 6714,
+          "transferBytes": 7014
+        },
+        {
+          "path": "/assets/TrainingProgress-WZuVFQD_.js",
+          "decodedBytes": 1070,
+          "transferBytes": 1370
+        },
+        {
+          "path": "/assets/MatchLog-UkD8wR3m.js",
+          "decodedBytes": 8279,
+          "transferBytes": 8579
+        },
+        {
+          "path": "/assets/footballStandards-HFMLq1HR.js",
+          "decodedBytes": 7716,
+          "transferBytes": 8016
+        },
+        {
+          "path": "/assets/AcademySaved-BOFjiFJG.js",
+          "decodedBytes": 1067,
+          "transferBytes": 1367
+        }
+      ]
+    },
+    {
+      "language": "lv",
+      "phase": "initial",
+      "layout": {
+        "width": 320,
+        "clientWidth": 320,
+        "scrollWidth": 320,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 112,
+        "failures": []
+      }
+    },
+    {
+      "language": "lv",
+      "phase": "footer-focus",
+      "width": 320,
+      "fullyAboveNavigation": true
+    },
+    {
+      "language": "lv",
+      "phase": "initial",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 112,
+        "failures": []
+      }
+    },
+    {
+      "language": "lv",
+      "phase": "footer-focus",
+      "width": 390,
+      "fullyAboveNavigation": true
+    },
+    {
+      "language": "lv",
+      "phase": "initial",
+      "layout": {
+        "width": 768,
+        "clientWidth": 768,
+        "scrollWidth": 768,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 112,
+        "failures": []
+      }
+    },
+    {
+      "language": "lv",
+      "phase": "footer-focus",
+      "width": 768,
+      "fullyAboveNavigation": true
+    },
+    {
+      "language": "lv",
+      "phase": "initial",
+      "layout": {
+        "width": 1024,
+        "clientWidth": 1024,
+        "scrollWidth": 1024,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 112,
+        "failures": []
+      }
+    },
+    {
+      "language": "lv",
+      "phase": "footer-focus",
+      "width": 1024,
+      "fullyAboveNavigation": true
+    },
+    {
+      "language": "lv",
+      "phase": "initial",
+      "layout": {
+        "width": 1440,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 122,
+        "failures": []
+      }
+    },
+    {
+      "language": "lv",
+      "phase": "footer-focus",
+      "width": 1440,
+      "fullyAboveNavigation": true
+    },
+    {
+      "language": "lv",
+      "phase": "opening-log-assets",
+      "additionalAssets": []
+    },
+    {
+      "language": "lv",
+      "phase": "selected-hover",
+      "contrast": {
+        "minimum": 4.71759313797187,
+        "count": 169,
+        "failures": []
+      }
+    },
+    {
+      "language": "lv",
+      "phase": "failure",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.71759313797187,
+        "count": 171,
+        "failures": []
+      }
+    },
+    {
+      "language": "lv",
+      "phase": "completion",
+      "layout": {
+        "width": 320,
+        "clientWidth": 320,
+        "scrollWidth": 320,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 133,
+        "failures": []
+      }
+    },
+    {
+      "language": "lv",
+      "phase": "completion",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 133,
+        "failures": []
+      }
+    },
+    {
+      "language": "lv",
+      "phase": "completion",
+      "layout": {
+        "width": 768,
+        "clientWidth": 768,
+        "scrollWidth": 768,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 133,
+        "failures": []
+      }
+    },
+    {
+      "language": "lv",
+      "phase": "completion",
+      "layout": {
+        "width": 1024,
+        "clientWidth": 1024,
+        "scrollWidth": 1024,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 133,
+        "failures": []
+      }
+    },
+    {
+      "language": "lv",
+      "phase": "completion",
+      "layout": {
+        "width": 1440,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 143,
+        "failures": []
+      }
+    },
+    {
+      "language": "lv",
+      "phase": "text-200-initial",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "32px",
+        "dpr": 1,
+        "outside": []
+      }
+    },
+    {
+      "language": "lv",
+      "phase": "text-200-form",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "32px",
+        "dpr": 1,
+        "outside": []
+      }
+    },
+    {
+      "language": "lv",
+      "phase": "text-200-dashboard",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "32px",
+        "dpr": 1,
+        "outside": []
+      },
+      "componentText": {
+        "checked": 12,
+        "failures": []
+      }
+    },
+    {
+      "language": "lv",
+      "phase": "text-200-log",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "32px",
+        "dpr": 1,
+        "outside": []
+      },
+      "componentText": {
+        "checked": 5,
+        "failures": []
+      }
+    },
+    {
+      "language": "lv",
+      "phase": "text-200-progress",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "32px",
+        "dpr": 1,
+        "outside": []
+      },
+      "componentText": {
+        "checked": 5,
+        "failures": []
+      }
+    },
+    {
+      "language": "lv",
+      "phase": "keyboard-chart-values",
+      "tables": [
+        {
+          "label": "Pierakst\u012bt\u0101s treni\u0146u min\u016btes \u00b7 p\u0113d\u0113j\u0101s 30 dienas",
+          "left": 0,
+          "width": 308,
+          "scrollWidth": 308,
+          "keyboardLeftAfter": 0
+        },
+        {
+          "label": "Treni\u0146u bie\u017eums",
+          "left": 0,
+          "width": 308,
+          "scrollWidth": 308,
+          "keyboardLeftAfter": 0
+        },
+        {
+          "label": "Manas prasmes",
+          "left": 0,
+          "width": 308,
+          "scrollWidth": 553,
+          "keyboardLeftAfter": 7
+        }
+      ]
+    },
+    {
+      "language": "lv",
+      "phase": "text-200-learn",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "32px",
+        "dpr": 1,
+        "outside": []
+      },
+      "componentText": {
+        "checked": 5,
+        "failures": []
+      }
+    },
+    {
+      "language": "lv",
+      "phase": "text-200-profile",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "32px",
+        "dpr": 1,
+        "outside": []
+      },
+      "componentText": {
+        "checked": 11,
+        "failures": []
+      }
+    },
+    {
+      "language": "lv",
+      "phase": "workspace-dashboard",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 112,
+        "failures": []
+      }
+    },
+    {
+      "language": "lv",
+      "phase": "workspace-log",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 44,
+        "failures": []
+      }
+    },
+    {
+      "language": "lv",
+      "phase": "workspace-progress",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 133,
+        "failures": []
+      }
+    },
+    {
+      "language": "lv",
+      "phase": "workspace-learn",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 229,
+        "failures": []
+      }
+    },
+    {
+      "language": "lv",
+      "phase": "workspace-profile",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 136,
+        "failures": []
+      }
+    },
+    {
+      "language": "lv",
+      "phase": "workspace-dashboard",
+      "layout": {
+        "width": 1440,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 122,
+        "failures": []
+      }
+    },
+    {
+      "language": "lv",
+      "phase": "workspace-log",
+      "layout": {
+        "width": 1440,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 52,
+        "failures": []
+      }
+    },
+    {
+      "language": "lv",
+      "phase": "workspace-progress",
+      "layout": {
+        "width": 1440,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 141,
+        "failures": []
+      }
+    },
+    {
+      "language": "lv",
+      "phase": "workspace-learn",
+      "layout": {
+        "width": 1440,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 237,
+        "failures": []
+      }
+    },
+    {
+      "language": "lv",
+      "phase": "workspace-profile",
+      "layout": {
+        "width": 1440,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 144,
+        "failures": []
+      }
+    },
+    {
+      "language": "lv",
+      "mocked_cloud_failures": 1,
+      "page_errors": [],
+      "external_requests_sent": 0
+    },
+    {
+      "language": "es",
+      "phase": "initial-payload",
+      "assets": [
+        {
+          "path": "/assets/index-CkKj9bH1.js",
+          "decodedBytes": 927504,
+          "transferBytes": 927804
+        },
+        {
+          "path": "/assets/rolldown-runtime-hePW80VL.js",
+          "decodedBytes": 716,
+          "transferBytes": 1016
+        },
+        {
+          "path": "/assets/charts-BAHzxo24.js",
+          "decodedBytes": 396869,
+          "transferBytes": 397169
+        },
+        {
+          "path": "/assets/react-Clpx-5N5.js",
+          "decodedBytes": 182114,
+          "transferBytes": 182414
+        },
+        {
+          "path": "/assets/AppContext-nCvzOMgv.js",
+          "decodedBytes": 12806,
+          "transferBytes": 13106
+        },
+        {
+          "path": "/assets/i18n-CRPEYGxM.js",
+          "decodedBytes": 45662,
+          "transferBytes": 45962
+        },
+        {
+          "path": "/assets/AcademyDialog-NMkh3tWU.js",
+          "decodedBytes": 1193,
+          "transferBytes": 1493
+        },
+        {
+          "path": "/assets/index-Cc0F9ofT.css",
+          "decodedBytes": 55597,
+          "transferBytes": 55897
+        },
+        {
+          "path": "/assets/Dashboard-Bp5QoVQI.js",
+          "decodedBytes": 87044,
+          "transferBytes": 87344
+        },
+        {
+          "path": "/assets/AcademyPage-PxR7cSvk.js",
+          "decodedBytes": 1077,
+          "transferBytes": 1377
+        },
+        {
+          "path": "/assets/challenges-BkSjQTpn.js",
+          "decodedBytes": 20334,
+          "transferBytes": 20634
+        },
+        {
+          "path": "/assets/PhysicalUpdateFlow-CzW0qpdX.js",
+          "decodedBytes": 3046,
+          "transferBytes": 3346
+        },
+        {
+          "path": "/assets/exercises-Ux6N0XSa.js",
+          "decodedBytes": 9551,
+          "transferBytes": 9851
+        },
+        {
+          "path": "/assets/AnnouncementFeed-pNpzdlDT.js",
+          "decodedBytes": 2036,
+          "transferBytes": 2336
+        },
+        {
+          "path": "/assets/dateFormat-B4PCadCD.js",
+          "decodedBytes": 159,
+          "transferBytes": 459
+        },
+        {
+          "path": "/assets/TrainingLog-OfiKhyfn.js",
+          "decodedBytes": 6714,
+          "transferBytes": 7014
+        },
+        {
+          "path": "/assets/TrainingProgress-WZuVFQD_.js",
+          "decodedBytes": 1070,
+          "transferBytes": 1370
+        },
+        {
+          "path": "/assets/MatchLog-UkD8wR3m.js",
+          "decodedBytes": 8279,
+          "transferBytes": 8579
+        },
+        {
+          "path": "/assets/footballStandards-HFMLq1HR.js",
+          "decodedBytes": 7716,
+          "transferBytes": 8016
+        },
+        {
+          "path": "/assets/AcademySaved-BOFjiFJG.js",
+          "decodedBytes": 1067,
+          "transferBytes": 1367
+        }
+      ]
+    },
+    {
+      "language": "es",
+      "phase": "initial",
+      "layout": {
+        "width": 320,
+        "clientWidth": 320,
+        "scrollWidth": 320,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 112,
+        "failures": []
+      }
+    },
+    {
+      "language": "es",
+      "phase": "footer-focus",
+      "width": 320,
+      "fullyAboveNavigation": true
+    },
+    {
+      "language": "es",
+      "phase": "initial",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 112,
+        "failures": []
+      }
+    },
+    {
+      "language": "es",
+      "phase": "footer-focus",
+      "width": 390,
+      "fullyAboveNavigation": true
+    },
+    {
+      "language": "es",
+      "phase": "initial",
+      "layout": {
+        "width": 768,
+        "clientWidth": 768,
+        "scrollWidth": 768,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 112,
+        "failures": []
+      }
+    },
+    {
+      "language": "es",
+      "phase": "footer-focus",
+      "width": 768,
+      "fullyAboveNavigation": true
+    },
+    {
+      "language": "es",
+      "phase": "initial",
+      "layout": {
+        "width": 1024,
+        "clientWidth": 1024,
+        "scrollWidth": 1024,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 112,
+        "failures": []
+      }
+    },
+    {
+      "language": "es",
+      "phase": "footer-focus",
+      "width": 1024,
+      "fullyAboveNavigation": true
+    },
+    {
+      "language": "es",
+      "phase": "initial",
+      "layout": {
+        "width": 1440,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 122,
+        "failures": []
+      }
+    },
+    {
+      "language": "es",
+      "phase": "footer-focus",
+      "width": 1440,
+      "fullyAboveNavigation": true
+    },
+    {
+      "language": "es",
+      "phase": "opening-log-assets",
+      "additionalAssets": []
+    },
+    {
+      "language": "es",
+      "phase": "selected-hover",
+      "contrast": {
+        "minimum": 4.71759313797187,
+        "count": 169,
+        "failures": []
+      }
+    },
+    {
+      "language": "es",
+      "phase": "failure",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.71759313797187,
+        "count": 171,
+        "failures": []
+      }
+    },
+    {
+      "language": "es",
+      "phase": "completion",
+      "layout": {
+        "width": 320,
+        "clientWidth": 320,
+        "scrollWidth": 320,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 133,
+        "failures": []
+      }
+    },
+    {
+      "language": "es",
+      "phase": "completion",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 133,
+        "failures": []
+      }
+    },
+    {
+      "language": "es",
+      "phase": "completion",
+      "layout": {
+        "width": 768,
+        "clientWidth": 768,
+        "scrollWidth": 768,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 133,
+        "failures": []
+      }
+    },
+    {
+      "language": "es",
+      "phase": "completion",
+      "layout": {
+        "width": 1024,
+        "clientWidth": 1024,
+        "scrollWidth": 1024,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 133,
+        "failures": []
+      }
+    },
+    {
+      "language": "es",
+      "phase": "completion",
+      "layout": {
+        "width": 1440,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 143,
+        "failures": []
+      }
+    },
+    {
+      "language": "es",
+      "phase": "text-200-initial",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "32px",
+        "dpr": 1,
+        "outside": []
+      }
+    },
+    {
+      "language": "es",
+      "phase": "text-200-form",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "32px",
+        "dpr": 1,
+        "outside": []
+      }
+    },
+    {
+      "language": "es",
+      "phase": "text-200-dashboard",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "32px",
+        "dpr": 1,
+        "outside": []
+      },
+      "componentText": {
+        "checked": 12,
+        "failures": []
+      }
+    },
+    {
+      "language": "es",
+      "phase": "text-200-log",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "32px",
+        "dpr": 1,
+        "outside": []
+      },
+      "componentText": {
+        "checked": 5,
+        "failures": []
+      }
+    },
+    {
+      "language": "es",
+      "phase": "text-200-progress",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "32px",
+        "dpr": 1,
+        "outside": []
+      },
+      "componentText": {
+        "checked": 5,
+        "failures": []
+      }
+    },
+    {
+      "language": "es",
+      "phase": "keyboard-chart-values",
+      "tables": [
+        {
+          "label": "Minutos de entrenamiento registrados \u00b7 \u00faltimos 30 d\u00edas",
+          "left": 0,
+          "width": 308,
+          "scrollWidth": 340,
+          "keyboardLeftAfter": 3
+        },
+        {
+          "label": "Frecuencia de entrenamientos",
+          "left": 0,
+          "width": 308,
+          "scrollWidth": 317,
+          "keyboardLeftAfter": 4
+        },
+        {
+          "label": "Mis habilidades",
+          "left": 0,
+          "width": 308,
+          "scrollWidth": 671,
+          "keyboardLeftAfter": 8
+        }
+      ]
+    },
+    {
+      "language": "es",
+      "phase": "text-200-learn",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "32px",
+        "dpr": 1,
+        "outside": []
+      },
+      "componentText": {
+        "checked": 5,
+        "failures": []
+      }
+    },
+    {
+      "language": "es",
+      "phase": "text-200-profile",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "32px",
+        "dpr": 1,
+        "outside": []
+      },
+      "componentText": {
+        "checked": 11,
+        "failures": []
+      }
+    },
+    {
+      "language": "es",
+      "phase": "workspace-dashboard",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 112,
+        "failures": []
+      }
+    },
+    {
+      "language": "es",
+      "phase": "workspace-log",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 44,
+        "failures": []
+      }
+    },
+    {
+      "language": "es",
+      "phase": "workspace-progress",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 133,
+        "failures": []
+      }
+    },
+    {
+      "language": "es",
+      "phase": "workspace-learn",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 229,
+        "failures": []
+      }
+    },
+    {
+      "language": "es",
+      "phase": "workspace-profile",
+      "layout": {
+        "width": 390,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 136,
+        "failures": []
+      }
+    },
+    {
+      "language": "es",
+      "phase": "workspace-dashboard",
+      "layout": {
+        "width": 1440,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 122,
+        "failures": []
+      }
+    },
+    {
+      "language": "es",
+      "phase": "workspace-log",
+      "layout": {
+        "width": 1440,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 52,
+        "failures": []
+      }
+    },
+    {
+      "language": "es",
+      "phase": "workspace-progress",
+      "layout": {
+        "width": 1440,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 141,
+        "failures": []
+      }
+    },
+    {
+      "language": "es",
+      "phase": "workspace-learn",
+      "layout": {
+        "width": 1440,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 237,
+        "failures": []
+      }
+    },
+    {
+      "language": "es",
+      "phase": "workspace-profile",
+      "layout": {
+        "width": 1440,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "font": "16px",
+        "dpr": 1,
+        "outside": []
+      },
+      "contrast": {
+        "minimum": 4.785795893957264,
+        "count": 144,
+        "failures": []
+      }
+    },
+    {
+      "language": "es",
+      "mocked_cloud_failures": 1,
+      "page_errors": [],
+      "external_requests_sent": 0
+    },
+    {
+      "phase": "first-use-and-rest-link",
+      "sessions": 1,
+      "minutes": 10,
+      "xp": 20,
+      "restRecordedNothing": true
+    },
+    {
+      "phase": "native-zoom200-dashboard",
+      "layout": {
+        "width": 711,
+        "clientWidth": 711,
+        "scrollWidth": 711,
+        "font": "16px",
+        "dpr": 2,
+        "outside": []
+      },
+      "before": {
+        "width": 1422,
+        "dpr": 1
+      },
+      "browserZoom": 2
+    },
+    {
+      "phase": "native-zoom200-log",
+      "layout": {
+        "width": 711,
+        "clientWidth": 711,
+        "scrollWidth": 711,
+        "font": "16px",
+        "dpr": 2,
+        "outside": []
+      },
+      "before": {
+        "width": 1422,
+        "dpr": 1
+      },
+      "browserZoom": 2
+    },
+    {
+      "phase": "native-zoom200-progress",
+      "layout": {
+        "width": 711,
+        "clientWidth": 711,
+        "scrollWidth": 711,
+        "font": "16px",
+        "dpr": 2,
+        "outside": []
+      },
+      "before": {
+        "width": 1422,
+        "dpr": 1
+      },
+      "browserZoom": 2
+    },
+    {
+      "phase": "native-zoom200-learn",
+      "layout": {
+        "width": 711,
+        "clientWidth": 711,
+        "scrollWidth": 711,
+        "font": "16px",
+        "dpr": 2,
+        "outside": []
+      },
+      "before": {
+        "width": 1422,
+        "dpr": 1
+      },
+      "browserZoom": 2
+    },
+    {
+      "phase": "native-zoom200-profile",
+      "layout": {
+        "width": 711,
+        "clientWidth": 711,
+        "scrollWidth": 711,
+        "font": "16px",
+        "dpr": 2,
+        "outside": []
+      },
+      "before": {
+        "width": 1422,
+        "dpr": 1
+      },
+      "browserZoom": 2
+    },
+    {
+      "phase": "native-zoom200-initial",
+      "layout": {
+        "width": 711,
+        "clientWidth": 711,
+        "scrollWidth": 711,
+        "font": "16px",
+        "dpr": 2,
+        "outside": []
+      },
+      "before": {
+        "width": 1422,
+        "dpr": 1
+      },
+      "browserZoom": 2
+    },
+    {
+      "phase": "native-zoom200-form",
+      "layout": {
+        "width": 711,
+        "clientWidth": 711,
+        "scrollWidth": 711,
+        "font": "16px",
+        "dpr": 2,
+        "outside": []
+      },
+      "before": {
+        "width": 1422,
+        "dpr": 1
+      },
+      "browserZoom": 2
+    },
+    {
+      "phase": "native-zoom200-completion",
+      "layout": {
+        "width": 711,
+        "clientWidth": 711,
+        "scrollWidth": 711,
+        "font": "16px",
+        "dpr": 2,
+        "outside": []
+      },
+      "before": {
+        "width": 1422,
+        "dpr": 1
+      },
+      "browserZoom": 2
+    }
+  ],
+  "limits": [
+    "Chromium only",
+    "Synthetic profiles/auth/API responses",
+    "Google font CSS mocked empty: system fallback typography tested",
+    "No real-user or screen-reader testing",
+    "Independent production review pending"
+  ]
+}

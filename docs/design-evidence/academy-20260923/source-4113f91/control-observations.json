@@ -1,0 +1,409 @@
+{
+  "source_commit": "4113f91a630285da4f78328f8a90ba3ecbf62cba",
+  "kind": "synthetic-control-observations-not-review",
+  "observations": [
+    {
+      "initialLanguage": "en",
+      "width": 390,
+      "surface": "photo-upload",
+      "capture": "controls-en-photo-upload-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "language": "en"
+    },
+    {
+      "initialLanguage": "en",
+      "width": 390,
+      "surface": "photo-removal",
+      "capture": "controls-en-photo-removal-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "language": "en"
+    },
+    {
+      "initialLanguage": "en",
+      "width": 390,
+      "surface": "credential-export-artifact",
+      "artifact": "credential-export-en-390.png",
+      "imageWidth": 660,
+      "imageHeight": 880,
+      "bytes": 52900
+    },
+    {
+      "initialLanguage": "en",
+      "width": 390,
+      "surface": "credential-export-control",
+      "capture": "controls-en-credential-export-control-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "language": "en"
+    },
+    {
+      "initialLanguage": "en",
+      "width": 390,
+      "surface": "language-persisted",
+      "capture": "controls-en-language-persisted-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "language": "lv"
+    },
+    {
+      "initialLanguage": "en",
+      "width": 390,
+      "surface": "explicit-alternate-theme",
+      "capture": "controls-en-explicit-alternate-theme-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "language": "lv"
+    },
+    {
+      "initialLanguage": "en",
+      "width": 390,
+      "surface": "role-mentor",
+      "capture": "controls-en-role-mentor-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "language": "lv"
+    },
+    {
+      "initialLanguage": "en",
+      "width": 390,
+      "surface": "match-retained-failure",
+      "capture": "controls-en-match-retained-failure-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "language": "lv"
+    },
+    {
+      "initialLanguage": "en",
+      "width": 390,
+      "surface": "match-completion",
+      "capture": "controls-en-match-completion-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "language": "lv"
+    },
+    {
+      "initialLanguage": "en",
+      "width": 390,
+      "surface": "diary-retained-failure",
+      "capture": "controls-en-diary-retained-failure-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "language": "lv"
+    },
+    {
+      "initialLanguage": "en",
+      "width": 390,
+      "surface": "diary-completion",
+      "capture": "controls-en-diary-completion-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "language": "lv"
+    },
+    {
+      "initialLanguage": "en",
+      "width": 1440,
+      "surface": "photo-upload",
+      "capture": "controls-en-photo-upload-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "language": "en"
+    },
+    {
+      "initialLanguage": "en",
+      "width": 1440,
+      "surface": "photo-removal",
+      "capture": "controls-en-photo-removal-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "language": "en"
+    },
+    {
+      "initialLanguage": "en",
+      "width": 1440,
+      "surface": "credential-export-artifact",
+      "artifact": "credential-export-en-1440.png",
+      "imageWidth": 660,
+      "imageHeight": 880,
+      "bytes": 52900
+    },
+    {
+      "initialLanguage": "en",
+      "width": 1440,
+      "surface": "credential-export-control",
+      "capture": "controls-en-credential-export-control-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "language": "en"
+    },
+    {
+      "initialLanguage": "en",
+      "width": 1440,
+      "surface": "language-persisted",
+      "capture": "controls-en-language-persisted-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "language": "lv"
+    },
+    {
+      "initialLanguage": "en",
+      "width": 1440,
+      "surface": "explicit-alternate-theme",
+      "capture": "controls-en-explicit-alternate-theme-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "language": "lv"
+    },
+    {
+      "initialLanguage": "en",
+      "width": 1440,
+      "surface": "role-mentor",
+      "capture": "controls-en-role-mentor-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "language": "lv"
+    },
+    {
+      "initialLanguage": "en",
+      "width": 1440,
+      "surface": "match-retained-failure",
+      "capture": "controls-en-match-retained-failure-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "language": "lv"
+    },
+    {
+      "initialLanguage": "en",
+      "width": 1440,
+      "surface": "match-completion",
+      "capture": "controls-en-match-completion-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "language": "lv"
+    },
+    {
+      "initialLanguage": "en",
+      "width": 1440,
+      "surface": "diary-retained-failure",
+      "capture": "controls-en-diary-retained-failure-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "language": "lv"
+    },
+    {
+      "initialLanguage": "en",
+      "width": 1440,
+      "surface": "diary-completion",
+      "capture": "controls-en-diary-completion-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "language": "lv"
+    },
+    {
+      "initialLanguage": "lv",
+      "width": 390,
+      "surface": "photo-upload",
+      "capture": "controls-lv-photo-upload-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "language": "lv"
+    },
+    {
+      "initialLanguage": "lv",
+      "width": 390,
+      "surface": "photo-removal",
+      "capture": "controls-lv-photo-removal-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "language": "lv"
+    },
+    {
+      "initialLanguage": "lv",
+      "width": 390,
+      "surface": "credential-export-artifact",
+      "artifact": "credential-export-lv-390.png",
+      "imageWidth": 660,
+      "imageHeight": 880,
+      "bytes": 53529
+    },
+    {
+      "initialLanguage": "lv",
+      "width": 390,
+      "surface": "credential-export-control",
+      "capture": "controls-lv-credential-export-control-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "language": "lv"
+    },
+    {
+      "initialLanguage": "lv",
+      "width": 390,
+      "surface": "language-persisted",
+      "capture": "controls-lv-language-persisted-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "language": "en"
+    },
+    {
+      "initialLanguage": "lv",
+      "width": 390,
+      "surface": "explicit-alternate-theme",
+      "capture": "controls-lv-explicit-alternate-theme-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "language": "en"
+    },
+    {
+      "initialLanguage": "lv",
+      "width": 390,
+      "surface": "role-mentor",
+      "capture": "controls-lv-role-mentor-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "language": "en"
+    },
+    {
+      "initialLanguage": "lv",
+      "width": 390,
+      "surface": "match-retained-failure",
+      "capture": "controls-lv-match-retained-failure-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "language": "en"
+    },
+    {
+      "initialLanguage": "lv",
+      "width": 390,
+      "surface": "match-completion",
+      "capture": "controls-lv-match-completion-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "language": "en"
+    },
+    {
+      "initialLanguage": "lv",
+      "width": 390,
+      "surface": "diary-retained-failure",
+      "capture": "controls-lv-diary-retained-failure-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "language": "en"
+    },
+    {
+      "initialLanguage": "lv",
+      "width": 390,
+      "surface": "diary-completion",
+      "capture": "controls-lv-diary-completion-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "language": "en"
+    },
+    {
+      "initialLanguage": "lv",
+      "width": 1440,
+      "surface": "photo-upload",
+      "capture": "controls-lv-photo-upload-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "language": "lv"
+    },
+    {
+      "initialLanguage": "lv",
+      "width": 1440,
+      "surface": "photo-removal",
+      "capture": "controls-lv-photo-removal-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "language": "lv"
+    },
+    {
+      "initialLanguage": "lv",
+      "width": 1440,
+      "surface": "credential-export-artifact",
+      "artifact": "credential-export-lv-1440.png",
+      "imageWidth": 660,
+      "imageHeight": 880,
+      "bytes": 53529
+    },
+    {
+      "initialLanguage": "lv",
+      "width": 1440,
+      "surface": "credential-export-control",
+      "capture": "controls-lv-credential-export-control-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "language": "lv"
+    },
+    {
+      "initialLanguage": "lv",
+      "width": 1440,
+      "surface": "language-persisted",
+      "capture": "controls-lv-language-persisted-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "language": "en"
+    },
+    {
+      "initialLanguage": "lv",
+      "width": 1440,
+      "surface": "explicit-alternate-theme",
+      "capture": "controls-lv-explicit-alternate-theme-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "language": "en"
+    },
+    {
+      "initialLanguage": "lv",
+      "width": 1440,
+      "surface": "role-mentor",
+      "capture": "controls-lv-role-mentor-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "language": "en"
+    },
+    {
+      "initialLanguage": "lv",
+      "width": 1440,
+      "surface": "match-retained-failure",
+      "capture": "controls-lv-match-retained-failure-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "language": "en"
+    },
+    {
+      "initialLanguage": "lv",
+      "width": 1440,
+      "surface": "match-completion",
+      "capture": "controls-lv-match-completion-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "language": "en"
+    },
+    {
+      "initialLanguage": "lv",
+      "width": 1440,
+      "surface": "diary-retained-failure",
+      "capture": "controls-lv-diary-retained-failure-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "language": "en"
+    },
+    {
+      "initialLanguage": "lv",
+      "width": 1440,
+      "surface": "diary-completion",
+      "capture": "controls-lv-diary-completion-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "language": "en"
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Generated image input, no real photographs",
+    "Native file chooser and actual PNG download exercised",
+    "Local writes and mocked APIs only",
+    "No independent craft or owner acceptance"
+  ]
+}

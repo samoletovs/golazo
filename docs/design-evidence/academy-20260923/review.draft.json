@@ -1,0 +1,1412 @@
+{
+  "version": 2,
+  "source_commit": "4113f91a630285da4f78328f8a90ba3ecbf62cba",
+  "brief_sha256": "4105d98007881688313f46b85eef9a9f94ccf59c94682542f239cbfc6602fc55",
+  "scope_sha256": "360059bb82c6987ddaa436e5de6e808715be5443727b4ef28540ce0865804c8d",
+  "direction": {
+    "mode": "new",
+    "selected": "",
+    "owner_decision": "",
+    "options": [
+      {
+        "id": "A",
+        "path": "docs/design-evidence/academy-20260923/direction-history/option-a.png",
+        "sha256": "3f50566fd9ce1aff0e4e18a7950f1063c5617305d7bd0dfc6698e8e29d068690"
+      },
+      {
+        "id": "B",
+        "path": "docs/design-evidence/academy-20260923/direction-history/option-b.png",
+        "sha256": "3ad66f9eda5df6ea5e878128d392b3266afa66628f3cdd279369b158666c3f99"
+      }
+    ]
+  },
+  "author": "",
+  "reviewer": "",
+  "review_notes": "",
+  "unresolved_findings": [
+    "Independent review and measured check results not recorded"
+  ],
+  "checks": {
+    "primary_task": {
+      "status": "not_run",
+      "evidence": ""
+    },
+    "keyboard": {
+      "status": "not_run",
+      "evidence": ""
+    },
+    "responsive": {
+      "status": "not_run",
+      "evidence": ""
+    },
+    "states": {
+      "status": "not_run",
+      "evidence": ""
+    },
+    "accessibility": {
+      "status": "not_run",
+      "evidence": ""
+    },
+    "performance": {
+      "status": "not_run",
+      "evidence": ""
+    },
+    "visual_intent": {
+      "status": "not_run",
+      "evidence": ""
+    }
+  },
+  "screenshots": [
+    {
+      "path": "docs/design-evidence/academy-20260923/source-4113f91/en-workspace-dashboard-390.png",
+      "sha256": "df204865323752b6ac15775cac6a173dd082dc937eb335f51c6c3d08fbb1602d",
+      "viewport": "mobile"
+    },
+    {
+      "path": "docs/design-evidence/academy-20260923/source-4113f91/en-workspace-dashboard-1440.png",
+      "sha256": "4b95831d982702f60ebb46cbee1f2403edb45a25f7bf96c725dd32a83b64b85a",
+      "viewport": "desktop"
+    }
+  ],
+  "coverage": [
+    {
+      "id": "visitor-sign-in",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "visitor-bootstrap",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "visitor-error-boundary",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "onboarding-role-choice",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-onboarding-basics",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-onboarding-football",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-onboarding-physical",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-onboarding-assessment",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-onboarding-ready",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-onboarding-team-list",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-onboarding-club-choice",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-onboarding-squad-choice",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-onboarding-create-team",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "coach-onboarding-basics",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "coach-onboarding-ready",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "mentor-onboarding-basics",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "mentor-onboarding-football",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "mentor-onboarding-physical",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "mentor-onboarding-assessment",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "mentor-onboarding-ready",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "mentor-onboarding-team-list",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "mentor-onboarding-club-choice",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "mentor-onboarding-squad-choice",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "mentor-onboarding-create-team",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-shell",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-bootstrap",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-error-boundary",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-feedback-dialog",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-home",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-activity-overview",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-activity-inline-training",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-activity-inline-training-result",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-activity-inline-match",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-activity-inline-match-result",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-daily-quiz",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-daily-challenge",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-coach-advice",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-team-announcements",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-physical-reminder-dialog",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-routine-check-in",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-routine-challenge",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-routine-quiz",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-routine-completion",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-level-up-overlay",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-log-hub",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-log-skip-dialog",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-home-training-log",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-home-training-completion",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-log-training-log",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-log-training-completion",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-match-log",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-match-team-search",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-match-completion",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-diary-log",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-diary-completion",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-record-detail",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-log-tournament-import",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-log-tournament-team-search",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-log-tournament-team-choice",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-log-tournament-preview",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-log-tournament-result",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-progress",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-progress-chart-detail",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-progress-match-detail",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-skill-history",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-evaluation-history",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-evaluation-detail",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-physical-history",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-wellbeing-patterns",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-learn-articles",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-article-detail",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-learn-programs",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-program-detail",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-program-workout",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-workout-rating",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-workout-completion",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-learn-exercises",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-exercise-library",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-exercise-detail-dialog",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-custom-drill-dialog",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-challenges-daily",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-challenges-weekly",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-challenges-special",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-challenge-track-detail",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-profile",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-identity-editor",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-photo-controls",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-card-export",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-achievement-collection",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-personal-goals",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-goal-editor",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-settings",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-language-settings",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-theme-settings",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-role-settings",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-account-settings",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-reset-confirmation",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-profile-physical-history",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-profile-measurement-dialog",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-tracked-fields-dialog",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-team-list-dialog",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-club-choice-dialog",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-squad-choice-dialog",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-create-team-dialog",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-schedule-week",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-schedule-month",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-schedule-day-detail",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-schedule-training-form",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-schedule-match-form",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-schedule-other-event-form",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-schedule-team-search",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-weekly-training-setup",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-schedule-tournament-import",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-schedule-tournament-team-search",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-schedule-tournament-team-choice",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-schedule-tournament-preview",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-schedule-tournament-result",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-football-portal",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-tournament-detail",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-portal-tournament-import",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-portal-tournament-team-search",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-portal-tournament-team-choice",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-portal-tournament-preview",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-portal-tournament-result",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-club-directory",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-club-detail",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-friends-leaderboard",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-friend-invite",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-friend-join",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-social-challenges",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-social-challenge-create",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "player-social-challenge-join",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "coach-shell",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "coach-bootstrap",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "coach-error-boundary",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "coach-feedback-dialog",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "coach-home",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "coach-home-squad-filter",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "coach-home-team-list-dialog",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "coach-home-club-choice-dialog",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "coach-home-squad-choice-dialog",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "coach-home-create-team-dialog",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "coach-roster",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "coach-roster-player-detail",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "coach-training-planner",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "coach-training-drill-editor",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "coach-attendance",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "coach-announcements",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "coach-announcement-composer",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "coach-player-evaluation",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "coach-team-challenges",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "coach-team-challenge-create",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "coach-statistics",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "coach-statistics-squad-filter",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "coach-schedule-week",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "coach-schedule-month",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "coach-schedule-day-detail",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "coach-schedule-training-form",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "coach-schedule-match-form",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "coach-schedule-other-event-form",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "coach-schedule-team-search",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "coach-weekly-training-setup",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "coach-schedule-tournament-import",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "coach-schedule-tournament-team-search",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "coach-schedule-tournament-team-choice",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "coach-schedule-tournament-preview",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "coach-schedule-tournament-result",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "coach-profile",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "coach-photo-controls",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "coach-settings",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "coach-language-settings",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "coach-theme-settings",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "coach-role-settings",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "coach-account-settings",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "coach-reset-confirmation",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "coach-profile-team-list-dialog",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "coach-profile-club-choice-dialog",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "coach-profile-squad-choice-dialog",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "coach-profile-create-team-dialog",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "mentor-shell",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "mentor-bootstrap",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "mentor-error-boundary",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "mentor-feedback-dialog",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "mentor-home",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "mentor-linked-player-selector",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "mentor-check-in-trends",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "mentor-wellbeing-patterns",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "mentor-team-announcements",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "mentor-progress",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "mentor-progress-chart-detail",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "mentor-skill-history",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "mentor-evaluation-history",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "mentor-evaluation-detail",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "mentor-physical-history",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "mentor-progress-wellbeing",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "mentor-schedule-week",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "mentor-schedule-month",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "mentor-schedule-day-detail",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "mentor-schedule-training-form",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "mentor-schedule-match-form",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "mentor-schedule-other-event-form",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "mentor-schedule-team-search",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "mentor-weekly-training-setup",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "mentor-schedule-tournament-import",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "mentor-schedule-tournament-team-search",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "mentor-schedule-tournament-team-choice",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "mentor-schedule-tournament-preview",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "mentor-schedule-tournament-result",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "mentor-profile",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "mentor-photo-controls",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "mentor-settings",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "mentor-language-settings",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "mentor-theme-settings",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "mentor-role-settings",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "mentor-account-settings",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "mentor-reset-confirmation",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "mentor-team-list-dialog",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "mentor-club-choice-dialog",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "mentor-squad-choice-dialog",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    },
+    {
+      "id": "mentor-create-team-dialog",
+      "status": "not_run",
+      "evidence": "",
+      "screenshots": []
+    }
+  ],
+  "craft": {
+    "identity": {
+      "status": "not_run",
+      "evidence": ""
+    },
+    "composition": {
+      "status": "not_run",
+      "evidence": ""
+    },
+    "cohesion": {
+      "status": "not_run",
+      "evidence": ""
+    }
+  },
+  "owner_acceptance": {
+    "status": "not_run",
+    "source_commit": "",
+    "decision": ""
+  }
+}
