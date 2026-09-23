@@ -11,8 +11,10 @@ Canonical design context: [`.impeccable.md`](.impeccable.md). It records the
 confirmed audience, Football academy character, cobalt/coral palette, whole-app
 scope and healthy-motivation principles. The owner rejected the first slice's
 visual quality and incomplete application scope after PR #10. Current concepts
-in `docs/design-directions/academy-20260922/` await owner choice; earlier concepts
-and functional checks are historical evidence, not whole-app design acceptance.
+in `docs/design-directions/academy-20260922/` preserve the comparison. On
+2026-09-23 the owner selected A, Academy weekboard, for full real-app
+implementation. This is not final integrated visual acceptance or release
+permission; earlier functional checks are not whole-app design acceptance.
 
 ## Build & verify
 
@@ -117,10 +119,11 @@ api/
 
 Use [the canonical design brief](.impeccable.md), not the historical conflicting
 light/dark or commercial-game recipes previously recorded here.
-The current task is a whole-app rendered concept comparison and coverage
-inventory. Do not reduce it to one approved slice or silently leave other
-routes/roles visually unchanged. Do not edit production UI/backend/schema until
-the owner chooses the new multipage direction.
+The current task is the complete A implementation across `.design-scope.json`.
+Do not reduce it to one feature or silently leave routes/roles on a legacy shell.
+Preserve backend/auth/data schemas and behavior. Stop at a verified, pushed held
+candidate: the parent owns independent reviews, integrated owner acceptance,
+PR and release. Do not open a PR, merge or deploy from this session.
 Preserve the conventions above when implementing production UI; the standalone
 synthetic concepts are explicitly outside the production React/i18n pipeline.
 
