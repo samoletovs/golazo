@@ -83,7 +83,7 @@ export function PersonalGoals() {
 
   return (
     <div className="flex flex-col gap-3">
-      <div className="flex items-start justify-between gap-3">
+      <div className="academy-section-title">
         <div>
           <h2>{t('goals.title')}</h2>
           <p className="text-xs mt-0.5" style={{ color: 'var(--color-text-muted)' }}>

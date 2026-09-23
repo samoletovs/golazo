@@ -146,6 +146,8 @@
 .academy-eyebrow, .section-label { display: block; font-size: .8125rem; letter-spacing: .075em; font-weight: 700; text-transform: uppercase; color: var(--color-text-secondary); }
 .academy-panel, .card, .card-glow, .card-gold { padding: 24px; border: 1px solid var(--color-border-default); border-radius: var(--radius-md); background: var(--color-glass); min-width: 0; }
 .academy-panel > h2 { margin-bottom: 20px; }
+.academy-section-title { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px; }
+.academy-section-title > * { min-width: 0; max-width: 100%; }
 .academy-panel.dark, .card-hero { background: var(--color-ink); color: #fff; padding: 24px; border-radius: var(--radius-md); }
 .academy-panel.dark .academy-eyebrow { color: #c5d0df; }
 .academy-grid { display: grid; gap: 24px; grid-template-columns: minmax(0,1fr); align-items: start; }

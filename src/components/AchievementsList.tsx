@@ -49,7 +49,7 @@ export function AchievementsList() {
 
   return (
     <div className="academy-stack">
-      <div className="flex items-center justify-between">
+      <div className="academy-section-title">
         <h2>{t('profile.achievements')}</h2>
         <span className="stat-pill stat-pill-gold text-xs">
           {unlocked.length} / {ACHIEVEMENT_DEFS.length}
