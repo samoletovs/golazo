@@ -48,6 +48,9 @@ helpers are not represented as reachable product screens.
   skip confirmed targets within that editor. An interrupted response remains
   uncertain: without a backend idempotency contract, a new/reopened remote
   submission cannot be promised globally exactly-once.
+- The existing reset action clears this device's football state, not the cloud
+  account. Its confirmation says that synced data may return; no remote deletion
+  capability is invented.
 - Coach aggregate statistics were static zero/equal-weight displays, not a
   working analytics endpoint. The candidate states that the data is unavailable
   rather than showing those figures as observations.
