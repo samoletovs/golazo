@@ -203,7 +203,7 @@ export function DiaryPage({ onBack, inline, onSaved }: DiaryPageProps) {
         className="btn-primary tap-target w-full"
         onClick={handleSave}
         disabled={!text.trim()}
-        aria-label={t('diary.save')}
+        aria-label={t(failed ? 'training.retry' : 'diary.save')}
       >
         {t(failed ? 'training.retry' : 'diary.save')} (+{scaledDiaryXp} XP)
       </button>

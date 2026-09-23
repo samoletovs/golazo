@@ -303,7 +303,7 @@ export function MatchLog({ onBack, inline, prefill, onSaved }: MatchLogProps) {
         className="btn-primary tap-target w-full"
         onClick={handleSave}
         disabled={!opponent}
-        aria-label={t('match.save')}
+        aria-label={t(failed ? 'training.retry' : 'match.save')}
       >
         {t(failed ? 'training.retry' : 'match.save')} (+{scaledMatchXp} XP)
       </button>
