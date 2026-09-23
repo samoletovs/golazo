@@ -12,10 +12,10 @@ mentor experience. Original concepts remain in their historical directory.
 | --- | --- |
 | Shared shell | Role-aware Academy rail, tablet navigation, wrapping phone navigation with measured clearance, secondary spaces and original SVG icons |
 | Home | Actual scheduled/recurring week, day drillthrough, recorded activity, latest match, season and previous-week comparison, routine/quiz/challenge, goals, announcements, coach advice and tournament discovery |
-| Log | Training, match and reflection forms; scheduled-entry prefill and skip controls; real age-scaled rewards; local failure and retained-input retry; tournament entry |
-| Progress | Recorded activity and training minutes, match/skill/physical/wellbeing views and evaluation history; no reconstructed historical XP series presented as fact |
+| Log | Training, match and reflection forms beside an owner-filtered saved-entry journal; read-only record details; scheduled-entry prefill and recoverable skip choices; real age-scaled rewards; tournament entry |
+| Progress | Recorded activity and training minutes, read-only match review, accessible value tables, current skill-snapshot explanation, physical/wellbeing views and evaluation history; no reconstructed historical XP series presented as fact |
 | Learn | Articles, categories, programs/workouts and exercise search/filter/sort/detail/video/custom-drill flows |
-| Profile | Original Academy credential and PNG export, photo controls, teams, goals, achievements and physical history/customization |
+| Profile | Original Academy credential and PNG export, existing-field identity editor, photo controls, teams, goals, achievements and physical history/customization |
 | Settings | Existing language, theme, role, sign-out and reset capabilities moved into a dedicated workspace |
 | Calendar and football | Week/month views, selected-day detail, training/match/event forms, recurring setup, tournament import and existing tournament/match drillthroughs |
 | Coach | Squad selection, roster/player detail, training/drill planning, announcements, evaluation, attendance and team challenges |
@@ -37,6 +37,9 @@ helpers are not represented as reachable product screens.
   atomically to local storage before publication. A stable draft ID prevents a
   double-submit from duplicating a record or reward. Existing match growth and
   age-tier rules remain in the engine.
+- Saved-entry inspection is read-only and never grants XP. Identity editing uses
+  the existing profile fields and setter; it does not add a record-edit endpoint
+  or manufacture an unstored experience/history field.
 - A local save explicitly does **not** confirm a cloud save. Remote coach writes
   report failed/unconfirmed responses and retain the editor. Multi-squad retries
   skip confirmed targets within that editor. An interrupted response remains

@@ -34,6 +34,7 @@ export function ThemePicker() {
   return (
     <div className="card">
       <p className="section-label mb-3">{t('theme.title')}</p>
+      <p className="academy-hint mb-4">{t('academy.themeRoles')}</p>
       <div className="grid grid-cols-3 gap-2">
         {SURFACE_PRESETS.map((preset) => {
           const isActive = selected === preset.id

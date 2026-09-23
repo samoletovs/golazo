@@ -63,4 +63,15 @@ describe('complete Academy shell contract', () => {
       for (const key of keys) expect(translated[key], `${language}: ${key}`).toBeTruthy()
     }
   })
+
+  it('wires the inventoried journal, match review and identity editor into their real workspaces', () => {
+    const log = fs.readFileSync(path.join(root, 'src', 'pages', 'LogPage.tsx'), 'utf8')
+    const profile = fs.readFileSync(path.join(root, 'src', 'pages', 'Profile.tsx'), 'utf8')
+    const progress = fs.readFileSync(path.join(root, 'src', 'pages', 'ProgressPage.tsx'), 'utf8')
+    expect(log).toContain('<ActivityHistory')
+    expect(profile).toContain('<IdentityEditor')
+    expect(progress).toContain('<ActivityRecordDialog')
+    expect(progress).toContain('<ChartDataTable')
+    expect(progress).toContain('<SkillSnapshot')
+  })
 })

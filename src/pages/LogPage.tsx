@@ -1,5 +1,5 @@
 import { formatDisplayDate } from '../utils/dateFormat'
-import { lazy, Suspense, useState, useMemo } from 'react'
+import { lazy, Suspense, useState, useMemo, useRef, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
 import { getAge, getAgeTier, TRAINING_SKIP_REASONS, MATCH_SKIP_REASONS, type ScheduleEvent, type TrainingType } from '../engine/types'
@@ -7,6 +7,8 @@ import { XP_AWARDS, scaleXp } from '../engine/xp'
 import { AcademyPage } from '../components/academy/AcademyPage'
 import { AcademyIcon } from '../components/academy/AcademyIcon'
 import { AcademyLoading } from '../components/academy/AcademyState'
+import { ActivityHistory } from '../components/academy/ActivityHistory'
+import { useToast } from '../contexts/ToastContext'
 
 const TrainingLog = lazy(() => import('./TrainingLog').then((m) => ({ default: m.TrainingLog })))
 const MatchLog = lazy(() => import('./MatchLog').then((m) => ({ default: m.MatchLog })))
@@ -30,10 +32,14 @@ interface PendingEvent {
 export function LogPage() {
   const { t } = useTranslation()
   const { schedule, recurringTrainings, matches, trainings, profile } = useApp()
+  const { showToast, dismissToast } = useToast()
   const [logType, setLogType] = useState<LogType>('select')
   const [showImport, setShowImport] = useState(false)
   const [prefillData, setPrefillData] = useState<Record<string, string | number | undefined>>({})
   const [skipConfirmId, setSkipConfirmId] = useState<string | null>(null)
+  const [failedSkip, setFailedSkip] = useState<{ eventId: string; reason: string } | null>(null)
+  const skipToast = useRef<number | null>(null)
+  useEffect(() => () => { if (skipToast.current !== null) dismissToast(skipToast.current) }, [dismissToast])
   const tier = profile?.birthDate ? getAgeTier(profile.birthDate) : undefined
 
   // Skipped event IDs persisted in localStorage
@@ -47,15 +53,32 @@ export function LogPage() {
   function skipEvent(eventId: string, reason: string) {
     const next = new Set(skippedIds)
     next.add(eventId)
+    let previousReasons: string | null = null
+    let reasonsWritten = false
+    try {
+      previousReasons = localStorage.getItem('golazo-skip-reasons')
+      const reasons: unknown = JSON.parse(previousReasons ?? '{}')
+      if (typeof reasons !== 'object' || reasons === null || Array.isArray(reasons)) throw new Error('Invalid saved skip reasons')
+      localStorage.setItem('golazo-skip-reasons', JSON.stringify({ ...reasons, [eventId]: { reason, date: new Date().toISOString() } }))
+      reasonsWritten = true
+      localStorage.setItem('golazo-skipped-events', JSON.stringify([...next]))
+    } catch (cause) {
+      if (reasonsWritten) {
+        try {
+          if (previousReasons === null) localStorage.removeItem('golazo-skip-reasons')
+          else localStorage.setItem('golazo-skip-reasons', previousReasons)
+        } catch (rollbackError) { console.error('Skip-reason rollback was not confirmed:', rollbackError) }
+      }
+      console.error('Skip choice could not be saved:', cause)
+      setFailedSkip({ eventId, reason })
+      if (skipToast.current !== null) dismissToast(skipToast.current)
+      skipToast.current = showToast(t('academy.saveError'), 'error')
+      return
+    }
+    if (skipToast.current !== null) dismissToast(skipToast.current)
+    setFailedSkip(null)
     setSkippedIds(next)
     setSkipConfirmId(null)
-    localStorage.setItem('golazo-skipped-events', JSON.stringify([...next]))
-    // Also store the reason for reference
-    try {
-      const reasons = JSON.parse(localStorage.getItem('golazo-skip-reasons') ?? '{}')
-      reasons[eventId] = { reason, date: new Date().toISOString() }
-      localStorage.setItem('golazo-skip-reasons', JSON.stringify(reasons))
-    } catch { /* best-effort */ }
   }
 
   // Find pending events: today's planned + past 7 days without feedback
@@ -170,6 +193,7 @@ export function LogPage() {
 
   return (
     <AcademyPage surface="player-log" title={t('log.selectType')} subtitle={t('academy.logIntro')}>
+      <div className="academy-log-workspace"><div className="academy-stack">
 
       {/* ── Pending events — today's plan + missed ── */}
       {pendingEvents.length > 0 && (
@@ -228,6 +252,9 @@ export function LogPage() {
                 {/* Skip reason picker */}
                 {isSkipping && (
                   <div className="mt-2 pt-2 flex flex-wrap gap-1.5" style={{ borderTop: '1px solid var(--color-glass-border)' }}>
+                    {failedSkip?.eventId === ev.id && <div className="academy-error w-full" role="alert">
+                      <p>{t('academy.saveError')}</p><button className="academy-link" onClick={() => skipEvent(failedSkip.eventId, failedSkip.reason)}>{t('training.retry')}</button>
+                    </div>}
                     <p className="text-xs w-full mb-0.5" style={{ color: 'var(--color-text-muted)' }}>{t('log.skipReason')}</p>
                     {(isMatch ? MATCH_SKIP_REASONS : TRAINING_SKIP_REASONS)
                       .filter((r) => !r.minAge || (profile?.birthDate && getAge(profile.birthDate) >= r.minAge))
@@ -293,6 +320,7 @@ export function LogPage() {
           </p>
         </div>
       </div>
+      </div><ActivityHistory /></div>
     </AcademyPage>
   )
 }

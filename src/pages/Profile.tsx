@@ -13,6 +13,7 @@ import { AcademyPage, AcademyPanel } from '../components/academy/AcademyPage'
 import { AcademyTeams } from '../components/academy/AcademyTeams'
 import { AcademyPhysicalHistory } from '../components/academy/AcademyPhysicalHistory'
 import { TacticalGraphic } from '../components/academy/TacticalGraphic'
+import { IdentityEditor } from '../components/academy/IdentityEditor'
 
 export function Profile() {
   const { t } = useTranslation()
@@ -20,6 +21,7 @@ export function Profile() {
   const { showToast } = useToast()
   const [exporting, setExporting] = useState(false)
   const [showTeams, setShowTeams] = useState(false)
+  const [editIdentity, setEditIdentity] = useState(false)
   const ratings = fifaCardRatings(skillTree)
   const player = profile?.role === 'player'
   const goals = matches.reduce((sum, match) => sum + match.goals, 0)
@@ -49,7 +51,8 @@ export function Profile() {
       setExporting(false)
     }
   }
-  return <AcademyPage surface={`${profile?.role ?? 'player'}-profile`} title={t('profile.title')} subtitle={t('academy.profileIntro')}>
+  return <AcademyPage surface={`${profile?.role ?? 'player'}-profile`} title={t('profile.title')} subtitle={t('academy.profileIntro')}
+    actions={player && <button className="academy-button secondary" onClick={() => setEditIdentity(true)}>{t('academy.editIdentity')}</button>}>
     <div className="academy-grid">
       <div className="academy-stack">
         <section className="academy-credential" aria-label={t('academy.playerRecord')}>
@@ -86,5 +89,6 @@ export function Profile() {
       </div>
     </div>
     {showTeams && <TeamPicker mode={profile?.role === 'coach' ? 'coach' : 'player'} onClose={() => setShowTeams(false)} />}
+    {editIdentity && profile && <IdentityEditor profile={profile} onClose={() => setEditIdentity(false)} />}
   </AcademyPage>
 }

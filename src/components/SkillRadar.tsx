@@ -20,7 +20,7 @@ const LABEL_KEYS: Record<SkillCategory, string> = {
  * The chart converts category averages to points on a fixed 10-point scale, so
  * skill growth is visually comparable across sessions and languages.
  */
-export function SkillRadar() {
+export function SkillRadar({ embedded = false }: { embedded?: boolean }) {
   const { skillTree } = useApp()
   const { t } = useTranslation()
 
@@ -45,10 +45,10 @@ export function SkillRadar() {
   })
 
   return (
-    <div className="card animate-fade-up animate-stagger-2">
-      <p className="section-label mb-3">
+    <div className={embedded ? 'academy-stack' : 'academy-panel'}>
+      {!embedded && <p className="section-label mb-3">
         {t('dashboard.skills')}
-      </p>
+      </p>}
       <svg viewBox="0 0 300 300" className="w-full max-w-[280px] mx-auto">
         {/* Grid lines */}
         {gridLevels.map((level) => {

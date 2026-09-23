@@ -1,8 +1,11 @@
 import { formatDisplayDate } from '../utils/dateFormat'
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
-import { SkillRadar } from '../components/SkillRadar'
+import { SkillSnapshot } from '../components/academy/SkillSnapshot'
+import { ActivityRecordDialog } from '../components/academy/ActivityRecordDialog'
+import { ChartDataTable } from '../components/academy/ChartDataTable'
+import type { MatchEntry } from '../engine/types'
 import { EvaluationHistory } from '../components/EvaluationHistory'
 import { EmptyState } from '../components/EmptyState'
 import { getMatchResult, getAgeTier } from '../engine/types'
@@ -14,6 +17,7 @@ import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, BarChart, 
 export function ProgressPage() {
   const { t } = useTranslation()
   const { matches, trainings, physicalProfile, checkIns, profile } = useApp()
+  const [reviewMatch, setReviewMatch] = useState<MatchEntry | null>(null)
 
   // Which physical fields are being tracked (respects player customization)
   const trackedKeys = useMemo(() => {
@@ -162,6 +166,7 @@ export function ProgressPage() {
 
   return (
     <AcademyPage surface="player-progress" title={t('progress.title')} subtitle={t('academy.progressIntro')}>
+      {profile?.role === 'mentor' && <p className="academy-data-note">{t('academy.deviceDataNotice')}</p>}
       <TrainingProgress />
       <div className="academy-progress-grid">
 
@@ -182,8 +187,8 @@ export function ProgressPage() {
               const result = getMatchResult(m)
               const bg = result === 'win' ? 'var(--color-success-bg)' : result === 'loss' ? 'var(--color-error-bg)' : 'var(--color-amber-bg)'
               const color = result === 'win' ? 'var(--color-primary-dark)' : result === 'loss' ? 'var(--color-danger)' : 'var(--color-amber-text)'
-              return (
-                <div key={m.id} className="match-card-h" style={{ background: bg, width: 180 }} data-result={result}>
+              const content = (
+                <>
                   <p className="text-xs font-bold" style={{ color: 'var(--color-text-muted)' }}>
                     {formatDisplayDate(new Date(m.date), { month: 'short', day: 'numeric' })}
                   </p>
@@ -198,8 +203,11 @@ export function ProgressPage() {
                     {m.assists > 0 && <span className="text-[10px] font-data font-bold px-1.5 py-0.5 rounded-full" style={{ background: 'rgba(var(--color-primary-rgb), 0.08)', color: 'var(--color-primary-light)' }}>🎯{m.assists}</span>}
                     {m.selfRating > 0 && <span className="text-[10px] font-data font-bold px-1.5 py-0.5 rounded-full" style={{ background: 'rgba(var(--color-gold-rgb), 0.1)', color: 'var(--color-amber-text)' }}>★{m.selfRating}</span>}
                   </div>
-                </div>
+                </>
               )
+              return profile?.role === 'player'
+                ? <button key={m.id} className="match-card-h text-left" style={{ background: bg }} data-result={result} onClick={() => setReviewMatch(m)} aria-label={t('academy.reviewMatch', { opponent: m.opponent })}>{content}</button>
+                : <div key={m.id} className="match-card-h" style={{ background: bg }} data-result={result}>{content}</div>
             })}
           </div>
           <div className="flex justify-center gap-4 mt-3">
@@ -249,6 +257,7 @@ export function ProgressPage() {
             <Area isAnimationActive={false} type="monotone" dataKey="minutes" name={t('clubhouse.minutes')} stroke="var(--color-primary)" strokeWidth={2.5} fill="url(#xpGradient)" dot={false} activeDot={{ r: 5, fill: 'var(--color-primary)', stroke: '#fff', strokeWidth: 2 }} />
           </AreaChart>
         </ResponsiveContainer>
+        <ChartDataTable title={t('academy.recordedMinutes')} rows={minutesTrend} columns={[{ key: 'date', label: t('log.date') }, { key: 'minutes', label: t('clubhouse.minutes') }]} />
       </div>
 
       {/* ── Training Frequency ── */}
@@ -269,13 +278,11 @@ export function ProgressPage() {
             <Bar isAnimationActive={false} dataKey="sessions" fill="url(#trainingGradient)" radius={[6, 6, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
+        <ChartDataTable title={t('progress.trainingFrequency')} rows={trainingFrequency} columns={[{ key: 'week', label: t('schedule.tabWeek') }, { key: 'sessions', label: t('clubhouse.sessions') }]} />
       </div>
 
       {/* ── Skill Radar ── */}
-      <div className="card animate-fade-up">
-        <p className="section-label mb-2">{t('progress.skillRadar')}</p>
-        <SkillRadar />
-      </div>
+      <SkillSnapshot />
 
       {/* ── Coach Evaluations ── */}
       <EvaluationHistory />
@@ -442,6 +449,7 @@ export function ProgressPage() {
         </div>
       )}
       </div>
+      {reviewMatch && <ActivityRecordDialog record={{ kind: 'match', entry: reviewMatch }} onClose={() => setReviewMatch(null)} />}
     </AcademyPage>
   )
 }

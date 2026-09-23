@@ -163,7 +163,7 @@
 .academy-dialog-wide { width: min(960px, calc(100% - 24px)); }
 .academy-dialog::backdrop { background: #14243ba6; }
 .academy-dialog-heading { display: flex; align-items: flex-start; gap: 20px; justify-content: space-between; padding: 24px; border-bottom: 1px solid var(--color-border-default); }
-.academy-dialog-heading h2 { font-size: 1.8rem; }
+.academy-dialog-heading h2 { font-size: 1.8rem; min-width: 0; flex: 1; }
 .academy-dialog-close { flex-shrink: 0; width: 44px; background: var(--color-bg); font-size: 1.5rem; border-radius: var(--radius-sm); }
 .academy-dialog-content { padding: 24px; }
 .academy-dialog-flow { min-width: 0; display: flex; flex-direction: column; gap: 20px; }
@@ -236,6 +236,22 @@
 .academy-comparison dt { color: var(--color-text-muted); }
 .academy-comparison dd { font-weight: 700; }
 .academy-log-options { display: grid; grid-template-columns: minmax(0,1fr); gap: 16px; }
+.academy-log-workspace { display: grid; grid-template-columns: minmax(0,1fr); gap: 28px; align-items: start; }
+.academy-log-workspace .academy-log-options { grid-template-columns: minmax(0,1fr); }
+.academy-log-workspace .academy-log-option { grid-template-columns: 32px minmax(0,1fr) auto; align-items: center; }
+.academy-log-workspace .academy-log-option > svg { grid-column: auto; margin-bottom: 0; }
+.academy-record-list { display: flex; flex-direction: column; }
+.academy-record-row { display: flex; align-items: center; gap: 16px; width: 100%; text-align: left; padding-block: 20px; border-bottom: 1px solid var(--color-border-default); }
+.academy-record-row > span:nth-child(2) { flex: 1; min-width: 0; }
+.academy-record-row strong { display: block; font: 700 1.2rem var(--font-display); }
+.academy-record-row small { display: block; color: var(--color-text-muted); margin-top: 4px; font-size: .875rem; }
+.academy-record-facts { display: grid; grid-template-columns: repeat(auto-fit,minmax(min(100%,8rem),1fr)); gap: 20px; }
+.academy-record-facts dt { color: var(--color-text-muted); font-size: .875rem; }
+.academy-record-facts dd { font: 700 1.5rem var(--font-display); margin-top: 8px; }
+.academy-record-writing { white-space: pre-wrap; overflow-wrap: anywhere; max-width: 70ch; margin-top: 16px; }
+.academy-record-photo { max-width: 100%; max-height: 420px; object-fit: contain; }
+.academy-position-options { display: flex; flex-wrap: wrap; gap: 12px 20px; }
+.academy-position-options label { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; }
 .academy-log-option { display: grid; grid-template-columns: 44px minmax(0,1fr) auto; align-items: center; gap: 20px; text-align: left; border: 1px solid var(--color-border-default); padding: 24px; background: var(--color-glass); border-radius: var(--radius-md); }
 .academy-log-option h2 { font-size: 1.65rem; margin-bottom: 8px; }
 .academy-log-option p { color: var(--color-text-muted); }
@@ -331,6 +347,9 @@
 .academy-complete-label { color: var(--color-primary-dark); font-weight: 700; }
 .academy-progress-table { width: 100%; border-collapse: collapse; }
 .academy-progress-table th, .academy-progress-table td { text-align: left; padding: 14px 8px; border-bottom: 1px solid var(--color-border-default); }
+.academy-progress-table caption { text-align: left; font-weight: 700; padding-block: 16px; }
+.academy-data-details { margin-top: 20px; }
+.academy-table-scroll { max-width: 100%; overflow-x: auto; }
 .academy-library, .academy-progress-grid { display: grid; gap: 24px; grid-template-columns: minmax(0,1fr); align-items: start; }
 .academy-reading { border-block: 1px solid var(--color-border-default); padding-block: 24px; min-width: 0; }
 .academy-reading-heading { display: flex; gap: 20px; align-items: flex-start; text-align: left; width: 100%; }
@@ -397,6 +416,7 @@
   .academy-page-heading h1 { font-size: 3.5rem; }
 }
 @media (min-width: 1100px) {
+  .academy-log-workspace { grid-template-columns: minmax(0,.9fr) minmax(0,1.1fr); }
   .academy-daily-grid { grid-template-columns: minmax(0,.8fr) repeat(2,minmax(0,1.1fr)); }
   .academy-schedule-layout { grid-template-columns: minmax(0,1.2fr) minmax(0,1fr); }
   .academy-shell { display: grid; grid-template-columns: max(220px,14rem) minmax(0,1fr); }
