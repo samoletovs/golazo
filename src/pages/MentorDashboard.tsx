@@ -1,3 +1,4 @@
+import { AcademyPage } from '../components/academy/AcademyPage'
 import { useMemo, useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
@@ -148,7 +149,7 @@ export function MentorDashboard() {
     : '—'
 
   return (
-    <div className="flex flex-col gap-4 p-4 pb-32">
+    <AcademyPage surface="pages-mentor-dashboard" title={t('mentor.title')} className="academy-support-page">
       {/* Mentee picker — shown when mentor has linked players */}
       {mentees.length > 0 && (
         <div className="flex flex-wrap gap-2">
@@ -185,9 +186,7 @@ export function MentorDashboard() {
 
       {/* Header */}
       <div>
-        <h2 className="text-lg font-bold heading-display">
-          {t('mentor.title')}
-        </h2>
+
         <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
           {playerName ? t('mentor.dashboard.subtitle', { name: playerName }) : ''}
         </p>
@@ -272,11 +271,11 @@ export function MentorDashboard() {
       {moodTrend.length > 2 && (
         <div className="card animate-fade-up">
           <h3 className="text-sm font-bold mb-3">{t('mentor.moodTrend')}</h3>
-          <ResponsiveContainer width="100%" height={160}>
+          <ResponsiveContainer width="100%" height={240}>
             <LineChart data={moodTrend}>
               <CartesianGrid strokeDasharray="3 3" stroke="var(--color-field-input)" vertical={false} />
-              <XAxis dataKey="date" tick={{ fontSize: 9, fill: 'var(--color-text-muted)' }} axisLine={false} tickLine={false} />
-              <YAxis domain={[1, 5]} ticks={[1, 2, 3, 4, 5]} tick={{ fontSize: 10, fill: 'var(--color-text-muted)' }} width={20} axisLine={false} tickLine={false} />
+              <XAxis dataKey="date" tick={{ fontSize: 12, fill: 'var(--color-text-muted)' }} axisLine={false} tickLine={false} />
+              <YAxis domain={[1, 5]} ticks={[1, 2, 3, 4, 5]} tick={{ fontSize: 12, fill: 'var(--color-text-muted)' }} width={20} axisLine={false} tickLine={false} />
               <Tooltip contentStyle={{ fontSize: 12, borderRadius: 12, border: 'none', boxShadow: '0 4px 16px rgba(0,0,0,0.1)' }} />
               <Line type="monotone" dataKey="mood" stroke="var(--color-gold-500)" strokeWidth={2.5} dot={{ r: 3, fill: 'var(--color-gold-500)', stroke: '#fff', strokeWidth: 2 }} name="Mood" />
               <Line type="monotone" dataKey="energy" stroke="var(--color-primary-light)" strokeWidth={2.5} dot={{ r: 3, fill: 'var(--color-primary-light)', stroke: '#fff', strokeWidth: 2 }} name="Energy" />
@@ -357,6 +356,6 @@ export function MentorDashboard() {
           </div>
         </div>
       )}
-    </div>
+    </AcademyPage>
   )
 }

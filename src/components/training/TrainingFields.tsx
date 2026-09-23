@@ -16,29 +16,29 @@ export function TrainingFields({ draft, onChange, today }: Props) {
   return (
     <>
       <div className="training-pair">
-        <label className="club-field">
+        <label className="academy-field">
           <span>{t('log.date')}</span>
           <input name="date" type="date" required max={today} value={draft.date} onChange={event => change({ date: event.target.value })} />
         </label>
-        <fieldset className="club-field">
+        <fieldset className="academy-field">
           <legend>{t('training.kind')}</legend>
           <div className="training-types">
             {Object.values(TRAINING_TYPES).map(type => (
-              <button key={type} type="button" className="club-choice" aria-pressed={draft.type === type} onClick={() => change({ type })}>{t(`training.type.${type}`)}</button>
+              <button key={type} type="button" className="academy-choice" aria-pressed={draft.type === type} onClick={() => change({ type })}>{t(`training.type.${type}`)}</button>
             ))}
           </div>
         </fieldset>
       </div>
-      <div className="club-field">
+      <div className="academy-field">
         <label htmlFor="training-duration">{t('training.durationLabel')}</label>
         <input id="training-duration" name="duration" type="number" inputMode="numeric" min="1" step="1" required value={Number.isNaN(draft.durationMinutes) ? '' : draft.durationMinutes} onChange={event => change({ durationMinutes: event.target.valueAsNumber })} aria-describedby="duration-help" />
         <small id="duration-help">{t('training.shortCounts')}</small>
       </div>
       <div className="training-presets" role="group" aria-label={t('training.duration')}>
-        {[60, 90, 120].map(duration => <button key={duration} className="club-choice" type="button" aria-pressed={draft.durationMinutes === duration} onClick={() => change({ durationMinutes: duration })}>{t('training.minutes', { min: duration })}</button>)}
+        {[60, 90, 120].map(duration => <button key={duration} className="academy-choice" type="button" aria-pressed={draft.durationMinutes === duration} onClick={() => change({ durationMinutes: duration })}>{t('training.minutes', { min: duration })}</button>)}
       </div>
       {(['energy', 'mood'] as const).map(field => (
-        <fieldset key={field} className="club-field">
+        <fieldset key={field} className="academy-field">
           <legend>{t(`training.${field}`)}</legend>
           <div className="training-ratings">
             {RATINGS.map(value => <label key={value} className="training-rating">
@@ -50,7 +50,7 @@ export function TrainingFields({ draft, onChange, today }: Props) {
       ))}
       <details className="training-details">
         <summary>{t('training.optionalDetails')}</summary>
-        <fieldset className="club-field">
+        <fieldset className="academy-field">
           <legend>{t('training.focus')}</legend>
           <div className="training-focus">
             {Object.values(FOCUS_AREAS).map(focus => <label key={focus}>
@@ -59,7 +59,7 @@ export function TrainingFields({ draft, onChange, today }: Props) {
             </label>)}
           </div>
         </fieldset>
-        <label className="club-field">
+        <label className="academy-field">
           <span>{t('training.notes')}</span>
           <textarea name="notes" rows={3} value={draft.notes} onChange={event => change({ notes: event.target.value })} />
         </label>

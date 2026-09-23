@@ -1,3 +1,4 @@
+import { AcademyPage } from './academy/AcademyPage'
 import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import type { RosterPlayer, AttendanceStatus } from '../engine/types'
@@ -90,11 +91,11 @@ export function AttendanceGrid({ teamId, teamName, coachId, onBack }: Attendance
   const pct = totalCount > 0 ? Math.round((presentCount / totalCount) * 100) : 0
 
   return (
-    <div className="flex flex-col gap-4 p-4 pb-32">
+    <AcademyPage surface="components-attendance-grid" title={t('coach.attendance.title')} className="academy-support-page">
       <div className="flex items-center gap-3">
         <button onClick={onBack} className="tap-target text-xl" aria-label={t('common.back')}>←</button>
         <div className="flex-1 min-w-0">
-          <h2 className="text-lg font-extrabold heading-display">{t('coach.attendance.title')}</h2>
+
           <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{teamName}</p>
         </div>
       </div>
@@ -171,6 +172,6 @@ export function AttendanceGrid({ teamId, teamName, coachId, onBack }: Attendance
           {saving ? '...' : `✓ ${t('coach.eval.save')}`}
         </button>
       )}
-    </div>
+    </AcademyPage>
   )
 }

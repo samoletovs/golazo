@@ -8,14 +8,14 @@ export function TrainingProgress() {
   const summary = trainingSummary(trainings)
   return (
     <div className="training-progress">
-      <p className="club-muted">{t('clubhouse.lastSeven')}</p>
-      <dl className="club-metrics">
+      <p className="academy-muted">{t('clubhouse.lastSeven')}</p>
+      <dl className="academy-stat-line">
         <div><dt>{t('clubhouse.sessions')}</dt><dd>{summary.sessions}</dd></div>
         <div><dt>{t('clubhouse.minutes')}</dt><dd>{summary.minutes}</dd></div>
       </dl>
-      <div className="club-level-label"><strong>{t('dashboard.level', { level: xp.level })}</strong><span>{t('dashboard.xp', { current: xp.currentLevelXp, next: xp.nextLevelXp })}</span></div>
+      <div className="academy-actions mt-5"><strong>{t('dashboard.level', { level: xp.level })}</strong><span>{t('dashboard.xp', { current: xp.currentLevelXp, next: xp.nextLevelXp })}</span></div>
       <progress max={xp.nextLevelXp} value={xp.currentLevelXp} aria-label={t('dashboard.level', { level: xp.level })} />
-      <p className="club-hint">{t('clubhouse.xpMeaning')}</p>
+      <p className="academy-hint">{t('clubhouse.xpMeaning')}</p>
     </div>
   )
 }

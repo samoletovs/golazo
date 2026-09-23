@@ -5,6 +5,8 @@ import { createInitialXpState } from '../engine/xp'
 import { createInitialSkillTree } from '../engine/skills'
 import { prepareTrainingSave } from '../engine/training'
 import type { TrainingReceipt } from '../engine/training'
+import { prepareDiarySave, prepareMatchSave } from '../engine/activitySave'
+import type { ActivityReceipt } from '../engine/activitySave'
 
 /* ── App state ────────────────────────────────────────────── */
 
@@ -37,6 +39,8 @@ interface AppContextValue extends AppState {
   setSkillTree: (st: SkillTree) => void
   addTraining: (t: TrainingEntry) => void
   saveTraining: (entry: TrainingEntry) => TrainingReceipt
+  saveMatch: (entry: MatchEntry) => ActivityReceipt
+  saveDiary: (entry: DiaryEntry) => ActivityReceipt
   addMatch: (m: MatchEntry) => void
   addTournament: (t: Tournament) => void
   updateTournament: (t: Tournament) => void
@@ -259,6 +263,18 @@ export function AppProvider({ children }: { children: ReactNode }) {
     await syncToApi(state)
   }, [state])
 
+  const saveMatch = useCallback((entry: MatchEntry): ActivityReceipt => {
+    const prepared = prepareMatchSave(latestStateRef.current, entry)
+    if (!prepared.receipt.alreadySaved) update({ matches: prepared.matches, xp: prepared.xp })
+    return prepared.receipt
+  }, [update])
+
+  const saveDiary = useCallback((entry: DiaryEntry): ActivityReceipt => {
+    const prepared = prepareDiarySave(latestStateRef.current, entry)
+    if (!prepared.receipt.alreadySaved) update({ diary: prepared.diary, xp: prepared.xp })
+    return prepared.receipt
+  }, [update])
+
   // Personal goals support functional updates because goal editors often derive
   // the next list from the current list and should avoid stale closures.
   const setPersonalGoals = useCallback((goalsOrUpdater: PersonalGoal[] | ((prev: PersonalGoal[]) => PersonalGoal[])) => {
@@ -277,6 +293,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setSkillTree: (st) => update({ skillTree: st }),
     addTraining: (t) => update(prev => ({ trainings: [...prev.trainings, t] })),
     saveTraining,
+    saveMatch,
+    saveDiary,
     addMatch: (m) => update({ matches: [...state.matches, m] }),
     addTournament: (t) => update({ tournaments: [...state.tournaments, t] }),
     updateTournament: (t) => update({ tournaments: state.tournaments.map((x) => (x.id === t.id ? t : x)) }),

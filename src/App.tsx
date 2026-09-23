@@ -2,11 +2,12 @@ import { useState, useEffect, lazy, Suspense } from 'react'
 import { AppProvider, useApp } from './contexts/AppContext'
 import { AuthProvider, useAuth } from './contexts/AuthContext'
 import { ToastProvider } from './contexts/ToastContext'
-import { XpBar } from './components/XpBar'
-import { BottomNav } from './components/BottomNav'
+import { AcademyShell } from './components/academy/AcademyShell'
+import { AcademyLoading } from './components/academy/AcademyState'
+import { isPage } from './academy/navigation'
+import type { Page } from './academy/navigation'
 import FeedbackButton from './components/FeedbackButton'
 const Dashboard = lazy(() => import('./pages/Dashboard').then(m => ({ default: m.Dashboard })))
-const Clubhouse = lazy(() => import('./pages/Clubhouse').then(m => ({ default: m.Clubhouse })))
 const LogPage = lazy(() => import('./pages/LogPage').then(m => ({ default: m.LogPage })))
 import { LoginPage } from './pages/LoginPage'
 import { OnboardingPage } from './pages/OnboardingPage'
@@ -34,7 +35,7 @@ const TeamPickerLazy = lazy(() => import('./components/TeamPicker').then(m => ({
 const CoachStatsPage = lazy(() => import('./pages/CoachStatsPage').then(m => ({ default: m.CoachStatsPage })))
 const TeamChallenges = lazy(() => import('./pages/TeamChallenges').then(m => ({ default: m.TeamChallenges })))
 
-type Page = 'dashboard' | 'activity' | 'log' | 'learn' | 'exercises' | 'profile' | 'schedule' | 'progress' | 'leaderboard' | 'challenges' | 'portal' | 'mentor' | 'coach' | 'squads' | 'stats' | 'coach-roster' | 'coach-training' | 'coach-announce' | 'coach-evaluate' | 'coach-attendance' | 'coach-challenges'
+const SettingsPage = lazy(() => import('./pages/SettingsPage').then(m => ({ default: m.SettingsPage })))
 
 function AppContent() {
   const [page, setPage] = useState<Page>('dashboard')
@@ -100,8 +101,12 @@ function AppContent() {
 
   // Page transition — re-key the content wrapper to trigger animation
   const handleNavigate = (p: string) => {
+    if (!isPage(p)) {
+      console.error('Unknown Golazo destination:', p)
+      return
+    }
     if (p !== page) {
-      setPage(p as Page)
+      setPage(p)
       setPageKey(k => k + 1)
     }
   }
@@ -147,18 +152,10 @@ function AppContent() {
 
   return (
     <div className="flex flex-col min-h-dvh">
-      <div className={`app-shell flex flex-col min-h-dvh${isPlayer && page === 'dashboard' ? ' app-shell-clubhouse' : ''}`}>
-        {/* Header: XP bar for players only */}
-        {isPlayer && page !== 'dashboard' && (
-          <header className="app-header">
-            <XpBar showStreak={page !== 'log'} />
-          </header>
-        )}
-
-        <main className="flex-1 overflow-y-auto pb-20">
+      <AcademyShell page={page} onNavigate={handleNavigate}>
+        <Suspense fallback={<AcademyLoading />}>
           <div key={pageKey} className="page-enter">
-            {page === 'dashboard' && isPlayer && <Clubhouse onNavigate={handleNavigate} />}
-            {page === 'activity' && isPlayer && <Dashboard onNavigate={handleNavigate} />}
+            {(page === 'dashboard' || page === 'activity') && isPlayer && <Dashboard onNavigate={handleNavigate} />}
             {page === 'dashboard' && isMentor && (
               <Suspense fallback={<div className="flex items-center justify-center p-8"><span className="text-3xl">⚽</span></div>}>
                 <MentorDashboard />
@@ -175,7 +172,7 @@ function AppContent() {
                     setCoachTeamIds([teamId])
                     const team = profile?.managedTeams?.find(t => t.teamId === teamId)
                     setCoachTeamName(team?.teamName ?? teamId)
-                    handleNavigate(`coach-${sub}` as Page)
+                    handleNavigate(`coach-${sub}`)
                   }}
                   onNavigateMulti={(sub, teamIds) => {
                     setCoachTeamIds(teamIds)
@@ -185,7 +182,7 @@ function AppContent() {
                       return team?.teamName ?? id
                     })
                     setCoachTeamName(names.join(', '))
-                    handleNavigate(`coach-${sub}` as Page)
+                    handleNavigate(`coach-${sub}`)
                   }}
                   onManageTeams={() => setShowTeamPicker(true)}
                 />
@@ -197,6 +194,7 @@ function AppContent() {
               {page === 'exercises' && <Exercises />}
               {page === 'challenges' && <Challenges />}
               {page === 'profile' && <Profile />}
+              {page === 'settings' && <SettingsPage />}
               {page === 'schedule' && <SchedulePage />}
               {page === 'progress' && <ProgressPage />}
               {page === 'leaderboard' && <LeaderboardPage />}
@@ -267,14 +265,8 @@ function AppContent() {
               )}
             </Suspense>
           </div>
-        </main>
-
-        <footer className="nl-footer">
-          <p>An experiment by <a href="https://naurolabs.com" target="_blank" rel="noopener noreferrer">nauro<span>Labs</span></a></p>
-        </footer>
-      </div>
-
-      <BottomNav active={page === 'activity' ? 'dashboard' : page} onNavigate={handleNavigate} role={profile?.role} />
+        </Suspense>
+      </AcademyShell>
       <FeedbackButton />
 
       {/* Coach squad picker modal */}

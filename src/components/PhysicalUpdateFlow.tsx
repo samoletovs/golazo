@@ -1,3 +1,4 @@
+import { AcademyDialog } from './academy/AcademyDialog'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
@@ -64,27 +65,13 @@ export function PhysicalUpdateFlow({ onClose }: Props) {
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center" style={{ background: 'rgba(0,0,0,0.4)' }}>
-      <div
-        className="w-full max-w-lg rounded-t-2xl overflow-y-auto"
-        style={{
-          background: 'var(--color-bg)',
-          maxHeight: '90vh',
-          boxShadow: '0 -4px 24px rgba(0,0,0,0.15)',
-        }}
-      >
+    <AcademyDialog surface="components-physical-update-flow" title={t('physical.updateTitle')} onClose={onClose} wide>
+      <div className="academy-dialog-flow">
         <div className="p-4 flex flex-col gap-4">
           {/* Header */}
           <div className="flex items-center justify-between">
-            <h2 className="text-lg font-extrabold">{t('physical.updateTitle')}</h2>
-            <button
-              className="text-sm font-bold tap-target"
-              style={{ color: 'var(--color-text-muted)' }}
-              onClick={onClose}
-              aria-label={t('common.close')}
-            >
-              ✕
-            </button>
+
+
           </div>
           <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
             {t('physical.updateHint')}
@@ -132,6 +119,6 @@ export function PhysicalUpdateFlow({ onClose }: Props) {
           </button>
         </div>
       </div>
-    </div>
+    </AcademyDialog>
   )
 }

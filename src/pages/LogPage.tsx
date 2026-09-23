@@ -1,7 +1,11 @@
 import { lazy, Suspense, useState, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
-import { getAge, TRAINING_SKIP_REASONS, MATCH_SKIP_REASONS, type ScheduleEvent, type TrainingType } from '../engine/types'
+import { getAge, getAgeTier, TRAINING_SKIP_REASONS, MATCH_SKIP_REASONS, type ScheduleEvent, type TrainingType } from '../engine/types'
+import { XP_AWARDS, scaleXp } from '../engine/xp'
+import { AcademyPage } from '../components/academy/AcademyPage'
+import { AcademyIcon } from '../components/academy/AcademyIcon'
+import { AcademyLoading } from '../components/academy/AcademyState'
 
 const TrainingLog = lazy(() => import('./TrainingLog').then((m) => ({ default: m.TrainingLog })))
 const MatchLog = lazy(() => import('./MatchLog').then((m) => ({ default: m.MatchLog })))
@@ -11,13 +15,7 @@ const TournamentImport = lazy(() =>
 )
 
 function LogFallback({ compact = false }: { compact?: boolean }) {
-  const sizeClass = compact ? 'text-2xl' : 'text-3xl'
-  const paddingClass = compact ? 'p-4' : 'p-8'
-  return (
-    <div className={`flex items-center justify-center ${paddingClass}`}>
-      <span className={sizeClass}>⚽</span>
-    </div>
-  )
+  return <div className={compact ? 'p-4' : ''}><AcademyLoading /></div>
 }
 
 type LogType = 'select' | 'training' | 'match' | 'diary'
@@ -35,6 +33,7 @@ export function LogPage() {
   const [showImport, setShowImport] = useState(false)
   const [prefillData, setPrefillData] = useState<Record<string, string | number | undefined>>({})
   const [skipConfirmId, setSkipConfirmId] = useState<string | null>(null)
+  const tier = profile?.birthDate ? getAgeTier(profile.birthDate) : undefined
 
   // Skipped event IDs persisted in localStorage
   const [skippedIds, setSkippedIds] = useState<Set<string>>(() => {
@@ -169,8 +168,7 @@ export function LogPage() {
   }
 
   return (
-    <div className="flex flex-col gap-4 p-4 pb-32">
-      <h2 className="text-xl font-extrabold">{t('log.selectType')}</h2>
+    <AcademyPage surface="player-log" title={t('log.selectType')} subtitle={t('academy.logIntro')}>
 
       {/* ── Pending events — today's plan + missed ── */}
       {pendingEvents.length > 0 && (
@@ -255,50 +253,23 @@ export function LogPage() {
         <p className="section-label mt-1">{t('log.orLogManually')}</p>
       )}
 
-      <button
-        className="card tap-target flex items-center gap-4 text-left"
-        onClick={() => setLogType('training')}
-        aria-label={t('log.training')}
-      >
-        <span className="text-3xl">⚽</span>
-        <div>
-          <p className="text-base font-bold">{t('log.training')}</p>
-          <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>+20 XP</p>
-        </div>
-      </button>
-
-      <button
-        className="card tap-target flex items-center gap-4 text-left"
-        onClick={() => setLogType('match')}
-        aria-label={t('log.match')}
-      >
-        <span className="text-3xl">🏟️</span>
-        <div>
-          <p className="text-base font-bold">{t('log.match')}</p>
-          <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>+30 XP</p>
-        </div>
-      </button>
-
-      <button
-        className="card tap-target flex items-center gap-4 text-left"
-        onClick={() => setLogType('diary')}
-        aria-label={t('log.diary')}
-      >
-        <span className="text-3xl">📝</span>
-        <div>
-          <p className="text-base font-bold">{t('log.diary')}</p>
-          <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>+15 XP</p>
-        </div>
-      </button>
+      <div className="academy-log-options">
+        {([
+          { type: 'training', icon: 'log', xp: XP_AWARDS.logTraining },
+          { type: 'match', icon: 'match', xp: XP_AWARDS.logMatch },
+          { type: 'diary', icon: 'diary', xp: XP_AWARDS.diaryEntry },
+        ] as const).map(item => <button key={item.type} className="academy-log-option" onClick={() => setLogType(item.type)} aria-label={t(`log.${item.type}`)}>
+          <AcademyIcon name={item.icon} /><div><h2>{t(`log.${item.type}`)}</h2><p>+{scaleXp(item.xp, tier)} XP</p></div><span aria-hidden="true">↗</span>
+        </button>)}
+      </div>
 
       {/* Add Tournament */}
       <button
-        className="card tap-target flex items-center gap-4 text-left"
-        style={{ borderLeft: '3px solid var(--color-gold-500)' }}
+        className="academy-menu-link"
         onClick={() => setShowImport(true)}
         aria-label={t('import.addTournament')}
       >
-        <span className="text-3xl">🏆</span>
+        <AcademyIcon name="trophy" />
         <div>
           <p className="text-base font-bold">{t('import.addTournament')}</p>
           <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{t('import.addTournamentHint')}</p>
@@ -321,6 +292,6 @@ export function LogPage() {
           </p>
         </div>
       </div>
-    </div>
+    </AcademyPage>
   )
 }

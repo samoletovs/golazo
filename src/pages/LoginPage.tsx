@@ -1,93 +1,30 @@
 import { useTranslation } from 'react-i18next'
 import { useAuth } from '../contexts/AuthContext'
+import { TacticalGraphic } from '../components/academy/TacticalGraphic'
+import { AcademyIcon } from '../components/academy/AcademyIcon'
 
 export function LoginPage() {
   const { t } = useTranslation()
   const { login } = useAuth()
-
-  return (
-    <div className="flex flex-col min-h-dvh items-center justify-center p-6" style={{ background: 'var(--color-bg)' }}>
-      <div className="flex flex-col items-center gap-6 max-w-sm w-full animate-fade-up">
-        {/* Logo / branding */}
-        <div className="flex flex-col items-center gap-2">
-          <span className="text-6xl">⚽</span>
-          <h1 className="text-3xl font-black text-gradient-green">golazo</h1>
-          <p className="text-sm text-center" style={{ color: 'var(--color-text-muted)' }}>
-            {t('login.tagline')}
-          </p>
-        </div>
-
-        {/* Role cards */}
-        <div className="flex flex-col gap-3 w-full mt-4">
-          <button
-            className="login-card tap-target"
-            onClick={login}
-            aria-label={t('login.asPlayer')}
-          >
-            <span className="text-3xl">⚽</span>
-            <div className="flex-1 text-left">
-              <p className="text-sm font-bold">{t('login.asPlayer')}</p>
-              <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
-                {t('login.playerDesc')}
-              </p>
-            </div>
-            <span className="text-lg" style={{ color: 'var(--color-text-muted)' }}>→</span>
-          </button>
-
-          <button
-            className="login-card tap-target"
-            onClick={login}
-            aria-label={t('login.asMentor')}
-          >
-            <span className="text-3xl">🎯</span>
-            <div className="flex-1 text-left">
-              <p className="text-sm font-bold">{t('login.asMentor')}</p>
-              <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
-                {t('login.mentorDesc')}
-              </p>
-            </div>
-            <span className="text-lg" style={{ color: 'var(--color-text-muted)' }}>→</span>
-          </button>
-
-          <button
-            className="login-card tap-target"
-            onClick={login}
-            aria-label={t('login.asCoach')}
-          >
-            <span className="text-3xl">📋</span>
-            <div className="flex-1 text-left">
-              <p className="text-sm font-bold">{t('login.asCoach')}</p>
-              <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
-                {t('login.coachDesc')}
-              </p>
-            </div>
-            <span className="text-lg" style={{ color: 'var(--color-text-muted)' }}>→</span>
-          </button>
-        </div>
-
-        {/* Google sign-in info */}
-        <p className="text-xs text-center mt-2" style={{ color: 'var(--color-text-muted)' }}>
-          🔒 {t('login.googleNote')}
-        </p>
-
-        {/* Skip for now (local dev) */}
-        <button
-          className="text-xs underline mt-2"
-          style={{ color: 'var(--color-text-muted)' }}
-          onClick={() => {
-            // Dispatch custom event to skip login
-            window.dispatchEvent(new CustomEvent('golazo-skip-login'))
-          }}
-          aria-label={t('login.skip')}
-        >
-          {t('login.skip')}
-        </button>
-      </div>
-
-      {/* NauroLabs footer */}
-      <footer className="nl-footer mt-auto pt-8">
-        <p>An experiment by <a href="https://naurolabs.com" target="_blank" rel="noopener noreferrer">nauro<span>Labs</span></a></p>
-      </footer>
-    </div>
-  )
+  const local = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+  return <main className="academy-welcome" data-academy-surface="visitor-login">
+    <section className="academy-welcome-story">
+      <p className="academy-brand">golazo<span>.</span></p>
+      <div><span className="academy-eyebrow">{t('academy.yourFootball')}</span><h1>{t('academy.weekTitle')}</h1><p>{t('login.tagline')}</p></div>
+      <TacticalGraphic kind="pass" />
+    </section>
+    <section className="academy-welcome-form">
+      <h2>{t('onboarding.whoAreYou')}</h2>
+      <div className="academy-menu-list">{([
+        { name: 'login.asPlayer', description: 'login.playerDesc', icon: 'log' },
+        { name: 'login.asMentor', description: 'login.mentorDesc', icon: 'team' },
+        { name: 'login.asCoach', description: 'login.coachDesc', icon: 'schedule' },
+      ] as const).map(role => <button key={role.name} className="login-card" onClick={login} aria-label={t(role.name)}>
+        <AcademyIcon name={role.icon} /><span><strong>{t(role.name)}</strong><small className="block academy-muted mt-2">{t(role.description)}</small></span><span aria-hidden="true">→</span>
+      </button>)}</div>
+      <p className="academy-muted">{t('login.googleNote')}</p>
+      {local && <button className="academy-link" onClick={() => window.dispatchEvent(new CustomEvent('golazo-skip-login'))}>{t('login.skip')}</button>}
+      <footer className="nl-footer"><p>An experiment by <a href="https://naurolabs.com" target="_blank" rel="noopener noreferrer">nauro<span>Labs</span></a></p></footer>
+    </section>
+  </main>
 }

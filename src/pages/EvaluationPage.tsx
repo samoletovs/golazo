@@ -1,3 +1,4 @@
+import { AcademyPage } from '../components/academy/AcademyPage'
 import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useToast } from '../contexts/ToastContext'
@@ -99,11 +100,11 @@ export function EvaluationPage({ teamId, teamName, coachId, coachName, initialPl
   }
 
   return (
-    <div className="flex flex-col gap-4 p-4 pb-32">
+    <AcademyPage surface="pages-evaluation-page" title={t('coach.eval.title')} className="academy-support-page">
       <div className="flex items-center gap-3">
         <button onClick={onBack} className="tap-target text-xl" aria-label={t('common.back')}>←</button>
         <div>
-          <h2 className="text-lg font-extrabold heading-display">{t('coach.eval.title')}</h2>
+
           <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{teamName}</p>
         </div>
       </div>
@@ -274,6 +275,6 @@ export function EvaluationPage({ teamId, teamName, coachId, coachName, initialPl
           </button>
         </>
       )}
-    </div>
+    </AcademyPage>
   )
 }

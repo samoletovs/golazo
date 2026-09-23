@@ -1,3 +1,4 @@
+import { AcademyDialog } from './academy/AcademyDialog'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
@@ -224,11 +225,11 @@ export function TournamentImport({ onClose }: { onClose: () => void }) {
   // Success view
   if (imported && result) {
     return (
-      <div className="fixed inset-0 z-50 flex items-end justify-center" style={{ background: 'rgba(0,0,0,0.4)' }}>
-        <div className="app-shell w-full rounded-t-2xl p-5 pb-8 animate-fade-up" style={{ maxHeight: '80dvh', overflowY: 'auto', background: 'var(--color-bg, #fafafa)' }}>
+      <AcademyDialog surface="components-tournament-import" title={t('import.success')} onClose={onClose} wide>
+        <div className="academy-dialog-flow">
           <div className="text-center py-8">
             <div className="text-5xl mb-3 animate-float">🏆</div>
-            <h3 className="text-xl font-extrabold heading-display">{t('import.success')}</h3>
+
             <p className="text-sm mt-2" style={{ color: 'var(--color-text-secondary)' }}>
               {t('import.addedGames', { count: result.games.length, tournament: result.tournament })}
             </p>
@@ -237,20 +238,20 @@ export function TournamentImport({ onClose }: { onClose: () => void }) {
             {t('common.back')}
           </button>
         </div>
-      </div>
+      </AcademyDialog>
     )
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center" style={{ background: 'rgba(0,0,0,0.4)' }}>
-      <div className="app-shell w-full rounded-t-2xl p-5 pb-8 animate-fade-up" style={{ maxHeight: '85dvh', overflowY: 'auto', background: 'var(--color-bg, #fafafa)' }}>
+    <AcademyDialog surface="components-tournament-import" title={t('import.title')} onClose={onClose} wide>
+      <div className="academy-dialog-flow">
         {/* Header */}
         <div className="flex items-center justify-between mb-5">
           <div className="flex items-center gap-2.5">
             <span className="text-2xl">🏆</span>
-            <h3 className="text-lg font-extrabold heading-display">{t('import.title')}</h3>
+
           </div>
-          <button className="tap-target w-8 h-8 rounded-full flex items-center justify-center" style={{ background: 'var(--color-glass-active)' }} onClick={onClose} aria-label={t('common.cancel')}>✕</button>
+
         </div>
 
         {!result ? (
@@ -484,6 +485,6 @@ export function TournamentImport({ onClose }: { onClose: () => void }) {
           </div>
         )}
       </div>
-    </div>
+    </AcademyDialog>
   )
 }

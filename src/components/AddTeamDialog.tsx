@@ -1,3 +1,4 @@
+import { AcademyDialog } from './academy/AcademyDialog'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import type { SharedTeam } from '../engine/types'
@@ -85,15 +86,9 @@ export function AddTeamDialog({ initialName, defaultCountry, onAdd, onCancel }: 
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: 'rgba(0,0,0,0.4)' }} role="dialog" aria-modal="true">
-      <div
-        className="w-full bg-white rounded-2xl p-4 animate-fade-up"
-        style={{ maxWidth: '400px' }}
-        onClick={(e) => e.stopPropagation()}
-      >
-        <h3 className="text-base font-extrabold mb-3">
-          {t('teams.addNewTitle')}
-        </h3>
+    <AcademyDialog surface="components-add-team-dialog" title={t('teams.addNewTitle')} onClose={onCancel}>
+      <div className="academy-dialog-flow">
+
 
         {/* Duplicate suggestion */}
         {duplicate && (
@@ -203,6 +198,6 @@ export function AddTeamDialog({ initialName, defaultCountry, onAdd, onCancel }: 
           </div>
         )}
       </div>
-    </div>
+    </AcademyDialog>
   )
 }

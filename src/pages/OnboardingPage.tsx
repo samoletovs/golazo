@@ -4,6 +4,7 @@ import { useApp } from '../contexts/AppContext'
 import { useAuth } from '../contexts/AuthContext'
 import { createInitialSkillTree, updateSkillRating } from '../engine/skills'
 import { TeamPicker } from '../components/TeamPicker'
+import { TacticalGraphic } from '../components/academy/TacticalGraphic'
 import type { AccountRole, Position, DominantFoot, SkillCategory, Language, SkillTree, PlayerTeam, AgeTier } from '../engine/types'
 import { getAgeTier } from '../engine/types'
 import { getDefaultTrackedFields, PHYSICAL_FIELDS, PHYSICAL_GROUPS, buildMeasurement, type PhysicalFieldKey } from '../engine/physical'
@@ -194,8 +195,13 @@ export function OnboardingPage() {
   }
 
   return (
-    <div className="flex flex-col min-h-dvh" style={{ background: 'var(--color-bg)' }}>
-      <div className="app-shell flex flex-col min-h-dvh">
+    <div className="academy-welcome" data-academy-surface={`onboarding-${form.role}-${step}`}>
+      <aside className="academy-welcome-story">
+        <p className="academy-brand">golazo<span>.</span></p>
+        <div><span className="academy-eyebrow">{t('academy.yourFootball')}</span><h1>{t('onboarding.welcome')}</h1><p>{t('academy.profileIntro')}</p></div>
+        <TacticalGraphic kind="position" position={form.positions[0]} />
+      </aside>
+      <div className="academy-welcome-form">
         {/* Progress bar */}
         <div className="p-4 pb-0">
           <div className="progress-track" style={{ height: '4px' }}>

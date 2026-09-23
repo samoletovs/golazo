@@ -1,7 +1,11 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
-import { awardXp, XP_AWARDS, scaleXp } from '../engine/xp'
+import { XP_AWARDS, scaleXp } from '../engine/xp'
+import { useToast } from '../contexts/ToastContext'
+import { AcademyPage } from '../components/academy/AcademyPage'
+import { AcademySaved } from '../components/academy/AcademySaved'
+import type { ActivityReceipt } from '../engine/activitySave'
 import { getAgeTier } from '../engine/types'
 import type { DiaryEntry, EnergyLevel } from '../engine/types'
 
@@ -39,10 +43,16 @@ export interface DiaryPageProps {
 
 export function DiaryPage({ onBack, inline, onSaved }: DiaryPageProps) {
   const { t } = useTranslation()
-  const { xp, setXp, addDiary, profile } = useApp()
+  const { saveDiary, profile } = useApp()
+  const { showToast, dismissToast } = useToast()
   const ageTier = profile?.birthDate ? getAgeTier(profile.birthDate) : undefined
   const scaledDiaryXp = scaleXp(XP_AWARDS.diaryEntry, ageTier)
-  const [saved, setSaved] = useState(false)
+  const [receipt, setReceipt] = useState<ActivityReceipt | null>(null)
+  const [failed, setFailed] = useState(false)
+  const [draftId] = useState(() => crypto.randomUUID())
+  const [createdAt] = useState(() => new Date().toISOString())
+  const saving = useRef(false)
+  const errorToast = useRef<number | null>(null)
   const today = new Date().toISOString().split('T')[0]
 
   const [text, setText] = useState('')
@@ -56,10 +66,15 @@ export function DiaryPage({ onBack, inline, onSaved }: DiaryPageProps) {
   }
 
   function handleSave() {
-    if (!text.trim()) return
+    if (saving.current || receipt) return
+    if (!text.trim()) {
+      showToast(t('diary.placeholder'), 'error')
+      return
+    }
+    saving.current = true
     const entry: DiaryEntry = {
-      id: crypto.randomUUID(),
-      playerId: 'default',
+      id: draftId,
+      playerId: profile?.id ?? 'default',
       date: today,
       text,
       mood,
@@ -68,47 +83,29 @@ export function DiaryPage({ onBack, inline, onSaved }: DiaryPageProps) {
       linkedMatchIds: [],
       moodContext: moodContext ?? undefined,
       aiConsent,
-      createdAt: new Date().toISOString(),
+      createdAt,
     }
-    addDiary(entry)
-    setXp(awardXp(xp, XP_AWARDS.diaryEntry, today, ageTier))
-    setSaved(true)
+    try {
+      const saved = saveDiary(entry)
+      setFailed(false)
+      if (errorToast.current !== null) dismissToast(errorToast.current)
+      setReceipt(saved)
+    } catch (cause) {
+      console.error('Reflection could not be saved on this device:', cause)
+      setFailed(true)
+      if (errorToast.current !== null) dismissToast(errorToast.current)
+      errorToast.current = showToast(t('academy.saveError'), 'error')
+      saving.current = false
+      return
+    }
     onSaved?.()
-    if (!inline) setTimeout(() => { setSaved(false); onBack?.() }, 2000)
   }
 
-  if (saved && !inline) {
-    return (
-      <div className="flex flex-col items-center justify-center gap-4 p-4 pb-32 animate-fade-up">
-        <span className="text-5xl animate-float">📝</span>
-        <p className="text-lg font-bold" style={{ color: 'var(--color-primary-dark)' }}>
-          {t('diary.saved', { xp: scaledDiaryXp })}
-        </p>
-      </div>
-    )
-  }
-
-  if (saved && inline) {
-    return (
-      <div className="flex items-center gap-2 p-3 rounded-xl" style={{ background: 'var(--color-primary-bg-subtle)' }}>
-        <span className="text-xl">✅</span>
-        <p className="text-sm font-bold" style={{ color: 'var(--color-primary-dark)' }}>
-          {t('diary.saved', { xp: scaledDiaryXp })}
-        </p>
-      </div>
-    )
-  }
+  if (receipt) return <AcademySaved receipt={receipt} title={t('diary.title')} onDone={onBack} />
 
   return (
-    <div className={inline ? 'flex flex-col gap-4' : 'flex flex-col gap-4 p-4 pb-32'}>
-      {!inline && (
-        <div className="flex items-center gap-3">
-          {onBack && (
-            <button onClick={onBack} className="tap-target text-xl" aria-label={t('common.back')}>←</button>
-          )}
-          <h2 className="text-lg font-bold">{t('diary.title')}</h2>
-        </div>
-      )}
+    <AcademyPage surface="reflection-log" title={t('diary.title')} subtitle={t('diary.private')} onBack={!inline ? onBack : undefined} backLabel={t('common.back')} className="academy-entry-form">
+      {failed && <p role="alert" className="academy-error">{t('academy.saveError')}</p>}
 
       {!inline && (
         <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
@@ -200,22 +197,7 @@ export function DiaryPage({ onBack, inline, onSaved }: DiaryPageProps) {
       </div>
 
       {/* AI consent toggle */}
-      <div className="flex items-center gap-3 px-1">
-        <button
-          className="tap-target w-10 h-6 rounded-full transition-colors relative"
-          style={{ background: aiConsent ? 'var(--color-primary)' : '#d1d5db' }}
-          onClick={() => setAiConsent(!aiConsent)}
-          aria-label="AI consent"
-        >
-          <span
-            className="absolute top-0.5 w-5 h-5 rounded-full bg-white shadow transition-transform"
-            style={{ left: aiConsent ? 18 : 2 }}
-          />
-        </button>
-        <p className="text-xs" style={{ color: 'var(--color-text-secondary)' }}>
-          {t('diary.aiConsent')}
-        </p>
-      </div>
+      <label className="flex items-center gap-3 min-h-12"><input type="checkbox" checked={aiConsent} onChange={event => setAiConsent(event.target.checked)} /><span>{t('diary.aiConsent')}</span></label>
 
       <button
         className="btn-primary tap-target w-full"
@@ -223,8 +205,9 @@ export function DiaryPage({ onBack, inline, onSaved }: DiaryPageProps) {
         disabled={!text.trim()}
         aria-label={t('diary.save')}
       >
-        {t('diary.save')} (+{scaledDiaryXp} XP)
+        {t(failed ? 'training.retry' : 'diary.save')} (+{scaledDiaryXp} XP)
       </button>
-    </div>
+      <p className="academy-hint">{t('training.localHint')}</p>
+    </AcademyPage>
   )
 }

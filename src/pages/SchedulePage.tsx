@@ -1,3 +1,5 @@
+import { AcademyPage } from '../components/academy/AcademyPage'
+import { AcademyDialog } from '../components/academy/AcademyDialog'
 import { useState, useMemo, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
@@ -450,8 +452,8 @@ export function SchedulePage() {
   const monthName = new Date(viewYear, viewMonth).toLocaleDateString(undefined, { month: 'long', year: 'numeric' })
 
   return (
-    <div className="flex flex-col gap-4 p-4 pb-32">
-      <h2 className="text-xl font-extrabold">{t('mentor.schedule.title')}</h2>
+    <AcademyPage surface="pages-schedule-page" title={t('mentor.schedule.title')} className="academy-support-page">
+
 
       {/* ── Tab switcher ── */}
       <div className="schedule-tabs">
@@ -749,11 +751,11 @@ export function SchedulePage() {
 
       {/* ══════════════════════ ADD EVENT FORM (overlay) ══════════════════════ */}
       {showForm && (
-        <div className="fixed inset-0 z-50 flex items-end justify-center" style={{ background: 'rgba(0,0,0,0.4)' }}>
-          <div className="app-shell w-full bg-white rounded-t-2xl p-4 pb-8 animate-fade-up" style={{ maxHeight: '85dvh', overflowY: 'auto' }}>
+        <AcademyDialog surface="pages-schedule-page" title={t('mentor.schedule.add')} onClose={() => setShowForm(false)} wide>
+          <div className="academy-dialog-flow">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-extrabold">{t('mentor.schedule.add')}</h3>
-              <button className="tap-target text-lg" onClick={() => setShowForm(false)} aria-label={t('common.cancel')}>✕</button>
+
+
             </div>
 
             {/* Event type chips */}
@@ -915,16 +917,16 @@ export function SchedulePage() {
               {t('common.save')}
             </button>
           </div>
-        </div>
+        </AcademyDialog>
       )}
 
       {/* ══════════════════════ ADD RECURRING FORM (overlay) ══════════════════════ */}
       {showWeeklySetup && (
-        <div className="fixed inset-0 z-50 flex items-end justify-center" style={{ background: 'rgba(0,0,0,0.4)' }}>
-          <div className="app-shell w-full bg-white rounded-t-2xl p-4 pb-8 animate-fade-up" style={{ maxHeight: '80dvh', overflowY: 'auto' }}>
+        <AcademyDialog surface="pages-schedule-page" title={t('schedule.addRecurring')} onClose={() => setShowWeeklySetup(false)} wide>
+          <div className="academy-dialog-flow">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-extrabold">{t('schedule.addRecurring')}</h3>
-              <button className="tap-target text-lg" onClick={() => setShowWeeklySetup(false)} aria-label={t('common.cancel')}>✕</button>
+
+
             </div>
 
             <div className="flex flex-col gap-3">
@@ -1019,10 +1021,10 @@ export function SchedulePage() {
               {t('common.save')}
             </button>
           </div>
-        </div>
+        </AcademyDialog>
       )}
 
       {showImport && <TournamentImport onClose={() => setShowImport(false)} />}
-    </div>
+    </AcademyPage>
   )
 }

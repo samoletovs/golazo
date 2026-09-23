@@ -1,3 +1,4 @@
+import { AcademyDialog } from './academy/AcademyDialog'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
@@ -50,29 +51,14 @@ export function TrackedFieldsEditor({ onClose }: Props) {
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center" style={{ background: 'rgba(0,0,0,0.4)' }} onClick={onClose}>
-      <div
-        className="w-full max-w-lg rounded-t-2xl sm:rounded-2xl overflow-y-auto"
-        style={{
-          background: 'var(--color-bg, #fafafa)',
-          maxHeight: '85vh',
-          boxShadow: '0 -4px 24px rgba(0,0,0,0.15)',
-        }}
-        onClick={(e) => e.stopPropagation()}
-      >
+    <AcademyDialog surface="components-tracked-fields-editor" title={t('physical.customizeTitle')} onClose={onClose} wide>
+      <div className="academy-dialog-flow">
         <div className="p-5 flex flex-col gap-5">
           {/* Header */}
           <div>
             <div className="flex items-center justify-between">
-              <h2 className="text-lg font-extrabold heading-display">{t('physical.customizeTitle')}</h2>
-              <button
-                className="tap-target w-8 h-8 rounded-full flex items-center justify-center"
-                style={{ background: 'var(--color-glass-active)', color: 'var(--color-text-muted)' }}
-                onClick={onClose}
-                aria-label={t('common.close')}
-              >
-                ✕
-              </button>
+
+
             </div>
             <p className="text-xs mt-1" style={{ color: 'var(--color-text-muted)' }}>
               {t('physical.customizeHint')}
@@ -151,6 +137,6 @@ export function TrackedFieldsEditor({ onClose }: Props) {
           </div>
         </div>
       </div>
-    </div>
+    </AcademyDialog>
   )
 }

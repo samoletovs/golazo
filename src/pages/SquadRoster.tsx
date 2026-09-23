@@ -1,3 +1,4 @@
+import { AcademyPage } from '../components/academy/AcademyPage'
 import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import type { RosterPlayer } from '../engine/types'
@@ -34,10 +35,10 @@ export function SquadRoster({ teamId, teamName, onBack, onEvaluate }: SquadRoste
 
   if (selectedPlayer) {
     return (
-      <div className="flex flex-col gap-4 p-4 pb-32">
+      <AcademyPage surface="pages-squad-roster" title={t('coach.roster.detail')} className="academy-support-page">
         <div className="flex items-center gap-3">
           <button onClick={() => setSelectedPlayer(null)} className="tap-target text-xl" aria-label={t('common.back')}>←</button>
-          <h2 className="text-lg font-extrabold heading-display">{t('coach.roster.detail')}</h2>
+
         </div>
 
         {/* Player hero */}
@@ -94,16 +95,16 @@ export function SquadRoster({ teamId, teamName, onBack, onEvaluate }: SquadRoste
         >
           📊 {t('coach.dashboard.evaluate')}
         </button>
-      </div>
+      </AcademyPage>
     )
   }
 
   return (
-    <div className="flex flex-col gap-4 p-4 pb-32">
+    <AcademyPage surface="pages-squad-roster" title={t('coach.roster.title')} className="academy-support-page">
       <div className="flex items-center gap-3">
         <button onClick={onBack} className="tap-target text-xl" aria-label={t('common.back')}>←</button>
         <div className="flex-1 min-w-0">
-          <h2 className="text-lg font-extrabold heading-display">{t('coach.roster.title')}</h2>
+
           <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{teamName}</p>
         </div>
       </div>
@@ -155,6 +156,6 @@ export function SquadRoster({ teamId, teamName, onBack, onEvaluate }: SquadRoste
           <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{t('coach.roster.emptyHint')}</p>
         </div>
       )}
-    </div>
+    </AcademyPage>
   )
 }

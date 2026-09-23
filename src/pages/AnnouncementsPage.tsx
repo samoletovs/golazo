@@ -1,3 +1,4 @@
+import { AcademyPage } from '../components/academy/AcademyPage'
 import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useToast } from '../contexts/ToastContext'
@@ -77,10 +78,10 @@ export function AnnouncementsPage({ teamId, teamName, coachId, coachName, onBack
 
   if (showNew) {
     return (
-      <div className="flex flex-col gap-4 p-4 pb-32">
+      <AcademyPage surface="pages-announcements-page" title={t('coach.announce.new')} className="academy-support-page">
         <div className="flex items-center gap-3">
           <button onClick={() => setShowNew(false)} className="tap-target text-xl" aria-label={t('common.back')}>←</button>
-          <h2 className="text-lg font-extrabold heading-display">{t('coach.announce.new')}</h2>
+
         </div>
 
         <div className="card animate-fade-up">
@@ -156,17 +157,17 @@ export function AnnouncementsPage({ teamId, teamName, coachId, coachName, onBack
         >
           {saving ? '...' : `📢 ${t('coach.announce.send')}`}
         </button>
-      </div>
+      </AcademyPage>
     )
   }
 
   return (
-    <div className="flex flex-col gap-4 p-4 pb-32">
+    <AcademyPage surface="pages-announcements-page" title={t('coach.announce.title')} className="academy-support-page">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <button onClick={onBack} className="tap-target text-xl" aria-label={t('common.back')}>←</button>
           <div>
-            <h2 className="text-lg font-extrabold heading-display">{t('coach.announce.title')}</h2>
+
             <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{teamName}</p>
           </div>
         </div>
@@ -218,6 +219,6 @@ export function AnnouncementsPage({ teamId, teamName, coachId, coachName, onBack
           <p className="text-sm font-bold">{t('coach.announce.empty')}</p>
         </div>
       )}
-    </div>
+    </AcademyPage>
   )
 }

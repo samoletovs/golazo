@@ -49,6 +49,7 @@ export function TeamSearch({ value, onChange, country, placeholder, className, s
   const debounceRef = useRef<number | null>(null)
   const inputRef = useRef<HTMLInputElement>(null)
   const dropdownRef = useRef<HTMLDivElement>(null)
+  const [dropdownRoot, setDropdownRoot] = useState<HTMLElement | null>(null)
   const [dropdownPos, setDropdownPos] = useState<{ top: number; left: number; width: number; openUp: boolean }>({ top: 0, left: 0, width: 0, openUp: false })
 
   // Sync external value
@@ -57,6 +58,7 @@ export function TeamSearch({ value, onChange, country, placeholder, className, s
   // Calculate dropdown position relative to viewport
   const updatePosition = useCallback(() => {
     if (!inputRef.current) return
+    setDropdownRoot(inputRef.current.closest('dialog') ?? document.body)
     const rect = inputRef.current.getBoundingClientRect()
     const spaceBelow = window.innerHeight - rect.bottom
     const openUp = spaceBelow < 260
@@ -191,7 +193,7 @@ export function TeamSearch({ value, onChange, country, placeholder, className, s
         </button>
       )}
     </div>,
-    document.body
+    dropdownRoot ?? document.body
   ) : null
 
   return (

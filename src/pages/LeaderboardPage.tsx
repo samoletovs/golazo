@@ -1,3 +1,4 @@
+import { AcademyPage } from '../components/academy/AcademyPage'
 import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useAuth } from '../contexts/AuthContext'
@@ -84,8 +85,8 @@ export function LeaderboardPage() {
   const displayEntries = entries.length > 0 ? entries : [localEntry]
 
   return (
-    <div className="flex flex-col gap-5 p-4 pb-32">
-      <h1 className="text-xl font-extrabold">{t('leaderboard.title')}</h1>
+    <AcademyPage surface="pages-leaderboard-page" title={t('leaderboard.title')} className="academy-support-page">
+
 
       {/* ── Leaderboard Table ── */}
       <div className="card animate-fade-up">
@@ -184,6 +185,6 @@ export function LeaderboardPage() {
           )}
         </div>
       )}
-    </div>
+    </AcademyPage>
   )
 }

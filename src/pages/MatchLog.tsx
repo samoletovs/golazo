@@ -1,7 +1,11 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
-import { awardXp, XP_AWARDS, scaleXp } from '../engine/xp'
+import { XP_AWARDS, scaleXp } from '../engine/xp'
+import { useToast } from '../contexts/ToastContext'
+import { AcademyPage } from '../components/academy/AcademyPage'
+import { AcademySaved } from '../components/academy/AcademySaved'
+import type { ActivityReceipt } from '../engine/activitySave'
 import { TeamSearch } from '../components/TeamSearch'
 import { getMatchDurationRecommendation } from '../engine/footballStandards'
 import { getAgeTier } from '../engine/types'
@@ -20,11 +24,17 @@ export interface MatchLogProps {
 
 export function MatchLog({ onBack, inline, prefill, onSaved }: MatchLogProps) {
   const { t } = useTranslation()
-  const { xp, setXp, addMatch, profile } = useApp()
+  const { saveMatch, profile } = useApp()
+  const { showToast, dismissToast } = useToast()
   const durationRecommendation = getMatchDurationRecommendation(profile?.birthDate)
   const ageTier = profile?.birthDate ? getAgeTier(profile.birthDate) : undefined
   const scaledMatchXp = scaleXp(XP_AWARDS.logMatch, ageTier)
-  const [saved, setSaved] = useState(false)
+  const [receipt, setReceipt] = useState<ActivityReceipt | null>(null)
+  const [failed, setFailed] = useState(false)
+  const [draftId] = useState(() => crypto.randomUUID())
+  const [createdAt] = useState(() => new Date().toISOString())
+  const saving = useRef(false)
+  const errorToast = useRef<number | null>(null)
   const [showDetails, setShowDetails] = useState(false)
 
   const today = new Date().toISOString().split('T')[0]
@@ -60,9 +70,15 @@ export function MatchLog({ onBack, inline, prefill, onSaved }: MatchLogProps) {
   }
 
   function handleSave() {
+    if (saving.current || receipt) return
+    if (!opponent.trim() || !date || date > today) {
+      showToast(t('academy.matchRequired'), 'error')
+      return
+    }
+    saving.current = true
     const entry: MatchEntry = {
-      id: crypto.randomUUID(),
-      playerId: 'default',
+      id: draftId,
+      playerId: profile?.id ?? 'default',
       tournamentId: prefill?.tournamentId,
       playingFor: playingFor || undefined,
       date,
@@ -77,53 +93,29 @@ export function MatchLog({ onBack, inline, prefill, onSaved }: MatchLogProps) {
       bestMoment,
       toImprove,
       mood,
-      createdAt: new Date().toISOString(),
+      createdAt,
     }
-    addMatch(entry)
-
-    // Growth XP: bad match + wrote improvement = bonus
-    let totalXp = XP_AWARDS.logMatch
-    if (selfRating <= 4 && toImprove.length > 0) {
-      totalXp += XP_AWARDS.growthXp
+    try {
+      const saved = saveMatch(entry)
+      setFailed(false)
+      if (errorToast.current !== null) dismissToast(errorToast.current)
+      setReceipt(saved)
+    } catch (cause) {
+      console.error('Match could not be saved on this device:', cause)
+      setFailed(true)
+      if (errorToast.current !== null) dismissToast(errorToast.current)
+      errorToast.current = showToast(t('academy.saveError'), 'error')
+      saving.current = false
+      return
     }
-    setXp(awardXp(xp, totalXp, date, ageTier))
-    setSaved(true)
     onSaved?.()
-    if (!inline) setTimeout(() => { setSaved(false); onBack?.() }, 2000)
   }
 
-  if (saved && !inline) {
-    return (
-      <div className="flex flex-col items-center justify-center gap-4 p-8 pb-32 animate-fade-up">
-        <span className="text-5xl animate-float">⚽</span>
-        <p className="text-lg font-bold" style={{ color: 'var(--color-primary-dark)' }}>
-          {t('match.saved', { xp: scaledMatchXp })}
-        </p>
-      </div>
-    )
-  }
-
-  if (saved && inline) {
-    return (
-      <div className="flex items-center gap-2 p-3 rounded-xl" style={{ background: 'var(--color-primary-bg-subtle)' }}>
-        <span className="text-xl">✅</span>
-        <p className="text-sm font-bold" style={{ color: 'var(--color-primary-dark)' }}>
-          {t('match.saved', { xp: scaledMatchXp })}
-        </p>
-      </div>
-    )
-  }
+  if (receipt) return <AcademySaved receipt={receipt} title={t('match.title')} onDone={onBack} />
 
   return (
-    <div className={inline ? 'flex flex-col gap-4' : 'flex flex-col gap-4 p-4 pb-32'}>
-      {!inline && (
-        <div className="flex items-center gap-3">
-          {onBack && (
-            <button onClick={onBack} className="tap-target text-xl" aria-label={t('common.back')}>←</button>
-          )}
-          <h2 className="text-lg font-bold">{t('match.title')}</h2>
-        </div>
-      )}
+    <AcademyPage surface="match-log" title={t('match.title')} onBack={!inline ? onBack : undefined} backLabel={t('common.back')} className="academy-entry-form">
+      {failed && <p className="academy-error" role="alert">{t('academy.saveError')}</p>}
 
       {/* Date */}
       <div>
@@ -313,8 +305,9 @@ export function MatchLog({ onBack, inline, prefill, onSaved }: MatchLogProps) {
         disabled={!opponent}
         aria-label={t('match.save')}
       >
-        {t('match.save')} (+{scaledMatchXp} XP)
+        {t(failed ? 'training.retry' : 'match.save')} (+{scaledMatchXp} XP)
       </button>
-    </div>
+      <p className="academy-hint">{t('training.localHint')}</p>
+    </AcademyPage>
   )
 }

@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
+import { AcademyPage } from '../components/academy/AcademyPage'
 import { awardXp, XP_AWARDS } from '../engine/xp'
 import { getAgeTier } from '../engine/types'
 import { ageTierToChallengeDifficulty, generateDailyChallenges, getChallengeReasonKey, getDailyChallengeCompletionKey } from '../engine/challenges'
@@ -109,7 +110,7 @@ export function Challenges() {
   }
 
   return (
-    <div className="flex flex-col gap-5">
+    <AcademyPage surface="challenges" title={t('nav.challenges')}>
 
       {/* ── Daily streak banner ── */}
       <div className="flex items-center justify-between">
@@ -234,7 +235,7 @@ export function Challenges() {
       {weeklyChallenge && (
         <>
           <p className="section-label">{t('challenges.weekly')}</p>
-          <div className="card" style={{ borderLeft: `3px solid var(--color-primary)` }}>
+          <div className="card">
             <div className="flex items-start gap-3">
               <span className="text-2xl">{weeklyChallenge.emoji}</span>
               <div className="flex-1">
@@ -272,7 +273,6 @@ export function Challenges() {
             <button
               key={track.id}
               className="card text-left w-full"
-              style={{ borderLeft: `3px solid ${track.color}` }}
               onClick={() => !isComplete && startOrLogSpecial(track.id, track.days)}
               disabled={loggedToday || isComplete}
             >
@@ -308,6 +308,6 @@ export function Challenges() {
           )
         })}
       </div>
-    </div>
+    </AcademyPage>
   )
 }

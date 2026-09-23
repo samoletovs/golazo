@@ -1,3 +1,4 @@
+import { AcademyPage } from '../components/academy/AcademyPage'
 import { useState, useMemo, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
@@ -496,10 +497,10 @@ export function FootballPortal() {
   }, [schedule, today])
 
   return (
-    <div className="flex flex-col gap-4 p-4 pb-32">
+    <AcademyPage surface="pages-football-portal" title={t('portal.title')} className="academy-support-page">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <h2 className="text-xl font-extrabold heading-display">{t('portal.title')}</h2>
+
         <button
           className="text-xs font-bold px-3 py-1.5 rounded-lg tap-target"
           style={{ background: 'var(--color-gold-glow)', color: 'var(--color-gold-500)' }}
@@ -585,6 +586,6 @@ export function FootballPortal() {
       )}
 
       {showImport && <TournamentImport onClose={() => setShowImport(false)} />}
-    </div>
+    </AcademyPage>
   )
 }

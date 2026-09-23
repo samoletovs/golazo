@@ -1,3 +1,4 @@
+import { AcademyPage } from '../components/academy/AcademyPage'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import type { TeamChallenge } from '../engine/types'
@@ -81,13 +82,13 @@ export function TeamChallenges({ teamId, teamName, onBack }: TeamChallengesProps
   }
 
   return (
-    <div className="flex flex-col gap-4 p-4 pb-32">
+    <AcademyPage surface="pages-team-challenges" title={t('teamChallenges.title')} className="academy-support-page">
       <div className="flex items-center gap-3">
         <button className="tap-target text-sm font-bold" onClick={onBack} aria-label={t('common.back')}>
           ← {t('common.back')}
         </button>
         <div className="min-w-0">
-          <h2 className="text-xl font-extrabold heading-display truncate">🏆 {t('teamChallenges.title')}</h2>
+
           <p className="text-xs truncate" style={{ color: 'var(--color-text-muted)' }}>{teamName}</p>
         </div>
       </div>
@@ -179,6 +180,6 @@ export function TeamChallenges({ teamId, teamName, onBack }: TeamChallengesProps
           </div>
         )
       })}
-    </div>
+    </AcademyPage>
   )
 }

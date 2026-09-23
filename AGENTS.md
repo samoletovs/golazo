@@ -31,7 +31,8 @@ npm test         # vitest
 src/
 ├── App.tsx                    # Main app — page routing + layout
 ├── main.tsx                   # Entry point + i18n init
-├── index.css                  # Design tokens + Tailwind + utility classes
+├── index.css                  # Academy tokens, responsive shell and shared controls
+├── academy/navigation.ts      # Typed role-aware navigation
 ├── engine/                    # Game logic (XP, skills, types)
 │   ├── types.ts               # All TypeScript types/interfaces
 │   ├── xp.ts                  # XP/level/streak calculations
@@ -43,22 +44,22 @@ src/
 │   ├── AppContext.tsx          # Global state + localStorage + API sync
 │   └── AuthContext.tsx         # Google OAuth via SWA
 ├── components/                # Reusable UI components
-│   ├── BottomNav.tsx           # Mobile bottom navigation (5 tabs)
-│   ├── XpBar.tsx               # XP/level/streak header bar
+│   ├── academy/               # Shared page, dialog, shell and tactical primitives
 │   ├── QuoteCard.tsx           # Daily quote display
 │   ├── SkillRadar.tsx          # SVG spider chart
 │   ├── CoachCard.tsx           # AI Coach recommendation card
 │   ├── VideoPlayer.tsx         # YouTube embed for exercises
 │   └── FeedbackButton.tsx      # i18n feedback form
 ├── pages/                     # Page-level components
-│   ├── Dashboard.tsx           # Home — stats, quote, AI coach, radar
+│   ├── Dashboard.tsx           # Academy weekboard, recorded season and practice
 │   ├── LogPage.tsx             # Log selector (training/match/diary/tournament)
 │   ├── TrainingLog.tsx         # Training entry form
 │   ├── MatchLog.tsx            # Match entry form with tap counters
 │   ├── ProgressPage.tsx        # Charts: XP, matches, training, skills, physical
 │   ├── Exercises.tsx           # Exercise library with video embed
 │   ├── Challenges.tsx          # Daily/weekly/special challenges
-│   ├── Profile.tsx             # FIFA-style card + language selector
+│   ├── Profile.tsx             # Academy identity, teams, goals and physical history
+│   ├── SettingsPage.tsx        # Language, theme, role and account controls
 │   ├── LeaderboardPage.tsx     # Friend leaderboard with invite codes
 │   ├── SchedulePage.tsx        # Calendar of upcoming events
 │   ├── LoginPage.tsx           # Google OAuth entry
