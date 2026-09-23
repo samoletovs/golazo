@@ -1,0 +1,253 @@
+
+> golazo@0.1.0 lint
+> eslint src/
+
+
+[repository]\src\App.tsx
+  87:6  warning  React Hook useEffect has missing dependencies: 'profile' and 'setProfile'. Either include them or remove the dependency array                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    react-hooks/exhaustive-deps
+  91:5  warning  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+[repository]\src\App.tsx:91:5
+  89 |   // Reset to dashboard when role changes
+  90 |   useEffect(() => {
+> 91 |     setPage('dashboard')
+     |     ^^^^^^^ Avoid calling setState() directly within an effect
+  92 |   }, [profile?.role])
+  93 |
+  94 |   // Toggle squad in filter  react-hooks/set-state-in-effect
+
+[repository]\src\components\CoachCard.tsx
+  48:33  warning  Error: Cannot call impure function during render
+
+`Date.now` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+[repository]\src\components\CoachCard.tsx:48:33
+  46 |
+  47 |     // Pick one skill category per day based on date
+> 48 |     const dayIndex = Math.floor(Date.now() / (24 * 60 * 60 * 1000))
+     |                                 ^^^^^^^^^^ Cannot call impure function
+  49 |     const todayInsight = skillInsights[dayIndex % skillInsights.length]
+  50 |
+  51 |     const focused: typeof advice.insights = []                                                                                                                                                                                                                                                                                                                                                                                   react-hooks/purity
+  66:11  warning  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+[repository]\src\components\CoachCard.tsx:66:11
+  64 |         const parsed = JSON.parse(cached)
+  65 |         if (Date.now() - parsed.ts < 24 * 60 * 60 * 1000 && parsed.data?.focusArea !== 'general') {
+> 66 |           setAiAdvice(parsed.data)
+     |           ^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  67 |           setAiAvailable(true)
+  68 |           return
+  69 |         }  react-hooks/set-state-in-effect
+
+[repository]\src\components\ConfettiBurst.tsx
+  33:5   warning  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+[repository]\src\components\ConfettiBurst.tsx:33:5
+  31 |       drift: -30 + Math.random() * 60,
+  32 |     }))
+> 33 |     setParticles(ps)
+     |     ^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  34 |     setVisible(true)
+  35 |     const timer = setTimeout(() => setVisible(false), 2500)
+  36 |     return () => clearTimeout(timer)  react-hooks/set-state-in-effect
+  68:34  warning  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+[repository]\src\components\ConfettiBurst.tsx:68:34
+  66 |             opacity: 0,
+  67 |             animation: `confetti-fall 2s ${p.delay}s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards`,
+> 68 |             transform: `rotate(${Math.random() * 360}deg)`,
+     |                                  ^^^^^^^^^^^^^ Cannot call impure function
+  69 |             ['--drift' as string]: `${p.drift}px`,
+  70 |           }}
+  71 |         />                                                                                                                                                                                                                                                                                                 react-hooks/purity
+
+[repository]\src\components\SocialChallenges.tsx
+  47:10  warning  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+[repository]\src\components\SocialChallenges.tsx:47:10
+  45 |
+  46 |   useEffect(() => {
+> 47 |     void loadChallenges()
+     |          ^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  48 |   }, [loadChallenges])
+  49 |
+  50 |   async function createChallenge(event: React.FormEvent<HTMLFormElement>) {  react-hooks/set-state-in-effect
+
+[repository]\src\components\TeamSearch.tsx
+  61:21  warning  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+[repository]\src\components\TeamSearch.tsx:61:21
+  59 |
+  60 |   // Sync external value
+> 61 |   useEffect(() => { setQuery(value); if (!value) setSelected(false) }, [value])
+     |                     ^^^^^^^^ Avoid calling setState() directly within an effect
+  62 |   useEffect(() => {
+  63 |     if (focusNext.current === 'clear' && selected) clearRef.current?.focus()
+  64 |     if (focusNext.current === 'input' && !selected) inputRef.current?.focus()  react-hooks/set-state-in-effect
+
+[repository]\src\hooks\useCountUp.ts
+  13:25  warning  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+[repository]\src\hooks\useCountUp.ts:13:25
+  11 |
+  12 |   useEffect(() => {
+> 13 |     if (target === 0) { setValue(0); return }
+     |                         ^^^^^^^^ Avoid calling setState() directly within an effect
+  14 |
+  15 |     const timeout = setTimeout(() => {
+  16 |       startTime.current = null  react-hooks/set-state-in-effect
+
+[repository]\src\pages\Dashboard.tsx
+  29:35  warning  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+[repository]\src\pages\Dashboard.tsx:29:35
+  27 |   const [physicalDismissed, setPhysicalDismissed] = useState(false)
+  28 |   useEffect(() => {
+> 29 |     if (xp.level > previousLevel) setShowLevel(true)
+     |                                   ^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  30 |     setPreviousLevel(xp.level)
+  31 |   }, [xp.level, previousLevel])
+  32 |   const latest = [...matches].sort((a, b) => b.date.localeCompare(a.date))[0]  react-hooks/set-state-in-effect
+
+[repository]\src\pages\MentorDashboard.tsx
+  107:28  warning  Error: Cannot call impure function during render
+
+`Date.now` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+[repository]\src\pages\MentorDashboard.tsx:107:28
+  105 |     const recent7 = checkIns.filter((c) => {
+  106 |       const d = new Date(c.date)
+> 107 |       return d.getTime() > Date.now() - 7 * 24 * 60 * 60 * 1000
+      |                            ^^^^^^^^^^ Cannot call impure function
+  108 |     })
+  109 |
+  110 |     // 3+ consecutive low mood days                                                                                                                                         react-hooks/purity
+  126:39  warning  Error: Cannot call impure function during render
+
+`Date.now` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+[repository]\src\pages\MentorDashboard.tsx:126:39
+  124 |       const avgEnergy = recent7.reduce((s, c) => s + c.energy, 0) / recent7.length
+  125 |       const recentTrainings = storedTrainings.filter((tr) =>
+> 126 |         new Date(tr.date).getTime() > Date.now() - 7 * 24 * 60 * 60 * 1000
+      |                                       ^^^^^^^^^^ Cannot call impure function
+  127 |       )
+  128 |       if (avgEnergy < 2.5 && recentTrainings.length >= 5) {
+  129 |         result.push({  react-hooks/purity
+  140:37  warning  Error: Cannot call impure function during render
+
+`Date.now` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+[repository]\src\pages\MentorDashboard.tsx:140:37
+  138 |     if (checkIns.length > 0) {
+  139 |       const lastCheckIn = checkIns[checkIns.length - 1]
+> 140 |       const daysSince = Math.floor((Date.now() - new Date(lastCheckIn.date).getTime()) / (24 * 60 * 60 * 1000))
+      |                                     ^^^^^^^^^^ Cannot call impure function
+  141 |       if (daysSince >= 3) {
+  142 |         result.push({
+  143 |           type: 'info',                                        react-hooks/purity
+  155:34  warning  Error: Cannot call impure function during render
+
+`Date.now` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+[repository]\src\pages\MentorDashboard.tsx:155:34
+  153 |   /* ── Summary stats ── */
+  154 |   const recentCheckIns = checkIns.filter((c) =>
+> 155 |     new Date(c.date).getTime() > Date.now() - 7 * 24 * 60 * 60 * 1000
+      |                                  ^^^^^^^^^^ Cannot call impure function
+  156 |   )
+  157 |   const avgMood7 = recentCheckIns.length > 0
+  158 |     ? (recentCheckIns.reduce((s, c) => s + c.mood, 0) / recentCheckIns.length).toFixed(1)                               react-hooks/purity
+
+[repository]\src\pages\ProgressPage.tsx
+  148:28  warning  Error: Cannot call impure function during render
+
+`Date.now` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+[repository]\src\pages\ProgressPage.tsx:148:28
+  146 |     const recent7 = checkIns.filter((c) => {
+  147 |       const d = new Date(c.date)
+> 148 |       return d.getTime() > Date.now() - 7 * 24 * 60 * 60 * 1000
+      |                            ^^^^^^^^^^ Cannot call impure function
+  149 |     })
+  150 |     if (recent7.length < 3) return null // not enough data
+  151 |     const avgEnergy = recent7.reduce((s, c) => s + c.energy, 0) / recent7.length  react-hooks/purity
+  155:28  warning  Error: Cannot call impure function during render
+
+`Date.now` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+[repository]\src\pages\ProgressPage.tsx:155:28
+  153 |     const recentTrainings7 = trainings.filter((tr) => {
+  154 |       const d = new Date(tr.date)
+> 155 |       return d.getTime() > Date.now() - 7 * 24 * 60 * 60 * 1000
+      |                            ^^^^^^^^^^ Cannot call impure function
+  156 |     })
+  157 |     const trainDays = recentTrainings7.length
+  158 |     // Declining energy + high frequency = overtraining risk                       react-hooks/purity
+
+[repository]\src\pages\TeamChallenges.tsx
+  46:10  warning  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+[repository]\src\pages\TeamChallenges.tsx:46:10
+  44 |
+  45 |   useEffect(() => {
+> 46 |     void loadChallenges()
+     |          ^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  47 |   }, [teamId])
+  48 |
+  49 |   async function createChallenge(event: React.FormEvent<HTMLFormElement>) {  react-hooks/set-state-in-effect
+  47:6   warning  React Hook useEffect has a missing dependency: 'loadChallenges'. Either include it or remove the dependency array                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              react-hooks/exhaustive-deps
+
+✖ 18 problems (0 errors, 18 warnings)
+

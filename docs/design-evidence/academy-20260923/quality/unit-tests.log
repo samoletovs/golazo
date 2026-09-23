@@ -1,0 +1,13 @@
+
+> golazo@0.1.0 test
+> vitest run --maxWorkers=1
+
+
+ RUN  v4.1.11 [repository]
+
+
+ Test Files  29 passed (29)
+      Tests  251 passed (251)
+   Start at  17:22:58
+   Duration  113.20s (transform 3.63s, setup 14.29s, import 26.30s, tests 8.86s, environment 52.58s)
+
