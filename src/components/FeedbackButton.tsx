@@ -37,9 +37,8 @@ export default function FeedbackButton() {
     return (
       <button
         onClick={() => setOpen(true)}
-        className="fixed z-60 w-11 h-11 rounded-full flex items-center justify-center text-lg cursor-pointer"
+        className="academy-feedback-toggle"
         style={{
-          bottom: 72, right: 16,
           background: 'var(--color-glass)',
           border: '1px solid var(--color-border-subtle)',
           color: 'var(--color-text-secondary)',

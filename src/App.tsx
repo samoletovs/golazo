@@ -6,7 +6,6 @@ import { AcademyShell } from './components/academy/AcademyShell'
 import { AcademyLoading } from './components/academy/AcademyState'
 import { isPage } from './academy/navigation'
 import type { Page } from './academy/navigation'
-import FeedbackButton from './components/FeedbackButton'
 const Dashboard = lazy(() => import('./pages/Dashboard').then(m => ({ default: m.Dashboard })))
 const LogPage = lazy(() => import('./pages/LogPage').then(m => ({ default: m.LogPage })))
 import { LoginPage } from './pages/LoginPage'
@@ -263,7 +262,6 @@ function AppContent() {
           </div>
         </Suspense>
       </AcademyShell>
-      <FeedbackButton />
 
       {/* Coach squad picker modal */}
       {showTeamPicker && (
