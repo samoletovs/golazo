@@ -12,7 +12,7 @@ export function SkillSnapshot() {
   const rows = TRAINABLE_CATEGORIES.map(category => {
     const dates = skillTree.ratings.filter(rating => rating.category === category).map(rating => rating.lastUpdated).sort()
     const updated = dates[dates.length - 1]
-    return { category: t(`skills.${category}`), rating: categoryAverage(skillTree, category).toFixed(1), updated: updated ? formatDisplayDate(updated) : null }
+    return { category: t(`skills.${category}`), rating: `${categoryAverage(skillTree, category).toFixed(1)} / 10`, updated: updated ? formatDisplayDate(updated) : null }
   })
   return <AcademyPanel title={t('progress.skillRadar')}>
     <SkillRadar embedded />

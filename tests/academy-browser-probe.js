@@ -57,7 +57,7 @@ async (page) => {
             const measured = await p.evaluate(() => {
               const root = document.documentElement
               const outside = [...document.querySelectorAll('main *')].filter(element => {
-                if (element.closest('svg, .h-scroll, [class*="overflow-x"]')) return false
+                if (element.closest('svg, .h-scroll, .academy-table-scroll, [class*="overflow-x"]')) return false
                 const rect = element.getBoundingClientRect()
                 return rect.width > 0 && rect.height > 0 && (rect.right > root.clientWidth + 2 || rect.left < -2)
               }).map(element => ({ tag: element.tagName, class: String(element.className), text: element.textContent?.trim().slice(0, 65) })).slice(0, 8)

@@ -92,7 +92,7 @@ def no_overflow(page: Page) -> dict:
       return {width: innerWidth, clientWidth:d.clientWidth, scrollWidth:d.scrollWidth,
         font:getComputedStyle(d).fontSize, dpr:devicePixelRatio,
         outside:[...document.querySelectorAll('main *, .academy-dialog *, .academy-primary-nav')].filter(e=>{
-          if(e.closest('svg,.h-scroll,[class*="overflow-x"]')) return false;
+          if(e.closest('svg,.h-scroll,.academy-table-scroll,[class*="overflow-x"]')) return false;
           const r=e.getBoundingClientRect(); return r.width && r.height && (r.right>d.clientWidth+1 || r.left < -1);
         }).map(e=>e.tagName+'.'+e.className).slice(0,8)};
     }""")
@@ -142,6 +142,25 @@ def component_text_fits(page: Page) -> dict:
     }""")
     assert not result["failures"], result["failures"]
     return result
+
+
+def keyboard_data_tables(page: Page) -> list[dict]:
+    observations = []
+    for details in page.locator(".academy-data-details").all():
+        summary = details.locator("summary")
+        summary.click()
+        page.keyboard.press("Tab")
+        region = details.locator(".academy-table-scroll")
+        expect(region).to_be_focused()
+        before = region.evaluate("e=>({left:e.scrollLeft,width:e.clientWidth,scrollWidth:e.scrollWidth})")
+        if before["scrollWidth"] > before["width"] + 1:
+            right = before["left"] < before["scrollWidth"] - before["width"] - 1
+            page.keyboard.press("ArrowRight" if right else "ArrowLeft")
+            page.wait_for_function("value=>value.right ? value.element.scrollLeft>value.left : value.element.scrollLeft<value.left",
+                                   arg={"element": region.element_handle(), "left": before["left"], "right": right})
+        observations.append({"label": region.get_attribute("aria-label"), **before, "keyboardLeftAfter": region.evaluate("e=>e.scrollLeft")})
+        summary.click()
+    return observations
 
 
 def capture(page: Page, output: Path, name: str) -> None:
@@ -260,6 +279,8 @@ def main() -> None:
                     page.locator(f'.academy-primary-nav [data-page="{destination}"]').click()
                     expect(page.locator("main .academy-page").first).to_be_visible()
                     results.append({"language": language, "phase": f"text-200-{destination}", "layout": no_overflow(page), "componentText": component_text_fits(page)})
+                    if destination == "progress":
+                        results.append({"language": language, "phase": "keyboard-chart-values", "tables": keyboard_data_tables(page)})
                     capture(page, output, f"{language}-text-200-{destination}")
                 page.evaluate("document.documentElement.style.fontSize='100%'")
                 for width in (390, 1440):
