@@ -13,8 +13,11 @@ scope and healthy-motivation principles. The owner rejected the first slice's
 visual quality and incomplete application scope after PR #10. Current concepts
 in `docs/design-directions/academy-20260922/` preserve the comparison. On
 2026-09-23 the owner selected A, Academy weekboard, for full real-app
-implementation. This is not final integrated visual acceptance or release
-permission; earlier functional checks are not whole-app design acceptance.
+implementation. After reviewing the compiled real-app preview, the owner
+accepted the integrated Academy result on 2026-09-23 at 18:19 +03:00 and asked
+to finalize it. See the brief for the exact source and decision. Earlier
+functional checks are not whole-app design acceptance or proof of complete
+surface verification.
 
 ## Build & verify
 
@@ -101,9 +104,11 @@ Use [the canonical design brief](.impeccable.md), not the historical conflicting
 light/dark or commercial-game recipes previously recorded here.
 The current task is the complete A implementation across `.design-scope.json`.
 Do not reduce it to one feature or silently leave routes/roles on a legacy shell.
-Preserve backend/auth/data schemas and behavior. Stop at a verified, pushed held
-candidate: the parent owns independent reviews, integrated owner acceptance,
-PR and release. Do not open a PR, merge or deploy from this session.
+Preserve backend/auth/data schemas and behavior. The integrated direction is
+accepted; finalization must complete independent review and source-bound surface
+verification before opening a ready PR. Use the normal checked merge and
+deployment process; do not bypass a failing gate or treat owner acceptance as
+certification of untested behavior.
 Preserve the conventions above when implementing production UI; the standalone
 synthetic concepts are explicitly outside the production React/i18n pipeline.
 

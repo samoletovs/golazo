@@ -1,8 +1,10 @@
 # Academy implementation candidate
 
-This is the held implementation of the owner's **A - Academy weekboard**
-selection. It is not final design acceptance, an independent review, or permission
-to open a PR or deploy. The canonical [brief](../.impeccable.md) and frozen
+This is the implementation of the owner's **A - Academy weekboard** selection.
+The owner accepted the integrated compiled preview on 2026-09-23 at 18:19 +03:00
+and authorized finalization. Independent review and complete source-bound
+surface verification remain release requirements, not implied by that acceptance.
+The canonical [brief](../.impeccable.md) and frozen
 [220-surface scope](../.design-scope.json) govern the complete player, coach and
 mentor experience. Original concepts remain in their historical directory.
 
@@ -112,6 +114,7 @@ Current request measurements are recorded separately. Initial JavaScript remains
 large. There is no new approved performance budget or optimization claim, and
 unrelated loading-optimization work is not included.
 
-Independent code/functional review, a separate visual craft review and the owner's
-integrated-app acceptance belong to the parent delivery process. A v2 draft is
-deliberately non-passing until those judgments and complete surface evidence exist.
+Independent code/functional review and a separate visual craft review belong to
+the parent delivery process. The owner's integrated acceptance is recorded in
+the brief. A v2 draft remains deliberately non-passing until the review judgments
+and complete surface evidence exist.
