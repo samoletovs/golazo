@@ -18,12 +18,24 @@ export function AcademyShell({ page, onNavigate, children }: { page: Page; onNav
   useEffect(() => {
     const element = navigation.current
     if (!element) return
-    const measure = () => shell.current?.style.setProperty('--academy-nav-height', `${element.getBoundingClientRect().height}px`)
+    const root = document.documentElement
+    const previous = root.style.getPropertyValue('--academy-fixed-nav-height')
+    const measure = () => {
+      const height = element.getBoundingClientRect().height
+      shell.current?.style.setProperty('--academy-nav-height', `${height}px`)
+      // Keyboard focus scrolls the document, not the shell that contains the navigation.
+      root.style.setProperty('--academy-fixed-nav-height', getComputedStyle(element).position === 'fixed' ? `${height}px` : '0px')
+    }
     measure()
-    if (typeof ResizeObserver === 'undefined') return
-    const observer = new ResizeObserver(measure)
-    observer.observe(element)
-    return () => observer.disconnect()
+    const observer = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(measure)
+    observer?.observe(element)
+    window.addEventListener('resize', measure)
+    return () => {
+      observer?.disconnect()
+      window.removeEventListener('resize', measure)
+      if (previous) root.style.setProperty('--academy-fixed-nav-height', previous)
+      else root.style.removeProperty('--academy-fixed-nav-height')
+    }
   }, [])
   const primary = primaryNavigation(profile?.role)
   const secondary = secondaryNavigation(profile?.role)

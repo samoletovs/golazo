@@ -29,6 +29,13 @@ shell. The compatibility classes used by smaller existing controls now resolve t
 the same Academy tokens, rather than a second overlaid theme. Unimported legacy
 helpers are not represented as reachable product screens.
 
+Finalization found a keyboard-focus obstruction at 200% text size: the wrapping
+bottom navigation exceeded the document's fixed scroll clearance. The shell now
+publishes its measured fixed-navigation height to the document scroll container,
+so focus scrolling accounts for the actual obstruction. The existing browser
+regression requires the focused footer link to remain fully above navigation;
+it is not satisfied by merely checking that the link receives focus.
+
 ## Behavior and truthfulness
 
 - No backend endpoint, authentication contract or persisted product schema was
