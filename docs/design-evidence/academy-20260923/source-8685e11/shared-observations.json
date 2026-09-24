@@ -1,0 +1,5206 @@
+{
+  "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+  "kind": "bounded-shared-synthetic-observations-not-independent-review",
+  "started_at": "2026-09-24T08:18:44.939Z",
+  "base_url": "http://127.0.0.1:4323",
+  "source_marker_url": "http://127.0.0.1:4323/source-revision.txt",
+  "runner_sha256": "696623a0364edd06ba1bc73c0da28e760e5bc4a39833525282e341fb9ce14801",
+  "scope_sha256": "3333b56203eaa7b505547587b9c21c4708eec08767963a7a73760cc35a863ea1",
+  "fixture_provenance": [
+    {
+      "file": "capture-support.cjs",
+      "sha256": "c2e901a0cddf526135573544ba0111b758af6c5aa3d84e733b8ecc4056a7a9db",
+      "usage": "Imported rich fixture function without executing its capture main"
+    },
+    {
+      "file": "capture-entry.cjs",
+      "sha256": "2815d333a1e694548e6da9cb92c55850dbaa6c58a6930e070414d1a5325aff77",
+      "usage": "Reused visible team/settings navigation procedure; did not execute or modify original runner"
+    },
+    {
+      "file": "capture-controls.cjs",
+      "sha256": "4a3e0691b288714471cbb1df2c65456872dfb85aded630f75ede19a0644b696c",
+      "usage": "Reused visible team/settings navigation procedure; did not execute or modify original runner"
+    }
+  ],
+  "targets": [
+    {
+      "id": "visitor-bootstrap",
+      "role": "visitor",
+      "entry": "App > authentication/loading shell before a principal is available",
+      "actual_entry": "visitor initial auth/local fixture > deliberately pending sync",
+      "selector": "[data-academy-surface=\"bootstrap\"]",
+      "component": "AppContent / AcademyLoading",
+      "entry_conflict": null
+    },
+    {
+      "id": "visitor-error-boundary",
+      "role": "visitor",
+      "entry": "App > ErrorBoundary recovery screen before sign-in",
+      "actual_entry": "Unauthenticated startup > preference-storage read failure",
+      "selector": "[data-academy-surface=\"error-boundary\"]",
+      "component": "ErrorBoundary",
+      "entry_conflict": null
+    },
+    {
+      "id": "player-shell",
+      "role": "player",
+      "entry": "Authenticated App > player shell, five-tab navigation and applicable XP header",
+      "actual_entry": "player Home after synthetic auth and failed remote hydration with local fallback",
+      "selector": "[data-academy-shell=\"player\"]",
+      "component": "AcademyShell",
+      "entry_conflict": null
+    },
+    {
+      "id": "player-bootstrap",
+      "role": "player",
+      "entry": "Authenticated App > player initial cloud/local hydration screen",
+      "actual_entry": "player initial auth/local fixture > deliberately pending sync",
+      "selector": "[data-academy-surface=\"bootstrap\"]",
+      "component": "AppContent / AcademyLoading",
+      "entry_conflict": null
+    },
+    {
+      "id": "player-error-boundary",
+      "role": "player",
+      "entry": "App > player ErrorBoundary recovery screen",
+      "actual_entry": "Verified live player shell > visible Settings > preference-storage read failure",
+      "selector": "[data-academy-surface=\"error-boundary\"]",
+      "component": "ErrorBoundary",
+      "entry_conflict": null
+    },
+    {
+      "id": "player-feedback-dialog",
+      "role": "player",
+      "entry": "Player shell > FeedbackButton feedback sheet",
+      "actual_entry": "player Home > visible feedback icon > Bug",
+      "selector": "[data-academy-dialog=\"feedback\"]",
+      "component": "FeedbackButton / AcademyDialog",
+      "entry_conflict": null
+    },
+    {
+      "id": "player-account-settings",
+      "role": "player",
+      "entry": "Profile/Settings > account identity and logout controls",
+      "actual_entry": "player shell > Settings > account controls",
+      "selector": "[data-academy-surface=\"settings\"]",
+      "component": "SettingsPage",
+      "entry_conflict": null
+    },
+    {
+      "id": "coach-shell",
+      "role": "coach",
+      "entry": "Authenticated App > coach shell and Home/Schedule/Stats/Profile navigation",
+      "actual_entry": "coach Home after synthetic auth and failed remote hydration with local fallback",
+      "selector": "[data-academy-shell=\"coach\"]",
+      "component": "AcademyShell",
+      "entry_conflict": null
+    },
+    {
+      "id": "coach-bootstrap",
+      "role": "coach",
+      "entry": "Authenticated App > coach initial cloud/local hydration screen",
+      "actual_entry": "coach initial auth/local fixture > deliberately pending sync",
+      "selector": "[data-academy-surface=\"bootstrap\"]",
+      "component": "AppContent / AcademyLoading",
+      "entry_conflict": null
+    },
+    {
+      "id": "coach-error-boundary",
+      "role": "coach",
+      "entry": "App > coach ErrorBoundary recovery screen",
+      "actual_entry": "Verified live coach shell > visible Settings > preference-storage read failure",
+      "selector": "[data-academy-surface=\"error-boundary\"]",
+      "component": "ErrorBoundary",
+      "entry_conflict": null
+    },
+    {
+      "id": "coach-feedback-dialog",
+      "role": "coach",
+      "entry": "Coach shell > FeedbackButton feedback sheet",
+      "actual_entry": "coach Home > visible feedback icon > Bug",
+      "selector": "[data-academy-dialog=\"feedback\"]",
+      "component": "FeedbackButton / AcademyDialog",
+      "entry_conflict": null
+    },
+    {
+      "id": "coach-account-settings",
+      "role": "coach",
+      "entry": "Profile/Settings > account identity and logout controls",
+      "actual_entry": "coach shell > Settings > account controls",
+      "selector": "[data-academy-surface=\"settings\"]",
+      "component": "SettingsPage",
+      "entry_conflict": null
+    },
+    {
+      "id": "mentor-shell",
+      "role": "mentor",
+      "entry": "Authenticated App > mentor shell and Home/Schedule/Progress/Profile navigation",
+      "actual_entry": "mentor Home after synthetic auth and failed remote hydration with local fallback",
+      "selector": "[data-academy-shell=\"mentor\"]",
+      "component": "AcademyShell",
+      "entry_conflict": null
+    },
+    {
+      "id": "mentor-bootstrap",
+      "role": "mentor",
+      "entry": "Authenticated App > mentor initial cloud/local hydration screen",
+      "actual_entry": "mentor initial auth/local fixture > deliberately pending sync",
+      "selector": "[data-academy-surface=\"bootstrap\"]",
+      "component": "AppContent / AcademyLoading",
+      "entry_conflict": null
+    },
+    {
+      "id": "mentor-error-boundary",
+      "role": "mentor",
+      "entry": "App > mentor ErrorBoundary recovery screen",
+      "actual_entry": "Verified live mentor shell > visible Settings > preference-storage read failure",
+      "selector": "[data-academy-surface=\"error-boundary\"]",
+      "component": "ErrorBoundary",
+      "entry_conflict": null
+    },
+    {
+      "id": "mentor-feedback-dialog",
+      "role": "mentor",
+      "entry": "Mentor shell > FeedbackButton feedback sheet",
+      "actual_entry": "mentor Home > visible feedback icon > Bug",
+      "selector": "[data-academy-dialog=\"feedback\"]",
+      "component": "FeedbackButton / AcademyDialog",
+      "entry_conflict": null
+    },
+    {
+      "id": "mentor-account-settings",
+      "role": "mentor",
+      "entry": "Profile/Settings > account identity and logout controls",
+      "actual_entry": "mentor shell > Settings > account controls",
+      "selector": "[data-academy-surface=\"settings\"]",
+      "component": "SettingsPage",
+      "entry_conflict": null
+    },
+    {
+      "id": "player-onboarding-team-list",
+      "role": "player",
+      "entry": "Onboarding Basics > Choose team > TeamPicker external-team wizard > my teams",
+      "actual_entry": "player onboarding Basics > visible team opener > team-list; externalTeams mode",
+      "selector": "[data-academy-dialog=\"team-picker-my-teams\"]",
+      "component": "TeamPicker",
+      "entry_conflict": null
+    },
+    {
+      "id": "player-onboarding-club-choice",
+      "role": "player",
+      "entry": "Onboarding Basics > Choose team > TeamPicker > select club",
+      "actual_entry": "player onboarding Basics > visible team opener > club-choice; externalTeams mode",
+      "selector": "[data-academy-dialog=\"team-picker-select-club\"]",
+      "component": "TeamPicker",
+      "entry_conflict": null
+    },
+    {
+      "id": "player-onboarding-squad-choice",
+      "role": "player",
+      "entry": "Onboarding Basics > Choose team > TeamPicker > add age-group teams and positions",
+      "actual_entry": "player onboarding Basics > visible team opener > squad-choice; externalTeams mode",
+      "selector": "[data-academy-dialog=\"team-picker-add-teams\"]",
+      "component": "TeamPicker",
+      "entry_conflict": null
+    },
+    {
+      "id": "player-onboarding-create-team",
+      "role": "player",
+      "entry": "Onboarding Basics > Choose team > TeamPicker > AddTeamDialog, including duplicate/use-existing state",
+      "actual_entry": "player onboarding Basics > visible team opener > create-team; externalTeams mode",
+      "selector": "[data-academy-dialog=\"components-add-team-dialog\"]",
+      "component": "AddTeamDialog via TeamPicker",
+      "entry_conflict": null
+    },
+    {
+      "id": "mentor-onboarding-team-list",
+      "role": "mentor",
+      "entry": "Onboarding Basics > Choose team > TeamPicker external-team wizard > my teams",
+      "actual_entry": "mentor onboarding Basics > visible team opener > team-list; externalTeams mode",
+      "selector": "[data-academy-dialog=\"team-picker-my-teams\"]",
+      "component": "TeamPicker",
+      "entry_conflict": null
+    },
+    {
+      "id": "mentor-onboarding-club-choice",
+      "role": "mentor",
+      "entry": "Onboarding Basics > Choose team > TeamPicker > select club",
+      "actual_entry": "mentor onboarding Basics > visible team opener > club-choice; externalTeams mode",
+      "selector": "[data-academy-dialog=\"team-picker-select-club\"]",
+      "component": "TeamPicker",
+      "entry_conflict": null
+    },
+    {
+      "id": "mentor-onboarding-squad-choice",
+      "role": "mentor",
+      "entry": "Onboarding Basics > Choose team > TeamPicker > add age-group teams and positions",
+      "actual_entry": "mentor onboarding Basics > visible team opener > squad-choice; externalTeams mode",
+      "selector": "[data-academy-dialog=\"team-picker-add-teams\"]",
+      "component": "TeamPicker",
+      "entry_conflict": null
+    },
+    {
+      "id": "mentor-onboarding-create-team",
+      "role": "mentor",
+      "entry": "Onboarding Basics > Choose team > TeamPicker > AddTeamDialog, including duplicate/use-existing state",
+      "actual_entry": "mentor onboarding Basics > visible team opener > create-team; externalTeams mode",
+      "selector": "[data-academy-dialog=\"components-add-team-dialog\"]",
+      "component": "AddTeamDialog via TeamPicker",
+      "entry_conflict": null
+    },
+    {
+      "id": "coach-profile-team-list-dialog",
+      "role": "coach",
+      "entry": "Profile > manage teams > TeamPicker my-teams view",
+      "actual_entry": "Coach shell > Profile > Manage > team-list; managedTeams mode",
+      "selector": "[data-academy-dialog=\"team-picker-my-teams\"]",
+      "component": "TeamPicker",
+      "entry_conflict": null
+    },
+    {
+      "id": "coach-profile-club-choice-dialog",
+      "role": "coach",
+      "entry": "Profile TeamPicker > select-club view",
+      "actual_entry": "Coach shell > Profile > Manage > club-choice; managedTeams mode",
+      "selector": "[data-academy-dialog=\"team-picker-select-club\"]",
+      "component": "TeamPicker",
+      "entry_conflict": null
+    },
+    {
+      "id": "coach-profile-squad-choice-dialog",
+      "role": "coach",
+      "entry": "Profile TeamPicker > add-teams age group/label/coach-role view",
+      "actual_entry": "Coach shell > Profile > Manage > squad-choice; managedTeams mode",
+      "selector": "[data-academy-dialog=\"team-picker-add-teams\"]",
+      "component": "TeamPicker",
+      "entry_conflict": null
+    },
+    {
+      "id": "coach-profile-create-team-dialog",
+      "role": "coach",
+      "entry": "Profile TeamPicker > AddTeamDialog with duplicate/use-existing states",
+      "actual_entry": "Coach shell > Profile > Manage > create-team; managedTeams mode",
+      "selector": "[data-academy-dialog=\"components-add-team-dialog\"]",
+      "component": "AddTeamDialog via TeamPicker",
+      "entry_conflict": null
+    },
+    {
+      "id": "coach-language-settings",
+      "role": "coach",
+      "entry": "Profile/Settings > language selection",
+      "actual_entry": "coach shell > Settings > language controls",
+      "selector": "[data-academy-surface=\"settings\"]",
+      "component": "SettingsPage",
+      "entry_conflict": null
+    },
+    {
+      "id": "coach-theme-settings",
+      "role": "coach",
+      "entry": "Profile/Settings > ThemePicker",
+      "actual_entry": "coach shell > Settings > theme controls",
+      "selector": "[data-academy-surface=\"settings\"]",
+      "component": "SettingsPage / ThemePicker",
+      "entry_conflict": null
+    },
+    {
+      "id": "coach-role-settings",
+      "role": "coach",
+      "entry": "Profile account settings > account-role selection",
+      "actual_entry": "coach shell > Settings > role controls",
+      "selector": "[data-academy-surface=\"settings\"]",
+      "component": "SettingsPage",
+      "entry_conflict": null
+    },
+    {
+      "id": "mentor-language-settings",
+      "role": "mentor",
+      "entry": "Profile/Settings > language selection",
+      "actual_entry": "mentor shell > Settings > language controls",
+      "selector": "[data-academy-surface=\"settings\"]",
+      "component": "SettingsPage",
+      "entry_conflict": null
+    },
+    {
+      "id": "mentor-theme-settings",
+      "role": "mentor",
+      "entry": "Profile/Settings > ThemePicker",
+      "actual_entry": "mentor shell > Settings > theme controls",
+      "selector": "[data-academy-surface=\"settings\"]",
+      "component": "SettingsPage / ThemePicker",
+      "entry_conflict": null
+    },
+    {
+      "id": "mentor-role-settings",
+      "role": "mentor",
+      "entry": "Profile account settings > account-role selection",
+      "actual_entry": "mentor shell > Settings > role controls",
+      "selector": "[data-academy-surface=\"settings\"]",
+      "component": "SettingsPage",
+      "entry_conflict": null
+    }
+  ],
+  "execution_budget_seconds": 480,
+  "widths": [
+    390,
+    1440
+  ],
+  "viewport_height": 1000,
+  "observations": [
+    {
+      "id": "visitor-bootstrap",
+      "width": 390,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "No principal and no local profile; initial authentication/hydration bootstrap",
+      "control_assertions": [
+        "Production bootstrap present",
+        "No role shell fabricated"
+      ],
+      "capture": "source-8685e11/shared-visitor-bootstrap-default-390.png",
+      "sha256": "90b84160d735a2bd3914ded1ff6c22d8da402daddfae7507ecc76dca5eb0c89f",
+      "dimensions": {
+        "width": 390,
+        "height": 1000
+      },
+      "bytes": 5907,
+      "measured": {
+        "width": 390,
+        "height": 1000,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "language": "en",
+        "shell": null,
+        "surfaces": [
+          "bootstrap"
+        ],
+        "dialogs": [],
+        "focused": "golazo.Loading...",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval",
+        "Shared fallback has no role-specific identity; context is established by fixture and interaction provenance"
+      ],
+      "captured_at": "2026-09-24T08:18:46.170Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": [
+        {
+          "id": "player-bootstrap",
+          "width": 390,
+          "variant": "default",
+          "capture": "source-8685e11/shared-player-bootstrap-default-390.png"
+        },
+        {
+          "id": "coach-bootstrap",
+          "width": 390,
+          "variant": "default",
+          "capture": "source-8685e11/shared-coach-bootstrap-default-390.png"
+        },
+        {
+          "id": "mentor-bootstrap",
+          "width": 390,
+          "variant": "default",
+          "capture": "source-8685e11/shared-mentor-bootstrap-default-390.png"
+        }
+      ]
+    },
+    {
+      "id": "visitor-error-boundary",
+      "width": 390,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "Unauthenticated visitor with no profile; AppContent initial preference-storage read fails",
+      "control_assertions": [
+        "Real global ErrorBoundary catches browser-storage fixture failure",
+        "No profile/role introduced",
+        "Real refresh button visible"
+      ],
+      "capture": "source-8685e11/shared-visitor-error-boundary-default-390.png",
+      "sha256": "803c3829d113af09e325257b970c02d158bce12e5690a9050fc4f2810467af07",
+      "dimensions": {
+        "width": 390,
+        "height": 1000
+      },
+      "bytes": 32232,
+      "measured": {
+        "width": 390,
+        "height": 1000,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "language": "en",
+        "shell": null,
+        "surfaces": [
+          "error-boundary"
+        ],
+        "dialogs": [],
+        "focused": "golazo.Something went wrongThe app hit an unexpected error. Your data is safe — try refreshing.Refre",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval",
+        "Shared fallback has no role-specific identity; context is established by fixture and interaction provenance"
+      ],
+      "captured_at": "2026-09-24T08:18:47.885Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "player-bootstrap",
+      "width": 390,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "Authenticated synthetic player principal; local role fixture loaded; GET /api/sync deliberately held",
+      "control_assertions": [
+        "Production bootstrap visible during pending hydration",
+        "Role-specific local fixture and principal request recorded"
+      ],
+      "capture": "source-8685e11/shared-player-bootstrap-default-390.png",
+      "sha256": "90b84160d735a2bd3914ded1ff6c22d8da402daddfae7507ecc76dca5eb0c89f",
+      "dimensions": {
+        "width": 390,
+        "height": 1000
+      },
+      "bytes": 5907,
+      "measured": {
+        "width": 390,
+        "height": 1000,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "language": "en",
+        "shell": null,
+        "surfaces": [
+          "bootstrap"
+        ],
+        "dialogs": [],
+        "focused": "golazo.Loading...",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval",
+        "Shared fallback has no role-specific identity; context is established by fixture and interaction provenance"
+      ],
+      "captured_at": "2026-09-24T08:18:48.892Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": [
+        {
+          "id": "visitor-bootstrap",
+          "width": 390,
+          "variant": "default",
+          "capture": "source-8685e11/shared-visitor-bootstrap-default-390.png"
+        },
+        {
+          "id": "coach-bootstrap",
+          "width": 390,
+          "variant": "default",
+          "capture": "source-8685e11/shared-coach-bootstrap-default-390.png"
+        },
+        {
+          "id": "mentor-bootstrap",
+          "width": 390,
+          "variant": "default",
+          "capture": "source-8685e11/shared-mentor-bootstrap-default-390.png"
+        }
+      ]
+    },
+    {
+      "id": "player-shell",
+      "width": 390,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "Authenticated player Home with rich capture-support.cjs local fixture",
+      "control_assertions": [
+        "Primary navigation exactly dashboard, log, progress, learn, profile",
+        "Shell data role matches fixture",
+        "Remote hydration failed explicitly; local role survived"
+      ],
+      "capture": "source-8685e11/shared-player-shell-default-390.png",
+      "sha256": "95f8239fe807e58a7256432cf3082cb52eaedb891c752091e662c6674a117b57",
+      "dimensions": {
+        "width": 390,
+        "height": 1000
+      },
+      "bytes": 43576,
+      "measured": {
+        "width": 390,
+        "height": 1000,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "language": "en",
+        "shell": "player",
+        "surfaces": [
+          "player-home"
+        ],
+        "dialogs": [],
+        "focused": "Your week. Your game.",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:18:50.115Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "player-feedback-dialog",
+      "width": 390,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "player Home > visible feedback icon > Bug",
+      "control_assertions": [
+        "Blank submit disabled",
+        "Bug type selected by visible button",
+        "Fictional text enables submit",
+        "No feedback submitted to GitHub"
+      ],
+      "capture": "source-8685e11/shared-player-feedback-dialog-default-390.png",
+      "sha256": "f713683cfb11d30dc8b67f0f9784bf885be4500654ec4ed00e9ed055f9aeb310",
+      "dimensions": {
+        "width": 390,
+        "height": 1000
+      },
+      "bytes": 50803,
+      "measured": {
+        "width": 390,
+        "height": 1000,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "language": "en",
+        "shell": "player",
+        "surfaces": [
+          "player-home"
+        ],
+        "dialogs": [
+          "feedback"
+        ],
+        "focused": "Describe your feedback...",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:18:50.368Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "player-account-settings",
+      "width": 390,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "player shell > Settings > Account",
+      "control_assertions": [
+        "Synthetic authenticated identity visible",
+        "Logout and reset controls visible",
+        "Account role matches local fixture"
+      ],
+      "capture": "source-8685e11/shared-player-account-settings-default-390.png",
+      "sha256": "b284dfd4c5ab3e836c05486c1f2d5c99f8c060515a2be6150180f78704e2028c",
+      "dimensions": {
+        "width": 390,
+        "height": 1000
+      },
+      "bytes": 34056,
+      "measured": {
+        "width": 390,
+        "height": 1000,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "language": "en",
+        "shell": "player",
+        "surfaces": [
+          "settings"
+        ],
+        "dialogs": [],
+        "focused": "Settings",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:18:50.939Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "player-error-boundary",
+      "width": 390,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "Previously verified authenticated player shell > visible Settings navigation > ThemePicker preference-storage read failure",
+      "control_assertions": [
+        "Only Storage.getItem fixture failure enabled; production component catches it",
+        "Actual ErrorBoundary heading and refresh visible",
+        "Role-specific live navigation preceded shared fallback",
+        "Error text is identical fixture service error, not artificially varied"
+      ],
+      "capture": "source-8685e11/shared-player-error-boundary-default-390.png",
+      "sha256": "a90c44042ff5e6db51aa14d1e7127bd58d7045a64df79217c5ea280e5d6a4f14",
+      "dimensions": {
+        "width": 390,
+        "height": 1000
+      },
+      "bytes": 32151,
+      "measured": {
+        "width": 390,
+        "height": 1000,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "language": "en",
+        "shell": null,
+        "surfaces": [
+          "error-boundary"
+        ],
+        "dialogs": [],
+        "focused": "golazo.Something went wrongThe app hit an unexpected error. Your data is safe — try refreshing.Refre",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval",
+        "Shared fallback has no role-specific identity; context is established by fixture and interaction provenance"
+      ],
+      "captured_at": "2026-09-24T08:18:57.744Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": [
+        {
+          "id": "coach-error-boundary",
+          "width": 390,
+          "variant": "default",
+          "capture": "source-8685e11/shared-coach-error-boundary-default-390.png"
+        },
+        {
+          "id": "mentor-error-boundary",
+          "width": 390,
+          "variant": "default",
+          "capture": "source-8685e11/shared-mentor-error-boundary-default-390.png"
+        }
+      ]
+    },
+    {
+      "id": "coach-bootstrap",
+      "width": 390,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "Authenticated synthetic coach principal; local role fixture loaded; GET /api/sync deliberately held",
+      "control_assertions": [
+        "Production bootstrap visible during pending hydration",
+        "Role-specific local fixture and principal request recorded"
+      ],
+      "capture": "source-8685e11/shared-coach-bootstrap-default-390.png",
+      "sha256": "90b84160d735a2bd3914ded1ff6c22d8da402daddfae7507ecc76dca5eb0c89f",
+      "dimensions": {
+        "width": 390,
+        "height": 1000
+      },
+      "bytes": 5907,
+      "measured": {
+        "width": 390,
+        "height": 1000,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "language": "en",
+        "shell": null,
+        "surfaces": [
+          "bootstrap"
+        ],
+        "dialogs": [],
+        "focused": "golazo.Loading...",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval",
+        "Shared fallback has no role-specific identity; context is established by fixture and interaction provenance"
+      ],
+      "captured_at": "2026-09-24T08:18:59.623Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": [
+        {
+          "id": "visitor-bootstrap",
+          "width": 390,
+          "variant": "default",
+          "capture": "source-8685e11/shared-visitor-bootstrap-default-390.png"
+        },
+        {
+          "id": "player-bootstrap",
+          "width": 390,
+          "variant": "default",
+          "capture": "source-8685e11/shared-player-bootstrap-default-390.png"
+        },
+        {
+          "id": "mentor-bootstrap",
+          "width": 390,
+          "variant": "default",
+          "capture": "source-8685e11/shared-mentor-bootstrap-default-390.png"
+        }
+      ]
+    },
+    {
+      "id": "coach-shell",
+      "width": 390,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "Authenticated coach Home with rich capture-support.cjs local fixture",
+      "control_assertions": [
+        "Primary navigation exactly dashboard, schedule, stats, profile",
+        "Shell data role matches fixture",
+        "Remote hydration failed explicitly; local role survived"
+      ],
+      "capture": "source-8685e11/shared-coach-shell-default-390.png",
+      "sha256": "0b73ba1eb6d49b1d19f6c7f500c5be233b66e213265cf463d3427a09939a45a7",
+      "dimensions": {
+        "width": 390,
+        "height": 1000
+      },
+      "bytes": 40662,
+      "measured": {
+        "width": 390,
+        "height": 1000,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "language": "en",
+        "shell": "coach",
+        "surfaces": [
+          "coach-home"
+        ],
+        "dialogs": [],
+        "focused": "Coach Dashboard",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:19:00.438Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "coach-feedback-dialog",
+      "width": 390,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "coach Home > visible feedback icon > Bug",
+      "control_assertions": [
+        "Blank submit disabled",
+        "Bug type selected by visible button",
+        "Fictional text enables submit",
+        "No feedback submitted to GitHub"
+      ],
+      "capture": "source-8685e11/shared-coach-feedback-dialog-default-390.png",
+      "sha256": "80715d4b9785512a09cded747acfc75280422a3ff88f03327e34c83da9202391",
+      "dimensions": {
+        "width": 390,
+        "height": 1000
+      },
+      "bytes": 43597,
+      "measured": {
+        "width": 390,
+        "height": 1000,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "language": "en",
+        "shell": "coach",
+        "surfaces": [
+          "coach-home"
+        ],
+        "dialogs": [
+          "feedback"
+        ],
+        "focused": "Describe your feedback...",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:19:00.785Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "coach-profile-team-list-dialog",
+      "width": 390,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "Authenticated coach Profile > Manage teams; managedTeams wizard",
+      "control_assertions": [
+        "Opened visible team-management control",
+        "Real TeamPicker my-teams dialog present",
+        "Coach Profile remains underlying surface"
+      ],
+      "capture": "source-8685e11/shared-coach-profile-team-list-dialog-default-390.png",
+      "sha256": "66b39b9da5809cbad2a71a0ce19d673aa29438684938e76853db34b4691f186b",
+      "dimensions": {
+        "width": 390,
+        "height": 1000
+      },
+      "bytes": 42273,
+      "measured": {
+        "width": 390,
+        "height": 1000,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "language": "en",
+        "shell": "coach",
+        "surfaces": [
+          "coach-profile",
+          "profile-photo"
+        ],
+        "dialogs": [
+          "team-picker-my-teams"
+        ],
+        "focused": "Close",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:19:01.520Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "coach-profile-club-choice-dialog",
+      "width": 390,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "Authenticated coach Profile > Manage teams; managedTeams wizard > Add new > Select club",
+      "control_assertions": [
+        "Visible add-new opened club search",
+        "Fictional service registry club rendered"
+      ],
+      "capture": "source-8685e11/shared-coach-profile-club-choice-dialog-default-390.png",
+      "sha256": "d2aa0cce2812c6fc7da1899b233eec57b25c61c30b2a9089ebcbd75901085cfa",
+      "dimensions": {
+        "width": 390,
+        "height": 1000
+      },
+      "bytes": 42582,
+      "measured": {
+        "width": 390,
+        "height": 1000,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "language": "en",
+        "shell": "coach",
+        "surfaces": [
+          "coach-profile",
+          "profile-photo"
+        ],
+        "dialogs": [
+          "team-picker-select-club"
+        ],
+        "focused": "",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:19:01.718Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "coach-profile-squad-choice-dialog",
+      "width": 390,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "Authenticated coach Profile > Manage teams; managedTeams wizard > Fictional Northbank Academy > Add teams",
+      "control_assertions": [
+        "Selected visible club result",
+        "Birth-year 2013 and label B buttons changed the real squad preview",
+        "Assistant-coach choice activated in coach-mode form"
+      ],
+      "capture": "source-8685e11/shared-coach-profile-squad-choice-dialog-default-390.png",
+      "sha256": "7dffcd0c6f98814f2ee62790d3b79b04e4674142991f60b57968d6067a5ae6a3",
+      "dimensions": {
+        "width": 390,
+        "height": 1000
+      },
+      "bytes": 44905,
+      "measured": {
+        "width": 390,
+        "height": 1000,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "language": "en",
+        "shell": "coach",
+        "surfaces": [
+          "coach-profile",
+          "profile-photo"
+        ],
+        "dialogs": [
+          "team-picker-add-teams"
+        ],
+        "focused": "🤝 Assistant coach",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:19:02.063Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "coach-profile-create-team-dialog",
+      "width": 390,
+      "variant": "form",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "Authenticated coach Profile > Manage teams; managedTeams wizard > Search > + New",
+      "control_assertions": [
+        "Visible new-club control opened AddTeamDialog",
+        "Club name retained from search"
+      ],
+      "capture": "source-8685e11/shared-coach-profile-create-team-dialog-form-390.png",
+      "sha256": "de1049c0940f2bbe992ee40c3608b48b93bfc2e56100fa00bf38e6cd0b82ad72",
+      "dimensions": {
+        "width": 390,
+        "height": 1000
+      },
+      "bytes": 37755,
+      "measured": {
+        "width": 390,
+        "height": 1000,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "language": "en",
+        "shell": "coach",
+        "surfaces": [
+          "coach-profile",
+          "profile-photo"
+        ],
+        "dialogs": [
+          "team-picker-select-club",
+          "components-add-team-dialog"
+        ],
+        "focused": "Close",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:19:02.360Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "coach-profile-create-team-dialog",
+      "width": 390,
+      "variant": "duplicate",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "Authenticated coach Profile > Manage teams; managedTeams wizard > Add club > mocked 409 duplicate",
+      "control_assertions": [
+        "Real Add request intercepted as fixture duplicate",
+        "Use-existing decision visibly rendered"
+      ],
+      "capture": "source-8685e11/shared-coach-profile-create-team-dialog-duplicate-390.png",
+      "sha256": "3424976e702b3a27a8ef4082e5ef2b4ec8c75853967493bc7a945dc359786879",
+      "dimensions": {
+        "width": 390,
+        "height": 1000
+      },
+      "bytes": 42219,
+      "measured": {
+        "width": 390,
+        "height": 1000,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "language": "en",
+        "shell": "coach",
+        "surfaces": [
+          "coach-profile",
+          "profile-photo"
+        ],
+        "dialogs": [
+          "team-picker-select-club",
+          "components-add-team-dialog"
+        ],
+        "focused": "Skip to contentgolazo.HomeScheduleStatsProfileSettingsGFictional coach 07Fictional Academy U13Fictio",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:19:02.633Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "coach-account-settings",
+      "width": 390,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "coach shell > Settings > Account",
+      "control_assertions": [
+        "Synthetic authenticated identity visible",
+        "Logout and reset controls visible",
+        "Account role matches local fixture"
+      ],
+      "capture": "source-8685e11/shared-coach-account-settings-default-390.png",
+      "sha256": "c24174c0e45fb2169b4e013a0d2013fb5676e4afad227df5b6f9c63007179e4c",
+      "dimensions": {
+        "width": 390,
+        "height": 1000
+      },
+      "bytes": 33382,
+      "measured": {
+        "width": 390,
+        "height": 1000,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "language": "en",
+        "shell": "coach",
+        "surfaces": [
+          "settings"
+        ],
+        "dialogs": [],
+        "focused": "Settings",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:19:03.383Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "coach-language-settings",
+      "width": 390,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "coach Settings > six locale buttons, restored English",
+      "control_assertions": [
+        "All six visible language controls activated",
+        "Document lang and stored preference matched each selection",
+        "Selected English has aria-pressed=true"
+      ],
+      "capture": "source-8685e11/shared-coach-language-settings-default-390.png",
+      "sha256": "81f8fdaa56ad98dd4cc29c77eebd6d07246affb6423a1c443a88d223691b35d6",
+      "dimensions": {
+        "width": 390,
+        "height": 1000
+      },
+      "bytes": 37799,
+      "measured": {
+        "width": 390,
+        "height": 1000,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "language": "en",
+        "shell": "coach",
+        "surfaces": [
+          "settings"
+        ],
+        "dialogs": [],
+        "focused": "English",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:19:03.955Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "coach-theme-settings",
+      "width": 390,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "coach Settings > visible Pitch theme selected",
+      "control_assertions": [
+        "Explicit Pitch selection persisted",
+        "Selection uses real ThemePicker control",
+        "No forced CSS or replacement theme DOM"
+      ],
+      "capture": "source-8685e11/shared-coach-theme-settings-default-390.png",
+      "sha256": "d1367497365f1450f4982e4b30a09f56f9c59258da9e5b5daca1d8ee1addd9e0",
+      "dimensions": {
+        "width": 390,
+        "height": 1000
+      },
+      "bytes": 37717,
+      "measured": {
+        "width": 390,
+        "height": 1000,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "language": "en",
+        "shell": "coach",
+        "surfaces": [
+          "settings"
+        ],
+        "dialogs": [],
+        "focused": "Pitch",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:19:05.391Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "coach-role-settings",
+      "width": 390,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "coach Settings > account-role selection",
+      "control_assertions": [
+        "Current role is pressed",
+        "Role control is local account preference, not server authorization"
+      ],
+      "capture": "source-8685e11/shared-coach-role-settings-default-390.png",
+      "sha256": "ab73fe55cfc6179f69ff5ca37d006fbda3161765123605ffb478b31b50a0ad3b",
+      "dimensions": {
+        "width": 390,
+        "height": 1000
+      },
+      "bytes": 32850,
+      "measured": {
+        "width": 390,
+        "height": 1000,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "language": "en",
+        "shell": "coach",
+        "surfaces": [
+          "settings"
+        ],
+        "dialogs": [],
+        "focused": "Academy",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:19:05.632Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "coach-error-boundary",
+      "width": 390,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "Previously verified authenticated coach shell > visible Settings navigation > ThemePicker preference-storage read failure",
+      "control_assertions": [
+        "Only Storage.getItem fixture failure enabled; production component catches it",
+        "Actual ErrorBoundary heading and refresh visible",
+        "Role-specific live navigation preceded shared fallback",
+        "Error text is identical fixture service error, not artificially varied"
+      ],
+      "capture": "source-8685e11/shared-coach-error-boundary-default-390.png",
+      "sha256": "a90c44042ff5e6db51aa14d1e7127bd58d7045a64df79217c5ea280e5d6a4f14",
+      "dimensions": {
+        "width": 390,
+        "height": 1000
+      },
+      "bytes": 32151,
+      "measured": {
+        "width": 390,
+        "height": 1000,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "language": "en",
+        "shell": null,
+        "surfaces": [
+          "error-boundary"
+        ],
+        "dialogs": [],
+        "focused": "golazo.Something went wrongThe app hit an unexpected error. Your data is safe — try refreshing.Refre",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval",
+        "Shared fallback has no role-specific identity; context is established by fixture and interaction provenance"
+      ],
+      "captured_at": "2026-09-24T08:19:12.770Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": [
+        {
+          "id": "player-error-boundary",
+          "width": 390,
+          "variant": "default",
+          "capture": "source-8685e11/shared-player-error-boundary-default-390.png"
+        },
+        {
+          "id": "mentor-error-boundary",
+          "width": 390,
+          "variant": "default",
+          "capture": "source-8685e11/shared-mentor-error-boundary-default-390.png"
+        }
+      ]
+    },
+    {
+      "id": "mentor-bootstrap",
+      "width": 390,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "Authenticated synthetic mentor principal; local role fixture loaded; GET /api/sync deliberately held",
+      "control_assertions": [
+        "Production bootstrap visible during pending hydration",
+        "Role-specific local fixture and principal request recorded"
+      ],
+      "capture": "source-8685e11/shared-mentor-bootstrap-default-390.png",
+      "sha256": "90b84160d735a2bd3914ded1ff6c22d8da402daddfae7507ecc76dca5eb0c89f",
+      "dimensions": {
+        "width": 390,
+        "height": 1000
+      },
+      "bytes": 5907,
+      "measured": {
+        "width": 390,
+        "height": 1000,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "language": "en",
+        "shell": null,
+        "surfaces": [
+          "bootstrap"
+        ],
+        "dialogs": [],
+        "focused": "golazo.Loading...",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval",
+        "Shared fallback has no role-specific identity; context is established by fixture and interaction provenance"
+      ],
+      "captured_at": "2026-09-24T08:19:14.386Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": [
+        {
+          "id": "visitor-bootstrap",
+          "width": 390,
+          "variant": "default",
+          "capture": "source-8685e11/shared-visitor-bootstrap-default-390.png"
+        },
+        {
+          "id": "player-bootstrap",
+          "width": 390,
+          "variant": "default",
+          "capture": "source-8685e11/shared-player-bootstrap-default-390.png"
+        },
+        {
+          "id": "coach-bootstrap",
+          "width": 390,
+          "variant": "default",
+          "capture": "source-8685e11/shared-coach-bootstrap-default-390.png"
+        }
+      ]
+    },
+    {
+      "id": "mentor-shell",
+      "width": 390,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "Authenticated mentor Home with rich capture-support.cjs local fixture",
+      "control_assertions": [
+        "Primary navigation exactly dashboard, schedule, progress, profile",
+        "Shell data role matches fixture",
+        "Remote hydration failed explicitly; local role survived"
+      ],
+      "capture": "source-8685e11/shared-mentor-shell-default-390.png",
+      "sha256": "05e260f525ce62901def8ce40fda264ef6d51384de6f20d58b7f8c3286747e41",
+      "dimensions": {
+        "width": 390,
+        "height": 1000
+      },
+      "bytes": 42958,
+      "measured": {
+        "width": 390,
+        "height": 1000,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "language": "en",
+        "shell": "mentor",
+        "surfaces": [
+          "pages-mentor-dashboard"
+        ],
+        "dialogs": [],
+        "focused": "Parent Dashboard",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:19:15.481Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "mentor-feedback-dialog",
+      "width": 390,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "mentor Home > visible feedback icon > Bug",
+      "control_assertions": [
+        "Blank submit disabled",
+        "Bug type selected by visible button",
+        "Fictional text enables submit",
+        "No feedback submitted to GitHub"
+      ],
+      "capture": "source-8685e11/shared-mentor-feedback-dialog-default-390.png",
+      "sha256": "52bc12a1a3f937776798941c567b55d2e355ccb3cd745a211821dea2c8d07028",
+      "dimensions": {
+        "width": 390,
+        "height": 1000
+      },
+      "bytes": 45688,
+      "measured": {
+        "width": 390,
+        "height": 1000,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "language": "en",
+        "shell": "mentor",
+        "surfaces": [
+          "pages-mentor-dashboard"
+        ],
+        "dialogs": [
+          "feedback"
+        ],
+        "focused": "Describe your feedback...",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:19:15.799Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "mentor-account-settings",
+      "width": 390,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "mentor shell > Settings > Account",
+      "control_assertions": [
+        "Synthetic authenticated identity visible",
+        "Logout and reset controls visible",
+        "Account role matches local fixture"
+      ],
+      "capture": "source-8685e11/shared-mentor-account-settings-default-390.png",
+      "sha256": "e5dec9985a0a2e214012023064fb0134ad9f179b50a52ecd8df2d53bdbb75a26",
+      "dimensions": {
+        "width": 390,
+        "height": 1000
+      },
+      "bytes": 33329,
+      "measured": {
+        "width": 390,
+        "height": 1000,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "language": "en",
+        "shell": "mentor",
+        "surfaces": [
+          "settings"
+        ],
+        "dialogs": [],
+        "focused": "Settings",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:19:16.419Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "mentor-language-settings",
+      "width": 390,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "mentor Settings > six locale buttons, restored English",
+      "control_assertions": [
+        "All six visible language controls activated",
+        "Document lang and stored preference matched each selection",
+        "Selected English has aria-pressed=true"
+      ],
+      "capture": "source-8685e11/shared-mentor-language-settings-default-390.png",
+      "sha256": "026de356d461e4a9616e80d9835c5fac39e67556cdfcdaaea125fd7c86ce1ec4",
+      "dimensions": {
+        "width": 390,
+        "height": 1000
+      },
+      "bytes": 37988,
+      "measured": {
+        "width": 390,
+        "height": 1000,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "language": "en",
+        "shell": "mentor",
+        "surfaces": [
+          "settings"
+        ],
+        "dialogs": [],
+        "focused": "English",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:19:16.953Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "mentor-theme-settings",
+      "width": 390,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "mentor Settings > visible Pitch theme selected",
+      "control_assertions": [
+        "Explicit Pitch selection persisted",
+        "Selection uses real ThemePicker control",
+        "No forced CSS or replacement theme DOM"
+      ],
+      "capture": "source-8685e11/shared-mentor-theme-settings-default-390.png",
+      "sha256": "896665b5e78ec2b37ed6cf91fe5f981a19bbe1b0c3e600daae6e93a6f66e585b",
+      "dimensions": {
+        "width": 390,
+        "height": 1000
+      },
+      "bytes": 37963,
+      "measured": {
+        "width": 390,
+        "height": 1000,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "language": "en",
+        "shell": "mentor",
+        "surfaces": [
+          "settings"
+        ],
+        "dialogs": [],
+        "focused": "Pitch",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:19:18.598Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "mentor-role-settings",
+      "width": 390,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "mentor Settings > account-role selection",
+      "control_assertions": [
+        "Current role is pressed",
+        "Role control is local account preference, not server authorization"
+      ],
+      "capture": "source-8685e11/shared-mentor-role-settings-default-390.png",
+      "sha256": "063b8ce8b1b42f833c75a38906545b859231e9d60b448971f1f067973e2b3051",
+      "dimensions": {
+        "width": 390,
+        "height": 1000
+      },
+      "bytes": 33342,
+      "measured": {
+        "width": 390,
+        "height": 1000,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "language": "en",
+        "shell": "mentor",
+        "surfaces": [
+          "settings"
+        ],
+        "dialogs": [],
+        "focused": "Academy",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:19:18.823Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "mentor-error-boundary",
+      "width": 390,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "Previously verified authenticated mentor shell > visible Settings navigation > ThemePicker preference-storage read failure",
+      "control_assertions": [
+        "Only Storage.getItem fixture failure enabled; production component catches it",
+        "Actual ErrorBoundary heading and refresh visible",
+        "Role-specific live navigation preceded shared fallback",
+        "Error text is identical fixture service error, not artificially varied"
+      ],
+      "capture": "source-8685e11/shared-mentor-error-boundary-default-390.png",
+      "sha256": "a90c44042ff5e6db51aa14d1e7127bd58d7045a64df79217c5ea280e5d6a4f14",
+      "dimensions": {
+        "width": 390,
+        "height": 1000
+      },
+      "bytes": 32151,
+      "measured": {
+        "width": 390,
+        "height": 1000,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "language": "en",
+        "shell": null,
+        "surfaces": [
+          "error-boundary"
+        ],
+        "dialogs": [],
+        "focused": "golazo.Something went wrongThe app hit an unexpected error. Your data is safe — try refreshing.Refre",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval",
+        "Shared fallback has no role-specific identity; context is established by fixture and interaction provenance"
+      ],
+      "captured_at": "2026-09-24T08:19:26.007Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": [
+        {
+          "id": "player-error-boundary",
+          "width": 390,
+          "variant": "default",
+          "capture": "source-8685e11/shared-player-error-boundary-default-390.png"
+        },
+        {
+          "id": "coach-error-boundary",
+          "width": 390,
+          "variant": "default",
+          "capture": "source-8685e11/shared-coach-error-boundary-default-390.png"
+        }
+      ]
+    },
+    {
+      "id": "player-onboarding-team-list",
+      "width": 390,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "Unauthenticated player onboarding basics; externalTeams wizard, not persisted Profile",
+      "control_assertions": [
+        "Opened visible team-management control",
+        "Real TeamPicker my-teams dialog present",
+        "Current onboarding role and basics retained behind dialog"
+      ],
+      "capture": "source-8685e11/shared-player-onboarding-team-list-default-390.png",
+      "sha256": "e0e71a8831961e3a4565b85813cb2b3ff5203f7c4236a99ae57d78387dd442fc",
+      "dimensions": {
+        "width": 390,
+        "height": 1000
+      },
+      "bytes": 29065,
+      "measured": {
+        "width": 390,
+        "height": 1000,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "language": "en",
+        "shell": null,
+        "surfaces": [
+          "onboarding-player-basics"
+        ],
+        "dialogs": [
+          "team-picker-my-teams"
+        ],
+        "focused": "Close",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:19:28.303Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "player-onboarding-club-choice",
+      "width": 390,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "Unauthenticated player onboarding basics; externalTeams wizard, not persisted Profile > Add new > Select club",
+      "control_assertions": [
+        "Visible add-new opened club search",
+        "Fictional service registry club rendered"
+      ],
+      "capture": "source-8685e11/shared-player-onboarding-club-choice-default-390.png",
+      "sha256": "5ebea7c667def94d3e8345fdd8b80c731deaf983b4faf946f4830ca606427008",
+      "dimensions": {
+        "width": 390,
+        "height": 1000
+      },
+      "bytes": 31685,
+      "measured": {
+        "width": 390,
+        "height": 1000,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "language": "en",
+        "shell": null,
+        "surfaces": [
+          "onboarding-player-basics"
+        ],
+        "dialogs": [
+          "team-picker-select-club"
+        ],
+        "focused": "",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:19:28.430Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "player-onboarding-squad-choice",
+      "width": 390,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "Unauthenticated player onboarding basics; externalTeams wizard, not persisted Profile > Fictional Northbank Academy > Add teams",
+      "control_assertions": [
+        "Selected visible club result",
+        "Birth-year 2013 and label B buttons changed the real squad preview",
+        "LW position activated within externalTeams onboarding"
+      ],
+      "capture": "source-8685e11/shared-player-onboarding-squad-choice-default-390.png",
+      "sha256": "6b9c0e55dd7a34767558e4aebba61880182d0e881d9a82dfc10bcc2f3e6b3e74",
+      "dimensions": {
+        "width": 390,
+        "height": 1000
+      },
+      "bytes": 41342,
+      "measured": {
+        "width": 390,
+        "height": 1000,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "language": "en",
+        "shell": null,
+        "surfaces": [
+          "onboarding-player-basics"
+        ],
+        "dialogs": [
+          "team-picker-add-teams"
+        ],
+        "focused": "💨 LW",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:19:28.795Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": [
+        {
+          "id": "mentor-onboarding-squad-choice",
+          "width": 390,
+          "variant": "default",
+          "capture": "source-8685e11/shared-mentor-onboarding-squad-choice-default-390.png"
+        }
+      ]
+    },
+    {
+      "id": "player-onboarding-create-team",
+      "width": 390,
+      "variant": "form",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "Unauthenticated player onboarding basics; externalTeams wizard, not persisted Profile > Search > + New",
+      "control_assertions": [
+        "Visible new-club control opened AddTeamDialog",
+        "Club name retained from search"
+      ],
+      "capture": "source-8685e11/shared-player-onboarding-create-team-form-390.png",
+      "sha256": "e3a9c29472b3e967eafd33a0c1bba26b583721da3bef0167990aecc1eb30ad44",
+      "dimensions": {
+        "width": 390,
+        "height": 1000
+      },
+      "bytes": 31359,
+      "measured": {
+        "width": 390,
+        "height": 1000,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "language": "en",
+        "shell": null,
+        "surfaces": [
+          "onboarding-player-basics"
+        ],
+        "dialogs": [
+          "team-picker-select-club",
+          "components-add-team-dialog"
+        ],
+        "focused": "Close",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:19:29.038Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "player-onboarding-create-team",
+      "width": 390,
+      "variant": "duplicate",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "Unauthenticated player onboarding basics; externalTeams wizard, not persisted Profile > Add club > mocked 409 duplicate",
+      "control_assertions": [
+        "Real Add request intercepted as fixture duplicate",
+        "Use-existing decision visibly rendered"
+      ],
+      "capture": "source-8685e11/shared-player-onboarding-create-team-duplicate-390.png",
+      "sha256": "1acbc85fbbc6c238d895d9b2fc0c8da6ab4d64b81a9e3a2e1040c037172a50b2",
+      "dimensions": {
+        "width": 390,
+        "height": 1000
+      },
+      "bytes": 34498,
+      "measured": {
+        "width": 390,
+        "height": 1000,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "language": "en",
+        "shell": null,
+        "surfaces": [
+          "onboarding-player-basics"
+        ],
+        "dialogs": [
+          "team-picker-select-club",
+          "components-add-team-dialog"
+        ],
+        "focused": "golazo.Your football academyWelcome to golazo! ⚽Your identity, your teams and the skills you are bui",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:19:29.228Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "mentor-onboarding-team-list",
+      "width": 390,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "Unauthenticated mentor onboarding basics; externalTeams wizard, not persisted Profile",
+      "control_assertions": [
+        "Opened visible team-management control",
+        "Real TeamPicker my-teams dialog present",
+        "Current onboarding role and basics retained behind dialog"
+      ],
+      "capture": "source-8685e11/shared-mentor-onboarding-team-list-default-390.png",
+      "sha256": "862ab8e5341ded89aa73b2bc0a85a5fd81b0240d7870d2712a00e4020952aff1",
+      "dimensions": {
+        "width": 390,
+        "height": 1000
+      },
+      "bytes": 29960,
+      "measured": {
+        "width": 390,
+        "height": 1000,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "language": "en",
+        "shell": null,
+        "surfaces": [
+          "onboarding-mentor-basics"
+        ],
+        "dialogs": [
+          "team-picker-my-teams"
+        ],
+        "focused": "Close",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:19:31.422Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "mentor-onboarding-club-choice",
+      "width": 390,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "Unauthenticated mentor onboarding basics; externalTeams wizard, not persisted Profile > Add new > Select club",
+      "control_assertions": [
+        "Visible add-new opened club search",
+        "Fictional service registry club rendered"
+      ],
+      "capture": "source-8685e11/shared-mentor-onboarding-club-choice-default-390.png",
+      "sha256": "8d2a3148cba8c5c81d25c3d130d2010259e24ff7a712cf002b7dddd150638c7f",
+      "dimensions": {
+        "width": 390,
+        "height": 1000
+      },
+      "bytes": 32587,
+      "measured": {
+        "width": 390,
+        "height": 1000,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "language": "en",
+        "shell": null,
+        "surfaces": [
+          "onboarding-mentor-basics"
+        ],
+        "dialogs": [
+          "team-picker-select-club"
+        ],
+        "focused": "",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:19:31.554Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "mentor-onboarding-squad-choice",
+      "width": 390,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "Unauthenticated mentor onboarding basics; externalTeams wizard, not persisted Profile > Fictional Northbank Academy > Add teams",
+      "control_assertions": [
+        "Selected visible club result",
+        "Birth-year 2013 and label B buttons changed the real squad preview",
+        "LW position activated within externalTeams onboarding"
+      ],
+      "capture": "source-8685e11/shared-mentor-onboarding-squad-choice-default-390.png",
+      "sha256": "6b9c0e55dd7a34767558e4aebba61880182d0e881d9a82dfc10bcc2f3e6b3e74",
+      "dimensions": {
+        "width": 390,
+        "height": 1000
+      },
+      "bytes": 41342,
+      "measured": {
+        "width": 390,
+        "height": 1000,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "language": "en",
+        "shell": null,
+        "surfaces": [
+          "onboarding-mentor-basics"
+        ],
+        "dialogs": [
+          "team-picker-add-teams"
+        ],
+        "focused": "💨 LW",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:19:31.882Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": [
+        {
+          "id": "player-onboarding-squad-choice",
+          "width": 390,
+          "variant": "default",
+          "capture": "source-8685e11/shared-player-onboarding-squad-choice-default-390.png"
+        }
+      ]
+    },
+    {
+      "id": "mentor-onboarding-create-team",
+      "width": 390,
+      "variant": "form",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "Unauthenticated mentor onboarding basics; externalTeams wizard, not persisted Profile > Search > + New",
+      "control_assertions": [
+        "Visible new-club control opened AddTeamDialog",
+        "Club name retained from search"
+      ],
+      "capture": "source-8685e11/shared-mentor-onboarding-create-team-form-390.png",
+      "sha256": "e01f79fd8378d8768427965829f0858d6d20b9cfd5552552d9e4fbb2bfa4e37d",
+      "dimensions": {
+        "width": 390,
+        "height": 1000
+      },
+      "bytes": 32156,
+      "measured": {
+        "width": 390,
+        "height": 1000,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "language": "en",
+        "shell": null,
+        "surfaces": [
+          "onboarding-mentor-basics"
+        ],
+        "dialogs": [
+          "team-picker-select-club",
+          "components-add-team-dialog"
+        ],
+        "focused": "Close",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:19:32.104Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "mentor-onboarding-create-team",
+      "width": 390,
+      "variant": "duplicate",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "Unauthenticated mentor onboarding basics; externalTeams wizard, not persisted Profile > Add club > mocked 409 duplicate",
+      "control_assertions": [
+        "Real Add request intercepted as fixture duplicate",
+        "Use-existing decision visibly rendered"
+      ],
+      "capture": "source-8685e11/shared-mentor-onboarding-create-team-duplicate-390.png",
+      "sha256": "f68e473c897836b483140ac39926a44ef88706f3628b301df8f6866f3bd98d82",
+      "dimensions": {
+        "width": 390,
+        "height": 1000
+      },
+      "bytes": 35280,
+      "measured": {
+        "width": 390,
+        "height": 1000,
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "language": "en",
+        "shell": null,
+        "surfaces": [
+          "onboarding-mentor-basics"
+        ],
+        "dialogs": [
+          "team-picker-select-club",
+          "components-add-team-dialog"
+        ],
+        "focused": "golazo.Your football academyWelcome to golazo! ⚽Your identity, your teams and the skills you are bui",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:19:32.241Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "visitor-bootstrap",
+      "width": 1440,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "No principal and no local profile; initial authentication/hydration bootstrap",
+      "control_assertions": [
+        "Production bootstrap present",
+        "No role shell fabricated"
+      ],
+      "capture": "source-8685e11/shared-visitor-bootstrap-default-1440.png",
+      "sha256": "573ecbcaf0a2bbdfec485f5861a0a48af447a217509e958515b0b216680595de",
+      "dimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "bytes": 9162,
+      "measured": {
+        "width": 1440,
+        "height": 1000,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "language": "en",
+        "shell": null,
+        "surfaces": [
+          "bootstrap"
+        ],
+        "dialogs": [],
+        "focused": "golazo.Loading...",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval",
+        "Shared fallback has no role-specific identity; context is established by fixture and interaction provenance"
+      ],
+      "captured_at": "2026-09-24T08:19:32.991Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": [
+        {
+          "id": "player-bootstrap",
+          "width": 1440,
+          "variant": "default",
+          "capture": "source-8685e11/shared-player-bootstrap-default-1440.png"
+        },
+        {
+          "id": "coach-bootstrap",
+          "width": 1440,
+          "variant": "default",
+          "capture": "source-8685e11/shared-coach-bootstrap-default-1440.png"
+        },
+        {
+          "id": "mentor-bootstrap",
+          "width": 1440,
+          "variant": "default",
+          "capture": "source-8685e11/shared-mentor-bootstrap-default-1440.png"
+        }
+      ]
+    },
+    {
+      "id": "visitor-error-boundary",
+      "width": 1440,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "Unauthenticated visitor with no profile; AppContent initial preference-storage read fails",
+      "control_assertions": [
+        "Real global ErrorBoundary catches browser-storage fixture failure",
+        "No profile/role introduced",
+        "Real refresh button visible"
+      ],
+      "capture": "source-8685e11/shared-visitor-error-boundary-default-1440.png",
+      "sha256": "45bec733e87c02c0d7d8ba8e526fbcb898386d6563dfea7fb7438253ea23bd98",
+      "dimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "bytes": 37978,
+      "measured": {
+        "width": 1440,
+        "height": 1000,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "language": "en",
+        "shell": null,
+        "surfaces": [
+          "error-boundary"
+        ],
+        "dialogs": [],
+        "focused": "golazo.Something went wrongThe app hit an unexpected error. Your data is safe — try refreshing.Refre",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval",
+        "Shared fallback has no role-specific identity; context is established by fixture and interaction provenance"
+      ],
+      "captured_at": "2026-09-24T08:19:34.271Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "player-bootstrap",
+      "width": 1440,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "Authenticated synthetic player principal; local role fixture loaded; GET /api/sync deliberately held",
+      "control_assertions": [
+        "Production bootstrap visible during pending hydration",
+        "Role-specific local fixture and principal request recorded"
+      ],
+      "capture": "source-8685e11/shared-player-bootstrap-default-1440.png",
+      "sha256": "573ecbcaf0a2bbdfec485f5861a0a48af447a217509e958515b0b216680595de",
+      "dimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "bytes": 9162,
+      "measured": {
+        "width": 1440,
+        "height": 1000,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "language": "en",
+        "shell": null,
+        "surfaces": [
+          "bootstrap"
+        ],
+        "dialogs": [],
+        "focused": "golazo.Loading...",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval",
+        "Shared fallback has no role-specific identity; context is established by fixture and interaction provenance"
+      ],
+      "captured_at": "2026-09-24T08:19:35.154Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": [
+        {
+          "id": "visitor-bootstrap",
+          "width": 1440,
+          "variant": "default",
+          "capture": "source-8685e11/shared-visitor-bootstrap-default-1440.png"
+        },
+        {
+          "id": "coach-bootstrap",
+          "width": 1440,
+          "variant": "default",
+          "capture": "source-8685e11/shared-coach-bootstrap-default-1440.png"
+        },
+        {
+          "id": "mentor-bootstrap",
+          "width": 1440,
+          "variant": "default",
+          "capture": "source-8685e11/shared-mentor-bootstrap-default-1440.png"
+        }
+      ]
+    },
+    {
+      "id": "player-shell",
+      "width": 1440,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "Authenticated player Home with rich capture-support.cjs local fixture",
+      "control_assertions": [
+        "Primary navigation exactly dashboard, log, progress, learn, profile",
+        "Shell data role matches fixture",
+        "Remote hydration failed explicitly; local role survived"
+      ],
+      "capture": "source-8685e11/shared-player-shell-default-1440.png",
+      "sha256": "2d026e77d9eff0eb33ded8c3bd82bccf4d00184c6536ab9387bdf91b02e4f5c0",
+      "dimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "bytes": 91625,
+      "measured": {
+        "width": 1440,
+        "height": 1000,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "language": "en",
+        "shell": "player",
+        "surfaces": [
+          "player-home"
+        ],
+        "dialogs": [],
+        "focused": "Your week. Your game.",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:19:36.331Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "player-feedback-dialog",
+      "width": 1440,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "player Home > visible feedback icon > Bug",
+      "control_assertions": [
+        "Blank submit disabled",
+        "Bug type selected by visible button",
+        "Fictional text enables submit",
+        "No feedback submitted to GitHub"
+      ],
+      "capture": "source-8685e11/shared-player-feedback-dialog-default-1440.png",
+      "sha256": "329b7df985cec6bab0d01f65a8f521da1e5b1f510a0d8a6de30e23836bb87317",
+      "dimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "bytes": 101102,
+      "measured": {
+        "width": 1440,
+        "height": 1000,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "language": "en",
+        "shell": "player",
+        "surfaces": [
+          "player-home"
+        ],
+        "dialogs": [
+          "feedback"
+        ],
+        "focused": "Describe your feedback...",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:19:36.721Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "player-account-settings",
+      "width": 1440,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "player shell > Settings > Account",
+      "control_assertions": [
+        "Synthetic authenticated identity visible",
+        "Logout and reset controls visible",
+        "Account role matches local fixture"
+      ],
+      "capture": "source-8685e11/shared-player-account-settings-default-1440.png",
+      "sha256": "b42b4a9662bf31255ad3287d1591ab152bebd1555c2f13ce70d2e6419ff1042b",
+      "dimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "bytes": 72462,
+      "measured": {
+        "width": 1440,
+        "height": 1000,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "language": "en",
+        "shell": "player",
+        "surfaces": [
+          "settings"
+        ],
+        "dialogs": [],
+        "focused": "Settings",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:19:37.363Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "player-error-boundary",
+      "width": 1440,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "Previously verified authenticated player shell > visible Settings navigation > ThemePicker preference-storage read failure",
+      "control_assertions": [
+        "Only Storage.getItem fixture failure enabled; production component catches it",
+        "Actual ErrorBoundary heading and refresh visible",
+        "Role-specific live navigation preceded shared fallback",
+        "Error text is identical fixture service error, not artificially varied"
+      ],
+      "capture": "source-8685e11/shared-player-error-boundary-default-1440.png",
+      "sha256": "4b4bcc48a620234d4af8a3156b8dbb6f06a84c2e3b1037948ce0eeddf6234026",
+      "dimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "bytes": 37914,
+      "measured": {
+        "width": 1440,
+        "height": 1000,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "language": "en",
+        "shell": null,
+        "surfaces": [
+          "error-boundary"
+        ],
+        "dialogs": [],
+        "focused": "golazo.Something went wrongThe app hit an unexpected error. Your data is safe — try refreshing.Refre",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval",
+        "Shared fallback has no role-specific identity; context is established by fixture and interaction provenance"
+      ],
+      "captured_at": "2026-09-24T08:19:44.138Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": [
+        {
+          "id": "coach-error-boundary",
+          "width": 1440,
+          "variant": "default",
+          "capture": "source-8685e11/shared-coach-error-boundary-default-1440.png"
+        },
+        {
+          "id": "mentor-error-boundary",
+          "width": 1440,
+          "variant": "default",
+          "capture": "source-8685e11/shared-mentor-error-boundary-default-1440.png"
+        }
+      ]
+    },
+    {
+      "id": "coach-bootstrap",
+      "width": 1440,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "Authenticated synthetic coach principal; local role fixture loaded; GET /api/sync deliberately held",
+      "control_assertions": [
+        "Production bootstrap visible during pending hydration",
+        "Role-specific local fixture and principal request recorded"
+      ],
+      "capture": "source-8685e11/shared-coach-bootstrap-default-1440.png",
+      "sha256": "573ecbcaf0a2bbdfec485f5861a0a48af447a217509e958515b0b216680595de",
+      "dimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "bytes": 9162,
+      "measured": {
+        "width": 1440,
+        "height": 1000,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "language": "en",
+        "shell": null,
+        "surfaces": [
+          "bootstrap"
+        ],
+        "dialogs": [],
+        "focused": "golazo.Loading...",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval",
+        "Shared fallback has no role-specific identity; context is established by fixture and interaction provenance"
+      ],
+      "captured_at": "2026-09-24T08:19:45.406Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": [
+        {
+          "id": "visitor-bootstrap",
+          "width": 1440,
+          "variant": "default",
+          "capture": "source-8685e11/shared-visitor-bootstrap-default-1440.png"
+        },
+        {
+          "id": "player-bootstrap",
+          "width": 1440,
+          "variant": "default",
+          "capture": "source-8685e11/shared-player-bootstrap-default-1440.png"
+        },
+        {
+          "id": "mentor-bootstrap",
+          "width": 1440,
+          "variant": "default",
+          "capture": "source-8685e11/shared-mentor-bootstrap-default-1440.png"
+        }
+      ]
+    },
+    {
+      "id": "coach-shell",
+      "width": 1440,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "Authenticated coach Home with rich capture-support.cjs local fixture",
+      "control_assertions": [
+        "Primary navigation exactly dashboard, schedule, stats, profile",
+        "Shell data role matches fixture",
+        "Remote hydration failed explicitly; local role survived"
+      ],
+      "capture": "source-8685e11/shared-coach-shell-default-1440.png",
+      "sha256": "3cab3dffd938e8627ab684d7136bf958852cc32c9793767de075a06050da5bc6",
+      "dimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "bytes": 86060,
+      "measured": {
+        "width": 1440,
+        "height": 1000,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "language": "en",
+        "shell": "coach",
+        "surfaces": [
+          "coach-home"
+        ],
+        "dialogs": [],
+        "focused": "Coach Dashboard",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:19:46.161Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "coach-feedback-dialog",
+      "width": 1440,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "coach Home > visible feedback icon > Bug",
+      "control_assertions": [
+        "Blank submit disabled",
+        "Bug type selected by visible button",
+        "Fictional text enables submit",
+        "No feedback submitted to GitHub"
+      ],
+      "capture": "source-8685e11/shared-coach-feedback-dialog-default-1440.png",
+      "sha256": "4017793627deecc44cf358bbd12ff2efbdb94bf4cd646ba4b65af28b748cf0b6",
+      "dimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "bytes": 93882,
+      "measured": {
+        "width": 1440,
+        "height": 1000,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "language": "en",
+        "shell": "coach",
+        "surfaces": [
+          "coach-home"
+        ],
+        "dialogs": [
+          "feedback"
+        ],
+        "focused": "Describe your feedback...",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:19:46.430Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "coach-profile-team-list-dialog",
+      "width": 1440,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "Authenticated coach Profile > Manage teams; managedTeams wizard",
+      "control_assertions": [
+        "Opened visible team-management control",
+        "Real TeamPicker my-teams dialog present",
+        "Coach Profile remains underlying surface"
+      ],
+      "capture": "source-8685e11/shared-coach-profile-team-list-dialog-default-1440.png",
+      "sha256": "df7851723f13f8e3c7a7b839cae1b885fe2f395f2080df75a109200668c461d8",
+      "dimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "bytes": 58315,
+      "measured": {
+        "width": 1440,
+        "height": 1000,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "language": "en",
+        "shell": "coach",
+        "surfaces": [
+          "coach-profile",
+          "profile-photo"
+        ],
+        "dialogs": [
+          "team-picker-my-teams"
+        ],
+        "focused": "Close",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:19:47.029Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "coach-profile-club-choice-dialog",
+      "width": 1440,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "Authenticated coach Profile > Manage teams; managedTeams wizard > Add new > Select club",
+      "control_assertions": [
+        "Visible add-new opened club search",
+        "Fictional service registry club rendered"
+      ],
+      "capture": "source-8685e11/shared-coach-profile-club-choice-dialog-default-1440.png",
+      "sha256": "c2a6fa2e20f7de084d79ede138291e5ebbbea8a6d7c768896a433b858e13db25",
+      "dimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "bytes": 60368,
+      "measured": {
+        "width": 1440,
+        "height": 1000,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "language": "en",
+        "shell": "coach",
+        "surfaces": [
+          "coach-profile",
+          "profile-photo"
+        ],
+        "dialogs": [
+          "team-picker-select-club"
+        ],
+        "focused": "",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:19:47.191Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "coach-profile-squad-choice-dialog",
+      "width": 1440,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "Authenticated coach Profile > Manage teams; managedTeams wizard > Fictional Northbank Academy > Add teams",
+      "control_assertions": [
+        "Selected visible club result",
+        "Birth-year 2013 and label B buttons changed the real squad preview",
+        "Assistant-coach choice activated in coach-mode form"
+      ],
+      "capture": "source-8685e11/shared-coach-profile-squad-choice-dialog-default-1440.png",
+      "sha256": "6486aa1f07a697a9709195ecdf553ccc3ffcc3ce2a2d3c28b11a707df83dea0a",
+      "dimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "bytes": 68682,
+      "measured": {
+        "width": 1440,
+        "height": 1000,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "language": "en",
+        "shell": "coach",
+        "surfaces": [
+          "coach-profile",
+          "profile-photo"
+        ],
+        "dialogs": [
+          "team-picker-add-teams"
+        ],
+        "focused": "🤝 Assistant coach",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:19:47.494Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "coach-profile-create-team-dialog",
+      "width": 1440,
+      "variant": "form",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "Authenticated coach Profile > Manage teams; managedTeams wizard > Search > + New",
+      "control_assertions": [
+        "Visible new-club control opened AddTeamDialog",
+        "Club name retained from search"
+      ],
+      "capture": "source-8685e11/shared-coach-profile-create-team-dialog-form-1440.png",
+      "sha256": "3154bdbf90b73cf0380a955564a530336aca377ff082d0e7b218b736d7d23524",
+      "dimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "bytes": 67042,
+      "measured": {
+        "width": 1440,
+        "height": 1000,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "language": "en",
+        "shell": "coach",
+        "surfaces": [
+          "coach-profile",
+          "profile-photo"
+        ],
+        "dialogs": [
+          "team-picker-select-club",
+          "components-add-team-dialog"
+        ],
+        "focused": "Close",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:19:47.756Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "coach-profile-create-team-dialog",
+      "width": 1440,
+      "variant": "duplicate",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "Authenticated coach Profile > Manage teams; managedTeams wizard > Add club > mocked 409 duplicate",
+      "control_assertions": [
+        "Real Add request intercepted as fixture duplicate",
+        "Use-existing decision visibly rendered"
+      ],
+      "capture": "source-8685e11/shared-coach-profile-create-team-dialog-duplicate-1440.png",
+      "sha256": "8e8630bec4a59eef4d4feb8d654ec5e6eea96ee7ca1cad6516aa8c2db45be484",
+      "dimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "bytes": 70300,
+      "measured": {
+        "width": 1440,
+        "height": 1000,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "language": "en",
+        "shell": "coach",
+        "surfaces": [
+          "coach-profile",
+          "profile-photo"
+        ],
+        "dialogs": [
+          "team-picker-select-club",
+          "components-add-team-dialog"
+        ],
+        "focused": "Skip to contentgolazo.HomeScheduleStatsProfileSettingsGFictional coach 07Fictional Academy U13Fictio",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:19:47.957Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "coach-account-settings",
+      "width": 1440,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "coach shell > Settings > Account",
+      "control_assertions": [
+        "Synthetic authenticated identity visible",
+        "Logout and reset controls visible",
+        "Account role matches local fixture"
+      ],
+      "capture": "source-8685e11/shared-coach-account-settings-default-1440.png",
+      "sha256": "5d065845d4e0498a32350569b318dc3653d36d4ce958cf4d3d7cc9054fd59e73",
+      "dimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "bytes": 62000,
+      "measured": {
+        "width": 1440,
+        "height": 1000,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "language": "en",
+        "shell": "coach",
+        "surfaces": [
+          "settings"
+        ],
+        "dialogs": [],
+        "focused": "Settings",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:19:48.534Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "coach-language-settings",
+      "width": 1440,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "coach Settings > six locale buttons, restored English",
+      "control_assertions": [
+        "All six visible language controls activated",
+        "Document lang and stored preference matched each selection",
+        "Selected English has aria-pressed=true"
+      ],
+      "capture": "source-8685e11/shared-coach-language-settings-default-1440.png",
+      "sha256": "f915d83b7d87d63490210442bef3453fe471ef9a40ab1c686c09749af4a353fc",
+      "dimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "bytes": 62010,
+      "measured": {
+        "width": 1440,
+        "height": 1000,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "language": "en",
+        "shell": "coach",
+        "surfaces": [
+          "settings"
+        ],
+        "dialogs": [],
+        "focused": "English",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:19:49.058Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "coach-theme-settings",
+      "width": 1440,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "coach Settings > visible Pitch theme selected",
+      "control_assertions": [
+        "Explicit Pitch selection persisted",
+        "Selection uses real ThemePicker control",
+        "No forced CSS or replacement theme DOM"
+      ],
+      "capture": "source-8685e11/shared-coach-theme-settings-default-1440.png",
+      "sha256": "f74fdfee19093dfaf4797a69b492614196a0747eec33fb9a1e68d94e5dafaff7",
+      "dimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "bytes": 61781,
+      "measured": {
+        "width": 1440,
+        "height": 1000,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "language": "en",
+        "shell": "coach",
+        "surfaces": [
+          "settings"
+        ],
+        "dialogs": [],
+        "focused": "Pitch",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:19:50.348Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "coach-role-settings",
+      "width": 1440,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "coach Settings > account-role selection",
+      "control_assertions": [
+        "Current role is pressed",
+        "Role control is local account preference, not server authorization"
+      ],
+      "capture": "source-8685e11/shared-coach-role-settings-default-1440.png",
+      "sha256": "0be8e447d58ff9e6ef8875e89ea26c466a4069fe68224eda8bc88cf61f8c8cb0",
+      "dimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "bytes": 61998,
+      "measured": {
+        "width": 1440,
+        "height": 1000,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "language": "en",
+        "shell": "coach",
+        "surfaces": [
+          "settings"
+        ],
+        "dialogs": [],
+        "focused": "Academy",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:19:50.608Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "coach-error-boundary",
+      "width": 1440,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "Previously verified authenticated coach shell > visible Settings navigation > ThemePicker preference-storage read failure",
+      "control_assertions": [
+        "Only Storage.getItem fixture failure enabled; production component catches it",
+        "Actual ErrorBoundary heading and refresh visible",
+        "Role-specific live navigation preceded shared fallback",
+        "Error text is identical fixture service error, not artificially varied"
+      ],
+      "capture": "source-8685e11/shared-coach-error-boundary-default-1440.png",
+      "sha256": "4b4bcc48a620234d4af8a3156b8dbb6f06a84c2e3b1037948ce0eeddf6234026",
+      "dimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "bytes": 37914,
+      "measured": {
+        "width": 1440,
+        "height": 1000,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "language": "en",
+        "shell": null,
+        "surfaces": [
+          "error-boundary"
+        ],
+        "dialogs": [],
+        "focused": "golazo.Something went wrongThe app hit an unexpected error. Your data is safe — try refreshing.Refre",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval",
+        "Shared fallback has no role-specific identity; context is established by fixture and interaction provenance"
+      ],
+      "captured_at": "2026-09-24T08:19:57.712Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": [
+        {
+          "id": "player-error-boundary",
+          "width": 1440,
+          "variant": "default",
+          "capture": "source-8685e11/shared-player-error-boundary-default-1440.png"
+        },
+        {
+          "id": "mentor-error-boundary",
+          "width": 1440,
+          "variant": "default",
+          "capture": "source-8685e11/shared-mentor-error-boundary-default-1440.png"
+        }
+      ]
+    },
+    {
+      "id": "mentor-bootstrap",
+      "width": 1440,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "Authenticated synthetic mentor principal; local role fixture loaded; GET /api/sync deliberately held",
+      "control_assertions": [
+        "Production bootstrap visible during pending hydration",
+        "Role-specific local fixture and principal request recorded"
+      ],
+      "capture": "source-8685e11/shared-mentor-bootstrap-default-1440.png",
+      "sha256": "573ecbcaf0a2bbdfec485f5861a0a48af447a217509e958515b0b216680595de",
+      "dimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "bytes": 9162,
+      "measured": {
+        "width": 1440,
+        "height": 1000,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "language": "en",
+        "shell": null,
+        "surfaces": [
+          "bootstrap"
+        ],
+        "dialogs": [],
+        "focused": "golazo.Loading...",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval",
+        "Shared fallback has no role-specific identity; context is established by fixture and interaction provenance"
+      ],
+      "captured_at": "2026-09-24T08:19:58.892Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": [
+        {
+          "id": "visitor-bootstrap",
+          "width": 1440,
+          "variant": "default",
+          "capture": "source-8685e11/shared-visitor-bootstrap-default-1440.png"
+        },
+        {
+          "id": "player-bootstrap",
+          "width": 1440,
+          "variant": "default",
+          "capture": "source-8685e11/shared-player-bootstrap-default-1440.png"
+        },
+        {
+          "id": "coach-bootstrap",
+          "width": 1440,
+          "variant": "default",
+          "capture": "source-8685e11/shared-coach-bootstrap-default-1440.png"
+        }
+      ]
+    },
+    {
+      "id": "mentor-shell",
+      "width": 1440,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "Authenticated mentor Home with rich capture-support.cjs local fixture",
+      "control_assertions": [
+        "Primary navigation exactly dashboard, schedule, progress, profile",
+        "Shell data role matches fixture",
+        "Remote hydration failed explicitly; local role survived"
+      ],
+      "capture": "source-8685e11/shared-mentor-shell-default-1440.png",
+      "sha256": "097ee10a2b077a639fb2e920c001ceb1ea25edf3e4f42b3739a3c4f8221c6654",
+      "dimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "bytes": 68674,
+      "measured": {
+        "width": 1440,
+        "height": 1000,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "language": "en",
+        "shell": "mentor",
+        "surfaces": [
+          "pages-mentor-dashboard"
+        ],
+        "dialogs": [],
+        "focused": "Parent Dashboard",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:19:59.993Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "mentor-feedback-dialog",
+      "width": 1440,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "mentor Home > visible feedback icon > Bug",
+      "control_assertions": [
+        "Blank submit disabled",
+        "Bug type selected by visible button",
+        "Fictional text enables submit",
+        "No feedback submitted to GitHub"
+      ],
+      "capture": "source-8685e11/shared-mentor-feedback-dialog-default-1440.png",
+      "sha256": "9d7280dc0fc1220c28795c2bc41bf4439bf0870279f0db71ba74fbbc0efcd6ba",
+      "dimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "bytes": 77993,
+      "measured": {
+        "width": 1440,
+        "height": 1000,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "language": "en",
+        "shell": "mentor",
+        "surfaces": [
+          "pages-mentor-dashboard"
+        ],
+        "dialogs": [
+          "feedback"
+        ],
+        "focused": "Describe your feedback...",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:20:00.244Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "mentor-account-settings",
+      "width": 1440,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "mentor shell > Settings > Account",
+      "control_assertions": [
+        "Synthetic authenticated identity visible",
+        "Logout and reset controls visible",
+        "Account role matches local fixture"
+      ],
+      "capture": "source-8685e11/shared-mentor-account-settings-default-1440.png",
+      "sha256": "0fc871a9c7e57b65a784f3a45a160739fe1cc6015ccde7f4e41f17618505da15",
+      "dimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "bytes": 65082,
+      "measured": {
+        "width": 1440,
+        "height": 1000,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "language": "en",
+        "shell": "mentor",
+        "surfaces": [
+          "settings"
+        ],
+        "dialogs": [],
+        "focused": "Settings",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:20:00.750Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "mentor-language-settings",
+      "width": 1440,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "mentor Settings > six locale buttons, restored English",
+      "control_assertions": [
+        "All six visible language controls activated",
+        "Document lang and stored preference matched each selection",
+        "Selected English has aria-pressed=true"
+      ],
+      "capture": "source-8685e11/shared-mentor-language-settings-default-1440.png",
+      "sha256": "19c6794af4df7eee17001691349dbde77cd2a9ae48f4f0d380fa6ce122f16e72",
+      "dimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "bytes": 65081,
+      "measured": {
+        "width": 1440,
+        "height": 1000,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "language": "en",
+        "shell": "mentor",
+        "surfaces": [
+          "settings"
+        ],
+        "dialogs": [],
+        "focused": "English",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:20:01.209Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "mentor-theme-settings",
+      "width": 1440,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "mentor Settings > visible Pitch theme selected",
+      "control_assertions": [
+        "Explicit Pitch selection persisted",
+        "Selection uses real ThemePicker control",
+        "No forced CSS or replacement theme DOM"
+      ],
+      "capture": "source-8685e11/shared-mentor-theme-settings-default-1440.png",
+      "sha256": "4f8e3f61f0940e96bd6a025b9d63a67a642c88fcc4739464ee9bfbc746194923",
+      "dimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "bytes": 64910,
+      "measured": {
+        "width": 1440,
+        "height": 1000,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "language": "en",
+        "shell": "mentor",
+        "surfaces": [
+          "settings"
+        ],
+        "dialogs": [],
+        "focused": "Pitch",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:20:02.747Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "mentor-role-settings",
+      "width": 1440,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "mentor Settings > account-role selection",
+      "control_assertions": [
+        "Current role is pressed",
+        "Role control is local account preference, not server authorization"
+      ],
+      "capture": "source-8685e11/shared-mentor-role-settings-default-1440.png",
+      "sha256": "136cf5cb6e23e2cefe4b33909d78b648dda0cf06a6c56e8d71456f2b7d10f344",
+      "dimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "bytes": 65082,
+      "measured": {
+        "width": 1440,
+        "height": 1000,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "language": "en",
+        "shell": "mentor",
+        "surfaces": [
+          "settings"
+        ],
+        "dialogs": [],
+        "focused": "Academy",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:20:02.958Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "mentor-error-boundary",
+      "width": 1440,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "Previously verified authenticated mentor shell > visible Settings navigation > ThemePicker preference-storage read failure",
+      "control_assertions": [
+        "Only Storage.getItem fixture failure enabled; production component catches it",
+        "Actual ErrorBoundary heading and refresh visible",
+        "Role-specific live navigation preceded shared fallback",
+        "Error text is identical fixture service error, not artificially varied"
+      ],
+      "capture": "source-8685e11/shared-mentor-error-boundary-default-1440.png",
+      "sha256": "4b4bcc48a620234d4af8a3156b8dbb6f06a84c2e3b1037948ce0eeddf6234026",
+      "dimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "bytes": 37914,
+      "measured": {
+        "width": 1440,
+        "height": 1000,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "language": "en",
+        "shell": null,
+        "surfaces": [
+          "error-boundary"
+        ],
+        "dialogs": [],
+        "focused": "golazo.Something went wrongThe app hit an unexpected error. Your data is safe — try refreshing.Refre",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval",
+        "Shared fallback has no role-specific identity; context is established by fixture and interaction provenance"
+      ],
+      "captured_at": "2026-09-24T08:20:09.867Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": [
+        {
+          "id": "player-error-boundary",
+          "width": 1440,
+          "variant": "default",
+          "capture": "source-8685e11/shared-player-error-boundary-default-1440.png"
+        },
+        {
+          "id": "coach-error-boundary",
+          "width": 1440,
+          "variant": "default",
+          "capture": "source-8685e11/shared-coach-error-boundary-default-1440.png"
+        }
+      ]
+    },
+    {
+      "id": "player-onboarding-team-list",
+      "width": 1440,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "Unauthenticated player onboarding basics; externalTeams wizard, not persisted Profile",
+      "control_assertions": [
+        "Opened visible team-management control",
+        "Real TeamPicker my-teams dialog present",
+        "Current onboarding role and basics retained behind dialog"
+      ],
+      "capture": "source-8685e11/shared-player-onboarding-team-list-default-1440.png",
+      "sha256": "0988c705f902ff7d36c95fcc724dfb2e65620471bf7beaa3ca0f82b6efa85c83",
+      "dimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "bytes": 53788,
+      "measured": {
+        "width": 1440,
+        "height": 1000,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "language": "en",
+        "shell": null,
+        "surfaces": [
+          "onboarding-player-basics"
+        ],
+        "dialogs": [
+          "team-picker-my-teams"
+        ],
+        "focused": "Close",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:20:12.023Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "player-onboarding-club-choice",
+      "width": 1440,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "Unauthenticated player onboarding basics; externalTeams wizard, not persisted Profile > Add new > Select club",
+      "control_assertions": [
+        "Visible add-new opened club search",
+        "Fictional service registry club rendered"
+      ],
+      "capture": "source-8685e11/shared-player-onboarding-club-choice-default-1440.png",
+      "sha256": "38fbbe86f2f69ccefdbd61c02aed40dfcb4e1090b3e47f25388d309fdefa78e3",
+      "dimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "bytes": 59918,
+      "measured": {
+        "width": 1440,
+        "height": 1000,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "language": "en",
+        "shell": null,
+        "surfaces": [
+          "onboarding-player-basics"
+        ],
+        "dialogs": [
+          "team-picker-select-club"
+        ],
+        "focused": "",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:20:12.355Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "player-onboarding-squad-choice",
+      "width": 1440,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "Unauthenticated player onboarding basics; externalTeams wizard, not persisted Profile > Fictional Northbank Academy > Add teams",
+      "control_assertions": [
+        "Selected visible club result",
+        "Birth-year 2013 and label B buttons changed the real squad preview",
+        "LW position activated within externalTeams onboarding"
+      ],
+      "capture": "source-8685e11/shared-player-onboarding-squad-choice-default-1440.png",
+      "sha256": "40f7be0fd22b5d59659e05f80575af248bbb44080c9f9aa8fa82f3d57d50d905",
+      "dimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "bytes": 71854,
+      "measured": {
+        "width": 1440,
+        "height": 1000,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "language": "en",
+        "shell": null,
+        "surfaces": [
+          "onboarding-player-basics"
+        ],
+        "dialogs": [
+          "team-picker-add-teams"
+        ],
+        "focused": "💨 LW",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:20:13.068Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": [
+        {
+          "id": "mentor-onboarding-squad-choice",
+          "width": 1440,
+          "variant": "default",
+          "capture": "source-8685e11/shared-mentor-onboarding-squad-choice-default-1440.png"
+        }
+      ]
+    },
+    {
+      "id": "player-onboarding-create-team",
+      "width": 1440,
+      "variant": "form",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "Unauthenticated player onboarding basics; externalTeams wizard, not persisted Profile > Search > + New",
+      "control_assertions": [
+        "Visible new-club control opened AddTeamDialog",
+        "Club name retained from search"
+      ],
+      "capture": "source-8685e11/shared-player-onboarding-create-team-form-1440.png",
+      "sha256": "7c9e9256e07b55cda1a082f006993a38a63a1ef4ee59a6d442eabd3b7c36cecc",
+      "dimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "bytes": 68366,
+      "measured": {
+        "width": 1440,
+        "height": 1000,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "language": "en",
+        "shell": null,
+        "surfaces": [
+          "onboarding-player-basics"
+        ],
+        "dialogs": [
+          "team-picker-select-club",
+          "components-add-team-dialog"
+        ],
+        "focused": "Close",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:20:13.396Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "player-onboarding-create-team",
+      "width": 1440,
+      "variant": "duplicate",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "Unauthenticated player onboarding basics; externalTeams wizard, not persisted Profile > Add club > mocked 409 duplicate",
+      "control_assertions": [
+        "Real Add request intercepted as fixture duplicate",
+        "Use-existing decision visibly rendered"
+      ],
+      "capture": "source-8685e11/shared-player-onboarding-create-team-duplicate-1440.png",
+      "sha256": "64298430666884239d1a9a4e023bd59cb859715b27eaeba20e24a13ac2db441f",
+      "dimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "bytes": 67971,
+      "measured": {
+        "width": 1440,
+        "height": 1000,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "language": "en",
+        "shell": null,
+        "surfaces": [
+          "onboarding-player-basics"
+        ],
+        "dialogs": [
+          "team-picker-select-club",
+          "components-add-team-dialog"
+        ],
+        "focused": "golazo.Your football academyWelcome to golazo! ⚽Your identity, your teams and the skills you are bui",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:20:13.637Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "mentor-onboarding-team-list",
+      "width": 1440,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "Unauthenticated mentor onboarding basics; externalTeams wizard, not persisted Profile",
+      "control_assertions": [
+        "Opened visible team-management control",
+        "Real TeamPicker my-teams dialog present",
+        "Current onboarding role and basics retained behind dialog"
+      ],
+      "capture": "source-8685e11/shared-mentor-onboarding-team-list-default-1440.png",
+      "sha256": "93ab6862966210e5d8cabaa062d4909ff4b3ea46d83a7d01c6c4996a40f4cbed",
+      "dimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "bytes": 54585,
+      "measured": {
+        "width": 1440,
+        "height": 1000,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "language": "en",
+        "shell": null,
+        "surfaces": [
+          "onboarding-mentor-basics"
+        ],
+        "dialogs": [
+          "team-picker-my-teams"
+        ],
+        "focused": "Close",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:20:15.481Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "mentor-onboarding-club-choice",
+      "width": 1440,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "Unauthenticated mentor onboarding basics; externalTeams wizard, not persisted Profile > Add new > Select club",
+      "control_assertions": [
+        "Visible add-new opened club search",
+        "Fictional service registry club rendered"
+      ],
+      "capture": "source-8685e11/shared-mentor-onboarding-club-choice-default-1440.png",
+      "sha256": "e811c5b4353d7d24950555320d0891cdddb16790a1f06a502ebbc54fe15500f1",
+      "dimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "bytes": 60674,
+      "measured": {
+        "width": 1440,
+        "height": 1000,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "language": "en",
+        "shell": null,
+        "surfaces": [
+          "onboarding-mentor-basics"
+        ],
+        "dialogs": [
+          "team-picker-select-club"
+        ],
+        "focused": "",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:20:15.715Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "mentor-onboarding-squad-choice",
+      "width": 1440,
+      "variant": "default",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "Unauthenticated mentor onboarding basics; externalTeams wizard, not persisted Profile > Fictional Northbank Academy > Add teams",
+      "control_assertions": [
+        "Selected visible club result",
+        "Birth-year 2013 and label B buttons changed the real squad preview",
+        "LW position activated within externalTeams onboarding"
+      ],
+      "capture": "source-8685e11/shared-mentor-onboarding-squad-choice-default-1440.png",
+      "sha256": "40f7be0fd22b5d59659e05f80575af248bbb44080c9f9aa8fa82f3d57d50d905",
+      "dimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "bytes": 71854,
+      "measured": {
+        "width": 1440,
+        "height": 1000,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "language": "en",
+        "shell": null,
+        "surfaces": [
+          "onboarding-mentor-basics"
+        ],
+        "dialogs": [
+          "team-picker-add-teams"
+        ],
+        "focused": "💨 LW",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:20:16.158Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": [
+        {
+          "id": "player-onboarding-squad-choice",
+          "width": 1440,
+          "variant": "default",
+          "capture": "source-8685e11/shared-player-onboarding-squad-choice-default-1440.png"
+        }
+      ]
+    },
+    {
+      "id": "mentor-onboarding-create-team",
+      "width": 1440,
+      "variant": "form",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "Unauthenticated mentor onboarding basics; externalTeams wizard, not persisted Profile > Search > + New",
+      "control_assertions": [
+        "Visible new-club control opened AddTeamDialog",
+        "Club name retained from search"
+      ],
+      "capture": "source-8685e11/shared-mentor-onboarding-create-team-form-1440.png",
+      "sha256": "d8b26b1ab94ac4820b06520873ac8ce9cf245fabca92194c783f81a9b8d1e4da",
+      "dimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "bytes": 69040,
+      "measured": {
+        "width": 1440,
+        "height": 1000,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "language": "en",
+        "shell": null,
+        "surfaces": [
+          "onboarding-mentor-basics"
+        ],
+        "dialogs": [
+          "team-picker-select-club",
+          "components-add-team-dialog"
+        ],
+        "focused": "Close",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:20:16.513Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    },
+    {
+      "id": "mentor-onboarding-create-team",
+      "width": 1440,
+      "variant": "duplicate",
+      "status": "observed",
+      "entry_conflict": null,
+      "actual_context": "Unauthenticated mentor onboarding basics; externalTeams wizard, not persisted Profile > Add club > mocked 409 duplicate",
+      "control_assertions": [
+        "Real Add request intercepted as fixture duplicate",
+        "Use-existing decision visibly rendered"
+      ],
+      "capture": "source-8685e11/shared-mentor-onboarding-create-team-duplicate-1440.png",
+      "sha256": "f0aef5f02650669cdc65a2bacdbb8760f22e843bd0a81b0fe51349422aa4a100",
+      "dimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "bytes": 68657,
+      "measured": {
+        "width": 1440,
+        "height": 1000,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "language": "en",
+        "shell": null,
+        "surfaces": [
+          "onboarding-mentor-basics"
+        ],
+        "dialogs": [
+          "team-picker-select-club",
+          "components-add-team-dialog"
+        ],
+        "focused": "golazo.Your football academyWelcome to golazo! ⚽Your identity, your teams and the skills you are bui",
+        "raw_translation_keys": []
+      },
+      "no_horizontal_page_overflow": true,
+      "limits": [
+        "Synthetic transport and account fixture; no live identity or backend proof",
+        "Capture observation, not independent design approval"
+      ],
+      "captured_at": "2026-09-24T08:20:16.733Z",
+      "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "shared_rendering_reuse": []
+    }
+  ],
+  "interactions": [
+    {
+      "role": "visitor",
+      "width": 390,
+      "action": "Release pending synthetic hydration; real visitor sign-in renders"
+    },
+    {
+      "role": "visitor",
+      "width": 390,
+      "action": "production ErrorBoundary caught fixture storage failure",
+      "message": "Golazo error boundary caught: Error: Synthetic local preference storage unavailable\n    at Storage.getItem (<anonymous>:10:15)\n    at De (http://127.0.0.1:4323/assets/index-CJW9FvId.js:2:58898)\n    at http://127.0.0.1:4323/assets/index-CJW9FvId.js:2:64422\n    at Kc (http://127.0.0.1:4323/assets/react-Clpx-5N5.js:8:91640)\n    at kl (http://127.0.0.1:4323/assets/react-Clpx-5N5.js:8:106735)\n    at Ol (http://127.0.0.1:4323/assets/react-Clpx-5N5.js:8:106619)\n    at kl (http://127.0.0.1:4323/assets/r"
+    },
+    {
+      "role": "visitor",
+      "width": 390,
+      "action": "production ErrorBoundary caught fixture storage failure",
+      "message": "Golazo error boundary caught: Error: Synthetic local preference storage unavailable\n    at Storage.getItem (<anonymous>:10:15)\n    at De (http://127.0.0.1:4323/assets/index-CJW9FvId.js:2:58898)\n    at http://127.0.0.1:4323/assets/index-CJW9FvId.js:2:64422\n    at Kc (http://127.0.0.1:4323/assets/react-Clpx-5N5.js:8:91640)\n    at kl (http://127.0.0.1:4323/assets/react-Clpx-5N5.js:8:106735)\n    at Ol (http://127.0.0.1:4323/assets/react-Clpx-5N5.js:8:106619)\n    at kl (http://127.0.0.1:4323/assets/r"
+    },
+    {
+      "role": "visitor",
+      "width": 390,
+      "action": "Visible refresh retried; persistent startup fixture fault correctly recurred, no recovery claim"
+    },
+    {
+      "action": "visible navigation",
+      "destination": "settings",
+      "width": 390,
+      "at": "2026-09-24T08:18:50.832Z"
+    },
+    {
+      "action": "visible navigation",
+      "destination": "dashboard",
+      "width": 390,
+      "at": "2026-09-24T08:18:51.007Z"
+    },
+    {
+      "role": "player",
+      "width": 390,
+      "action": "production ErrorBoundary caught fixture storage failure",
+      "message": "Golazo error boundary caught: Error: Synthetic local preference storage unavailable\n    at Storage.getItem (<anonymous>:10:15)\n    at De (http://127.0.0.1:4323/assets/index-CJW9FvId.js:2:58898)\n    at Zo (http://127.0.0.1:4323/assets/react-Clpx-5N5.js:8:52277)\n    at Object.useState (http://127.0.0.1:4323/assets/react-Clpx-5N5.js:8:60266)\n    at e.useState (http://127.0.0.1:4323/assets/charts-BAHzxo24.js:1:7340)\n    at v (http://127.0.0.1:4323/assets/SettingsPage-Cy8bgFuH.js:1:508)\n    at ko (ht"
+    },
+    {
+      "role": "player",
+      "width": 390,
+      "action": "Visible ErrorBoundary refresh reloads real app; cleared transient fixture fault restores original role shell"
+    },
+    {
+      "action": "visible navigation",
+      "destination": "settings",
+      "width": 390,
+      "at": "2026-09-24T08:18:59.038Z"
+    },
+    {
+      "role": "player",
+      "width": 390,
+      "action": "Visible logout requested actual auth route; transport blocked, no real session contacted",
+      "url": "http://127.0.0.1:4323/.auth/logout?post_logout_redirect_uri=/"
+    },
+    {
+      "action": "visible navigation",
+      "destination": "profile",
+      "width": 390,
+      "at": "2026-09-24T08:19:01.278Z"
+    },
+    {
+      "role": "coach",
+      "width": 390,
+      "action": "Duplicate Use this returned to real squad-choice form",
+      "onboarding": false
+    },
+    {
+      "action": "visible navigation",
+      "destination": "settings",
+      "width": 390,
+      "at": "2026-09-24T08:19:03.250Z"
+    },
+    {
+      "action": "visible navigation",
+      "destination": "settings",
+      "width": 390,
+      "at": "2026-09-24T08:19:05.270Z"
+    },
+    {
+      "action": "visible navigation",
+      "destination": "settings",
+      "width": 390,
+      "at": "2026-09-24T08:19:05.874Z"
+    },
+    {
+      "role": "coach",
+      "width": 390,
+      "action": "Local role -> player -> original role roundtrip preserved diary count and profile role; each real shell observed"
+    },
+    {
+      "action": "visible navigation",
+      "destination": "dashboard",
+      "width": 390,
+      "at": "2026-09-24T08:19:06.048Z"
+    },
+    {
+      "role": "coach",
+      "width": 390,
+      "action": "production ErrorBoundary caught fixture storage failure",
+      "message": "Golazo error boundary caught: Error: Synthetic local preference storage unavailable\n    at Storage.getItem (<anonymous>:10:15)\n    at De (http://127.0.0.1:4323/assets/index-CJW9FvId.js:2:58898)\n    at Zo (http://127.0.0.1:4323/assets/react-Clpx-5N5.js:8:52277)\n    at Object.useState (http://127.0.0.1:4323/assets/react-Clpx-5N5.js:8:60266)\n    at e.useState (http://127.0.0.1:4323/assets/charts-BAHzxo24.js:1:7340)\n    at v (http://127.0.0.1:4323/assets/SettingsPage-Cy8bgFuH.js:1:508)\n    at ko (ht"
+    },
+    {
+      "role": "coach",
+      "width": 390,
+      "action": "Visible ErrorBoundary refresh reloads real app; cleared transient fixture fault restores original role shell"
+    },
+    {
+      "action": "visible navigation",
+      "destination": "settings",
+      "width": 390,
+      "at": "2026-09-24T08:19:13.635Z"
+    },
+    {
+      "role": "coach",
+      "width": 390,
+      "action": "Visible logout requested actual auth route; transport blocked, no real session contacted",
+      "url": "http://127.0.0.1:4323/.auth/logout?post_logout_redirect_uri=/"
+    },
+    {
+      "action": "visible navigation",
+      "destination": "settings",
+      "width": 390,
+      "at": "2026-09-24T08:19:16.264Z"
+    },
+    {
+      "action": "visible navigation",
+      "destination": "settings",
+      "width": 390,
+      "at": "2026-09-24T08:19:18.461Z"
+    },
+    {
+      "action": "visible navigation",
+      "destination": "settings",
+      "width": 390,
+      "at": "2026-09-24T08:19:19.101Z"
+    },
+    {
+      "role": "mentor",
+      "width": 390,
+      "action": "Local role -> player -> original role roundtrip preserved diary count and profile role; each real shell observed"
+    },
+    {
+      "action": "visible navigation",
+      "destination": "dashboard",
+      "width": 390,
+      "at": "2026-09-24T08:19:19.317Z"
+    },
+    {
+      "role": "mentor",
+      "width": 390,
+      "action": "production ErrorBoundary caught fixture storage failure",
+      "message": "Golazo error boundary caught: Error: Synthetic local preference storage unavailable\n    at Storage.getItem (<anonymous>:10:15)\n    at De (http://127.0.0.1:4323/assets/index-CJW9FvId.js:2:58898)\n    at Zo (http://127.0.0.1:4323/assets/react-Clpx-5N5.js:8:52277)\n    at Object.useState (http://127.0.0.1:4323/assets/react-Clpx-5N5.js:8:60266)\n    at e.useState (http://127.0.0.1:4323/assets/charts-BAHzxo24.js:1:7340)\n    at v (http://127.0.0.1:4323/assets/SettingsPage-Cy8bgFuH.js:1:508)\n    at ko (ht"
+    },
+    {
+      "role": "mentor",
+      "width": 390,
+      "action": "Visible ErrorBoundary refresh reloads real app; cleared transient fixture fault restores original role shell"
+    },
+    {
+      "action": "visible navigation",
+      "destination": "settings",
+      "width": 390,
+      "at": "2026-09-24T08:19:26.806Z"
+    },
+    {
+      "role": "mentor",
+      "width": 390,
+      "action": "Visible logout requested actual auth route; transport blocked, no real session contacted",
+      "url": "http://127.0.0.1:4323/.auth/logout?post_logout_redirect_uri=/"
+    },
+    {
+      "role": "player",
+      "width": 390,
+      "action": "Duplicate Use this returned to real squad-choice form",
+      "onboarding": true
+    },
+    {
+      "role": "player",
+      "width": 390,
+      "action": "Continued into real onboarding Football step; confirmed no team-picker opener here. Captures were reached from the role-specific Basics surface.",
+      "entry_conflicts": []
+    },
+    {
+      "role": "mentor",
+      "width": 390,
+      "action": "Duplicate Use this returned to real squad-choice form",
+      "onboarding": true
+    },
+    {
+      "role": "mentor",
+      "width": 390,
+      "action": "Continued into real onboarding Football step; confirmed no team-picker opener here. Captures were reached from the role-specific Basics surface.",
+      "entry_conflicts": []
+    },
+    {
+      "role": "visitor",
+      "width": 1440,
+      "action": "Release pending synthetic hydration; real visitor sign-in renders"
+    },
+    {
+      "role": "visitor",
+      "width": 1440,
+      "action": "production ErrorBoundary caught fixture storage failure",
+      "message": "Golazo error boundary caught: Error: Synthetic local preference storage unavailable\n    at Storage.getItem (<anonymous>:10:15)\n    at De (http://127.0.0.1:4323/assets/index-CJW9FvId.js:2:58898)\n    at http://127.0.0.1:4323/assets/index-CJW9FvId.js:2:64422\n    at Kc (http://127.0.0.1:4323/assets/react-Clpx-5N5.js:8:91640)\n    at kl (http://127.0.0.1:4323/assets/react-Clpx-5N5.js:8:106735)\n    at Ol (http://127.0.0.1:4323/assets/react-Clpx-5N5.js:8:106619)\n    at kl (http://127.0.0.1:4323/assets/r"
+    },
+    {
+      "role": "visitor",
+      "width": 1440,
+      "action": "production ErrorBoundary caught fixture storage failure",
+      "message": "Golazo error boundary caught: Error: Synthetic local preference storage unavailable\n    at Storage.getItem (<anonymous>:10:15)\n    at De (http://127.0.0.1:4323/assets/index-CJW9FvId.js:2:58898)\n    at http://127.0.0.1:4323/assets/index-CJW9FvId.js:2:64422\n    at Kc (http://127.0.0.1:4323/assets/react-Clpx-5N5.js:8:91640)\n    at kl (http://127.0.0.1:4323/assets/react-Clpx-5N5.js:8:106735)\n    at Ol (http://127.0.0.1:4323/assets/react-Clpx-5N5.js:8:106619)\n    at kl (http://127.0.0.1:4323/assets/r"
+    },
+    {
+      "role": "visitor",
+      "width": 1440,
+      "action": "Visible refresh retried; persistent startup fixture fault correctly recurred, no recovery claim"
+    },
+    {
+      "action": "visible navigation",
+      "destination": "settings",
+      "width": 1440,
+      "at": "2026-09-24T08:19:37.151Z"
+    },
+    {
+      "action": "visible navigation",
+      "destination": "dashboard",
+      "width": 1440,
+      "at": "2026-09-24T08:19:37.420Z"
+    },
+    {
+      "role": "player",
+      "width": 1440,
+      "action": "production ErrorBoundary caught fixture storage failure",
+      "message": "Golazo error boundary caught: Error: Synthetic local preference storage unavailable\n    at Storage.getItem (<anonymous>:10:15)\n    at De (http://127.0.0.1:4323/assets/index-CJW9FvId.js:2:58898)\n    at Zo (http://127.0.0.1:4323/assets/react-Clpx-5N5.js:8:52277)\n    at Object.useState (http://127.0.0.1:4323/assets/react-Clpx-5N5.js:8:60266)\n    at e.useState (http://127.0.0.1:4323/assets/charts-BAHzxo24.js:1:7340)\n    at v (http://127.0.0.1:4323/assets/SettingsPage-Cy8bgFuH.js:1:508)\n    at ko (ht"
+    },
+    {
+      "role": "player",
+      "width": 1440,
+      "action": "Visible ErrorBoundary refresh reloads real app; cleared transient fixture fault restores original role shell"
+    },
+    {
+      "action": "visible navigation",
+      "destination": "settings",
+      "width": 1440,
+      "at": "2026-09-24T08:19:44.771Z"
+    },
+    {
+      "role": "player",
+      "width": 1440,
+      "action": "Visible logout requested actual auth route; transport blocked, no real session contacted",
+      "url": "http://127.0.0.1:4323/.auth/logout?post_logout_redirect_uri=/"
+    },
+    {
+      "action": "visible navigation",
+      "destination": "profile",
+      "width": 1440,
+      "at": "2026-09-24T08:19:46.837Z"
+    },
+    {
+      "role": "coach",
+      "width": 1440,
+      "action": "Duplicate Use this returned to real squad-choice form",
+      "onboarding": false
+    },
+    {
+      "action": "visible navigation",
+      "destination": "settings",
+      "width": 1440,
+      "at": "2026-09-24T08:19:48.379Z"
+    },
+    {
+      "action": "visible navigation",
+      "destination": "settings",
+      "width": 1440,
+      "at": "2026-09-24T08:19:50.156Z"
+    },
+    {
+      "action": "visible navigation",
+      "destination": "settings",
+      "width": 1440,
+      "at": "2026-09-24T08:19:50.831Z"
+    },
+    {
+      "role": "coach",
+      "width": 1440,
+      "action": "Local role -> player -> original role roundtrip preserved diary count and profile role; each real shell observed"
+    },
+    {
+      "action": "visible navigation",
+      "destination": "dashboard",
+      "width": 1440,
+      "at": "2026-09-24T08:19:50.982Z"
+    },
+    {
+      "role": "coach",
+      "width": 1440,
+      "action": "production ErrorBoundary caught fixture storage failure",
+      "message": "Golazo error boundary caught: Error: Synthetic local preference storage unavailable\n    at Storage.getItem (<anonymous>:10:15)\n    at De (http://127.0.0.1:4323/assets/index-CJW9FvId.js:2:58898)\n    at Zo (http://127.0.0.1:4323/assets/react-Clpx-5N5.js:8:52277)\n    at Object.useState (http://127.0.0.1:4323/assets/react-Clpx-5N5.js:8:60266)\n    at e.useState (http://127.0.0.1:4323/assets/charts-BAHzxo24.js:1:7340)\n    at v (http://127.0.0.1:4323/assets/SettingsPage-Cy8bgFuH.js:1:508)\n    at ko (ht"
+    },
+    {
+      "role": "coach",
+      "width": 1440,
+      "action": "Visible ErrorBoundary refresh reloads real app; cleared transient fixture fault restores original role shell"
+    },
+    {
+      "action": "visible navigation",
+      "destination": "settings",
+      "width": 1440,
+      "at": "2026-09-24T08:19:58.255Z"
+    },
+    {
+      "role": "coach",
+      "width": 1440,
+      "action": "Visible logout requested actual auth route; transport blocked, no real session contacted",
+      "url": "http://127.0.0.1:4323/.auth/logout?post_logout_redirect_uri=/"
+    },
+    {
+      "action": "visible navigation",
+      "destination": "settings",
+      "width": 1440,
+      "at": "2026-09-24T08:20:00.628Z"
+    },
+    {
+      "action": "visible navigation",
+      "destination": "settings",
+      "width": 1440,
+      "at": "2026-09-24T08:20:02.545Z"
+    },
+    {
+      "action": "visible navigation",
+      "destination": "settings",
+      "width": 1440,
+      "at": "2026-09-24T08:20:03.061Z"
+    },
+    {
+      "role": "mentor",
+      "width": 1440,
+      "action": "Local role -> player -> original role roundtrip preserved diary count and profile role; each real shell observed"
+    },
+    {
+      "action": "visible navigation",
+      "destination": "dashboard",
+      "width": 1440,
+      "at": "2026-09-24T08:20:03.173Z"
+    },
+    {
+      "role": "mentor",
+      "width": 1440,
+      "action": "production ErrorBoundary caught fixture storage failure",
+      "message": "Golazo error boundary caught: Error: Synthetic local preference storage unavailable\n    at Storage.getItem (<anonymous>:10:15)\n    at De (http://127.0.0.1:4323/assets/index-CJW9FvId.js:2:58898)\n    at Zo (http://127.0.0.1:4323/assets/react-Clpx-5N5.js:8:52277)\n    at Object.useState (http://127.0.0.1:4323/assets/react-Clpx-5N5.js:8:60266)\n    at e.useState (http://127.0.0.1:4323/assets/charts-BAHzxo24.js:1:7340)\n    at v (http://127.0.0.1:4323/assets/SettingsPage-Cy8bgFuH.js:1:508)\n    at ko (ht"
+    },
+    {
+      "role": "mentor",
+      "width": 1440,
+      "action": "Visible ErrorBoundary refresh reloads real app; cleared transient fixture fault restores original role shell"
+    },
+    {
+      "action": "visible navigation",
+      "destination": "settings",
+      "width": 1440,
+      "at": "2026-09-24T08:20:10.419Z"
+    },
+    {
+      "role": "mentor",
+      "width": 1440,
+      "action": "Visible logout requested actual auth route; transport blocked, no real session contacted",
+      "url": "http://127.0.0.1:4323/.auth/logout?post_logout_redirect_uri=/"
+    },
+    {
+      "role": "player",
+      "width": 1440,
+      "action": "Duplicate Use this returned to real squad-choice form",
+      "onboarding": true
+    },
+    {
+      "role": "player",
+      "width": 1440,
+      "action": "Continued into real onboarding Football step; confirmed no team-picker opener here. Captures were reached from the role-specific Basics surface.",
+      "entry_conflicts": []
+    },
+    {
+      "role": "mentor",
+      "width": 1440,
+      "action": "Duplicate Use this returned to real squad-choice form",
+      "onboarding": true
+    },
+    {
+      "role": "mentor",
+      "width": 1440,
+      "action": "Continued into real onboarding Football step; confirmed no team-picker opener here. Captures were reached from the role-specific Basics surface.",
+      "entry_conflicts": []
+    }
+  ],
+  "errors": [],
+  "blockers": [],
+  "provenance": [
+    {
+      "phase": "before",
+      "at": "2026-09-24T08:18:45.233Z",
+      "head": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "marker": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "clean_non_evidence_source": true
+    },
+    {
+      "phase": "after",
+      "at": "2026-09-24T08:20:17.403Z",
+      "head": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "marker": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+      "clean_non_evidence_source": true
+    }
+  ],
+  "requests": [
+    {
+      "role": "visitor",
+      "width": 390,
+      "path": "/api/sync",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "visitor",
+      "width": 390,
+      "path": "/.auth/me",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "visitor",
+      "width": 390,
+      "path": "/api/sync",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "visitor",
+      "width": 390,
+      "path": "/.auth/me",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "visitor",
+      "width": 390,
+      "path": "/api/sync",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "visitor",
+      "width": 390,
+      "path": "/.auth/me",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "player",
+      "width": 390,
+      "path": "/api/sync",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "player",
+      "width": 390,
+      "path": "/.auth/me",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "player",
+      "width": 390,
+      "path": "/api/track-login",
+      "method": "POST",
+      "fictional": true
+    },
+    {
+      "role": "player",
+      "width": 390,
+      "path": "/api/shared-tournaments",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "player",
+      "width": 390,
+      "path": "/api/shared-tournaments",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "player",
+      "width": 390,
+      "path": "/api/sync",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "player",
+      "width": 390,
+      "path": "/.auth/me",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "player",
+      "width": 390,
+      "path": "/api/track-login",
+      "method": "POST",
+      "fictional": true
+    },
+    {
+      "role": "coach",
+      "width": 390,
+      "path": "/api/sync",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "coach",
+      "width": 390,
+      "path": "/.auth/me",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "coach",
+      "width": 390,
+      "path": "/api/track-login",
+      "method": "POST",
+      "fictional": true
+    },
+    {
+      "role": "coach",
+      "width": 390,
+      "path": "/api/teams",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "coach",
+      "width": 390,
+      "path": "/api/teams",
+      "method": "POST",
+      "fictional": true
+    },
+    {
+      "role": "coach",
+      "width": 390,
+      "path": "/api/teams",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "coach",
+      "width": 390,
+      "path": "/api/sync",
+      "method": "POST",
+      "fictional": true
+    },
+    {
+      "role": "coach",
+      "width": 390,
+      "path": "/api/sync",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "coach",
+      "width": 390,
+      "path": "/.auth/me",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "coach",
+      "width": 390,
+      "path": "/api/track-login",
+      "method": "POST",
+      "fictional": true
+    },
+    {
+      "role": "coach",
+      "width": 390,
+      "path": "/api/sync",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "coach",
+      "width": 390,
+      "path": "/.auth/me",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "coach",
+      "width": 390,
+      "path": "/api/track-login",
+      "method": "POST",
+      "fictional": true
+    },
+    {
+      "role": "mentor",
+      "width": 390,
+      "path": "/api/sync",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "mentor",
+      "width": 390,
+      "path": "/.auth/me",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "mentor",
+      "width": 390,
+      "path": "/api/track-login",
+      "method": "POST",
+      "fictional": true
+    },
+    {
+      "role": "mentor",
+      "width": 390,
+      "path": "/api/mentor/mentees",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "mentor",
+      "width": 390,
+      "path": "/api/sync",
+      "method": "POST",
+      "fictional": true
+    },
+    {
+      "role": "mentor",
+      "width": 390,
+      "path": "/api/sync",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "mentor",
+      "width": 390,
+      "path": "/.auth/me",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "mentor",
+      "width": 390,
+      "path": "/api/track-login",
+      "method": "POST",
+      "fictional": true
+    },
+    {
+      "role": "mentor",
+      "width": 390,
+      "path": "/api/mentor/mentees",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "mentor",
+      "width": 390,
+      "path": "/api/mentor/mentees",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "mentor",
+      "width": 390,
+      "path": "/api/sync",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "mentor",
+      "width": 390,
+      "path": "/.auth/me",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "mentor",
+      "width": 390,
+      "path": "/api/track-login",
+      "method": "POST",
+      "fictional": true
+    },
+    {
+      "role": "player",
+      "width": 390,
+      "path": "/api/sync",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "player",
+      "width": 390,
+      "path": "/.auth/me",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "player",
+      "width": 390,
+      "path": "/api/teams",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "player",
+      "width": 390,
+      "path": "/api/teams",
+      "method": "POST",
+      "fictional": true
+    },
+    {
+      "role": "player",
+      "width": 390,
+      "path": "/api/teams",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "mentor",
+      "width": 390,
+      "path": "/api/sync",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "mentor",
+      "width": 390,
+      "path": "/.auth/me",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "mentor",
+      "width": 390,
+      "path": "/api/teams",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "mentor",
+      "width": 390,
+      "path": "/api/teams",
+      "method": "POST",
+      "fictional": true
+    },
+    {
+      "role": "mentor",
+      "width": 390,
+      "path": "/api/teams",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "visitor",
+      "width": 1440,
+      "path": "/api/sync",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "visitor",
+      "width": 1440,
+      "path": "/.auth/me",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "visitor",
+      "width": 1440,
+      "path": "/api/sync",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "visitor",
+      "width": 1440,
+      "path": "/.auth/me",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "visitor",
+      "width": 1440,
+      "path": "/api/sync",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "visitor",
+      "width": 1440,
+      "path": "/.auth/me",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "player",
+      "width": 1440,
+      "path": "/api/sync",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "player",
+      "width": 1440,
+      "path": "/.auth/me",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "player",
+      "width": 1440,
+      "path": "/api/track-login",
+      "method": "POST",
+      "fictional": true
+    },
+    {
+      "role": "player",
+      "width": 1440,
+      "path": "/api/shared-tournaments",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "player",
+      "width": 1440,
+      "path": "/api/shared-tournaments",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "player",
+      "width": 1440,
+      "path": "/api/sync",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "player",
+      "width": 1440,
+      "path": "/.auth/me",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "player",
+      "width": 1440,
+      "path": "/api/track-login",
+      "method": "POST",
+      "fictional": true
+    },
+    {
+      "role": "coach",
+      "width": 1440,
+      "path": "/api/sync",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "coach",
+      "width": 1440,
+      "path": "/.auth/me",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "coach",
+      "width": 1440,
+      "path": "/api/track-login",
+      "method": "POST",
+      "fictional": true
+    },
+    {
+      "role": "coach",
+      "width": 1440,
+      "path": "/api/teams",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "coach",
+      "width": 1440,
+      "path": "/api/teams",
+      "method": "POST",
+      "fictional": true
+    },
+    {
+      "role": "coach",
+      "width": 1440,
+      "path": "/api/teams",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "coach",
+      "width": 1440,
+      "path": "/api/sync",
+      "method": "POST",
+      "fictional": true
+    },
+    {
+      "role": "coach",
+      "width": 1440,
+      "path": "/api/sync",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "coach",
+      "width": 1440,
+      "path": "/.auth/me",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "coach",
+      "width": 1440,
+      "path": "/api/track-login",
+      "method": "POST",
+      "fictional": true
+    },
+    {
+      "role": "coach",
+      "width": 1440,
+      "path": "/api/sync",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "coach",
+      "width": 1440,
+      "path": "/.auth/me",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "coach",
+      "width": 1440,
+      "path": "/api/track-login",
+      "method": "POST",
+      "fictional": true
+    },
+    {
+      "role": "mentor",
+      "width": 1440,
+      "path": "/api/sync",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "mentor",
+      "width": 1440,
+      "path": "/.auth/me",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "mentor",
+      "width": 1440,
+      "path": "/api/track-login",
+      "method": "POST",
+      "fictional": true
+    },
+    {
+      "role": "mentor",
+      "width": 1440,
+      "path": "/api/mentor/mentees",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "mentor",
+      "width": 1440,
+      "path": "/api/sync",
+      "method": "POST",
+      "fictional": true
+    },
+    {
+      "role": "mentor",
+      "width": 1440,
+      "path": "/api/sync",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "mentor",
+      "width": 1440,
+      "path": "/.auth/me",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "mentor",
+      "width": 1440,
+      "path": "/api/track-login",
+      "method": "POST",
+      "fictional": true
+    },
+    {
+      "role": "mentor",
+      "width": 1440,
+      "path": "/api/mentor/mentees",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "mentor",
+      "width": 1440,
+      "path": "/api/mentor/mentees",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "mentor",
+      "width": 1440,
+      "path": "/api/sync",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "mentor",
+      "width": 1440,
+      "path": "/.auth/me",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "mentor",
+      "width": 1440,
+      "path": "/api/track-login",
+      "method": "POST",
+      "fictional": true
+    },
+    {
+      "role": "player",
+      "width": 1440,
+      "path": "/api/sync",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "player",
+      "width": 1440,
+      "path": "/.auth/me",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "player",
+      "width": 1440,
+      "path": "/api/teams",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "player",
+      "width": 1440,
+      "path": "/api/teams",
+      "method": "POST",
+      "fictional": true
+    },
+    {
+      "role": "player",
+      "width": 1440,
+      "path": "/api/teams",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "mentor",
+      "width": 1440,
+      "path": "/api/sync",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "mentor",
+      "width": 1440,
+      "path": "/.auth/me",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "mentor",
+      "width": 1440,
+      "path": "/api/teams",
+      "method": "GET",
+      "fictional": true
+    },
+    {
+      "role": "mentor",
+      "width": 1440,
+      "path": "/api/teams",
+      "method": "POST",
+      "fictional": true
+    },
+    {
+      "role": "mentor",
+      "width": 1440,
+      "path": "/api/teams",
+      "method": "GET",
+      "fictional": true
+    }
+  ],
+  "previous_attempts": [],
+  "conflicts": [],
+  "limits": [
+    "English capture baseline only; coach/mentor language controls are exercised through all six locales and restored to English.",
+    "Fresh isolated Chromium contexts; all profiles, clubs, accounts and responses are fictional. All auth/API requests intercepted; external requests blocked.",
+    "External font CSS is mocked empty; installed fallback font rendering only.",
+    "No production source changes, replacement application DOM, fake role text, image watermarking or artificial hash differentiation.",
+    "Bootstrap and ErrorBoundary are shared app-level renderings. Role provenance comes from the input fixture and verified preceding live role shell, not role-specific fallback artwork.",
+    "No independent craft review, full 220-surface review, real authentication, remote save, commit, PR or deployment is claimed."
+  ],
+  "surface_relationships": [
+    {
+      "ids": [
+        "visitor-bootstrap",
+        "player-bootstrap",
+        "coach-bootstrap",
+        "mentor-bootstrap"
+      ],
+      "note": "Shared bootstrap implementation. Separate fixture contexts genuinely produce identical captures; no per-role artwork is present or fabricated."
+    },
+    {
+      "ids": [
+        "visitor-error-boundary",
+        "player-error-boundary",
+        "coach-error-boundary",
+        "mentor-error-boundary"
+      ],
+      "note": "One ErrorBoundary above providers. Visitor is a startup preference-read failure; signed-in roles are reached from their verified live shell by visible Settings navigation with a transient preference-read failure. Signed-in role captures can legitimately be byte-identical."
+    },
+    {
+      "ids": [
+        "player-onboarding-team-list",
+        "player-onboarding-club-choice",
+        "player-onboarding-squad-choice",
+        "player-onboarding-create-team",
+        "mentor-onboarding-team-list",
+        "mentor-onboarding-club-choice",
+        "mentor-onboarding-squad-choice",
+        "mentor-onboarding-create-team"
+      ],
+      "note": "Actual onboarding Basics externalTeams context, not reused Profile screenshots. Entry agreement is evaluated separately for every ID against the requested source revision’s frozen inventory."
+    }
+  ],
+  "updated_at": "2026-09-24T08:20:18.105Z",
+  "unfinished": [],
+  "exact_entry_uncertified": [],
+  "reuse": [
+    {
+      "sha256": "90b84160d735a2bd3914ded1ff6c22d8da402daddfae7507ecc76dca5eb0c89f",
+      "members": [
+        {
+          "id": "visitor-bootstrap",
+          "width": 390,
+          "variant": "default",
+          "capture": "source-8685e11/shared-visitor-bootstrap-default-390.png"
+        },
+        {
+          "id": "player-bootstrap",
+          "width": 390,
+          "variant": "default",
+          "capture": "source-8685e11/shared-player-bootstrap-default-390.png"
+        },
+        {
+          "id": "coach-bootstrap",
+          "width": 390,
+          "variant": "default",
+          "capture": "source-8685e11/shared-coach-bootstrap-default-390.png"
+        },
+        {
+          "id": "mentor-bootstrap",
+          "width": 390,
+          "variant": "default",
+          "capture": "source-8685e11/shared-mentor-bootstrap-default-390.png"
+        }
+      ],
+      "explanation": "Independently captured real shared rendering produced identical bytes. Kept as genuine shared-component reuse; not fabricated as unique evidence."
+    },
+    {
+      "sha256": "a90c44042ff5e6db51aa14d1e7127bd58d7045a64df79217c5ea280e5d6a4f14",
+      "members": [
+        {
+          "id": "player-error-boundary",
+          "width": 390,
+          "variant": "default",
+          "capture": "source-8685e11/shared-player-error-boundary-default-390.png"
+        },
+        {
+          "id": "coach-error-boundary",
+          "width": 390,
+          "variant": "default",
+          "capture": "source-8685e11/shared-coach-error-boundary-default-390.png"
+        },
+        {
+          "id": "mentor-error-boundary",
+          "width": 390,
+          "variant": "default",
+          "capture": "source-8685e11/shared-mentor-error-boundary-default-390.png"
+        }
+      ],
+      "explanation": "Independently captured real shared rendering produced identical bytes. Kept as genuine shared-component reuse; not fabricated as unique evidence."
+    },
+    {
+      "sha256": "6b9c0e55dd7a34767558e4aebba61880182d0e881d9a82dfc10bcc2f3e6b3e74",
+      "members": [
+        {
+          "id": "player-onboarding-squad-choice",
+          "width": 390,
+          "variant": "default",
+          "capture": "source-8685e11/shared-player-onboarding-squad-choice-default-390.png"
+        },
+        {
+          "id": "mentor-onboarding-squad-choice",
+          "width": 390,
+          "variant": "default",
+          "capture": "source-8685e11/shared-mentor-onboarding-squad-choice-default-390.png"
+        }
+      ],
+      "explanation": "Independently captured real shared rendering produced identical bytes. Kept as genuine shared-component reuse; not fabricated as unique evidence."
+    },
+    {
+      "sha256": "573ecbcaf0a2bbdfec485f5861a0a48af447a217509e958515b0b216680595de",
+      "members": [
+        {
+          "id": "visitor-bootstrap",
+          "width": 1440,
+          "variant": "default",
+          "capture": "source-8685e11/shared-visitor-bootstrap-default-1440.png"
+        },
+        {
+          "id": "player-bootstrap",
+          "width": 1440,
+          "variant": "default",
+          "capture": "source-8685e11/shared-player-bootstrap-default-1440.png"
+        },
+        {
+          "id": "coach-bootstrap",
+          "width": 1440,
+          "variant": "default",
+          "capture": "source-8685e11/shared-coach-bootstrap-default-1440.png"
+        },
+        {
+          "id": "mentor-bootstrap",
+          "width": 1440,
+          "variant": "default",
+          "capture": "source-8685e11/shared-mentor-bootstrap-default-1440.png"
+        }
+      ],
+      "explanation": "Independently captured real shared rendering produced identical bytes. Kept as genuine shared-component reuse; not fabricated as unique evidence."
+    },
+    {
+      "sha256": "4b4bcc48a620234d4af8a3156b8dbb6f06a84c2e3b1037948ce0eeddf6234026",
+      "members": [
+        {
+          "id": "player-error-boundary",
+          "width": 1440,
+          "variant": "default",
+          "capture": "source-8685e11/shared-player-error-boundary-default-1440.png"
+        },
+        {
+          "id": "coach-error-boundary",
+          "width": 1440,
+          "variant": "default",
+          "capture": "source-8685e11/shared-coach-error-boundary-default-1440.png"
+        },
+        {
+          "id": "mentor-error-boundary",
+          "width": 1440,
+          "variant": "default",
+          "capture": "source-8685e11/shared-mentor-error-boundary-default-1440.png"
+        }
+      ],
+      "explanation": "Independently captured real shared rendering produced identical bytes. Kept as genuine shared-component reuse; not fabricated as unique evidence."
+    },
+    {
+      "sha256": "40f7be0fd22b5d59659e05f80575af248bbb44080c9f9aa8fa82f3d57d50d905",
+      "members": [
+        {
+          "id": "player-onboarding-squad-choice",
+          "width": 1440,
+          "variant": "default",
+          "capture": "source-8685e11/shared-player-onboarding-squad-choice-default-1440.png"
+        },
+        {
+          "id": "mentor-onboarding-squad-choice",
+          "width": 1440,
+          "variant": "default",
+          "capture": "source-8685e11/shared-mentor-onboarding-squad-choice-default-1440.png"
+        }
+      ],
+      "explanation": "Independently captured real shared rendering produced identical bytes. Kept as genuine shared-component reuse; not fabricated as unique evidence."
+    }
+  ],
+  "artifact_verification": {
+    "count": 76,
+    "sha256_and_dimensions_match": true
+  },
+  "completed_at": "2026-09-24T08:20:18.105Z"
+}

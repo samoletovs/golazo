@@ -1,0 +1,58 @@
+{
+  "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+  "kind": "independent-review-disposition-and-owner-decision",
+  "owner_decision": {
+    "at": "2026-09-23T18:19:11+03:00",
+    "accepted_preview_source": "4113f91a630285da4f78328f8a90ba3ecbf62cba",
+    "quote": "i think it is amaizing result already and for sure there is an improvement we can do so i like them and please process with them and finalize the design",
+    "scope": "Integrated Academy A accepted, with remaining finalization and release fixes authorized. This is not a claim the owner separately inspected each subsequent minor correction."
+  },
+  "reviews": [
+    {
+      "reviewer": "parent release reviewer, independent of golazo-design-directions implementation agent",
+      "scope": "Academy production changes against PR #10, including persistence helpers, role-aware routing, shared shell/dialogs, journal, progress, profile, learning, scope completeness and rendered screen-family composition.",
+      "evidence": "Inspected source and visible-control journeys; independently reran targeted persistence/role/import tests. Full existing suite subsequently passed 268 tests. Reviewed actual full-screen Home, Log, Progress, Learn and Profile compositions rather than accepting a homepage-only mockup.",
+      "limits": "The parent authored subsequent finalization fixes; those fixes received separate code-review-agent review."
+    },
+    {
+      "reviewer": "academy-focus-release-review",
+      "scope": "1efd378 measured navigation-height/document-scroll fix",
+      "disposition": "No significant issues found. Existing browser regression then passed with real 200% browser zoom and enlarged-text footer focus."
+    },
+    {
+      "reviewer": "academy-finalization-fix-review",
+      "scope": "Bounded exercise access, tournament disclosure, quiz feedback, workout totals and advice-label fixes",
+      "findings": [
+        "Preserve raw confidence skill ID separately from translated label.",
+        "Keep quiz feedback mounted when answering completes the daily routine."
+      ],
+      "disposition": "Both addressed with actual-caller and six-language regression tests."
+    },
+    {
+      "reviewer": "academy-resolved-findings-review / 730717a7-0ae4-4744-8bf0-979ad5b60786",
+      "scope": "Finalization findings, next-day quiz rollover, and source-declared shared-render/scope corrections",
+      "findings": [
+        "Key the retained quiz by its existing UTC date so tomorrow's question is not locked."
+      ],
+      "disposition": "Rollover corrected and actual-parent regression extended. Follow-up review reported no significant issues. Scope review retained all 220 IDs and reported no significant issues in shared-render declarations."
+    },
+    {
+      "reviewer": "independent evidence executors",
+      "scope": "Learning/social, calendar/import, profile/progress and shared role contexts",
+      "disposition": "Actual visible-control observations, hash/dimension checks and per-context reports are retained in source-8685e11. Executors did not modify application source. Their observations are not represented as real-user studies or independent aesthetic votes."
+    }
+  ],
+  "craft": {
+    "identity": "Pass: the approved cobalt/coral Academy identity, sporting data typography and original tactical/player graphics are carried beyond Home into learning, progress, identity and the shared shell.",
+    "composition": "Pass: task-specific desktop compositions replace the old narrow phone rail; phone/tablet layouts, long labels, real web-font rendering and the configured non-Windows font fallback were inspected.",
+    "cohesion": "Pass: all 220 inventoried role/entry contexts have current-source mobile/desktop evidence. Genuinely shared fallback/onboarding and consolidated Home contexts are explicitly declared, retain behavior proof and are not fabricated as different designs."
+  },
+  "unresolved_release_findings": [],
+  "known_nonblocking_limits": [
+    "Initial JavaScript remains large; loading optimization is tracked separately in golazo issue #9. No performance improvement, new budget pass or reduced byte count is claimed.",
+    "Synthetic fixtures and mocked service responses verify UI behavior, not authenticated production integration or real children.",
+    "Chromium on Windows, plus actual Inter/Outfit resource loading and configured font-fallback checks. No Safari, Firefox, screen-reader certification or representative-player usability study.",
+    "Existing evaluation API permissions are unchanged: ordinary player/mentor requests are denied. Authorized own-history capture retains existing managed-team entitlement after visible role switching.",
+    "The owner acceptance applies to the integrated direction and authorized finalization, not a newly invented approval for each screenshot."
+  ]
+}

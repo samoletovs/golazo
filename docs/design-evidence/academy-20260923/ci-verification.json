@@ -1,0 +1,404 @@
+{
+  "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+  "ci": {
+    "conclusion": "success",
+    "databaseId": 35974762446,
+    "event": "workflow_dispatch",
+    "headSha": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+    "jobs": [
+      {
+        "completedAt": "2026-09-24T08:22:37Z",
+        "conclusion": "success",
+        "databaseId": 107552533163,
+        "name": "quality",
+        "startedAt": "2026-09-24T08:21:35Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-09-24T08:21:37Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-09-24T08:21:36Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-24T08:21:40Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v5",
+            "number": 2,
+            "startedAt": "2026-09-24T08:21:37Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-24T08:21:40Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v6",
+            "number": 3,
+            "startedAt": "2026-09-24T08:21:40Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-24T08:21:43Z",
+            "conclusion": "success",
+            "name": "Test design evidence enforcement",
+            "number": 4,
+            "startedAt": "2026-09-24T08:21:40Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-24T08:21:43Z",
+            "conclusion": "skipped",
+            "name": "Require source-bound evidence for UI changes",
+            "number": 5,
+            "startedAt": "2026-09-24T08:21:43Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-24T08:21:45Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v5",
+            "number": 6,
+            "startedAt": "2026-09-24T08:21:43Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-24T08:21:49Z",
+            "conclusion": "success",
+            "name": "Install dependencies",
+            "number": 7,
+            "startedAt": "2026-09-24T08:21:45Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-24T08:22:03Z",
+            "conclusion": "success",
+            "name": "Lint",
+            "number": 8,
+            "startedAt": "2026-09-24T08:21:49Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-24T08:22:11Z",
+            "conclusion": "success",
+            "name": "Type check",
+            "number": 9,
+            "startedAt": "2026-09-24T08:22:03Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-24T08:22:25Z",
+            "conclusion": "success",
+            "name": "Test",
+            "number": 10,
+            "startedAt": "2026-09-24T08:22:11Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-24T08:22:25Z",
+            "conclusion": "success",
+            "name": "Validate football terminology",
+            "number": 11,
+            "startedAt": "2026-09-24T08:22:25Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-24T08:22:34Z",
+            "conclusion": "success",
+            "name": "Build source-stamped frontend",
+            "number": 12,
+            "startedAt": "2026-09-24T08:22:25Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-24T08:22:35Z",
+            "conclusion": "success",
+            "name": "Save exact-source validation preview",
+            "number": 13,
+            "startedAt": "2026-09-24T08:22:34Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-24T08:22:35Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@v5",
+            "number": 24,
+            "startedAt": "2026-09-24T08:22:35Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-24T08:22:35Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v6",
+            "number": 25,
+            "startedAt": "2026-09-24T08:22:35Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-24T08:22:36Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v5",
+            "number": 26,
+            "startedAt": "2026-09-24T08:22:35Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-24T08:22:36Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 27,
+            "startedAt": "2026-09-24T08:22:36Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/samoletovs/golazo/actions/runs/35974762446/job/107552533163"
+      },
+      {
+        "completedAt": "2026-09-24T08:21:33Z",
+        "conclusion": "skipped",
+        "databaseId": 107552534251,
+        "name": "close_pull_request",
+        "startedAt": "2026-09-24T08:21:34Z",
+        "status": "completed",
+        "steps": [],
+        "url": "https://github.com/samoletovs/golazo/actions/runs/35974762446/job/107552534251"
+      },
+      {
+        "completedAt": "2026-09-24T08:22:37Z",
+        "conclusion": "skipped",
+        "databaseId": 107552862616,
+        "name": "Build and Deploy",
+        "startedAt": "2026-09-24T08:22:37Z",
+        "status": "completed",
+        "steps": [],
+        "url": "https://github.com/samoletovs/golazo/actions/runs/35974762446/job/107552862616"
+      }
+    ],
+    "url": "https://github.com/samoletovs/golazo/actions/runs/35974762446",
+    "workflowName": "CI/CD"
+  },
+  "local_and_ci_assets_identical": true,
+  "assets": [
+    {
+      "path": "assets/AcademyDialog-NMkh3tWU.js",
+      "sha256": "b9af91cb1e7f74164c1b2004f6ae6dda8a892a181fbeb35f2659a226c52cd5fd",
+      "bytes": 1193
+    },
+    {
+      "path": "assets/AcademyPage-PxR7cSvk.js",
+      "sha256": "cdf08d36b11af31ae887d24aada7bdd75c8f1820e5ba0fd638c573eba8c241d0",
+      "bytes": 1077
+    },
+    {
+      "path": "assets/AcademySaved-B6zCvVtp.js",
+      "sha256": "81e844f35695f7cdcf8969f617e8f67a5ee668fe45447cef3cc73bdefaa943cf",
+      "bytes": 1067
+    },
+    {
+      "path": "assets/ActivityRecordDialog-BJQIO7XI.js",
+      "sha256": "843c2eea1ecd461e773439e660c40e0099227728141f170015749945f06542dd",
+      "bytes": 3935
+    },
+    {
+      "path": "assets/AnnouncementFeed-BXZO6wt9.js",
+      "sha256": "3b1bcfdc40b7ca0ef7703842959a1fadc9f6ce253c3b7df1f578b6c536aba894",
+      "bytes": 2036
+    },
+    {
+      "path": "assets/AnnouncementsPage-BS_NwmVc.js",
+      "sha256": "e358d7ac3b9406678c922a4dcc8bd75000299116d3d26f5cdaa6562c5d92e23f",
+      "bytes": 6299
+    },
+    {
+      "path": "assets/AppContext-nCvzOMgv.js",
+      "sha256": "fa9681988a5c3f99993ef205538ba0ff9dae38b67286cfcb6a617e3215554b49",
+      "bytes": 12806
+    },
+    {
+      "path": "assets/AttendanceGrid-B8PTN3H-.js",
+      "sha256": "1140670659ef14b94e665ed6560d00fa1b708aacf1d74d2f8e2c463f3a2bd25d",
+      "bytes": 4938
+    },
+    {
+      "path": "assets/challenges-BkSjQTpn.js",
+      "sha256": "cb01dccf0d17bee7e0e9de0763e4699b3f97db241ecb5f509be2fc84196959bd",
+      "bytes": 20334
+    },
+    {
+      "path": "assets/Challenges-DMGOuZwe.js",
+      "sha256": "5937c4cb29f549fcb84c337be287283fa998fa48a7115236b5088039eedac6cf",
+      "bytes": 9086
+    },
+    {
+      "path": "assets/charts-BAHzxo24.js",
+      "sha256": "99a44444fa7cce12cf60a86388a1775ebfed1782f8c0cdd9bdf8cce918a1e018",
+      "bytes": 396869
+    },
+    {
+      "path": "assets/CoachDashboard-DrcN7WZD.js",
+      "sha256": "5f33fc05287263c7da63c7f85967d52d5ea6bd4f4144573117d1799175d26f60",
+      "bytes": 2809
+    },
+    {
+      "path": "assets/CoachSquadFilter-D6oKvW7c.js",
+      "sha256": "0006f19e3bf34705cc9843d15deb84fb977c92a5526a94d569ff33ec381135ba",
+      "bytes": 1188
+    },
+    {
+      "path": "assets/CoachStatsPage-Cn2wkhX3.js",
+      "sha256": "8fdfc65848b5883cc4d184b463a0b9b53697fec63d8914f821f705db1eea33c0",
+      "bytes": 1183
+    },
+    {
+      "path": "assets/Dashboard-Dpqs4hCW.js",
+      "sha256": "3d9b14a32299557cbcd2676f952ce3e375ed4afc42944366c109e4b057657e68",
+      "bytes": 87126
+    },
+    {
+      "path": "assets/dateFormat-vhqAXN9W.js",
+      "sha256": "99e8a75a6479d99f3240f243134f29c96cc779db56f10480057cda52bfe0aca9",
+      "bytes": 159
+    },
+    {
+      "path": "assets/DiaryPage-Dl2z0SlU.js",
+      "sha256": "fd9b5bc15544b8e8b7782af1714248d081d18c90ef598efa199199b8f2e48f31",
+      "bytes": 5177
+    },
+    {
+      "path": "assets/EvaluationPage-DSGHS69x.js",
+      "sha256": "0ae828aa85df2bee909fed708ec3fb5e542a83c9429de4fef44911d5427e4a68",
+      "bytes": 7852
+    },
+    {
+      "path": "assets/Exercises-BZn-vEH6.js",
+      "sha256": "fb7d5a92097d2f4cc8f5584e0c98f3ca9e3399e81d6f94efeb7edb8a1c647649",
+      "bytes": 16523
+    },
+    {
+      "path": "assets/exercises-Ux6N0XSa.js",
+      "sha256": "0c12306e4d3e196d74df4ae63859205dd6f3a56cac151f3af20e2cf2ff7a224d",
+      "bytes": 9551
+    },
+    {
+      "path": "assets/FootballPortal-DBB5yZCu.js",
+      "sha256": "5c98341632987f3ad244d8639d18d8ec38507869c6de2d7fe4a0193ebde38694",
+      "bytes": 23777
+    },
+    {
+      "path": "assets/footballStandards-HFMLq1HR.js",
+      "sha256": "7d02d2e39a3b568f88e91664818149b9690ed2d5ec5b29d859dda4bbe3d2d287",
+      "bytes": 7716
+    },
+    {
+      "path": "assets/i18n-CRPEYGxM.js",
+      "sha256": "f919b04e465d066958e6930ab478bbb76f770256baa05232c1c79a6bde7e11e8",
+      "bytes": 45662
+    },
+    {
+      "path": "assets/index-BK6RRWqR.css",
+      "sha256": "dacd9a13ed1428480766b1c0582dfa4952e8f38d0fd3dc7b1a760e926a0f83f6",
+      "bytes": 55641
+    },
+    {
+      "path": "assets/index-CJW9FvId.js",
+      "sha256": "7f71fa89d20e418210585b413d0df715da8d47a1c71b9d9ffac81dd73cce535d",
+      "bytes": 927940
+    },
+    {
+      "path": "assets/LeaderboardPage-gjcn8Iop.js",
+      "sha256": "773ce0f4d547138d1b801e08e0edc943af3e2d12a02238ba6dea4de9373ff9eb",
+      "bytes": 9570
+    },
+    {
+      "path": "assets/LearnPage-Drfr_4Wh.js",
+      "sha256": "ac5dec9f090e55fc54e5bff82c75d640fa4ab6ac0818f9a5129871f298c7937e",
+      "bytes": 27415
+    },
+    {
+      "path": "assets/LogPage-DugiEmgM.js",
+      "sha256": "3009332953a7e52d1b9d1fc7f6e86ee8beeede9e386e479bef33c76d75118da7",
+      "bytes": 10741
+    },
+    {
+      "path": "assets/MatchLog-Lls5aEUk.js",
+      "sha256": "689db09152df401ba8dd24794f5f0a092d95336d326d3654f17ca271ffea4a15",
+      "bytes": 8279
+    },
+    {
+      "path": "assets/MentorDashboard-C-mPTlfg.js",
+      "sha256": "0dbae53d0b407661dd2f04ecd445f5b4f1b401cd209f477d6b108efa03a5a036",
+      "bytes": 11128
+    },
+    {
+      "path": "assets/PhysicalUpdateFlow-CzQ-XU2t.js",
+      "sha256": "a8dfb230bac7fb36b25b4d82eed60f7855fc450fbab569fb0b3c9dddbb040b34",
+      "bytes": 3046
+    },
+    {
+      "path": "assets/Profile-C4lk4D2E.js",
+      "sha256": "50a13c4c5a50cf9e400bf3c4b0b9b612750e9d61ea8a3dfbb9bda3435a3e016a",
+      "bytes": 28562
+    },
+    {
+      "path": "assets/ProgressPage-Bv5jtu47.js",
+      "sha256": "e5176b2d07539edc07b9fc0883865bc823a53d39c6c658bc916cbb780ebff6bc",
+      "bytes": 27806
+    },
+    {
+      "path": "assets/react-Clpx-5N5.js",
+      "sha256": "83248645de59a418503acf19c69e6be07881106975380af2ccc9682fcf45969d",
+      "bytes": 182114
+    },
+    {
+      "path": "assets/rolldown-runtime-hePW80VL.js",
+      "sha256": "580ad8c58061a4dde99bde0a56905e382f0568516ee2f5b84dbfb52085709021",
+      "bytes": 716
+    },
+    {
+      "path": "assets/SchedulePage-C0UCCs3Q.js",
+      "sha256": "e9c8ef05d0b2efe28ce96383fcb66e91cb295915e00bc79e3b15474fadf08983",
+      "bytes": 25228
+    },
+    {
+      "path": "assets/SettingsPage-Cy8bgFuH.js",
+      "sha256": "19f649c9ef82a41bd17843180abe7e73a5bfdfa4ddaf7d6755491a15ff0c1461",
+      "bytes": 5138
+    },
+    {
+      "path": "assets/SquadRoster-Cunfz6VA.js",
+      "sha256": "e56f9ba8c40e69d719ce7aa67ec0f09a68e70b1e5f5734c69e087862ff25a913",
+      "bytes": 5197
+    },
+    {
+      "path": "assets/SquadSaveStatus-CrlxLKkM.js",
+      "sha256": "951d7f9de9445975570a86e4cce899cdb812949ea0a3e2d58e6b303c9b6915e0",
+      "bytes": 1239
+    },
+    {
+      "path": "assets/TeamChallenges-D8GePQx_.js",
+      "sha256": "929b00bf68d2d04d142516e7b96b1cec22d542279d610e7ee7f40c41c144a593",
+      "bytes": 6166
+    },
+    {
+      "path": "assets/TournamentImport-CxPP7KNk.js",
+      "sha256": "53589e6f6207c6930004bccc7e022c68e0f9a081e6fb1c1cc43d227861c82a22",
+      "bytes": 12083
+    },
+    {
+      "path": "assets/TrainingLog-CSFmlTZg.js",
+      "sha256": "fa781caaf378b901ca81aff2fd987175414985bc603557981fb20c9e67e6810f",
+      "bytes": 6714
+    },
+    {
+      "path": "assets/TrainingPlanner-SU1ELGL0.js",
+      "sha256": "92df1270756c5dbda12c1a8fa4807556bf160c88a26bcb20731a39e00ad5deb6",
+      "bytes": 5657
+    },
+    {
+      "path": "assets/TrainingProgress-WZuVFQD_.js",
+      "sha256": "1e01c671498c9f20d41489c75f9c07cf6d2c21fe9b7128d9398cddef571e564f",
+      "bytes": 1070
+    }
+  ],
+  "scope": "Exact source quality-only CI and byte-identical local/CI frontend assets. Deployment deliberately skipped; production proof is separate."
+}

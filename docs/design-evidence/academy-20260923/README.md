@@ -1,4 +1,33 @@
-# Held Academy candidate evidence
+# Academy design evidence
+
+## Final reviewed candidate
+
+**Source:** `8685e11ed619cb736ce2ce7e9db2a67ee0001c8d`.
+The owner accepted the integrated app on 2026-09-23 and requested finalization.
+All **220 original surface IDs** now have current-source mobile/desktop evidence.
+The source inventory explicitly declares genuinely identical shared renderings;
+each role/entry still retains its own behavioral observations.
+
+- [Final review receipt](review.json) and [independent review/acceptance](final-review.json).
+- [Complete surface coverage](source-8685e11/coverage-candidate.json).
+- [Current gallery](index.html) and [real-font observations](source-8685e11/fonts-observations.json).
+- Full existing suite: **268 tests**; design-gate regressions: **16**.
+  Build, type-check, lint and terminology checks passed locally and in
+  [exact-source CI run 35974762446](https://github.com/samoletovs/golazo/actions/runs/35974762446).
+  Manual dispatch deliberately did not deploy.
+- All 44 JS/CSS assets from the local tested build and locked-dependency CI
+  artifact match byte-for-byte. Initial loading remains the separate
+  [issue #9](https://github.com/samoletovs/golazo/issues/9), not an optimization claim.
+- Repeated runtime/browser checks include native zoom, keyboard focus above
+  wrapped navigation, retained-input retry, exact-once local records, all roles,
+  ordinary denied versus authorized own-history evaluation contexts, and actual
+  web-font loading. Bounds and untested platforms remain explicit in the receipt.
+
+The reports below preserve the first held candidate and are **historical**, not
+substitutes for the final source. Deployment is recorded separately after the
+normal PR gates; these local observations do not assert authenticated live use.
+
+## Initial held candidate
 
 **Compiled source:** `4113f91a630285da4f78328f8a90ba3ecbf62cba`.
 No PR, merge, deployment or final design acceptance is asserted.

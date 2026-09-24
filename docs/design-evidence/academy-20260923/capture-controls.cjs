@@ -71,8 +71,9 @@ async function main() {
           ctx.fillStyle = '#ff9b7b'; ctx.beginPath(); ctx.arc(32, 32, 17, 0, Math.PI * 2); ctx.fill()
           return canvas.toDataURL('image/png').split(',')[1]
         })
+        if (!await upload.evaluate(element => element === document.activeElement)) throw Error(`Photo focus moved before activation: ${initialLanguage} ${width}`)
         const chooser = page.waitForEvent('filechooser')
-        await page.keyboard.press('Enter')
+        await upload.press('Enter')
         await (await chooser).setFiles({ name: 'synthetic-academy-mark.png', mimeType: 'image/png', buffer: Buffer.from(image, 'base64') })
         await page.waitForFunction(() => JSON.parse(localStorage.getItem('golazo-state')).profile.photoUrl?.startsWith('data:image/jpeg'))
         await snap('photo-upload')

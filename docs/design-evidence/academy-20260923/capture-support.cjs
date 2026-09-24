@@ -161,7 +161,7 @@ async function main() {
           await page.locator('.academy-goal-composer summary').click()
           await snap('goal-editor')
           await navigate('learn')
-          await page.getByRole('button', { name: labels['learn.exercises'], exact: true }).click()
+          await page.locator('[data-academy-surface="player-learn"] .schedule-tabs').getByRole('button', { name: labels['learn.exercises'], exact: true }).click()
           await page.locator('.academy-exercise-open').first().waitFor()
           await snap('exercise-library')
           await page.locator('.academy-exercise-open').first().click()
