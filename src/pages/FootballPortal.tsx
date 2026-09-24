@@ -119,10 +119,11 @@ function TournamentStandingsCard({ summary }: { summary: TournamentSummary }) {
         </div>
       </div>
 
-      {/* Match list (last 5) */}
       {matches.length > 0 && (
+        <details className="mt-3" data-academy-surface="tournament-detail">
+          <summary>{t('dashboard.matches')} ({matches.length})</summary>
         <div className="flex flex-col gap-1 mt-3 pt-3" style={{ borderTop: '1px solid var(--color-field-input)' }}>
-          {matches.slice(-5).reverse().map((m) => {
+          {[...matches].reverse().map((m) => {
             const result = getMatchResult(m)
             return (
               <div key={m.id} className="flex items-center gap-2 py-1.5">
@@ -138,6 +139,7 @@ function TournamentStandingsCard({ summary }: { summary: TournamentSummary }) {
             )
           })}
         </div>
+        </details>
       )}
     </div>
   )

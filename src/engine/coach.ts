@@ -171,38 +171,38 @@ function generateWellbeingInsight(
 
 function generateTechnicalInsight(tree: SkillTree, t: T): CoachInsight | null {
   const avg = categoryAverage(tree, 'technical')
-  const weak = weakestSubSkill(tree, 'technical')
+  const weak = t(`subSkills.${weakestSubSkill(tree, 'technical')}`, { defaultValue: t('skills.technical') })
   if (avg === 0) return null
 
   if (avg <= 3) {
-    return { category: 'technical', icon: '⚽', text: t('coach.insight.techBeginner', { subSkill: t(`subSkills.${weak}`) }) }
+    return { category: 'technical', icon: '⚽', text: t('coach.insight.techBeginner', { subSkill: weak }) }
   }
   if (avg <= 6) {
-    return { category: 'technical', icon: '⚽', text: t('coach.insight.techIntermediate', { subSkill: t(`subSkills.${weak}`) }) }
+    return { category: 'technical', icon: '⚽', text: t('coach.insight.techIntermediate', { subSkill: weak }) }
   }
-  return { category: 'technical', icon: '⚽', text: t('coach.insight.techAdvanced', { subSkill: t(`subSkills.${weak}`) }) }
+  return { category: 'technical', icon: '⚽', text: t('coach.insight.techAdvanced', { subSkill: weak }) }
 }
 
 function generatePhysicalInsight(tree: SkillTree, trainings: TrainingEntry[], t: T): CoachInsight | null {
   const avg = categoryAverage(tree, 'physical')
-  const weak = weakestSubSkill(tree, 'physical')
+  const weak = t(`subSkills.${weakestSubSkill(tree, 'physical')}`, { defaultValue: t('skills.physical') })
   const recentDays = recentTrainingDays(trainings)
 
   if (recentDays === 0) {
     return { category: 'physical', icon: '🏃', text: t('coach.insight.physInactive') }
   }
   if (avg <= 4) {
-    return { category: 'physical', icon: '🏃', text: t('coach.insight.physBuild', { subSkill: t(`subSkills.${weak}`) }) }
+    return { category: 'physical', icon: '🏃', text: t('coach.insight.physBuild', { subSkill: weak }) }
   }
   if (recentDays >= 5) {
     return { category: 'physical', icon: '🏃', text: t('coach.insight.physRecovery') }
   }
-  return { category: 'physical', icon: '🏃', text: t('coach.insight.physMaintain', { subSkill: t(`subSkills.${weak}`) }) }
+  return { category: 'physical', icon: '🏃', text: t('coach.insight.physMaintain', { subSkill: weak }) }
 }
 
 function generateTacticalInsight(tree: SkillTree, matches: MatchEntry[], t: T): CoachInsight | null {
   const avg = categoryAverage(tree, 'tactical')
-  const weak = weakestSubSkill(tree, 'tactical')
+  const weak = t(`subSkills.${weakestSubSkill(tree, 'tactical')}`, { defaultValue: t('skills.tactical') })
 
   if (matches.length === 0) {
     return { category: 'tactical', icon: '🧩', text: t('coach.insight.tacNoMatches') }
@@ -211,30 +211,31 @@ function generateTacticalInsight(tree: SkillTree, matches: MatchEntry[], t: T): 
   const recentRating = matches.slice(-5).reduce((s, m) => s + m.selfRating, 0) / Math.min(matches.length, 5)
 
   if (recentRating < 5) {
-    return { category: 'tactical', icon: '🧩', text: t('coach.insight.tacStruggling', { subSkill: t(`subSkills.${weak}`) }) }
+    return { category: 'tactical', icon: '🧩', text: t('coach.insight.tacStruggling', { subSkill: weak }) }
   }
   if (avg <= 5) {
-    return { category: 'tactical', icon: '🧩', text: t('coach.insight.tacDevelop', { subSkill: t(`subSkills.${weak}`) }) }
+    return { category: 'tactical', icon: '🧩', text: t('coach.insight.tacDevelop', { subSkill: weak }) }
   }
-  return { category: 'tactical', icon: '🧩', text: t('coach.insight.tacRefine', { subSkill: t(`subSkills.${weak}`) }) }
+  return { category: 'tactical', icon: '🧩', text: t('coach.insight.tacRefine', { subSkill: weak }) }
 }
 
 function generateMentalInsight(tree: SkillTree, matches: MatchEntry[], t: T): CoachInsight | null {
   const avg = categoryAverage(tree, 'mental')
-  const weak = weakestSubSkill(tree, 'mental')
+  const weakId = weakestSubSkill(tree, 'mental')
+  const weak = t(`subSkills.${weakId}`, { defaultValue: t('skills.mental') })
 
   if (avg === 0) return null
 
   // Check for confidence issues after losses
   const losses = recentLossStreak(matches)
-  if (losses >= 2 && weak === 'confidence') {
+  if (losses >= 2 && weakId === 'confidence') {
     return { category: 'mental', icon: '🎯', text: t('coach.insight.mentalConfidence') }
   }
 
   if (avg <= 4) {
-    return { category: 'mental', icon: '🎯', text: t('coach.insight.mentalBuild', { subSkill: t(`subSkills.${weak}`) }) }
+    return { category: 'mental', icon: '🎯', text: t('coach.insight.mentalBuild', { subSkill: weak }) }
   }
-  return { category: 'mental', icon: '🎯', text: t('coach.insight.mentalSharpen', { subSkill: t(`subSkills.${weak}`) }) }
+  return { category: 'mental', icon: '🎯', text: t('coach.insight.mentalSharpen', { subSkill: weak }) }
 }
 
 function generateKnowledgeInsight(tree: SkillTree, matches: MatchEntry[], trainings: TrainingEntry[], t: T): CoachInsight | null {

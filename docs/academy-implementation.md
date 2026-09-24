@@ -36,6 +36,13 @@ so focus scrolling accounts for the actual obstruction. The existing browser
 regression requires the focused footer link to remain fully above navigation;
 it is not satisfied by merely checking that the link receives focus.
 
+The final gap pass also connected the existing standalone exercise library to
+player navigation and made recorded tournament matches an inspectable disclosure.
+Daily-quiz answers remain visible after answering, fully timed workouts display
+the sum of their existing sections, and local advice uses the translated skill
+category when a more specific sub-skill translation does not exist. These changes
+do not add exercises, alter workout prescriptions or change stored record formats.
+
 ## Behavior and truthfulness
 
 - No backend endpoint, authentication contract or persisted product schema was

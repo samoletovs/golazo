@@ -30,6 +30,7 @@ export function secondaryNavigation(role: AccountRole = 'player'): NavigationIte
   return [
     { page: 'schedule', label: 'nav.schedule', icon: 'schedule' },
     { page: 'portal', label: 'nav.portal', icon: 'match' },
+    { page: 'exercises', label: 'learn.exercises', icon: 'learn' },
     { page: 'challenges', label: 'nav.challenges', icon: 'trophy' },
     { page: 'leaderboard', label: 'leaderboard.title', icon: 'team' },
     settings,

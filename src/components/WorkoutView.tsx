@@ -24,6 +24,9 @@ export function WorkoutView({ weekNumber, weekFocusKey, day, onComplete, isCompl
   const { t } = useTranslation()
   const [showRating, setShowRating] = useState(false)
   const [rating, setRating] = useState<1 | 2 | 3 | 4 | 5 | null>(null)
+  const duration = day.exercises.every(exercise => exercise.durationMin !== undefined && !(exercise.sets && exercise.reps))
+    ? day.warmup.durationMin + day.exercises.reduce((minutes, exercise) => minutes + (exercise.durationMin ?? 0), 0) + (day.cooldown?.durationMin ?? 0)
+    : day.totalDurationMin
 
   function handleComplete() {
     if (rating) {
@@ -50,7 +53,7 @@ export function WorkoutView({ weekNumber, weekFocusKey, day, onComplete, isCompl
           {t('prog.weekLabel', { n: weekNumber })} · {t('prog.dayLabel', { n: day.dayNumber })}
         </span>
         <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
-          {day.totalDurationMin} {t('learn.minutes')}
+          {duration} {t('learn.minutes')}
         </span>
       </div>
 
