@@ -8,9 +8,16 @@ TypeScript + Vite + Tailwind CSS 4. Azure Functions API + Cosmos DB backend with
 offline-first data sync.
 
 Canonical design context: [`.impeccable.md`](.impeccable.md). It records the
-confirmed audience, approved Clubhouse/cobalt-coral direction, post-training
-journey and healthy-motivation principles. The historical concepts in
-`docs/design-directions/training-20260922/` do not approve a production redesign.
+confirmed audience, Football academy character, cobalt/coral palette, whole-app
+scope and healthy-motivation principles. The owner rejected the first slice's
+visual quality and incomplete application scope after PR #10. Current concepts
+in `docs/design-directions/academy-20260922/` preserve the comparison. On
+2026-09-23 the owner selected A, Academy weekboard, for full real-app
+implementation. After reviewing the compiled real-app preview, the owner
+accepted the integrated Academy result on 2026-09-23 at 18:19 +03:00 and asked
+to finalize it. See the brief for the exact source and decision. Earlier
+functional checks are not whole-app design acceptance or proof of complete
+surface verification.
 
 ## Build & verify
 
@@ -27,7 +34,8 @@ npm test         # vitest
 src/
 ├── App.tsx                    # Main app — page routing + layout
 ├── main.tsx                   # Entry point + i18n init
-├── index.css                  # Design tokens + Tailwind + utility classes
+├── index.css                  # Academy tokens, responsive shell and shared controls
+├── academy/navigation.ts      # Typed role-aware navigation
 ├── engine/                    # Game logic (XP, skills, types)
 │   ├── types.ts               # All TypeScript types/interfaces
 │   ├── xp.ts                  # XP/level/streak calculations
@@ -39,22 +47,22 @@ src/
 │   ├── AppContext.tsx          # Global state + localStorage + API sync
 │   └── AuthContext.tsx         # Google OAuth via SWA
 ├── components/                # Reusable UI components
-│   ├── BottomNav.tsx           # Mobile bottom navigation (5 tabs)
-│   ├── XpBar.tsx               # XP/level/streak header bar
+│   ├── academy/               # Shared page, dialog, shell and tactical primitives
 │   ├── QuoteCard.tsx           # Daily quote display
 │   ├── SkillRadar.tsx          # SVG spider chart
 │   ├── CoachCard.tsx           # AI Coach recommendation card
 │   ├── VideoPlayer.tsx         # YouTube embed for exercises
 │   └── FeedbackButton.tsx      # i18n feedback form
 ├── pages/                     # Page-level components
-│   ├── Dashboard.tsx           # Home — stats, quote, AI coach, radar
+│   ├── Dashboard.tsx           # Academy weekboard, recorded season and practice
 │   ├── LogPage.tsx             # Log selector (training/match/diary/tournament)
 │   ├── TrainingLog.tsx         # Training entry form
 │   ├── MatchLog.tsx            # Match entry form with tap counters
 │   ├── ProgressPage.tsx        # Charts: XP, matches, training, skills, physical
 │   ├── Exercises.tsx           # Exercise library with video embed
 │   ├── Challenges.tsx          # Daily/weekly/special challenges
-│   ├── Profile.tsx             # FIFA-style card + language selector
+│   ├── Profile.tsx             # Academy identity, teams, goals and physical history
+│   ├── SettingsPage.tsx        # Language, theme, role and account controls
 │   ├── LeaderboardPage.tsx     # Friend leaderboard with invite codes
 │   ├── SchedulePage.tsx        # Calendar of upcoming events
 │   ├── LoginPage.tsx           # Google OAuth entry
@@ -77,27 +85,6 @@ api/
         ├── leaderboard.js      # GET friend leaderboard
         └── coach.js            # POST AI coaching (Azure OpenAI)
 ```
-│   └── AppContext.tsx          # Global state + localStorage persistence
-├── components/                # Reusable UI components
-│   ├── BottomNav.tsx           # Mobile bottom navigation
-│   ├── XpBar.tsx               # XP/level/streak header bar
-│   ├── QuoteCard.tsx           # Daily quote display
-│   └── SkillRadar.tsx          # SVG spider chart
-├── pages/                     # Page-level components
-│   ├── Dashboard.tsx           # Home — stats, quote, radar, matches
-│   ├── LogPage.tsx             # Log selector (training/match/diary/tournament)
-│   ├── TrainingLog.tsx         # Training entry form
-│   ├── MatchLog.tsx            # Match entry form with tap counters
-│   ├── Exercises.tsx           # Exercise library browser
-│   ├── Challenges.tsx          # Daily/weekly/special challenges
-│   └── Profile.tsx             # FIFA-style card + language selector
-└── i18n/                      # Internationalization
-    ├── index.ts                # i18next config
-    ├── ru.json                 # Russian (primary)
-    ├── lv.json                 # Latvian
-    ├── en.json                 # English
-    └── es.json                 # Spanish
-```
 
 ## Conventions
 
@@ -107,7 +94,7 @@ api/
 - Tailwind CSS 4 + CSS custom properties for design tokens
 - Mobile-first: 375px primary breakpoint
 - i18n: all user-facing strings via react-i18next
-- State: React Context + localStorage (no backend yet)
+- State: React Context + localStorage with offline-first API synchronization; a local save is not server confirmation
 - Touch targets: minimum 44px
 - Accessibility: aria-labels on all interactive elements
 
@@ -115,7 +102,13 @@ api/
 
 Use [the canonical design brief](.impeccable.md), not the historical conflicting
 light/dark or commercial-game recipes previously recorded here.
-Production changes are bounded to the approved player training slice.
+The current task is the complete A implementation across `.design-scope.json`.
+Do not reduce it to one feature or silently leave routes/roles on a legacy shell.
+Preserve backend/auth/data schemas and behavior. The integrated direction is
+accepted; finalization must complete independent review and source-bound surface
+verification before opening a ready PR. Use the normal checked merge and
+deployment process; do not bypass a failing gate or treat owner acceptance as
+certification of untested behavior.
 Preserve the conventions above when implementing production UI; the standalone
 synthetic concepts are explicitly outside the production React/i18n pipeline.
 

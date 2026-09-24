@@ -1,0 +1,289 @@
+{
+  "kind": "held-concept-checkpoint-not-redesign-delivery",
+  "source_commit": "7a6843dacedd1beca6c9725241f214b697f9e4aa",
+  "production_base": "1a0b81b80ca7c0bdf73b1074a8c5bc7fdbb8dcfc",
+  "governance_reference": "c541f55d0196caa8ac03bfc0f1c2ec334a8a0a22",
+  "owner_choice": "PENDING between new whole-app compositions",
+  "character": "Football academy; cobalt/coral neutrals; players 10–14 with parent support",
+  "coverage": {
+    "tsx_files": 73,
+    "import_graph_files": 65,
+    "unimported_files": 8,
+    "surface_groups": 60,
+    "representative_interactive": 29,
+    "individually_mapped": 31,
+    "primary_tabs": [
+      "Home",
+      "Log",
+      "Progress",
+      "Learn",
+      "Profile"
+    ],
+    "production_unchanged": true
+  },
+  "verification": {
+    "node_model_and_inventory_tests": 9,
+    "browser_observations": 124,
+    "html_contrast_samples": 104,
+    "minimum_measured_html_text_contrast": 5.4941860760290675,
+    "screenshots": 104,
+    "languages": [
+      "lv",
+      "en"
+    ],
+    "viewports": [
+      {
+        "width": 320,
+        "height": 844
+      },
+      {
+        "width": 390,
+        "height": 844
+      },
+      {
+        "width": 768,
+        "height": 1000
+      },
+      {
+        "width": 1024,
+        "height": 900
+      },
+      {
+        "width": 1440,
+        "height": 1000
+      }
+    ],
+    "text_enlargement": "200% root text checked in sparse Home for each direction/language",
+    "reduced_motion": "Browser contexts used reduce; no always-on ambient motion",
+    "network": "Only local concept resources; no API/auth/external requests",
+    "persistence": "No localStorage/sessionStorage; reload resets",
+    "editor_diagnostics": "External problems tool timed out; Node syntax/model and real browser checks were used instead",
+    "calendar_word_layout": [
+      {
+        "direction": "a",
+        "language": "lv",
+        "page": "home",
+        "viewport": "desktop",
+        "contentWidth": 1152,
+        "compact": false,
+        "cells": 7,
+        "brokenWords": [],
+        "clippedWords": []
+      },
+      {
+        "direction": "a",
+        "language": "lv",
+        "page": "home",
+        "viewport": "tablet-landscape",
+        "contentWidth": 796,
+        "compact": true,
+        "cells": 7,
+        "brokenWords": [],
+        "clippedWords": []
+      },
+      {
+        "direction": "a",
+        "language": "lv",
+        "page": "home",
+        "viewport": "tablet-portrait",
+        "contentWidth": 704,
+        "compact": true,
+        "cells": 7,
+        "brokenWords": [],
+        "clippedWords": []
+      },
+      {
+        "direction": "a",
+        "language": "lv",
+        "page": "home",
+        "viewport": "mobile",
+        "contentWidth": 350,
+        "compact": true,
+        "cells": 7,
+        "brokenWords": [],
+        "clippedWords": []
+      },
+      {
+        "direction": "a",
+        "language": "lv",
+        "page": "home",
+        "viewport": "narrow",
+        "contentWidth": 280,
+        "compact": true,
+        "cells": 7,
+        "brokenWords": [],
+        "clippedWords": []
+      },
+      {
+        "direction": "a",
+        "language": "lv",
+        "page": "schedule",
+        "viewport": 768,
+        "contentWidth": 704,
+        "compact": true,
+        "cells": 7,
+        "brokenWords": [],
+        "clippedWords": []
+      },
+      {
+        "direction": "a",
+        "language": "lv",
+        "page": "schedule",
+        "viewport": 1024,
+        "contentWidth": 796,
+        "compact": true,
+        "cells": 7,
+        "brokenWords": [],
+        "clippedWords": []
+      },
+      {
+        "direction": "a",
+        "language": "en",
+        "page": "home",
+        "viewport": "desktop",
+        "contentWidth": 1152,
+        "compact": false,
+        "cells": 7,
+        "brokenWords": [],
+        "clippedWords": []
+      },
+      {
+        "direction": "a",
+        "language": "en",
+        "page": "home",
+        "viewport": "tablet-landscape",
+        "contentWidth": 796,
+        "compact": true,
+        "cells": 7,
+        "brokenWords": [],
+        "clippedWords": []
+      },
+      {
+        "direction": "a",
+        "language": "en",
+        "page": "home",
+        "viewport": "tablet-portrait",
+        "contentWidth": 704,
+        "compact": true,
+        "cells": 7,
+        "brokenWords": [],
+        "clippedWords": []
+      },
+      {
+        "direction": "a",
+        "language": "en",
+        "page": "home",
+        "viewport": "mobile",
+        "contentWidth": 350,
+        "compact": true,
+        "cells": 7,
+        "brokenWords": [],
+        "clippedWords": []
+      },
+      {
+        "direction": "a",
+        "language": "en",
+        "page": "home",
+        "viewport": "narrow",
+        "contentWidth": 280,
+        "compact": true,
+        "cells": 7,
+        "brokenWords": [],
+        "clippedWords": []
+      },
+      {
+        "direction": "a",
+        "language": "en",
+        "page": "schedule",
+        "viewport": 768,
+        "contentWidth": 704,
+        "compact": true,
+        "cells": 7,
+        "brokenWords": [],
+        "clippedWords": []
+      },
+      {
+        "direction": "a",
+        "language": "en",
+        "page": "schedule",
+        "viewport": 1024,
+        "contentWidth": 796,
+        "compact": true,
+        "cells": 7,
+        "brokenWords": [],
+        "clippedWords": []
+      },
+      {
+        "direction": "b",
+        "language": "lv",
+        "page": "schedule",
+        "viewport": 768,
+        "contentWidth": 257.609375,
+        "compact": true,
+        "cells": 7,
+        "brokenWords": [],
+        "clippedWords": []
+      },
+      {
+        "direction": "b",
+        "language": "lv",
+        "page": "schedule",
+        "viewport": 1024,
+        "contentWidth": 360,
+        "compact": true,
+        "cells": 7,
+        "brokenWords": [],
+        "clippedWords": []
+      },
+      {
+        "direction": "b",
+        "language": "en",
+        "page": "schedule",
+        "viewport": 768,
+        "contentWidth": 257.609375,
+        "compact": true,
+        "cells": 7,
+        "brokenWords": [],
+        "clippedWords": []
+      },
+      {
+        "direction": "b",
+        "language": "en",
+        "page": "schedule",
+        "viewport": 1024,
+        "contentWidth": 360,
+        "compact": true,
+        "cells": 7,
+        "brokenWords": [],
+        "clippedWords": []
+      }
+    ],
+    "score_text": "Browser-visible and DOM text is exactly 2 : 1; redundant hidden dash removed"
+  },
+  "limits": [
+    "Standalone synthetic concepts, not production",
+    "No real-user observation",
+    "No independent aesthetic approval in this run",
+    "Mapped treatments are not implemented production flows",
+    "Chromium and installed local fonts only",
+    "No native browser-zoom claim"
+  ],
+  "contacts": [
+    "contact-sheet-lv.png",
+    "contact-sheet-en.png"
+  ],
+  "decision": "Still held for owner comparison. Technical checks and a selected character do not establish aesthetic acceptance; no approval receipt, PR or deployment.",
+  "visual_revision": [
+    "Compact review controls and shorter task-led headings make the application visible at phone scale.",
+    "The seven-day overview and today training action sit together.",
+    "Practice graphics distinguish receiving, wall passing and turning instead of repeating full-pitch diagrams.",
+    "Journal entry tools, recorded-progress sheet and identity credential are composed for their actual tasks.",
+    "The six-week total is computed from existing dated fixture records; no ability KPI or recommendation API is invented."
+  ],
+  "prior_evidence": {
+    "commit": "d75c40985d10ebc14285657d38f9ab5490fe6cdd",
+    "source": "485a4df6e5483f4656c37b79b59fc19da330ce78",
+    "preservation": "Original files and hashes retained unchanged in Git history; not relabelled"
+  },
+  "bounded_correction": "A tablet navigation reflows at 768px; week labels depend on actual container width and switch to compact dates with full day drillthroughs at 768/1024. Full labels remain on wide desktop. No clipped or split visible calendar words in the measured EN/LV cases."
+}

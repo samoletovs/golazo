@@ -1,3 +1,4 @@
+import { AcademyDialog } from './academy/AcademyDialog'
 import { useState, useEffect, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
@@ -8,7 +9,7 @@ import type { SharedTeam, ManagedTeam, PlayerTeam, CoachRole, Position } from '.
  * Unified team picker used by ALL roles:
  * - player/mentor: pick teams to play for (with position)
  * - coach: pick teams to manage (with coach role)
- * 
+ *
  * 3-step wizard: My Teams → Select Club → Add Teams
  */
 
@@ -287,23 +288,12 @@ export function TeamPicker({ mode, onClose, externalTeams, onTeamsChange, countr
   const title = mode === 'coach' ? t('coach.onboarding.selectSquads') : t('teams.title')
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center"
-      style={{ background: 'rgba(0,0,0,0.5)' }}
-      onClick={(e) => { if (e.target === e.currentTarget) onClose() }}>
-      <div className="app-shell w-full rounded-t-2xl sm:rounded-2xl animate-fade-up"
-        style={{ maxHeight: '90dvh', overflowY: 'auto', background: 'var(--color-glass, #fff)' }}>
+    <AcademyDialog surface={`team-picker-${view}`} title={title} onClose={onClose} wide>
+      <div className="academy-dialog-flow">
 
         {/* ═══ VIEW 1: My Teams ═══ */}
         {view === 'my-teams' && (
           <>
-            <div className="sticky top-0 z-10 px-5 pt-5 pb-3" style={{ background: 'var(--color-glass, #fff)' }}>
-              <div className="flex items-center justify-between mb-1">
-                <h3 className="text-lg font-extrabold heading-display">
-                  {mode === 'coach' ? '📋' : '⚽'} {title}
-                </h3>
-                <button onClick={onClose} className="tap-target text-xl" aria-label={t('common.close')}>✕</button>
-              </div>
-            </div>
             <div className="px-5 pb-5">
               {squadsByClub.length > 0 ? (
                 <div className="flex flex-col gap-4">
@@ -534,7 +524,7 @@ export function TeamPicker({ mode, onClose, externalTeams, onTeamsChange, countr
                 {mode === 'player' && (
                   <div className="mb-3">
                     <p className="text-xs font-bold mb-1.5" style={{ color: 'var(--color-text-secondary)' }}>
-                      {t('onboarding.position')}
+                      {t('onboarding.positions')}
                     </p>
                     <div className="flex flex-wrap gap-1.5">
                       {POSITION_OPTIONS.map(({ key, emoji }) => {
@@ -587,6 +577,6 @@ export function TeamPicker({ mode, onClose, externalTeams, onTeamsChange, countr
         <AddTeamDialog initialName={addTeamName} defaultCountry={profile?.country}
           onAdd={handleNewTeamAdded} onCancel={() => setAddTeamName(null)} />
       )}
-    </div>
+    </AcademyDialog>
   )
 }

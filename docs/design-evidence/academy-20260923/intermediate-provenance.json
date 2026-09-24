@@ -1,0 +1,67 @@
+{
+  "kind": "local-intermediate-capture-provenance",
+  "current_source": "4113f91a630285da4f78328f8a90ba3ecbf62cba",
+  "limits": "Archives remain in the isolated checkout, with original source names and reports; only final-source captures are published here.",
+  "archives": [
+    {
+      "meaning": "Intermediate implementation observation, not current UI evidence",
+      "local_archive": ".test-artifacts/academy-history-source-000c9cf",
+      "png_files": 96,
+      "source_commit": "000c9cf24c8a3bea2fa71b6dd4be6ff812e9697d"
+    },
+    {
+      "meaning": "Intermediate implementation observation, not current UI evidence",
+      "local_archive": ".test-artifacts/academy-history-source-2c6f57c",
+      "png_files": 156,
+      "source_commit": "2c6f57c8540c25aa88edabf2524e9b28718a4a15"
+    },
+    {
+      "meaning": "Intermediate implementation observation, not current UI evidence",
+      "local_archive": ".test-artifacts/academy-history-source-39e7ce1",
+      "png_files": 116,
+      "source_commit": "39e7ce1bb748d060c4bab865ee0f55bcddaad90c"
+    },
+    {
+      "meaning": "Intermediate implementation observation, not current UI evidence",
+      "local_archive": ".test-artifacts/academy-history-source-63dc226",
+      "png_files": 88,
+      "source_commit": "63dc226cd8a2279234cd99bd1e1b1333c346a8e4"
+    },
+    {
+      "meaning": "Intermediate implementation observation, not current UI evidence",
+      "local_archive": ".test-artifacts/academy-history-source-64ea032",
+      "png_files": 30,
+      "source_commit": "64ea032c2074ea604a1e769ed03bddf0c951922a"
+    },
+    {
+      "meaning": "Intermediate implementation observation, not current UI evidence",
+      "local_archive": ".test-artifacts/academy-history-source-79030bf",
+      "png_files": 248,
+      "source_commit": "79030bfbccd580cbd16a6c2fdf60eb8ad670e032"
+    },
+    {
+      "meaning": "Intermediate implementation observation, not current UI evidence",
+      "local_archive": ".test-artifacts/academy-history-source-87c15ef",
+      "png_files": 412,
+      "source_commit": "87c15efba9af3a0d1ba8f4864e697fc463b6aecc"
+    },
+    {
+      "meaning": "Intermediate implementation observation, not current UI evidence",
+      "local_archive": ".test-artifacts/academy-history-source-8c12afc",
+      "png_files": 116,
+      "source_commit": "8c12afc0720ff95dae37cdfd5a155df90bfec0cb"
+    },
+    {
+      "meaning": "Intermediate implementation observation, not current UI evidence",
+      "local_archive": ".test-artifacts/academy-history-source-d30378e",
+      "png_files": 456,
+      "source_commit": "d30378e692be06d4d50ca152132ce91265f885a7"
+    },
+    {
+      "meaning": "Intermediate implementation observation, not current UI evidence",
+      "local_archive": ".test-artifacts/academy-history-source-ece8b92",
+      "png_files": 116,
+      "source_commit": "ece8b925624ad80fe03d76abd1745066c7ca4a7c"
+    }
+  ]
+}

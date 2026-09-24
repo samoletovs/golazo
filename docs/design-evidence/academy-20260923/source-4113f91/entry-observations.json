@@ -1,0 +1,1488 @@
+{
+  "source_commit": "4113f91a630285da4f78328f8a90ba3ecbf62cba",
+  "kind": "synthetic-entry-and-tournament-observations-not-review",
+  "observations": [
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "surface": "visitor-sign-in",
+      "capture": "entry-player-en-visitor-sign-in-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "surface": "role-choice",
+      "capture": "entry-player-en-role-choice-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "surface": "onboarding-basics",
+      "capture": "entry-player-en-onboarding-basics-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "surface": "onboarding-football",
+      "capture": "entry-player-en-onboarding-football-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "surface": "onboarding-physical",
+      "capture": "entry-player-en-onboarding-physical-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "surface": "onboarding-assessment",
+      "capture": "entry-player-en-onboarding-assessment-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "surface": "onboarding-ready",
+      "capture": "entry-player-en-onboarding-ready-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "surface": "team-list",
+      "capture": "entry-player-en-team-list-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "surface": "club-choice",
+      "capture": "entry-player-en-club-choice-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "surface": "squad-choice",
+      "capture": "entry-player-en-squad-choice-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "surface": "create-team",
+      "capture": "entry-player-en-create-team-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "surface": "duplicate-team-choice",
+      "capture": "entry-player-en-duplicate-team-choice-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "surface": "tournament-import",
+      "capture": "entry-player-en-tournament-import-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "surface": "tournament-team-choice",
+      "capture": "entry-player-en-tournament-team-choice-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "surface": "tournament-preview",
+      "capture": "entry-player-en-tournament-preview-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "surface": "tournament-result",
+      "capture": "entry-player-en-tournament-result-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 1440,
+      "surface": "visitor-sign-in",
+      "capture": "entry-player-en-visitor-sign-in-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 1440,
+      "surface": "role-choice",
+      "capture": "entry-player-en-role-choice-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 1440,
+      "surface": "onboarding-basics",
+      "capture": "entry-player-en-onboarding-basics-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 1440,
+      "surface": "onboarding-football",
+      "capture": "entry-player-en-onboarding-football-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 1440,
+      "surface": "onboarding-physical",
+      "capture": "entry-player-en-onboarding-physical-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 1440,
+      "surface": "onboarding-assessment",
+      "capture": "entry-player-en-onboarding-assessment-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 1440,
+      "surface": "onboarding-ready",
+      "capture": "entry-player-en-onboarding-ready-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 1440,
+      "surface": "team-list",
+      "capture": "entry-player-en-team-list-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 1440,
+      "surface": "club-choice",
+      "capture": "entry-player-en-club-choice-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 1440,
+      "surface": "squad-choice",
+      "capture": "entry-player-en-squad-choice-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 1440,
+      "surface": "create-team",
+      "capture": "entry-player-en-create-team-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 1440,
+      "surface": "duplicate-team-choice",
+      "capture": "entry-player-en-duplicate-team-choice-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 1440,
+      "surface": "tournament-import",
+      "capture": "entry-player-en-tournament-import-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 1440,
+      "surface": "tournament-team-choice",
+      "capture": "entry-player-en-tournament-team-choice-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 1440,
+      "surface": "tournament-preview",
+      "capture": "entry-player-en-tournament-preview-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 1440,
+      "surface": "tournament-result",
+      "capture": "entry-player-en-tournament-result-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 390,
+      "surface": "visitor-sign-in",
+      "capture": "entry-player-lv-visitor-sign-in-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 390,
+      "surface": "role-choice",
+      "capture": "entry-player-lv-role-choice-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 390,
+      "surface": "onboarding-basics",
+      "capture": "entry-player-lv-onboarding-basics-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 390,
+      "surface": "onboarding-football",
+      "capture": "entry-player-lv-onboarding-football-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 390,
+      "surface": "onboarding-physical",
+      "capture": "entry-player-lv-onboarding-physical-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 390,
+      "surface": "onboarding-assessment",
+      "capture": "entry-player-lv-onboarding-assessment-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 390,
+      "surface": "onboarding-ready",
+      "capture": "entry-player-lv-onboarding-ready-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 390,
+      "surface": "team-list",
+      "capture": "entry-player-lv-team-list-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 390,
+      "surface": "club-choice",
+      "capture": "entry-player-lv-club-choice-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 390,
+      "surface": "squad-choice",
+      "capture": "entry-player-lv-squad-choice-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 390,
+      "surface": "create-team",
+      "capture": "entry-player-lv-create-team-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 390,
+      "surface": "duplicate-team-choice",
+      "capture": "entry-player-lv-duplicate-team-choice-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 390,
+      "surface": "tournament-import",
+      "capture": "entry-player-lv-tournament-import-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 390,
+      "surface": "tournament-team-choice",
+      "capture": "entry-player-lv-tournament-team-choice-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 390,
+      "surface": "tournament-preview",
+      "capture": "entry-player-lv-tournament-preview-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 390,
+      "surface": "tournament-result",
+      "capture": "entry-player-lv-tournament-result-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 1440,
+      "surface": "visitor-sign-in",
+      "capture": "entry-player-lv-visitor-sign-in-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 1440,
+      "surface": "role-choice",
+      "capture": "entry-player-lv-role-choice-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 1440,
+      "surface": "onboarding-basics",
+      "capture": "entry-player-lv-onboarding-basics-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 1440,
+      "surface": "onboarding-football",
+      "capture": "entry-player-lv-onboarding-football-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 1440,
+      "surface": "onboarding-physical",
+      "capture": "entry-player-lv-onboarding-physical-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 1440,
+      "surface": "onboarding-assessment",
+      "capture": "entry-player-lv-onboarding-assessment-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 1440,
+      "surface": "onboarding-ready",
+      "capture": "entry-player-lv-onboarding-ready-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 1440,
+      "surface": "team-list",
+      "capture": "entry-player-lv-team-list-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 1440,
+      "surface": "club-choice",
+      "capture": "entry-player-lv-club-choice-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 1440,
+      "surface": "squad-choice",
+      "capture": "entry-player-lv-squad-choice-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 1440,
+      "surface": "create-team",
+      "capture": "entry-player-lv-create-team-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 1440,
+      "surface": "duplicate-team-choice",
+      "capture": "entry-player-lv-duplicate-team-choice-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 1440,
+      "surface": "tournament-import",
+      "capture": "entry-player-lv-tournament-import-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 1440,
+      "surface": "tournament-team-choice",
+      "capture": "entry-player-lv-tournament-team-choice-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 1440,
+      "surface": "tournament-preview",
+      "capture": "entry-player-lv-tournament-preview-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 1440,
+      "surface": "tournament-result",
+      "capture": "entry-player-lv-tournament-result-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 390,
+      "surface": "onboarding-basics",
+      "capture": "entry-coach-en-onboarding-basics-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 390,
+      "surface": "onboarding-ready",
+      "capture": "entry-coach-en-onboarding-ready-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 390,
+      "surface": "team-list",
+      "capture": "entry-coach-en-team-list-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 390,
+      "surface": "club-choice",
+      "capture": "entry-coach-en-club-choice-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 390,
+      "surface": "squad-choice",
+      "capture": "entry-coach-en-squad-choice-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 390,
+      "surface": "create-team",
+      "capture": "entry-coach-en-create-team-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 390,
+      "surface": "duplicate-team-choice",
+      "capture": "entry-coach-en-duplicate-team-choice-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 390,
+      "surface": "tournament-import",
+      "capture": "entry-coach-en-tournament-import-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 390,
+      "surface": "tournament-team-choice",
+      "capture": "entry-coach-en-tournament-team-choice-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 390,
+      "surface": "tournament-preview",
+      "capture": "entry-coach-en-tournament-preview-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 390,
+      "surface": "tournament-result",
+      "capture": "entry-coach-en-tournament-result-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 1440,
+      "surface": "onboarding-basics",
+      "capture": "entry-coach-en-onboarding-basics-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 1440,
+      "surface": "onboarding-ready",
+      "capture": "entry-coach-en-onboarding-ready-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 1440,
+      "surface": "team-list",
+      "capture": "entry-coach-en-team-list-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 1440,
+      "surface": "club-choice",
+      "capture": "entry-coach-en-club-choice-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 1440,
+      "surface": "squad-choice",
+      "capture": "entry-coach-en-squad-choice-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 1440,
+      "surface": "create-team",
+      "capture": "entry-coach-en-create-team-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 1440,
+      "surface": "duplicate-team-choice",
+      "capture": "entry-coach-en-duplicate-team-choice-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 1440,
+      "surface": "tournament-import",
+      "capture": "entry-coach-en-tournament-import-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 1440,
+      "surface": "tournament-team-choice",
+      "capture": "entry-coach-en-tournament-team-choice-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 1440,
+      "surface": "tournament-preview",
+      "capture": "entry-coach-en-tournament-preview-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 1440,
+      "surface": "tournament-result",
+      "capture": "entry-coach-en-tournament-result-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 390,
+      "surface": "onboarding-basics",
+      "capture": "entry-coach-lv-onboarding-basics-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 390,
+      "surface": "onboarding-ready",
+      "capture": "entry-coach-lv-onboarding-ready-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 390,
+      "surface": "team-list",
+      "capture": "entry-coach-lv-team-list-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 390,
+      "surface": "club-choice",
+      "capture": "entry-coach-lv-club-choice-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 390,
+      "surface": "squad-choice",
+      "capture": "entry-coach-lv-squad-choice-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 390,
+      "surface": "create-team",
+      "capture": "entry-coach-lv-create-team-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 390,
+      "surface": "duplicate-team-choice",
+      "capture": "entry-coach-lv-duplicate-team-choice-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 390,
+      "surface": "tournament-import",
+      "capture": "entry-coach-lv-tournament-import-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 390,
+      "surface": "tournament-team-choice",
+      "capture": "entry-coach-lv-tournament-team-choice-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 390,
+      "surface": "tournament-preview",
+      "capture": "entry-coach-lv-tournament-preview-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 390,
+      "surface": "tournament-result",
+      "capture": "entry-coach-lv-tournament-result-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 1440,
+      "surface": "onboarding-basics",
+      "capture": "entry-coach-lv-onboarding-basics-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 1440,
+      "surface": "onboarding-ready",
+      "capture": "entry-coach-lv-onboarding-ready-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 1440,
+      "surface": "team-list",
+      "capture": "entry-coach-lv-team-list-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 1440,
+      "surface": "club-choice",
+      "capture": "entry-coach-lv-club-choice-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 1440,
+      "surface": "squad-choice",
+      "capture": "entry-coach-lv-squad-choice-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 1440,
+      "surface": "create-team",
+      "capture": "entry-coach-lv-create-team-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 1440,
+      "surface": "duplicate-team-choice",
+      "capture": "entry-coach-lv-duplicate-team-choice-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 1440,
+      "surface": "tournament-import",
+      "capture": "entry-coach-lv-tournament-import-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 1440,
+      "surface": "tournament-team-choice",
+      "capture": "entry-coach-lv-tournament-team-choice-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 1440,
+      "surface": "tournament-preview",
+      "capture": "entry-coach-lv-tournament-preview-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 1440,
+      "surface": "tournament-result",
+      "capture": "entry-coach-lv-tournament-result-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 390,
+      "surface": "onboarding-basics",
+      "capture": "entry-mentor-en-onboarding-basics-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 390,
+      "surface": "onboarding-football",
+      "capture": "entry-mentor-en-onboarding-football-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 390,
+      "surface": "onboarding-physical",
+      "capture": "entry-mentor-en-onboarding-physical-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 390,
+      "surface": "onboarding-assessment",
+      "capture": "entry-mentor-en-onboarding-assessment-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 390,
+      "surface": "onboarding-ready",
+      "capture": "entry-mentor-en-onboarding-ready-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 390,
+      "surface": "team-list",
+      "capture": "entry-mentor-en-team-list-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 390,
+      "surface": "club-choice",
+      "capture": "entry-mentor-en-club-choice-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 390,
+      "surface": "squad-choice",
+      "capture": "entry-mentor-en-squad-choice-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 390,
+      "surface": "create-team",
+      "capture": "entry-mentor-en-create-team-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 390,
+      "surface": "duplicate-team-choice",
+      "capture": "entry-mentor-en-duplicate-team-choice-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 390,
+      "surface": "tournament-import",
+      "capture": "entry-mentor-en-tournament-import-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 390,
+      "surface": "tournament-team-choice",
+      "capture": "entry-mentor-en-tournament-team-choice-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 390,
+      "surface": "tournament-preview",
+      "capture": "entry-mentor-en-tournament-preview-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 390,
+      "surface": "tournament-result",
+      "capture": "entry-mentor-en-tournament-result-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 1440,
+      "surface": "onboarding-basics",
+      "capture": "entry-mentor-en-onboarding-basics-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 1440,
+      "surface": "onboarding-football",
+      "capture": "entry-mentor-en-onboarding-football-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 1440,
+      "surface": "onboarding-physical",
+      "capture": "entry-mentor-en-onboarding-physical-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 1440,
+      "surface": "onboarding-assessment",
+      "capture": "entry-mentor-en-onboarding-assessment-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 1440,
+      "surface": "onboarding-ready",
+      "capture": "entry-mentor-en-onboarding-ready-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 1440,
+      "surface": "team-list",
+      "capture": "entry-mentor-en-team-list-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 1440,
+      "surface": "club-choice",
+      "capture": "entry-mentor-en-club-choice-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 1440,
+      "surface": "squad-choice",
+      "capture": "entry-mentor-en-squad-choice-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 1440,
+      "surface": "create-team",
+      "capture": "entry-mentor-en-create-team-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 1440,
+      "surface": "duplicate-team-choice",
+      "capture": "entry-mentor-en-duplicate-team-choice-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 1440,
+      "surface": "tournament-import",
+      "capture": "entry-mentor-en-tournament-import-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 1440,
+      "surface": "tournament-team-choice",
+      "capture": "entry-mentor-en-tournament-team-choice-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 1440,
+      "surface": "tournament-preview",
+      "capture": "entry-mentor-en-tournament-preview-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 1440,
+      "surface": "tournament-result",
+      "capture": "entry-mentor-en-tournament-result-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 390,
+      "surface": "onboarding-basics",
+      "capture": "entry-mentor-lv-onboarding-basics-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 390,
+      "surface": "onboarding-football",
+      "capture": "entry-mentor-lv-onboarding-football-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 390,
+      "surface": "onboarding-physical",
+      "capture": "entry-mentor-lv-onboarding-physical-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 390,
+      "surface": "onboarding-assessment",
+      "capture": "entry-mentor-lv-onboarding-assessment-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 390,
+      "surface": "onboarding-ready",
+      "capture": "entry-mentor-lv-onboarding-ready-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 390,
+      "surface": "team-list",
+      "capture": "entry-mentor-lv-team-list-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 390,
+      "surface": "club-choice",
+      "capture": "entry-mentor-lv-club-choice-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 390,
+      "surface": "squad-choice",
+      "capture": "entry-mentor-lv-squad-choice-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 390,
+      "surface": "create-team",
+      "capture": "entry-mentor-lv-create-team-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 390,
+      "surface": "duplicate-team-choice",
+      "capture": "entry-mentor-lv-duplicate-team-choice-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 390,
+      "surface": "tournament-import",
+      "capture": "entry-mentor-lv-tournament-import-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 390,
+      "surface": "tournament-team-choice",
+      "capture": "entry-mentor-lv-tournament-team-choice-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 390,
+      "surface": "tournament-preview",
+      "capture": "entry-mentor-lv-tournament-preview-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 390,
+      "surface": "tournament-result",
+      "capture": "entry-mentor-lv-tournament-result-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 1440,
+      "surface": "onboarding-basics",
+      "capture": "entry-mentor-lv-onboarding-basics-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 1440,
+      "surface": "onboarding-football",
+      "capture": "entry-mentor-lv-onboarding-football-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 1440,
+      "surface": "onboarding-physical",
+      "capture": "entry-mentor-lv-onboarding-physical-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 1440,
+      "surface": "onboarding-assessment",
+      "capture": "entry-mentor-lv-onboarding-assessment-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 1440,
+      "surface": "onboarding-ready",
+      "capture": "entry-mentor-lv-onboarding-ready-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 1440,
+      "surface": "team-list",
+      "capture": "entry-mentor-lv-team-list-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 1440,
+      "surface": "club-choice",
+      "capture": "entry-mentor-lv-club-choice-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 1440,
+      "surface": "squad-choice",
+      "capture": "entry-mentor-lv-squad-choice-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 1440,
+      "surface": "create-team",
+      "capture": "entry-mentor-lv-create-team-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 1440,
+      "surface": "duplicate-team-choice",
+      "capture": "entry-mentor-lv-duplicate-team-choice-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 1440,
+      "surface": "tournament-import",
+      "capture": "entry-mentor-lv-tournament-import-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 1440,
+      "surface": "tournament-team-choice",
+      "capture": "entry-mentor-lv-tournament-team-choice-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 1440,
+      "surface": "tournament-preview",
+      "capture": "entry-mentor-lv-tournament-preview-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 1440,
+      "surface": "tournament-result",
+      "capture": "entry-mentor-lv-tournament-result-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "No real sign-in or tournament parser requests",
+    "Final onboarding readiness is the first live Home after completion",
+    "Native controls and local data only; external services simulated"
+  ]
+}

@@ -1,8 +1,11 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
+import { useState } from 'react'
 import { AppProvider, useApp } from '../src/contexts/AppContext'
 import { ToastProvider } from '../src/contexts/ToastContext'
-import { Clubhouse } from '../src/pages/Clubhouse'
+import { Dashboard } from '../src/pages/Dashboard'
+import { LogPage } from '../src/pages/LogPage'
+import { AcademyShell } from '../src/components/academy/AcademyShell'
 import { TrainingLog } from '../src/pages/TrainingLog'
 import { createInitialXpState } from '../src/engine/xp'
 import i18n from '../src/i18n'
@@ -19,7 +22,12 @@ const entry: TrainingEntry = {
   durationMinutes: 60, focusAreas: [], energy: 3, mood: 3, notes: '', exerciseIds: [], createdAt: today,
 }
 const read = () => JSON.parse(localStorage.getItem('golazo-state') ?? '{}')
-async function mount(children = <Clubhouse onNavigate={vi.fn()} />) {
+function Journey() {
+  const [log, setLog] = useState(false)
+  const navigate = (page: string) => setLog(page === 'log')
+  return <AcademyShell page={log ? 'log' : 'dashboard'} onNavigate={navigate}>{log ? <LogPage /> : <Dashboard onNavigate={navigate} />}</AcademyShell>
+}
+async function mount(children = <Journey />) {
   const result = render(<AppProvider><ToastProvider>{children}</ToastProvider></AppProvider>)
   await act(async () => {})
   return result
@@ -39,8 +47,9 @@ afterEach(() => { vi.restoreAllMocks(); vi.unstubAllGlobals() })
 describe('real training journey', () => {
   it('completes the visible journey with local-save wording and exact real XP', async () => {
     const { container } = await mount()
-    fireEvent.click(screen.getByRole('button', { name: /Log this training/ }))
-    fireEvent.change(screen.getByLabelText('Duration in minutes'), { target: { value: '60' } })
+    fireEvent.click(within(screen.getByRole('navigation', { name: 'Main navigation' })).getByRole('button', { name: 'Log', exact: true }))
+    fireEvent.click(screen.getByRole('button', { name: i18n.t('log.training'), exact: true }))
+    fireEvent.change(await screen.findByLabelText('Duration in minutes'), { target: { value: '60' } })
     const form = container.querySelector('form')!
     fireEvent.submit(form)
     fireEvent.submit(form)
@@ -52,7 +61,7 @@ describe('real training journey', () => {
     expect(screen.getByText('+20 XP for this session')).toBeInTheDocument()
     expect(screen.getByText(/does not confirm a cloud save/)).toBeInTheDocument()
     fireEvent.click(screen.getByRole('button', { name: 'Finish for today' }))
-    expect(screen.getByText("Today's effort, remembered.")).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: i18n.t('log.selectType') })).toBeInTheDocument()
   })
 
   it('retains all work after a failed local write; retry persists one entry and one award', async () => {
@@ -102,7 +111,7 @@ describe('real training journey', () => {
 
   it('rest reassurance navigates to the real schedule without creating an inactivity entry or XP', async () => {
     const navigate = vi.fn()
-    await mount(<Clubhouse onNavigate={navigate} />)
+    await mount(<Dashboard onNavigate={navigate} />)
     fireEvent.click(screen.getByRole('button', { name: 'Schedule' }))
     expect(navigate).toHaveBeenCalledWith('schedule')
     expect(read().trainings).toHaveLength(0)

@@ -1,16 +1,23 @@
-import { useMemo } from 'react'
+import { formatDisplayDate } from '../utils/dateFormat'
+import { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
-import { SkillRadar } from '../components/SkillRadar'
+import { SkillSnapshot } from '../components/academy/SkillSnapshot'
+import { ActivityRecordDialog } from '../components/academy/ActivityRecordDialog'
+import { ChartDataTable } from '../components/academy/ChartDataTable'
+import type { MatchEntry } from '../engine/types'
 import { EvaluationHistory } from '../components/EvaluationHistory'
 import { EmptyState } from '../components/EmptyState'
 import { getMatchResult, getAgeTier } from '../engine/types'
 import { getTrackedFieldConfigs } from '../engine/physical'
+import { AcademyPage } from '../components/academy/AcademyPage'
+import { TrainingProgress } from '../components/training/TrainingProgress'
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, BarChart, Bar, Area, AreaChart, CartesianGrid } from 'recharts'
 
 export function ProgressPage() {
   const { t } = useTranslation()
   const { matches, trainings, physicalProfile, checkIns, profile } = useApp()
+  const [reviewMatch, setReviewMatch] = useState<MatchEntry | null>(null)
 
   // Which physical fields are being tracked (respects player customization)
   const trackedKeys = useMemo(() => {
@@ -19,22 +26,20 @@ export function ProgressPage() {
     return new Set(fields.map((f) => f.key as string))
   }, [physicalProfile, profile])
 
-  /* ── XP trend (last 30 days) ── */
-  const xpTrend = useMemo(() => {
+  const minutesTrend = useMemo(() => {
     const now = new Date()
-    const days: { date: string; xp: number }[] = []
+    const days: { date: string; minutes: number }[] = []
     let cumulative = 0
     for (let i = 29; i >= 0; i--) {
       const d = new Date(now)
       d.setDate(d.getDate() - i)
       const iso = d.toISOString().slice(0, 10)
       const dayTrainings = trainings.filter((tr) => tr.date.startsWith(iso))
-      const dayMatches = matches.filter((m) => m.date.startsWith(iso))
-      cumulative += dayTrainings.length * 20 + dayMatches.length * 30
-      days.push({ date: iso.slice(5), xp: cumulative })
+      cumulative += dayTrainings.reduce((sum, entry) => sum + entry.durationMinutes, 0)
+      days.push({ date: iso.slice(5), minutes: cumulative })
     }
     return days
-  }, [trainings, matches])
+  }, [trainings])
 
   /* ── Training frequency (last 8 weeks) ── */
   const trainingFrequency = useMemo(() => {
@@ -42,7 +47,8 @@ export function ProgressPage() {
     const weeks: { week: string; sessions: number }[] = []
     for (let w = 7; w >= 0; w--) {
       const weekStart = new Date(now)
-      weekStart.setDate(weekStart.getDate() - w * 7)
+      weekStart.setHours(0, 0, 0, 0)
+      weekStart.setDate(weekStart.getDate() - (weekStart.getDay() + 6) % 7 - w * 7)
       const weekEnd = new Date(weekStart)
       weekEnd.setDate(weekEnd.getDate() + 7)
       const count = trainings.filter((tr) => {
@@ -58,7 +64,7 @@ export function ProgressPage() {
   const physicalData = useMemo(() => {
     if (!physicalProfile?.measurements.length) return []
     return physicalProfile.measurements.map((m) => ({
-      date: new Date(m.measuredAt).toLocaleDateString(undefined, { month: 'short', year: '2-digit' }),
+      date: formatDisplayDate(new Date(m.measuredAt), { month: 'short', year: '2-digit' }),
       height: m.heightCm || null,
       weight: m.weightKg || null,
       bmi: m.heightCm && m.weightKg ? Math.round((m.weightKg / ((m.heightCm / 100) ** 2)) * 10) / 10 : null,
@@ -159,8 +165,10 @@ export function ProgressPage() {
   }, [checkIns, trainings])
 
   return (
-    <div className="flex flex-col gap-5 p-4 pb-32">
-      <h2 className="text-xl font-extrabold heading-display">{t('progress.title')}</h2>
+    <AcademyPage surface="player-progress" title={t('progress.title')} subtitle={t('academy.progressIntro')}>
+      {profile?.role === 'mentor' && <p className="academy-data-note">{t('academy.deviceDataNotice')}</p>}
+      <TrainingProgress />
+      <div className="academy-progress-grid">
 
       {matches.length === 0 && trainings.length === 0 && (
         <EmptyState
@@ -179,10 +187,10 @@ export function ProgressPage() {
               const result = getMatchResult(m)
               const bg = result === 'win' ? 'var(--color-success-bg)' : result === 'loss' ? 'var(--color-error-bg)' : 'var(--color-amber-bg)'
               const color = result === 'win' ? 'var(--color-primary-dark)' : result === 'loss' ? 'var(--color-danger)' : 'var(--color-amber-text)'
-              return (
-                <div key={m.id} className="match-card-h" style={{ background: bg, width: 180 }} data-result={result}>
+              const content = (
+                <>
                   <p className="text-xs font-bold" style={{ color: 'var(--color-text-muted)' }}>
-                    {new Date(m.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
+                    {formatDisplayDate(new Date(m.date), { month: 'short', day: 'numeric' })}
                   </p>
                   <p className="text-xs font-bold mt-1 heading-display">
                     {m.opponent}
@@ -195,8 +203,11 @@ export function ProgressPage() {
                     {m.assists > 0 && <span className="text-[10px] font-data font-bold px-1.5 py-0.5 rounded-full" style={{ background: 'rgba(var(--color-primary-rgb), 0.08)', color: 'var(--color-primary-light)' }}>🎯{m.assists}</span>}
                     {m.selfRating > 0 && <span className="text-[10px] font-data font-bold px-1.5 py-0.5 rounded-full" style={{ background: 'rgba(var(--color-gold-rgb), 0.1)', color: 'var(--color-amber-text)' }}>★{m.selfRating}</span>}
                   </div>
-                </div>
+                </>
               )
+              return profile?.role === 'player'
+                ? <button key={m.id} className="match-card-h text-left" style={{ background: bg }} data-result={result} onClick={() => setReviewMatch(m)} aria-label={t('academy.reviewMatch', { opponent: m.opponent })}>{content}</button>
+                : <div key={m.id} className="match-card-h" style={{ background: bg }} data-result={result}>{content}</div>
             })}
           </div>
           <div className="flex justify-center gap-4 mt-3">
@@ -211,25 +222,25 @@ export function ProgressPage() {
       {goalsTrend.length > 0 && (
         <div className="card animate-fade-up">
           <p className="section-label mb-2">{t('progress.goalsTrend')}</p>
-          <ResponsiveContainer width="100%" height={160}>
+          <ResponsiveContainer width="100%" height={240}>
             <LineChart data={goalsTrend}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
-              <XAxis dataKey="match" tick={{ fontSize: 9, fill: '#94a3b8' }} axisLine={false} tickLine={false} />
-              <YAxis tick={{ fontSize: 10, fill: '#94a3b8' }} width={20} allowDecimals={false} axisLine={false} tickLine={false} />
+              <XAxis dataKey="match" tick={{ fontSize: 12, fill: 'var(--color-text-muted)' }} axisLine={false} tickLine={false} />
+              <YAxis tick={{ fontSize: 12, fill: 'var(--color-text-muted)' }} width={20} allowDecimals={false} axisLine={false} tickLine={false} />
               <Tooltip contentStyle={{ fontSize: 12, borderRadius: 12, border: 'none', boxShadow: '0 4px 16px rgba(0,0,0,0.1)' }} />
-              <Line type="monotone" dataKey="goals" stroke="var(--color-primary)" strokeWidth={2.5} dot={{ r: 3, fill: 'var(--color-primary)', stroke: '#fff', strokeWidth: 2 }} name={t('progress.goals')} />
-              <Line type="monotone" dataKey="assists" stroke="var(--color-primary-light)" strokeWidth={2.5} dot={{ r: 3, fill: 'var(--color-primary-light)', stroke: '#fff', strokeWidth: 2 }} name={t('progress.assists')} />
-              <Line type="monotone" dataKey="rating" stroke="#f59e0b" strokeWidth={1.5} strokeDasharray="5 5" dot={false} name={t('progress.selfRating')} />
+              <Line isAnimationActive={false} type="monotone" dataKey="goals" stroke="var(--color-primary)" strokeWidth={2.5} dot={{ r: 3, fill: 'var(--color-primary)', stroke: '#fff', strokeWidth: 2 }} name={t('progress.goals')} />
+              <Line isAnimationActive={false} type="monotone" dataKey="assists" stroke="var(--color-primary-light)" strokeWidth={2.5} dot={{ r: 3, fill: 'var(--color-primary-light)', stroke: '#fff', strokeWidth: 2 }} name={t('progress.assists')} />
+              <Line isAnimationActive={false} type="monotone" dataKey="rating" stroke="#f59e0b" strokeWidth={1.5} strokeDasharray="5 5" dot={false} name={t('progress.selfRating')} />
             </LineChart>
           </ResponsiveContainer>
         </div>
       )}
 
-      {/* ── XP Trend (gradient area) ── */}
+      {/* Historical XP is not stored; this chart uses recorded minutes only. */}
       <div className="card animate-fade-up">
-        <p className="section-label mb-2">{t('progress.xpTrend')}</p>
+        <p className="section-label mb-2">{t('academy.recordedMinutes')}</p>
         <ResponsiveContainer width="100%" height={180}>
-          <AreaChart data={xpTrend}>
+          <AreaChart data={minutesTrend}>
             <defs>
               <linearGradient id="xpGradient" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="0%" stopColor="var(--color-primary)" stopOpacity={0.3} />
@@ -237,21 +248,22 @@ export function ProgressPage() {
               </linearGradient>
             </defs>
             <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
-            <XAxis dataKey="date" tick={{ fontSize: 10, fill: '#94a3b8' }} axisLine={false} tickLine={false} interval="preserveStartEnd" />
-            <YAxis tick={{ fontSize: 10, fill: '#94a3b8' }} width={35} axisLine={false} tickLine={false} />
+            <XAxis dataKey="date" tick={{ fontSize: 12, fill: 'var(--color-text-muted)' }} axisLine={false} tickLine={false} interval="preserveStartEnd" />
+            <YAxis tick={{ fontSize: 12, fill: 'var(--color-text-muted)' }} width={35} axisLine={false} tickLine={false} />
             <Tooltip
               contentStyle={{ fontSize: 12, borderRadius: 12, border: 'none', boxShadow: '0 4px 16px rgba(0,0,0,0.1)', fontFamily: 'var(--font-data)' }}
               cursor={{ stroke: 'var(--color-primary)', strokeWidth: 1, strokeDasharray: '4 4' }}
             />
-            <Area type="monotone" dataKey="xp" stroke="var(--color-primary)" strokeWidth={2.5} fill="url(#xpGradient)" dot={false} activeDot={{ r: 5, fill: 'var(--color-primary)', stroke: '#fff', strokeWidth: 2 }} />
+            <Area isAnimationActive={false} type="monotone" dataKey="minutes" name={t('clubhouse.minutes')} stroke="var(--color-primary)" strokeWidth={2.5} fill="url(#xpGradient)" dot={false} activeDot={{ r: 5, fill: 'var(--color-primary)', stroke: '#fff', strokeWidth: 2 }} />
           </AreaChart>
         </ResponsiveContainer>
+        <ChartDataTable title={t('academy.recordedMinutes')} rows={minutesTrend} columns={[{ key: 'date', label: t('log.date') }, { key: 'minutes', label: t('clubhouse.minutes') }]} />
       </div>
 
       {/* ── Training Frequency ── */}
       <div className="card animate-fade-up">
         <p className="section-label mb-2">{t('progress.trainingFrequency')}</p>
-        <ResponsiveContainer width="100%" height={120}>
+        <ResponsiveContainer width="100%" height={200}>
           <BarChart data={trainingFrequency} barCategoryGap="25%">
             <defs>
               <linearGradient id="trainingGradient" x1="0" y1="0" x2="0" y2="1">
@@ -260,19 +272,17 @@ export function ProgressPage() {
               </linearGradient>
             </defs>
             <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
-            <XAxis dataKey="week" tick={{ fontSize: 10, fill: '#94a3b8' }} axisLine={false} tickLine={false} />
-            <YAxis tick={{ fontSize: 10, fill: '#94a3b8' }} width={20} allowDecimals={false} axisLine={false} tickLine={false} />
+            <XAxis dataKey="week" tick={{ fontSize: 12, fill: 'var(--color-text-muted)' }} axisLine={false} tickLine={false} />
+            <YAxis tick={{ fontSize: 12, fill: 'var(--color-text-muted)' }} width={20} allowDecimals={false} axisLine={false} tickLine={false} />
             <Tooltip contentStyle={{ fontSize: 12, borderRadius: 12, border: 'none', boxShadow: '0 4px 16px rgba(0,0,0,0.1)' }} />
-            <Bar dataKey="sessions" fill="url(#trainingGradient)" radius={[6, 6, 0, 0]} />
+            <Bar isAnimationActive={false} dataKey="sessions" fill="url(#trainingGradient)" radius={[6, 6, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
+        <ChartDataTable title={t('progress.trainingFrequency')} rows={trainingFrequency} columns={[{ key: 'week', label: t('schedule.tabWeek') }, { key: 'sessions', label: t('clubhouse.sessions') }]} />
       </div>
 
       {/* ── Skill Radar ── */}
-      <div className="card animate-fade-up">
-        <p className="section-label mb-2">{t('progress.skillRadar')}</p>
-        <SkillRadar />
-      </div>
+      <SkillSnapshot />
 
       {/* ── Coach Evaluations ── */}
       <EvaluationHistory />
@@ -308,14 +318,14 @@ export function ProgressPage() {
       {moodTrend.length > 2 && (
         <div className="card animate-fade-up">
           <p className="section-label mb-2">{t('progress.moodTrend')}</p>
-          <ResponsiveContainer width="100%" height={160}>
+          <ResponsiveContainer width="100%" height={240}>
             <LineChart data={moodTrend}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
-              <XAxis dataKey="date" tick={{ fontSize: 9, fill: '#94a3b8' }} axisLine={false} tickLine={false} />
-              <YAxis domain={[1, 5]} ticks={[1, 2, 3, 4, 5]} tick={{ fontSize: 10, fill: '#94a3b8' }} width={20} axisLine={false} tickLine={false} />
+              <XAxis dataKey="date" tick={{ fontSize: 12, fill: 'var(--color-text-muted)' }} axisLine={false} tickLine={false} />
+              <YAxis domain={[1, 5]} ticks={[1, 2, 3, 4, 5]} tick={{ fontSize: 12, fill: 'var(--color-text-muted)' }} width={20} axisLine={false} tickLine={false} />
               <Tooltip contentStyle={{ fontSize: 12, borderRadius: 12, border: 'none', boxShadow: '0 4px 16px rgba(0,0,0,0.1)' }} />
-              <Line type="monotone" dataKey="mood" stroke="#f59e0b" strokeWidth={2.5} dot={{ r: 3, fill: '#f59e0b', stroke: '#fff', strokeWidth: 2 }} name={t('checkin.mood')} />
-              <Line type="monotone" dataKey="energy" stroke="var(--color-primary-light)" strokeWidth={2.5} dot={{ r: 3, fill: 'var(--color-primary-light)', stroke: '#fff', strokeWidth: 2 }} name={t('checkin.energy')} />
+              <Line isAnimationActive={false} type="monotone" dataKey="mood" stroke="#f59e0b" strokeWidth={2.5} dot={{ r: 3, fill: '#f59e0b', stroke: '#fff', strokeWidth: 2 }} name={t('checkin.mood')} />
+              <Line isAnimationActive={false} type="monotone" dataKey="energy" stroke="var(--color-primary-light)" strokeWidth={2.5} dot={{ r: 3, fill: 'var(--color-primary-light)', stroke: '#fff', strokeWidth: 2 }} name={t('checkin.energy')} />
             </LineChart>
           </ResponsiveContainer>
           <div className="flex justify-center gap-4 mt-2">
@@ -329,14 +339,14 @@ export function ProgressPage() {
       {moodPerformance.length > 2 && (
         <div className="card animate-fade-up">
           <p className="section-label mb-2">{t('progress.moodPerformance')}</p>
-          <ResponsiveContainer width="100%" height={160}>
+          <ResponsiveContainer width="100%" height={240}>
             <LineChart data={moodPerformance}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
-              <XAxis dataKey="match" tick={{ fontSize: 9, fill: '#94a3b8' }} axisLine={false} tickLine={false} />
-              <YAxis domain={[0, 10]} tick={{ fontSize: 10, fill: '#94a3b8' }} width={20} axisLine={false} tickLine={false} />
+              <XAxis dataKey="match" tick={{ fontSize: 12, fill: 'var(--color-text-muted)' }} axisLine={false} tickLine={false} />
+              <YAxis domain={[0, 10]} tick={{ fontSize: 12, fill: 'var(--color-text-muted)' }} width={20} axisLine={false} tickLine={false} />
               <Tooltip contentStyle={{ fontSize: 12, borderRadius: 12, border: 'none', boxShadow: '0 4px 16px rgba(0,0,0,0.1)' }} />
-              <Line type="monotone" dataKey="mood" stroke="#f59e0b" strokeWidth={2} dot={{ r: 3, fill: '#f59e0b', stroke: '#fff', strokeWidth: 2 }} name={t('checkin.mood')} />
-              <Line type="monotone" dataKey="rating" stroke="var(--color-primary)" strokeWidth={2.5} dot={{ r: 3, fill: 'var(--color-primary)', stroke: '#fff', strokeWidth: 2 }} name={t('progress.selfRating')} />
+              <Line isAnimationActive={false} type="monotone" dataKey="mood" stroke="#f59e0b" strokeWidth={2} dot={{ r: 3, fill: '#f59e0b', stroke: '#fff', strokeWidth: 2 }} name={t('checkin.mood')} />
+              <Line isAnimationActive={false} type="monotone" dataKey="rating" stroke="var(--color-primary)" strokeWidth={2.5} dot={{ r: 3, fill: 'var(--color-primary)', stroke: '#fff', strokeWidth: 2 }} name={t('progress.selfRating')} />
             </LineChart>
           </ResponsiveContainer>
         </div>
@@ -346,15 +356,15 @@ export function ProgressPage() {
       {physicalData.length > 0 && (hasPhysicalField('height') || hasPhysicalField('weight')) && (
         <div className="card animate-fade-up">
           <p className="section-label mb-2">📏 {t('progress.bodyGrowth')}</p>
-          <ResponsiveContainer width="100%" height={160}>
+          <ResponsiveContainer width="100%" height={240}>
             <LineChart data={physicalData}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
-              <XAxis dataKey="date" tick={{ fontSize: 10, fill: '#94a3b8' }} axisLine={false} tickLine={false} />
-              <YAxis yAxisId="left" tick={{ fontSize: 10, fill: '#94a3b8' }} width={30} axisLine={false} tickLine={false} domain={['dataMin - 5', 'dataMax + 5']} />
-              <YAxis yAxisId="right" orientation="right" tick={{ fontSize: 10, fill: '#94a3b8' }} width={30} axisLine={false} tickLine={false} domain={['dataMin - 5', 'dataMax + 5']} />
+              <XAxis dataKey="date" tick={{ fontSize: 12, fill: 'var(--color-text-muted)' }} axisLine={false} tickLine={false} />
+              <YAxis yAxisId="left" tick={{ fontSize: 12, fill: 'var(--color-text-muted)' }} width={30} axisLine={false} tickLine={false} domain={['dataMin - 5', 'dataMax + 5']} />
+              <YAxis yAxisId="right" orientation="right" tick={{ fontSize: 12, fill: 'var(--color-text-muted)' }} width={30} axisLine={false} tickLine={false} domain={['dataMin - 5', 'dataMax + 5']} />
               <Tooltip contentStyle={{ fontSize: 12, borderRadius: 12, border: 'none', boxShadow: '0 4px 16px rgba(0,0,0,0.1)' }} />
-              {hasPhysicalField('height') && <Line yAxisId="left" type="monotone" dataKey="height" stroke="#8b5cf6" strokeWidth={2.5} dot={{ r: 3, fill: '#8b5cf6', stroke: '#fff', strokeWidth: 2 }} name={t('progress.height')} connectNulls />}
-              {hasPhysicalField('weight') && <Line yAxisId="right" type="monotone" dataKey="weight" stroke="#f59e0b" strokeWidth={2.5} dot={{ r: 3, fill: '#f59e0b', stroke: '#fff', strokeWidth: 2 }} name={t('progress.weight')} connectNulls />}
+              {hasPhysicalField('height') && <Line isAnimationActive={false} yAxisId="left" type="monotone" dataKey="height" stroke="#8b5cf6" strokeWidth={2.5} dot={{ r: 3, fill: '#8b5cf6', stroke: '#fff', strokeWidth: 2 }} name={t('progress.height')} connectNulls />}
+              {hasPhysicalField('weight') && <Line isAnimationActive={false} yAxisId="right" type="monotone" dataKey="weight" stroke="#f59e0b" strokeWidth={2.5} dot={{ r: 3, fill: '#f59e0b', stroke: '#fff', strokeWidth: 2 }} name={t('progress.weight')} connectNulls />}
             </LineChart>
           </ResponsiveContainer>
           <div className="flex justify-center gap-4 mt-2">
@@ -379,16 +389,16 @@ export function ProgressPage() {
         <div className="card animate-fade-up">
           <p className="section-label mb-2">⚡ {t('progress.speedPower')}</p>
           {hasPhysicalField('sprint10') || hasPhysicalField('sprint20') || hasPhysicalField('cmj') || hasPhysicalField('jump') ? (
-          <ResponsiveContainer width="100%" height={140}>
+          <ResponsiveContainer width="100%" height={220}>
             <LineChart data={physicalData}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
-              <XAxis dataKey="date" tick={{ fontSize: 10, fill: '#94a3b8' }} axisLine={false} tickLine={false} />
-              <YAxis tick={{ fontSize: 10, fill: '#94a3b8' }} width={30} axisLine={false} tickLine={false} />
+              <XAxis dataKey="date" tick={{ fontSize: 12, fill: 'var(--color-text-muted)' }} axisLine={false} tickLine={false} />
+              <YAxis tick={{ fontSize: 12, fill: 'var(--color-text-muted)' }} width={30} axisLine={false} tickLine={false} />
               <Tooltip contentStyle={{ fontSize: 12, borderRadius: 12, border: 'none', boxShadow: '0 4px 16px rgba(0,0,0,0.1)' }} />
-              {hasPhysicalField('sprint10') && <Line type="monotone" dataKey="sprint10" stroke="#ef4444" strokeWidth={2} dot={{ r: 3, fill: '#ef4444', stroke: '#fff', strokeWidth: 2 }} name={t('physical.sprint10m')} connectNulls />}
-              {hasPhysicalField('sprint20') && <Line type="monotone" dataKey="sprint20" stroke="#f97316" strokeWidth={2} dot={{ r: 3, fill: '#f97316', stroke: '#fff', strokeWidth: 2 }} name={t('physical.sprint20m')} connectNulls />}
-            {hasPhysicalField('cmj') && <Line type="monotone" dataKey="cmj" stroke="var(--color-primary-light)" strokeWidth={2} dot={{ r: 3, fill: 'var(--color-primary-light)', stroke: '#fff', strokeWidth: 2 }} name={t('physical.cmj')} connectNulls />}
-            {hasPhysicalField('jump') && <Line type="monotone" dataKey="jump" stroke="var(--color-primary)" strokeWidth={2} dot={{ r: 3, fill: 'var(--color-primary)', stroke: '#fff', strokeWidth: 2 }} name={t('physical.standingJump')} connectNulls />}
+              {hasPhysicalField('sprint10') && <Line isAnimationActive={false} type="monotone" dataKey="sprint10" stroke="#ef4444" strokeWidth={2} dot={{ r: 3, fill: '#ef4444', stroke: '#fff', strokeWidth: 2 }} name={t('physical.sprint10m')} connectNulls />}
+              {hasPhysicalField('sprint20') && <Line isAnimationActive={false} type="monotone" dataKey="sprint20" stroke="#f97316" strokeWidth={2} dot={{ r: 3, fill: '#f97316', stroke: '#fff', strokeWidth: 2 }} name={t('physical.sprint20m')} connectNulls />}
+            {hasPhysicalField('cmj') && <Line isAnimationActive={false} type="monotone" dataKey="cmj" stroke="var(--color-primary-light)" strokeWidth={2} dot={{ r: 3, fill: 'var(--color-primary-light)', stroke: '#fff', strokeWidth: 2 }} name={t('physical.cmj')} connectNulls />}
+            {hasPhysicalField('jump') && <Line isAnimationActive={false} type="monotone" dataKey="jump" stroke="var(--color-primary)" strokeWidth={2} dot={{ r: 3, fill: 'var(--color-primary)', stroke: '#fff', strokeWidth: 2 }} name={t('physical.standingJump')} connectNulls />}
             </LineChart>
           </ResponsiveContainer>
           ) : (
@@ -402,14 +412,14 @@ export function ProgressPage() {
         <div className="card animate-fade-up">
           <p className="section-label mb-2">🫁 {t('progress.endurance')}</p>
           {hasPhysicalField('yoyo') || hasPhysicalField('agility') ? (
-          <ResponsiveContainer width="100%" height={140}>
+          <ResponsiveContainer width="100%" height={220}>
             <LineChart data={physicalData}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
-              <XAxis dataKey="date" tick={{ fontSize: 10, fill: '#94a3b8' }} axisLine={false} tickLine={false} />
-              <YAxis tick={{ fontSize: 10, fill: '#94a3b8' }} width={30} axisLine={false} tickLine={false} />
+              <XAxis dataKey="date" tick={{ fontSize: 12, fill: 'var(--color-text-muted)' }} axisLine={false} tickLine={false} />
+              <YAxis tick={{ fontSize: 12, fill: 'var(--color-text-muted)' }} width={30} axisLine={false} tickLine={false} />
               <Tooltip contentStyle={{ fontSize: 12, borderRadius: 12, border: 'none', boxShadow: '0 4px 16px rgba(0,0,0,0.1)' }} />
-              {hasPhysicalField('yoyo') && <Line type="monotone" dataKey="yoyo" stroke="var(--color-primary)" strokeWidth={2.5} dot={{ r: 3, fill: 'var(--color-primary)', stroke: '#fff', strokeWidth: 2 }} name={t('progress.yoyo')} connectNulls />}
-              {hasPhysicalField('agility') && <Line type="monotone" dataKey="agility" stroke="#f59e0b" strokeWidth={2.5} dot={{ r: 3, fill: '#f59e0b', stroke: '#fff', strokeWidth: 2 }} name={t('progress.agility')} connectNulls />}
+              {hasPhysicalField('yoyo') && <Line isAnimationActive={false} type="monotone" dataKey="yoyo" stroke="var(--color-primary)" strokeWidth={2.5} dot={{ r: 3, fill: 'var(--color-primary)', stroke: '#fff', strokeWidth: 2 }} name={t('progress.yoyo')} connectNulls />}
+              {hasPhysicalField('agility') && <Line isAnimationActive={false} type="monotone" dataKey="agility" stroke="#f59e0b" strokeWidth={2.5} dot={{ r: 3, fill: '#f59e0b', stroke: '#fff', strokeWidth: 2 }} name={t('progress.agility')} connectNulls />}
             </LineChart>
           </ResponsiveContainer>
           ) : (
@@ -423,14 +433,14 @@ export function ProgressPage() {
         <div className="card animate-fade-up">
           <p className="section-label mb-2">💪 {t('progress.strengthSkill')}</p>
           {hasPhysicalField('plank') || hasPhysicalField('juggles') ? (
-          <ResponsiveContainer width="100%" height={140}>
+          <ResponsiveContainer width="100%" height={220}>
             <LineChart data={physicalData}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
-              <XAxis dataKey="date" tick={{ fontSize: 10, fill: '#94a3b8' }} axisLine={false} tickLine={false} />
-              <YAxis tick={{ fontSize: 10, fill: '#94a3b8' }} width={35} axisLine={false} tickLine={false} />
+              <XAxis dataKey="date" tick={{ fontSize: 12, fill: 'var(--color-text-muted)' }} axisLine={false} tickLine={false} />
+              <YAxis tick={{ fontSize: 12, fill: 'var(--color-text-muted)' }} width={35} axisLine={false} tickLine={false} />
               <Tooltip contentStyle={{ fontSize: 12, borderRadius: 12, border: 'none', boxShadow: '0 4px 16px rgba(0,0,0,0.1)' }} />
-              {hasPhysicalField('plank') && <Line type="monotone" dataKey="plank" stroke="#ef4444" strokeWidth={2.5} dot={{ r: 3, fill: '#ef4444', stroke: '#fff', strokeWidth: 2 }} name={t('progress.plank')} connectNulls />}
-              {hasPhysicalField('juggles') && <Line type="monotone" dataKey="juggles" stroke="var(--color-primary)" strokeWidth={2.5} dot={{ r: 3, fill: 'var(--color-primary)', stroke: '#fff', strokeWidth: 2 }} name={t('progress.juggles')} connectNulls />}
+              {hasPhysicalField('plank') && <Line isAnimationActive={false} type="monotone" dataKey="plank" stroke="#ef4444" strokeWidth={2.5} dot={{ r: 3, fill: '#ef4444', stroke: '#fff', strokeWidth: 2 }} name={t('progress.plank')} connectNulls />}
+              {hasPhysicalField('juggles') && <Line isAnimationActive={false} type="monotone" dataKey="juggles" stroke="var(--color-primary)" strokeWidth={2.5} dot={{ r: 3, fill: 'var(--color-primary)', stroke: '#fff', strokeWidth: 2 }} name={t('progress.juggles')} connectNulls />}
             </LineChart>
           </ResponsiveContainer>
           ) : (
@@ -438,6 +448,8 @@ export function ProgressPage() {
           )}
         </div>
       )}
-    </div>
+      </div>
+      {reviewMatch && <ActivityRecordDialog record={{ kind: 'match', entry: reviewMatch }} onClose={() => setReviewMatch(null)} />}
+    </AcademyPage>
   )
 }

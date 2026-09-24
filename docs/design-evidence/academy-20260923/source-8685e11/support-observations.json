@@ -1,0 +1,1202 @@
+{
+  "source_commit": "8685e11ed619cb736ce2ce7e9db2a67ee0001c8d",
+  "kind": "synthetic-supporting-surface-observations-not-review",
+  "observations": [
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "surface": "home-populated",
+      "capture": "support-player-en-home-populated-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "surface": "journal-populated",
+      "capture": "support-player-en-journal-populated-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "surface": "training-record-detail",
+      "capture": "support-player-en-training-record-detail-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "surface": "match-record-detail",
+      "capture": "support-player-en-match-record-detail-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "surface": "diary-record-detail",
+      "capture": "support-player-en-diary-record-detail-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "surface": "identity-editor",
+      "capture": "support-player-en-identity-editor-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "surface": "identity-retained-failure",
+      "capture": "support-player-en-identity-retained-failure-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "surface": "achievement-collection",
+      "capture": "support-player-en-achievement-collection-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "surface": "goal-editor",
+      "capture": "support-player-en-goal-editor-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "surface": "exercise-library",
+      "capture": "support-player-en-exercise-library-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "surface": "exercise-detail",
+      "capture": "support-player-en-exercise-detail-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "surface": "custom-drill",
+      "capture": "support-player-en-custom-drill-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "surface": "calendar-training-form",
+      "capture": "support-player-en-calendar-training-form-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "surface": "recurring-setup",
+      "capture": "support-player-en-recurring-setup-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "surface": "settings",
+      "capture": "support-player-en-settings-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "surface": "reset-confirmation",
+      "capture": "support-player-en-reset-confirmation-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 1440,
+      "surface": "home-populated",
+      "capture": "support-player-en-home-populated-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 1440,
+      "surface": "journal-populated",
+      "capture": "support-player-en-journal-populated-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 1440,
+      "surface": "training-record-detail",
+      "capture": "support-player-en-training-record-detail-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 1440,
+      "surface": "match-record-detail",
+      "capture": "support-player-en-match-record-detail-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 1440,
+      "surface": "diary-record-detail",
+      "capture": "support-player-en-diary-record-detail-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 1440,
+      "surface": "identity-editor",
+      "capture": "support-player-en-identity-editor-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 1440,
+      "surface": "identity-retained-failure",
+      "capture": "support-player-en-identity-retained-failure-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 1440,
+      "surface": "achievement-collection",
+      "capture": "support-player-en-achievement-collection-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 1440,
+      "surface": "goal-editor",
+      "capture": "support-player-en-goal-editor-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 1440,
+      "surface": "exercise-library",
+      "capture": "support-player-en-exercise-library-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 1440,
+      "surface": "exercise-detail",
+      "capture": "support-player-en-exercise-detail-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 1440,
+      "surface": "custom-drill",
+      "capture": "support-player-en-custom-drill-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 1440,
+      "surface": "calendar-training-form",
+      "capture": "support-player-en-calendar-training-form-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 1440,
+      "surface": "recurring-setup",
+      "capture": "support-player-en-recurring-setup-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 1440,
+      "surface": "settings",
+      "capture": "support-player-en-settings-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 1440,
+      "surface": "reset-confirmation",
+      "capture": "support-player-en-reset-confirmation-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 390,
+      "surface": "home-populated",
+      "capture": "support-player-lv-home-populated-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 390,
+      "surface": "journal-populated",
+      "capture": "support-player-lv-journal-populated-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 390,
+      "surface": "training-record-detail",
+      "capture": "support-player-lv-training-record-detail-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 390,
+      "surface": "match-record-detail",
+      "capture": "support-player-lv-match-record-detail-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 390,
+      "surface": "diary-record-detail",
+      "capture": "support-player-lv-diary-record-detail-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 390,
+      "surface": "identity-editor",
+      "capture": "support-player-lv-identity-editor-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 390,
+      "surface": "identity-retained-failure",
+      "capture": "support-player-lv-identity-retained-failure-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 390,
+      "surface": "achievement-collection",
+      "capture": "support-player-lv-achievement-collection-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 390,
+      "surface": "goal-editor",
+      "capture": "support-player-lv-goal-editor-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 390,
+      "surface": "exercise-library",
+      "capture": "support-player-lv-exercise-library-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 390,
+      "surface": "exercise-detail",
+      "capture": "support-player-lv-exercise-detail-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 390,
+      "surface": "custom-drill",
+      "capture": "support-player-lv-custom-drill-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 390,
+      "surface": "calendar-training-form",
+      "capture": "support-player-lv-calendar-training-form-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 390,
+      "surface": "recurring-setup",
+      "capture": "support-player-lv-recurring-setup-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 390,
+      "surface": "settings",
+      "capture": "support-player-lv-settings-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 390,
+      "surface": "reset-confirmation",
+      "capture": "support-player-lv-reset-confirmation-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 1440,
+      "surface": "home-populated",
+      "capture": "support-player-lv-home-populated-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 1440,
+      "surface": "journal-populated",
+      "capture": "support-player-lv-journal-populated-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 1440,
+      "surface": "training-record-detail",
+      "capture": "support-player-lv-training-record-detail-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 1440,
+      "surface": "match-record-detail",
+      "capture": "support-player-lv-match-record-detail-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 1440,
+      "surface": "diary-record-detail",
+      "capture": "support-player-lv-diary-record-detail-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 1440,
+      "surface": "identity-editor",
+      "capture": "support-player-lv-identity-editor-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 1440,
+      "surface": "identity-retained-failure",
+      "capture": "support-player-lv-identity-retained-failure-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 1440,
+      "surface": "achievement-collection",
+      "capture": "support-player-lv-achievement-collection-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 1440,
+      "surface": "goal-editor",
+      "capture": "support-player-lv-goal-editor-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 1440,
+      "surface": "exercise-library",
+      "capture": "support-player-lv-exercise-library-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 1440,
+      "surface": "exercise-detail",
+      "capture": "support-player-lv-exercise-detail-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 1440,
+      "surface": "custom-drill",
+      "capture": "support-player-lv-custom-drill-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 1440,
+      "surface": "calendar-training-form",
+      "capture": "support-player-lv-calendar-training-form-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 1440,
+      "surface": "recurring-setup",
+      "capture": "support-player-lv-recurring-setup-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 1440,
+      "surface": "settings",
+      "capture": "support-player-lv-settings-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 1440,
+      "surface": "reset-confirmation",
+      "capture": "support-player-lv-reset-confirmation-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 390,
+      "surface": "home-populated",
+      "capture": "support-coach-en-home-populated-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 390,
+      "surface": "roster",
+      "capture": "support-coach-en-roster-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 390,
+      "surface": "roster-player-detail",
+      "capture": "support-coach-en-roster-player-detail-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 390,
+      "surface": "training",
+      "capture": "support-coach-en-training-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 390,
+      "surface": "training-drill-editor",
+      "capture": "support-coach-en-training-drill-editor-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 390,
+      "surface": "training-retained-remote-failure",
+      "capture": "support-coach-en-training-retained-remote-failure-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 390,
+      "surface": "announcements",
+      "capture": "support-coach-en-announcements-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 390,
+      "surface": "evaluation",
+      "capture": "support-coach-en-evaluation-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 390,
+      "surface": "attendance",
+      "capture": "support-coach-en-attendance-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 390,
+      "surface": "team-challenges",
+      "capture": "support-coach-en-team-challenges-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 390,
+      "surface": "settings",
+      "capture": "support-coach-en-settings-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 390,
+      "surface": "reset-confirmation",
+      "capture": "support-coach-en-reset-confirmation-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 1440,
+      "surface": "home-populated",
+      "capture": "support-coach-en-home-populated-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 1440,
+      "surface": "roster",
+      "capture": "support-coach-en-roster-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 1440,
+      "surface": "roster-player-detail",
+      "capture": "support-coach-en-roster-player-detail-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 1440,
+      "surface": "training",
+      "capture": "support-coach-en-training-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 1440,
+      "surface": "training-drill-editor",
+      "capture": "support-coach-en-training-drill-editor-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 1440,
+      "surface": "training-retained-remote-failure",
+      "capture": "support-coach-en-training-retained-remote-failure-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 1440,
+      "surface": "announcements",
+      "capture": "support-coach-en-announcements-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 1440,
+      "surface": "evaluation",
+      "capture": "support-coach-en-evaluation-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 1440,
+      "surface": "attendance",
+      "capture": "support-coach-en-attendance-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 1440,
+      "surface": "team-challenges",
+      "capture": "support-coach-en-team-challenges-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 1440,
+      "surface": "settings",
+      "capture": "support-coach-en-settings-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 1440,
+      "surface": "reset-confirmation",
+      "capture": "support-coach-en-reset-confirmation-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 390,
+      "surface": "home-populated",
+      "capture": "support-coach-lv-home-populated-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 390,
+      "surface": "roster",
+      "capture": "support-coach-lv-roster-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 390,
+      "surface": "roster-player-detail",
+      "capture": "support-coach-lv-roster-player-detail-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 390,
+      "surface": "training",
+      "capture": "support-coach-lv-training-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 390,
+      "surface": "training-drill-editor",
+      "capture": "support-coach-lv-training-drill-editor-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 390,
+      "surface": "training-retained-remote-failure",
+      "capture": "support-coach-lv-training-retained-remote-failure-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 390,
+      "surface": "announcements",
+      "capture": "support-coach-lv-announcements-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 390,
+      "surface": "evaluation",
+      "capture": "support-coach-lv-evaluation-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 390,
+      "surface": "attendance",
+      "capture": "support-coach-lv-attendance-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 390,
+      "surface": "team-challenges",
+      "capture": "support-coach-lv-team-challenges-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 390,
+      "surface": "settings",
+      "capture": "support-coach-lv-settings-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 390,
+      "surface": "reset-confirmation",
+      "capture": "support-coach-lv-reset-confirmation-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 1440,
+      "surface": "home-populated",
+      "capture": "support-coach-lv-home-populated-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 1440,
+      "surface": "roster",
+      "capture": "support-coach-lv-roster-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 1440,
+      "surface": "roster-player-detail",
+      "capture": "support-coach-lv-roster-player-detail-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 1440,
+      "surface": "training",
+      "capture": "support-coach-lv-training-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 1440,
+      "surface": "training-drill-editor",
+      "capture": "support-coach-lv-training-drill-editor-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 1440,
+      "surface": "training-retained-remote-failure",
+      "capture": "support-coach-lv-training-retained-remote-failure-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 1440,
+      "surface": "announcements",
+      "capture": "support-coach-lv-announcements-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 1440,
+      "surface": "evaluation",
+      "capture": "support-coach-lv-evaluation-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 1440,
+      "surface": "attendance",
+      "capture": "support-coach-lv-attendance-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 1440,
+      "surface": "team-challenges",
+      "capture": "support-coach-lv-team-challenges-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 1440,
+      "surface": "settings",
+      "capture": "support-coach-lv-settings-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 1440,
+      "surface": "reset-confirmation",
+      "capture": "support-coach-lv-reset-confirmation-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 390,
+      "surface": "home-populated",
+      "capture": "support-mentor-en-home-populated-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 390,
+      "surface": "linked-player-selector",
+      "capture": "support-mentor-en-linked-player-selector-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 390,
+      "surface": "linked-player-sparse",
+      "capture": "support-mentor-en-linked-player-sparse-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 390,
+      "surface": "settings",
+      "capture": "support-mentor-en-settings-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 390,
+      "surface": "reset-confirmation",
+      "capture": "support-mentor-en-reset-confirmation-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 1440,
+      "surface": "home-populated",
+      "capture": "support-mentor-en-home-populated-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 1440,
+      "surface": "linked-player-selector",
+      "capture": "support-mentor-en-linked-player-selector-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 1440,
+      "surface": "linked-player-sparse",
+      "capture": "support-mentor-en-linked-player-sparse-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 1440,
+      "surface": "settings",
+      "capture": "support-mentor-en-settings-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 1440,
+      "surface": "reset-confirmation",
+      "capture": "support-mentor-en-reset-confirmation-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 390,
+      "surface": "home-populated",
+      "capture": "support-mentor-lv-home-populated-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 390,
+      "surface": "linked-player-selector",
+      "capture": "support-mentor-lv-linked-player-selector-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 390,
+      "surface": "linked-player-sparse",
+      "capture": "support-mentor-lv-linked-player-sparse-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 390,
+      "surface": "settings",
+      "capture": "support-mentor-lv-settings-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 390,
+      "surface": "reset-confirmation",
+      "capture": "support-mentor-lv-reset-confirmation-390.png",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 1440,
+      "surface": "home-populated",
+      "capture": "support-mentor-lv-home-populated-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 1440,
+      "surface": "linked-player-selector",
+      "capture": "support-mentor-lv-linked-player-selector-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 1440,
+      "surface": "linked-player-sparse",
+      "capture": "support-mentor-lv-linked-player-sparse-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 1440,
+      "surface": "settings",
+      "capture": "support-mentor-lv-settings-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 1440,
+      "surface": "reset-confirmation",
+      "capture": "support-mentor-lv-reset-confirmation-1440.png",
+      "clientWidth": 1440,
+      "scrollWidth": 1440
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Chromium only",
+    "No real child data, authentication or service calls",
+    "Remote writes deliberately fail",
+    "External video playback and web fonts not verified",
+    "Independent craft review and integrated owner acceptance not claimed"
+  ]
+}

@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import logging
 import re
 import subprocess
@@ -11,7 +12,8 @@ from pathlib import Path
 UI_FILES = {
     "index.html", ".impeccable.md", "package.json", "package-lock.json",
     "vite.config.ts", "tsconfig.json", "scripts/design-gate.py",
-    "scripts/check-design-pr.py",
+    "scripts/check-design-pr.py", ".design-scope.json", "scripts/design-session.py",
+    "scripts/design-gate.upstream.json",
 }
 
 
@@ -34,11 +36,22 @@ def check(repo: Path, base: str) -> int:
         logging.info("No product UI paths changed; design evidence is not required.")
         return 0
     logging.info("Product UI changes require source-bound evidence: %s", ", ".join(relevant))
+    if not (repo / ".design-scope.json").is_file():
+        logging.error("Missing source-controlled .design-scope.json for new UI work.")
+        return 1
     receipts = sorted((repo / "docs/design-evidence").glob("**/review.json"))
     if not receipts:
         logging.error("Missing docs/design-evidence/<feature>/review.json for UI changes.")
         return 1
     for receipt in receipts:
+        try:
+            record = json.loads(receipt.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError) as error:
+            logging.error("%s: unreadable design receipt: %s", receipt.relative_to(repo), error)
+            continue
+        if not isinstance(record, dict) or record.get("version") != 2:
+            logging.error("%s: new UI work requires a version 2 receipt.", receipt.relative_to(repo))
+            continue
         result = subprocess.run(
             [sys.executable, str(repo / "scripts/design-gate.py"), "--repo", str(repo), "--review", str(receipt)],
             capture_output=True, text=True, check=False,

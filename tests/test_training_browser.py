@@ -91,7 +91,8 @@ def no_overflow(page: Page) -> dict:
       const d = document.documentElement;
       return {width: innerWidth, clientWidth:d.clientWidth, scrollWidth:d.scrollWidth,
         font:getComputedStyle(d).fontSize, dpr:devicePixelRatio,
-        outside:[...document.querySelectorAll('.clubhouse *, .bottom-nav-item')].filter(e=>{
+        outside:[...document.querySelectorAll('main *, .academy-dialog *, .academy-primary-nav')].filter(e=>{
+          if(e.closest('svg,.h-scroll,.academy-table-scroll,[class*="overflow-x"]')) return false;
           const r=e.getBoundingClientRect(); return r.width && r.height && (r.right>d.clientWidth+1 || r.left < -1);
         }).map(e=>e.tagName+'.'+e.className).slice(0,8)};
     }""")
@@ -107,7 +108,7 @@ def contrast(page: Page) -> dict:
       const background=e=>{let layers=[];for(let p=e;p;p=p.parentElement)layers.unshift(rgb(getComputedStyle(p).backgroundColor));
         return layers.reduce((u,c)=>c.slice(0,3).map((v,i)=>v*(c[3]??1)+u[i]*(1-(c[3]??1))),[255,255,255]);};
       const values=[];
-      for(const e of document.querySelectorAll('.clubhouse *, .bottom-nav-item span, .toast span')) {
+      for(const e of document.querySelectorAll('.academy-shell *, .academy-dialog *, .toast span')) {
         if(e.closest('svg')||!e.getClientRects().length||![...e.childNodes].some(n=>n.nodeType===Node.TEXT_NODE&&n.textContent.trim())) continue;
         const rect=e.getBoundingClientRect();if(!rect.width||!rect.height)continue;
         const s=getComputedStyle(e), a=lum(rgb(s.color)), b=lum(background(e));
@@ -125,17 +126,55 @@ def save_state(page: Page) -> dict:
     return page.evaluate("JSON.parse(localStorage.getItem('golazo-state'))")
 
 
+def component_text_fits(page: Page) -> dict:
+    result = page.evaluate("""() => {
+      const failures=[];
+      const nodes=document.querySelectorAll('.academy-day > strong, .academy-credential-ratings dt, .academy-primary-nav .academy-nav-item span');
+      for(const element of nodes) {
+        if(!element.getClientRects().length) continue;
+        const boundary=element.parentElement.getBoundingClientRect();
+        const range=document.createRange();range.selectNodeContents(element);
+        for(const rect of range.getClientRects()) if(rect.width && (rect.left<boundary.left-1 || rect.right>boundary.right+1)) {
+          failures.push({text:element.textContent,container:boundary.width,textWidth:rect.width});break;
+        }
+      }
+      return {checked:nodes.length,failures};
+    }""")
+    assert not result["failures"], result["failures"]
+    return result
+
+
+def keyboard_data_tables(page: Page) -> list[dict]:
+    observations = []
+    for details in page.locator(".academy-data-details").all():
+        summary = details.locator("summary")
+        summary.click()
+        page.keyboard.press("Tab")
+        region = details.locator(".academy-table-scroll")
+        expect(region).to_be_focused()
+        before = region.evaluate("e=>({left:e.scrollLeft,width:e.clientWidth,scrollWidth:e.scrollWidth})")
+        if before["scrollWidth"] > before["width"] + 1:
+            right = before["left"] < before["scrollWidth"] - before["width"] - 1
+            page.keyboard.press("ArrowRight" if right else "ArrowLeft")
+            page.wait_for_function("value=>value.right ? value.element.scrollLeft>value.left : value.element.scrollLeft<value.left",
+                                   arg={"element": region.element_handle(), "left": before["left"], "right": right})
+        observations.append({"label": region.get_attribute("aria-label"), **before, "keyboardLeftAfter": region.evaluate("e=>e.scrollLeft")})
+        summary.click()
+    return observations
+
+
 def capture(page: Page, output: Path, name: str) -> None:
     page.evaluate("window.scrollTo(0,0)")
     page.screenshot(path=str(output / f"{name}.png"), full_page=True, scale="css")
 
 
 def keyboard_to(page: Page, selector: str) -> None:
-    for _ in range(40):
+    for _ in range(100):
         if page.locator(selector).evaluate("e=>e===document.activeElement"):
             visible = page.locator(selector).evaluate("""e=>{
-              const r=e.getBoundingClientRect(), nav=document.querySelector('.bottom-nav').getBoundingClientRect();
-              return r.top>=0 && r.bottom<=nav.top && getComputedStyle(e).outlineStyle!=='none';
+              const r=e.getBoundingClientRect(), nav=document.querySelector('.academy-primary-nav');
+              const bottom=nav && getComputedStyle(nav).position==='fixed' ? nav.getBoundingClientRect().top : innerHeight;
+              return r.top>=0 && r.bottom<=bottom && getComputedStyle(e).outlineStyle!=='none';
             }""")
             if visible:
                 return
@@ -172,23 +211,23 @@ def main() -> None:
                 page = context.new_page()
                 page.on("pageerror", lambda error: state["page_errors"].append(str(error)))
                 page.goto(args.url, wait_until="networkidle")
-                expect(page.locator(".club-welcome")).to_be_visible()
+                expect(page.locator('[data-academy-surface="player-home"]')).to_be_visible()
                 initial_assets = page.evaluate("""() => performance.getEntriesByType('resource').filter(e=>new URL(e.name).pathname.startsWith('/assets/')).map(e=>({path:new URL(e.name).pathname,decodedBytes:e.decodedBodySize,transferBytes:e.transferSize}))""")
                 results.append({"language": language, "phase": "initial-payload", "assets": initial_assets})
-                for width in (320, 390, 1280):
+                for width in (320, 390, 768, 1024, 1440):
                     page.set_viewport_size({"width": width, "height": 900 if width == 1280 else 844})
                     results.append({"language": language, "phase": "initial", "layout": no_overflow(page), "contrast": contrast(page)})
                     keyboard_to(page, ".nl-footer a")
                     results.append({"language": language, "phase": "footer-focus", "width": width, "fullyAboveNavigation": True})
                     capture(page, output, f"{language}-initial-{width}")
                 page.set_viewport_size({"width": 390, "height": 844})
-                keyboard_to(page, ".club-log-card .club-button")
+                keyboard_to(page, ".academy-agenda-row .academy-link")
                 page.keyboard.press("Enter")
-                expect(page.locator(".training-form")).to_be_visible()
+                expect(page.locator(".academy-form")).to_be_visible()
                 new_assets = page.evaluate("""known => performance.getEntriesByType('resource').filter(e=>new URL(e.name).pathname.startsWith('/assets/')&&!known.includes(new URL(e.name).pathname)).map(e=>new URL(e.name).pathname)""", [item["path"] for item in initial_assets])
                 results.append({"language": language, "phase": "opening-log-assets", "additionalAssets": new_assets})
                 page.locator('input[name="duration"]').fill("")
-                page.locator(".training-form button[type=submit]").click()
+                page.locator(".academy-form button[type=submit]").click()
                 assert not page.locator('input[name="duration"]').evaluate("e=>e.validity.valid")
                 assert len(save_state(page)["trainings"]) == 2
                 page.locator('input[name="duration"]').fill("60")
@@ -196,43 +235,61 @@ def main() -> None:
                 page.locator('textarea[name="notes"]').fill("Synthetic note: I looked up before making a pass.")
                 page.locator('input[name="mood"][value="4"]').check()
                 page.locator('.training-focus input').first.check()
-                page.locator(".training-presets .club-choice").first.hover()
+                page.locator(".training-presets .academy-choice").first.hover()
                 results.append({"language": language, "phase": "selected-hover", "contrast": contrast(page)})
                 page.evaluate("window.__failTrainingStorage=true")
-                page.locator(".training-form button[type=submit]").click()
-                expect(page.locator(".club-error")).to_be_visible()
+                page.locator(".academy-form button[type=submit]").click()
+                expect(page.locator(".academy-dialog .academy-error")).to_be_visible()
                 expect(page.locator('textarea[name="notes"]')).to_have_value("Synthetic note: I looked up before making a pass.")
                 assert len(save_state(page)["trainings"]) == 2 and save_state(page)["xp"]["totalXp"] == 80
                 results.append({"language": language, "phase": "failure", "layout": no_overflow(page), "contrast": contrast(page)})
                 capture(page, output, f"{language}-failure-390")
                 page.evaluate("window.__failTrainingStorage=false")
-                keyboard_to(page, ".training-form button[type=submit]")
+                keyboard_to(page, ".academy-form button[type=submit]")
                 page.keyboard.press("Enter")
                 page.keyboard.press("Enter")
-                expect(page.locator(".club-complete-label")).to_be_visible()
+                expect(page.locator(".academy-dialog .academy-complete-label")).to_be_visible()
                 expect(page.locator(".toast-error")).to_have_count(0)
                 assert len(save_state(page)["trainings"]) == 3 and save_state(page)["xp"]["totalXp"] == 100
                 assert save_state(page)["trainings"][-1]["playerId"] == "synthetic-player"
                 assert save_state(page)["trainings"][-1]["fromSchedule"] == "synthetic-schedule"
-                expect(page.locator(".club-metrics")).to_contain_text("185")
-                assert page.locator(".club-complete-label").evaluate("e=>getComputedStyle(e).animationName") == "none"
-                for width in (320, 390, 1280):
+                expect(page.locator(".academy-dialog .training-progress .academy-stat-line")).to_contain_text("185")
+                assert page.locator(".academy-dialog .academy-complete-label").evaluate("e=>getComputedStyle(e).animationName") == "none"
+                for width in (320, 390, 768, 1024, 1440):
                     page.set_viewport_size({"width": width, "height": 900 if width == 1280 else 844})
                     results.append({"language": language, "phase": "completion", "layout": no_overflow(page), "contrast": contrast(page)})
                     capture(page, output, f"{language}-completion-{width}")
                 page.wait_for_timeout(2200)
                 assert len(state["puts"]) == 1 and len(state["puts"][0]["trainings"]) == 3
                 page.reload(wait_until="networkidle")
-                expect(page.locator(".club-welcome")).to_be_visible()
+                expect(page.locator('[data-academy-surface="player-home"]')).to_be_visible()
                 assert len(save_state(page)["trainings"]) == 3 and save_state(page)["xp"]["totalXp"] == 100
                 page.set_viewport_size({"width": 390, "height": 844})
                 page.evaluate("document.documentElement.style.fontSize='200%'")
                 results.append({"language": language, "phase": "text-200-initial", "layout": no_overflow(page)})
                 keyboard_to(page, ".nl-footer a")
                 capture(page, output, f"{language}-text-200-initial")
-                page.locator(".club-log-card .club-button").click()
+                page.locator('.academy-primary-nav [data-page="log"]').click()
+                translations = json.loads((repo / "src/i18n" / f"{language}.json").read_text(encoding="utf-8"))
+                page.get_by_role("button", name=translations["log.training"], exact=True).click()
+                expect(page.locator(".academy-form")).to_be_visible()
                 results.append({"language": language, "phase": "text-200-form", "layout": no_overflow(page)})
                 capture(page, output, f"{language}-text-200-form")
+                for destination in ("dashboard", "log", "progress", "learn", "profile"):
+                    page.locator(f'.academy-primary-nav [data-page="{destination}"]').click()
+                    expect(page.locator("main .academy-page").first).to_be_visible()
+                    results.append({"language": language, "phase": f"text-200-{destination}", "layout": no_overflow(page), "componentText": component_text_fits(page)})
+                    if destination == "progress":
+                        results.append({"language": language, "phase": "keyboard-chart-values", "tables": keyboard_data_tables(page)})
+                    capture(page, output, f"{language}-text-200-{destination}")
+                page.evaluate("document.documentElement.style.fontSize='100%'")
+                for width in (390, 1440):
+                    page.set_viewport_size({"width": width, "height": 900})
+                    for destination in ("dashboard", "log", "progress", "learn", "profile"):
+                        page.locator(f'.academy-primary-nav [data-page="{destination}"]').click()
+                        expect(page.locator("main .academy-page").first).to_be_visible()
+                        results.append({"language": language, "phase": f"workspace-{destination}", "layout": no_overflow(page), "contrast": contrast(page)})
+                        capture(page, output, f"{language}-workspace-{destination}-{width}")
                 assert not state["page_errors"] and not state["unexpected_external"], state
                 results.append({"language": language, "mocked_cloud_failures": len(state["puts"]), "page_errors": state["page_errors"], "external_requests_sent": 0})
                 context.close()
@@ -243,16 +300,17 @@ def main() -> None:
             install_mocks(context, args.url, first_use)
             page = context.new_page()
             page.goto(args.url, wait_until="networkidle")
-            expect(page.locator(".club-journal")).to_contain_text("Your journal starts here")
+            expect(page.get_by_text("Your first match starts the story.")).to_be_visible()
             capture(page, output, "first-use-390")
-            page.locator(".club-rest button").click()
+            page.locator('main').get_by_role("button", name="Schedule", exact=True).click()
             assert not save_state(page)["trainings"] and save_state(page)["xp"]["totalXp"] == 0
-            page.get_by_role("button", name="Home", exact=True).click()
-            expect(page.locator(".club-welcome")).to_be_visible()
-            page.locator(".club-log-card .club-button").click()
+            page.locator('.academy-primary-nav [data-page="dashboard"]').click()
+            expect(page.locator('[data-academy-surface="player-home"]')).to_be_visible()
+            page.locator('.academy-primary-nav [data-page="log"]').click()
+            page.get_by_role("button", name="Training", exact=True).click()
             page.locator('input[name="duration"]').fill("10")
-            page.locator(".training-form button[type=submit]").click()
-            expect(page.locator(".club-complete-label")).to_be_visible()
+            page.locator(".academy-form button[type=submit]").click()
+            expect(page.locator(".academy-complete-label")).to_be_visible()
             assert len(save_state(page)["trainings"]) == 1 and save_state(page)["xp"]["totalXp"] == 20
             results.append({"phase": "first-use-and-rest-link", "sessions": 1, "minutes": 10, "xp": 20, "restRecordedNothing": True})
             context.close()
@@ -271,7 +329,7 @@ def main() -> None:
                 page = context.new_page()
                 cdp = context.new_cdp_session(page)
                 page.goto(args.url, wait_until="networkidle")
-                expect(page.locator(".club-welcome")).to_be_visible()
+                expect(page.locator('[data-academy-surface="player-home"]')).to_be_visible()
                 before = page.evaluate("({width:innerWidth,dpr:devicePixelRatio})")
                 zoom = worker.evaluate("""async origin=>{
                   const tabs=(await chrome.tabs.query({})).filter(t=>t.url?.startsWith(origin+'/'));
@@ -280,12 +338,19 @@ def main() -> None:
                 }""", args.url)
                 assert zoom == 2
                 page.wait_for_function("old=>innerWidth<=old.width*.51 && devicePixelRatio>=old.dpr*1.99", arg=before)
+                for destination in ("dashboard", "log", "progress", "learn", "profile"):
+                    page.locator(f'.academy-primary-nav [data-page="{destination}"]').click()
+                    expect(page.locator("main .academy-page").first).to_be_visible()
+                    results.append({"phase": f"native-zoom200-{destination}", "layout": no_overflow(page), "before": before, "browserZoom": zoom})
+                page.locator('.academy-primary-nav [data-page="dashboard"]').click()
                 for phase in ("initial", "form", "completion"):
                     if phase == "form":
-                        page.locator(".club-log-card .club-button").click()
+                        page.locator('.academy-primary-nav [data-page="log"]').click()
+                        page.get_by_role("button", name="Training", exact=True).click()
+                        expect(page.locator(".academy-form")).to_be_visible()
                     elif phase == "completion":
-                        page.locator(".training-form button[type=submit]").press("Enter")
-                        expect(page.locator(".club-complete-label")).to_be_visible()
+                        page.locator(".academy-form button[type=submit]").press("Enter")
+                        expect(page.locator(".academy-complete-label")).to_be_visible()
                     results.append({"phase": f"native-zoom200-{phase}", "layout": no_overflow(page), "before": before, "browserZoom": zoom})
                     page.evaluate("window.scrollTo(0,0)")
                     size = cdp.send("Page.getLayoutMetrics")["contentSize"]

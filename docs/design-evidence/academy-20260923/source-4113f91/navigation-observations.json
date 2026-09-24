@@ -1,0 +1,4009 @@
+{
+  "stage": "source-bound-candidate-observations",
+  "observations": [
+    {
+      "role": "player",
+      "language": "en",
+      "width": 320,
+      "destination": "dashboard",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Your week. Your game.",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 320,
+      "destination": "log",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "What to log?",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 320,
+      "destination": "progress",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Progress",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 320,
+      "destination": "learn",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Learn",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 320,
+      "destination": "profile",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Profile",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 320,
+      "destination": "schedule",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Schedule",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 320,
+      "destination": "portal",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "My Football",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 320,
+      "destination": "challenges",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Challenges",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 320,
+      "destination": "leaderboard",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Leaderboard",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 320,
+      "destination": "settings",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Settings",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "destination": "dashboard",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Your week. Your game.",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "destination": "log",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "What to log?",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "destination": "progress",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Progress",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "destination": "learn",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Learn",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "destination": "profile",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Profile",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "destination": "schedule",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Schedule",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "destination": "portal",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "My Football",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "destination": "challenges",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Challenges",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "destination": "leaderboard",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Leaderboard",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 390,
+      "destination": "settings",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Settings",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 768,
+      "destination": "dashboard",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Your week. Your game.",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 768,
+      "destination": "log",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "What to log?",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 768,
+      "destination": "progress",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Progress",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 768,
+      "destination": "learn",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Learn",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 768,
+      "destination": "profile",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Profile",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 768,
+      "destination": "schedule",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Schedule",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 768,
+      "destination": "portal",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "My Football",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 768,
+      "destination": "challenges",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Challenges",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 768,
+      "destination": "leaderboard",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Leaderboard",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 768,
+      "destination": "settings",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Settings",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 1024,
+      "destination": "dashboard",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Your week. Your game.",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 1024,
+      "destination": "log",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "What to log?",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 1024,
+      "destination": "progress",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Progress",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 1024,
+      "destination": "learn",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Learn",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 1024,
+      "destination": "profile",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Profile",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 1024,
+      "destination": "schedule",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Schedule",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 1024,
+      "destination": "portal",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "My Football",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 1024,
+      "destination": "challenges",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Challenges",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 1024,
+      "destination": "leaderboard",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Leaderboard",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 1024,
+      "destination": "settings",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Settings",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 1440,
+      "destination": "dashboard",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Your week. Your game.",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 1440,
+      "destination": "log",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "What to log?",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 1440,
+      "destination": "progress",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Progress",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 1440,
+      "destination": "learn",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Learn",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 1440,
+      "destination": "profile",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Profile",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 1440,
+      "destination": "schedule",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Schedule",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 1440,
+      "destination": "portal",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "My Football",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 1440,
+      "destination": "challenges",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Challenges",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 1440,
+      "destination": "leaderboard",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Leaderboard",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "en",
+      "width": 1440,
+      "destination": "settings",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Settings",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 320,
+      "destination": "dashboard",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Tava nedēļa. Tava spēle.",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 320,
+      "destination": "log",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Ko ierakstīt?",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 320,
+      "destination": "progress",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Izaugsme",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 320,
+      "destination": "learn",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Mācīties",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 320,
+      "destination": "profile",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Profils",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 320,
+      "destination": "schedule",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Grafiks",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 320,
+      "destination": "portal",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Mans futbols",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 320,
+      "destination": "challenges",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Izaicinājumi",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 320,
+      "destination": "leaderboard",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Reitings",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 320,
+      "destination": "settings",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Iestatījumi",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 390,
+      "destination": "dashboard",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Tava nedēļa. Tava spēle.",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 390,
+      "destination": "log",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Ko ierakstīt?",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 390,
+      "destination": "progress",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Izaugsme",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 390,
+      "destination": "learn",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Mācīties",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 390,
+      "destination": "profile",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Profils",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 390,
+      "destination": "schedule",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Grafiks",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 390,
+      "destination": "portal",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Mans futbols",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 390,
+      "destination": "challenges",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Izaicinājumi",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 390,
+      "destination": "leaderboard",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Reitings",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 390,
+      "destination": "settings",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Iestatījumi",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 768,
+      "destination": "dashboard",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Tava nedēļa. Tava spēle.",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 768,
+      "destination": "log",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Ko ierakstīt?",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 768,
+      "destination": "progress",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Izaugsme",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 768,
+      "destination": "learn",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Mācīties",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 768,
+      "destination": "profile",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Profils",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 768,
+      "destination": "schedule",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Grafiks",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 768,
+      "destination": "portal",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Mans futbols",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 768,
+      "destination": "challenges",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Izaicinājumi",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 768,
+      "destination": "leaderboard",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Reitings",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 768,
+      "destination": "settings",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Iestatījumi",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 1024,
+      "destination": "dashboard",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Tava nedēļa. Tava spēle.",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 1024,
+      "destination": "log",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Ko ierakstīt?",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 1024,
+      "destination": "progress",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Izaugsme",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 1024,
+      "destination": "learn",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Mācīties",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 1024,
+      "destination": "profile",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Profils",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 1024,
+      "destination": "schedule",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Grafiks",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 1024,
+      "destination": "portal",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Mans futbols",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 1024,
+      "destination": "challenges",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Izaicinājumi",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 1024,
+      "destination": "leaderboard",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Reitings",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 1024,
+      "destination": "settings",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Iestatījumi",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 1440,
+      "destination": "dashboard",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Tava nedēļa. Tava spēle.",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 1440,
+      "destination": "log",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Ko ierakstīt?",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 1440,
+      "destination": "progress",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Izaugsme",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 1440,
+      "destination": "learn",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Mācīties",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 1440,
+      "destination": "profile",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Profils",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 1440,
+      "destination": "schedule",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Grafiks",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 1440,
+      "destination": "portal",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Mans futbols",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 1440,
+      "destination": "challenges",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Izaicinājumi",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 1440,
+      "destination": "leaderboard",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Reitings",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "lv",
+      "width": 1440,
+      "destination": "settings",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Iestatījumi",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "ru",
+      "width": 320,
+      "destination": "dashboard",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Твоя неделя. Твоя игра.",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "ru",
+      "width": 320,
+      "destination": "log",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Что записать?",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "ru",
+      "width": 320,
+      "destination": "progress",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Прогресс",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "ru",
+      "width": 320,
+      "destination": "learn",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Учиться",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "ru",
+      "width": 320,
+      "destination": "profile",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Профиль",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "ru",
+      "width": 320,
+      "destination": "schedule",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Расписание",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "ru",
+      "width": 320,
+      "destination": "portal",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Мой футбол",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "ru",
+      "width": 320,
+      "destination": "challenges",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Вызовы",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "ru",
+      "width": 320,
+      "destination": "leaderboard",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Рейтинг",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "ru",
+      "width": 320,
+      "destination": "settings",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Настройки",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "ru",
+      "width": 390,
+      "destination": "dashboard",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Твоя неделя. Твоя игра.",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "ru",
+      "width": 390,
+      "destination": "log",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Что записать?",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "ru",
+      "width": 390,
+      "destination": "progress",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Прогресс",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "ru",
+      "width": 390,
+      "destination": "learn",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Учиться",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "ru",
+      "width": 390,
+      "destination": "profile",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Профиль",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "ru",
+      "width": 390,
+      "destination": "schedule",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Расписание",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "ru",
+      "width": 390,
+      "destination": "portal",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Мой футбол",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "ru",
+      "width": 390,
+      "destination": "challenges",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Вызовы",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "ru",
+      "width": 390,
+      "destination": "leaderboard",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Рейтинг",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "ru",
+      "width": 390,
+      "destination": "settings",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Настройки",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "ru",
+      "width": 768,
+      "destination": "dashboard",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Твоя неделя. Твоя игра.",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "ru",
+      "width": 768,
+      "destination": "log",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Что записать?",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "ru",
+      "width": 768,
+      "destination": "progress",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Прогресс",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "ru",
+      "width": 768,
+      "destination": "learn",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Учиться",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "ru",
+      "width": 768,
+      "destination": "profile",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Профиль",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "ru",
+      "width": 768,
+      "destination": "schedule",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Расписание",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "ru",
+      "width": 768,
+      "destination": "portal",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Мой футбол",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "ru",
+      "width": 768,
+      "destination": "challenges",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Вызовы",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "ru",
+      "width": 768,
+      "destination": "leaderboard",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Рейтинг",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "ru",
+      "width": 768,
+      "destination": "settings",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Настройки",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "ru",
+      "width": 1024,
+      "destination": "dashboard",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Твоя неделя. Твоя игра.",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "ru",
+      "width": 1024,
+      "destination": "log",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Что записать?",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "ru",
+      "width": 1024,
+      "destination": "progress",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Прогресс",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "ru",
+      "width": 1024,
+      "destination": "learn",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Учиться",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "ru",
+      "width": 1024,
+      "destination": "profile",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Профиль",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "ru",
+      "width": 1024,
+      "destination": "schedule",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Расписание",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "ru",
+      "width": 1024,
+      "destination": "portal",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Мой футбол",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "ru",
+      "width": 1024,
+      "destination": "challenges",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Вызовы",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "ru",
+      "width": 1024,
+      "destination": "leaderboard",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Рейтинг",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "ru",
+      "width": 1024,
+      "destination": "settings",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Настройки",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "ru",
+      "width": 1440,
+      "destination": "dashboard",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Твоя неделя. Твоя игра.",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "ru",
+      "width": 1440,
+      "destination": "log",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Что записать?",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "ru",
+      "width": 1440,
+      "destination": "progress",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Прогресс",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "ru",
+      "width": 1440,
+      "destination": "learn",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Учиться",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "ru",
+      "width": 1440,
+      "destination": "profile",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Профиль",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "ru",
+      "width": 1440,
+      "destination": "schedule",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Расписание",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "ru",
+      "width": 1440,
+      "destination": "portal",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Мой футбол",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "ru",
+      "width": 1440,
+      "destination": "challenges",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Вызовы",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "ru",
+      "width": 1440,
+      "destination": "leaderboard",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Рейтинг",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "ru",
+      "width": 1440,
+      "destination": "settings",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Настройки",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "es",
+      "width": 320,
+      "destination": "dashboard",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Tu semana. Tu juego.",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "es",
+      "width": 320,
+      "destination": "log",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "¿Qué registrar?",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "es",
+      "width": 320,
+      "destination": "progress",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Progreso",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "es",
+      "width": 320,
+      "destination": "learn",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Aprender",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "es",
+      "width": 320,
+      "destination": "profile",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Perfil",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "es",
+      "width": 320,
+      "destination": "schedule",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Horario",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "es",
+      "width": 320,
+      "destination": "portal",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Mi Fútbol",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "es",
+      "width": 320,
+      "destination": "challenges",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Desafíos",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "es",
+      "width": 320,
+      "destination": "leaderboard",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Clasificación",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "es",
+      "width": 320,
+      "destination": "settings",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Ajustes",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "es",
+      "width": 390,
+      "destination": "dashboard",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Tu semana. Tu juego.",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "es",
+      "width": 390,
+      "destination": "log",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "¿Qué registrar?",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "es",
+      "width": 390,
+      "destination": "progress",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Progreso",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "es",
+      "width": 390,
+      "destination": "learn",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Aprender",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "es",
+      "width": 390,
+      "destination": "profile",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Perfil",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "es",
+      "width": 390,
+      "destination": "schedule",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Horario",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "es",
+      "width": 390,
+      "destination": "portal",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Mi Fútbol",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "es",
+      "width": 390,
+      "destination": "challenges",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Desafíos",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "es",
+      "width": 390,
+      "destination": "leaderboard",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Clasificación",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "es",
+      "width": 390,
+      "destination": "settings",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Ajustes",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "es",
+      "width": 768,
+      "destination": "dashboard",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Tu semana. Tu juego.",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "es",
+      "width": 768,
+      "destination": "log",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "¿Qué registrar?",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "es",
+      "width": 768,
+      "destination": "progress",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Progreso",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "es",
+      "width": 768,
+      "destination": "learn",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Aprender",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "es",
+      "width": 768,
+      "destination": "profile",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Perfil",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "es",
+      "width": 768,
+      "destination": "schedule",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Horario",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "es",
+      "width": 768,
+      "destination": "portal",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Mi Fútbol",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "es",
+      "width": 768,
+      "destination": "challenges",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Desafíos",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "es",
+      "width": 768,
+      "destination": "leaderboard",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Clasificación",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "es",
+      "width": 768,
+      "destination": "settings",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Ajustes",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "es",
+      "width": 1024,
+      "destination": "dashboard",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Tu semana. Tu juego.",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "es",
+      "width": 1024,
+      "destination": "log",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "¿Qué registrar?",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "es",
+      "width": 1024,
+      "destination": "progress",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Progreso",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "es",
+      "width": 1024,
+      "destination": "learn",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Aprender",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "es",
+      "width": 1024,
+      "destination": "profile",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Perfil",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "es",
+      "width": 1024,
+      "destination": "schedule",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Horario",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "es",
+      "width": 1024,
+      "destination": "portal",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Mi Fútbol",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "es",
+      "width": 1024,
+      "destination": "challenges",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Desafíos",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "es",
+      "width": 1024,
+      "destination": "leaderboard",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Clasificación",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "es",
+      "width": 1024,
+      "destination": "settings",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Ajustes",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "es",
+      "width": 1440,
+      "destination": "dashboard",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Tu semana. Tu juego.",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "es",
+      "width": 1440,
+      "destination": "log",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "¿Qué registrar?",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "es",
+      "width": 1440,
+      "destination": "progress",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Progreso",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "es",
+      "width": 1440,
+      "destination": "learn",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Aprender",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "es",
+      "width": 1440,
+      "destination": "profile",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Perfil",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "es",
+      "width": 1440,
+      "destination": "schedule",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Horario",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "es",
+      "width": 1440,
+      "destination": "portal",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Mi Fútbol",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "es",
+      "width": 1440,
+      "destination": "challenges",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Desafíos",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "es",
+      "width": 1440,
+      "destination": "leaderboard",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Clasificación",
+      "outside": []
+    },
+    {
+      "role": "player",
+      "language": "es",
+      "width": 1440,
+      "destination": "settings",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Ajustes",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 320,
+      "destination": "dashboard",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Coach Dashboard",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 320,
+      "destination": "schedule",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Schedule",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 320,
+      "destination": "stats",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Stats",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 320,
+      "destination": "profile",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Profile",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 320,
+      "destination": "settings",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Settings",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 390,
+      "destination": "dashboard",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Coach Dashboard",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 390,
+      "destination": "schedule",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Schedule",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 390,
+      "destination": "stats",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Stats",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 390,
+      "destination": "profile",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Profile",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 390,
+      "destination": "settings",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Settings",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 768,
+      "destination": "dashboard",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Coach Dashboard",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 768,
+      "destination": "schedule",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Schedule",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 768,
+      "destination": "stats",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Stats",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 768,
+      "destination": "profile",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Profile",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 768,
+      "destination": "settings",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Settings",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 1024,
+      "destination": "dashboard",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Coach Dashboard",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 1024,
+      "destination": "schedule",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Schedule",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 1024,
+      "destination": "stats",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Stats",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 1024,
+      "destination": "profile",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Profile",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 1024,
+      "destination": "settings",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Settings",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 1440,
+      "destination": "dashboard",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Coach Dashboard",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 1440,
+      "destination": "schedule",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Schedule",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 1440,
+      "destination": "stats",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Stats",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 1440,
+      "destination": "profile",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Profile",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "en",
+      "width": 1440,
+      "destination": "settings",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Settings",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 320,
+      "destination": "dashboard",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Trenera panelis",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 320,
+      "destination": "schedule",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Grafiks",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 320,
+      "destination": "stats",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Statistika",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 320,
+      "destination": "profile",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Profils",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 320,
+      "destination": "settings",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Iestatījumi",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 390,
+      "destination": "dashboard",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Trenera panelis",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 390,
+      "destination": "schedule",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Grafiks",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 390,
+      "destination": "stats",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Statistika",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 390,
+      "destination": "profile",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Profils",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 390,
+      "destination": "settings",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Iestatījumi",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 768,
+      "destination": "dashboard",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Trenera panelis",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 768,
+      "destination": "schedule",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Grafiks",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 768,
+      "destination": "stats",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Statistika",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 768,
+      "destination": "profile",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Profils",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 768,
+      "destination": "settings",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Iestatījumi",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 1024,
+      "destination": "dashboard",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Trenera panelis",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 1024,
+      "destination": "schedule",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Grafiks",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 1024,
+      "destination": "stats",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Statistika",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 1024,
+      "destination": "profile",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Profils",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 1024,
+      "destination": "settings",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Iestatījumi",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 1440,
+      "destination": "dashboard",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Trenera panelis",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 1440,
+      "destination": "schedule",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Grafiks",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 1440,
+      "destination": "stats",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Statistika",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 1440,
+      "destination": "profile",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Profils",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "lv",
+      "width": 1440,
+      "destination": "settings",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Iestatījumi",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "ru",
+      "width": 320,
+      "destination": "dashboard",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Панель тренера",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "ru",
+      "width": 320,
+      "destination": "schedule",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Расписание",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "ru",
+      "width": 320,
+      "destination": "stats",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Статистика",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "ru",
+      "width": 320,
+      "destination": "profile",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Профиль",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "ru",
+      "width": 320,
+      "destination": "settings",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Настройки",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "ru",
+      "width": 390,
+      "destination": "dashboard",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Панель тренера",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "ru",
+      "width": 390,
+      "destination": "schedule",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Расписание",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "ru",
+      "width": 390,
+      "destination": "stats",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Статистика",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "ru",
+      "width": 390,
+      "destination": "profile",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Профиль",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "ru",
+      "width": 390,
+      "destination": "settings",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Настройки",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "ru",
+      "width": 768,
+      "destination": "dashboard",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Панель тренера",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "ru",
+      "width": 768,
+      "destination": "schedule",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Расписание",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "ru",
+      "width": 768,
+      "destination": "stats",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Статистика",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "ru",
+      "width": 768,
+      "destination": "profile",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Профиль",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "ru",
+      "width": 768,
+      "destination": "settings",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Настройки",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "ru",
+      "width": 1024,
+      "destination": "dashboard",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Панель тренера",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "ru",
+      "width": 1024,
+      "destination": "schedule",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Расписание",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "ru",
+      "width": 1024,
+      "destination": "stats",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Статистика",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "ru",
+      "width": 1024,
+      "destination": "profile",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Профиль",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "ru",
+      "width": 1024,
+      "destination": "settings",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Настройки",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "ru",
+      "width": 1440,
+      "destination": "dashboard",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Панель тренера",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "ru",
+      "width": 1440,
+      "destination": "schedule",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Расписание",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "ru",
+      "width": 1440,
+      "destination": "stats",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Статистика",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "ru",
+      "width": 1440,
+      "destination": "profile",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Профиль",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "ru",
+      "width": 1440,
+      "destination": "settings",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Настройки",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "es",
+      "width": 320,
+      "destination": "dashboard",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Panel del entrenador",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "es",
+      "width": 320,
+      "destination": "schedule",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Horario",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "es",
+      "width": 320,
+      "destination": "stats",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Estadísticas",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "es",
+      "width": 320,
+      "destination": "profile",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Perfil",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "es",
+      "width": 320,
+      "destination": "settings",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Ajustes",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "es",
+      "width": 390,
+      "destination": "dashboard",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Panel del entrenador",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "es",
+      "width": 390,
+      "destination": "schedule",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Horario",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "es",
+      "width": 390,
+      "destination": "stats",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Estadísticas",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "es",
+      "width": 390,
+      "destination": "profile",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Perfil",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "es",
+      "width": 390,
+      "destination": "settings",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Ajustes",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "es",
+      "width": 768,
+      "destination": "dashboard",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Panel del entrenador",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "es",
+      "width": 768,
+      "destination": "schedule",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Horario",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "es",
+      "width": 768,
+      "destination": "stats",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Estadísticas",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "es",
+      "width": 768,
+      "destination": "profile",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Perfil",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "es",
+      "width": 768,
+      "destination": "settings",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Ajustes",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "es",
+      "width": 1024,
+      "destination": "dashboard",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Panel del entrenador",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "es",
+      "width": 1024,
+      "destination": "schedule",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Horario",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "es",
+      "width": 1024,
+      "destination": "stats",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Estadísticas",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "es",
+      "width": 1024,
+      "destination": "profile",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Perfil",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "es",
+      "width": 1024,
+      "destination": "settings",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Ajustes",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "es",
+      "width": 1440,
+      "destination": "dashboard",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Panel del entrenador",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "es",
+      "width": 1440,
+      "destination": "schedule",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Horario",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "es",
+      "width": 1440,
+      "destination": "stats",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Estadísticas",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "es",
+      "width": 1440,
+      "destination": "profile",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Perfil",
+      "outside": []
+    },
+    {
+      "role": "coach",
+      "language": "es",
+      "width": 1440,
+      "destination": "settings",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Ajustes",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 320,
+      "destination": "dashboard",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Parent Dashboard",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 320,
+      "destination": "schedule",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Schedule",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 320,
+      "destination": "progress",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Progress",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 320,
+      "destination": "profile",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Profile",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 320,
+      "destination": "settings",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Settings",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 390,
+      "destination": "dashboard",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Parent Dashboard",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 390,
+      "destination": "schedule",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Schedule",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 390,
+      "destination": "progress",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Progress",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 390,
+      "destination": "profile",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Profile",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 390,
+      "destination": "settings",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Settings",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 768,
+      "destination": "dashboard",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Parent Dashboard",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 768,
+      "destination": "schedule",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Schedule",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 768,
+      "destination": "progress",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Progress",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 768,
+      "destination": "profile",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Profile",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 768,
+      "destination": "settings",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Settings",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 1024,
+      "destination": "dashboard",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Parent Dashboard",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 1024,
+      "destination": "schedule",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Schedule",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 1024,
+      "destination": "progress",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Progress",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 1024,
+      "destination": "profile",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Profile",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 1024,
+      "destination": "settings",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Settings",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 1440,
+      "destination": "dashboard",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Parent Dashboard",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 1440,
+      "destination": "schedule",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Schedule",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 1440,
+      "destination": "progress",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Progress",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 1440,
+      "destination": "profile",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Profile",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "en",
+      "width": 1440,
+      "destination": "settings",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Settings",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 320,
+      "destination": "dashboard",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Parent Dashboard",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 320,
+      "destination": "schedule",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Grafiks",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 320,
+      "destination": "progress",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Izaugsme",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 320,
+      "destination": "profile",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Profils",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 320,
+      "destination": "settings",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Iestatījumi",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 390,
+      "destination": "dashboard",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Parent Dashboard",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 390,
+      "destination": "schedule",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Grafiks",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 390,
+      "destination": "progress",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Izaugsme",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 390,
+      "destination": "profile",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Profils",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 390,
+      "destination": "settings",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Iestatījumi",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 768,
+      "destination": "dashboard",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Parent Dashboard",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 768,
+      "destination": "schedule",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Grafiks",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 768,
+      "destination": "progress",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Izaugsme",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 768,
+      "destination": "profile",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Profils",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 768,
+      "destination": "settings",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Iestatījumi",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 1024,
+      "destination": "dashboard",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Parent Dashboard",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 1024,
+      "destination": "schedule",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Grafiks",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 1024,
+      "destination": "progress",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Izaugsme",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 1024,
+      "destination": "profile",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Profils",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 1024,
+      "destination": "settings",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Iestatījumi",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 1440,
+      "destination": "dashboard",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Parent Dashboard",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 1440,
+      "destination": "schedule",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Grafiks",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 1440,
+      "destination": "progress",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Izaugsme",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 1440,
+      "destination": "profile",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Profils",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "lv",
+      "width": 1440,
+      "destination": "settings",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Iestatījumi",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "ru",
+      "width": 320,
+      "destination": "dashboard",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Parent Dashboard",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "ru",
+      "width": 320,
+      "destination": "schedule",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Расписание",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "ru",
+      "width": 320,
+      "destination": "progress",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Прогресс",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "ru",
+      "width": 320,
+      "destination": "profile",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Профиль",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "ru",
+      "width": 320,
+      "destination": "settings",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Настройки",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "ru",
+      "width": 390,
+      "destination": "dashboard",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Parent Dashboard",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "ru",
+      "width": 390,
+      "destination": "schedule",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Расписание",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "ru",
+      "width": 390,
+      "destination": "progress",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Прогресс",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "ru",
+      "width": 390,
+      "destination": "profile",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Профиль",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "ru",
+      "width": 390,
+      "destination": "settings",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Настройки",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "ru",
+      "width": 768,
+      "destination": "dashboard",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Parent Dashboard",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "ru",
+      "width": 768,
+      "destination": "schedule",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Расписание",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "ru",
+      "width": 768,
+      "destination": "progress",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Прогресс",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "ru",
+      "width": 768,
+      "destination": "profile",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Профиль",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "ru",
+      "width": 768,
+      "destination": "settings",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Настройки",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "ru",
+      "width": 1024,
+      "destination": "dashboard",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Parent Dashboard",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "ru",
+      "width": 1024,
+      "destination": "schedule",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Расписание",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "ru",
+      "width": 1024,
+      "destination": "progress",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Прогресс",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "ru",
+      "width": 1024,
+      "destination": "profile",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Профиль",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "ru",
+      "width": 1024,
+      "destination": "settings",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Настройки",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "ru",
+      "width": 1440,
+      "destination": "dashboard",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Parent Dashboard",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "ru",
+      "width": 1440,
+      "destination": "schedule",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Расписание",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "ru",
+      "width": 1440,
+      "destination": "progress",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Прогресс",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "ru",
+      "width": 1440,
+      "destination": "profile",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Профиль",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "ru",
+      "width": 1440,
+      "destination": "settings",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Настройки",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "es",
+      "width": 320,
+      "destination": "dashboard",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Parent Dashboard",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "es",
+      "width": 320,
+      "destination": "schedule",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Horario",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "es",
+      "width": 320,
+      "destination": "progress",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Progreso",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "es",
+      "width": 320,
+      "destination": "profile",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Perfil",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "es",
+      "width": 320,
+      "destination": "settings",
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "heading": "Ajustes",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "es",
+      "width": 390,
+      "destination": "dashboard",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Parent Dashboard",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "es",
+      "width": 390,
+      "destination": "schedule",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Horario",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "es",
+      "width": 390,
+      "destination": "progress",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Progreso",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "es",
+      "width": 390,
+      "destination": "profile",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Perfil",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "es",
+      "width": 390,
+      "destination": "settings",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "heading": "Ajustes",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "es",
+      "width": 768,
+      "destination": "dashboard",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Parent Dashboard",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "es",
+      "width": 768,
+      "destination": "schedule",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Horario",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "es",
+      "width": 768,
+      "destination": "progress",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Progreso",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "es",
+      "width": 768,
+      "destination": "profile",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Perfil",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "es",
+      "width": 768,
+      "destination": "settings",
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "heading": "Ajustes",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "es",
+      "width": 1024,
+      "destination": "dashboard",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Parent Dashboard",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "es",
+      "width": 1024,
+      "destination": "schedule",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Horario",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "es",
+      "width": 1024,
+      "destination": "progress",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Progreso",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "es",
+      "width": 1024,
+      "destination": "profile",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Perfil",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "es",
+      "width": 1024,
+      "destination": "settings",
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "heading": "Ajustes",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "es",
+      "width": 1440,
+      "destination": "dashboard",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Parent Dashboard",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "es",
+      "width": 1440,
+      "destination": "schedule",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Horario",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "es",
+      "width": 1440,
+      "destination": "progress",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Progreso",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "es",
+      "width": 1440,
+      "destination": "profile",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Perfil",
+      "outside": []
+    },
+    {
+      "role": "mentor",
+      "language": "es",
+      "width": 1440,
+      "destination": "settings",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "heading": "Ajustes",
+      "outside": []
+    }
+  ],
+  "errors": [],
+  "failures": [],
+  "source_commit": "4113f91a630285da4f78328f8a90ba3ecbf62cba",
+  "procedure_sha256": "2ccf2afd71825c89ccc4e45e648e89c48316a8a085ca4861025a1382d014c890"
+}

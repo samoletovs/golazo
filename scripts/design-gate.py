@@ -16,6 +16,8 @@ CHECKS = (
     "accessibility", "performance", "visual_intent",
 )
 PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
+SCOPE_FILE = ".design-scope.json"
+CRAFT_CHECKS = ("identity", "composition", "cohesion")
 
 
 def git_bytes(repo: Path, *args: str) -> bytes:
@@ -64,6 +66,8 @@ def artifact(repo: Path, value: object) -> Path:
 def verify_artifact(repo: Path, item: dict) -> Path:
     path = artifact(repo, item.get("path"))
     expected = require_text(item.get("sha256"), "artifact sha256")
+    if item["sha256"] != expected or not re.fullmatch(r"[0-9a-f]{64}", expected):
+        raise ValueError("artifact sha256 must be a canonical lowercase hex digest without whitespace")
     actual = hashlib.sha256(path.read_bytes()).hexdigest()
     if expected != actual:
         raise ValueError(f"artifact changed since review: {item['path']}")
@@ -106,15 +110,125 @@ def check_source(repo: Path, source_commit: object) -> None:
         )
 
 
+def load_scope(repo: Path, revision: str) -> tuple[dict, str]:
+    """Read the inventory from the frozen source, never from receipt assertions."""
+    data = git_bytes(repo, "show", f"{revision}:{SCOPE_FILE}")
+    scope = require_object(json.loads(data), "design scope")
+    if type(scope.get("version")) is not int or scope["version"] != 1:
+        raise ValueError("design scope version must be 1")
+    if scope.get("kind") not in ("feature", "new-product", "product-redesign"):
+        raise ValueError("scope.kind must be feature, new-product or product-redesign")
+    require_text(scope.get("owner_scope"), "scope.owner_scope")
+    require_text(scope.get("inventory_basis"), "scope.inventory_basis")
+    surfaces = scope.get("surfaces")
+    if not isinstance(surfaces, list) or not surfaces:
+        raise ValueError("scope.surfaces must enumerate the affected experience")
+    identifiers: dict[str, dict] = {}
+    for value in surfaces:
+        surface = require_object(value, "scope surface")
+        identifier = require_text(surface.get("id"), "surface.id")
+        if identifier in identifiers:
+            raise ValueError("scope surface ids must be unique")
+        identifiers[identifier] = surface
+        require_text(surface.get("entry"), "surface.entry")
+        require_text(surface.get("role"), "surface.role")
+    for identifier, surface in identifiers.items():
+        if "shared_render_with" not in surface:
+            continue
+        canonical = require_text(surface["shared_render_with"], f"{identifier}.shared_render_with")
+        if canonical == identifier or canonical not in identifiers:
+            raise ValueError("shared_render_with must name a different surface in the same scope inventory")
+        if "shared_render_with" in identifiers[canonical]:
+            raise ValueError("shared_render_with must point directly to a canonical surface, not an alias")
+        require_text(surface.get("sharing_rationale"), f"{identifier}.sharing_rationale")
+    return scope, hashlib.sha256(data).hexdigest()
+
+
+def validate_captures(repo: Path, screenshots: object) -> None:
+    if not isinstance(screenshots, list) or len(screenshots) != 2:
+        raise ValueError("provide one mobile and one desktop PNG screenshot")
+    viewports: set[str] = set()
+    screenshot_paths: set[Path] = set()
+    for screenshot in screenshots:
+        screenshot = require_object(screenshot, "screenshot")
+        viewport = screenshot.get("viewport")
+        if viewport not in ("mobile", "desktop") or viewport in viewports:
+            raise ValueError("screenshot viewports must be mobile and desktop")
+        viewports.add(viewport)
+        path = verify_artifact(repo, screenshot)
+        screenshot_paths.add(path)
+        width, height = png_dimensions(path)
+        valid_width = 320 <= width <= 480 if viewport == "mobile" else width >= 1024
+        if not valid_width or height < 320:
+            raise ValueError(f"{viewport} screenshot has unsuitable dimensions")
+    if len(screenshot_paths) != 2:
+        raise ValueError("mobile and desktop screenshots must be distinct files")
+
+
+def validate_completion(repo: Path, record: dict) -> None:
+    scope, digest = load_scope(repo, record["source_commit"])
+    if record.get("scope_sha256") != digest:
+        raise ValueError("scope inventory changed since review")
+    coverage = record.get("coverage")
+    if not isinstance(coverage, list):
+        raise ValueError("coverage must account for every inventoried surface")
+    inventory = {surface["id"].strip(): surface for surface in scope["surfaces"]}
+    expected = set(inventory)
+    seen: set[str] = set()
+    capture_groups: dict[str, str] = {}
+    for value in coverage:
+        surface = require_object(value, "coverage surface")
+        identifier = require_text(surface.get("id"), "coverage.id")
+        if identifier not in expected or identifier in seen:
+            raise ValueError("coverage must match scope without extra or duplicate ids")
+        seen.add(identifier)
+        declared = inventory[identifier]
+        for field in ("shared_render_with", "sharing_rationale"):
+            if field in surface and (field not in declared or surface[field] != declared[field]):
+                raise ValueError(f"{identifier}.{field} must match the frozen source inventory")
+        group = identifier
+        if "shared_render_with" in declared:
+            group = declared["shared_render_with"].strip()
+            require_text(surface.get("context_evidence"), f"{identifier}.context_evidence")
+        if surface.get("status") not in ("implemented", "retained-consistent"):
+            raise ValueError(f"{identifier}: incomplete surface cannot certify redesign completion")
+        require_text(surface.get("evidence"), f"{identifier}.evidence")
+        if surface["status"] == "retained-consistent":
+            require_text(surface.get("rationale"), f"{identifier}.rationale")
+        validate_captures(repo, surface.get("screenshots"))
+        hashes = {image["sha256"] for image in surface["screenshots"]}
+        for image_hash in hashes:
+            if image_hash in capture_groups and capture_groups[image_hash] != group:
+                raise ValueError("different render groups need their own captures, not repeated hero evidence")
+            capture_groups[image_hash] = group
+    if seen != expected:
+        raise ValueError(f"missing surface coverage: {', '.join(sorted(expected - seen))}")
+    craft = require_object(record.get("craft"), "craft")
+    for name in CRAFT_CHECKS:
+        check = require_object(craft.get(name), f"craft.{name}")
+        if check.get("status") != "pass":
+            raise ValueError(f"craft.{name} has not passed; functional checks are not design approval")
+        require_text(check.get("evidence"), f"craft.{name}.evidence")
+    if scope["kind"] != "feature":
+        acceptance = require_object(record.get("owner_acceptance"), "owner_acceptance")
+        if acceptance.get("status") != "approved":
+            raise ValueError("major design requires owner acceptance of the integrated preview")
+        if acceptance.get("source_commit") != record["source_commit"]:
+            raise ValueError("owner acceptance must identify the reviewed integrated source")
+        require_text(acceptance.get("decision"), "owner_acceptance.decision")
+
+
 def validate(repo: Path, review_path: Path) -> None:
     repo = repo.resolve()
     review_path = artifact(repo, str(review_path.resolve()))
     record = require_object(
         json.loads(review_path.read_text(encoding="utf-8")), "review",
     )
-    if type(record.get("version")) is not int or record["version"] != 1:
-        raise ValueError("review version must be 1")
+    if type(record.get("version")) is not int or record["version"] not in (1, 2):
+        raise ValueError("review version must be 1 or 2")
     check_source(repo, record.get("source_commit"))
+    if record["version"] == 1 and (repo / SCOPE_FILE).exists():
+        raise ValueError("a declared scope requires a version 2 receipt; legacy receipt cannot bypass it")
     brief = repo / ".impeccable.md"
     if not brief.is_file() or not brief.resolve().is_relative_to(repo):
         raise ValueError("missing project-root .impeccable.md")
@@ -162,25 +276,9 @@ def validate(repo: Path, review_path: Path) -> None:
             raise ValueError(f"{name} has not passed")
         require_text(result.get("evidence"), f"checks.{name}.evidence")
 
-    screenshots = record.get("screenshots")
-    if not isinstance(screenshots, list) or len(screenshots) != 2:
-        raise ValueError("provide one mobile and one desktop PNG screenshot")
-    viewports: set[str] = set()
-    screenshot_paths: set[Path] = set()
-    for screenshot in screenshots:
-        screenshot = require_object(screenshot, "screenshot")
-        viewport = screenshot.get("viewport")
-        if viewport not in ("mobile", "desktop") or viewport in viewports:
-            raise ValueError("screenshot viewports must be mobile and desktop")
-        viewports.add(viewport)
-        path = verify_artifact(repo, screenshot)
-        screenshot_paths.add(path)
-        width, height = png_dimensions(path)
-        valid_width = 320 <= width <= 480 if viewport == "mobile" else width >= 1024
-        if not valid_width or height < 320:
-            raise ValueError(f"{viewport} screenshot has unsuitable dimensions")
-    if len(screenshot_paths) != 2:
-        raise ValueError("mobile and desktop screenshots must be distinct files")
+    validate_captures(repo, record.get("screenshots"))
+    if record["version"] == 2:
+        validate_completion(repo, record)
 
 
 def main() -> int:

@@ -58,7 +58,7 @@ export function DailyQuiz({ onComplete, compact }: DailyQuizProps) {
     }, 1500)
   }
 
-  if (alreadyAnswered && !compact) {
+  if (alreadyAnswered && selected === null && !compact) {
     const todayAnswer = quizAnswers.find((q) => q.date === today)
     return (
       <div className="card flex items-center gap-3 animate-fade-up">

@@ -1,4 +1,7 @@
+import { AcademyPage } from '../components/academy/AcademyPage'
 import { useState } from 'react'
+import { useSquadSave } from '../hooks/useSquadSave'
+import { SquadSaveStatus } from '../components/academy/SquadSaveStatus'
 import { useTranslation } from 'react-i18next'
 import { useToast } from '../contexts/ToastContext'
 import type { TrainingDrill, TrainingPlan } from '../engine/types'
@@ -51,7 +54,7 @@ function DrillForm({ drill, onChange, onRemove }: {
   )
 }
 
-export function TrainingPlanner({ teamId, teamName, coachId, onBack }: TrainingPlannerProps) {
+export function TrainingPlanner({ teamId, teamName, teamIds, coachId, onBack }: TrainingPlannerProps) {
   const { t } = useTranslation()
   const { showToast } = useToast()
 
@@ -64,7 +67,7 @@ export function TrainingPlanner({ teamId, teamName, coachId, onBack }: TrainingP
   const [objInput, setObjInput] = useState('')
   const [drills, setDrills] = useState<TrainingDrill[]>([])
   const [notes, setNotes] = useState('')
-  const [saving, setSaving] = useState(false)
+  const { submit, saving, failed, confirmed, total } = useSquadSave()
 
   function addObjective() {
     if (!objInput.trim()) return
@@ -86,10 +89,9 @@ export function TrainingPlanner({ teamId, teamName, coachId, onBack }: TrainingP
 
   async function save() {
     if (!title.trim()) return
-    setSaving(true)
-    try {
+    const success = await submit(teamIds?.length ? teamIds : [teamId], async targetId => {
       const plan: Omit<TrainingPlan, 'id' | 'createdAt'> = {
-        teamId,
+        teamId: targetId,
         coachId,
         title: title.trim(),
         date,
@@ -105,25 +107,24 @@ export function TrainingPlanner({ teamId, teamName, coachId, onBack }: TrainingP
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(plan),
       })
-      if (res.ok) {
-        showToast(t('coach.training.saved'), 'success')
-        onBack()
-      }
-    } catch { /* offline */ }
-    finally { setSaving(false) }
+      if (!res.ok) throw new Error(`Training plan save failed: ${res.status}`)
+    })
+    if (success) { showToast(t('coach.training.saved'), 'success'); onBack() }
   }
 
   return (
-    <div className="flex flex-col gap-4 p-4 pb-32">
+    <AcademyPage surface="pages-training-planner" title={t('coach.training.new')} className="academy-support-page">
+      <SquadSaveStatus confirmed={confirmed} total={total} failed={failed} />
       <div className="flex items-center gap-3">
         <button onClick={onBack} className="tap-target text-xl" aria-label={t('common.back')}>←</button>
         <div className="flex-1 min-w-0">
-          <h2 className="text-lg font-extrabold heading-display">{t('coach.training.new')}</h2>
+
           <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{teamName}</p>
         </div>
       </div>
 
       {/* Basic info */}
+      <fieldset className="academy-stack" disabled={saving || (failed && confirmed > 0)}>
       <div className="card animate-fade-up">
         <div className="flex flex-col gap-3">
           <input
@@ -213,13 +214,14 @@ export function TrainingPlanner({ teamId, teamName, coachId, onBack }: TrainingP
       </div>
 
       {/* Save */}
+      </fieldset>
       <button
         className="btn-primary w-full text-sm py-3 rounded-xl tap-target"
         onClick={save}
         disabled={saving || !title.trim()}
       >
-        {saving ? '...' : `✓ ${t('coach.training.saved').replace('!', '')}`}
+        {saving ? t('common.loading') : t('common.save')}
       </button>
-    </div>
+    </AcademyPage>
   )
 }

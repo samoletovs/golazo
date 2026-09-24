@@ -1,3 +1,5 @@
+import { formatDisplayDate } from '../utils/dateFormat'
+import { AcademyPage } from '../components/academy/AcademyPage'
 import { useState, useMemo, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
@@ -24,7 +26,7 @@ function CalendarStrip({ selected, onSelect, eventDates }: {
       result.push({
         date: iso,
         day: d.getDate(),
-        weekday: d.toLocaleDateString(undefined, { weekday: 'short' }).slice(0, 2),
+        weekday: formatDisplayDate(d, { weekday: 'short' }).slice(0, 2),
         isToday: i === 0,
       })
     }
@@ -117,10 +119,11 @@ function TournamentStandingsCard({ summary }: { summary: TournamentSummary }) {
         </div>
       </div>
 
-      {/* Match list (last 5) */}
       {matches.length > 0 && (
+        <details className="mt-3" data-academy-surface="tournament-detail">
+          <summary>{t('dashboard.matches')} ({matches.length})</summary>
         <div className="flex flex-col gap-1 mt-3 pt-3" style={{ borderTop: '1px solid var(--color-field-input)' }}>
-          {matches.slice(-5).reverse().map((m) => {
+          {[...matches].reverse().map((m) => {
             const result = getMatchResult(m)
             return (
               <div key={m.id} className="flex items-center gap-2 py-1.5">
@@ -136,6 +139,7 @@ function TournamentStandingsCard({ summary }: { summary: TournamentSummary }) {
             )
           })}
         </div>
+        </details>
       )}
     </div>
   )
@@ -150,7 +154,7 @@ function RecentResultCard({ match }: { match: MatchEntry }) {
   return (
     <div className="flex-shrink-0 rounded-2xl p-3 flex flex-col gap-1" style={{ background: bg, width: 140 }}>
       <p className="text-xs font-bold" style={{ color: 'var(--color-text-muted)' }}>
-        {new Date(match.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
+        {formatDisplayDate(new Date(match.date), { month: 'short', day: 'numeric' })}
       </p>
       <p className="text-xs font-bold truncate heading-display">{match.opponent}</p>
       <p className="text-xl font-black font-data" style={{ color }}>{match.scoreUs}:{match.scoreThem}</p>
@@ -173,7 +177,7 @@ function UpcomingEventRow({ event }: { event: ScheduleEvent }) {
       <div className="flex-1 min-w-0">
         <p className="text-sm font-bold truncate">{event.title}{event.opponent ? ` vs ${event.opponent}` : ''}</p>
         <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
-          {new Date(event.date).toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' })}
+          {formatDisplayDate(new Date(event.date), { weekday: 'short', month: 'short', day: 'numeric' })}
           {event.startTime ? ` · ${event.startTime}` : ''}
           {event.location ? ` · ${event.location}` : ''}
         </p>
@@ -496,10 +500,10 @@ export function FootballPortal() {
   }, [schedule, today])
 
   return (
-    <div className="flex flex-col gap-4 p-4 pb-32">
+    <AcademyPage surface="pages-football-portal" title={t('portal.title')} className="academy-support-page">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <h2 className="text-xl font-extrabold heading-display">{t('portal.title')}</h2>
+
         <button
           className="text-xs font-bold px-3 py-1.5 rounded-lg tap-target"
           style={{ background: 'var(--color-gold-glow)', color: 'var(--color-gold-500)' }}
@@ -520,7 +524,7 @@ export function FootballPortal() {
       {selectedDateEvents.length > 0 && (
         <div className="card animate-fade-up">
           <p className="section-label mb-2">
-            {selectedDate === today ? t('dashboard.today') : new Date(selectedDate + 'T12:00').toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })}
+            {selectedDate === today ? t('dashboard.today') : formatDisplayDate(new Date(selectedDate + 'T12:00'), { weekday: 'long', month: 'long', day: 'numeric' })}
           </p>
           <div className="flex flex-col">
             {selectedDateEvents.map((ev: ScheduleEvent) => (
@@ -585,6 +589,6 @@ export function FootballPortal() {
       )}
 
       {showImport && <TournamentImport onClose={() => setShowImport(false)} />}
-    </div>
+    </AcademyPage>
   )
 }

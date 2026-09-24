@@ -2,6 +2,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { fireEvent, render, screen } from '@testing-library/react'
 import i18n from '../src/i18n'
 import { LogPage } from '../src/pages/LogPage'
+import { ToastProvider } from '../src/contexts/ToastContext'
 
 const trainingLogRender = vi.hoisted(() => vi.fn())
 
@@ -42,7 +43,7 @@ describe('LogPage lazy loading', () => {
   })
 
   it('loads TrainingLog only when training logging is opened', async () => {
-    render(<LogPage />)
+    render(<ToastProvider><LogPage /></ToastProvider>)
 
     expect(trainingLogRender).not.toHaveBeenCalled()
     expect(screen.queryByText('Training Log Mock')).not.toBeInTheDocument()

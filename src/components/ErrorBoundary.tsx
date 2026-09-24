@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import type { ReactNode, ErrorInfo } from 'react'
 import i18next from 'i18next'
+import { TacticalGraphic } from './academy/TacticalGraphic'
 
 interface Props {
   children: ReactNode
@@ -29,18 +30,18 @@ export class ErrorBoundary extends Component<Props, State> {
     if (this.state.hasError) {
       const t = i18next.t.bind(i18next)
       return (
-        <div className="flex flex-col items-center justify-center min-h-dvh p-6 text-center animate-fade-up"
-          style={{ background: 'var(--color-bg)', fontFamily: 'var(--font-body)' }}>
-          <span className="text-5xl mb-4 animate-float">⚽</span>
-          <h1 className="text-xl font-bold mb-2" style={{ color: 'var(--color-text)' }}>
+        <main className="academy-welcome" data-academy-surface="error-boundary">
+          <aside className="academy-welcome-story"><p className="academy-brand">golazo.</p><TacticalGraphic kind="turn" /></aside>
+          <section className="academy-welcome-form">
+          <h1>
             {t('error.title')}
           </h1>
-          <p className="text-sm mb-6 max-w-xs" style={{ color: 'var(--color-text-muted)' }}>
+          <p className="academy-muted">
             {t('error.description')}
           </p>
           <button
             onClick={() => window.location.reload()}
-            className="btn-primary"
+            className="academy-button"
           >
             {t('error.refresh')}
           </button>
@@ -49,7 +50,8 @@ export class ErrorBoundary extends Component<Props, State> {
               {this.state.error.message}
             </p>
           )}
-        </div>
+          </section>
+        </main>
       )
     }
 

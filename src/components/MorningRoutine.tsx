@@ -7,6 +7,7 @@ import { DailyQuiz } from './DailyQuiz'
 import { getAgeTier } from '../engine/types'
 import { ageTierToChallengeDifficulty, getChallengeOfDay, getDailyChallengeCompletionKey } from '../engine/challenges'
 import type { Position } from '../engine/types'
+import { AcademyDialog } from './academy/AcademyDialog'
 
 type Step = 'checkin' | 'challenge' | 'quiz' | 'done'
 
@@ -67,23 +68,7 @@ export function MorningRoutine({ onClose }: MorningRoutineProps) {
   }
 
   return (
-    <div className="fixed inset-0 z-[60] flex flex-col" style={{ background: 'var(--color-bg)' }}>
-      {/* Header */}
-      <div className="app-header flex items-center justify-between px-4 py-3">
-        <div className="flex items-center gap-2">
-          <span className="text-lg">☀️</span>
-          <p className="text-base font-bold heading-display">
-            {t('routine.title')}
-          </p>
-        </div>
-        <button
-          className="tap-target text-xs font-bold px-3 py-1.5 rounded-full"
-          style={{ background: 'rgba(0,0,0,0.05)' }}
-          onClick={onClose}
-        >
-          ✕
-        </button>
-      </div>
+    <AcademyDialog surface={`morning-routine-${currentStep}`} title={t('routine.title')} onClose={onClose}>
 
       {/* Progress bar */}
       {currentStep !== 'done' && (
@@ -105,7 +90,7 @@ export function MorningRoutine({ onClose }: MorningRoutineProps) {
 
       {/* Content */}
       <div className="flex-1 overflow-y-auto p-4">
-        <div className="app-shell">
+        <div className="academy-stack">
           {currentStep === 'checkin' && (
             <div className="animate-fade-up">
               <p className="text-lg font-bold mb-4 heading-display">
@@ -179,6 +164,6 @@ export function MorningRoutine({ onClose }: MorningRoutineProps) {
           )}
         </div>
       </div>
-    </div>
+    </AcademyDialog>
   )
 }

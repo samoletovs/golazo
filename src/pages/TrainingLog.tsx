@@ -7,7 +7,7 @@ import { TrainingFields } from '../components/training/TrainingFields'
 import { TrainingCompletion } from '../components/training/TrainingCompletion'
 import type { TrainingReceipt } from '../engine/training'
 import type { TrainingType, TrainingEntry } from '../engine/types'
-import '../clubhouse.css'
+import { AcademyPage } from '../components/academy/AcademyPage'
 
 export interface TrainingLogProps {
   onBack?: () => void
@@ -31,9 +31,7 @@ export function TrainingLog({ onBack, inline, prefill, onSaved }: TrainingLogPro
   const [receipt, setReceipt] = useState<TrainingReceipt | null>(null)
   const [failed, setFailed] = useState(false)
   const saving = useRef(false)
-  const heading = useRef<HTMLHeadingElement>(null)
   const errorToast = useRef<number | null>(null)
-  useEffect(() => { heading.current?.focus() }, [])
   useEffect(() => () => {
     if (errorToast.current !== null) dismissToast(errorToast.current)
   }, [dismissToast])
@@ -66,27 +64,21 @@ export function TrainingLog({ onBack, inline, prefill, onSaved }: TrainingLogPro
   if (receipt) return <TrainingCompletion receipt={receipt} onDone={onBack} inline={inline} />
 
   return (
-    <section className={`clubhouse training-view${inline ? ' training-inline' : ''}`} aria-labelledby="training-title">
-      {onBack && <button className="club-link" onClick={onBack}>{t('common.back')}</button>}
-      <header className="club-section-heading">
-        <span className="club-eyebrow">{t('clubhouse.afterTraining')}</span>
-        <h1 id="training-title" ref={heading} tabIndex={-1}>{t('training.title')}</h1>
-        <p>{t('training.quickIntro')}</p>
-      </header>
-      <div className="club-two-column">
-        <form className="club-panel training-form" onSubmit={handleSave}>
+    <AcademyPage surface="training-log" title={t('training.title')} subtitle={t('training.quickIntro')} onBack={onBack} backLabel={t('common.back')}>
+      <div className="academy-grid">
+        <form className="academy-panel academy-form" onSubmit={handleSave}>
           <TrainingFields draft={draft} onChange={setDraft} today={today} />
-          {failed && <p className="club-error" role="alert">{t('training.localError')}</p>}
-          <button className="club-button" type="submit">{t(failed ? 'training.retry' : 'training.saveLocal')}</button>
-          <p className="club-hint">{t('training.localHint')}</p>
+          {failed && <p className="academy-error" role="alert">{t('training.localError')}</p>}
+          <button className="academy-button" type="submit">{t(failed ? 'training.retry' : 'training.saveLocal')}</button>
+          <p className="academy-hint">{t('training.localHint')}</p>
         </form>
-        <aside className="club-panel training-aside">
-          <span className="club-eyebrow">{t('training.yourEffort')}</span>
+        <aside className="academy-panel academy-stack">
+          <span className="academy-eyebrow">{t('training.yourEffort')}</span>
           <h2>{t('training.noPerfect')}</h2>
           <p>{t('training.feelingsCount')}</p>
-          <p className="club-muted">{t('clubhouse.restBody')}</p>
+          <p className="academy-muted">{t('clubhouse.restBody')}</p>
         </aside>
       </div>
-    </section>
+    </AcademyPage>
   )
 }

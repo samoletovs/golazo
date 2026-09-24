@@ -6,6 +6,9 @@ import { articles } from '../data/articles'
 import { programs } from '../data/programs'
 import { getAgeTier } from '../engine/types'
 import { WorkoutView } from '../components/WorkoutView'
+import { AcademyPage } from '../components/academy/AcademyPage'
+import { AcademyLoading } from '../components/academy/AcademyState'
+import { TacticalGraphic } from '../components/academy/TacticalGraphic'
 import type { Article, ArticleCategory, TrainingProgram, QuizDifficulty, ReadArticle, ProgramProgress } from '../engine/types'
 
 const Exercises = lazy(() => import('./Exercises').then(m => ({ default: m.Exercises })))
@@ -115,37 +118,36 @@ export function LearnContent() {
   const filteredPrograms = programs.filter((p) => p.ageTiers.includes(difficulty))
 
   return (
-    <div className="flex flex-col gap-4 p-4 pb-32">
-      <h2 className="text-xl font-extrabold">{t('nav.learn')}</h2>
+    <AcademyPage surface="player-learn" title={t('nav.learn')} subtitle={t('academy.learnIntro')}>
 
       {/* Tab switcher */}
-      <div className="flex gap-2">
+      <div className="schedule-tabs">
         <button
           className="btn-choice tap-target flex-1 text-center text-sm"
           aria-pressed={tab === 'articles'}
           onClick={() => setTab('articles')}
         >
-          📖 {t('learn.articles')}
+          {t('learn.articles')}
         </button>
         <button
           className="btn-choice tap-target flex-1 text-center text-sm"
           aria-pressed={tab === 'programs'}
           onClick={() => setTab('programs')}
         >
-          📋 {t('learn.programs')}
+          {t('learn.programs')}
         </button>
         <button
           className="btn-choice tap-target flex-1 text-center text-sm"
           aria-pressed={tab === 'exercises'}
           onClick={() => setTab('exercises')}
         >
-          ⚽ {t('learn.exercises')}
+          {t('learn.exercises')}
         </button>
       </div>
 
       {/* ── Exercises tab ── */}
       {tab === 'exercises' && (
-        <Suspense fallback={<div className="flex items-center justify-center p-8"><span className="text-3xl">⚽</span></div>}>
+        <Suspense fallback={<AcademyLoading />}>
           <Exercises embedded />
         </Suspense>
       )}
@@ -154,7 +156,7 @@ export function LearnContent() {
       {tab === 'articles' && (
         <>
           {/* Category filter */}
-          <div className="flex gap-2 overflow-x-auto pb-1" style={{ scrollbarWidth: 'none' }}>
+          <div className="filter-scroll">
             {ARTICLE_CATEGORIES.map((cat) => (
               <button
                 key={cat.key}
@@ -162,34 +164,35 @@ export function LearnContent() {
                 aria-pressed={categoryFilter === cat.key}
                 onClick={() => setCategoryFilter(cat.key)}
               >
-                {cat.emoji} {t(cat.labelKey)}
+                {t(cat.labelKey)}
               </button>
             ))}
           </div>
 
           {/* Article list */}
-          <div className="flex flex-col gap-3">
-            {filteredArticles.map((article) => {
+          <div className="academy-library">
+            {filteredArticles.map((article, index) => {
               const isRead = readIds.has(article.id)
               const isExpanded = expandedArticle === article.id
 
               return (
-                <div key={article.id} className="card" style={{ opacity: isRead ? 0.7 : 1 }}>
+                <article key={article.id} className={`academy-reading${isExpanded ? ' is-open' : ''}`}>
                   <button
-                    className="w-full text-left tap-target flex items-start gap-3"
+                    className="academy-reading-heading"
+                    aria-expanded={isExpanded}
                     onClick={() => setExpandedArticle(isExpanded ? null : article.id)}
                   >
-                    <span className="text-2xl">{article.imageEmoji || '📄'}</span>
+                    <span className="academy-reading-number">{String(index + 1).padStart(2, '0')}</span>
                     <div className="flex-1 min-w-0">
-                      <p className="text-base font-bold heading-display">
+                      <h2>
                         {isRead && '✅ '}{t(article.titleKey)}
-                      </p>
+                      </h2>
                       <div className="flex items-center gap-2 mt-1">
                         <span className="text-xs px-2 py-0.5 rounded-full" style={{ background: 'var(--color-bg-warm)', color: 'var(--color-text-muted)' }}>
-                          {article.readingTimeMin} min
+                          {article.readingTimeMin} {t('learn.minutes')}
                         </span>
                         <span className="text-xs px-2 py-0.5 rounded-full" style={{ background: 'var(--color-amber-bg)', color: 'var(--color-amber-text)' }}>
-                          {article.category}
+                          {t(`learn.cat.${article.category}`)}
                         </span>
                       </div>
                     </div>
@@ -200,7 +203,7 @@ export function LearnContent() {
 
                   {isExpanded && (
                     <div className="mt-3 pt-3 animate-fade-up" style={{ borderTop: '1px solid var(--color-border-default)' }}>
-                      <p className="text-sm leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
+                      <p className="academy-article-body">
                         {t(article.bodyKey)}
                       </p>
                       {!isRead && (
@@ -213,7 +216,7 @@ export function LearnContent() {
                       )}
                     </div>
                   )}
-                </div>
+                </article>
               )
             })}
 
@@ -244,8 +247,8 @@ export function LearnContent() {
 
       {/* ── Programs tab ── */}
       {tab === 'programs' && (
-        <div className="flex flex-col gap-3">
-          {filteredPrograms.map((program) => {
+        <div className="academy-library">
+          {filteredPrograms.map((program, index) => {
             const progress = programProgress.find((p) => p.programId === program.id)
             const isStarted = !!progress
             const isExpanded = expandedProgram === program.id
@@ -257,16 +260,17 @@ export function LearnContent() {
             const currentDay = progress?.currentDay ?? 1
 
             return (
-              <div key={program.id} className="card">
+              <article key={program.id} className={`academy-program${isExpanded ? ' is-open' : ''}`}>
+                <TacticalGraphic kind={index % 2 === 0 ? 'touch' : 'turn'} />
                 <button
-                  className="w-full text-left tap-target flex items-start gap-3"
+                  className="academy-reading-heading"
+                  aria-expanded={isExpanded}
                   onClick={() => setExpandedProgram(isExpanded ? null : program.id)}
                 >
-                  <span className="text-2xl">{program.imageEmoji || '📋'}</span>
                   <div className="flex-1 min-w-0">
-                    <p className="text-base font-bold heading-display">
+                    <h2>
                       {isComplete ? '🏆 ' : ''}{t(program.titleKey)}
-                    </p>
+                    </h2>
                     <p className="text-xs mt-0.5" style={{ color: 'var(--color-text-muted)' }}>
                       {program.durationWeeks} {t('learn.weeks')} · {t(`learn.cat.${program.category}`)}
                       {isStarted && !isComplete && ` · ${t('prog.weekLabel', { n: currentWeek })} ${t('prog.dayLabel', { n: currentDay })}`}
@@ -378,9 +382,10 @@ export function LearnContent() {
                         </p>
                         {program.skillImpact && (
                           <div className="flex gap-2 flex-wrap justify-center">
-                            {Object.entries(program.skillImpact).map(([cat, val]) => (
+                            <p className="w-full academy-muted">{t('academy.programFocus')}</p>
+                            {Object.keys(program.skillImpact).map(cat => (
                               <span key={cat} className="text-xs px-2 py-0.5 rounded-full font-bold" style={{ background: 'var(--color-primary-bg)', color: 'var(--color-primary-dark)' }}>
-                                {t(`learn.cat.${cat}`)} ↑ +{val}
+                                {t(`learn.cat.${cat}`)}
                               </span>
                             ))}
                           </div>
@@ -389,11 +394,11 @@ export function LearnContent() {
                     )}
                   </div>
                 )}
-              </div>
+              </article>
             )
           })}
         </div>
       )}
-    </div>
+    </AcademyPage>
   )
 }

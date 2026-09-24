@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<base href="/__evidence/">
+<title>Golazo Academy - final verification</title>
+<style>
+body{margin:0;background:#f3f5f8;color:#14243b;font:16px/1.5 system-ui;padding:24px}main{max-width:1600px;margin:auto}h1,h2{line-height:1.15}a{color:#183598;text-underline-offset:3px}.notice{background:#fff1d4;padding:16px}.toolbar{display:flex;gap:20px;flex-wrap:wrap;margin:24px 0}select{font:inherit;padding:10px}.family{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}figure{margin:0;background:white;border:1px solid #cad3df}img{width:100%;display:block;aspect-ratio:4/3;object-fit:cover;object-position:top}figcaption{padding:10px}table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:12px;border-bottom:1px solid #cad3df;vertical-align:top}code{overflow-wrap:anywhere}.scope{overflow:auto}.muted{color:#56647a}:focus-visible{outline:3px solid #2447c5;outline-offset:4px}@media(max-width:850px){.family{grid-template-columns:repeat(2,minmax(0,1fr))}}
+</style>
+<main>
+<p class="muted">Golazo / Academy A</p>
+<h1>The accepted design, fully inventoried.</h1>
+<p class="notice">Fictional profiles and mocked services. These are source-bound application captures, not proof of production integration or a real-player usability study.</p>
+<p>Reviewed source: <code>8685e11ed619cb736ce2ce7e9db2a67ee0001c8d</code>. All 220 role/entry contexts have mobile and desktop evidence. Shared renderings retain separate behavioral context.</p>
+<nav class="toolbar" aria-label="Review resources">
+<a href="/__preview">Open synthetic app</a>
+<a href="review.json">Complete review receipt</a>
+<a href="final-review.json">Independent review and owner acceptance</a>
+<a href="initial-gallery.html">Historical first candidate</a>
+</nav>
+<label>Screen language <select id="language"><option value="en">English</option><option value="lv">Latvian</option><option value="ru">Russian</option><option value="es">Spanish</option></select></label>
+<h2>One connected screen family</h2>
+<div id="family" class="family"></div>
+<h2>Every inventoried surface</h2>
+<p>Open each original PNG for the full captured viewport. The evidence column identifies the recorded controls and assertions; an image alone does not certify behavior.</p>
+<div class="scope"><table><thead><tr><th scope="col">Surface</th><th scope="col">Mobile</th><th scope="col">Desktop</th><th scope="col">Evidence</th></tr></thead><tbody id="coverage"></tbody></table></div>
+<p id="error" role="alert"></p>
+</main>
+<script>
+const family = document.querySelector('#family');
+function showFamily() {
+  family.replaceChildren();
+  for (const page of ['dashboard','log','progress','learn','profile']) {
+    const figure = document.createElement('figure');
+    const link = document.createElement('a');
+    const image = document.createElement('img');
+    link.href = `source-8685e11/fonts-${document.querySelector('#language').value}-native-${page}-1440.png`;
+    image.src = link.href; image.alt = `${page} desktop`; image.loading = 'lazy';
+    link.append(image); figure.append(link);
+    const caption = document.createElement('figcaption');
+    caption.textContent = `${page} / `;
+    const phone = document.createElement('a');
+    phone.textContent = 'phone';
+    phone.href = `source-8685e11/fonts-${document.querySelector('#language').value}-native-${page}-390.png`;
+    caption.append(phone); figure.append(caption); family.append(figure);
+  }
+}
+document.querySelector('#language').addEventListener('change',showFamily);
+showFamily();
+(async () => {
+  try {
+    const response = await fetch('review.json');
+    if (!response.ok) throw Error(`Receipt request failed: ${response.status}`);
+    const review = await response.json();
+    for (const item of review.coverage) {
+      const row = document.createElement('tr');
+      const name = document.createElement('th'); name.scope = 'row'; name.textContent = item.id; row.append(name);
+      for (const viewport of ['mobile','desktop']) {
+        const cell = document.createElement('td'); const link = document.createElement('a');
+        link.textContent = viewport;
+        link.href = item.screenshots.find(image => image.viewport === viewport).path.replace('docs/design-evidence/academy-20260923/','');
+        cell.append(link); row.append(cell);
+      }
+      const evidence = document.createElement('td'); evidence.textContent = item.context_evidence; row.append(evidence);
+      document.querySelector('#coverage').append(row);
+    }
+  } catch (error) { document.querySelector('#error').textContent = `The review could not be loaded: ${error.message}`; }
+})();
+</script>
+</html>

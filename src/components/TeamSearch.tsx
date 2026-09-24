@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
+import type { FocusEvent, KeyboardEvent } from 'react'
 import { createPortal } from 'react-dom'
 import { useTranslation } from 'react-i18next'
 import type { SharedTeam } from '../engine/types'
@@ -45,18 +46,33 @@ export function TeamSearch({ value, onChange, country, placeholder, className, s
   const [results, setResults] = useState<SharedTeam[]>([])
   const [open, setOpen] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [unavailable, setUnavailable] = useState(false)
   const [selected, setSelected] = useState(false) // true when a registry team was picked
   const debounceRef = useRef<number | null>(null)
   const inputRef = useRef<HTMLInputElement>(null)
   const dropdownRef = useRef<HTMLDivElement>(null)
+  const clearRef = useRef<HTMLButtonElement>(null)
+  const focusNext = useRef<'input' | 'clear' | null>(null)
+  const requestSequence = useRef(0)
+  const [dropdownRoot, setDropdownRoot] = useState<HTMLElement | null>(null)
   const [dropdownPos, setDropdownPos] = useState<{ top: number; left: number; width: number; openUp: boolean }>({ top: 0, left: 0, width: 0, openUp: false })
 
   // Sync external value
   useEffect(() => { setQuery(value); if (!value) setSelected(false) }, [value])
+  useEffect(() => {
+    if (focusNext.current === 'clear' && selected) clearRef.current?.focus()
+    if (focusNext.current === 'input' && !selected) inputRef.current?.focus()
+    focusNext.current = null
+  }, [selected])
+  useEffect(() => () => {
+    if (debounceRef.current !== null) window.clearTimeout(debounceRef.current)
+    requestSequence.current++
+  }, [])
 
   // Calculate dropdown position relative to viewport
   const updatePosition = useCallback(() => {
     if (!inputRef.current) return
+    setDropdownRoot(inputRef.current.closest('dialog') ?? document.body)
     const rect = inputRef.current.getBoundingClientRect()
     const spaceBelow = window.innerHeight - rect.bottom
     const openUp = spaceBelow < 260
@@ -87,12 +103,14 @@ export function TeamSearch({ value, onChange, country, placeholder, className, s
   }, [open, updatePosition])
 
   function handleInput(text: string) {
+    const request = ++requestSequence.current
+    setUnavailable(false)
     setQuery(text)
     setSelected(false)
     onChange(text, undefined)
 
     if (debounceRef.current) clearTimeout(debounceRef.current)
-    if (text.length < 2) { setResults([]); setOpen(false); return }
+    if (text.length < 2) { setResults([]); setOpen(false); setLoading(false); return }
 
     debounceRef.current = window.setTimeout(async () => {
       setLoading(true)
@@ -100,25 +118,59 @@ export function TeamSearch({ value, onChange, country, placeholder, className, s
         const params = new URLSearchParams({ q: text, limit: '10' })
         if (country) params.set('country', country)
         const res = await fetch(`/api/teams?${params}`)
-        if (res.ok) {
+        if (!res.ok) throw new Error(`Team search failed: ${res.status}`)
+        if (request === requestSequence.current) {
           const data = await res.json()
+          if (request !== requestSequence.current) return
           setResults(data.teams || [])
           updatePosition()
-          setOpen(true)
+          setOpen(document.activeElement === inputRef.current || Boolean(dropdownRef.current?.contains(document.activeElement)))
         }
-      } catch {
-        // API unavailable — just use free text
+      } catch (cause) {
+        if (request === requestSequence.current) {
+          console.error('Team search is unavailable; free-text entry remains available:', cause)
+          setUnavailable(true)
+          setOpen(false)
+        }
       } finally {
-        setLoading(false)
+        if (request === requestSequence.current) setLoading(false)
       }
     }, 300)
   }
 
   function selectTeam(team: SharedTeam) {
+    requestSequence.current++
+    setLoading(false)
+    focusNext.current = 'clear'
     setQuery(team.name)
     setSelected(true)
     onChange(team.name, team)
     setOpen(false)
+  }
+
+  function closeOnBlur(event: FocusEvent<HTMLElement>) {
+    const next = event.relatedTarget
+    if (!(next instanceof Node) || (next !== inputRef.current && !dropdownRef.current?.contains(next))) setOpen(false)
+  }
+
+  function searchKeys(event: KeyboardEvent<HTMLElement>) {
+    if (event.key === 'Escape' && open) {
+      event.preventDefault()
+      event.stopPropagation()
+      inputRef.current?.focus()
+      setOpen(false)
+      return
+    }
+    if (!['ArrowDown', 'ArrowUp'].includes(event.key) || results.length === 0) return
+    event.preventDefault()
+    setOpen(true)
+    const backwards = event.key === 'ArrowUp'
+    requestAnimationFrame(() => {
+      const options = [...(dropdownRef.current?.querySelectorAll<HTMLButtonElement>('button') ?? [])]
+      const active = options.findIndex(option => option === document.activeElement)
+      const next = active < 0 ? (backwards ? options.length - 1 : 0) : (active + (backwards ? -1 : 1) + options.length) % options.length
+      options[next]?.focus()
+    })
   }
 
   // Show inline add button when: text typed, not loading, no selection made, dropdown is closed (or no exact match)
@@ -140,6 +192,10 @@ export function TeamSearch({ value, onChange, country, placeholder, className, s
         overflowY: 'auto',
       }}
       onMouseDown={(e) => e.preventDefault()} // prevent input blur
+      onBlur={closeOnBlur}
+      onKeyDown={searchKeys}
+      role="group"
+      aria-label={t('teams.search')}
     >
       {results.map((team) => {
         const alias = matchedAlias(team, query)
@@ -191,7 +247,7 @@ export function TeamSearch({ value, onChange, country, placeholder, className, s
         </button>
       )}
     </div>,
-    document.body
+    dropdownRoot ?? document.body
   ) : null
 
   return (
@@ -209,10 +265,16 @@ export function TeamSearch({ value, onChange, country, placeholder, className, s
             <span className="text-sm">✓</span>
             <span className="text-sm font-bold flex-1 truncate">{query}</span>
             <button
+              ref={clearRef}
               className="tap-target text-xs px-1.5 py-0.5 rounded-lg"
               style={{ color: 'var(--color-text-muted)' }}
-              onClick={() => { setQuery(''); setSelected(false); onChange('', undefined); inputRef.current?.focus() }}
-              aria-label="Clear selection"
+              onClick={() => {
+                requestSequence.current++
+                focusNext.current = 'input'
+                setQuery(''); setSelected(false); setResults([]); setOpen(false); setLoading(false); setUnavailable(false)
+                onChange('', undefined)
+              }}
+              aria-label={t('academy.clearSelection')}
             >
               ✕
             </button>
@@ -224,11 +286,14 @@ export function TeamSearch({ value, onChange, country, placeholder, className, s
               type="text"
               value={query}
               onChange={(e) => handleInput(e.target.value)}
+              onBlur={closeOnBlur}
+              onKeyDown={searchKeys}
               onFocus={() => {
                 updatePosition()
                 if (results.length > 0) setOpen(true)
               }}
               placeholder={placeholder ?? t('teams.search')}
+              aria-label={placeholder ?? t('teams.search')}
               className={className ?? 'w-full'}
               style={showInlineAdd ? { paddingRight: '4.5rem' } : undefined}
               autoComplete="off"
@@ -252,6 +317,7 @@ export function TeamSearch({ value, onChange, country, placeholder, className, s
         )}
       </div>
       {dropdown}
+      {unavailable && <p className="academy-hint mt-2" role="status">{t('academy.teamSearchUnavailable')}</p>}
     </>
   )
 }

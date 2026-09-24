@@ -1,4 +1,9 @@
+import { formatDisplayDate } from '../utils/dateFormat'
+import { AcademyPage } from '../components/academy/AcademyPage'
+import { AcademyError } from '../components/academy/AcademyState'
 import { useState, useEffect } from 'react'
+import { useSquadSave } from '../hooks/useSquadSave'
+import { SquadSaveStatus } from '../components/academy/SquadSaveStatus'
 import { useTranslation } from 'react-i18next'
 import { useToast } from '../contexts/ToastContext'
 import type { Announcement, AnnouncementPriority, AnnouncementAudience } from '../engine/types'
@@ -12,7 +17,7 @@ interface AnnouncementsPageProps {
   onBack: () => void
 }
 
-export function AnnouncementsPage({ teamId, teamName, coachId, coachName, onBack }: AnnouncementsPageProps) {
+export function AnnouncementsPage({ teamId, teamName, teamIds, coachId, coachName, onBack }: AnnouncementsPageProps) {
   const { t } = useTranslation()
   const { showToast } = useToast()
   const [announcements, setAnnouncements] = useState<Announcement[]>([])
@@ -25,29 +30,34 @@ export function AnnouncementsPage({ teamId, teamName, coachId, coachName, onBack
   const [priority, setPriority] = useState<AnnouncementPriority>('normal')
   const [audience, setAudience] = useState<AnnouncementAudience>('all')
   const [linkUrl, setLinkUrl] = useState('')
-  const [saving, setSaving] = useState(false)
+  const { submit, saving, failed, confirmed, total, reset } = useSquadSave()
+  const [loadError, setLoadError] = useState(false)
+  const [attempt, setAttempt] = useState(0)
 
   useEffect(() => {
     let cancelled = false
     async function load() {
+      setLoadError(false)
+      setLoading(true)
       try {
         const res = await fetch(`/api/coach/team/${encodeURIComponent(teamId)}/announcements`)
+        if (!res.ok) throw new Error(`Announcements request failed: ${res.status}`)
         if (res.ok && !cancelled) {
           const data = await res.json()
           setAnnouncements(data.announcements ?? [])
         }
-      } catch { /* offline */ }
+      } catch (cause) { if (!cancelled) { console.error('Announcements could not be loaded:', cause); setLoadError(true) } }
       finally { if (!cancelled) setLoading(false) }
     }
     load()
     return () => { cancelled = true }
-  }, [teamId])
+  }, [teamId, attempt])
 
   async function send() {
     if (!title.trim() || !body.trim()) return
-    setSaving(true)
-    try {
-      const res = await fetch(`/api/coach/team/${encodeURIComponent(teamId)}/announce`, {
+    const createdItems: Announcement[] = []
+    const success = await submit(teamIds?.length ? teamIds : [teamId], async targetId => {
+      const res = await fetch(`/api/coach/team/${encodeURIComponent(targetId)}/announce`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -60,9 +70,13 @@ export function AnnouncementsPage({ teamId, teamName, coachId, coachName, onBack
           linkUrl: linkUrl.trim() || undefined,
         }),
       })
-      if (res.ok) {
-        const created = await res.json()
-        setAnnouncements([created, ...announcements])
+      if (!res.ok) throw new Error(`Announcement send failed: ${res.status}`)
+      const created: Announcement = await res.json()
+      createdItems.push(created)
+    })
+    setAnnouncements(current => [...createdItems, ...current])
+    if (success) {
+        reset()
         showToast(t('coach.announce.sent'), 'success')
         setShowNew(false)
         setTitle('')
@@ -70,19 +84,19 @@ export function AnnouncementsPage({ teamId, teamName, coachId, coachName, onBack
         setLinkUrl('')
         setPriority('normal')
         setAudience('all')
-      }
-    } catch { /* offline */ }
-    finally { setSaving(false) }
+    }
   }
 
   if (showNew) {
     return (
-      <div className="flex flex-col gap-4 p-4 pb-32">
+      <AcademyPage surface="announcement-compose" title={t('coach.announce.new')} className="academy-support-page">
+        <SquadSaveStatus confirmed={confirmed} total={total} failed={failed} />
         <div className="flex items-center gap-3">
           <button onClick={() => setShowNew(false)} className="tap-target text-xl" aria-label={t('common.back')}>←</button>
-          <h2 className="text-lg font-extrabold heading-display">{t('coach.announce.new')}</h2>
+
         </div>
 
+        <fieldset className="academy-stack" disabled={saving || (failed && confirmed > 0)}>
         <div className="card animate-fade-up">
           <div className="flex flex-col gap-3">
             <input
@@ -149,6 +163,7 @@ export function AnnouncementsPage({ teamId, teamName, coachId, coachName, onBack
           </div>
         </div>
 
+        </fieldset>
         <button
           className="btn-primary w-full text-sm py-3 rounded-xl tap-target"
           onClick={send}
@@ -156,17 +171,18 @@ export function AnnouncementsPage({ teamId, teamName, coachId, coachName, onBack
         >
           {saving ? '...' : `📢 ${t('coach.announce.send')}`}
         </button>
-      </div>
+      </AcademyPage>
     )
   }
 
   return (
-    <div className="flex flex-col gap-4 p-4 pb-32">
+    <AcademyPage surface="pages-announcements-page" title={t('coach.announce.title')} className="academy-support-page">
+      {loadError && <AcademyError message={t('academy.loadError')} onRetry={() => setAttempt(value => value + 1)} />}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <button onClick={onBack} className="tap-target text-xl" aria-label={t('common.back')}>←</button>
           <div>
-            <h2 className="text-lg font-extrabold heading-display">{t('coach.announce.title')}</h2>
+
             <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{teamName}</p>
           </div>
         </div>
@@ -192,7 +208,7 @@ export function AnnouncementsPage({ teamId, teamName, coachId, coachName, onBack
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-bold">{ann.title}</p>
                   <p className="text-xs mt-0.5" style={{ color: 'var(--color-text-muted)' }}>
-                    {ann.authorName} · {new Date(ann.createdAt).toLocaleDateString()}
+                    {ann.authorName} · {formatDisplayDate(new Date(ann.createdAt))}
                   </p>
                 </div>
               </div>
@@ -218,6 +234,6 @@ export function AnnouncementsPage({ teamId, teamName, coachId, coachName, onBack
           <p className="text-sm font-bold">{t('coach.announce.empty')}</p>
         </div>
       )}
-    </div>
+    </AcademyPage>
   )
 }

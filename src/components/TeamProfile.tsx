@@ -1,3 +1,4 @@
+import { AcademyDialog } from './academy/AcademyDialog'
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import type { SharedTeam } from '../engine/types'
@@ -61,15 +62,8 @@ export function TeamProfile({ team, onClose, allTeams, onNavigate }: TeamProfile
   }
 
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center"
-      style={{ background: 'rgba(0,0,0,0.5)' }}
-      onClick={(e) => { if (e.target === e.currentTarget) onClose() }}
-    >
-      <div
-        className="app-shell w-full rounded-t-2xl sm:rounded-2xl animate-fade-up"
-        style={{ maxHeight: '85dvh', overflowY: 'auto', background: 'var(--color-glass, #fff)' }}
-      >
+    <AcademyDialog surface="components-team-profile" title={team.name} onClose={onClose} wide>
+      <div className="academy-dialog-flow">
         {/* ── Hero header with team color gradient ── */}
         <div
           className="relative px-5 pt-5 pb-6 rounded-t-2xl sm:rounded-t-2xl overflow-hidden"
@@ -102,9 +96,7 @@ export function TeamProfile({ team, onClose, allTeams, onNavigate }: TeamProfile
               </div>
             )}
             <div className="flex-1 min-w-0">
-              <h3 className="text-lg font-extrabold text-white leading-tight truncate">
-                {team.name}
-              </h3>
+
               {team.abbreviation && (
                 <p className="text-xs font-bold mt-0.5" style={{ color: 'rgba(255,255,255,0.7)' }}>
                   {team.abbreviation}
@@ -318,6 +310,6 @@ export function TeamProfile({ team, onClose, allTeams, onNavigate }: TeamProfile
           </button>
         </div>
       </div>
-    </div>
+    </AcademyDialog>
   )
 }

@@ -1,0 +1,182 @@
+{
+  "source": "4113f91a630285da4f78328f8a90ba3ecbf62cba",
+  "meaning": "Build output sizes only; request measurements are separate in verification.json",
+  "assets": [
+    {
+      "name": "AcademyDialog-NMkh3tWU.js",
+      "bytes": 1193
+    },
+    {
+      "name": "AcademyPage-PxR7cSvk.js",
+      "bytes": 1077
+    },
+    {
+      "name": "AcademySaved-BOFjiFJG.js",
+      "bytes": 1067
+    },
+    {
+      "name": "ActivityRecordDialog-P8LXH7gg.js",
+      "bytes": 3935
+    },
+    {
+      "name": "AnnouncementFeed-pNpzdlDT.js",
+      "bytes": 2036
+    },
+    {
+      "name": "AnnouncementsPage-DeXlGolT.js",
+      "bytes": 6299
+    },
+    {
+      "name": "AppContext-nCvzOMgv.js",
+      "bytes": 12806
+    },
+    {
+      "name": "AttendanceGrid-BLGFZfSB.js",
+      "bytes": 4938
+    },
+    {
+      "name": "challenges-BkSjQTpn.js",
+      "bytes": 20334
+    },
+    {
+      "name": "Challenges-DMGOuZwe.js",
+      "bytes": 9086
+    },
+    {
+      "name": "charts-BAHzxo24.js",
+      "bytes": 396869
+    },
+    {
+      "name": "CoachDashboard-Byh4FYa_.js",
+      "bytes": 2809
+    },
+    {
+      "name": "CoachSquadFilter-D6oKvW7c.js",
+      "bytes": 1188
+    },
+    {
+      "name": "CoachStatsPage-Cn2wkhX3.js",
+      "bytes": 1183
+    },
+    {
+      "name": "Dashboard-Bp5QoVQI.js",
+      "bytes": 87044
+    },
+    {
+      "name": "dateFormat-B4PCadCD.js",
+      "bytes": 159
+    },
+    {
+      "name": "DiaryPage-DkpXvnza.js",
+      "bytes": 5177
+    },
+    {
+      "name": "EvaluationPage-DfoyCLTL.js",
+      "bytes": 7852
+    },
+    {
+      "name": "Exercises-Dm_05lus.js",
+      "bytes": 16523
+    },
+    {
+      "name": "exercises-Ux6N0XSa.js",
+      "bytes": 9551
+    },
+    {
+      "name": "FootballPortal-DT3jxoam.js",
+      "bytes": 23611
+    },
+    {
+      "name": "footballStandards-HFMLq1HR.js",
+      "bytes": 7716
+    },
+    {
+      "name": "i18n-CRPEYGxM.js",
+      "bytes": 45662
+    },
+    {
+      "name": "index-Cc0F9ofT.css",
+      "bytes": 55597
+    },
+    {
+      "name": "index-CkKj9bH1.js",
+      "bytes": 927504
+    },
+    {
+      "name": "LeaderboardPage-AWj4lwfh.js",
+      "bytes": 9570
+    },
+    {
+      "name": "LearnPage-NWiefBEc.js",
+      "bytes": 27247
+    },
+    {
+      "name": "LogPage-CqiOxZBS.js",
+      "bytes": 10741
+    },
+    {
+      "name": "MatchLog-UkD8wR3m.js",
+      "bytes": 8279
+    },
+    {
+      "name": "MentorDashboard-fkIwOPeo.js",
+      "bytes": 11128
+    },
+    {
+      "name": "PhysicalUpdateFlow-CzW0qpdX.js",
+      "bytes": 3046
+    },
+    {
+      "name": "Profile-BMkVD-BV.js",
+      "bytes": 28562
+    },
+    {
+      "name": "ProgressPage-CP6lII-G.js",
+      "bytes": 27806
+    },
+    {
+      "name": "react-Clpx-5N5.js",
+      "bytes": 182114
+    },
+    {
+      "name": "rolldown-runtime-hePW80VL.js",
+      "bytes": 716
+    },
+    {
+      "name": "SchedulePage-qqgG0LM-.js",
+      "bytes": 25228
+    },
+    {
+      "name": "SettingsPage-c8w79iIQ.js",
+      "bytes": 5138
+    },
+    {
+      "name": "SquadRoster-C4HvStRS.js",
+      "bytes": 5197
+    },
+    {
+      "name": "SquadSaveStatus-CrlxLKkM.js",
+      "bytes": 1239
+    },
+    {
+      "name": "TeamChallenges-D8GePQx_.js",
+      "bytes": 6166
+    },
+    {
+      "name": "TournamentImport-zT8ADW7e.js",
+      "bytes": 12083
+    },
+    {
+      "name": "TrainingLog-OfiKhyfn.js",
+      "bytes": 6714
+    },
+    {
+      "name": "TrainingPlanner-BzEPkw__.js",
+      "bytes": 5657
+    },
+    {
+      "name": "TrainingProgress-WZuVFQD_.js",
+      "bytes": 1070
+    }
+  ]
+}

@@ -1,3 +1,6 @@
+import { AcademyDialog } from '../components/academy/AcademyDialog'
+import { AcademyPage } from '../components/academy/AcademyPage'
+import { TacticalGraphic } from '../components/academy/TacticalGraphic'
 import { useState, useMemo, lazy, Suspense } from 'react'
 import { createPortal } from 'react-dom'
 import { useTranslation } from 'react-i18next'
@@ -21,15 +24,6 @@ const FILTER_OPTIONS: { key: SkillCategory | 'all'; labelKey: string; emoji: str
 
 type SortKey = 'name' | 'difficulty' | 'duration'
 type SkillLevelFilter = 'all' | 1 | 2 | 3 | 4 | 5
-
-const CAT_STRIPE: Record<string, string> = {
-  technical: 'cat-stripe-technical',
-  physical: 'cat-stripe-physical',
-  tactical: 'cat-stripe-tactical',
-  mental: 'cat-stripe-mental',
-  knowledge: 'cat-stripe-knowledge',
-  performance: 'cat-stripe-performance',
-}
 
 const CAT_EMOJI: Record<string, string> = {
   technical: '⚽',
@@ -83,10 +77,10 @@ function ExerciseDetailModal({
   const thumbnail = exercise.thumbnailUrl || (exercise.videoUrl ? getThumbnailUrl(exercise.videoUrl) : null)
 
   return (
-    <div className="modal-overlay" onClick={onClose} role="dialog" aria-modal="true">
-      <div className="exercise-modal" onClick={(e) => e.stopPropagation()}>
+    <AcademyDialog surface="pages-exercises" title={t(exercise.nameKey)} onClose={onClose} wide>
+      <div className="academy-dialog-flow">
         {/* Close button */}
-        <button className="modal-close" onClick={onClose} aria-label={t('exercises.detail.close')}>×</button>
+
 
         {/* Video or thumbnail */}
         {exercise.videoUrl ? (
@@ -102,7 +96,7 @@ function ExerciseDetailModal({
         )}
 
         {/* Title & description */}
-        <h3 className="exercise-modal-title">{t(exercise.nameKey)}</h3>
+
         <p className="exercise-modal-desc">{t(exercise.descriptionKey)}</p>
 
         {/* Metadata grid */}
@@ -156,7 +150,7 @@ function ExerciseDetailModal({
           </button>
         </div>
       </div>
-    </div>
+    </AcademyDialog>
   )
 }
 
@@ -225,11 +219,11 @@ function SubmitDrillModal({
   }
 
   return (
-    <div className="modal-overlay" onClick={onClose} role="dialog" aria-modal="true" aria-label={t('exercises.submitDrill.title')}>
-      <div className="exercise-modal" onClick={(e) => e.stopPropagation()} style={{ maxHeight: '90vh', overflowY: 'auto' }}>
-        <button className="modal-close" onClick={onClose} aria-label={t('exercises.detail.close')}>×</button>
+    <AcademyDialog surface="pages-exercises" title={t('exercises.submitDrill.title')} onClose={onClose} wide>
+      <div className="academy-dialog-flow">
 
-        <h3 className="exercise-modal-title">{t('exercises.submitDrill.title')}</h3>
+
+
 
         {error && (
           <p className="text-sm mb-3" style={{ color: 'var(--color-error, #ef4444)' }}>{error}</p>
@@ -378,7 +372,7 @@ function SubmitDrillModal({
           </button>
         </div>
       </div>
-    </div>
+    </AcademyDialog>
   )
 }
 
@@ -430,7 +424,7 @@ export function Exercises({ embedded }: { embedded?: boolean }) {
   }
 
   return (
-    <div className={embedded ? 'flex flex-col gap-4' : 'flex flex-col gap-4 p-4 pb-32'}>
+    <AcademyPage surface="exercise-library" title={embedded ? undefined : t('exercises.title')}>
       {/* Tab switcher: Exercises | Challenges — hidden when embedded in LearnPage */}
       {!embedded && (
       <div className="flex items-center gap-1 p-1 rounded-xl" style={{ background: 'var(--color-glass-active, #f1f5f9)' }}>
@@ -549,53 +543,24 @@ export function Exercises({ embedded }: { embedded?: boolean }) {
         )}
         {sortedFiltered.map((ex) => {
           const isDone = doneIds.has(ex.id)
-          const thumbnail = ex.thumbnailUrl || (ex.videoUrl ? getThumbnailUrl(ex.videoUrl) : null)
           const isCommunity = ex.source === 'community'
 
           return (
-            <div
+            <article
               key={ex.id}
-              className={`exercise-card ${CAT_STRIPE[ex.category] ?? ''}`}
-              onClick={() => setDetailExercise(ex)}
+              className="exercise-card"
             >
-              {/* Thumbnail (if video) */}
-              {thumbnail && (
-                <div className="w-full h-24 rounded-lg overflow-hidden mb-3 relative" style={{ background: 'var(--color-bg-warm)' }}>
-                  <img src={thumbnail} alt={t(ex.nameKey)} className="w-full h-full object-cover" loading="lazy" />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-white text-xl drop-shadow-lg">▶</span>
-                  </div>
-                </div>
-              )}
-
-              {/* Category emoji badge (when no thumbnail) */}
-              {!thumbnail && (
-                <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-2 text-lg"
-                  style={{ background: 'var(--color-field-input)' }}>
-                  {CAT_EMOJI[ex.category] ?? '⚽'}
-                </div>
-              )}
-
-              {/* Community badge */}
-              {isCommunity && (
-                <span className="text-xs font-bold px-2 py-0.5 rounded-full mb-1 inline-block"
-                  style={{ background: 'var(--color-primary-bg)', color: 'var(--color-primary-dark)' }}>
-                  🌐 {t('exercises.communityBadge')}
+              <button className="academy-exercise-open" onClick={() => setDetailExercise(ex)} aria-label={t(ex.nameKey)}>
+                <TacticalGraphic kind={ex.category === 'technical' ? 'touch' : ex.category === 'tactical' ? 'pass' : 'turn'} />
+                <span className="exercise-card-body">
+                  {isCommunity && <span className="academy-eyebrow">{t('exercises.communityBadge')}</span>}
+                  <span className="exercise-card-title">{t(ex.nameKey)}</span>
+                  <span className="exercise-card-desc">{t(ex.descriptionKey)}</span>
                 </span>
-              )}
-
-              {/* Title */}
-              <p className="text-base font-bold heading-display" style={{ color: 'var(--color-text)' }}>
-                {t(ex.nameKey)}
-              </p>
-
-              {/* Description (truncated) */}
-              <p className="text-sm mt-1 leading-relaxed line-clamp-2" style={{ color: 'var(--color-text-secondary)' }}>
-                {t(ex.descriptionKey)}
-              </p>
+              </button>
 
               {/* Metadata row */}
-              <div className="flex items-center gap-2 mt-3 flex-wrap">
+              <div className="flex items-center gap-2 p-5 flex-wrap">
                 <span className="text-xs px-2 py-0.5 rounded-full font-data font-bold" style={{ background: 'var(--color-bg-warm)', color: 'var(--color-text-muted)' }}>
                   {ex.durationMinutes} min
                 </span>
@@ -626,7 +591,7 @@ export function Exercises({ embedded }: { embedded?: boolean }) {
                   {isDone ? '✓' : `+${XP_AWARDS.completeExercise}`}
                 </button>
               </div>
-            </div>
+            </article>
           )
         })}
       </div>
@@ -658,6 +623,6 @@ export function Exercises({ embedded }: { embedded?: boolean }) {
       )}
       </>
       )}
-    </div>
+    </AcademyPage>
   )
 }

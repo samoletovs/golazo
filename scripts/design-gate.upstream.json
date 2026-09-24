@@ -1,11 +1,17 @@
 {
-  "description": "Reviewed validator and shipped checker/regressions, vendored without logic changes.",
+  "description": "Independently reviewed v2 validator and draft helper vendored without logic changes, including explicit source-declared shared renders with per-context evidence. SHA-256 values identify canonical upstream Git blobs. PR checker and regressions derive from the shipped Rosette pattern and are locally extended for mandatory source scope, v2 coverage, separate craft review and integrated owner acceptance.",
   "sources": [
     {
       "repo": "samoletovs/nauroLabs-github",
-      "commit": "8fa6ccbe7481bc00aad0568517dde4cd3bafbf3a",
+      "commit": "2af8eae46c31eab9d7b4d132abb77223135d0265",
       "file": "scripts/design-gate.py",
-      "sha256": "f20f30cf44d486efa152f80bc4d5b754f4fe747406c1bee3e0cf270812dd81b5"
+      "sha256": "d25b7813e102c8b800dc7d93cb6ad00a004dd36c8c589482c4a975b025f55e49"
+    },
+    {
+      "repo": "samoletovs/nauroLabs-github",
+      "commit": "2af8eae46c31eab9d7b4d132abb77223135d0265",
+      "file": "scripts/design-session.py",
+      "sha256": "6dfe23fd029ee45a055687615d11d9bf0bf7f65447241604611b616c3da1bdd0"
     },
     {
       "repo": "samoletovs/rosette",

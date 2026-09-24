@@ -1,7 +1,14 @@
-import { lazy, Suspense, useState, useMemo } from 'react'
+import { formatDisplayDate } from '../utils/dateFormat'
+import { lazy, Suspense, useState, useMemo, useRef, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useApp } from '../contexts/AppContext'
-import { getAge, TRAINING_SKIP_REASONS, MATCH_SKIP_REASONS, type ScheduleEvent, type TrainingType } from '../engine/types'
+import { getAge, getAgeTier, TRAINING_SKIP_REASONS, MATCH_SKIP_REASONS, type ScheduleEvent, type TrainingType } from '../engine/types'
+import { XP_AWARDS, scaleXp } from '../engine/xp'
+import { AcademyPage } from '../components/academy/AcademyPage'
+import { AcademyIcon } from '../components/academy/AcademyIcon'
+import { AcademyLoading } from '../components/academy/AcademyState'
+import { ActivityHistory } from '../components/academy/ActivityHistory'
+import { useToast } from '../contexts/ToastContext'
 
 const TrainingLog = lazy(() => import('./TrainingLog').then((m) => ({ default: m.TrainingLog })))
 const MatchLog = lazy(() => import('./MatchLog').then((m) => ({ default: m.MatchLog })))
@@ -11,13 +18,7 @@ const TournamentImport = lazy(() =>
 )
 
 function LogFallback({ compact = false }: { compact?: boolean }) {
-  const sizeClass = compact ? 'text-2xl' : 'text-3xl'
-  const paddingClass = compact ? 'p-4' : 'p-8'
-  return (
-    <div className={`flex items-center justify-center ${paddingClass}`}>
-      <span className={sizeClass}>⚽</span>
-    </div>
-  )
+  return <div className={compact ? 'p-4' : ''}><AcademyLoading /></div>
 }
 
 type LogType = 'select' | 'training' | 'match' | 'diary'
@@ -31,10 +32,15 @@ interface PendingEvent {
 export function LogPage() {
   const { t } = useTranslation()
   const { schedule, recurringTrainings, matches, trainings, profile } = useApp()
+  const { showToast, dismissToast } = useToast()
   const [logType, setLogType] = useState<LogType>('select')
   const [showImport, setShowImport] = useState(false)
   const [prefillData, setPrefillData] = useState<Record<string, string | number | undefined>>({})
   const [skipConfirmId, setSkipConfirmId] = useState<string | null>(null)
+  const [failedSkip, setFailedSkip] = useState<{ eventId: string; reason: string } | null>(null)
+  const skipToast = useRef<number | null>(null)
+  useEffect(() => () => { if (skipToast.current !== null) dismissToast(skipToast.current) }, [dismissToast])
+  const tier = profile?.birthDate ? getAgeTier(profile.birthDate) : undefined
 
   // Skipped event IDs persisted in localStorage
   const [skippedIds, setSkippedIds] = useState<Set<string>>(() => {
@@ -47,15 +53,32 @@ export function LogPage() {
   function skipEvent(eventId: string, reason: string) {
     const next = new Set(skippedIds)
     next.add(eventId)
+    let previousReasons: string | null = null
+    let reasonsWritten = false
+    try {
+      previousReasons = localStorage.getItem('golazo-skip-reasons')
+      const reasons: unknown = JSON.parse(previousReasons ?? '{}')
+      if (typeof reasons !== 'object' || reasons === null || Array.isArray(reasons)) throw new Error('Invalid saved skip reasons')
+      localStorage.setItem('golazo-skip-reasons', JSON.stringify({ ...reasons, [eventId]: { reason, date: new Date().toISOString() } }))
+      reasonsWritten = true
+      localStorage.setItem('golazo-skipped-events', JSON.stringify([...next]))
+    } catch (cause) {
+      if (reasonsWritten) {
+        try {
+          if (previousReasons === null) localStorage.removeItem('golazo-skip-reasons')
+          else localStorage.setItem('golazo-skip-reasons', previousReasons)
+        } catch (rollbackError) { console.error('Skip-reason rollback was not confirmed:', rollbackError) }
+      }
+      console.error('Skip choice could not be saved:', cause)
+      setFailedSkip({ eventId, reason })
+      if (skipToast.current !== null) dismissToast(skipToast.current)
+      skipToast.current = showToast(t('academy.saveError'), 'error')
+      return
+    }
+    if (skipToast.current !== null) dismissToast(skipToast.current)
+    setFailedSkip(null)
     setSkippedIds(next)
     setSkipConfirmId(null)
-    localStorage.setItem('golazo-skipped-events', JSON.stringify([...next]))
-    // Also store the reason for reference
-    try {
-      const reasons = JSON.parse(localStorage.getItem('golazo-skip-reasons') ?? '{}')
-      reasons[eventId] = { reason, date: new Date().toISOString() }
-      localStorage.setItem('golazo-skip-reasons', JSON.stringify(reasons))
-    } catch { /* best-effort */ }
   }
 
   // Find pending events: today's planned + past 7 days without feedback
@@ -108,7 +131,7 @@ export function LogPage() {
             ? t('log.today')
             : daysBack === 1
             ? t('log.yesterday')
-            : d.toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' })
+            : formatDisplayDate(d, { weekday: 'short', month: 'short', day: 'numeric' })
 
           result.push({ event: ev, isToday, dayLabel })
         }
@@ -169,8 +192,8 @@ export function LogPage() {
   }
 
   return (
-    <div className="flex flex-col gap-4 p-4 pb-32">
-      <h2 className="text-xl font-extrabold">{t('log.selectType')}</h2>
+    <AcademyPage surface="player-log" title={t('log.selectType')} subtitle={t('academy.logIntro')}>
+      <div className="academy-log-workspace"><div className="academy-stack">
 
       {/* ── Pending events — today's plan + missed ── */}
       {pendingEvents.length > 0 && (
@@ -229,6 +252,9 @@ export function LogPage() {
                 {/* Skip reason picker */}
                 {isSkipping && (
                   <div className="mt-2 pt-2 flex flex-wrap gap-1.5" style={{ borderTop: '1px solid var(--color-glass-border)' }}>
+                    {failedSkip?.eventId === ev.id && <div className="academy-error w-full" role="alert">
+                      <p>{t('academy.saveError')}</p><button className="academy-link" onClick={() => skipEvent(failedSkip.eventId, failedSkip.reason)}>{t('training.retry')}</button>
+                    </div>}
                     <p className="text-xs w-full mb-0.5" style={{ color: 'var(--color-text-muted)' }}>{t('log.skipReason')}</p>
                     {(isMatch ? MATCH_SKIP_REASONS : TRAINING_SKIP_REASONS)
                       .filter((r) => !r.minAge || (profile?.birthDate && getAge(profile.birthDate) >= r.minAge))
@@ -255,50 +281,23 @@ export function LogPage() {
         <p className="section-label mt-1">{t('log.orLogManually')}</p>
       )}
 
-      <button
-        className="card tap-target flex items-center gap-4 text-left"
-        onClick={() => setLogType('training')}
-        aria-label={t('log.training')}
-      >
-        <span className="text-3xl">⚽</span>
-        <div>
-          <p className="text-base font-bold">{t('log.training')}</p>
-          <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>+20 XP</p>
-        </div>
-      </button>
-
-      <button
-        className="card tap-target flex items-center gap-4 text-left"
-        onClick={() => setLogType('match')}
-        aria-label={t('log.match')}
-      >
-        <span className="text-3xl">🏟️</span>
-        <div>
-          <p className="text-base font-bold">{t('log.match')}</p>
-          <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>+30 XP</p>
-        </div>
-      </button>
-
-      <button
-        className="card tap-target flex items-center gap-4 text-left"
-        onClick={() => setLogType('diary')}
-        aria-label={t('log.diary')}
-      >
-        <span className="text-3xl">📝</span>
-        <div>
-          <p className="text-base font-bold">{t('log.diary')}</p>
-          <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>+15 XP</p>
-        </div>
-      </button>
+      <div className="academy-log-options">
+        {([
+          { type: 'training', icon: 'log', xp: XP_AWARDS.logTraining },
+          { type: 'match', icon: 'match', xp: XP_AWARDS.logMatch },
+          { type: 'diary', icon: 'diary', xp: XP_AWARDS.diaryEntry },
+        ] as const).map(item => <button key={item.type} className="academy-log-option" onClick={() => setLogType(item.type)} aria-label={t(`log.${item.type}`)}>
+          <AcademyIcon name={item.icon} /><div><h2>{t(`log.${item.type}`)}</h2><p>+{scaleXp(item.xp, tier)} XP</p></div><span aria-hidden="true">↗</span>
+        </button>)}
+      </div>
 
       {/* Add Tournament */}
       <button
-        className="card tap-target flex items-center gap-4 text-left"
-        style={{ borderLeft: '3px solid var(--color-gold-500)' }}
+        className="academy-menu-link"
         onClick={() => setShowImport(true)}
         aria-label={t('import.addTournament')}
       >
-        <span className="text-3xl">🏆</span>
+        <AcademyIcon name="trophy" />
         <div>
           <p className="text-base font-bold">{t('import.addTournament')}</p>
           <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{t('import.addTournamentHint')}</p>
@@ -321,6 +320,7 @@ export function LogPage() {
           </p>
         </div>
       </div>
-    </div>
+      </div><ActivityHistory /></div>
+    </AcademyPage>
   )
 }

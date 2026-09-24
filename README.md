@@ -72,16 +72,29 @@ npm test -- tests/maintenance.test.ts tests/exercises.test.ts
 
 ## Status
 
-### Approved player training slice
+### Academy weekboard
 
-The owner selected **Clubhouse**, then **cobalt blue + warm coral on neutral
-surfaces**, on 2026-09-22. See [the canonical brief](.impeccable.md) and
-[implementation/verification notes](docs/training-clubhouse.md). The original
-standalone concepts remain historical comparison material, not final UI evidence.
+The integrated **Academy A** design was accepted on 2026-09-23. It uses
+cobalt blue, warm coral and neutral surfaces across Home, Log, Progress, Learn
+and Profile, plus scheduling, settings, onboarding and coach/mentor workspaces.
+The same system adapts to phone, tablet and desktop layouts.
 
-Player Home now prioritizes logging completed training and understanding effort.
-Existing matches, goals and activities remain under **More football**; coach and
-mentor dashboards keep their existing routes.
+See [the canonical brief](.impeccable.md),
+[implementation and behavior boundaries](docs/academy-implementation.md), and
+[source-bound verification evidence](docs/design-evidence/academy-20260923/).
+Owner acceptance and technical checks are separate from full surface verification;
+publication and deployment status are recorded with the release evidence.
+
+Home integrates the football week and recorded activity. Log includes a
+read-only journal; Progress distinguishes current skill snapshots from recorded
+activity; Learn retains articles, programs and the exercise library. Local saves
+are explicitly distinguished from server confirmation. Existing account and
+managed-team permissions remain unchanged.
+
+The [A/B academy comparison](docs/design-directions/academy-20260922/README.md)
+and [earlier Clubhouse training slice](docs/training-clubhouse.md) remain
+historical records. The former homepage-only release did not meet the whole-app
+design goal and is not used as completion evidence for Academy.
 
 **Active experiment.** Training and match logs, progression, challenges,
 exercise content, multilingual UI, backend sync, and coaching foundations are
