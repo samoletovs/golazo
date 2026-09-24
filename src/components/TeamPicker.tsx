@@ -524,7 +524,7 @@ export function TeamPicker({ mode, onClose, externalTeams, onTeamsChange, countr
                 {mode === 'player' && (
                   <div className="mb-3">
                     <p className="text-xs font-bold mb-1.5" style={{ color: 'var(--color-text-secondary)' }}>
-                      {t('onboarding.position')}
+                      {t('onboarding.positions')}
                     </p>
                     <div className="flex flex-wrap gap-1.5">
                       {POSITION_OPTIONS.map(({ key, emoji }) => {

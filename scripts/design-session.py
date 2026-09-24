@@ -135,7 +135,14 @@ def draft(repo: Path, source: str, directory: Path, mobile: str, desktop: str,
         },
         "screenshots": screenshots,
         "coverage": [
-            {"id": surface["id"], "status": "not_run", "evidence": "", "screenshots": []}
+            {
+                "id": surface["id"], "status": "not_run", "evidence": "", "screenshots": [],
+                **({
+                    "shared_render_with": surface["shared_render_with"],
+                    "sharing_rationale": surface["sharing_rationale"],
+                    "context_evidence": "",
+                } if "shared_render_with" in surface else {}),
+            }
             for surface in scope["surfaces"]
         ],
         "craft": {

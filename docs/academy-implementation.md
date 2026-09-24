@@ -42,6 +42,11 @@ Daily-quiz answers remain visible after answering, fully timed workouts display
 the sum of their existing sections, and local advice uses the translated skill
 category when a more specific sub-skill translation does not exist. These changes
 do not add exercises, alter workout prescriptions or change stored record formats.
+The retained quiz is keyed by its existing UTC date, so same-day feedback survives
+routine completion while the next day's question starts enabled. Team selection
+uses the existing plural position translation. The scope retains all 220 IDs,
+corrects the observed onboarding entry names, and records genuinely shared
+renderings explicitly instead of manufacturing different screenshots.
 
 ## Behavior and truthfulness
 
@@ -73,6 +78,10 @@ do not add exercises, alter workout prescriptions or change stored record format
 - Existing check-ins have no player identifier. Mentor wellbeing remains
   explicitly a device snapshot, not a claim about the selected linked player.
   The selection filters only records that actually carry a player identifier.
+- Evaluation history remains subject to the existing managed-team authorization.
+  Ordinary player and mentor requests are denied; authorized own-history evidence
+  uses an account retaining its pre-existing managed-team entitlement after role
+  switching. This is not newly granted access to a linked child's evaluations.
 - Program focus metadata is not displayed as a measured skill increase.
   Overall skill ratings and XP rank are labelled separately.
 - Offline calculated practice ideas are labelled separately from an AI response.

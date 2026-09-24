@@ -123,15 +123,24 @@ def load_scope(repo: Path, revision: str) -> tuple[dict, str]:
     surfaces = scope.get("surfaces")
     if not isinstance(surfaces, list) or not surfaces:
         raise ValueError("scope.surfaces must enumerate the affected experience")
-    identifiers: set[str] = set()
+    identifiers: dict[str, dict] = {}
     for value in surfaces:
         surface = require_object(value, "scope surface")
         identifier = require_text(surface.get("id"), "surface.id")
         if identifier in identifiers:
             raise ValueError("scope surface ids must be unique")
-        identifiers.add(identifier)
+        identifiers[identifier] = surface
         require_text(surface.get("entry"), "surface.entry")
         require_text(surface.get("role"), "surface.role")
+    for identifier, surface in identifiers.items():
+        if "shared_render_with" not in surface:
+            continue
+        canonical = require_text(surface["shared_render_with"], f"{identifier}.shared_render_with")
+        if canonical == identifier or canonical not in identifiers:
+            raise ValueError("shared_render_with must name a different surface in the same scope inventory")
+        if "shared_render_with" in identifiers[canonical]:
+            raise ValueError("shared_render_with must point directly to a canonical surface, not an alias")
+        require_text(surface.get("sharing_rationale"), f"{identifier}.sharing_rationale")
     return scope, hashlib.sha256(data).hexdigest()
 
 
@@ -163,15 +172,24 @@ def validate_completion(repo: Path, record: dict) -> None:
     coverage = record.get("coverage")
     if not isinstance(coverage, list):
         raise ValueError("coverage must account for every inventoried surface")
-    expected = {surface["id"].strip() for surface in scope["surfaces"]}
+    inventory = {surface["id"].strip(): surface for surface in scope["surfaces"]}
+    expected = set(inventory)
     seen: set[str] = set()
-    capture_hashes: set[str] = set()
+    capture_groups: dict[str, str] = {}
     for value in coverage:
         surface = require_object(value, "coverage surface")
         identifier = require_text(surface.get("id"), "coverage.id")
         if identifier not in expected or identifier in seen:
             raise ValueError("coverage must match scope without extra or duplicate ids")
         seen.add(identifier)
+        declared = inventory[identifier]
+        for field in ("shared_render_with", "sharing_rationale"):
+            if field in surface and (field not in declared or surface[field] != declared[field]):
+                raise ValueError(f"{identifier}.{field} must match the frozen source inventory")
+        group = identifier
+        if "shared_render_with" in declared:
+            group = declared["shared_render_with"].strip()
+            require_text(surface.get("context_evidence"), f"{identifier}.context_evidence")
         if surface.get("status") not in ("implemented", "retained-consistent"):
             raise ValueError(f"{identifier}: incomplete surface cannot certify redesign completion")
         require_text(surface.get("evidence"), f"{identifier}.evidence")
@@ -179,9 +197,10 @@ def validate_completion(repo: Path, record: dict) -> None:
             require_text(surface.get("rationale"), f"{identifier}.rationale")
         validate_captures(repo, surface.get("screenshots"))
         hashes = {image["sha256"] for image in surface["screenshots"]}
-        if capture_hashes & hashes:
-            raise ValueError("different surfaces need their own captures, not repeated hero evidence")
-        capture_hashes.update(hashes)
+        for image_hash in hashes:
+            if image_hash in capture_groups and capture_groups[image_hash] != group:
+                raise ValueError("different render groups need their own captures, not repeated hero evidence")
+            capture_groups[image_hash] = group
     if seen != expected:
         raise ValueError(f"missing surface coverage: {', '.join(sorted(expected - seen))}")
     craft = require_object(record.get("craft"), "craft")

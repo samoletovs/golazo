@@ -63,7 +63,7 @@ export function AcademyDailyPractice({ onNavigate }: { onNavigate?: (page: strin
         <button className="academy-link" onClick={() => onNavigate?.('challenges')}>{t('nav.challenges')} <span aria-hidden="true">→</span></button>
       </div>
     </AcademyPanel>}
-    <DailyQuiz />
+    <DailyQuiz key={new Date().toISOString().slice(0, 10)} />
     {showRoutine && <MorningRoutine onClose={() => { setShowRoutine(false); setCompleted([]) }} />}
   </div>
 }

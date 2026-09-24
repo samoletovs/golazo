@@ -82,15 +82,23 @@ describe('Academy finalization findings', () => {
     if (!challenge) throw new Error('Daily-practice fixture requires a challenge')
     localStorage.setItem(getDailyChallengeCompletionKey(today), JSON.stringify([challenge.templateId]))
     const question = getQuizOfTheDay(today, 'u12')
-    await act(async () => {
-      render(<AppProvider><ToastProvider><AcademyDailyPractice /></ToastProvider></AppProvider>)
-    })
+    const mounted = render(<AppProvider><ToastProvider><AcademyDailyPractice /></ToastProvider></AppProvider>)
+    await act(async () => {})
     const answer = i18n.t(`quiz.q.${question.id}.o${question.correctIndex}`, { defaultValue: question.options[question.correctIndex] })
     fireEvent.click(screen.getByRole('button', { name: answer, exact: true }))
     expect(screen.getByText(i18n.t(`quiz.q.${question.id}`, { defaultValue: question.questionKey }))).toBeVisible()
     expect(screen.getByRole('button', { name: answer, exact: true })).toHaveClass('correct-answer')
     expect(screen.getByRole('button', { name: answer, exact: true })).toBeDisabled()
     expect(JSON.parse(localStorage.getItem('golazo-state') ?? '{}').quizAnswers).toHaveLength(1)
+    vi.setSystemTime(new Date(2026, 8, 24, 12))
+    mounted.rerender(<AppProvider><ToastProvider><AcademyDailyPractice /></ToastProvider></AppProvider>)
+    const nextQuestion = getQuizOfTheDay('2026-09-24', 'u12')
+    for (let index = 0; index < 4; index++) {
+      const nextAnswer = i18n.t(`quiz.q.${nextQuestion.id}.o${index}`, { defaultValue: nextQuestion.options[index] })
+      const button = screen.getByRole('button', { name: nextAnswer, exact: true })
+      expect(button).toBeEnabled()
+      expect(button).not.toHaveClass('correct-answer')
+    }
   })
 
   it.each(['en', 'lv', 'ru', 'es', 'lt', 'et'])('does not leak missing sub-skill translation keys into %s advice', async language => {
