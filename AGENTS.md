@@ -148,5 +148,9 @@ is executed by the handoff.
 
 Ordinary manual CI dispatch remains validation-only. A default-branch dispatch
 with `delivery_pr` explicitly retries an already merged PR through the same gates.
+Runs queue without replacement (`queue: max`, up to 100 waiting runs), including
+PR validation; no-op completions cannot cancel pending production/cleanup.
+Preview cleanup passes verified full PR metadata through the official client's
+`close --event` argument, not a reserved GitHub event-variable override.
 The helper `scripts/merged-pr-delivery.py` and
 `tests/test_merged_pr_delivery.py` are shared governance copies.
