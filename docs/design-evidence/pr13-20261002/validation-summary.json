@@ -1,0 +1,122 @@
+{
+  "kind": "source-bound-validation-handoff-not-independent-review",
+  "source_commit": "c6ab4790528f486380219e72164412039a94003c",
+  "scope_sha256": "3333b56203eaa7b505547587b9c21c4708eec08767963a7a73760cc35a863ea1",
+  "brief_sha256": "205fabe6c82ba73d32bcbc5d2943f6e62934fd76e6e8856711916b17a64d0c15",
+  "application_diff": "Only package-lock.json: dev-only brace-expansion 5.0.9 -> 5.0.12, resolved archive and integrity.",
+  "ci": {
+    "run_id": 37011052166,
+    "url": "https://github.com/samoletovs/golazo/actions/runs/37011052166",
+    "source": "c6ab4790528f486380219e72164412039a94003c",
+    "event": "workflow_dispatch",
+    "conclusion": "success",
+    "unit_tests": 268,
+    "design_gate_regressions": 16,
+    "lint_errors": 0,
+    "existing_lint_warnings": 18,
+    "existing_large_chunk_warning": true,
+    "deployment": "skipped",
+    "pr_source_evidence_step": "not run on manual validation; original PR gate remains unchanged"
+  },
+  "artifact": {
+    "path": "docs/design-evidence/pr13-20261002/artifact-provenance.json",
+    "sha256": "5ffba83d2f6a8c987f4ef3c6138556242527dbc9abc94f8448859709aff3e60e",
+    "bytes": 8971
+  },
+  "reports": [
+    {
+      "path": "docs/design-evidence/academy-20260923/source-c6ab479/observations.json",
+      "sha256": "eedede08c128ae8d374f196385d73ad33cef8acfe34d1823007fa1c3702c56e4",
+      "bytes": 61919,
+      "observations": 161
+    },
+    {
+      "path": "docs/design-evidence/academy-20260923/source-c6ab479/navigation-observations.json",
+      "sha256": "01ed496b69a3acd4c22feda16de521cf10caa3013e9c83d5615863df2766ff63",
+      "bytes": 88443,
+      "observations": 400
+    },
+    {
+      "path": "docs/design-evidence/academy-20260923/source-c6ab479/support-observations.json",
+      "sha256": "9054398616755f93da8e02aeeb9b56071eb3fdd163a07185c80d2e2962bd6aea",
+      "bytes": 31226,
+      "observations": 132
+    },
+    {
+      "path": "docs/design-evidence/academy-20260923/source-c6ab479/entry-observations.json",
+      "sha256": "bc017496e9f9ff93b474f22a7011995a82c422ef38ec2f0b6b6b73710d689355",
+      "bytes": 38358,
+      "observations": 164
+    },
+    {
+      "path": "docs/design-evidence/academy-20260923/source-c6ab479/control-observations.json",
+      "sha256": "331dfde8f2edd6cd6a780ce297e404291caae7b931b0ebbd1d0ea7763daa9133",
+      "bytes": 10866,
+      "observations": 44
+    },
+    {
+      "path": "docs/design-evidence/academy-20260923/source-c6ab479/learning-observations.json",
+      "sha256": "955a7d43097cce04d0e3a06ff6f03c9bdf82ff433b02a914e60cf1e75555fbca",
+      "bytes": 389781,
+      "observations": 96
+    },
+    {
+      "path": "docs/design-evidence/academy-20260923/source-c6ab479/calendar-observations.json",
+      "sha256": "4fa332da16b5ba52ab2ff2d3e35dd701df51468b474a14490e8ac143ddc823d5",
+      "bytes": 223463,
+      "observations": 106
+    },
+    {
+      "path": "docs/design-evidence/academy-20260923/source-c6ab479/profiles-observations.json",
+      "sha256": "335965a41c8feaa370531dc81186c840c38f96042a68f5c824350edd159c4289",
+      "bytes": 257896,
+      "observations": 70
+    },
+    {
+      "path": "docs/design-evidence/academy-20260923/source-c6ab479/shared-observations.json",
+      "sha256": "6914455225a0ded29995fee889749556e42ae4282b819d855812f765a45d13de",
+      "bytes": 174780,
+      "observations": 76
+    },
+    {
+      "path": "docs/design-evidence/academy-20260923/source-c6ab479/training-entry-observations.json",
+      "sha256": "e2a88704d0b334d62ca6c8e96115f1dc593a1c8f8fbe5a65a7acd2957c742484",
+      "bytes": 20180,
+      "observations": 26
+    },
+    {
+      "path": "docs/design-evidence/academy-20260923/source-c6ab479/fonts-observations.json",
+      "sha256": "5a22c766c4b0364fe0eafb810fba0f5122bbca3762630eb57f3fb8998caf52a5",
+      "bytes": 61774,
+      "observations": 80
+    }
+  ],
+  "observation_rows": 1355,
+  "observation_count_limit": "Rows are bounded observations, not independent tests. Calendar includes 28 explicitly reused rows from other fresh reports at this same source. Frozen shared-render aliases retain their own role/context obligations.",
+  "coverage": {
+    "path": "docs/design-evidence/academy-20260923/source-c6ab479/coverage-candidate.json",
+    "sha256": "b8f52eee060ada9d11c7b78a03b3ada208f06d11bf1a74a6d12339b407bbd1df",
+    "bytes": 282230,
+    "surface_ids": 220,
+    "paired": 220,
+    "missing": [],
+    "undeclared_image_reuse": [],
+    "errors": []
+  },
+  "draft": {
+    "path": "docs/design-evidence/pr13-20261002/review.draft.json",
+    "sha256": "a3e51db71d095b8a98ae77c9c65c032195d8db3c2cc244c37df8f94cb59f2861",
+    "bytes": 293488
+  },
+  "independent_review": "not performed; parent-owned",
+  "owner_acceptance": "Historical accepted direction retained; no new exact-source attestation written",
+  "merge": "not performed",
+  "deployment": "not performed",
+  "limits": [
+    "Chromium on Windows only; no Safari/Firefox or screen-reader/user study.",
+    "Synthetic profiles and intercepted APIs only; no real authentication, Azure, children or user records.",
+    "Fallback-font controls and separate public real-font checks are distinguished in each report.",
+    "Existing evaluation authorization boundaries, loading warning and lint warnings are preserved.",
+    "No gate, product code, approved design, data schema or behavior was changed."
+  ]
+}

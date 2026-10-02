@@ -1,0 +1,733 @@
+quality	Set up job	﻿2026-10-02T13:08:45.2713439Z Current runner version: '2.337.0'
+quality	Set up job	2026-10-02T13:08:45.2749246Z ##[group]Runner Image Provisioner
+quality	Set up job	2026-10-02T13:08:45.2750631Z Hosted Compute Agent
+quality	Set up job	2026-10-02T13:08:45.2751962Z Version: 20260901.588
+quality	Set up job	2026-10-02T13:08:45.2753126Z Commit: f88ec8081b781fac6c440065ac7ff9e710ce3d0b
+quality	Set up job	2026-10-02T13:08:45.2754418Z Build Date: 2026-09-01T19:56:44Z
+quality	Set up job	2026-10-02T13:08:45.2755618Z Worker ID: {5bd1230a-5d6d-4212-80d0-d185c746a762}
+quality	Set up job	2026-10-02T13:08:45.2756817Z Azure Region: eastus
+quality	Set up job	2026-10-02T13:08:45.2757775Z ##[endgroup]
+quality	Set up job	2026-10-02T13:08:45.2760497Z ##[group]Operating System
+quality	Set up job	2026-10-02T13:08:45.2761970Z Ubuntu
+quality	Set up job	2026-10-02T13:08:45.2762897Z 24.04.5
+quality	Set up job	2026-10-02T13:08:45.2763732Z LTS
+quality	Set up job	2026-10-02T13:08:45.2764660Z ##[endgroup]
+quality	Set up job	2026-10-02T13:08:45.2765664Z ##[group]Runner Image
+quality	Set up job	2026-10-02T13:08:45.2766686Z Image: ubuntu-24.04
+quality	Set up job	2026-10-02T13:08:45.2767715Z Version: 20260927.320.1
+quality	Set up job	2026-10-02T13:08:45.2769586Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260927.320/images/ubuntu/Ubuntu2404-Readme.md
+quality	Set up job	2026-10-02T13:08:45.2772876Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260927.320
+quality	Set up job	2026-10-02T13:08:45.2774642Z ##[endgroup]
+quality	Set up job	2026-10-02T13:08:45.2777162Z ##[group]GITHUB_TOKEN Permissions
+quality	Set up job	2026-10-02T13:08:45.2780021Z Contents: read
+quality	Set up job	2026-10-02T13:08:45.2781380Z Metadata: read
+quality	Set up job	2026-10-02T13:08:45.2782391Z Packages: read
+quality	Set up job	2026-10-02T13:08:45.2783370Z ##[endgroup]
+quality	Set up job	2026-10-02T13:08:45.2786274Z Secret source: Actions
+quality	Set up job	2026-10-02T13:08:45.2787886Z Cache mode: write
+quality	Set up job	2026-10-02T13:08:45.2789557Z Prepare workflow directory
+quality	Set up job	2026-10-02T13:08:45.3262078Z Prepare all required actions
+quality	Set up job	2026-10-02T13:08:45.3333665Z Getting action download info
+quality	Set up job	2026-10-02T13:08:45.5577379Z Download action repository 'actions/checkout@v5' (SHA:fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09)
+quality	Set up job	2026-10-02T13:08:45.6923550Z Download action repository 'actions/setup-python@v6' (SHA:ece7cb06caefa5fff74198d8649806c4678c61a1)
+quality	Set up job	2026-10-02T13:08:45.8026475Z Download action repository 'actions/setup-node@v5' (SHA:a0853c24544627f65ddf259abe73b1d18a591444)
+quality	Set up job	2026-10-02T13:08:45.9462076Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+quality	Set up job	2026-10-02T13:08:46.1709167Z Complete job name: quality
+quality	Run actions/checkout@v5	﻿2026-10-02T13:08:46.2549921Z ##[group]Run actions/checkout@v5
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.2551290Z with:
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.2551783Z   fetch-depth: 0
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.2552262Z   ref: c6ab4790528f486380219e72164412039a94003c
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.2552848Z   repository: samoletovs/golazo
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.2556765Z   token: ***
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.2557183Z   ssh-strict: true
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.2557609Z   ssh-user: git
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.2558094Z   persist-credentials: true
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.2558590Z   clean: true
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.2559081Z   sparse-checkout-cone-mode: true
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.2559610Z   fetch-tags: false
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.2560048Z   show-progress: true
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.2560499Z   lfs: false
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.2561203Z   submodules: false
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.2561691Z   set-safe-directory: true
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.2562233Z   allow-unsafe-pr-checkout: false
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.2563097Z ##[endgroup]
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.3689757Z Syncing repository: samoletovs/golazo
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.3693111Z ##[group]Getting Git version info
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.3694439Z Working directory is '/home/runner/work/golazo/golazo'
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.3695498Z [command]/usr/bin/git version
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.3823201Z git version 2.55.0
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.3859308Z ##[endgroup]
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.3873719Z Temporarily overriding HOME='/home/runner/work/_temp/cab37bc4-67a7-46f7-9771-4110e8e30a36' before making global git config changes
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.3876291Z Adding repository directory to the temporary git global config as a safe directory
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.3879940Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/golazo/golazo
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.3938186Z Deleting the contents of '/home/runner/work/golazo/golazo'
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.3943810Z ##[group]Initializing the repository
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.3947779Z [command]/usr/bin/git init /home/runner/work/golazo/golazo
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.4062594Z hint: Using 'master' as the name for the initial branch. This default branch name
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.4066997Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.4068630Z hint: to use in all of your new repositories, which will suppress this warning,
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.4072223Z hint: call:
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.4072927Z hint:
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.4073737Z hint: 	git config --global init.defaultBranch <name>
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.4074710Z hint:
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.4075623Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.4077134Z hint: 'development'. The just-created branch can be renamed via this command:
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.4078333Z hint:
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.4078976Z hint: 	git branch -m <name>
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.4079762Z hint:
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.4080748Z hint: Disable this message with "git config set advice.defaultBranchName false"
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.4082606Z Initialized empty Git repository in /home/runner/work/golazo/golazo/.git/
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.4085267Z [command]/usr/bin/git remote add origin https://github.com/samoletovs/golazo
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.4137265Z ##[endgroup]
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.4138703Z ##[group]Disabling automatic garbage collection
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.4147954Z [command]/usr/bin/git config --local gc.auto 0
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.4174617Z ##[endgroup]
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.4175931Z ##[group]Setting up auth
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.4182110Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.4214950Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.4629017Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.4664895Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.4888682Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.4924059Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.5153739Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.5193513Z ##[endgroup]
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.5194829Z ##[group]Fetching the repository
+quality	Run actions/checkout@v5	2026-10-02T13:08:46.5203808Z [command]/usr/bin/git -c protocol.version=2 fetch --prune --no-recurse-submodules origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/*
+quality	Run actions/checkout@v5	2026-10-02T13:08:49.0574279Z From https://github.com/samoletovs/golazo
+quality	Run actions/checkout@v5	2026-10-02T13:08:49.0577865Z  * [new branch]      dependabot/npm_and_yarn/brace-expansion-5.0.12 -> origin/dependabot/npm_and_yarn/brace-expansion-5.0.12
+quality	Run actions/checkout@v5	2026-10-02T13:08:49.0580706Z  * [new branch]      fix/maintenance-registry-validation -> origin/fix/maintenance-registry-validation
+quality	Run actions/checkout@v5	2026-10-02T13:08:49.0582928Z  * [new branch]      fix/maintenance-reporting -> origin/fix/maintenance-reporting
+quality	Run actions/checkout@v5	2026-10-02T13:08:49.0584529Z  * [new branch]      master     -> origin/master
+quality	Run actions/checkout@v5	2026-10-02T13:08:49.0588167Z [command]/usr/bin/git rev-parse --verify --quiet c6ab4790528f486380219e72164412039a94003c^{object}
+quality	Run actions/checkout@v5	2026-10-02T13:08:49.0614407Z c6ab4790528f486380219e72164412039a94003c
+quality	Run actions/checkout@v5	2026-10-02T13:08:49.0621550Z ##[endgroup]
+quality	Run actions/checkout@v5	2026-10-02T13:08:49.0624040Z ##[group]Determining the checkout info
+quality	Run actions/checkout@v5	2026-10-02T13:08:49.0626883Z ##[endgroup]
+quality	Run actions/checkout@v5	2026-10-02T13:08:49.0628733Z [command]/usr/bin/git sparse-checkout disable
+quality	Run actions/checkout@v5	2026-10-02T13:08:49.0762513Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+quality	Run actions/checkout@v5	2026-10-02T13:08:49.0765965Z ##[group]Checking out the ref
+quality	Run actions/checkout@v5	2026-10-02T13:08:49.0767828Z [command]/usr/bin/git checkout --progress --force c6ab4790528f486380219e72164412039a94003c
+quality	Run actions/checkout@v5	2026-10-02T13:08:49.9321820Z Note: switching to 'c6ab4790528f486380219e72164412039a94003c'.
+quality	Run actions/checkout@v5	2026-10-02T13:08:49.9322525Z 
+quality	Run actions/checkout@v5	2026-10-02T13:08:49.9322922Z You are in 'detached HEAD' state. You can look around, make experimental
+quality	Run actions/checkout@v5	2026-10-02T13:08:49.9323812Z changes and commit them, and you can discard any commits you make in this
+quality	Run actions/checkout@v5	2026-10-02T13:08:49.9324806Z state without impacting any branches by switching back to a branch.
+quality	Run actions/checkout@v5	2026-10-02T13:08:49.9325362Z 
+quality	Run actions/checkout@v5	2026-10-02T13:08:49.9325739Z If you want to create a new branch to retain commits you create, you may
+quality	Run actions/checkout@v5	2026-10-02T13:08:49.9326662Z do so (now or later) by using -c with the switch command. Example:
+quality	Run actions/checkout@v5	2026-10-02T13:08:49.9327200Z 
+quality	Run actions/checkout@v5	2026-10-02T13:08:49.9327447Z   git switch -c <new-branch-name>
+quality	Run actions/checkout@v5	2026-10-02T13:08:49.9327803Z 
+quality	Run actions/checkout@v5	2026-10-02T13:08:49.9327989Z Or undo this operation with:
+quality	Run actions/checkout@v5	2026-10-02T13:08:49.9328295Z 
+quality	Run actions/checkout@v5	2026-10-02T13:08:49.9328462Z   git switch -
+quality	Run actions/checkout@v5	2026-10-02T13:08:49.9328745Z 
+quality	Run actions/checkout@v5	2026-10-02T13:08:49.9329164Z Turn off this advice by setting config variable advice.detachedHead to false
+quality	Run actions/checkout@v5	2026-10-02T13:08:49.9329812Z 
+quality	Run actions/checkout@v5	2026-10-02T13:08:49.9330224Z HEAD is now at c6ab479 chore(deps-dev): bump brace-expansion from 5.0.9 to 5.0.12
+quality	Run actions/checkout@v5	2026-10-02T13:08:49.9355783Z ##[endgroup]
+quality	Run actions/checkout@v5	2026-10-02T13:08:49.9404386Z [command]/usr/bin/git log -1 --format=%H
+quality	Run actions/checkout@v5	2026-10-02T13:08:49.9432146Z c6ab4790528f486380219e72164412039a94003c
+quality	Run actions/setup-python@v6	﻿2026-10-02T13:08:49.9692685Z ##[group]Run actions/setup-python@v6
+quality	Run actions/setup-python@v6	2026-10-02T13:08:49.9693040Z with:
+quality	Run actions/setup-python@v6	2026-10-02T13:08:49.9693281Z   python-version: 3.13
+quality	Run actions/setup-python@v6	2026-10-02T13:08:49.9693525Z   check-latest: false
+quality	Run actions/setup-python@v6	2026-10-02T13:08:49.9696090Z   token: ***
+quality	Run actions/setup-python@v6	2026-10-02T13:08:49.9696321Z   update-environment: true
+quality	Run actions/setup-python@v6	2026-10-02T13:08:49.9696586Z   allow-prereleases: false
+quality	Run actions/setup-python@v6	2026-10-02T13:08:49.9696836Z   freethreaded: false
+quality	Run actions/setup-python@v6	2026-10-02T13:08:49.9697055Z ##[endgroup]
+quality	Run actions/setup-python@v6	2026-10-02T13:08:50.0967978Z ##[group]Installed versions
+quality	Run actions/setup-python@v6	2026-10-02T13:08:50.1436987Z Successfully set up CPython (3.13.15)
+quality	Run actions/setup-python@v6	2026-10-02T13:08:50.1437921Z ##[endgroup]
+quality	Test design evidence enforcement	﻿2026-10-02T13:08:50.1600052Z ##[group]Run python tests/test_design_gate.py
+quality	Test design evidence enforcement	2026-10-02T13:08:50.1600598Z [36;1mpython tests/test_design_gate.py[0m
+quality	Test design evidence enforcement	2026-10-02T13:08:50.1996475Z shell: /usr/bin/bash -e {0}
+quality	Test design evidence enforcement	2026-10-02T13:08:50.1996865Z env:
+quality	Test design evidence enforcement	2026-10-02T13:08:50.1997204Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.15/x64
+quality	Test design evidence enforcement	2026-10-02T13:08:50.1997746Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.15/x64/lib/pkgconfig
+quality	Test design evidence enforcement	2026-10-02T13:08:50.1998270Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+quality	Test design evidence enforcement	2026-10-02T13:08:50.1998728Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+quality	Test design evidence enforcement	2026-10-02T13:08:50.1999181Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+quality	Test design evidence enforcement	2026-10-02T13:08:50.1999645Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.15/x64/lib
+quality	Test design evidence enforcement	2026-10-02T13:08:50.2000028Z ##[endgroup]
+quality	Test design evidence enforcement	2026-10-02T13:08:53.5385271Z ................
+quality	Test design evidence enforcement	2026-10-02T13:08:53.5385967Z ----------------------------------------------------------------------
+quality	Test design evidence enforcement	2026-10-02T13:08:53.5386577Z Ran 16 tests in 2.452s
+quality	Test design evidence enforcement	2026-10-02T13:08:53.5386916Z 
+quality	Test design evidence enforcement	2026-10-02T13:08:53.5387095Z OK
+quality	Run actions/setup-node@v5	﻿2026-10-02T13:08:53.5595619Z ##[group]Run actions/setup-node@v5
+quality	Run actions/setup-node@v5	2026-10-02T13:08:53.5595907Z with:
+quality	Run actions/setup-node@v5	2026-10-02T13:08:53.5596103Z   node-version: 22
+quality	Run actions/setup-node@v5	2026-10-02T13:08:53.5596302Z   cache: npm
+quality	Run actions/setup-node@v5	2026-10-02T13:08:53.5596497Z   always-auth: false
+quality	Run actions/setup-node@v5	2026-10-02T13:08:53.5596709Z   check-latest: false
+quality	Run actions/setup-node@v5	2026-10-02T13:08:53.5599188Z   token: ***
+quality	Run actions/setup-node@v5	2026-10-02T13:08:53.5599408Z   package-manager-cache: true
+quality	Run actions/setup-node@v5	2026-10-02T13:08:53.5599650Z env:
+quality	Run actions/setup-node@v5	2026-10-02T13:08:53.5599906Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.15/x64
+quality	Run actions/setup-node@v5	2026-10-02T13:08:53.5600341Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.15/x64/lib/pkgconfig
+quality	Run actions/setup-node@v5	2026-10-02T13:08:53.5600768Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+quality	Run actions/setup-node@v5	2026-10-02T13:08:53.5601448Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+quality	Run actions/setup-node@v5	2026-10-02T13:08:53.5601866Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+quality	Run actions/setup-node@v5	2026-10-02T13:08:53.5602262Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.15/x64/lib
+quality	Run actions/setup-node@v5	2026-10-02T13:08:53.5602780Z ##[endgroup]
+quality	Run actions/setup-node@v5	2026-10-02T13:08:53.7071990Z Found in cache @ /opt/hostedtoolcache/node/22.23.3/x64
+quality	Run actions/setup-node@v5	2026-10-02T13:08:53.7077137Z (node:2796) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+quality	Run actions/setup-node@v5	2026-10-02T13:08:53.7078368Z (Use `node --trace-deprecation ...` to show where the warning was created)
+quality	Run actions/setup-node@v5	2026-10-02T13:08:53.7079962Z ##[group]Environment details
+quality	Run actions/setup-node@v5	2026-10-02T13:08:56.5184956Z node: v22.23.3
+quality	Run actions/setup-node@v5	2026-10-02T13:08:56.5185369Z npm: 10.9.9
+quality	Run actions/setup-node@v5	2026-10-02T13:08:56.5185652Z yarn: 1.22.22
+quality	Run actions/setup-node@v5	2026-10-02T13:08:56.5186164Z ##[endgroup]
+quality	Run actions/setup-node@v5	2026-10-02T13:08:56.5212534Z [command]/opt/hostedtoolcache/node/22.23.3/x64/bin/npm config get cache
+quality	Run actions/setup-node@v5	2026-10-02T13:08:56.8443774Z /home/runner/.npm
+quality	Run actions/setup-node@v5	2026-10-02T13:08:56.9222492Z npm cache is not found
+quality	Install dependencies	﻿2026-10-02T13:08:56.9345014Z ##[group]Run npm ci
+quality	Install dependencies	2026-10-02T13:08:56.9345293Z [36;1mnpm ci[0m
+quality	Install dependencies	2026-10-02T13:08:56.9464966Z shell: /usr/bin/bash -e {0}
+quality	Install dependencies	2026-10-02T13:08:56.9465251Z env:
+quality	Install dependencies	2026-10-02T13:08:56.9465529Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.15/x64
+quality	Install dependencies	2026-10-02T13:08:56.9465997Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.15/x64/lib/pkgconfig
+quality	Install dependencies	2026-10-02T13:08:56.9466478Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+quality	Install dependencies	2026-10-02T13:08:56.9466902Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+quality	Install dependencies	2026-10-02T13:08:56.9467311Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+quality	Install dependencies	2026-10-02T13:08:56.9467727Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.15/x64/lib
+quality	Install dependencies	2026-10-02T13:08:56.9468082Z ##[endgroup]
+quality	Install dependencies	2026-10-02T13:08:59.5962392Z npm warn deprecated whatwg-encoding@3.1.1: Use @exodus/bytes instead for a more spec-conformant and faster implementation
+quality	Install dependencies	2026-10-02T13:09:03.6117882Z 
+quality	Install dependencies	2026-10-02T13:09:03.6119059Z added 315 packages, and audited 316 packages in 7s
+quality	Install dependencies	2026-10-02T13:09:03.6120144Z 
+quality	Install dependencies	2026-10-02T13:09:03.6141553Z 70 packages are looking for funding
+quality	Install dependencies	2026-10-02T13:09:03.6142516Z   run `npm fund` for details
+quality	Install dependencies	2026-10-02T13:09:03.6144479Z 
+quality	Install dependencies	2026-10-02T13:09:03.6145062Z found 0 vulnerabilities
+quality	Lint	﻿2026-10-02T13:09:03.6763148Z ##[group]Run npm run lint
+quality	Lint	2026-10-02T13:09:03.6763593Z [36;1mnpm run lint[0m
+quality	Lint	2026-10-02T13:09:03.6828069Z shell: /usr/bin/bash -e {0}
+quality	Lint	2026-10-02T13:09:03.6828334Z env:
+quality	Lint	2026-10-02T13:09:03.6828602Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.15/x64
+quality	Lint	2026-10-02T13:09:03.6829058Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.15/x64/lib/pkgconfig
+quality	Lint	2026-10-02T13:09:03.6829495Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+quality	Lint	2026-10-02T13:09:03.6829890Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+quality	Lint	2026-10-02T13:09:03.6830298Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+quality	Lint	2026-10-02T13:09:03.6830719Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.15/x64/lib
+quality	Lint	2026-10-02T13:09:03.6831255Z ##[endgroup]
+quality	Lint	2026-10-02T13:09:03.7893178Z 
+quality	Lint	2026-10-02T13:09:03.7893613Z > golazo@0.1.0 lint
+quality	Lint	2026-10-02T13:09:03.7894045Z > eslint src/
+quality	Lint	2026-10-02T13:09:03.7894279Z 
+quality	Lint	2026-10-02T13:09:16.1230721Z 
+quality	Lint	2026-10-02T13:09:16.1254621Z /home/runner/work/golazo/golazo/src/App.tsx
+quality	Lint	2026-10-02T13:09:16.1288517Z ##[warning]  87:6  warning  React Hook useEffect has missing dependencies: 'profile' and 'setProfile'. Either include them or remove the dependency array                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 react-hooks/exhaustive-deps
+quality	Lint	2026-10-02T13:09:16.1301176Z   91:5  warning  Error: Calling setState synchronously within an effect can trigger cascading renders
+quality	Lint	2026-10-02T13:09:16.1301662Z 
+quality	Lint	2026-10-02T13:09:16.1302981Z Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+quality	Lint	2026-10-02T13:09:16.1304576Z * Update external systems with the latest state from React.
+quality	Lint	2026-10-02T13:09:16.1305620Z * Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+quality	Lint	2026-10-02T13:09:16.1306109Z 
+quality	Lint	2026-10-02T13:09:16.1306928Z Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+quality	Lint	2026-10-02T13:09:16.1308065Z 
+quality	Lint	2026-10-02T13:09:16.1308332Z /home/runner/work/golazo/golazo/src/App.tsx:91:5
+quality	Lint	2026-10-02T13:09:16.1308888Z   89 |   // Reset to dashboard when role changes
+quality	Lint	2026-10-02T13:09:16.1309204Z   90 |   useEffect(() => {
+quality	Lint	2026-10-02T13:09:16.1309506Z > 91 |     setPage('dashboard')
+quality	Lint	2026-10-02T13:09:16.1310184Z      |     ^^^^^^^ Avoid calling setState() directly within an effect
+quality	Lint	2026-10-02T13:09:16.1310622Z   92 |   }, [profile?.role])
+quality	Lint	2026-10-02T13:09:16.1311005Z   93 |
+quality	Lint	2026-10-02T13:09:16.1311343Z   94 |   // Toggle squad in filter  react-hooks/set-state-in-effect
+quality	Lint	2026-10-02T13:09:16.1311606Z 
+quality	Lint	2026-10-02T13:09:16.1311976Z /home/runner/work/golazo/golazo/src/components/CoachCard.tsx
+quality	Lint	2026-10-02T13:09:16.1312769Z   48:33  warning  Error: Cannot call impure function during render
+quality	Lint	2026-10-02T13:09:16.1313206Z 
+quality	Lint	2026-10-02T13:09:16.1314708Z `Date.now` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+quality	Lint	2026-10-02T13:09:16.1316400Z 
+quality	Lint	2026-10-02T13:09:16.1316813Z /home/runner/work/golazo/golazo/src/components/CoachCard.tsx:48:33
+quality	Lint	2026-10-02T13:09:16.1317363Z   46 |
+quality	Lint	2026-10-02T13:09:16.1317828Z   47 |     // Pick one skill category per day based on date
+quality	Lint	2026-10-02T13:09:16.1318492Z > 48 |     const dayIndex = Math.floor(Date.now() / (24 * 60 * 60 * 1000))
+quality	Lint	2026-10-02T13:09:16.1319056Z      |                                 ^^^^^^^^^^ Cannot call impure function
+quality	Lint	2026-10-02T13:09:16.1319776Z   49 |     const todayInsight = skillInsights[dayIndex % skillInsights.length]
+quality	Lint	2026-10-02T13:09:16.1320228Z   50 |
+quality	Lint	2026-10-02T13:09:16.1321838Z   51 |     const focused: typeof advice.insights = []                                                                                                                                                                                                                                                                                                                                                                                   react-hooks/purity
+quality	Lint	2026-10-02T13:09:16.1323454Z   66:11  warning  Error: Calling setState synchronously within an effect can trigger cascading renders
+quality	Lint	2026-10-02T13:09:16.1324014Z 
+quality	Lint	2026-10-02T13:09:16.1325368Z Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+quality	Lint	2026-10-02T13:09:16.1326770Z * Update external systems with the latest state from React.
+quality	Lint	2026-10-02T13:09:16.1327811Z * Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+quality	Lint	2026-10-02T13:09:16.1328290Z 
+quality	Lint	2026-10-02T13:09:16.1329455Z Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+quality	Lint	2026-10-02T13:09:16.1330600Z 
+quality	Lint	2026-10-02T13:09:16.1331254Z /home/runner/work/golazo/golazo/src/components/CoachCard.tsx:66:11
+quality	Lint	2026-10-02T13:09:16.1331805Z   64 |         const parsed = JSON.parse(cached)
+quality	Lint	2026-10-02T13:09:16.1332649Z   65 |         if (Date.now() - parsed.ts < 24 * 60 * 60 * 1000 && parsed.data?.focusArea !== 'general') {
+quality	Lint	2026-10-02T13:09:16.1333505Z > 66 |           setAiAdvice(parsed.data)
+quality	Lint	2026-10-02T13:09:16.1334042Z      |           ^^^^^^^^^^^ Avoid calling setState() directly within an effect
+quality	Lint	2026-10-02T13:09:16.1334647Z   67 |           setAiAvailable(true)
+quality	Lint	2026-10-02T13:09:16.1334924Z   68 |           return
+quality	Lint	2026-10-02T13:09:16.1335454Z   69 |         }  react-hooks/set-state-in-effect
+quality	Lint	2026-10-02T13:09:16.1335748Z 
+quality	Lint	2026-10-02T13:09:16.1336231Z /home/runner/work/golazo/golazo/src/components/ConfettiBurst.tsx
+quality	Lint	2026-10-02T13:09:16.1337096Z   33:5   warning  Error: Calling setState synchronously within an effect can trigger cascading renders
+quality	Lint	2026-10-02T13:09:16.1337512Z 
+quality	Lint	2026-10-02T13:09:16.1338505Z Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+quality	Lint	2026-10-02T13:09:16.1339599Z * Update external systems with the latest state from React.
+quality	Lint	2026-10-02T13:09:16.1340330Z * Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+quality	Lint	2026-10-02T13:09:16.1340785Z 
+quality	Lint	2026-10-02T13:09:16.1341765Z Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+quality	Lint	2026-10-02T13:09:16.1342478Z 
+quality	Lint	2026-10-02T13:09:16.1342770Z /home/runner/work/golazo/golazo/src/components/ConfettiBurst.tsx:33:5
+quality	Lint	2026-10-02T13:09:16.1343224Z   31 |       drift: -30 + Math.random() * 60,
+quality	Lint	2026-10-02T13:09:16.1343522Z   32 |     }))
+quality	Lint	2026-10-02T13:09:16.1343758Z > 33 |     setParticles(ps)
+quality	Lint	2026-10-02T13:09:16.1344301Z      |     ^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+quality	Lint	2026-10-02T13:09:16.1344656Z   34 |     setVisible(true)
+quality	Lint	2026-10-02T13:09:16.1344998Z   35 |     const timer = setTimeout(() => setVisible(false), 2500)
+quality	Lint	2026-10-02T13:09:16.1345484Z   36 |     return () => clearTimeout(timer)  react-hooks/set-state-in-effect
+quality	Lint	2026-10-02T13:09:16.1346038Z   68:34  warning  Error: Cannot call impure function during render
+quality	Lint	2026-10-02T13:09:16.1346298Z 
+quality	Lint	2026-10-02T13:09:16.1347506Z `Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+quality	Lint	2026-10-02T13:09:16.1348530Z 
+quality	Lint	2026-10-02T13:09:16.1348817Z /home/runner/work/golazo/golazo/src/components/ConfettiBurst.tsx:68:34
+quality	Lint	2026-10-02T13:09:16.1349244Z   66 |             opacity: 0,
+quality	Lint	2026-10-02T13:09:16.1349727Z   67 |             animation: `confetti-fall 2s ${p.delay}s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards`,
+quality	Lint	2026-10-02T13:09:16.1350314Z > 68 |             transform: `rotate(${Math.random() * 360}deg)`,
+quality	Lint	2026-10-02T13:09:16.1350737Z      |                                  ^^^^^^^^^^^^^ Cannot call impure function
+quality	Lint	2026-10-02T13:09:16.1351462Z   69 |             ['--drift' as string]: `${p.drift}px`,
+quality	Lint	2026-10-02T13:09:16.1351775Z   70 |           }}
+quality	Lint	2026-10-02T13:09:16.1352499Z   71 |         />                                                                                                                                                                                                                                                                                                 react-hooks/purity
+quality	Lint	2026-10-02T13:09:16.1353049Z 
+quality	Lint	2026-10-02T13:09:16.1353318Z /home/runner/work/golazo/golazo/src/components/SocialChallenges.tsx
+quality	Lint	2026-10-02T13:09:16.1354210Z   47:10  warning  Error: Calling setState synchronously within an effect can trigger cascading renders
+quality	Lint	2026-10-02T13:09:16.1354680Z 
+quality	Lint	2026-10-02T13:09:16.1355677Z Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+quality	Lint	2026-10-02T13:09:16.1356773Z * Update external systems with the latest state from React.
+quality	Lint	2026-10-02T13:09:16.1357508Z * Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+quality	Lint	2026-10-02T13:09:16.1357958Z 
+quality	Lint	2026-10-02T13:09:16.1358760Z Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+quality	Lint	2026-10-02T13:09:16.1359467Z 
+quality	Lint	2026-10-02T13:09:16.1359769Z /home/runner/work/golazo/golazo/src/components/SocialChallenges.tsx:47:10
+quality	Lint	2026-10-02T13:09:16.1360172Z   45 |
+quality	Lint	2026-10-02T13:09:16.1360410Z   46 |   useEffect(() => {
+quality	Lint	2026-10-02T13:09:16.1360706Z > 47 |     void loadChallenges()
+quality	Lint	2026-10-02T13:09:16.1361247Z      |          ^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+quality	Lint	2026-10-02T13:09:16.1361619Z   48 |   }, [loadChallenges])
+quality	Lint	2026-10-02T13:09:16.1361863Z   49 |
+quality	Lint	2026-10-02T13:09:16.1362396Z   50 |   async function createChallenge(event: React.FormEvent<HTMLFormElement>) {  react-hooks/set-state-in-effect
+quality	Lint	2026-10-02T13:09:16.1362852Z 
+quality	Lint	2026-10-02T13:09:16.1363099Z /home/runner/work/golazo/golazo/src/components/TeamSearch.tsx
+quality	Lint	2026-10-02T13:09:16.1363818Z   61:21  warning  Error: Calling setState synchronously within an effect can trigger cascading renders
+quality	Lint	2026-10-02T13:09:16.1364238Z 
+quality	Lint	2026-10-02T13:09:16.1365245Z Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+quality	Lint	2026-10-02T13:09:16.1366343Z * Update external systems with the latest state from React.
+quality	Lint	2026-10-02T13:09:16.1367292Z * Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+quality	Lint	2026-10-02T13:09:16.1367741Z 
+quality	Lint	2026-10-02T13:09:16.1368538Z Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+quality	Lint	2026-10-02T13:09:16.1369235Z 
+quality	Lint	2026-10-02T13:09:16.1369507Z /home/runner/work/golazo/golazo/src/components/TeamSearch.tsx:61:21
+quality	Lint	2026-10-02T13:09:16.1369881Z   59 |
+quality	Lint	2026-10-02T13:09:16.1370105Z   60 |   // Sync external value
+quality	Lint	2026-10-02T13:09:16.1370569Z > 61 |   useEffect(() => { setQuery(value); if (!value) setSelected(false) }, [value])
+quality	Lint	2026-10-02T13:09:16.1371242Z      |                     ^^^^^^^^ Avoid calling setState() directly within an effect
+quality	Lint	2026-10-02T13:09:16.1371602Z   62 |   useEffect(() => {
+quality	Lint	2026-10-02T13:09:16.1372015Z   63 |     if (focusNext.current === 'clear' && selected) clearRef.current?.focus()
+quality	Lint	2026-10-02T13:09:16.1372702Z   64 |     if (focusNext.current === 'input' && !selected) inputRef.current?.focus()  react-hooks/set-state-in-effect
+quality	Lint	2026-10-02T13:09:16.1373119Z 
+quality	Lint	2026-10-02T13:09:16.1373343Z /home/runner/work/golazo/golazo/src/hooks/useCountUp.ts
+quality	Lint	2026-10-02T13:09:16.1374028Z   13:25  warning  Error: Calling setState synchronously within an effect can trigger cascading renders
+quality	Lint	2026-10-02T13:09:16.1374427Z 
+quality	Lint	2026-10-02T13:09:16.1375425Z Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+quality	Lint	2026-10-02T13:09:16.1376487Z * Update external systems with the latest state from React.
+quality	Lint	2026-10-02T13:09:16.1377206Z * Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+quality	Lint	2026-10-02T13:09:16.1377783Z 
+quality	Lint	2026-10-02T13:09:16.1378570Z Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+quality	Lint	2026-10-02T13:09:16.1379263Z 
+quality	Lint	2026-10-02T13:09:16.1379510Z /home/runner/work/golazo/golazo/src/hooks/useCountUp.ts:13:25
+quality	Lint	2026-10-02T13:09:16.1379852Z   11 |
+quality	Lint	2026-10-02T13:09:16.1380059Z   12 |   useEffect(() => {
+quality	Lint	2026-10-02T13:09:16.1380384Z > 13 |     if (target === 0) { setValue(0); return }
+quality	Lint	2026-10-02T13:09:16.1380810Z      |                         ^^^^^^^^ Avoid calling setState() directly within an effect
+quality	Lint	2026-10-02T13:09:16.1381346Z   14 |
+quality	Lint	2026-10-02T13:09:16.1381596Z   15 |     const timeout = setTimeout(() => {
+quality	Lint	2026-10-02T13:09:16.1382013Z   16 |       startTime.current = null  react-hooks/set-state-in-effect
+quality	Lint	2026-10-02T13:09:16.1382291Z 
+quality	Lint	2026-10-02T13:09:16.1382502Z /home/runner/work/golazo/golazo/src/pages/Dashboard.tsx
+quality	Lint	2026-10-02T13:09:16.1383196Z   29:35  warning  Error: Calling setState synchronously within an effect can trigger cascading renders
+quality	Lint	2026-10-02T13:09:16.1383598Z 
+quality	Lint	2026-10-02T13:09:16.1384597Z Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+quality	Lint	2026-10-02T13:09:16.1385661Z * Update external systems with the latest state from React.
+quality	Lint	2026-10-02T13:09:16.1386380Z * Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+quality	Lint	2026-10-02T13:09:16.1386839Z 
+quality	Lint	2026-10-02T13:09:16.1387620Z Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+quality	Lint	2026-10-02T13:09:16.1388313Z 
+quality	Lint	2026-10-02T13:09:16.1388573Z /home/runner/work/golazo/golazo/src/pages/Dashboard.tsx:29:35
+quality	Lint	2026-10-02T13:09:16.1389087Z   27 |   const [physicalDismissed, setPhysicalDismissed] = useState(false)
+quality	Lint	2026-10-02T13:09:16.1389611Z   28 |   useEffect(() => {
+quality	Lint	2026-10-02T13:09:16.1389966Z > 29 |     if (xp.level > previousLevel) setShowLevel(true)
+quality	Lint	2026-10-02T13:09:16.1390453Z      |                                   ^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+quality	Lint	2026-10-02T13:09:16.1391058Z   30 |     setPreviousLevel(xp.level)
+quality	Lint	2026-10-02T13:09:16.1391516Z   31 |   }, [xp.level, previousLevel])
+quality	Lint	2026-10-02T13:09:16.1392084Z   32 |   const latest = [...matches].sort((a, b) => b.date.localeCompare(a.date))[0]  react-hooks/set-state-in-effect
+quality	Lint	2026-10-02T13:09:16.1392500Z 
+quality	Lint	2026-10-02T13:09:16.1392742Z /home/runner/work/golazo/golazo/src/pages/MentorDashboard.tsx
+quality	Lint	2026-10-02T13:09:16.1393284Z   107:28  warning  Error: Cannot call impure function during render
+quality	Lint	2026-10-02T13:09:16.1393549Z 
+quality	Lint	2026-10-02T13:09:16.1394736Z `Date.now` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+quality	Lint	2026-10-02T13:09:16.1395765Z 
+quality	Lint	2026-10-02T13:09:16.1396038Z /home/runner/work/golazo/golazo/src/pages/MentorDashboard.tsx:107:28
+quality	Lint	2026-10-02T13:09:16.1396495Z   105 |     const recent7 = checkIns.filter((c) => {
+quality	Lint	2026-10-02T13:09:16.1396849Z   106 |       const d = new Date(c.date)
+quality	Lint	2026-10-02T13:09:16.1397271Z > 107 |       return d.getTime() > Date.now() - 7 * 24 * 60 * 60 * 1000
+quality	Lint	2026-10-02T13:09:16.1397692Z       |                            ^^^^^^^^^^ Cannot call impure function
+quality	Lint	2026-10-02T13:09:16.1398004Z   108 |     })
+quality	Lint	2026-10-02T13:09:16.1398208Z   109 |
+quality	Lint	2026-10-02T13:09:16.1398776Z   110 |     // 3+ consecutive low mood days                                                                                                                                         react-hooks/purity
+quality	Lint	2026-10-02T13:09:16.1399485Z   126:39  warning  Error: Cannot call impure function during render
+quality	Lint	2026-10-02T13:09:16.1399899Z 
+quality	Lint	2026-10-02T13:09:16.1401242Z `Date.now` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+quality	Lint	2026-10-02T13:09:16.1402256Z 
+quality	Lint	2026-10-02T13:09:16.1402539Z /home/runner/work/golazo/golazo/src/pages/MentorDashboard.tsx:126:39
+quality	Lint	2026-10-02T13:09:16.1403107Z   124 |       const avgEnergy = recent7.reduce((s, c) => s + c.energy, 0) / recent7.length
+quality	Lint	2026-10-02T13:09:16.1403639Z   125 |       const recentTrainings = storedTrainings.filter((tr) =>
+quality	Lint	2026-10-02T13:09:16.1404172Z > 126 |         new Date(tr.date).getTime() > Date.now() - 7 * 24 * 60 * 60 * 1000
+quality	Lint	2026-10-02T13:09:16.1404650Z       |                                       ^^^^^^^^^^ Cannot call impure function
+quality	Lint	2026-10-02T13:09:16.1404978Z   127 |       )
+quality	Lint	2026-10-02T13:09:16.1405295Z   128 |       if (avgEnergy < 2.5 && recentTrainings.length >= 5) {
+quality	Lint	2026-10-02T13:09:16.1405692Z   129 |         result.push({  react-hooks/purity
+quality	Lint	2026-10-02T13:09:16.1406176Z   140:37  warning  Error: Cannot call impure function during render
+quality	Lint	2026-10-02T13:09:16.1406440Z 
+quality	Lint	2026-10-02T13:09:16.1407623Z `Date.now` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+quality	Lint	2026-10-02T13:09:16.1408623Z 
+quality	Lint	2026-10-02T13:09:16.1408899Z /home/runner/work/golazo/golazo/src/pages/MentorDashboard.tsx:140:37
+quality	Lint	2026-10-02T13:09:16.1409310Z   138 |     if (checkIns.length > 0) {
+quality	Lint	2026-10-02T13:09:16.1409677Z   139 |       const lastCheckIn = checkIns[checkIns.length - 1]
+quality	Lint	2026-10-02T13:09:16.1410372Z > 140 |       const daysSince = Math.floor((Date.now() - new Date(lastCheckIn.date).getTime()) / (24 * 60 * 60 * 1000))
+quality	Lint	2026-10-02T13:09:16.1411143Z       |                                     ^^^^^^^^^^ Cannot call impure function
+quality	Lint	2026-10-02T13:09:16.1411846Z   141 |       if (daysSince >= 3) {
+quality	Lint	2026-10-02T13:09:16.1412116Z   142 |         result.push({
+quality	Lint	2026-10-02T13:09:16.1412500Z   143 |           type: 'info',                                        react-hooks/purity
+quality	Lint	2026-10-02T13:09:16.1413041Z   155:34  warning  Error: Cannot call impure function during render
+quality	Lint	2026-10-02T13:09:16.1413297Z 
+quality	Lint	2026-10-02T13:09:16.1414481Z `Date.now` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+quality	Lint	2026-10-02T13:09:16.1415482Z 
+quality	Lint	2026-10-02T13:09:16.1415751Z /home/runner/work/golazo/golazo/src/pages/MentorDashboard.tsx:155:34
+quality	Lint	2026-10-02T13:09:16.1416434Z   153 |   /* ── Summary stats ── */
+quality	Lint	2026-10-02T13:09:16.1416780Z   154 |   const recentCheckIns = checkIns.filter((c) =>
+quality	Lint	2026-10-02T13:09:16.1417290Z > 155 |     new Date(c.date).getTime() > Date.now() - 7 * 24 * 60 * 60 * 1000
+quality	Lint	2026-10-02T13:09:16.1417758Z       |                                  ^^^^^^^^^^ Cannot call impure function
+quality	Lint	2026-10-02T13:09:16.1418077Z   156 |   )
+quality	Lint	2026-10-02T13:09:16.1418349Z   157 |   const avgMood7 = recentCheckIns.length > 0
+quality	Lint	2026-10-02T13:09:16.1419054Z   158 |     ? (recentCheckIns.reduce((s, c) => s + c.mood, 0) / recentCheckIns.length).toFixed(1)                               react-hooks/purity
+quality	Lint	2026-10-02T13:09:16.1419541Z 
+quality	Lint	2026-10-02T13:09:16.1419777Z /home/runner/work/golazo/golazo/src/pages/ProgressPage.tsx
+quality	Lint	2026-10-02T13:09:16.1420301Z   148:28  warning  Error: Cannot call impure function during render
+quality	Lint	2026-10-02T13:09:16.1420569Z 
+quality	Lint	2026-10-02T13:09:16.1422192Z `Date.now` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+quality	Lint	2026-10-02T13:09:16.1423381Z 
+quality	Lint	2026-10-02T13:09:16.1423676Z /home/runner/work/golazo/golazo/src/pages/ProgressPage.tsx:148:28
+quality	Lint	2026-10-02T13:09:16.1424160Z   146 |     const recent7 = checkIns.filter((c) => {
+quality	Lint	2026-10-02T13:09:16.1424512Z   147 |       const d = new Date(c.date)
+quality	Lint	2026-10-02T13:09:16.1424933Z > 148 |       return d.getTime() > Date.now() - 7 * 24 * 60 * 60 * 1000
+quality	Lint	2026-10-02T13:09:16.1425375Z       |                            ^^^^^^^^^^ Cannot call impure function
+quality	Lint	2026-10-02T13:09:16.1425689Z   149 |     })
+quality	Lint	2026-10-02T13:09:16.1426002Z   150 |     if (recent7.length < 3) return null // not enough data
+quality	Lint	2026-10-02T13:09:16.1426595Z   151 |     const avgEnergy = recent7.reduce((s, c) => s + c.energy, 0) / recent7.length  react-hooks/purity
+quality	Lint	2026-10-02T13:09:16.1427247Z   155:28  warning  Error: Cannot call impure function during render
+quality	Lint	2026-10-02T13:09:16.1427509Z 
+quality	Lint	2026-10-02T13:09:16.1428695Z `Date.now` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+quality	Lint	2026-10-02T13:09:16.1429713Z 
+quality	Lint	2026-10-02T13:09:16.1429981Z /home/runner/work/golazo/golazo/src/pages/ProgressPage.tsx:155:28
+quality	Lint	2026-10-02T13:09:16.1430451Z   153 |     const recentTrainings7 = trainings.filter((tr) => {
+quality	Lint	2026-10-02T13:09:16.1430823Z   154 |       const d = new Date(tr.date)
+quality	Lint	2026-10-02T13:09:16.1431421Z > 155 |       return d.getTime() > Date.now() - 7 * 24 * 60 * 60 * 1000
+quality	Lint	2026-10-02T13:09:16.1431844Z       |                            ^^^^^^^^^^ Cannot call impure function
+quality	Lint	2026-10-02T13:09:16.1432155Z   156 |     })
+quality	Lint	2026-10-02T13:09:16.1432431Z   157 |     const trainDays = recentTrainings7.length
+quality	Lint	2026-10-02T13:09:16.1433002Z   158 |     // Declining energy + high frequency = overtraining risk                       react-hooks/purity
+quality	Lint	2026-10-02T13:09:16.1433402Z 
+quality	Lint	2026-10-02T13:09:16.1433650Z /home/runner/work/golazo/golazo/src/pages/TeamChallenges.tsx
+quality	Lint	2026-10-02T13:09:16.1434355Z   46:10  warning  Error: Calling setState synchronously within an effect can trigger cascading renders
+quality	Lint	2026-10-02T13:09:16.1434881Z 
+quality	Lint	2026-10-02T13:09:16.1435878Z Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+quality	Lint	2026-10-02T13:09:16.1436937Z * Update external systems with the latest state from React.
+quality	Lint	2026-10-02T13:09:16.1437665Z * Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+quality	Lint	2026-10-02T13:09:16.1438116Z 
+quality	Lint	2026-10-02T13:09:16.1438908Z Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+quality	Lint	2026-10-02T13:09:16.1439614Z 
+quality	Lint	2026-10-02T13:09:16.1439889Z /home/runner/work/golazo/golazo/src/pages/TeamChallenges.tsx:46:10
+quality	Lint	2026-10-02T13:09:16.1440251Z   44 |
+quality	Lint	2026-10-02T13:09:16.1440465Z   45 |   useEffect(() => {
+quality	Lint	2026-10-02T13:09:16.1440752Z > 46 |     void loadChallenges()
+quality	Lint	2026-10-02T13:09:16.1441263Z      |          ^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+quality	Lint	2026-10-02T13:09:16.1441614Z   47 |   }, [teamId])
+quality	Lint	2026-10-02T13:09:16.1441847Z   48 |
+quality	Lint	2026-10-02T13:09:16.1442360Z   49 |   async function createChallenge(event: React.FormEvent<HTMLFormElement>) {  react-hooks/set-state-in-effect
+quality	Lint	2026-10-02T13:09:16.1446939Z ##[warning]  47:6   warning  React Hook useEffect has a missing dependency: 'loadChallenges'. Either include it or remove the dependency array                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           react-hooks/exhaustive-deps
+quality	Lint	2026-10-02T13:09:16.1449600Z 
+quality	Lint	2026-10-02T13:09:16.1449906Z ✖ 18 problems (0 errors, 18 warnings)
+quality	Lint	2026-10-02T13:09:16.1450113Z 
+quality	Type check	﻿2026-10-02T13:09:16.3130652Z ##[group]Run npx tsc --noEmit
+quality	Type check	2026-10-02T13:09:16.3131309Z [36;1mnpx tsc --noEmit[0m
+quality	Type check	2026-10-02T13:09:16.3196719Z shell: /usr/bin/bash -e {0}
+quality	Type check	2026-10-02T13:09:16.3196992Z env:
+quality	Type check	2026-10-02T13:09:16.3197261Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.15/x64
+quality	Type check	2026-10-02T13:09:16.3197730Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.15/x64/lib/pkgconfig
+quality	Type check	2026-10-02T13:09:16.3198171Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+quality	Type check	2026-10-02T13:09:16.3198566Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+quality	Type check	2026-10-02T13:09:16.3198958Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+quality	Type check	2026-10-02T13:09:16.3199343Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.15/x64/lib
+quality	Type check	2026-10-02T13:09:16.3199666Z ##[endgroup]
+quality	Test	﻿2026-10-02T13:09:23.8915543Z ##[group]Run npm test
+quality	Test	2026-10-02T13:09:23.8915858Z [36;1mnpm test[0m
+quality	Test	2026-10-02T13:09:23.8981423Z shell: /usr/bin/bash -e {0}
+quality	Test	2026-10-02T13:09:23.8981691Z env:
+quality	Test	2026-10-02T13:09:23.8981976Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.15/x64
+quality	Test	2026-10-02T13:09:23.8982456Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.15/x64/lib/pkgconfig
+quality	Test	2026-10-02T13:09:23.8982926Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+quality	Test	2026-10-02T13:09:23.8983358Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+quality	Test	2026-10-02T13:09:23.8983771Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+quality	Test	2026-10-02T13:09:23.8984214Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.15/x64/lib
+quality	Test	2026-10-02T13:09:23.8984567Z ##[endgroup]
+quality	Test	2026-10-02T13:09:24.0043355Z 
+quality	Test	2026-10-02T13:09:24.0043936Z > golazo@0.1.0 test
+quality	Test	2026-10-02T13:09:24.0044303Z > vitest run
+quality	Test	2026-10-02T13:09:24.0044460Z 
+quality	Test	2026-10-02T13:09:24.3254224Z 
+quality	Test	2026-10-02T13:09:24.3258987Z [1m[30m[46m RUN [49m[39m[22m [36mv4.1.11 [39m[90m/home/runner/work/golazo/golazo[39m
+quality	Test	2026-10-02T13:09:24.3259842Z 
+quality	Test	2026-10-02T13:09:24.9179519Z  [32m✓[39m tests/maintenance.test.ts [2m([22m[2m26 tests[22m[2m)[22m[32m 91[2mms[22m[39m
+quality	Test	2026-10-02T13:09:25.3092557Z  [32m✓[39m tests/sync.test.ts [2m([22m[2m18 tests[22m[2m)[22m[32m 16[2mms[22m[39m
+quality	Test	2026-10-02T13:09:27.1952276Z [90mstderr[2m | tests/AcademyFinalization.test.tsx[2m > [22m[2mAcademy finalization findings[2m > [22m[2mexpands every saved tournament match rather than hiding entries after the last five
+quality	Test	2026-10-02T13:09:27.1955120Z [22m[39mAn update to ClubsBrowser inside a test was not wrapped in act(...).
+quality	Test	2026-10-02T13:09:27.1956126Z 
+quality	Test	2026-10-02T13:09:27.1957011Z When testing, code that causes React state updates should be wrapped into act(...):
+quality	Test	2026-10-02T13:09:27.1957928Z 
+quality	Test	2026-10-02T13:09:27.1958324Z act(() => {
+quality	Test	2026-10-02T13:09:27.1959041Z   /* fire events that update state */
+quality	Test	2026-10-02T13:09:27.1959812Z });
+quality	Test	2026-10-02T13:09:27.1960450Z /* assert on the output */
+quality	Test	2026-10-02T13:09:27.1961256Z 
+quality	Test	2026-10-02T13:09:27.1962586Z This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+quality	Test	2026-10-02T13:09:27.1963854Z 
+quality	Test	2026-10-02T13:09:27.1965986Z [90mstderr[2m | tests/AcademyFinalization.test.tsx[2m > [22m[2mAcademy finalization findings[2m > [22m[2mexpands every saved tournament match rather than hiding entries after the last five
+quality	Test	2026-10-02T13:09:27.1969146Z [22m[39mAn update to AppProvider inside a test was not wrapped in act(...).
+quality	Test	2026-10-02T13:09:27.1973633Z 
+quality	Test	2026-10-02T13:09:27.1974592Z When testing, code that causes React state updates should be wrapped into act(...):
+quality	Test	2026-10-02T13:09:27.1975673Z 
+quality	Test	2026-10-02T13:09:27.1984749Z act(() => {
+quality	Test	2026-10-02T13:09:27.1985445Z   /* fire events that update state */
+quality	Test	2026-10-02T13:09:27.1986119Z });
+quality	Test	2026-10-02T13:09:27.1986786Z /* assert on the output */
+quality	Test	2026-10-02T13:09:27.1987274Z 
+quality	Test	2026-10-02T13:09:27.1988482Z This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+quality	Test	2026-10-02T13:09:27.1989697Z 
+quality	Test	2026-10-02T13:09:27.2042712Z  [32m✓[39m tests/AcademyFinalization.test.tsx [2m([22m[2m17 tests[22m[2m)[22m[33m 440[2mms[22m[39m
+quality	Test	2026-10-02T13:09:27.3390128Z  [32m✓[39m tests/AcademyDetails.test.tsx [2m([22m[2m6 tests[22m[2m)[22m[33m 732[2mms[22m[39m
+quality	Test	2026-10-02T13:09:28.2541218Z  [32m✓[39m tests/exercises.test.ts [2m([22m[2m16 tests[22m[2m)[22m[32m 28[2mms[22m[39m
+quality	Test	2026-10-02T13:09:28.7598610Z  [32m✓[39m tests/AcademyRoles.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[33m 356[2mms[22m[39m
+quality	Test	2026-10-02T13:09:29.5032493Z  [32m✓[39m tests/challenges.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+quality	Test	2026-10-02T13:09:29.8712530Z  [32m✓[39m tests/AcademySecondary.test.tsx [2m([22m[2m10 tests[22m[2m)[22m[33m 401[2mms[22m[39m
+quality	Test	2026-10-02T13:09:30.7443235Z  [32m✓[39m tests/physical.test.ts [2m([22m[2m20 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+quality	Test	2026-10-02T13:09:30.8113506Z  [32m✓[39m tests/TrainingFlow.test.tsx [2m([22m[2m10 tests[22m[2m)[22m[33m 3956[2mms[22m[39m
+quality	Test	2026-10-02T13:09:30.8143283Z      [33m[2m✓[22m[39m completes the visible journey with local-save wording and exact real XP [33m 917[2mms[22m[39m
+quality	Test	2026-10-02T13:09:30.8180518Z      [33m[2m✓[22m[39m persists locally when cloud PUT fails without claiming server confirmation [33m 2128[2mms[22m[39m
+quality	Test	2026-10-02T13:09:31.0918859Z  [32m✓[39m tests/ActivityFlow.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[33m 516[2mms[22m[39m
+quality	Test	2026-10-02T13:09:31.7153663Z  [32m✓[39m tests/achievements.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+quality	Test	2026-10-02T13:09:31.7324476Z  [32m✓[39m tests/skills.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 25[2mms[22m[39m
+quality	Test	2026-10-02T13:09:32.0372940Z  [32m✓[39m tests/xp.test.ts [2m([22m[2m29 tests[22m[2m)[22m[32m 19[2mms[22m[39m
+quality	Test	2026-10-02T13:09:33.0143014Z  [32m✓[39m tests/personalGoals.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+quality	Test	2026-10-02T13:09:33.1853698Z [90mstderr[2m | tests/TournamentImportFlow.test.tsx[2m > [22m[2mtournament fixture persistence[2m > [22m[2mrolls back the whole local import on failure and retries one tournament with all its games
+quality	Test	2026-10-02T13:09:33.1882205Z [22m[39mAn update to AppProvider inside a test was not wrapped in act(...).
+quality	Test	2026-10-02T13:09:33.1891261Z 
+quality	Test	2026-10-02T13:09:33.1891997Z When testing, code that causes React state updates should be wrapped into act(...):
+quality	Test	2026-10-02T13:09:33.1892646Z 
+quality	Test	2026-10-02T13:09:33.1892818Z act(() => {
+quality	Test	2026-10-02T13:09:33.1893259Z   /* fire events that update state */
+quality	Test	2026-10-02T13:09:33.1893745Z });
+quality	Test	2026-10-02T13:09:33.1894123Z /* assert on the output */
+quality	Test	2026-10-02T13:09:33.1894414Z 
+quality	Test	2026-10-02T13:09:33.1895444Z This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+quality	Test	2026-10-02T13:09:33.1896414Z 
+quality	Test	2026-10-02T13:09:33.2016878Z [90mstderr[2m | tests/TournamentImportFlow.test.tsx[2m > [22m[2mtournament fixture persistence[2m > [22m[2mpreserves sequential scheduled writes made in one React event instead of keeping only the last
+quality	Test	2026-10-02T13:09:33.2042114Z [22m[39mAn update to AppProvider inside a test was not wrapped in act(...).
+quality	Test	2026-10-02T13:09:33.2043494Z  [32m✓[39m tests/TournamentImportFlow.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[32m 161[2mms[22m[39m
+quality	Test	2026-10-02T13:09:33.2091354Z 
+quality	Test	2026-10-02T13:09:33.2101906Z When testing, code that causes React state updates should be wrapped into act(...):
+quality	Test	2026-10-02T13:09:33.2102849Z 
+quality	Test	2026-10-02T13:09:33.2103156Z act(() => {
+quality	Test	2026-10-02T13:09:33.2103719Z   /* fire events that update state */
+quality	Test	2026-10-02T13:09:33.2104282Z });
+quality	Test	2026-10-02T13:09:33.2104753Z /* assert on the output */
+quality	Test	2026-10-02T13:09:33.2105119Z 
+quality	Test	2026-10-02T13:09:33.2106238Z This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+quality	Test	2026-10-02T13:09:33.2107297Z 
+quality	Test	2026-10-02T13:09:34.0802314Z  [32m✓[39m tests/socialChallenges.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 30[2mms[22m[39m
+quality	Test	2026-10-02T13:09:34.1032563Z  [32m✓[39m tests/training.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+quality	Test	2026-10-02T13:09:34.4460184Z  [32m✓[39m tests/designWorkflow.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+quality	Test	2026-10-02T13:09:34.6628144Z  [32m✓[39m tests/AcademySystem.test.ts [2m([22m[2m5 tests[22m[2m)[22m[33m 1176[2mms[22m[39m
+quality	Test	2026-10-02T13:09:34.6652864Z      [33m[2m✓[22m[39m does not retain a narrow legacy shell or legacy stylesheet in any reachable component [33m 763[2mms[22m[39m
+quality	Test	2026-10-02T13:09:34.6682554Z      [33m[2m✓[22m[39m applies the Academy page or introductory structure to every reachable page, not just Home [33m 375[2mms[22m[39m
+quality	Test	2026-10-02T13:09:35.5846080Z  [32m✓[39m tests/WorkoutView.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[32m 256[2mms[22m[39m
+quality	Test	2026-10-02T13:09:35.7373082Z  [32m✓[39m tests/clubhouseTheme.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+quality	Test	2026-10-02T13:09:35.8998073Z  [32m✓[39m tests/TeamSearch.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[32m 228[2mms[22m[39m
+quality	Test	2026-10-02T13:09:36.9622783Z  [32m✓[39m tests/SkillRadar.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[32m 103[2mms[22m[39m
+quality	Test	2026-10-02T13:09:36.9823291Z  [32m✓[39m tests/quiz.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 30[2mms[22m[39m
+quality	Test	2026-10-02T13:09:37.6018111Z  [32m✓[39m tests/LogPage.lazy.test.tsx [2m([22m[2m1 test[22m[2m)[22m[33m 462[2mms[22m[39m
+quality	Test	2026-10-02T13:09:37.6021515Z      [33m[2m✓[22m[39m loads TrainingLog only when training logging is opened [33m 458[2mms[22m[39m
+quality	Test	2026-10-02T13:09:37.7783226Z  [32m✓[39m tests/content.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+quality	Test	2026-10-02T13:09:37.8222743Z  [32m✓[39m tests/teamChallenges.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+quality	Test	2026-10-02T13:09:38.5393431Z  [32m✓[39m tests/footballStandards.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+quality	Test	2026-10-02T13:09:38.5605504Z  [32m✓[39m tests/vitestConfig.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 187[2mms[22m[39m
+quality	Test	2026-10-02T13:09:38.5645713Z 
+quality	Test	2026-10-02T13:09:38.5653281Z [2m Test Files [22m [1m[32m30 passed[39m[22m[90m (30)[39m
+quality	Test	2026-10-02T13:09:38.5655436Z [2m      Tests [22m [1m[32m268 passed[39m[22m[90m (268)[39m
+quality	Test	2026-10-02T13:09:38.5656191Z [2m   Start at [22m 13:09:24
+quality	Test	2026-10-02T13:09:38.5658594Z [2m   Duration [22m 14.23s[2m (transform 2.43s, setup 2.94s, import 7.21s, tests 9.32s, environment 16.33s)[22m
+quality	Test	2026-10-02T13:09:38.5660711Z 
+quality	Validate football terminology	﻿2026-10-02T13:09:38.6127201Z ##[group]Run npm run validate:football-terms
+quality	Validate football terminology	2026-10-02T13:09:38.6127612Z [36;1mnpm run validate:football-terms[0m
+quality	Validate football terminology	2026-10-02T13:09:38.6190773Z shell: /usr/bin/bash -e {0}
+quality	Validate football terminology	2026-10-02T13:09:38.6191342Z env:
+quality	Validate football terminology	2026-10-02T13:09:38.6191624Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.15/x64
+quality	Validate football terminology	2026-10-02T13:09:38.6192064Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.15/x64/lib/pkgconfig
+quality	Validate football terminology	2026-10-02T13:09:38.6192488Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+quality	Validate football terminology	2026-10-02T13:09:38.6192868Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+quality	Validate football terminology	2026-10-02T13:09:38.6193254Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+quality	Validate football terminology	2026-10-02T13:09:38.6194069Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.15/x64/lib
+quality	Validate football terminology	2026-10-02T13:09:38.6194616Z ##[endgroup]
+quality	Validate football terminology	2026-10-02T13:09:38.7191478Z 
+quality	Validate football terminology	2026-10-02T13:09:38.7192261Z > golazo@0.1.0 validate:football-terms
+quality	Validate football terminology	2026-10-02T13:09:38.7193082Z > node scripts/validate-football-terminology.cjs
+quality	Validate football terminology	2026-10-02T13:09:38.7193535Z 
+quality	Validate football terminology	2026-10-02T13:09:38.7502521Z [football-terminology] OK - UEFA/FIFA terminology checks passed
+quality	Build source-stamped frontend	﻿2026-10-02T13:09:38.7636012Z ##[group]Run npm run build
+quality	Build source-stamped frontend	2026-10-02T13:09:38.7636342Z [36;1mnpm run build[0m
+quality	Build source-stamped frontend	2026-10-02T13:09:38.7636605Z [36;1mcp staticwebapp.config.json dist/[0m
+quality	Build source-stamped frontend	2026-10-02T13:09:38.7636990Z [36;1mprintf '%s\n' "$GITHUB_SHA" > dist/source-revision.txt[0m
+quality	Build source-stamped frontend	2026-10-02T13:09:38.7702590Z shell: /usr/bin/bash -e {0}
+quality	Build source-stamped frontend	2026-10-02T13:09:38.7702862Z env:
+quality	Build source-stamped frontend	2026-10-02T13:09:38.7703144Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.15/x64
+quality	Build source-stamped frontend	2026-10-02T13:09:38.7703612Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.15/x64/lib/pkgconfig
+quality	Build source-stamped frontend	2026-10-02T13:09:38.7704064Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+quality	Build source-stamped frontend	2026-10-02T13:09:38.7704495Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+quality	Build source-stamped frontend	2026-10-02T13:09:38.7704894Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+quality	Build source-stamped frontend	2026-10-02T13:09:38.7705296Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.15/x64/lib
+quality	Build source-stamped frontend	2026-10-02T13:09:38.7705635Z ##[endgroup]
+quality	Build source-stamped frontend	2026-10-02T13:09:38.8786156Z 
+quality	Build source-stamped frontend	2026-10-02T13:09:38.8786486Z > golazo@0.1.0 build
+quality	Build source-stamped frontend	2026-10-02T13:09:38.8787029Z > tsc --noEmit && vite build
+quality	Build source-stamped frontend	2026-10-02T13:09:38.8787302Z 
+quality	Build source-stamped frontend	2026-10-02T13:09:46.5045987Z [36mvite v8.2.1 [32mbuilding client environment for production...[36m[39m
+quality	Build source-stamped frontend	2026-10-02T13:09:46.5176239Z [2K
+quality	Build source-stamped frontend	2026-10-02T13:09:46.8899239Z transforming...✓ 725 modules transformed.
+quality	Build source-stamped frontend	2026-10-02T13:09:47.0088027Z rendering chunks...
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1395952Z computing gzip size...
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1592382Z dist/index.html                                 1.64 kB │ gzip:   0.68 kB
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1593575Z dist/assets/index-BK6RRWqR.css                 55.64 kB │ gzip:  11.49 kB
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1594774Z dist/assets/dateFormat-vhqAXN9W.js              0.15 kB │ gzip:   0.15 kB
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1595954Z dist/assets/rolldown-runtime-hePW80VL.js        0.71 kB │ gzip:   0.42 kB
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1597177Z dist/assets/AcademySaved-B6zCvVtp.js            1.06 kB │ gzip:   0.55 kB
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1598401Z dist/assets/TrainingProgress-WZuVFQD_.js        1.07 kB │ gzip:   0.43 kB
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1599557Z dist/assets/AcademyPage-PxR7cSvk.js             1.07 kB │ gzip:   0.53 kB
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1600771Z dist/assets/CoachStatsPage-Cn2wkhX3.js          1.18 kB │ gzip:   0.54 kB
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1602223Z dist/assets/CoachSquadFilter-D6oKvW7c.js        1.18 kB │ gzip:   0.57 kB
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1603365Z dist/assets/AcademyDialog-NMkh3tWU.js           1.19 kB │ gzip:   0.65 kB
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1604499Z dist/assets/SquadSaveStatus-CrlxLKkM.js         1.23 kB │ gzip:   0.66 kB
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1605615Z dist/assets/AnnouncementFeed-BXZO6wt9.js        2.03 kB │ gzip:   1.03 kB
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1606436Z dist/assets/CoachDashboard-DrcN7WZD.js          2.80 kB │ gzip:   1.11 kB
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1607143Z dist/assets/PhysicalUpdateFlow-CzQ-XU2t.js      3.04 kB │ gzip:   1.40 kB
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1607815Z dist/assets/ActivityRecordDialog-BJQIO7XI.js    3.93 kB │ gzip:   1.13 kB
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1608452Z dist/assets/AttendanceGrid-B8PTN3H-.js          4.93 kB │ gzip:   2.03 kB
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1609084Z dist/assets/SettingsPage-Cy8bgFuH.js            5.13 kB │ gzip:   1.85 kB
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1609697Z dist/assets/DiaryPage-Dl2z0SlU.js               5.17 kB │ gzip:   2.03 kB
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1610306Z dist/assets/SquadRoster-Cunfz6VA.js             5.19 kB │ gzip:   1.61 kB
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1611203Z dist/assets/TrainingPlanner-SU1ELGL0.js         5.65 kB │ gzip:   1.86 kB
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1611866Z dist/assets/TeamChallenges-D8GePQx_.js          6.16 kB │ gzip:   1.75 kB
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1612491Z dist/assets/AnnouncementsPage-BS_NwmVc.js       6.29 kB │ gzip:   2.14 kB
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1613980Z dist/assets/TrainingLog-CSFmlTZg.js             6.71 kB │ gzip:   2.26 kB
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1614814Z dist/assets/footballStandards-HFMLq1HR.js       7.71 kB │ gzip:   3.10 kB
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1615498Z dist/assets/EvaluationPage-DSGHS69x.js          7.85 kB │ gzip:   2.27 kB
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1616346Z dist/assets/MatchLog-Lls5aEUk.js                8.27 kB │ gzip:   2.61 kB
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1617282Z dist/assets/Challenges-DMGOuZwe.js              9.08 kB │ gzip:   2.81 kB
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1617907Z dist/assets/exercises-Ux6N0XSa.js               9.55 kB │ gzip:   1.37 kB
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1618525Z dist/assets/LeaderboardPage-gjcn8Iop.js         9.57 kB │ gzip:   2.85 kB
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1619145Z dist/assets/LogPage-DugiEmgM.js                10.74 kB │ gzip:   3.75 kB
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1619762Z dist/assets/MentorDashboard-C-mPTlfg.js        11.12 kB │ gzip:   3.34 kB
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1620391Z dist/assets/TournamentImport-CxPP7KNk.js       12.08 kB │ gzip:   3.75 kB
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1621383Z dist/assets/AppContext-nCvzOMgv.js             12.80 kB │ gzip:   4.60 kB
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1622092Z dist/assets/Exercises-BZn-vEH6.js              16.52 kB │ gzip:   4.48 kB
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1622760Z dist/assets/challenges-BkSjQTpn.js             20.33 kB │ gzip:   3.47 kB
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1623458Z dist/assets/FootballPortal-DBB5yZCu.js         23.77 kB │ gzip:   5.40 kB
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1624149Z dist/assets/SchedulePage-C0UCCs3Q.js           25.22 kB │ gzip:   6.26 kB
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1624827Z dist/assets/LearnPage-Drfr_4Wh.js              27.41 kB │ gzip:   6.02 kB
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1625526Z dist/assets/ProgressPage-Bv5jtu47.js           27.80 kB │ gzip:   6.27 kB
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1626213Z dist/assets/Profile-C4lk4D2E.js                28.56 kB │ gzip:   8.48 kB
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1626894Z dist/assets/i18n-CRPEYGxM.js                   45.66 kB │ gzip:  14.75 kB
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1627562Z dist/assets/Dashboard-Dpqs4hCW.js              87.12 kB │ gzip:  29.30 kB
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1628241Z dist/assets/react-Clpx-5N5.js                 182.11 kB │ gzip:  57.30 kB
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1628916Z dist/assets/charts-BAHzxo24.js                396.86 kB │ gzip: 104.27 kB
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1629614Z dist/assets/index-CJW9FvId.js                 927.94 kB │ gzip: 294.80 kB
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1629944Z 
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1631648Z [33m[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/components/TeamPicker.tsx is dynamically imported by src/App.tsx but also statically imported by src/pages/OnboardingPage.tsx, src/pages/Profile.tsx, dynamic import will not move module into another chunk.
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1633016Z [39m
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1633328Z [33m[plugin builtin:vite-reporter] 
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1633782Z (!) Some chunks are larger than 500 kB after minification. Consider:
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1634287Z - Using dynamic import() to code-split the application
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1635121Z - Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1636468Z - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
+quality	Build source-stamped frontend	2026-10-02T13:09:47.1637317Z [32m✓ built in 653ms[39m
+quality	Save exact-source validation preview	﻿2026-10-02T13:09:47.2180266Z ##[group]Run actions/upload-artifact@v4
+quality	Save exact-source validation preview	2026-10-02T13:09:47.2180614Z with:
+quality	Save exact-source validation preview	2026-10-02T13:09:47.2181283Z   name: golazo-preview-c6ab4790528f486380219e72164412039a94003c
+quality	Save exact-source validation preview	2026-10-02T13:09:47.2181662Z   path: dist/
+quality	Save exact-source validation preview	2026-10-02T13:09:47.2181870Z   retention-days: 7
+quality	Save exact-source validation preview	2026-10-02T13:09:47.2182091Z   if-no-files-found: warn
+quality	Save exact-source validation preview	2026-10-02T13:09:47.2182334Z   compression-level: 6
+quality	Save exact-source validation preview	2026-10-02T13:09:47.2182549Z   overwrite: false
+quality	Save exact-source validation preview	2026-10-02T13:09:47.2182760Z   include-hidden-files: false
+quality	Save exact-source validation preview	2026-10-02T13:09:47.2182990Z env:
+quality	Save exact-source validation preview	2026-10-02T13:09:47.2183245Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.15/x64
+quality	Save exact-source validation preview	2026-10-02T13:09:47.2183677Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.15/x64/lib/pkgconfig
+quality	Save exact-source validation preview	2026-10-02T13:09:47.2184100Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+quality	Save exact-source validation preview	2026-10-02T13:09:47.2184716Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+quality	Save exact-source validation preview	2026-10-02T13:09:47.2185107Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+quality	Save exact-source validation preview	2026-10-02T13:09:47.2185502Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.15/x64/lib
+quality	Save exact-source validation preview	2026-10-02T13:09:47.2185857Z ##[endgroup]
+quality	Save exact-source validation preview	2026-10-02T13:09:47.3843303Z (node:3318) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+quality	Save exact-source validation preview	2026-10-02T13:09:47.3844184Z (Use `node --trace-deprecation ...` to show where the warning was created)
+quality	Save exact-source validation preview	2026-10-02T13:09:47.3999405Z With the provided path, there will be 49 files uploaded
+quality	Save exact-source validation preview	2026-10-02T13:09:47.4006341Z Artifact name is valid!
+quality	Save exact-source validation preview	2026-10-02T13:09:47.4006910Z Root directory input is valid!
+quality	Save exact-source validation preview	2026-10-02T13:09:47.5894959Z Beginning upload of artifact content to blob storage
+quality	Save exact-source validation preview	2026-10-02T13:09:47.7148405Z (node:3318) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+quality	Save exact-source validation preview	2026-10-02T13:09:47.8071954Z Uploaded bytes 611924
+quality	Save exact-source validation preview	2026-10-02T13:09:47.8266205Z Finished uploading artifact content to blob storage!
+quality	Save exact-source validation preview	2026-10-02T13:09:47.8267577Z SHA256 digest of uploaded artifact zip is 19ae3f49632716be9b430dc5605de4f1e2f573a97e5a046770a44a6b6b671ac7
+quality	Save exact-source validation preview	2026-10-02T13:09:47.8268717Z Finalizing artifact upload
+quality	Save exact-source validation preview	2026-10-02T13:09:48.0284699Z Artifact golazo-preview-c6ab4790528f486380219e72164412039a94003c.zip successfully finalized. Artifact ID 11228090962
+quality	Save exact-source validation preview	2026-10-02T13:09:48.0286464Z Artifact golazo-preview-c6ab4790528f486380219e72164412039a94003c has been successfully uploaded! Final size is 611924 bytes. Artifact ID is 11228090962
+quality	Save exact-source validation preview	2026-10-02T13:09:48.0290842Z Artifact download URL: https://github.com/samoletovs/golazo/actions/runs/37011052166/artifacts/11228090962
+quality	Post Run actions/setup-node@v5	﻿2026-10-02T13:09:48.0477617Z Post job cleanup.
+quality	Post Run actions/setup-node@v5	2026-10-02T13:09:48.1742678Z (node:3330) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+quality	Post Run actions/setup-node@v5	2026-10-02T13:09:48.1743696Z (Use `node --trace-deprecation ...` to show where the warning was created)
+quality	Post Run actions/setup-node@v5	2026-10-02T13:09:48.1982156Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/golazo/golazo --files-from manifest.txt --use-compress-program zstdmt
+quality	Post Run actions/setup-node@v5	2026-10-02T13:09:48.4744358Z (node:3330) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+quality	Post Run actions/setup-node@v5	2026-10-02T13:09:49.4666068Z Sent 59432075 of 59432075 (100.0%), 56.6 MBs/sec
+quality	Post Run actions/setup-node@v5	2026-10-02T13:09:49.6763863Z Cache saved with the key: node-cache-Linux-x64-npm-dd757d68b3f137ed6007d5b0019f7d582f2ca60738803378ab4ec71ae1e9dc33
+quality	Post Run actions/setup-python@v6	﻿2026-10-02T13:09:49.6928707Z Post job cleanup.
+quality	Post Run actions/checkout@v5	﻿2026-10-02T13:09:49.8429345Z Post job cleanup.
+quality	Post Run actions/checkout@v5	2026-10-02T13:09:49.9362802Z [command]/usr/bin/git version
+quality	Post Run actions/checkout@v5	2026-10-02T13:09:49.9410259Z git version 2.55.0
+quality	Post Run actions/checkout@v5	2026-10-02T13:09:49.9448119Z Temporarily overriding HOME='/home/runner/work/_temp/ac0b76f7-7231-4928-95c9-980b814b83b3' before making global git config changes
+quality	Post Run actions/checkout@v5	2026-10-02T13:09:49.9449648Z Adding repository directory to the temporary git global config as a safe directory
+quality	Post Run actions/checkout@v5	2026-10-02T13:09:49.9454686Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/golazo/golazo
+quality	Post Run actions/checkout@v5	2026-10-02T13:09:49.9498046Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+quality	Post Run actions/checkout@v5	2026-10-02T13:09:49.9536883Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+quality	Post Run actions/checkout@v5	2026-10-02T13:09:49.9804797Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+quality	Post Run actions/checkout@v5	2026-10-02T13:09:49.9836978Z http.https://github.com/.extraheader
+quality	Post Run actions/checkout@v5	2026-10-02T13:09:49.9848714Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+quality	Post Run actions/checkout@v5	2026-10-02T13:09:49.9885522Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+quality	Post Run actions/checkout@v5	2026-10-02T13:09:50.0153482Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+quality	Post Run actions/checkout@v5	2026-10-02T13:09:50.0193639Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+quality	Complete job	﻿2026-10-02T13:09:50.0614535Z Cleaning up orphan processes
+quality	Complete job	2026-10-02T13:09:50.0908168Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

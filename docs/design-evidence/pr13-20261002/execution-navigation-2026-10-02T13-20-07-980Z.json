@@ -1,0 +1,18 @@
+{
+  "kind": "evidence-procedure-execution-not-independent-review",
+  "source_commit": "c6ab4790528f486380219e72164412039a94003c",
+  "procedure": "tests/academy-browser-probe.js",
+  "original_sha256": "2ccf2afd71825c89ccc4e45e648e89c48316a8a085ca4861025a1382d014c890",
+  "executed_sha256": "bff4573eab147200cd7f0f0755abad82af2d001f7749230ed3f7fedc7be1cd45",
+  "runner_sha256": "0f15309fed7dc3b8f4bc844678b83765cfcc59e215a79bb882833c3ddbe900cf",
+  "substitution": {
+    "original_loopback_origin": "http://127.0.0.1:4323",
+    "actual_loopback_origin": "http://127.0.0.1:45913"
+  },
+  "playwright_package": "Existing Python-managed Playwright driver; machine-local installation path omitted",
+  "fixture_dependency_search_path": "c:\\dev\\nauroLabs\\golazo\\node_modules",
+  "started_at": "2026-10-02T13:20:07.980Z",
+  "finished_at": "2026-10-02T13:21:28.481Z",
+  "exit_code": 0,
+  "export_redaction": "Only the local Python installation path was removed. Source, procedure hashes, timestamps, exit codes and browser evidence are unchanged."
+}

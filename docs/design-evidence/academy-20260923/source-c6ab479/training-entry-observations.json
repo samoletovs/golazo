@@ -1,0 +1,567 @@
+{
+  "source_commit": "c6ab4790528f486380219e72164412039a94003c",
+  "scope_sha256": "3333b56203eaa7b505547587b9c21c4708eec08767963a7a73760cc35a863ea1",
+  "kind": "bounded-synthetic-training-entry-evidence-not-review",
+  "observations": [
+    {
+      "id": "player-home",
+      "width": 390,
+      "viewport": "mobile",
+      "capture": "source-c6ab479/training-entry-player-home-390.png",
+      "sha256": "7b29e401d74e390a05acd11faeb92b4716aacbade6cbffd1b88e1b82acb99855",
+      "dimensions": {
+        "width": 390,
+        "height": 1000
+      },
+      "controls": [
+        "Home shows current week, recorded activity and all retained activity sections"
+      ],
+      "measurement": {
+        "width": 390,
+        "height": 1000,
+        "scrollWidth": 390,
+        "clientWidth": 390
+      },
+      "context_evidence": "Home shows current week, recorded activity and all retained activity sections"
+    },
+    {
+      "id": "player-activity-overview",
+      "width": 390,
+      "viewport": "mobile",
+      "capture": "source-c6ab479/training-entry-player-home-390.png",
+      "sha256": "7b29e401d74e390a05acd11faeb92b4716aacbade6cbffd1b88e1b82acb99855",
+      "dimensions": {
+        "width": 390,
+        "height": 1000
+      },
+      "controls": [
+        "Home shows current week, recorded activity and all retained activity sections"
+      ],
+      "measurement": {
+        "width": 390,
+        "height": 1000,
+        "scrollWidth": 390,
+        "clientWidth": 390
+      },
+      "context_evidence": "The frozen scope explicitly consolidates player-activity-overview into player-home. Same live Dashboard/TrainingLog implementation, with Home shows current week, recorded activity and all retained activity sections. No screenshot nonce or fake unique layout."
+    },
+    {
+      "id": "player-home-training-log",
+      "width": 390,
+      "viewport": "mobile",
+      "capture": "source-c6ab479/training-entry-player-home-training-log-390.png",
+      "sha256": "0c3a864775974a7b192b219a3dffdc9208c21de3e76bd96d50a0548e32956f91",
+      "dimensions": {
+        "width": 390,
+        "height": 1000
+      },
+      "controls": [
+        "Scheduled training opens populated real TrainingLog",
+        "Optional detail controls and notes retain input"
+      ],
+      "measurement": {
+        "width": 390,
+        "height": 1000,
+        "scrollWidth": 390,
+        "clientWidth": 390
+      },
+      "context_evidence": "Scheduled training opens populated real TrainingLog; Optional detail controls and notes retain input"
+    },
+    {
+      "id": "player-activity-inline-training",
+      "width": 390,
+      "viewport": "mobile",
+      "capture": "source-c6ab479/training-entry-player-home-training-log-390.png",
+      "sha256": "0c3a864775974a7b192b219a3dffdc9208c21de3e76bd96d50a0548e32956f91",
+      "dimensions": {
+        "width": 390,
+        "height": 1000
+      },
+      "controls": [
+        "Scheduled training opens populated real TrainingLog",
+        "Optional detail controls and notes retain input"
+      ],
+      "measurement": {
+        "width": 390,
+        "height": 1000,
+        "scrollWidth": 390,
+        "clientWidth": 390
+      },
+      "context_evidence": "The frozen scope explicitly consolidates player-activity-inline-training into player-home-training-log. Same live Dashboard/TrainingLog implementation, with Scheduled training opens populated real TrainingLog; Optional detail controls and notes retain input. No screenshot nonce or fake unique layout."
+    },
+    {
+      "id": "player-home-training-completion",
+      "width": 390,
+      "viewport": "mobile",
+      "capture": "source-c6ab479/training-entry-player-home-training-completion-390.png",
+      "sha256": "8a53037d87d69a3c87264cd8e465fe9a208b9fce6da489d96c45efb396eaaa81",
+      "dimensions": {
+        "width": 390,
+        "height": 1000
+      },
+      "controls": [
+        "Real local training save added one record",
+        "Schedule source retained; local-only success displayed"
+      ],
+      "measurement": {
+        "width": 390,
+        "height": 1000,
+        "scrollWidth": 390,
+        "clientWidth": 390
+      },
+      "context_evidence": "Real local training save added one record; Schedule source retained; local-only success displayed"
+    },
+    {
+      "id": "player-activity-inline-training-result",
+      "width": 390,
+      "viewport": "mobile",
+      "capture": "source-c6ab479/training-entry-player-home-training-completion-390.png",
+      "sha256": "8a53037d87d69a3c87264cd8e465fe9a208b9fce6da489d96c45efb396eaaa81",
+      "dimensions": {
+        "width": 390,
+        "height": 1000
+      },
+      "controls": [
+        "Real local training save added one record",
+        "Schedule source retained; local-only success displayed"
+      ],
+      "measurement": {
+        "width": 390,
+        "height": 1000,
+        "scrollWidth": 390,
+        "clientWidth": 390
+      },
+      "context_evidence": "The frozen scope explicitly consolidates player-activity-inline-training-result into player-home-training-completion. Same live Dashboard/TrainingLog implementation, with Real local training save added one record; Schedule source retained; local-only success displayed. No screenshot nonce or fake unique layout."
+    },
+    {
+      "id": "player-activity-inline-match",
+      "width": 390,
+      "viewport": "mobile",
+      "capture": "source-c6ab479/training-entry-player-activity-inline-match-390.png",
+      "sha256": "e38b3c76f66fb37bb3cf82e48a6b08ec5ccc82d5c67a294976bd79a59b21a131",
+      "dimensions": {
+        "width": 390,
+        "height": 1000
+      },
+      "controls": [
+        "Home weekboard match opens real MatchLog with scheduled opponent/date"
+      ],
+      "measurement": {
+        "width": 390,
+        "height": 1000,
+        "scrollWidth": 390,
+        "clientWidth": 390
+      },
+      "context_evidence": "Home weekboard match opens real MatchLog with scheduled opponent/date"
+    },
+    {
+      "id": "player-activity-inline-match-result",
+      "width": 390,
+      "viewport": "mobile",
+      "capture": "source-c6ab479/training-entry-player-activity-inline-match-result-390.png",
+      "sha256": "47b3c3acc4df4c0501ec51de22ac39b35834cd6845cc9b051d7fb1e3353e4422",
+      "dimensions": {
+        "width": 390,
+        "height": 1000
+      },
+      "controls": [
+        "Saving scheduled match creates exactly one record and displays local-only result"
+      ],
+      "measurement": {
+        "width": 390,
+        "height": 1000,
+        "scrollWidth": 390,
+        "clientWidth": 390
+      },
+      "context_evidence": "Saving scheduled match creates exactly one record and displays local-only result"
+    },
+    {
+      "id": "player-log-hub",
+      "width": 390,
+      "viewport": "mobile",
+      "capture": "source-c6ab479/training-entry-player-log-hub-390.png",
+      "sha256": "af9ed7c1d70857143ccfc3905fd66a74ef7cab03d8588d58606b01837400e6c3",
+      "dimensions": {
+        "width": 390,
+        "height": 1000
+      },
+      "controls": [
+        "Log workspace exposes manual choices and saved-entry journal"
+      ],
+      "measurement": {
+        "width": 390,
+        "height": 1000,
+        "scrollWidth": 390,
+        "clientWidth": 390
+      },
+      "context_evidence": "Log workspace exposes manual choices and saved-entry journal"
+    },
+    {
+      "id": "player-log-training-log",
+      "width": 390,
+      "viewport": "mobile",
+      "capture": "source-c6ab479/training-entry-player-log-training-log-390.png",
+      "sha256": "a20e0044ddb3dd20ed8cd1c2ed87646b37ac74778e2e03a374cc979a4a651261",
+      "dimensions": {
+        "width": 390,
+        "height": 1000
+      },
+      "controls": [
+        "Log > Training opens a fresh draft through real controls"
+      ],
+      "measurement": {
+        "width": 390,
+        "height": 1000,
+        "scrollWidth": 390,
+        "clientWidth": 390
+      },
+      "context_evidence": "Log > Training opens a fresh draft through real controls"
+    },
+    {
+      "id": "player-log-training-completion",
+      "width": 390,
+      "viewport": "mobile",
+      "capture": "source-c6ab479/training-entry-player-log-training-completion-390.png",
+      "sha256": "2ed07880f2a4943d4fe3c93595be5dfcecfabebd1e1997c9ae6a1d5fe7c506ca",
+      "dimensions": {
+        "width": 390,
+        "height": 1000
+      },
+      "controls": [
+        "Manual training saves a ten-minute record and displays actual reward/result"
+      ],
+      "measurement": {
+        "width": 390,
+        "height": 1000,
+        "scrollWidth": 390,
+        "clientWidth": 390
+      },
+      "context_evidence": "Manual training saves a ten-minute record and displays actual reward/result"
+    },
+    {
+      "id": "player-match-team-search",
+      "width": 390,
+      "viewport": "mobile",
+      "capture": "source-c6ab479/training-entry-player-match-team-search-390.png",
+      "sha256": "0e84449a21ec4f5a263f9ce66add6dca5ccd8cb82056a5362314c54c5205a2f8",
+      "dimensions": {
+        "width": 390,
+        "height": 1000
+      },
+      "controls": [
+        "Match opponent search receives a synthetic registry suggestion"
+      ],
+      "measurement": {
+        "width": 390,
+        "height": 1000,
+        "scrollWidth": 390,
+        "clientWidth": 390
+      },
+      "context_evidence": "Match opponent search receives a synthetic registry suggestion"
+    },
+    {
+      "id": "player-log-skip-dialog",
+      "width": 390,
+      "viewport": "mobile",
+      "capture": "source-c6ab479/training-entry-player-log-skip-dialog-390.png",
+      "sha256": "a565a806bbf6b895cdee91d9df94fe48fac4316bc435c9f2d4a673bf314dd15e",
+      "dimensions": {
+        "width": 390,
+        "height": 1000
+      },
+      "controls": [
+        "Open existing unrecorded-event skip controls; no XP or activity is granted"
+      ],
+      "measurement": {
+        "width": 390,
+        "height": 1000,
+        "scrollWidth": 390,
+        "clientWidth": 390
+      },
+      "context_evidence": "Open existing unrecorded-event skip controls; no XP or activity is granted"
+    },
+    {
+      "id": "player-home",
+      "width": 1440,
+      "viewport": "desktop",
+      "capture": "source-c6ab479/training-entry-player-home-1440.png",
+      "sha256": "b5181b27ef0214bd4f5f32be1734a212c6a9299972030341012fe24c7e0ccf5e",
+      "dimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "controls": [
+        "Home shows current week, recorded activity and all retained activity sections"
+      ],
+      "measurement": {
+        "width": 1440,
+        "height": 1000,
+        "scrollWidth": 1440,
+        "clientWidth": 1440
+      },
+      "context_evidence": "Home shows current week, recorded activity and all retained activity sections"
+    },
+    {
+      "id": "player-activity-overview",
+      "width": 1440,
+      "viewport": "desktop",
+      "capture": "source-c6ab479/training-entry-player-home-1440.png",
+      "sha256": "b5181b27ef0214bd4f5f32be1734a212c6a9299972030341012fe24c7e0ccf5e",
+      "dimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "controls": [
+        "Home shows current week, recorded activity and all retained activity sections"
+      ],
+      "measurement": {
+        "width": 1440,
+        "height": 1000,
+        "scrollWidth": 1440,
+        "clientWidth": 1440
+      },
+      "context_evidence": "The frozen scope explicitly consolidates player-activity-overview into player-home. Same live Dashboard/TrainingLog implementation, with Home shows current week, recorded activity and all retained activity sections. No screenshot nonce or fake unique layout."
+    },
+    {
+      "id": "player-home-training-log",
+      "width": 1440,
+      "viewport": "desktop",
+      "capture": "source-c6ab479/training-entry-player-home-training-log-1440.png",
+      "sha256": "6d7afc0abf4604565553787d58442602d323344b3465d5466304b0bb7c63eba4",
+      "dimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "controls": [
+        "Scheduled training opens populated real TrainingLog",
+        "Optional detail controls and notes retain input"
+      ],
+      "measurement": {
+        "width": 1440,
+        "height": 1000,
+        "scrollWidth": 1440,
+        "clientWidth": 1440
+      },
+      "context_evidence": "Scheduled training opens populated real TrainingLog; Optional detail controls and notes retain input"
+    },
+    {
+      "id": "player-activity-inline-training",
+      "width": 1440,
+      "viewport": "desktop",
+      "capture": "source-c6ab479/training-entry-player-home-training-log-1440.png",
+      "sha256": "6d7afc0abf4604565553787d58442602d323344b3465d5466304b0bb7c63eba4",
+      "dimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "controls": [
+        "Scheduled training opens populated real TrainingLog",
+        "Optional detail controls and notes retain input"
+      ],
+      "measurement": {
+        "width": 1440,
+        "height": 1000,
+        "scrollWidth": 1440,
+        "clientWidth": 1440
+      },
+      "context_evidence": "The frozen scope explicitly consolidates player-activity-inline-training into player-home-training-log. Same live Dashboard/TrainingLog implementation, with Scheduled training opens populated real TrainingLog; Optional detail controls and notes retain input. No screenshot nonce or fake unique layout."
+    },
+    {
+      "id": "player-home-training-completion",
+      "width": 1440,
+      "viewport": "desktop",
+      "capture": "source-c6ab479/training-entry-player-home-training-completion-1440.png",
+      "sha256": "08f0268ce329346c7880303655ada6e297929b4dfb7b8c6d35a11a1cb2007eee",
+      "dimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "controls": [
+        "Real local training save added one record",
+        "Schedule source retained; local-only success displayed"
+      ],
+      "measurement": {
+        "width": 1440,
+        "height": 1000,
+        "scrollWidth": 1440,
+        "clientWidth": 1440
+      },
+      "context_evidence": "Real local training save added one record; Schedule source retained; local-only success displayed"
+    },
+    {
+      "id": "player-activity-inline-training-result",
+      "width": 1440,
+      "viewport": "desktop",
+      "capture": "source-c6ab479/training-entry-player-home-training-completion-1440.png",
+      "sha256": "08f0268ce329346c7880303655ada6e297929b4dfb7b8c6d35a11a1cb2007eee",
+      "dimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "controls": [
+        "Real local training save added one record",
+        "Schedule source retained; local-only success displayed"
+      ],
+      "measurement": {
+        "width": 1440,
+        "height": 1000,
+        "scrollWidth": 1440,
+        "clientWidth": 1440
+      },
+      "context_evidence": "The frozen scope explicitly consolidates player-activity-inline-training-result into player-home-training-completion. Same live Dashboard/TrainingLog implementation, with Real local training save added one record; Schedule source retained; local-only success displayed. No screenshot nonce or fake unique layout."
+    },
+    {
+      "id": "player-activity-inline-match",
+      "width": 1440,
+      "viewport": "desktop",
+      "capture": "source-c6ab479/training-entry-player-activity-inline-match-1440.png",
+      "sha256": "bad3ca48b1e67355f76435d9b47f4949f95e064345960669523b41e19d8e26d5",
+      "dimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "controls": [
+        "Home weekboard match opens real MatchLog with scheduled opponent/date"
+      ],
+      "measurement": {
+        "width": 1440,
+        "height": 1000,
+        "scrollWidth": 1440,
+        "clientWidth": 1440
+      },
+      "context_evidence": "Home weekboard match opens real MatchLog with scheduled opponent/date"
+    },
+    {
+      "id": "player-activity-inline-match-result",
+      "width": 1440,
+      "viewport": "desktop",
+      "capture": "source-c6ab479/training-entry-player-activity-inline-match-result-1440.png",
+      "sha256": "6dcbfc72cacd92c2e8548bf5c7759ec1a279c9cbcbe54bc0e3908ff6c101ad85",
+      "dimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "controls": [
+        "Saving scheduled match creates exactly one record and displays local-only result"
+      ],
+      "measurement": {
+        "width": 1440,
+        "height": 1000,
+        "scrollWidth": 1440,
+        "clientWidth": 1440
+      },
+      "context_evidence": "Saving scheduled match creates exactly one record and displays local-only result"
+    },
+    {
+      "id": "player-log-hub",
+      "width": 1440,
+      "viewport": "desktop",
+      "capture": "source-c6ab479/training-entry-player-log-hub-1440.png",
+      "sha256": "d16e038242c94843bea09bf02b5fac42e114ef9d8fb67baef606f35fd60f1ff8",
+      "dimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "controls": [
+        "Log workspace exposes manual choices and saved-entry journal"
+      ],
+      "measurement": {
+        "width": 1440,
+        "height": 1000,
+        "scrollWidth": 1440,
+        "clientWidth": 1440
+      },
+      "context_evidence": "Log workspace exposes manual choices and saved-entry journal"
+    },
+    {
+      "id": "player-log-training-log",
+      "width": 1440,
+      "viewport": "desktop",
+      "capture": "source-c6ab479/training-entry-player-log-training-log-1440.png",
+      "sha256": "7167c82bbf69d0ab062c50c5128b73744ba7c659824e7d355989af176d8a70fb",
+      "dimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "controls": [
+        "Log > Training opens a fresh draft through real controls"
+      ],
+      "measurement": {
+        "width": 1440,
+        "height": 1000,
+        "scrollWidth": 1440,
+        "clientWidth": 1440
+      },
+      "context_evidence": "Log > Training opens a fresh draft through real controls"
+    },
+    {
+      "id": "player-log-training-completion",
+      "width": 1440,
+      "viewport": "desktop",
+      "capture": "source-c6ab479/training-entry-player-log-training-completion-1440.png",
+      "sha256": "5b713ca399764e222a55c8d2fc57fb6adcb14ed6cbc18c987e30bd4b398aa14b",
+      "dimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "controls": [
+        "Manual training saves a ten-minute record and displays actual reward/result"
+      ],
+      "measurement": {
+        "width": 1440,
+        "height": 1000,
+        "scrollWidth": 1440,
+        "clientWidth": 1440
+      },
+      "context_evidence": "Manual training saves a ten-minute record and displays actual reward/result"
+    },
+    {
+      "id": "player-match-team-search",
+      "width": 1440,
+      "viewport": "desktop",
+      "capture": "source-c6ab479/training-entry-player-match-team-search-1440.png",
+      "sha256": "0d2f4040b293d479cc2ca67f838a69c9a57dd65997677e9c6ef7d42af70cd2b2",
+      "dimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "controls": [
+        "Match opponent search receives a synthetic registry suggestion"
+      ],
+      "measurement": {
+        "width": 1440,
+        "height": 1000,
+        "scrollWidth": 1440,
+        "clientWidth": 1440
+      },
+      "context_evidence": "Match opponent search receives a synthetic registry suggestion"
+    },
+    {
+      "id": "player-log-skip-dialog",
+      "width": 1440,
+      "viewport": "desktop",
+      "capture": "source-c6ab479/training-entry-player-log-skip-dialog-1440.png",
+      "sha256": "3265d4b210bed9461ce355985809c3bdf811ae05c0a0018da818889bcb0d53f4",
+      "dimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "controls": [
+        "Open existing unrecorded-event skip controls; no XP or activity is granted"
+      ],
+      "measurement": {
+        "width": 1440,
+        "height": 1000,
+        "scrollWidth": 1440,
+        "clientWidth": 1440
+      },
+      "context_evidence": "Open existing unrecorded-event skip controls; no XP or activity is granted"
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Synthetic local profiles and mocked APIs only.",
+    "Dashboard activity consolidation aliases retain each inventory ID; identical captures are not represented as independent designs."
+  ],
+  "remaining": []
+}

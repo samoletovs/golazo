@@ -1,0 +1,18 @@
+{
+  "kind": "evidence-procedure-execution-not-independent-review",
+  "source_commit": "c6ab4790528f486380219e72164412039a94003c",
+  "procedure": "docs/design-evidence/academy-20260923/release-fonts.py",
+  "original_sha256": "d54943cf5c98488193d0db9a9d2fa1f060d2489be9e668ea353be51697acce99",
+  "executed_sha256": "e4010802f853630a401c2f5d331c581d7f292c7095e44d6971280bcecb3776c8",
+  "runner_sha256": "0f15309fed7dc3b8f4bc844678b83765cfcc59e215a79bb882833c3ddbe900cf",
+  "substitution": {
+    "original_loopback_origin": "http://127.0.0.1:4323",
+    "actual_loopback_origin": "http://127.0.0.1:45913"
+  },
+  "playwright_package": "Existing Python-managed Playwright driver; machine-local installation path omitted",
+  "fixture_dependency_search_path": "c:\\dev\\nauroLabs\\golazo\\node_modules",
+  "started_at": "2026-10-02T13:20:07.752Z",
+  "finished_at": "2026-10-02T13:21:16.011Z",
+  "exit_code": 0,
+  "export_redaction": "Only the local Python installation path was removed. Source, procedure hashes, timestamps, exit codes and browser evidence are unchanged."
+}
