@@ -32,6 +32,22 @@ npm run lint     # MUST pass
 npm test         # vitest
 ```
 
+### API runtime and verification
+
+- The API is CommonJS JavaScript, loaded through `src/functions/*.js`; it has no
+  TypeScript build step.
+- SWA `platform.apiRuntime`, CI and deployment must use Node 22. API engines also
+  allow Node 24 locally; local results do not substitute for Node 22 CI proof.
+- Cosmos and Identity SDK engine requirements drive this choice. Node 20 remains
+  listed as supported by SWA but does not satisfy these SDKs.
+- Restore with `npm ci --prefix api --engine-strict`, then run
+  `npm test --prefix api`. Keep the API lockfile and strict-engine `.npmrc`.
+- API tests use the real Azure SDKs with synthetic inputs and no external I/O.
+  Preserve routes, Google/SWA authentication, function registrations and lazy
+  Cosmos initialization when updating the runtime or dependencies.
+- Backend-only changes use the existing changed-path design classification;
+  do not rewrite historical design evidence or weaken design gates.
+
 ## Structure
 
 ```
@@ -80,6 +96,9 @@ src/
 api/
 ├── host.json                  # Azure Functions config
 ├── package.json               # API dependencies
+├── package-lock.json          # Reproducible API dependency tree
+├── .npmrc                     # Reject incompatible Node engines
+├── test/                      # Offline Node runtime and API regression tests
 └── src/
     ├── cosmos.js               # Cosmos DB client + auth helpers
     └── functions/
@@ -118,4 +137,20 @@ synthetic concepts are explicitly outside the production React/i18n pipeline.
 
 ## Deploy
 
-Azure Static Web App via CI/CD (git push to main).
+Azure Static Web App via CI/CD (git push to the default `master` branch).
+
+Successful Dependabot/Copilot merge-workflow completions also trigger a trusted
+delivery handoff, since `GITHUB_TOKEN` merges suppress ordinary push and PR-close
+events. Only confirmed same-repository default-branch merges qualify. Quality
+checks and deployment use the same current default SHA, checked again before
+upload; then the confirmed PR preview is closed. No unmerged branch or PR artifact
+is executed by the handoff.
+
+Ordinary manual CI dispatch remains validation-only. A default-branch dispatch
+with `delivery_pr` explicitly retries an already merged PR through the same gates.
+Runs queue without replacement (`queue: max`, up to 100 waiting runs), including
+PR validation; no-op completions cannot cancel pending production/cleanup.
+Preview cleanup passes verified full PR metadata through the official client's
+`close --event` argument, not a reserved GitHub event-variable override.
+The helper `scripts/merged-pr-delivery.py` and
+`tests/test_merged_pr_delivery.py` are shared governance copies.
