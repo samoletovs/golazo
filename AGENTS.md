@@ -1,5 +1,9 @@
 # Golazo — Copilot Coding Agent Instructions
 
+Feedback triage uses `gpt-6-luna` on the existing personal-agents Azure account,
+with reasoning disabled and a 300-token output ceiling. Player progression and
+coaching application behavior are unchanged by this retirement migration.
+
 ## Project
 
 Golazo is a mobile-first gamified football development platform. The confirmed
