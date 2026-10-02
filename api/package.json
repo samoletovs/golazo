@@ -2,9 +2,18 @@
   "name": "golazo-api",
   "version": "1.0.0",
   "main": "src/functions/*.js",
+  "engines": {
+    "node": "22.x || 24.x"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.js"
+  },
   "dependencies": {
-    "@azure/cosmos": "^4.0.0",
+    "@azure/cosmos": "^4.10.1",
     "@azure/functions": "^4.0.0",
-    "@azure/identity": "^4.0.0"
+    "@azure/identity": "^4.13.3"
+  },
+  "devDependencies": {
+    "semver": "^7.7.3"
   }
 }

@@ -41,6 +41,30 @@ npm run validate:football-terms
 npm run build
 ```
 
+### API runtime
+
+The CommonJS Azure Functions API runs on **Node.js 22** in SWA; CI and deployment
+must use Node 22 as well. Node 24 is also allowed for local development, but a
+local Node 24 pass does not replace verification on the deployed Node 22 runtime.
+
+The current Cosmos and Identity SDKs require Node 22 or newer. This is an SDK
+engine requirement, not a claim that SWA no longer supports Node 20.
+[Microsoft lists Node 22 for SWA-managed Functions 4 on Linux](https://learn.microsoft.com/azure/static-web-apps/languages-runtimes).
+
+Restore the committed API lockfile and run the offline API checks separately
+from the frontend:
+
+```powershell
+npm ci --prefix api --engine-strict
+npm test --prefix api
+```
+
+The API's `.npmrc` makes incompatible dependency engines an error, not a warning.
+Keep `api/package-lock.json` committed when updating dependencies. The Node test
+suite loads the real SDKs, validates runtime/lockfile alignment, and checks
+function registration and authentication without Cosmos, credentials or network
+access. No API build or TypeScript compilation is required.
+
 ## Maintenance
 
 `npm run maintain:dry` previews maintenance without writing data; it still reads

@@ -32,6 +32,22 @@ npm run lint     # MUST pass
 npm test         # vitest
 ```
 
+### API runtime and verification
+
+- The API is CommonJS JavaScript, loaded through `src/functions/*.js`; it has no
+  TypeScript build step.
+- SWA `platform.apiRuntime`, CI and deployment must use Node 22. API engines also
+  allow Node 24 locally; local results do not substitute for Node 22 CI proof.
+- Cosmos and Identity SDK engine requirements drive this choice. Node 20 remains
+  listed as supported by SWA but does not satisfy these SDKs.
+- Restore with `npm ci --prefix api --engine-strict`, then run
+  `npm test --prefix api`. Keep the API lockfile and strict-engine `.npmrc`.
+- API tests use the real Azure SDKs with synthetic inputs and no external I/O.
+  Preserve routes, Google/SWA authentication, function registrations and lazy
+  Cosmos initialization when updating the runtime or dependencies.
+- Backend-only changes use the existing changed-path design classification;
+  do not rewrite historical design evidence or weaken design gates.
+
 ## Structure
 
 ```
@@ -80,6 +96,9 @@ src/
 api/
 ├── host.json                  # Azure Functions config
 ├── package.json               # API dependencies
+├── package-lock.json          # Reproducible API dependency tree
+├── .npmrc                     # Reject incompatible Node engines
+├── test/                      # Offline Node runtime and API regression tests
 └── src/
     ├── cosmos.js               # Cosmos DB client + auth helpers
     └── functions/
