@@ -1,0 +1,18 @@
+{
+  "kind": "evidence-procedure-execution-not-independent-review",
+  "source_commit": "c6ab4790528f486380219e72164412039a94003c",
+  "procedure": "docs/design-evidence/academy-20260923/release-training.cjs",
+  "original_sha256": "818fbff51db4a5d95c4228b07c44f04e5516118fdc0e74273676ee4bbf805b73",
+  "executed_sha256": "33765cbfce65c3eed5a8ffc7b8106cdd192631275d541265fb093d2333e641df",
+  "runner_sha256": "4a946e5a464fa2f33c53221b83522416e3c656fb8662ce271eeae5b50c6dbcc4",
+  "substitution": {
+    "original_loopback_origin": "http://127.0.0.1:4323",
+    "actual_loopback_origin": "http://127.0.0.1:45913"
+  },
+  "playwright_package": "Existing Python-managed Playwright driver; machine-local installation path omitted",
+  "fixture_dependency_search_path": "c:\\dev\\nauroLabs\\golazo\\node_modules",
+  "started_at": "2026-10-02T13:17:19.685Z",
+  "finished_at": "2026-10-02T13:17:47.815Z",
+  "exit_code": 0,
+  "export_redaction": "Only the local Python installation path was removed. Source, procedure hashes, timestamps, exit codes and browser evidence are unchanged."
+}
