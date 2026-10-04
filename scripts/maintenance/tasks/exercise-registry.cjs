@@ -169,7 +169,10 @@ async function run(config) {
 // ── YouTube Data API v3 Search ──────────────────────────────
 
 function providerError(code, retryable = false, status) {
-  return Object.assign(new Error(`YouTube API: ${code}${status ? ` (HTTP ${status})` : ''}`), {
+  const guidance = code === 'API_KEY_INVALID'
+    ? ' — replace the YOUTUBE_API_KEY GitHub Actions secret with a valid YouTube Data API v3 key'
+    : ''
+  return Object.assign(new Error(`YouTube API: ${code}${status ? ` (HTTP ${status})` : ''}${guidance}`), {
     code, retryable, stopBatch: true,
   })
 }

@@ -364,7 +364,11 @@
       "U13",
       "U15"
     ],
-    "colors": [],
+    "colors": [
+      "#333634",
+      "#FAE615"
+    ],
+    "colorsSource": "https://turniir.ee/sites/default/files/teamimages/fk-akmenes-cementas-logo.png",
     "logoUrl": "https://turniir.ee/sites/default/files/styles/logo/public/teamimages/fk-akmenes-cementas-logo.png?itok=H5ZRplKb",
     "type": "club"
   }
