@@ -1,6 +1,6 @@
 // @vitest-environment node
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { readFileSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 import { EventEmitter } from 'node:events'
 import { spawnSync } from 'node:child_process'
 import path from 'node:path'
@@ -132,22 +132,29 @@ beforeEach(() => { vi.useFakeTimers() })
 afterEach(() => { vi.useRealTimers() })
 
 describe('maintenance YouTube failure recovery', () => {
-  it('stops one invalid credential from causing 39 requests while preserving every affected exercise', async () => {
-    const { fs } = memoryFiles(Array.from({ length: 29 }, (_, i) => ({
+  it('preserves every affected exercise and reports actionable credential errors', async () => {
+    const { fs, files } = memoryFiles(Array.from({ length: 29 }, (_, i) => ({
       id: `fixture-${i}`, nameEn: 'Fixture drill', descEn: 'Fixture instructions',
     })))
     const http = httpFixture([invalidKey])
     const task = loadModule('tasks/exercise-registry.cjs', { run: missingTask }, { fs, https: http.client }).exports
-    const result = await flush(task.run(config))
+    const result = await flush(task.run({ ...config, dryRun: false }))
     expect(http.urls).toHaveLength(1)
     expect(result.errors).toHaveLength(39)
     expect(result.errors.join('\n')).toContain('fixture-28')
     expect(result.errors.filter(error => error.includes('gen-'))).toHaveLength(10)
     expect(result.errors.join('\n')).toContain('API_KEY_INVALID')
+    expect(result.errors.join('\n')).toContain('YOUTUBE_API_KEY GitHub Actions secret')
     expect(result.errors.join('\n')).not.toContain(config.youtubeApiKey)
     expect(result.updated).toBe(0)
     expect(result.added).toBe(10)
-    expect(fs.writeFileSync).not.toHaveBeenCalled()
+    expect(fs.writeFileSync).toHaveBeenCalledTimes(2)
+    const saved = JSON.parse(files.get(path.join(config.dataDir, 'exercises-generated.json')) || '[]')
+    expect(saved).toHaveLength(39)
+    expect(saved).toEqual(expect.arrayContaining([
+      expect.objectContaining({ id: 'fixture-28' }),
+      expect.objectContaining({ id: 'gen-tech-ballControl-d1' }),
+    ]))
   })
 
   it('reports creation-phase failures even when there is nothing to enrich', async () => {
@@ -218,6 +225,76 @@ describe('maintenance YouTube failure recovery', () => {
     expect(http.urls.some(url => url.includes('Previously'))).toBe(false)
     expect(result.errors).toEqual([])
     expect(files.get(path.join(config.dataDir, 'exercises-generated.json'))).toContain('watch?v=cached')
+  })
+})
+
+describe('tracked maintenance data', () => {
+  const trackedConfig = {
+    ...config,
+    dataDir: path.resolve('data'),
+    srcDir: path.resolve('src'),
+    i18nDir: path.resolve('src', 'i18n'),
+  }
+  const readOnlyFs = { existsSync, readFileSync, writeFileSync: vi.fn() }
+
+  it('validates all tracked teams without deleting incomplete clubs to pass the gate', async () => {
+    const task = loadModule('tasks/team-registry.cjs', { run: missingTask }, { fs: readOnlyFs }).exports
+    const result = await task.run(trackedConfig)
+    expect(result.errors).toEqual([])
+    expect(result.updated).toBeGreaterThanOrEqual(58)
+
+    const repairedTeams: Record<string, string[]> = {
+      lv: ['RFK', 'FS Leevon', 'BJFK Pārdaugava', 'Jēkabpils SS', 'AFA Olaine',
+        'FK Dinamo Riga', 'FK Laos', 'FKD Bites', 'Saldus SS', 'Futbola Skola'],
+      lt: ['FK Akmenės Cementas'],
+    }
+    for (const [country, names] of Object.entries(repairedTeams)) {
+      const teams: { name: string; colors: string[]; colorsSource?: string }[] =
+        JSON.parse(readFileSync(path.join(trackedConfig.dataDir, `teams-${country}.json`), 'utf8'))
+      for (const name of names) {
+        const team = teams.find(entry => entry.name === name)
+        expect(team, `${country}: lost ${name}`).toBeDefined()
+        expect(team?.colors.length, `${name}: no researched colors`).toBeGreaterThan(0)
+        expect(team?.colorsSource, `${name}: no color provenance`).toMatch(/^https:\/\//)
+      }
+    }
+    expect(readOnlyFs.writeFileSync).not.toHaveBeenCalled()
+  })
+
+  it('still rejects translation coverage below 90 percent', async () => {
+    const { fs, files } = memoryFiles()
+    const reference = Object.fromEntries(Array.from({ length: 100 }, (_, i) => [`key-${i}`, `Text ${i}`]))
+    files.set(path.join(config.i18nDir, 'en.json'), JSON.stringify(reference))
+    for (const lang of ['ru', 'lv', 'es', 'et', 'lt']) {
+      files.set(path.join(config.i18nDir, `${lang}.json`), JSON.stringify(
+        lang === 'et' ? Object.fromEntries(Object.entries(reference).slice(0, 89)) : reference,
+      ))
+    }
+    const task = loadModule('tasks/i18n-completeness.cjs', { run: missingTask }, { fs }).exports
+    const result = await task.run(config)
+    expect(result.errors).toEqual(['et: 89.0% coverage (below 90% threshold, 11 keys missing)'])
+  })
+
+  it.each([{ colors: [] }, { colors: ['green'] }])('still rejects missing or malformed club colors: $colors', async ({ colors }) => {
+    const { fs, files } = memoryFiles()
+    files.set(path.join(config.dataDir, 'teams-lv.json'), JSON.stringify([
+      { name: 'Fixture club', city: 'Rīga', league: 'Youth', colors },
+    ]))
+    const task = loadModule('tasks/team-registry.cjs', { run: missingTask }, { fs }).exports
+    const result = await task.run(config)
+    expect(result.errors).toEqual([expect.stringContaining(colors.length ? 'invalid color' : "missing 'colors'")])
+    expect(fs.writeFileSync).not.toHaveBeenCalled()
+  })
+
+  it('still rejects missing required team fields', async () => {
+    const { fs, files } = memoryFiles()
+    files.set(path.join(config.dataDir, 'teams-lv.json'), JSON.stringify([{ name: 'Fixture club', colors: ['#112233'] }]))
+    const task = loadModule('tasks/team-registry.cjs', { run: missingTask }, { fs }).exports
+    const result = await task.run(config)
+    expect(result.errors).toEqual([
+      "LV/Fixture club: missing 'city'",
+      "LV/Fixture club: missing 'league'",
+    ])
   })
 })
 

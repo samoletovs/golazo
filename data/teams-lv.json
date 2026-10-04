@@ -741,7 +741,11 @@
       "U13",
       "U15"
     ],
-    "colors": [],
+    "colors": [
+      "#E4000F",
+      "#D59D62"
+    ],
+    "colorsSource": "https://turniir.ee/sites/default/files/teamimages/292091619_468339481961252_5636499290188913700_n.jpg",
     "logoUrl": "https://turniir.ee/sites/default/files/styles/logo/public/teamimages/292091619_468339481961252_5636499290188913700_n.jpg?itok=VIKJKsZ1",
     "type": "academy"
   },
@@ -760,7 +764,11 @@
       "U13",
       "U15"
     ],
-    "colors": [],
+    "colors": [
+      "#8C080C",
+      "#FFFFFF"
+    ],
+    "colorsSource": "https://turniir.ee/sites/default/files/teamimages/278016012_385090773620430_930409628680387260_n.png",
     "logoUrl": "https://turniir.ee/sites/default/files/styles/logo/public/teamimages/278016012_385090773620430_930409628680387260_n.png?itok=817w4D7M",
     "type": "academy"
   },
@@ -781,7 +789,11 @@
       "U13",
       "U15"
     ],
-    "colors": [],
+    "colors": [
+      "#131138",
+      "#F9C414"
+    ],
+    "colorsSource": "https://turniir.ee/sites/default/files/teamimages/309860503_519786986821602_4638769688127369149_n%20%281%29_3.jpg",
     "logoUrl": "https://turniir.ee/sites/default/files/styles/logo/public/teamimages/309860503_519786986821602_4638769688127369149_n%20%281%29_3.jpg?itok=1hsQ3FMs",
     "type": "academy"
   },
@@ -801,7 +813,11 @@
       "U13",
       "U15"
     ],
-    "colors": [],
+    "colors": [
+      "#C8D300",
+      "#68666B"
+    ],
+    "colorsSource": "https://turniir.ee/sites/default/files/teamimages/ekr%C4%81nuz%C5%86%C4%93mums%202026-03-28%20171245_0.png",
     "logoUrl": "https://turniir.ee/sites/default/files/styles/logo/public/teamimages/ekr%C4%81nuz%C5%86%C4%93mums%202026-03-28%20171245_0.png?itok=j5Kwz9AT",
     "type": "academy"
   },
@@ -821,8 +837,12 @@
       "U15",
       "Senior"
     ],
-    "colors": [],
-    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/0/06/AFA_Olaine_logo.jpg",
+    "colors": [
+      "#D3B043",
+      "#000000"
+    ],
+    "colorsSource": "https://www.afaolaine.lv/engine/images/logo1.png",
+    "logoUrl": "https://www.afaolaine.lv/engine/images/logo1.png",
     "type": "club"
   },
   {
@@ -842,7 +862,11 @@
       "U13",
       "U15"
     ],
-    "colors": [],
+    "colors": [
+      "#523C91",
+      "#FFFFFF"
+    ],
+    "colorsSource": "https://turniir.ee/sites/default/files/teamimages/fk-dinamo-riga-logo_2.png",
     "logoUrl": "https://turniir.ee/sites/default/files/styles/logo/public/teamimages/fk-dinamo-riga-logo_2.png?itok=6IZYvrUW",
     "type": "academy"
   },
@@ -861,7 +885,11 @@
       "U13",
       "U15"
     ],
-    "colors": [],
+    "colors": [
+      "#062513",
+      "#111F39"
+    ],
+    "colorsSource": "https://turniir.ee/sites/default/files/teamimages/ekr%C4%81nuz%C5%86%C4%93mums%202026-03-28%20171729_2.png",
     "logoUrl": "https://turniir.ee/sites/default/files/styles/logo/public/teamimages/ekr%C4%81nuz%C5%86%C4%93mums%202026-03-28%20171729_2.png?itok=D8Pck7nm",
     "type": "academy"
   },
@@ -880,7 +908,11 @@
       "U13",
       "U15"
     ],
-    "colors": [],
+    "colors": [
+      "#063F6A",
+      "#FFFFFF"
+    ],
+    "colorsSource": "https://turniir.ee/sites/default/files/teamimages/482827357_1394794008159768_5240940451357336317_n_1.jpg",
     "logoUrl": "https://turniir.ee/sites/default/files/styles/logo/public/teamimages/482827357_1394794008159768_5240940451357336317_n_1.jpg?itok=be76nRYC",
     "type": "academy"
   },
@@ -902,7 +934,11 @@
       "U15",
       "Senior"
     ],
-    "colors": [],
+    "colors": [
+      "#0D2A30",
+      "#FFFFFF"
+    ],
+    "colorsSource": "https://turniir.ee/sites/default/files/teamimages/301767141_2964010327231959_8883625874690175365_n%20%281%29.jpg",
     "logoUrl": "https://turniir.ee/sites/default/files/styles/logo/public/teamimages/301767141_2964010327231959_8883625874690175365_n%20%281%29.jpg?itok=Y1qMVjy3",
     "type": "club"
   },
@@ -920,7 +956,11 @@
       "U13",
       "U15"
     ],
-    "colors": [],
+    "colors": [
+      "#2C2B29",
+      "#FFFFFF"
+    ],
+    "colorsSource": "https://turniir.ee/sites/default/files/teamimages/485793484_122195860772171646_6079132259325493453_n.jpg",
     "logoUrl": "https://turniir.ee/sites/default/files/styles/logo/public/teamimages/485793484_122195860772171646_6079132259325493453_n.jpg?itok=jXXsGn6h",
     "type": "academy"
   }
