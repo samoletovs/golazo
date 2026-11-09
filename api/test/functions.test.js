@@ -163,6 +163,75 @@ for (const [description, header] of [['missing', undefined], ['malformed', malfo
   }
 }
 
+for (const deployment of [
+  undefined, '', 'gpt-6-luna', 'gpt-4o', 'gpt-4o-mini',
+  'gpt-4.1', 'gpt-4.1-mini', 'gpt-4.1-nano', 'o3', 'o4-mini', 'gpt-6-luna-custom',
+]) {
+  test(`coach preserves its request and response contract for deployment ${JSON.stringify(deployment)}`, async (t) => {
+    const settings = ['AZURE_OPENAI_ENDPOINT', 'AZURE_OPENAI_KEY', 'AZURE_OPENAI_DEPLOYMENT'];
+    const previous = settings.map((name) => [name, process.env[name]]);
+    t.after(() => {
+      for (const [name, value] of previous) {
+        if (value === undefined) delete process.env[name];
+        else process.env[name] = value;
+      }
+    });
+    process.env.AZURE_OPENAI_ENDPOINT = 'https://openai.example.invalid';
+    process.env.AZURE_OPENAI_KEY = 'synthetic-test-key';
+    if (deployment === undefined) delete process.env.AZURE_OPENAI_DEPLOYMENT;
+    else process.env.AZURE_OPENAI_DEPLOYMENT = deployment;
+
+    const advice = {
+      greeting: 'Ready to practise?',
+      recommendation: 'Focus on controlled passing.',
+      insights: [{ category: 'technical', icon: '', text: 'Keep your first touch close.' }],
+      drills: ['Short passing', 'Ball control', 'Passing with both feet'],
+      focusArea: 'technical',
+      weeklyGoal: 'Practise passing with both feet.',
+    };
+    const fetch = t.mock.method(globalThis, 'fetch', async () => new Response(JSON.stringify({
+      choices: [{ message: { content: JSON.stringify(advice) } }],
+    }), { status: 200 }));
+    const header = Buffer.from(JSON.stringify({
+      ...principal,
+      userId: `coach-contract-${JSON.stringify(deployment)}`,
+    })).toString('base64');
+    const createRequest = () => new HttpRequest({
+      method: 'POST',
+      url: 'https://golazo.example.invalid/api/coach',
+      headers: { 'x-ms-client-principal': header },
+      body: { string: JSON.stringify({ skillTree: { ratings: [{ category: 'technical', rating: 6 }] } }) },
+    });
+
+    const response = await registrations.get('coach').handler(createRequest());
+
+    assert.equal(fetch.mock.callCount(), 1);
+    const [url, options] = fetch.mock.calls[0].arguments;
+    const resolved = deployment || 'gpt-6-luna';
+    assert.equal(url, `https://openai.example.invalid/openai/deployments/${resolved}/chat/completions?api-version=2024-08-01-preview`);
+    assert.equal(options.method, 'POST');
+    assert.deepEqual(options.headers, { 'Content-Type': 'application/json', 'api-key': 'synthetic-test-key' });
+    const { messages, ...parameters } = JSON.parse(options.body);
+    assert.deepEqual(parameters, {
+      temperature: 0.7,
+      max_completion_tokens: 800,
+      ...(resolved === 'gpt-6-luna' ? { reasoning_effort: 'none' } : {}),
+      response_format: { type: 'json_object' },
+    });
+    assert.equal(messages.length, 2);
+    assert.equal(messages[0].role, 'system');
+    assert.match(messages[0].content, /professional youth football development coach/);
+    assert.equal(messages[1].role, 'user');
+    assert.match(messages[1].content, /Skill ratings: technical: 6\.0\/10/);
+    assert.equal(response.status, 200);
+    assert.deepEqual(JSON.parse(response.body), advice);
+
+    const limited = await registrations.get('coach').handler(createRequest());
+    assert.equal(limited.status, 429);
+    assert.equal(fetch.mock.callCount(), 1);
+  });
+}
+
 for (const [name, method] of [
   ['sync', 'GET'], ['sync', 'PUT'], ['profile', 'GET'], ['profile', 'PUT'],
   ['invite-create', 'POST'], ['invite-accept', 'POST'], ['leaderboard', 'GET'],

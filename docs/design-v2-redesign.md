@@ -58,7 +58,7 @@ Single container `golazo` with partition key `/userId`:
 
 ## Cost Impact
 - Cosmos DB Free tier: $0/month
-- Azure OpenAI (GPT-4o-mini): ~$2-5/month (low usage)
+- Azure OpenAI (`gpt-6-luna`, 800-token coaching ceiling): remeasure after activation; historical low-usage estimate was ~$2-5/month
 - Blob Storage: ~$0.01/month
 - Total: ~$2-5/month increase (within $150 budget)
 
