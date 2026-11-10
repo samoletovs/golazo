@@ -4,6 +4,14 @@ Feedback triage uses `gpt-6-luna` on the existing personal-agents Azure account,
 with reasoning disabled and a 300-token output ceiling. Player progression and
 coaching application behavior are unchanged by this retirement migration.
 
+AI coaching defaults to `gpt-6-luna` when `AZURE_OPENAI_DEPLOYMENT` is absent or
+empty. Requests keep temperature 0.7, JSON-object output and an 800-token
+`max_completion_tokens` ceiling. Send `reasoning_effort: 'none'` only when the
+resolved deployment is exactly `gpt-6-luna`; explicit legacy overrides must
+remain compatible during rollout. The API version and key authentication stay
+unchanged. Without both `AZURE_OPENAI_ENDPOINT` and `AZURE_OPENAI_KEY`, the
+existing unconfigured-coach response is returned without making a model call.
+
 ## Project
 
 Golazo is a mobile-first gamified football development platform. The confirmed

@@ -28,7 +28,7 @@ app.http('coach', {
 
     const openaiEndpoint = process.env.AZURE_OPENAI_ENDPOINT;
     const openaiKey = process.env.AZURE_OPENAI_KEY;
-    const deployment = process.env.AZURE_OPENAI_DEPLOYMENT || 'gpt-4o-mini';
+    const deployment = process.env.AZURE_OPENAI_DEPLOYMENT || 'gpt-6-luna';
 
     if (!openaiEndpoint || !openaiKey) {
       return jsonResponse({
@@ -61,7 +61,8 @@ app.http('coach', {
               { role: 'user', content: prompt },
             ],
             temperature: 0.7,
-            max_tokens: 800,
+            max_completion_tokens: 800,
+            ...(deployment === 'gpt-6-luna' ? { reasoning_effort: 'none' } : {}),
             response_format: { type: 'json_object' },
           }),
         }
