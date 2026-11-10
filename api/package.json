@@ -11,7 +11,7 @@
   "dependencies": {
     "@azure/cosmos": "^4.10.1",
     "@azure/functions": "^4.0.0",
-    "@azure/identity": "^4.13.3"
+    "@azure/identity": "^4.14.1"
   },
   "devDependencies": {
     "semver": "^7.7.3"
